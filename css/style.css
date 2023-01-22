@@ -8,7 +8,7 @@
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
-  --pink: #e83e8c;
+  --pink: #e83e8c;\
   --red: #dc3545;
   --orange: #fd7e14;
   --yellow: #ffc107;
@@ -8457,7 +8457,7 @@ h1, h2, h3, h4, h5,
             margin-top: -100px !important;
             text-align: center; } }
         .owl-carousel.home-slider .slider-item .slider-text .one-third {
-          width: 60%;
+          width: 40%;
           position: relative;
           z-index: -1; }
           .owl-carousel.home-slider .slider-item .slider-text .one-third .overlay {
@@ -8488,7 +8488,7 @@ h1, h2, h3, h4, h5,
               top: 0;
               left: 0;
               bottom: 0;
-              right: 0;
+              right: 10%;
               width: 1200px;
               margin: 0 auto; } }
           @media (max-width: 991.98px) {
@@ -8512,7 +8512,7 @@ h1, h2, h3, h4, h5,
                 -ms-transform: translateY(-50%);
                 transform: translateY(-50%);
                 right: 0;
-                max-width: 50%;
+                max-width: 60%;
                 padding-left: 45px;
                 padding-right: 3em; } }
         .owl-carousel.home-slider .slider-item .slider-text .subheading {
