@@ -71,9 +71,17 @@ body {
   font-size: 1.5vw;
 }
 
+#profile-image {
+  display: block;
+}
+
 @media (max-width: 800px) {
   .header-sub-text {
     font-size: 20px;
+  }
+
+  #profile-image {
+    display: none;
   }
 }
 
