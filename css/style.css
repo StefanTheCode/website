@@ -64,11 +64,11 @@ body {
 
 .header-text {
   font-weight: 800 !important; 
-  font-size: 3.7vw !important;
+  font-size: 3.7vw;
 }
 
 .header-sub-text {
-  font-size: 1.5vw !important;
+  font-size: 1.5vw;
 }
 
 #profile-image {
@@ -77,7 +77,7 @@ body {
 
 @media (max-width: 800px) {
   .header-sub-text {
-    font-size: 20px !important;
+    font-size: 20px;
   }
 
   #profile-image {
@@ -9104,7 +9104,7 @@ textarea.form-control {
   position: relative; }
   @media (max-width: 767.98px) {
     .ftco-section {
-      padding: 1em 0; } }
+      padding: 1em 0 !important; } }
 
 .ftco-no-pt {
   padding-top: 0 !important; }
