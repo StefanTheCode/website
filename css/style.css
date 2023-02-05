@@ -92,11 +92,14 @@ body {
   margin-top: -10px;
 }
 
+#ebook-image {
+  width: 40%;
+}
+
 .coming-soon {
-  text-align: right;
-    padding-top: 10%;
-    padding-left: 5%;
-    padding-right: 5%;
+  text-align: center !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
 }
 
 @media (max-width: 800px) {
@@ -132,13 +135,16 @@ body {
   }
 
   .coming-soon {
-    text-align: center;
-      padding-top: 10%;
-      padding-left: 5%;
-      padding-right: 5%;
+    text-align: center !important;
+      padding-top: 10% !important;
+      padding-left: 5% !important;
+      padding-right: 5% !important;
   }
+
   
-  
+#ebook-image {
+  width: 80%;
+}
 }
 
 .mtopminus10 {
