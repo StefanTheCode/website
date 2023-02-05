@@ -64,11 +64,11 @@ body {
 
 .header-text {
   font-weight: 800 !important; 
-  font-size: 3.7vw;
+  font-size: 3.7vw !important;
 }
 
 .header-sub-text {
-  font-size: 1.5vw;
+  font-size: 1.5vw !important;
 }
 
 #profile-image {
@@ -77,7 +77,7 @@ body {
 
 @media (max-width: 800px) {
   .header-sub-text {
-    font-size: 20px;
+    font-size: 20px !important;
   }
 
   #profile-image {
