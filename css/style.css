@@ -8,7 +8,7 @@
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
-  --pink: #e83e8c;\
+  --pink: #e83e8c;
   --red: #dc3545;
   --orange: #fd7e14;
   --yellow: #ffc107;
@@ -54,10 +54,31 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
+  max-width: 100%;
+  width: auto;
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff; }
+  background-color: #fff; 
+}
+
+.header-text {
+  font-weight: 800 !important; 
+  font-size: 3.7vw;
+}
+
+.header-sub-text {
+  font-size: 1.5vw;
+}
+
+.mtopminus10 {
+  margin-top: -10px;
+}
+
+.mtbottom20 {
+  margin-bottom: 20px;
+}
+
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
