@@ -75,6 +75,14 @@ body {
   display: block;
 }
 
+#footer-news-web {
+  display: block;
+}
+
+#footer-news-mobile {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .header-sub-text {
     font-size: 20px;
@@ -83,6 +91,20 @@ body {
   #profile-image {
     display: none;
   }
+
+  #footer-news-web {
+    display: none;
+  }
+  
+  #footer-news-mobile {
+    display: block;
+    margin-bottom: -50px;
+  }
+
+  #footer-news-mobile h1 {
+    font-weight: 800 !important;
+  }
+  
 }
 
 .mtopminus10 {
