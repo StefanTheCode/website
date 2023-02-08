@@ -411,7 +411,15 @@
 
 			if ($(".grecaptcha-badge") != undefined)
 				$(".grecaptcha-badge").remove();
+
+			document.getElementsByClassName("emailoctopus-success-message")[0].style = "color: white !important";
+			document.getElementsByClassName("emailoctopus-success-message")[2].style = "color: white !important";
 		}, 100)
+
+		setTimeout(() => {
+			document.getElementsByClassName("emailoctopus-success-message")[0].style = "color: white !important";
+			document.getElementsByClassName("emailoctopus-success-message")[2].style = "color: white !important";
+		}, 1000)
 	</script>
 </body>
 
