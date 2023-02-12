@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="overflow-y: hidden;">
+  <body >
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/">Stefan Đokić</a>
@@ -45,26 +45,33 @@
 	    </div>
 	  </nav>
 
-    <section id="home-section" class="hero" style="background: url(images/bg_1.jpg);">
-		  <div class="home-slider  owl-carousel">
-	      <div class="slider-item ">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/ebook.png);">
-	          		<div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-			            <h1 class="mb-4 mt-3"><span>Cooming Soon...</span></h1>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-	    </div>
+    <section class="ftco-about img ftco-section ftco-no-pb" id="social-proof" style="margin-top: 50px;">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 heading-section text-center ftco-animate">
+            <h2 class="mb-4" style="margin-top: 50px">Blog posts</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+            <div class="row justify-content-start pb-3 text-center ftco-animate">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="min-height: 300px">
+                <h3><a href="blog/four-methods-to-handle-nullable-reference.html" style="text-decoration: underline; color: white;">#1 Stefan's Newsletter</a></h3>
+                <h3><a href="blog/four-methods-to-handle-nullable-reference.html" style="text-decoration: none;color: #ffbd39">3 methods to handle Nullable Reference</span></a></h3>
+                <h6>February 13 2023</h6>
+                <br>
+                <h5 style="text-align: justify;">Reference types in C# have always been nullable, meaning that variables of any reference type can be assigned a value of null.
+                  In previous versions of C#, dereferencing a null variable was permitted without any checks...</h5>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="min-height: 300px">
+                <h3><a style="text-decoration: underline; color: white;">#2 Stefan's Newsletter</a></h3>
+                <h1>?</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
