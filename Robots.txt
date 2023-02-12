@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.stefandjokic.tech
+
+# Sitemaps
+Sitemap: https://www.stefandjokic.tech/sitemap.xml
