@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2MN7C3CEX2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-2MN7C3CEX2');
+    </script>
+    <title>Stefan Đokić</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="The personal website of Stefan Djokic, featuring information about his background, experience, and interests.">
+    <meta name="keywords" content="Stefan Djokic, personal website, bio, background, experience, interests">
+    <meta name="author" content="Stefan Djokic">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">Stefan Đokić</a>
+            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+                data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav nav ml-auto">
+                    <li class="nav-item"><a href="/#home-section" class="nav-link"><span>Home</span></a></li>
+                    <li class="nav-item"><a href="/#social-proof" class="nav-link"><span>Social Proof</span></a></li>
+                    <li class="nav-item"><a href="/#blog-section" class="nav-link"><span>Posts</span></a></li>
+                    <li class="nav-item"><a href="/#services-section" class="nav-link"><span>Skills</span></a></li>
+                    <li class="nav-item"><a href="/#about-section" class="nav-link"><span>About</span></a></li>
+                    <li class="nav-item"><a href="/#contact-section" class="nav-link"><span>Contact</span></a></li>
+                    <li class="nav-item"><a href="/blog.html" class="nav-link"><span>Blog</span></a></li>
+                    <li class="nav-item"><a href="/ebook.html" class="nav-link"><span>Ebook</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="ftco-about img ftco-section ftco-no-pb" id="social-proof" style="margin-top: 50px;">
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center ftco-animate">
+                    <h2 style="margin-top: 50px">#2 Stefan's Newsletter</h2>
+                    <h2 style="color: #ffbd39">How to use ChatGPT in C# application?</h2>
+                    <h6>February 20 2023</h6>
+                </div>
+            </div>
+            <div class="row d-flex">
+                <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+                    <h3 class="text-center mb-5" style="color: #ffbd39">The background</h3>
+                    <h5 style="text-align: justify;">
+                        ChatGPT (Generative Pre-trained Transforer) is a large language model developed by OpenAI. It is
+                        designed to understand natural language input from users and generate appropriate responses
+                        using advanced algorithms and machine learning techniques. ChatGPT can be used in a variety of
+                        applications, including chatbots, virtual assistants, customer service, and more.
+                    </h5> <br>
+                    <h5 style="text-align: justify;">
+                        Here I will show you how you can integrate/call ChatGPT API using C# programming language in
+                        <b>5 steps in 5 minutes</b>.</h5>
+                    <h3 class="text-center mb-5 mt-5">Step #1</h3>
+                    <h3 class="text-center mb-5" style="color: #ffbd39;margin-top: -40px;">Add OpenAI NuGet</h3>
+                    <h5 style="text-align: justify;">To integrate ChatGPT, the initial step involves installing the
+                        OpenAI C# SDK. This can be accomplished by executing the following command in the Package
+                        Manager Console using the NuGet package manager:</h5>
+                    <img src="/images/blog/newsletter2/1.png"
+                        style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+                    <h3 class="text-center mb-5 mt-5">Step #2</h3>
+                    <h3 class="text-center mb-5" style="color: #ffbd39;margin-top: -40px;">Get API key</h3>
+                    <h5 style="text-align: justify;">
+                        In order to be able to call and authenticate to the OpenAI API, it is necessary to generate a
+                        unique API key.
+
+                    </h5>
+                    <h5 style="text-align: justify;">
+
+                        To do this:
+
+                    </h5><br>
+                    <h5 style="text-align: justify;">
+                        • Visit: https://platform.openai.com/account/api-keys
+                    </h5>
+                    <h5 style="text-align: justify;">
+                        • Log in
+                    </h5>
+                    <h5 style="text-align: justify;">
+                        • Create your API Key by clicking on "Create new secret key" button.
+                    </h5>
+                    <img src="/images/blog/newsletter2/6.png"
+                        style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+                    <h3 class="text-center mb-5 mt-5">Step #3</h3>
+                    <h3 class="text-center mb-5" style="color: #ffbd39;margin-top: -40px;">Instantiate OpenAI</h3>
+                    <h5 style="text-align: justify;">
+                        After successfully installing the OpenAI C# SDK, the next step is to initialize it by providing
+                        your OpenAI API key. To accomplish this, create an instance of the OpenAI class and pass your
+                        API key as a parameter. </h5>
+                    <img src="/images/blog/newsletter2/2.png"
+                        style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+                    <h3 class="text-center mb-5 mt-5">Step #4</h3>
+                    <h3 class="text-center mb-5" style="color: #ffbd39;margin-top: -40px;">Call the API</h3>
+                    <h5 style="text-align: justify;">
+                        In order to call the API and get a response to the prompt we set, it is necessary to call the
+                        <b>CreateCompletionAsync()</b> method, which accepts the following parameters: </h5>
+                    <br>
+                    <h5 style="text-align: justify;">
+                        <b>1. prompt</b> <br> A <b>required string parameter</b> that specifies the text prompt for
+                        which the API will generate a completion.
+                    </h5>
+                    <br>
+
+                    <h5 style="text-align: justify;">
+                        <b>2. model</b> <br> A <b>required string parameter</b> that specifies the name of the OpenAI model to
+                        use for generating the completion. In this case, it is used the <b>text-davinci-003 model</b>.
+
+                    </h5>
+                    <br>
+
+                    <h5 style="text-align: justify;">
+                        <b>3. max_tokens</b> <br> An  <b>optional integer parameter</b> that controls the maximum number of
+                        tokens (words or symbols) in the generated completion. If set to a low number, the completion
+                        will be shorter and more concise. If set to a higher number, the completion will be longer and
+                        more detailed.
+                    </h5>
+                    <br>
+
+                    <h5 style="text-align: justify;">
+                        <b>4. temperature
+                        </b> <br> An <b>optional floating point parameter</b> - that controls the "creativity" or randomness of
+                        the generated completion. A higher temperature value will result in more diverse and
+                        unpredictable output, whereas a lower temperature value will result in more conservative and
+                        predictable output. In general, a temperature value between 0.5 and 1.0 tends to produce the
+                        most interesting and varied results, while a temperature value closer to 0 tends to be more
+                        predictable and safe.
+                    </h5>
+                    <img src="/images/blog/newsletter2/3.png"
+                        style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+                        <h3 class="text-center mb-5 mt-5">Step #5</h3>
+                        <h3 class="text-center mb-5" style="color: #ffbd39;margin-top: -40px;">Read and display result</h3>
+                    <h5 style="text-align: justify;">
+                        Once the process of generating the completions has concluded, it is possible to exhibit them within your C# application. </h5>
+                    <img src="/images/blog/newsletter2/5.png"
+                        style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+                    <br>
+                    <br>
+                    <h5 style="text-align: justify;">
+                        Congratulations! By following these straightforward steps, you now have the ability to seamlessly integrate ChatGPT into your C# code and generate text completions using the model. This was a light and short newsletter issue considering that I haven't commented on ChatGPT so far, so I wanted to do something practical.</h5>
+                    <br>
+
+                    <h5 style="text-align: justify;">
+                        Make a coffee and check out source code directly on my <a
+                            href="https://github.com/StefanTheCode/Newsletter" target="_blank"> GitHub repository</a>.
+                    </h5>
+                    <br>
+                    <h3><b>Dream big!</b></h3>
+                    <div class="row" style="margin-top: 50px">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 text-center">
+                            <h5 style="text-align: center; ">
+                                Join the 700+ engineers who get tips like this every Monday straight to their inbox.
+                            </h5>
+                            <script async src="https://eocampaign1.com/form/33e483be-a0b1-11ed-b1bd-9b9d338510f2.js"
+                                data-form="33e483be-a0b1-11ed-b1bd-9b9d338510f2"></script>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+
+</body>
+
+</html>
