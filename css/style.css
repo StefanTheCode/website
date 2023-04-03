@@ -544,23 +544,13 @@ pre {
   overflow-y: scroll; }
 
 .container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-right: 10%;
+  padding-left: 10%;
   margin-right: auto;
   margin-left: auto; }
-  @media (min-width: 576px) {
-    .container {
-      max-width: 540px; } }
-  @media (min-width: 768px) {
-    .container {
-      max-width: 720px; } }
-  @media (min-width: 992px) {
-    .container {
-      max-width: 960px; } }
-  @media (min-width: 1200px) {
-    .container {
-      max-width: 1140px; } }
+ 
 
 .container-fluid {
   width: 100%;
@@ -8278,9 +8268,11 @@ h1, h2, h3, h4, h5,
       padding-left: 15px;
       padding-right: 15px; } }
   .ftco-navbar-light .container {
-    width: 1110px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0; }
+    padding-left: 10%;
+  padding-right: 10%; }
   .ftco-navbar-light .navbar-brand {
     color: #fff;
     padding-top: .7rem;
@@ -8742,7 +8734,7 @@ h1, h2, h3, h4, h5,
     background: #000000; }
 
 .slider-text h1 {
-  font-size: 48px;
+  font-size: 60px;
   color: #fff;
   line-height: 1.2;
   font-weight: 400; }
