@@ -9839,22 +9839,30 @@ textarea.form-control {
       color: #ffbd39;
     }
 
+    .blog-content {
+      text-align: justify;
+    }
+
     @media only screen and (max-width: 600px) {
       .container {
         width: 100% !important;
         max-width: 100% !important;
         padding-left: 3%;
-        padding-right: 0%;
+        padding-right: 3%;
       }
 
       .blog-header {
         margin-top: 0;
-        font-size: 30px !important;
+        font-size: 25px !important;
       }
   
       .blog-header2 {
         color: #ffbd39;
         font-size: 30px !important;
+      }
+
+      .blog-content {
+        text-align: left;
       }
     }
 

@@ -48,53 +48,53 @@
 
     <section class="ftco-about img ftco-section ftco-no-pb" id="social-proof" style="margin-top: 50px;">
         <div class="container">
-            <div class="row justify-content-center pb-5">
+            <div class="justify-content-center pb-5">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center ">
                     <h2  class="blog-header">#4 Stefan's Newsletter</h2>
                     <h2 class="blog-header2">GitHub Webhook with C#</h2>
                     <h6>March 06 2023</h6>
                 </div>
             </div>
-            <div class="container row d-flex">
-                <div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+            <div class="container d-flex">
+                <div class="col-sm-12 col-md-12 col-lg-12 pb-5 blog-content">
                     <h3 class="text-center mb-5" style="color: #ffbd39">The background</h3>
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         A <b>Webhook</b> is a mechanism that allows a web application to send real-time notifications or
                         data to another web application.
                     </h5> <br>
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         It is essentially a way for two different applications to communicate with each other in "real
                         time" rather than relying on periodic polling or manual data transfer.
                     </h5> <br>
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         An example of a simple implementation of a C# Webhook receiver for Github will be shown below.
                     </h5> <br>
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         ** In this edition of the newsletter, there will be no mention of the implementation of the
                         webhook mechanism (sender & receiver) due to the volume of the problem, which is not adequate
                         for the newsletter.</h5> <br>
                     <h3 class="text-center mb-5 mt-5" style="color: #ffbd39;margin-top: -40px;">C# Webhook receiver</h3>
-                    <h5 style="text-align: justify;">A webhook receiver for an event that happened on Github or any
+                    <h5 >A webhook receiver for an event that happened on Github or any
                         other service can be represented in the simplest way as an <b>HttpPost API endpoint</b> in a C#
                         controller.</h5>
-                    <h5 style="text-align: justify;"><b>• Create an action in C# Controller
+                    <h5 ><b>• Create an action in C# Controller
                         </b></h5>
-                    <h5 style="text-align: justify;">You need to create C # API Controller with GitHubWebhookController
+                    <h5 >You need to create C # API Controller with GitHubWebhookController
                         name. This is a controller to serve for all Events that happen within Github repository.</h5>
-                    <h5 style="text-align: justify;">After that, you need to add an endpoint Pushed for the "push" event
+                    <h5 >After that, you need to add an endpoint Pushed for the "push" event
                         on github, which will practically serve as a callback event. </h5>
                     <img src="/images/blog/newsletter4/GitHubWebhookController.png"
                         style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         This method must be HttpPost.
                     </h5><br>
-                    <h5 style="text-align: justify;">Since I currently don't know what the GitHub payload looks like,
+                    <h5 >Since I currently don't know what the GitHub payload looks like,
                         ie. object/JSON that GitHub sends during a specific event, I will state that the object that the
                         method receives as a parameter is type dynamic.
                     </h5><br>
-                    <h5 style="text-align: justify;"><b>• Run the application
+                    <h5 ><b>• Run the application
                         </b></h5><br>
-                    <h5 style="text-align: justify;">When you start the API project, through Swagger you can see
+                    <h5 >When you start the API project, through Swagger you can see
                         Endpoint there is and that everything is fine for now.</h5>
                     <br>
                     <img src="/images/blog/newsletter4/Swagger - API Project Webhook.png"
@@ -102,7 +102,7 @@
                     <h3 class="text-center mb-5 mt-5" style="color: #ffbd39;margin-top: -40px;">Create Webhook instance
                         on GitHub</h3>
 
-                    <h5 style="text-align: justify;">
+                    <h5 >
 
                         Within the GitHub repository for which you want to receive events, you need to generate a
                         Webhook instance. In the repository settings, you should select the Webhooks link from the left
@@ -111,89 +111,89 @@
                     <br>
                     <img src="/images/blog/newsletter4/GitHub - Add webhook form.png"
                         style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
-                    <h5 style="text-align: justify;">The most important field to fill in is of course the
+                    <h5 >The most important field to fill in is of course the
                         <b>PayloadUrl</b>.
                     </h5><br>
-                    <h5 style="text-align: justify;"><b>This field represents the endpoint of our application that
+                    <h5 ><b>This field represents the endpoint of our application that
                             Github will call the moment a push event occurs on the selected repository.
                         </b>
                     </h5><br>
-                    <h5 style="text-align: justify;"><b>Content type:</b> You can choose application/json
+                    <h5 ><b>Content type:</b> You can choose application/json
                     </h5><br>
-                    <h5 style="text-align: justify;"><b>Secret:</b> You can generate via some online generator. This
+                    <h5 ><b>Secret:</b> You can generate via some online generator. This
                         secret is used to verify that the payload was actually sent by Github and not by a malicious
                         third party pretending to be Github. For demo purposes I will leave it blank, but <span
                             style="color: red"> do not do this on production</span>.
                     </h5><br>
-                    <h5 style="text-align: justify;">The most important field to fill in is of course the PayloadUrl.
+                    <h5 >The most important field to fill in is of course the PayloadUrl.
                     </h5><br>
-                    <h5 style="text-align: justify;">Okay, now, what will happen if you put the localhost link
-                        <b><i>(http://localhost:7030/api/GithubWebhook/push)</i></b> like a Payload URL?
+                    <h5 >Okay, now, what will happen if you put the localhost link
+                       <br/> <b><i>(/api/GithubWebhook/push)</i></b> <br/>like a Payload URL?
                     </h5><br>
-                    <h5 style="text-align: justify;">Nothing.
+                    <h5 >Nothing.
                     </h5><br>
-                    <h5 style="text-align: justify;">GitHub doesn't know that your localhost exists somewhere on your
+                    <h5 >GitHub doesn't know that your localhost exists somewhere on your
                         computer. It is necessary that the application is deployed somewhere, say Azure.
                     </h5><br>
-                    <h5 style="text-align: justify;">But for testing and debugging, <b>ngrok</b> can help you.
+                    <h5 >But for testing and debugging, <b>ngrok</b> can help you.
                     </h5><br>
-                    <h5 style="text-align: justify;"><b>What is ngrok?
+                    <h5 ><b>What is ngrok?
                         </b>.
                     </h5><br>
-                    <h5 style="text-align: justify;">Ngrok is a software tool that creates a secure tunnel between a
+                    <h5 >Ngrok is a software tool that creates a secure tunnel between a
                         local machine and the public internet, allowing developers to expose a web server running on
                         their local machine to the internet.
                     </h5><br>
-                    <h5 style="text-align: justify;"><b>Ngrok setup</b>.
+                    <h5 ><b>Ngrok setup</b>.
                     </h5><br>
-                    <h5 style="text-align: justify;">• Download from: <a href="https://ngrok.com/"
+                    <h5 >• Download from: <a href="https://ngrok.com/"
                             target="_blank">ngrok</a>
                     </h5>
-                    <h5 style="text-align: justify;">• Install it and run it.
+                    <h5 >• Install it and run it.
                     </h5>
-                    <h5 style="text-align: justify;">• Execute the following command: <b>ngrok http port</b>
+                    <h5 >• Execute the following command: <b>ngrok http port</b>
                     </h5><br>
-                    <h5 style="text-align: justify;"><i>* Port should be your port which you can see when you start the
+                    <h5 ><i>* Port should be your port which you can see when you start the
                             application.</i>
                     </h5>
-                    <h5 style="text-align: justify;"><i>* You should <b> disable https protocol</b> for the application
+                    <h5 ><i>* You should <b> disable https protocol</b> for the application
                             by replacing https urls with http in<b> launchSettings.json</b>.
                         </i>
                     </h5><br>
-                    <h5 style="text-align: justify;">Now you will see in CMD the url that is online and to which the
+                    <h5 >Now you will see in CMD the url that is online and to which the
                         localhost url is mapped.
                     </h5><br>
-                    <h5 style="text-align: justify;">If you visit the url from the "forwarding" part, you will see
+                    <h5 >If you visit the url from the "forwarding" part, you will see
                         exactly the same result as for localhost. Of course, the advantage of this is that the debugger
                         is active.
                     </h5>
                     <img src="/images/blog/newsletter4/ngrok CMD.png"
                         style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         The next thing is to put that ngrok url together with the API endpoint in the Payload Url field:
-                        <br> <b><i>https://9739-178-220-34-243.eu.ngrok.io/api/GitHubWebhook/pushed</i></b>
+                        <br> <b><i>https://9739-178-220-34-243.eu.ngrok.io/ api/GitHubWebhook/pushed</i></b>
                     </h5>
                     <h3 class="text-center mb-5 mt-5" style="color: #ffbd39;margin-top: -40px;">Testing</h3>
-                    <h5 style="text-align: justify;">
+                    <h5 >
 
                         1. Run the application</h5>
-                    <h5 style="text-align: justify;">
+                    <h5 >
 
                         2. Put a breakpoint in the Pushed method
                     </h5>
-                    <h5 style="text-align: justify;">
+                    <h5 >
 
                         3. Go to the repository and make some changes
                     </h5>
 
                     <img src="/images/blog/newsletter4/Commit changes - Github repo.png"
                         style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
-                    <h5 style="text-align: justify;">
+                    <h5 >
 
 
                         4. Wait for a couple of seconds, and call should hit the debugger
                     </h5>
-                    <h5 style="text-align: justify;">
+                    <h5 >
 
                         5. You can see parameter payload is full of data
 
@@ -201,35 +201,35 @@
                     <img src="/images/blog/newsletter4/Debugger.png"
                         style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
                     <h3 class="text-center mb-5 mt-5" style="color: #ffbd39;margin-top: -40px;">What Next?</h3>
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         On this very simple example, I have shown how a webhook receiver for Github can be implemented.
                     </h5>
                     <br>
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         In this way, any service that supports WebHooks works. With the fact that there is a difference
                         from service to service in the payload that is sent, so based on what you need, you will create
                         a class with properties instead of receiving a dynamic type of payload.
                     </h5>
                     <br>
 
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         Also, this can be implemented with Azure Functions, so be sure you do a research on that topic.
                     </h5>
                     <br>
 
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         For GitHub payload for each webhook you can find at: <a
                             href="https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads"
                             target="_blank"> Github Webhook Documentation</a>
                     </h5>
                     <br>
-                    <h5 style="text-align: justify;">
+                    <h5 >
 
                         That's all from me for today.
                     </h5>
                     <br>
 
-                    <h5 style="text-align: justify;">
+                    <h5 >
                         Make a coffee and check out source code directly on my <a
                             href="https://github.com/StefanTheCode/Newsletter" target="_blank"> GitHub repository</a>.
                     </h5>
