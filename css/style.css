@@ -64,11 +64,23 @@ body {
 
 .header-text {
   font-weight: 800 !important; 
-  font-size: 3.7vw;
+  font-size: 60px !important;
+  color: #ffffff !important;
+  margin-top: -30px !important;
 }
 
 .header-sub-text {
-  font-size: 1.5vw;
+  font-size: 1.5vw !important;
+  font-weight: 400 !important; 
+  color: #ffffff !important;
+}
+
+.header-sub-text-join {
+  font-size: 1.2vw !important;
+  font-weight: 400 !important; 
+  color: #ffffff !important;
+  margin-bottom: -10px !important;
+  margin-top: 40px !important
 }
 
 #profile-image {
