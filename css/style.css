@@ -69,6 +69,17 @@ body {
   margin-top: -30px !important;
 }
 
+.header-big {
+  top: 0;
+  left: 0;
+  margin-top: -100px;
+  font-size: 7vw;
+  color: rgba(255, 255, 255, 0.1);
+  z-index: -1;
+  font-weight: 900;
+  margin-bottom: -50px;
+}
+
 .header-sub-text {
   font-size: 1.5vw !important;
   font-weight: 400 !important; 
