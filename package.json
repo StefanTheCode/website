@@ -1,0 +1,31 @@
+{
+  "name": "stefan-djokic",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
+    "@next/mdx": "^13.4.19",
+    "@types/mdx": "^2.0.6",
+    "@types/node": "20.5.0",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "bootstrap": "^5.3.1",
+    "gray-matter": "^4.0.3",
+    "markdown-to-jsx": "^7.3.2",
+    "marked": "^7.0.4",
+    "next": "^13.4.17",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.6"
+  }
+}
