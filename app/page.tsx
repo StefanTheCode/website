@@ -4,7 +4,6 @@ import config from '@/config.json'
 import Subscribe from './subscribe'
 import getPostMetadata from '@/components/getPostMetadata'
 import MyComponent from '@/components/newsletterTestimonials'
-import SubscribeNewsletter from '@/components/subscribeNewsletter'
 
 export const metadata = {
   title: "Test"
@@ -56,7 +55,14 @@ export default function Home() {
                 Monday coffee.</p>
               <div className='row'>
                 <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
-                  <SubscribeNewsletter />
+                <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                <script async src="https://eocampaign1.com/form/33e483be-a0b1-11ed-b1bd-9b9d338510f2.js"
+								data-form="33e483be-a0b1-11ed-b1bd-9b9d338510f2"></script>
+            `
+                  }}
+                ></div>
               </div>
             </div>
           </div>
