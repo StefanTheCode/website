@@ -81,12 +81,12 @@ photoUrl: "/images/blog/newsletter21.png"
 
 <br>
 
-### #3 EF .Select() method
+### #3 LINQ .Select() method
 <br>
 ##### I use the .Select() method from EntityFramework mainly when I directly map entities from the domain/database to the DTO without any changes. In an ideal world, I believe there is nothing better than this mapping.
 
 
-![Custom Mapper Service](/images/blog/posts/why-to-avoid-automapper/custom-mapper-service.png)
+![Select Method From LINQ ](/images/blog/posts/why-to-avoid-automapper/entity-framework-select-method.png)
 ##### That's all from me for today.
 
 <br>
