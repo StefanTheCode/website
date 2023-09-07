@@ -107,7 +107,7 @@ export default function Home() {
 		<div className="container">
 			<div className="row">
 				<div className="col-md-12 text-center">
-					<p>What did people say about it?</p>
+					<p className='text-black text-font-2rem margin-top-minus-10'>What did people say about it?</p>
 				</div>
 				<MyComponent />
 			</div>

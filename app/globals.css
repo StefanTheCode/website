@@ -14184,6 +14184,10 @@ textarea.form-control {
   color: #ffbd39;
 }
 
+.margin-top-minus-10 {
+  margin-top: -10px;
+}
+
 .text-black {
   color: black !important;
 }
