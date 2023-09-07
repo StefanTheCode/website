@@ -13,6 +13,8 @@ export default function RootLayout({
     <html lang="en">
       <Head />
       <body>
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBBCS5FT"
+	height="0" width="0" className='display-none visible-hidden'></iframe></noscript>
         <Header></Header>
         {children}
         <Footer></Footer>
