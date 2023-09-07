@@ -1,3 +1,4 @@
+import SponsorsNewsletter from '@/components/sponsorsTestimonials';
 import config from '@/config.json'
 
 const Sponsorship = () => {
@@ -15,7 +16,7 @@ const Sponsorship = () => {
       <div className="d-flex">
         <div className="col-sm-12 col-md-12 col-lg-12 pb-5">
           <div className="row pb-3">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
               <h1>Audience</h1>
               <br/>
               <h5>• Reach: <span  className="text-yellow">{config.NewsletterSubCount}</span></h5>
@@ -28,6 +29,7 @@ const Sponsorship = () => {
              {/* <h5><b>Currently booked out 2 weeks</b></h5> */}
               <h5>Previous Sponsors: <b>{config.PreviousSponsors}</b></h5>
             </div>
+            <SponsorsNewsletter />
           </div>
           <div className="pb-3 mt-5">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">

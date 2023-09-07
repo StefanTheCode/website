@@ -2,10 +2,39 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import config from '@/config.json'
 import Subscribe from './subscribe'
+import getPostMetadata from '@/components/getPostMetadata'
+import MyComponent from '@/components/newsletterTestimonials'
 
 export const metadata = {
   title: "Test"
 }
+
+const postMetadata = getPostMetadata();
+
+const sortedPostMetadata = postMetadata.sort((a, b) => {
+  const dateA = new Date(a.date) as unknown as number;
+  const dateB = new Date(b.date) as unknown as number;
+  return dateB - dateA;
+});
+
+const postPreviews = sortedPostMetadata.slice(0,3).map((post) => {
+  const href = `/posts/${post.slug}`
+  return (
+    <div className="col-xl-4 col-lg-12 col-md-12 d-flex mb-5">
+      <div className="blog-entry text-center">
+        <h5><a href={href} className='newsletter-title'
+        >{post.newsletterTitle}</a></h5>
+        <h3><a href={href}
+        >{post.title}
+        </a></h3>
+        <h6>{post.date}</h6>
+        <br />
+        <h5 >{post.subtitle}
+        </h5>
+      </div>
+    </div>
+  )
+});
 
 export default function Home() {
   return (
@@ -24,7 +53,7 @@ export default function Home() {
                 right away.</p>
               <p className="header-sub-text-join">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to the
                 Monday coffee.</p>
-                <div className='row'>
+              <div className='row'>
                 <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
                 <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"
                   dangerouslySetInnerHTML={{
@@ -34,7 +63,7 @@ export default function Home() {
             `
                   }}
                 ></div>
-                </div>
+              </div>
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="profile-image">
@@ -43,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ftco-section background-yellow " id="newsletter-section" >
+      {/* <section className="ftco-section background-yellow " id="newsletter-section" >
         <div className="container">
           <div className="row">
             <div className="col-md-4">
@@ -72,7 +101,18 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+<section className="ftco-section background-yellow" id="newsletter-section">
+		<div className="container">
+			<div className="row">
+				<div className="col-md-12 text-center">
+					<p>What did people say about it?</p>
+				</div>
+				<MyComponent />
+			</div>
+		</div>
+	</section>
 
       <section className="ftco-section" id="blog-section">
         <div className="container">
@@ -89,8 +129,8 @@ export default function Home() {
                 <br />
                 <h5 >Every Monday morning, I share 1 actionable tip on C#, .NET & Arcitecture topic, that you can use right away.
                 </h5>
-              <a href='/'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join {config.NewsletterSubCount}</button>
-              </a> 
+                <a href='/'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join {config.NewsletterSubCount}</button>
+                </a>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -98,7 +138,7 @@ export default function Home() {
                 <h3><a href="blog/github-webhook.html">Promote your business to {config.NewsletterSubCount}
                 </a></h3>
                 <br />
-                <h5 >Looking to expand your followers, subscribers, or clientele swiftly? <br/> Feature your brand in my newsletter!
+                <h5 >Looking to expand your followers, subscribers, or clientele swiftly? <br /> Feature your brand in my newsletter!
                 </h5>
                 <a href='/sponsorship' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'> Reserve a spot</button></a>
               </div>
@@ -119,60 +159,7 @@ export default function Home() {
             </div>
           </div>
           <div className="row d-flex">
-          <div className="col-xl-4 col-lg-12 col-md-12 d-flex mb-5">
-              <div className="blog-entry text-center">
-                <h5><a href="blog/how-and-why-i-create-my-own-mapper.html"  className='newsletter-title'
-                >#3
-                  Stefan's Newsletter</a></h5>
-                <h3><a href="blog/how-and-why-i-create-my-own-mapper.html"
-                >How and why I create my own mapper (avoid
-                  Automapper)?
-                </a></h3>
-                <h6>February 27 2023</h6>
-                <br />
-                <h5 >In the beginning I used Automapper constantly and it was a
-                  great
-                  replacement for the tedious work of typing mapping code. Until the moment when I encountered
-                  bigger
-                  projects where using Automapper only caused me big problems...
-                </h5>
-              </div>
-            </div>
-            <div className="col-xl-4 col-lg-12 col-md-12 d-flex mb-5">
-              <div className="blog-entry text-center">
-                <h5><a href="blog/how-and-why-i-create-my-own-mapper.html"  className='newsletter-title'
-                >#3
-                  Stefan's Newsletter</a></h5>
-                <h3><a href="blog/how-and-why-i-create-my-own-mapper.html"
-                >How and why I create my own mapper (avoid
-                  Automapper)?
-                </a></h3>
-                <h6>February 27 2023</h6>
-                <br />
-                <h5 >In the beginning I used Automapper constantly and it was a
-                  great
-                  replacement for the tedious work of typing mapping code. Until the moment when I encountered
-                  bigger
-                  projects where using Automapper only caused me big problems...
-                </h5>
-              </div>
-            </div>
-            <div className="col-xl-4 col-lg-12 col-md-12 d-flex mb-5">
-              <div className="blog-entry text-center">
-                <h5><a href="blog/github-webhook.html" className='newsletter-title'>#4
-                  Stefan's Newsletter</a></h5>
-                <h3><a href="blog/github-webhook.html">GitHub
-                  Webhook with C#
-                </a></h3>
-                <h6>March 06 2023</h6>
-                <br />
-                <h5>A Webhook is a mechanism that allows a web application to send
-                  real-time notifications or data to another web application. It is essentially a way for two
-                  different applications to communicate with each other in "real time" rather than relying on
-                  periodic polling or manual data transfer...
-                </h5>
-              </div>
-            </div>
+            {postPreviews}
           </div>
         </div>
       </section>
@@ -218,7 +205,7 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank"> 
+                  <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank">
                     <img className='social-icon' src='/images/icons/linkedin-icon.png' alt='Linkedin logo' width='30%' />
                   </a>
                 </div>
@@ -229,7 +216,7 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://twitter.com/TheCodeMan__" target="_blank">
-                  <img  className='social-icon' src='/images/icons/twitter-icon.png' alt='Twitter logo' width='30%' />
+                    <img className='social-icon' src='/images/icons/twitter-icon.png' alt='Twitter logo' width='30%' />
                   </a>
                 </div>
                 <h3 className="mb-4">Twitter</h3>
@@ -239,7 +226,7 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://github.com/StefanTheCode" target="_blank">
-                  <img className='social-icon' src='/images/icons/github-icon.png' alt='Github logo' width='30%' />
+                    <img className='social-icon' src='/images/icons/github-icon.png' alt='Github logo' width='30%' />
                   </a>
                 </div>
                 <h3 className="mb-4">Github</h3>
@@ -248,8 +235,8 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.instagram.com/the.code.man/" target="_blank"> 
-                  <img className='social-icon' src='/images/icons/instagram-icon.png' alt='Instagram logo' width='30%' /></a>
+                  <a href="https://www.instagram.com/the.code.man/" target="_blank">
+                    <img className='social-icon' src='/images/icons/instagram-icon.png' alt='Instagram logo' width='30%' /></a>
                 </div>
                 <h3 className="mb-4">Instagram</h3>
               </div>
