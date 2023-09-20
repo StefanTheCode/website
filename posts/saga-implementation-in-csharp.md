@@ -6,6 +6,18 @@ date: "March 13 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---
 
+<br>
+#### <b>Many thanks to the sponsors who make it possible for this newsletter to be free for readers.</b>
+<br>
+<br>
+#### Today's issue is sponsored by <b> [Packt](https://www.packtpub.com/)</b> 
+<br>
+<br>
+#### Working with React doesn't have to be complex. "React 18 Design Patterns and Best Practices" empowers you to harness React's potential, making your applications flexible, easy to manage, and high-performing. Discover and unravel the dynamic features of React 18 and Node 19. This updated fourth edition equips you with insights into the cutting-edge tools that will elevate your projects. <b> [Book Link](https://packt.link/IxSPS)</b>.
+<br>
+<hr style='background-color: #fff'>
+<br>
+
 ### The background
 <br>
 <br>
