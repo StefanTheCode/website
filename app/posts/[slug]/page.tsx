@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import getPostMetadata from "../../../components/getPostMetadata";
 import '../[slug]/page.module.css'
 import Subscribe from "@/app/subscribe";
+import Affiliate from "@/app/affiliate";
 
 
 const getPostContent = (slug: string) => {
@@ -42,7 +43,7 @@ const PostPage = (props: any) => {
           </div>
         </div>
       </section >
-      <hr />
+      <Affiliate />
       <Subscribe />
     </>
   );

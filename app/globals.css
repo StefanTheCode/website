@@ -14166,7 +14166,11 @@ textarea.form-control {
   }
 }
 
-
+.hr {
+  background-color: white !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .newsletter-title {
   color: white !important;
