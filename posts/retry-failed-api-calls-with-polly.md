@@ -60,15 +60,19 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### Retry the operation immediately after a failure. This policy retries a specified number of times when an operation fails. This might be used in situations where the operation is expected to succeed most of the time, and failures are highly transient. 
 <br>
 ##### Example below:
-<br>
 ##### When operation fails, retry the operation 3 times.
+<br>
+#### <b>Fixed Interval Retry</b>
+##### Wait for a specific duration before each retry. While the basic retry is helpful, it might not always be the best approach. Sometimes, immediately retrying isn't the solution, especially when dealing with services that need a cooldown period after a fault.
+<br>
+##### Example below:
+##### When operation fails, retry the operation 3 times every 5 seconds.
 <br>
 #### <b>Exponential Backoff</b>
 ##### Each retry waits for a longer period. It increases the wait time between retries exponentially, rather than keeping it constant.
 ##### This approach can help in situations where repeated immediate retries could exacerbate the problem or where the service you're calling could be undergoing a restart and needs a longer grace period to recover.
 <br>
 ##### Example below:
-<br>
 ##### The first retry will happen after 2 seconds, the second retry after 4 seconds, the third after 8 seconds, and so on.
 
 ![Client Retry Exponential Backoff](/images/blog/posts/retry-failed-api-calls-with-polly/client-retry-exponential-backoff.png)
@@ -83,8 +87,13 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### We call endpoint with the help of HTTP Client, with the fact that we will use the Retry Policy by calling that call.
 
-![Testing Retry Policy with Postman](/images/blog/posts/retry-failed-api-calls-with-polly/testing-retry-policy-with-postman.png)
+![Testing Retry Policy with Postman](/images/blog/posts/retry-failed-api-calls-with-polly/httpclient-retry-policy.png)
 <br>
+##### In this example I used the "Fixed Interval Retry" policy. Which would practically mean that if the API returns an error, it will be called <b>3 times with an interval of 5 seconds between</b> each or less times if it returns a successful result.
+<br>
+##### Let's see that.
+![Testing Retry Policy with Postman](/images/blog/posts/retry-failed-api-calls-with-polly/testing-retry-policy-with-postman.png)
+
 ##### With the help of Postman, we will call the WebApp project method from the UserManagement controller. The code inside this method calls the API endpoint with the Retry policy.
 <br>
 ##### This is what happened:
