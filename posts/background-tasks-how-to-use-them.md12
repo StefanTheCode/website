@@ -28,42 +28,6 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### Here's an example of how to create and execute a background task in a console application:
 
-<div style="border: 1px solid #3C3C3C; background-color: #1E1E1E; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 14px; color: #D4D4D4;">
-    <span style="color: #569CD6;">class  </span> <span style="color: #4EC9B0;"> Program </span><br>
-    {<br>
-        &nbsp;&nbsp;&nbsp;<span style="color: #569CD6;">static async  </span> <span style="color: #4EC9B0;">Task </span> <span style="color: #D4D4D4;">Main</span>(<span style="color: #569CD6;">string[] </span> args)<br>
-        &nbsp;&nbsp;&nbsp;{<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4EC9B0;">Console</span>.<span style="color: #eded00;">WriteLine</span>(<span style="color: #D69D85;">"Main thread: Starting the background task." </span>);<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569CD6;">var </span> backgroundTask = <span style="color: #4EC9B0;">Task</span>.<span style="color: #eded00;">Run</span>(() =&gt; <span style="color: #D4D4D4;">PerformBackgroundWork</span>());<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #608B4E;">// Continue doing other work on the main thread </span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569CD6;">for </span> (<span style="color: #569CD6;">int </span> i = <span style="color: #569CD6;">0 </span>; i &lt; <span style="color: #569CD6;">5 </span>; i++)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4EC9B0;">Console</span>.<span style="color: #eded00;">WriteLine</span>(<span style="color: #D69D85;">$"Main thread: Doing some work {i}..." </span>);<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569CD6;">await </span> <span style="color: #4EC9B0;">Task</span>.<span style="color: #eded00;">Delay</span>(<span style="color: #569CD6;">1000 </span>);<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #608B4E;">// Wait for the background task to complete </span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569CD6;">await </span> backgroundTask;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4EC9B0;">Console</span>.<span style="color: #eded00;">WriteLine</span>(<span style="color: #D69D85;">"Main thread: Background task completed." </span>);<br>
-        &nbsp;&nbsp;&nbsp;}<br>
-        <br>
-        &nbsp;&nbsp;&nbsp;<span style="color: #569CD6;">static void </span> <span style="color: #D4D4D4;">PerformBackgroundWork</span>()<br>
-        &nbsp;&nbsp;&nbsp;{<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4EC9B0;">Console</span>.<span style="color: #eded00;">WriteLine</span>(<span style="color: #D69D85;">"Background task: Starting the work..." </span>);<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #608B4E;">// Simulate a long-running operation </span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569CD6;">for </span> (<span style="color: #569CD6;">int </span> i = <span style="color: #569CD6;">0 </span>; i &lt; <span style="color: #569CD6;">5 </span>; i++)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4EC9B0;">Console</span>.<span style="color: #eded00;">WriteLine</span>(<span style="color: #D69D85;">$"Background task: Working {i}..." </span>);<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4EC9B0;">Task</span>.<span style="color: #eded00;">Delay</span>(<span style="color: #569CD6;">1000 </span>).<span style="color: #eded00;">Wait</span>(); <span style="color: #608B4E;">// Simulate work </span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4EC9B0;">Console</span>.<span style="color: #eded00;">WriteLine</span>(<span style="color: #D69D85;">"Background task: Work completed." </span>);<br>
-        &nbsp;&nbsp;&nbsp;}<br>
-    }
-</div>
-
 <br>
 <br>
 ### Real-world use cases in applications
