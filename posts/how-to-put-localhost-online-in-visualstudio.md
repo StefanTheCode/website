@@ -14,7 +14,7 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### You are probably familiar with the ngrok application, which creates a temporary URL address on a server with the help of which it is possible to access the application.
 <br>
-##### Now it is possible in Visual Studio 2022 with the built-in <span style='color: #ffbd39'><b>Dev Tunnels</b></span> feature.
+##### Now it is possible in Visual Studio 2022 with the built-in <span style="color: #ffbd39"><b>Dev Tunnels</b></span> feature.
 <br>
 <br>
 ### What is Dev Tunnels?
@@ -38,7 +38,7 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### • You must sign into Visual Studio
 ##### • Dev Tunnels is not available for Visual Studio on Mac  
 <br>
-##### To use this feature, first you need to enable Dev Tunnel feature from: <span style='color: #ffbd39'><b>Tools -> Options -> Environment -> Preview Features</b></span> (or just search for dev keyword). Then search for keyword dev. Check the <span style='color: #ffbd39'> <b>Enable dev tunnels for Web Applications</b></span> checkbox.
+##### To use this feature, first you need to enable Dev Tunnel feature from: <span style="color: #ffbd39"><b>Tools -> Options -> Environment -> Preview Features</b></span> (or just search for dev keyword). Then search for keyword dev. Check the <span style="color: #ffbd39"> <b>Enable dev tunnels for Web Applications</b></span> checkbox.
 <br>
 ![Enable Dev Tunnels](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/enable-dev-tunnels.png)
 <br>
@@ -51,7 +51,7 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### You can do this in 2 ways:
 <br>
-##### <span style='color: #ffbd39'><b>Way #1</b></span>: From the Debug menu, select Dev Tunnels and then Create a Tunnel.
+##### <span style="color: #ffbd39"><b>Way #1</b></span>: From the Debug menu, select Dev Tunnels and then Create a Tunnel.
 <br>
 ![Create Dev Tunnel from Debug Menu](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/create-dev-tunnel-from-debug-menu.jpg)
 <br>
@@ -61,17 +61,17 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### Details:
 <br>
-##### <span style='color: #ffbd39'><b>• Account</b></span>: Like I said, you should be logged in
-##### <span style='color: #ffbd39'><b>• Name</b></span>: Give a name for a tunnel
-##### <span style='color: #ffbd39'><b>• Type</b></span>:
+##### <span style="color: #ffbd39"><b>• Account</b></span>: Like I said, you should be logged in
+##### <span style="color: #ffbd39"><b>• Name</b></span>: Give a name for a tunnel
+##### <span style="color: #ffbd39"><b>• Type</b></span>:
 ##### - Temporary -  a new URL each time Visual Studio is started
 ##### - Permanent - the same URL each time Visual Studio is started. 
-##### <span style='color: #ffbd39'><b>• Access</b></span>:
+##### <span style="color: #ffbd39"><b>• Access</b></span>:
 ##### - Private - accessible only to the account that created it
 ##### - Organization - The tunnel is accessible to accounts in the same organization as the one that created it. If this option is selected for a personal Microsoft account (MSA), the effect is the same as selecting Private. Organization support for GitHub accounts isn't supported. 
 #####  - Public - No authentication required. 
 <br>
-##### <span style='color: #ffbd39'><b>Way #2</b></span>: Modify the <span style='color: #ffbd39'><b>launchSettings.json</b></span> file under Properties folder. Add the following code under https section: 
+##### <span style="color: #ffbd39"><b>Way #2</b></span>: Modify the <span style="color: #ffbd39"><b>launchSettings.json</b></span> file under Properties folder. Add the following code under https section: 
 <br>
 ![Launch Settings Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/launchsettings-dev-tunnels.png)
 <br>
@@ -90,7 +90,7 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ![Run application with Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/test-dev-tunnels.png)
 <br>
-##### And when you click on <span style='color: #ffbd39'><b>Continue</b></span> button, you will see the full application like when you run it on localhost. But this one will have a public URL.
+##### And when you click on <span style="color: #ffbd39"><b>Continue</b></span> button, you will see the full application like when you run it on localhost. But this one will have a public URL.
 
 <br>
 <br>

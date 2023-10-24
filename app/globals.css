@@ -538,11 +538,17 @@ h3,
 h4,
 .h4 {
   font-size: 1.5rem;
+  color: #ffbd39 !important;
 }
 
 h5,
 .h5 {
   font-size: 1.25rem;
+}
+
+h5 b {
+  font-size: 1.25rem;
+  color: #ffbd39 !important;
 }
 
 h6,
