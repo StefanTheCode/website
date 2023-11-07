@@ -171,12 +171,15 @@ photoUrl: "/images/blog/newsletter21.png"
 
 ##### Directly from authors:
 <br>
-#### <i>Workflow Engine is one of the <b>easiest workflow engines for document approval</b> when integrating is required. We recommend it to companies that develop information systems with workflow functionality.</i>
+##### By using designer, I can make changes on the fly—like when I decide to change the look of the newsletter or how people receive it. It's like having a remote control for the newsletter process, so I can adjust things without getting my hands dirty with the complicated code. Plus, I won't have to spend time checking and rechecking the code for errors, because I won't be touching it. This makes updating things a whole lot simpler and less stressful.
 <br>
 
-##### In addition, you can download our samples [here](https://workflowengine.io/downloads/net-core/).
+##### Optimajet Workflow Engine is one of the easiest workflow engines for document approval when integrating is required. We recommend it to companies that develop information systems with workflow functionality.
+<br>
 
-##### If you have any question, please, do not hesitate to [contact us](https://workflowengine.io/contacts/).
+##### In addition, you can download Optimajet samples [here](https://workflowengine.io/downloads/net-core/).
+##### If you have any question, please, do not hesitate to [contact them](https://optimajet.com/book-a-meeting/).
+
 <br>
 ##### I can only agree with this and add that workflows also help us in our everyday life, without us even noticing it. How many times do we just make a plan and a path in our head, how we will do something today?
 
