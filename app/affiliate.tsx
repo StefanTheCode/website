@@ -20,7 +20,7 @@ export default function Affiliate() {
             <h2 className='subheading'>
               Use Coupon Code: <span className='text-yellow'>STEFAN</span></h2>
             <hr className="hr" />
-
+            <h6>Disclosure: For every purchase through a link, you help me by receiving a small commission.</h6>
           </div>
           <div className="col-md-2"></div>
         </div>
