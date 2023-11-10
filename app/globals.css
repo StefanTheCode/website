@@ -672,9 +672,11 @@ mark,
 
 code {
   font-size: 87.5%;
-  color: #ffbd39;
+  color: white !important;
   background-color: var(--gray-dark);
   padding: 5px;
+  padding-left: 0px !important;
+  margin-left: -10px !important;
   word-break: break-word;
 }
 
