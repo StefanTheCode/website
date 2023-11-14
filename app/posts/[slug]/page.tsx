@@ -43,8 +43,8 @@ const PostPage = (props: any) => {
           </div>
         </div>
       </section >
-      <Affiliate />
       <Subscribe />
+      <Affiliate />
     </>
   );
 };
