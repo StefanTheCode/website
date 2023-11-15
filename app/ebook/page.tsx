@@ -1,0 +1,152 @@
+import config from '@/config.json'
+import Subscribe from '../subscribe';
+import Affiliate from '../affiliate';
+import SponsorsNewsletter from '@/components/sponsorsTestimonials';
+
+const Ebook = () => {
+  return (
+    <>
+      <section id="home-section" className="hero container">
+        <div className="row d-md-flex no-gutters">
+          <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per text-center'>
+          <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
+          </div>
+          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5">
+            <div className="text" >
+              <p className="header-text mt-4">Design Patterns</p>
+              <p className="header-text mtopminus10"><span className='text-yellow'>SIMPLIFIED</span> </p>
+              <p className="mb-4 text-white"><b>Go-to resource for understanding the <span className='text-yellow'>core concepts of design patterns</span> without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</b></p>
+              <p className="mb-4 text-white"><b>Join <span className='text-yellow'>{config.EbookCopiesNumber} engineers</span>  to master design patterns the simplified way!</b></p>
+              <a href='/'><button className='btn btn-lg btn-primary border-radius-10px button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+            </div>
+          </div>
+          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <img src="/images/ebook.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+          </div>
+        </div>
+      </section>
+
+      <section className="ftco-section" id="blog-section">
+        <div className="container">
+          <div className="row justify-content-center mb-5">
+            <div className="col-md-12 heading-section text-center">
+              <p className="header-text">In Their  <span className='text-yellow'> Own Words</span></p>
+            </div>
+          </div>
+          <div className="row text-center">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
+              <SponsorsNewsletter />
+              <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="ftco-section" id="blog-section">
+        <div className="container">
+          <div className="row justify-content-center mb-5">
+            <div className="col-md-12 heading-section text-center">
+              <p className="header-text">Why <span className='text-yellow'>this</span> Ebook</p>
+            </div>
+          </div>
+          <div className="row text-center">
+          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
+              <div className="blog-entry text-center">
+                <h3>Short and Focused</h3>
+                <br />
+                <h5 >No more wading through hundreds of pages of theory. I've trimmed the fat to deliver only what you need in a brief <b> 30-page guide</b>.
+                </h5>
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
+              <div className="blog-entry text-center">
+                <h3>Real-World Examples
+               </h3>
+                <br />
+                <h5 >Learn each design pattern through real-world examples, making it <b> easier to apply</b> them to your own projects.
+                </h5>
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
+              <div className="blog-entry text-center">
+                <h3>Affordable</h3>
+                <br />
+                <h5 >Get access to valuable knowledge without breaking the bank. <b>Affordable pricing</b> for every developer.
+                </h5>
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
+              <div className="blog-entry text-center">
+                <h3>Code Access</h3>
+                <br />
+                <h5 >Access code samples and <b>practical implementations</b> to reinforce your understanding.
+                </h5>
+              </div>
+            </div>
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
+              <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section className="ftco-section" id="blog-section">
+        <div className="container">
+          <div className="row justify-content-center mb-5">
+            <div className="col-md-12 heading-section text-center">
+              <p className="header-text">What <span className='text-yellow'>You'll Get</span></p>
+            </div>
+          </div>
+          <div className="row text-center">
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
+              <h2 className='text-yellow text-center'><b>10 Practical Design Patterns</b></h2>
+              <p className='pt-5'>I've carefully curated the design patterns that I've personally worked with in real-world projects, selecting those that have proven to be genuinely practical and valuable.<br/>The list contains:</p>
+              <div className='row'>
+                <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center'>
+                  <p>1. Adapter</p>
+                  <p>2. Bridge</p>
+                  <p>3. Builder</p>
+                  <p>4. Command</p>
+                  <p>5. Composite</p>
+                </div>
+                <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center'>
+                  <p>6. Decorator</p>
+                  <p>7. Facory Method</p>
+                  <p>8. Observer</p>
+                  <p>9. Singleton</p>
+                  <p>10. Strategy</p>
+                </div>
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
+              <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+            </div>
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
+            <img src="/images/ebook-devices.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+            </div>
+        
+          </div>
+          <div className="row text-center">
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
+            <img className='border-radius-20px' src="/images/real-world-example.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+            </div>
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
+              <h2 className='text-yellow text-center pb-5'><b>Real-World Examples</b></h2>
+              <h5 className='text-left'>• Explore real-world design pattern examples.</h5>
+              <h5 className='text-left'>• Gain practical insights and hands-on experience.</h5>
+              <h5 className='text-left'>• Apply patterns effectively in your projects.</h5>
+              <h5 className='text-left'>• Solve real-world challenges.</h5>
+              <h5 className='text-left'>• Enhance coding skills for robust applications.</h5>
+
+            </div>
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
+              <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+export default Ebook;

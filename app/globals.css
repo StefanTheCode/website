@@ -3679,9 +3679,9 @@ fieldset:disabled a.btn {
 
 .btn-lg,
 .btn-group-lg>.btn {
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  padding: 1rem 1rem !important;
+  font-size: 1rem !important;
+  line-height: 1.2 !important;
   border-radius: 0.3rem;
 }
 
@@ -14204,6 +14204,10 @@ textarea.form-control {
   color: #ffbd39;
 }
 
+.text-green {
+  color: green;
+}
+
 .margin-top-minus-10 {
   margin-top: -10px;
 }
@@ -14222,6 +14226,10 @@ textarea.form-control {
 
 .border-radius-5px {
   border-radius: 5px !important;
+}
+
+.border-radius-20px {
+  border-radius: 20px !important;
 }
 
 .border-1px-yellow {
