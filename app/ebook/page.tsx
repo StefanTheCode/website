@@ -9,7 +9,7 @@ const Ebook = () => {
       <section id="home-section" className="hero container">
         <div className="row d-md-flex no-gutters">
           <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per text-center'>
-          <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
+            <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5">
             <div className="text" >
@@ -31,6 +31,7 @@ const Ebook = () => {
           <div className="row justify-content-center mb-5">
             <div className="col-md-12 heading-section text-center">
               <p className="header-text">In Their  <span className='text-yellow'> Own Words</span></p>
+              <p>Testimonials placeholder</p>
             </div>
           </div>
           <div className="row text-center">
@@ -50,7 +51,7 @@ const Ebook = () => {
             </div>
           </div>
           <div className="row text-center">
-          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Short and Focused</h3>
                 <br />
@@ -61,7 +62,7 @@ const Ebook = () => {
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Real-World Examples
-               </h3>
+                </h3>
                 <br />
                 <h5 >Learn each design pattern through real-world examples, making it <b> easier to apply</b> them to your own projects.
                 </h5>
@@ -89,7 +90,6 @@ const Ebook = () => {
           </div>
         </div>
       </section>
-      
       <section className="ftco-section" id="blog-section">
         <div className="container">
           <div className="row justify-content-center mb-5">
@@ -100,35 +100,35 @@ const Ebook = () => {
           <div className="row text-center">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
               <h2 className='text-yellow text-center'><b>10 Practical Design Patterns</b></h2>
-              <p className='pt-5'>I've carefully curated the design patterns that I've personally worked with in real-world projects, selecting those that have proven to be genuinely practical and valuable.<br/>The list contains:</p>
+              <h5 className='pt-5'>I've carefully curated the design patterns that I've personally worked with in real-world projects, selecting those that have proven to be genuinely practical and valuable.<br />The list contains:</h5>
               <div className='row'>
                 <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center'>
-                  <p>1. Adapter</p>
-                  <p>2. Bridge</p>
-                  <p>3. Builder</p>
-                  <p>4. Command</p>
-                  <p>5. Composite</p>
+                  <h5>1. Adapter</h5>
+                  <h5>2. Bridge</h5>
+                  <h5>3. Builder</h5>
+                  <h5>4. Command</h5>
+                  <h5>5. Composite</h5>
                 </div>
                 <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center'>
-                  <p>6. Decorator</p>
-                  <p>7. Facory Method</p>
-                  <p>8. Observer</p>
-                  <p>9. Singleton</p>
-                  <p>10. Strategy</p>
+                  <h5>6. Decorator</h5>
+                  <h5>7. Facory Method</h5>
+                  <h5>8. Observer</h5>
+                  <h5>9. Singleton</h5>
+                  <h5>10. Strategy</h5>
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-              <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
-            </div>
+                  <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+                </div>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-            <img src="/images/ebook-devices.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+              <img src="/images/ebook-devices.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
             </div>
-        
+
           </div>
           <div className="row text-center">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-            <img className='border-radius-20px' src="/images/real-world-example.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+              <img className='border-radius-20px' src="/images/real-world-example.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
               <h2 className='text-yellow text-center pb-5'><b>Real-World Examples</b></h2>
@@ -137,10 +137,21 @@ const Ebook = () => {
               <h5 className='text-left'>• Apply patterns effectively in your projects.</h5>
               <h5 className='text-left'>• Solve real-world challenges.</h5>
               <h5 className='text-left'>• Enhance coding skills for robust applications.</h5>
-
+              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
+                <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+              </div>
             </div>
-            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-              <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+          </div>
+          <div className="row text-center">
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
+              <h2 className='text-yellow text-center'><b>Free GitHub Repository</b></h2>
+              <h5 className='pt-5'>In addition to the code found in the book itself, as accompanying material comes a free GitHub repository with implementations of all 10 patterns in the C# programming language.</h5>
+              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
+                <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
+              <img src="/images/github-repo.png" className='border-radius-20px' alt="Profile image of Stefan Djokic" width="100%" height="100%" />
             </div>
           </div>
         </div>
