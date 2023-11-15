@@ -11,7 +11,7 @@ const Ebook = () => {
           <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per text-center'>
             <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
           </div>
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5">
+          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5 float-left">
             <div className="text" >
               <p className="header-text mt-4">Design Patterns</p>
               <p className="header-text mtopminus10"><span className='text-yellow'>SIMPLIFIED</span> </p>
@@ -20,11 +20,12 @@ const Ebook = () => {
               <a href='/'><button className='btn btn-lg btn-primary border-radius-10px button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
             </div>
           </div>
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
             <img src="/images/ebook.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
           </div>
         </div>
       </section>
+      <hr className='background-yellow'/>
 
       <section className="ftco-section" id="blog-section">
         <div className="container">
@@ -42,6 +43,7 @@ const Ebook = () => {
           </div>
         </div>
       </section>
+      <hr className='background-yellow'/>
 
       <section className="ftco-section" id="blog-section">
         <div className="container">
@@ -90,6 +92,9 @@ const Ebook = () => {
           </div>
         </div>
       </section>
+
+      <hr className='background-yellow'/>
+
       <section className="ftco-section" id="blog-section">
         <div className="container">
           <div className="row justify-content-center mb-5">
@@ -98,9 +103,10 @@ const Ebook = () => {
             </div>
           </div>
           <div className="row text-center">
+
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
               <h2 className='text-yellow text-center'><b>10 Practical Design Patterns</b></h2>
-              <h5 className='pt-5'>I've carefully curated the design patterns that I've personally worked with in real-world projects, selecting those that have proven to be genuinely practical and valuable.<br />The list contains:</h5>
+              <h5 className='pt-5'>I've carefully curated the design patterns that I've personally worked with in real-world projects, selecting those that have proven to be genuinely practical and valuable. The list contains:</h5>
               <div className='row'>
                 <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center'>
                   <h5>1. Adapter</h5>
@@ -121,14 +127,15 @@ const Ebook = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-              <img src="/images/ebook-devices.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
+              <img src="/images/ebook-devices.png"  alt="Profile image of Stefan Djokic" width="100%"  />
             </div>
 
           </div>
+          <hr className='background-yellow'/>
           <div className="row text-center">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-              <img className='border-radius-20px' src="/images/real-world-example.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
+              <img className='border-radius-20px' src="/images/real-world-example.png" alt="Profile image of Stefan Djokic" width="100%" />
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
               <h2 className='text-yellow text-center pb-5'><b>Real-World Examples</b></h2>
@@ -142,6 +149,7 @@ const Ebook = () => {
               </div>
             </div>
           </div>
+          <hr className='background-yellow'/>
           <div className="row text-center">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
               <h2 className='text-yellow text-center'><b>Free GitHub Repository</b></h2>
@@ -150,8 +158,8 @@ const Ebook = () => {
                 <a href='/'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-              <img src="/images/github-repo.png" className='border-radius-20px' alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
+              <img src="/images/github-repo.png" className='border-radius-20px' alt="Profile image of Stefan Djokic" width="100%"/>
             </div>
           </div>
         </div>

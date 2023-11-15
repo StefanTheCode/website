@@ -14232,6 +14232,12 @@ textarea.form-control {
   border-radius: 20px !important;
 }
 
+.vertical-center {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .border-1px-yellow {
   border: 1px solid yellow;
 }
