@@ -2325,6 +2325,31 @@ pre code {
   background-color: rgba(255, 255, 255, 0.075);
 }
 
+.mail-address {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 350px) {
+  .mail-address {
+    font-size: 0.8rem;
+  }
+    .sponsorship-name {
+      text-align: center !important;
+      font-size: 2rem !important;
+    }
+
+    .table-responsive-sm {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+  .table-responsive-sm>.table-bordered {
+    border: 0;
+  }
+}
+
 @media (max-width: 575.98px) {
   .table-responsive-sm {
     display: block;
@@ -2332,6 +2357,13 @@ pre code {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+
+  .mail-address {
+    font-size: 0.8rem;
+  }
+    .sponsorship-name {
+      text-align: center !important;
+    }
 
   .table-responsive-sm>.table-bordered {
     border: 0;
@@ -6922,6 +6954,12 @@ a.close.disabled {
   height: 50px;
   overflow: scroll;
 }
+
+.sponsorship-name {
+  text-align: left;
+}
+
+
 
 @media (min-width: 576px) {
   .modal-dialog {

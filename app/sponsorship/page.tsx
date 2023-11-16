@@ -33,7 +33,7 @@ const Sponsorship = () => {
           </div>
           <div className="pb-3 mt-5">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h1>Sponsorship opportunities</h1>
+              <h1 className='sponsorship-name'>Sponsorship opportunities</h1>
               <div className="row">
               <div className="col-md-4 mt-5 mb-5">
                 <ul className="price">
@@ -45,7 +45,7 @@ const Sponsorship = () => {
                   <li>2 sentences maximum</li>
                   <li className="grey" >
                     <h5>Reserve here</h5>
-                   <h5>  <a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
+                   <h5 className='mail-address'> <a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
                   </li>
                 </ul>
               </div>
@@ -60,7 +60,7 @@ const Sponsorship = () => {
                   <li>2 sentences maximum</li>
                   <li className="grey" >
                     <h5>Reserve here</h5>
-                   <h5><a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
+                   <h5 className='mail-address'><a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
                   </li>
                 </ul>
               </div>
@@ -74,7 +74,7 @@ const Sponsorship = () => {
                   <li>Logo included</li>
                   <li className="grey">
                     <h5>Reserve here</h5>
-                   <h5>  <a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
+                   <h5 className='mail-address'>  <a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
                   </li>
                 </ul>
                <p> *Article or tutorial related to C#/.NET</p> The entire newsletter issue is written on the topic of the sponsor's product/service so that it fits into the C#/.NET content.
