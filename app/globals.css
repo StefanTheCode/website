@@ -140,6 +140,18 @@ body {
   width: 40%;
 }
 
+.ebook-profile-img {
+  width: 50% !important;
+}
+
+.ebook-profile-div {
+  text-align: right;
+}
+
+.ebook-about-div {
+  text-align: left;
+}
+
 .coming-soon {
   text-align: center !important;
   padding-left: 5% !important;
@@ -3679,8 +3691,8 @@ fieldset:disabled a.btn {
 
 .btn-lg,
 .btn-group-lg>.btn {
-  padding: 1rem 1rem !important;
-  font-size: 1rem !important;
+  padding: 1.5rem 2.5rem !important;
+  font-size: 1.5rem !important;
   line-height: 1.2 !important;
   border-radius: 0.3rem;
 }
@@ -13126,6 +13138,15 @@ h5,
     background: transparent;
     display: none;
   }
+
+  .ebook-profile-div {
+    text-align: center;
+  }
+  
+  .ebook-about-div {
+    text-align: center;
+  }
+  
 }
 
 .form-control {
