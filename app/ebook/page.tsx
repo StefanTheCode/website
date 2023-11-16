@@ -2,6 +2,7 @@ import config from '@/config.json'
 import Subscribe from '../subscribe';
 import Affiliate from '../affiliate';
 import SponsorsNewsletter from '@/components/sponsorsTestimonials';
+import EbookNewsletter from '@/components/ebookTestimonials';
 
 const Ebook = () => {
   return (
@@ -17,6 +18,7 @@ const Ebook = () => {
               <p className="header-text mtopminus10"><span className='text-yellow'>SIMPLIFIED</span> </p>
               <p className="mb-4 text-white"><b>Go-to resource for understanding the <span className='text-yellow'>core concepts of design patterns</span> without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</b></p>
               <p className="mb-4 text-white"><b>Join <span className='text-yellow'>{config.EbookCopiesNumber} engineers</span>  to master design patterns the simplified way!</b></p>
+              <EbookNewsletter/>
               <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
             </div>
           </div>
