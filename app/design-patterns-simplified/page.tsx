@@ -3,6 +3,7 @@ import Subscribe from '../subscribe';
 import Affiliate from '../affiliate';
 import SponsorsNewsletter from '@/components/sponsorsTestimonials';
 import EbookNewsletter from '@/components/ebookTestimonials';
+import EbookReviews from '@/components/ebookReviews';
 
 const Ebook = () => {
   return (
@@ -39,7 +40,7 @@ const Ebook = () => {
           </div>
           <div className="row text-center">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-              <SponsorsNewsletter />
+              <EbookReviews />
               <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
             </div>
           </div>
@@ -119,7 +120,7 @@ const Ebook = () => {
                 </div>
                 <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center'>
                   <h5>6. Decorator</h5>
-                  <h5>7. Facory Method</h5>
+                  <h5>7. Factory Method</h5>
                   <h5>8. Observer</h5>
                   <h5>9. Singleton</h5>
                   <h5>10. Strategy</h5>
