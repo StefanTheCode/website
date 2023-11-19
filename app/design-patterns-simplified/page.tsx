@@ -40,7 +40,9 @@ const Ebook = () => {
           </div>
           <div className="row text-center">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
+              <div className='row'>
               <EbookReviews />
+              </div>
               <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
             </div>
           </div>
