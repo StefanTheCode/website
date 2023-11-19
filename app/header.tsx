@@ -15,8 +15,8 @@ export default function Header() {
                             <li className="nav-item"><a href="/" className="nav-link"><span>Home</span></a></li>
                             <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/blog"
                                 className="nav-link"><span>Blog</span></a></li>
-                            {/* <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/ebook"
-                                className="nav-link"><span>E Book</span></a></li> */}
+                            <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns-simplified"
+                                className="nav-link"><span>E Book</span></a></li>
                             <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
                                 href="/sponsorship"
                                 className="nav-link"><span>Sponsorship</span></a></li>
