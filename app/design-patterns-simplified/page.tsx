@@ -15,6 +15,7 @@ const Ebook = () => {
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5 float-left">
             <div className="text" >
+              <h1 className='display-none'>Design Patterns SIMPLIFIED</h1>
               <p className="header-text mt-4">Design Patterns</p>
               <p className="header-text mtopminus10"><span className='text-yellow'>SIMPLIFIED</span> </p>
               <p className="mb-4 text-white"><b>Go-to resource for understanding the <span className='text-yellow'>core concepts of design patterns</span> without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</b></p>
@@ -35,7 +36,6 @@ const Ebook = () => {
           <div className="row justify-content-center mb-5">
             <div className="col-md-12 heading-section text-center">
               <p className="header-text">In Their  <span className='text-yellow'> Own Words</span></p>
-              <p>Testimonials placeholder</p>
             </div>
           </div>
           <div className="row text-center">
