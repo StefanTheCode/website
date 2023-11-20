@@ -44,6 +44,28 @@ const PostPage = (props: any) => {
         </div>
       </section >
       <Subscribe />
+      <section className="ftco-section contact-section text-center" id="newsletter-section">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className='col-md-2'></div>
+          <div className="col-md-8 heading-section text-center " id="footer-news-web">
+            <hr className="hr" />
+
+            <p className="header-text">Design Patterns Simplified</p>
+          </div>
+          <div className='col-md-2'></div>
+        </div>
+        <div className="row text-center">
+          <div className="col-md-2"></div>
+          <div className="col-md-8">
+            <h2 className='subheading'>In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. <br/>
+            <a href="https://stefandjokic.tech/design-patterns-simplified"><b> Join 100+ readers here.</b></a></h2>
+          </div>
+          <div className="col-md-2"></div>
+        </div>
+
+      </div>
+    </section>
       <Affiliate />
     </>
   );
