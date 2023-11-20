@@ -18,7 +18,7 @@ const Ebook = () => {
               <h1 className='display-none'>Design Patterns SIMPLIFIED</h1>
               <p className="header-text mt-4">Design Patterns</p>
               <p className="header-text mtopminus10"><span className='text-yellow'>SIMPLIFIED</span> </p>
-              <p className="mb-4 text-white"><b>Go-to resource for understanding the <span className='text-yellow'>core concepts of design patterns</span> without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</b></p>
+              <p className="mb-4 text-white"><b>Go-to resource for understanding the <span className='text-yellow'>core concepts of design patterns</span> without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.</b></p>
               <p className="mb-4 text-white"><b>Join <span className='text-yellow'>{config.EbookCopiesNumber} engineers</span>  to master design patterns the simplified way!</b></p>
               <EbookNewsletter/>
               <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/d71f1003-7b56-4b96-8136-1d769f53eb79'><button className='btn btn-lg btn-primary border-radius-10px button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
