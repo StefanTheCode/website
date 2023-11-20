@@ -11,7 +11,7 @@ const Ebook = () => {
       <section id="home-section" className="hero container">
         <div className="row d-md-flex no-gutters">
           <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per text-center'>
-            <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
+            <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $9.950?<br />Instead, dive into...</p>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5 float-left">
             <div className="text" >
@@ -21,7 +21,7 @@ const Ebook = () => {
               <p className="mb-4 text-white"><b>Go-to resource for understanding the <span className='text-yellow'>core concepts of design patterns</span> without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</b></p>
               <p className="mb-4 text-white"><b>Join <span className='text-yellow'>{config.EbookCopiesNumber} engineers</span>  to master design patterns the simplified way!</b></p>
               <EbookNewsletter/>
-              <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+              <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
@@ -43,7 +43,7 @@ const Ebook = () => {
               <div className='row'>
               <EbookReviews />
               </div>
-              <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+              <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@ const Ebook = () => {
               </div>
             </div>
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-              <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+              <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
             </div>
           </div>
         </div>
@@ -128,7 +128,7 @@ const Ebook = () => {
                   <h5>10. Strategy</h5>
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-                  <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+                  <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@ const Ebook = () => {
               <h5 className='text-left'>• Solve real-world challenges.</h5>
               <h5 className='text-left'>• Enhance coding skills for robust applications.</h5>
               <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-                <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+                <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ const Ebook = () => {
               <h2 className='text-yellow text-center'><b>Free GitHub Repository</b></h2>
               <h5 className='pt-5'>In addition to the code found in the book itself, as accompanying material comes a free GitHub repository with implementations of all 10 patterns in the C# programming language.</h5>
               <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-                <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+                <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
@@ -238,7 +238,7 @@ const Ebook = () => {
           </div>
           <div className="row text-center">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-            <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $10</b></span></button></a>
+            <a href='https://stefandjokic.lemonsqueezy.com'><button className='btn btn-lg btn-primary border-radius-10px mt-5 button-padding'>Download for <span className='text-green'><b> $9.95</b></span></button></a>
         </div>
           </div>
         </div>
