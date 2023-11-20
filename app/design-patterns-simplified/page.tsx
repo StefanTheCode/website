@@ -11,7 +11,7 @@ const Ebook = () => {
       <section id="home-section" className="hero container">
         <div className="row d-md-flex no-gutters">
           <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per text-center'>
-            <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $9.950?<br />Instead, dive into...</p>
+            <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5 float-left">
             <div className="text" >
