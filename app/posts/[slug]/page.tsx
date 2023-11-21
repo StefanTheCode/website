@@ -5,6 +5,7 @@ import getPostMetadata from "../../../components/getPostMetadata";
 import '../[slug]/page.module.css'
 import Subscribe from "@/app/subscribe";
 import Affiliate from "@/app/affiliate";
+import config from '@/config.json'
 
 
 const getPostContent = (slug: string) => {
@@ -59,7 +60,7 @@ const PostPage = (props: any) => {
           <div className="col-md-2"></div>
           <div className="col-md-8">
             <h2 className='subheading'>In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. <br/>
-            <a href="https://stefandjokic.tech/design-patterns-simplified"><b> Join 100+ readers here.</b></a></h2>
+            <a href="https://stefandjokic.tech/design-patterns-simplified"><b> Join {config.EbookCopiesNumber}+ readers here.</b></a></h2>
           </div>
           <div className="col-md-2"></div>
         </div>
