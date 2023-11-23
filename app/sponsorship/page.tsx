@@ -39,7 +39,7 @@ const Sponsorship = () => {
                 <ul className="price">
                   <li className="header"><b>Shared Sponsorship</b></li>
                   <li className="grey" >{config.SharedPrice}</li>
-                  <li>1 of maximum 3 sponsors per issue</li>
+                  <li>1 of maximum 2 sponsors per issue</li>
                   <li>Sponsorship will remain live forever on website</li>
                   <li>2 links per sponsorship</li>
                   <li>2 sentences maximum</li>
