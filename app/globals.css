@@ -14698,42 +14698,40 @@ textarea.form-control {
 
 .nav-item .nav-link {
   position: relative;
-  display: inline-block; /* or 'block' if you want the entire link area to be clickable */
-  padding-bottom: 30px; /* Make room for the discount image underneath */
+  display: inline-block; 
+  padding-bottom: 30px; 
 }
 
 .discount-image-nav {
-  display: block; /* Display the image as block-level to appear on a new line */
-  margin: 0 auto; /* Center the image under the text */
-  height: auto; /* Maintain aspect ratio */
-  max-height: 50px; /* Adjust to your preference */
-  width: auto; /* Maintain aspect ratio */
+  display: block; 
+  margin: 0 auto;
+  height: auto; 
+  max-height: 50px;
+  width: auto; 
   position: absolute;
-  bottom: -30px; /* Adjust distance from the bottom of the link */
+  bottom: -30px;
   left: 50%;
-  transform: translateX(-50%); /* Center align the image */
+  transform: translateX(-50%); 
 }
 
 
-/* Black Friday Navigation Link Styling */
 .nav-item.special-offer .nav-link {
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  font-weight: bold; /* Make the font bold */
-  padding: 5px 10px; /* Add some padding */
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.5s, color 0.5s; /* Smooth transition for hover effect */
+  background-color: #000; 
+  color: #fff; 
+  font-weight: bold; 
+  padding: 5px 10px; 
+  border-radius: 5px;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .nav-item.special-offer .nav-link span {
   position: relative;
-  transition: all 0.5s; /* Smooth transition for hover effect */
+  transition: all 0.5s; 
 }
 
-/* Hover effect */
 .nav-item.special-offer .nav-link:hover, .nav-item.special-offer .nav-link:focus {
-  background-color: #FF4136; /* A brighter color for hover */
-  color: #000; /* Black text on hover */
+  background-color: #FF4136; 
+  color: #000; 
 }
 
 .nav-item.special-offer .nav-link:hover span:before,
@@ -14748,12 +14746,12 @@ textarea.form-control {
   background: rgba(255, 255, 255, 0.1);
   z-index: -1;
   transition: opacity 0.5s;
-  opacity: 0; /* Hidden by default */
+  opacity: 0;
 }
 
 .nav-item.special-offer .nav-link:hover span:before,
 .nav-item.special-offer .nav-link:focus span:before {
-  opacity: 1; /* Visible on hover */
+  opacity: 1; 
 }
 
 @keyframes sparkle {
@@ -14769,7 +14767,7 @@ textarea.form-control {
 
 .nav-item.special-offer .nav-link {
   position: relative;
-  overflow: hidden; /* Ensures sparkles don't overflow the link's area */
+  overflow: hidden; 
 }
 
 .nav-item.special-offer .nav-link::before {
@@ -14785,4 +14783,37 @@ textarea.form-control {
   opacity: 0;
   z-index: 0;
   animation: sparkle 1s infinite alternate;
+}
+
+.promo-banner {
+  background-color: #ffbd39; 
+  color: black !important;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  z-index: 100; 
+}
+
+#ftco-navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 99; 
+}
+
+
+.promo-banner p {
+  margin: 0; 
+  font-size: 1.2em; 
+  color: black !important;
+}
+
+.promo-banner a {
+  color: #FFFF00; 
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.promo-banner a:hover {
+  text-decoration: underline; 
 }
