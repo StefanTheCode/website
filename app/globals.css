@@ -14695,3 +14695,94 @@ textarea.form-control {
     padding-right: 0px;
   }
 }
+
+.nav-item .nav-link {
+  position: relative;
+  display: inline-block; /* or 'block' if you want the entire link area to be clickable */
+  padding-bottom: 30px; /* Make room for the discount image underneath */
+}
+
+.discount-image-nav {
+  display: block; /* Display the image as block-level to appear on a new line */
+  margin: 0 auto; /* Center the image under the text */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 50px; /* Adjust to your preference */
+  width: auto; /* Maintain aspect ratio */
+  position: absolute;
+  bottom: -30px; /* Adjust distance from the bottom of the link */
+  left: 50%;
+  transform: translateX(-50%); /* Center align the image */
+}
+
+
+/* Black Friday Navigation Link Styling */
+.nav-item.special-offer .nav-link {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  font-weight: bold; /* Make the font bold */
+  padding: 5px 10px; /* Add some padding */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.5s, color 0.5s; /* Smooth transition for hover effect */
+}
+
+.nav-item.special-offer .nav-link span {
+  position: relative;
+  transition: all 0.5s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.nav-item.special-offer .nav-link:hover, .nav-item.special-offer .nav-link:focus {
+  background-color: #FF4136; /* A brighter color for hover */
+  color: #000; /* Black text on hover */
+}
+
+.nav-item.special-offer .nav-link:hover span:before,
+.nav-item.special-offer .nav-link:focus span:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: -1;
+  transition: opacity 0.5s;
+  opacity: 0; /* Hidden by default */
+}
+
+.nav-item.special-offer .nav-link:hover span:before,
+.nav-item.special-offer .nav-link:focus span:before {
+  opacity: 1; /* Visible on hover */
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.nav-item.special-offer .nav-link {
+  position: relative;
+  overflow: hidden; /* Ensures sparkles don't overflow the link's area */
+}
+
+.nav-item.special-offer .nav-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle closest-side, white, transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 0;
+  animation: sparkle 1s infinite alternate;
+}

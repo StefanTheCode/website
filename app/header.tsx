@@ -3,27 +3,31 @@ import './globals.css'
 export default function Header() {
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-                <div className="container">
-                    <a className="navbar-brand" href="/">Stefan Đokić</a>
-                    <button className="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-                        data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="oi oi-menu"></span> Menu
-                    </button>
-                    <div className="collapse navbar-collapse" id="ftco-nav">
-                        <ul className="navbar-nav nav margin-left-auto">
-                            <li className="nav-item"><a href="/" className="nav-link"><span>Home</span></a></li>
-                            <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/blog"
-                                className="nav-link"><span>Blog</span></a></li>
-                            <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns-simplified"
-                                className="nav-link"><span>E Book</span></a></li>
-                            <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
-                                href="/sponsorship"
-                                className="nav-link"><span>Sponsorship</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+           <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+  <div className="container">
+    <a className="navbar-brand" href="/">Stefan Đokić</a>
+    <button className="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+        data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="oi oi-menu"></span> Menu
+    </button>
+    <div className="collapse navbar-collapse" id="ftco-nav">
+      <ul className="navbar-nav nav margin-left-auto">
+        <li className="nav-item"><a href="/" className="nav-link"><span>Home</span></a></li>
+        <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/blog"
+            className="nav-link"><span>Blog</span></a></li>
+        <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns-simplified"
+            className="nav-link"><span>E Book</span></a></li>
+             <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
+            href="/sponsorship"
+            className="nav-link"><span>Sponsorship</span></a></li>
+        <li className="nav-item special-offer" data-toggle="collapse" data-target="#ftco-nav"><a href="/black-friday"
+            className="nav-link"><span>Black Friday</span></a></li>
+       
+      </ul>
+    </div>
+  </div>
+</nav>
+
             <div>
                 <script dangerouslySetInnerHTML={{
                     __html: `
