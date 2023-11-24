@@ -14646,3 +14646,52 @@ textarea.form-control {
 .padding-5 {
   padding: 5px !important;
 }
+
+.position-relative {
+  position: relative;
+}
+
+.discount-image {
+  position: absolute;
+  top: -3%; 
+  left: -25%;
+  width: 60%; 
+  height: auto;
+  z-index: 10; 
+}
+
+.padding-right-45px
+{
+  padding-right: 45px;
+}
+
+@media (max-width: 426px) {
+  .discount-image {
+    position: absolute;
+    top: -3%; 
+    left: -30%;
+    width: 60%; 
+    height: auto;
+    z-index: 10; 
+  }
+
+  .padding-right-45px {
+  padding-right: 0px;
+}
+
+}
+
+@media (max-width: 350px) {
+  .discount-image {
+    position: absolute;
+    top: -2%; 
+    left: -30%;
+    width: 60%; 
+    height: auto;
+    z-index: 10; 
+  }
+
+  .padding-right-45px {
+    padding-right: 0px;
+  }
+}

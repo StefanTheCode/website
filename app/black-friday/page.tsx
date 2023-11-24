@@ -6,23 +6,14 @@ const BlackFriday = () => {
     <>
       <section className="ftco-about img ftco-section ftco-no-pb sponsorship-header">
         <div className="container">
-          <div className='row pt-5'>
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 heading-section mt-5 pt-5 ">
-              <h2 className="mb-4 text-align-center">Black Friday <br />
-                <span className="text-yellow"><b>Sponsorship</b></span>
-              </h2>
-            </div>
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6  mt-5 text-center">
-              <img src='/images/discount.png' alt='Linkedin logo' width='50%' />
-            </div>
-          </div>
-          <div className='row pb-5 '>
+          <div className='row pb-5 pt-5'>
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <h1 className='sponsorship-name text-center'>Sponsorship opportunities</h1>
               <div className="row">
-                <div className="col-md-4 mt-5 mb-5">
+                <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
+                <img src="/images/discount_40.png" alt="Discount Tag" className="discount-image"/>
                   <ul className="price">
-                    <li className="header"><b>LinkedIn Sponsored Post</b></li>
+                    <li className="header"><b>LinkedIn Post</b></li>
                     <li className="grey padding-5 text-success"><span className='old-price'>$500.00</span>$300.00</li>
                     <li className='padding-5'><h5><b className='text-yellow'>What you'll get?</b></h5></li>
                     <li className='padding-5'>Complete post about your company, product or a service</li>
@@ -44,7 +35,8 @@ const BlackFriday = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="col-md-4 mt-5 mb-5">
+                <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
+                <img src="/images/discount_33.png" alt="Discount Tag" className="discount-image"/>
                   <ul className="price">
                     <li className="header"><b>Newsletter Ad</b></li>
                     <li className="grey padding-5 text-success"><span className='old-price'>$300.00</span>$200.00</li>
@@ -67,9 +59,10 @@ const BlackFriday = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="col-md-4 mt-5 mb-5">
+                <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
+                <img src="/images/discount_60.png" alt="Discount Tag" className="discount-image"/>
                   <ul className="price">
-                    <li className="header"><b>Twitter Sponsored Post</b></li>
+                    <li className="header"><b>Twitter Post</b></li>
                     <li className="grey padding-5 text-success"><span className='old-price'>$250.00</span>$100.00</li>
                     <li className='padding-5'><h5><b className='text-yellow'>What you'll get?</b></h5></li>
                     <li className='padding-5'>Complete post about your company, product or a service</li>
