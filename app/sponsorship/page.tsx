@@ -1,5 +1,11 @@
 import SponsorsNewsletter from '@/components/sponsorsTestimonials';
 import config from '@/config.json'
+import { Metadata } from 'next';
+
+export const metadata:Metadata = {
+  title: "Stefan Djokic | Sponsorship",
+  description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community."
+}
 
 const Sponsorship = () => {
     return (

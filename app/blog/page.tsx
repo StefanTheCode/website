@@ -1,11 +1,17 @@
 import getPostMetadata from "@/components/getPostMetadata";
 import Subscribe from "../subscribe";
 import PostPreview from "@/components/PostPreview";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: "Stefan Djokic | Blog",
+  description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
+}
 
 const Blog = () => {
 
   const postMetadata = getPostMetadata();
-  
+
   const sortedPostMetadata = postMetadata.sort((a, b) => {
     const dateA = new Date(a.date) as unknown as number;
     const dateB = new Date(b.date) as unknown as number;

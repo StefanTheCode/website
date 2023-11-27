@@ -6,6 +6,8 @@ import '../[slug]/page.module.css'
 import Subscribe from "@/app/subscribe";
 import Affiliate from "@/app/affiliate";
 import config from '@/config.json'
+import { Props } from "@mdx-js/react/lib";
+import { Metadata } from "next";
 
 
 const getPostContent = (slug: string) => {
@@ -15,6 +17,21 @@ const getPostContent = (slug: string) => {
   const matterResult = matter(content);
   return matterResult;
 };
+
+export async function generateMetadata(props: any): Promise<Metadata> {
+  const slug = props.params.slug;
+  const post = getPostContent(slug);
+
+  if(!post) return {
+    title: "Stefan Djokic | Not Found",
+    description: "The page is not found"
+  }
+
+  return {
+    title: "Stefan Djokic Blog | " + post.data.title,
+    description: post.data.subtitle
+  }
+}
 
 export const generateStaticParams = async () => {
   const posts = getPostMetadata();

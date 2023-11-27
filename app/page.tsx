@@ -4,12 +4,15 @@ import config from '@/config.json'
 import Subscribe from './subscribe'
 import getPostMetadata from '@/components/getPostMetadata'
 import MyComponent from '@/components/newsletterTestimonials'
-
-export const metadata = {
-  title: "Test"
-}
+import { Metadata } from 'next'
 
 const postMetadata = getPostMetadata();
+
+
+export const metadata:Metadata = {
+  title: "Stefan Djokic | I'm Your Guide to Becoming a .NET Pro!",
+  description: "Discover Stefan Djokic's journey as a Senior Software Engineer and .NET specialist. His personal website is a treasure trove of knowledge for .NET enthusiasts seeking to advance their skills with expert advice."
+}
 
 const sortedPostMetadata = postMetadata.sort((a, b) => {
   const dateA = new Date(a.date) as unknown as number;
@@ -17,7 +20,7 @@ const sortedPostMetadata = postMetadata.sort((a, b) => {
   return dateB - dateA;
 });
 
-const postPreviews = sortedPostMetadata.slice(0,3).map((post) => {
+const postPreviews = sortedPostMetadata.slice(0, 3).map((post) => {
   const href = `/posts/${post.slug}`
   return (
     <div className="col-xl-4 col-lg-12 col-md-12 d-flex mb-5">
@@ -72,47 +75,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <section className="ftco-section background-yellow " id="newsletter-section" >
+
+      <section className="ftco-section background-yellow" id="newsletter-section">
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'>Newsletter</p>
-                  <p className='text-black text-font-2rem'><b>{config.NewsletterSubCount}</b></p>
-                </div>
-              </div>
+            <div className="col-md-12 text-center">
+              <p className='text-black text-font-2rem margin-top-minus-10'>What did people say about it?</p>
             </div>
-            <div className="col-md-4">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'>Linkedin</p>
-                  <p className='text-black text-font-2rem'><b>{config.LinkedinFollowers}</b></p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'>Twitter</p>
-                  <p className='text-black text-font-2rem'><b>{config.TwitterFollowers}</b></p>
-                </div>
-              </div>
-            </div>
+            <MyComponent />
           </div>
         </div>
-      </section> */}
-
-<section className="ftco-section background-yellow" id="newsletter-section">
-		<div className="container">
-			<div className="row">
-				<div className="col-md-12 text-center">
-					<p className='text-black text-font-2rem margin-top-minus-10'>What did people say about it?</p>
-				</div>
-				<MyComponent />
-			</div>
-		</div>
-	</section>
+      </section>
 
       <section className="ftco-section" id="blog-section">
         <div className="container">
@@ -206,7 +179,7 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank">
-                    <img className='social-icon' src='/images/icons/linkedin-icon.png' alt='Linkedin logo' width='30%' />
+                    <img className='social-icon' src='/images/icons/linkedin-icon.png' alt='Linkedin logo' width='30%' height='auto' />
                   </a>
                 </div>
                 <h3 className="mb-4">Linkedin</h3>
@@ -216,7 +189,7 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://twitter.com/TheCodeMan__" target="_blank">
-                    <img className='social-icon' src='/images/icons/twitter-icon.png' alt='Twitter logo' width='30%' />
+                    <img className='social-icon' src='/images/icons/twitter-icon.png' alt='Twitter logo' width='30%' height='auto' />
                   </a>
                 </div>
                 <h3 className="mb-4">Twitter</h3>
@@ -226,7 +199,7 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://github.com/StefanTheCode" target="_blank">
-                    <img className='social-icon' src='/images/icons/github-icon.png' alt='Github logo' width='30%' />
+                    <img className='social-icon' src='/images/icons/github-icon.png' alt='Github logo' width='30%' height='auto' />
                   </a>
                 </div>
                 <h3 className="mb-4">Github</h3>
@@ -236,7 +209,7 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://www.instagram.com/the.code.man/" target="_blank">
-                    <img className='social-icon' src='/images/icons/instagram-icon.png' alt='Instagram logo' width='30%' /></a>
+                    <img className='social-icon' src='/images/icons/instagram-icon.png' alt='Instagram logo' width='30%' height='auto' /></a>
                 </div>
                 <h3 className="mb-4">Instagram</h3>
               </div>
