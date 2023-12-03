@@ -1,11 +1,11 @@
 ---
 newsletterTitle: "#2 Stefan's Newsletter"
 title: "How to use ChatGPT in C# application?"
-subtitle: "ChatGPT (Generative Pre-trained Transforer) is a large language model developed by OpenAI. It is designed to understand natural language input from users and generate appropriate responses using advanced algorithms and machine learning techniques. ChatGPT can be used in a variety of applications, including chatbots, virtual assistants, customer service, and more.
-"
+subtitle: "ChatGPT (Generative Pre-trained Transforer) is a large language model developed by OpenAI. It is designed to understand natural language input from users and generate appropriate responses using advanced algorithms and machine learning techniques. ChatGPT can be used in a variety of applications, including chatbots, virtual assistants, customer service, and more."
 date: "February 20 2023"
+readTime: "Read Time: 3 minutes"
 photoUrl: "/images/blog/newsletter21.png"
----
+--- 
 
 ### Background
 <br>
@@ -18,6 +18,8 @@ photoUrl: "/images/blog/newsletter21.png"
 ### Step #1
 ### Add OpenAI NuGet
 <br>
+
+##### In this step, adding the OpenAI NuGet package is crucial for connecting your C# application to ChatGPT. It's a simple yet essential part of integrating AI in .NET.
 
 ##### To integrate ChatGPT, the initial step involves installing the OpenAI C# SDK. This can be accomplished by executing the following command in the Package Manager Console using the NuGet package manager:
 

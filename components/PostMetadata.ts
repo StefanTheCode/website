@@ -1,8 +1,9 @@
 export interface PostMetadata {
     newsletterTitle: string,
-    title: string;
-    date: string;
-    subtitle: string;
-    slug: string;
+    title: string,
+    date: string,
+    subtitle: string,
+    slug: string,
+    readTime: string
   }
   

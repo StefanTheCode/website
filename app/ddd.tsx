@@ -1,4 +1,4 @@
-export default function DDD() {
+export default function ddd() {
     return (
         <>
             <title>Stefan Djokic</title>
