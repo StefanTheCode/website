@@ -1,4 +1,4 @@
-export default function ddd() {
+export default function Head() {
     return (
         <>
             <title>Stefan Djokic</title>
