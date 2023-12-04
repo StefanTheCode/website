@@ -16,9 +16,6 @@ const Ebook = () => {
     <>
       <section id="home-section" className="hero container">
         <div className="row d-md-flex no-gutters">
-        <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center'>
-        <h2>Get <b className='text-yellow'>37%</b> <span>discount for Black Friday!</span> <br/> Go and use code <b className='text-yellow'>“BLACKFRIDAY”</b> at checkout.</h2>
-          </div>
           <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text text-center'>
             <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
           </div>
