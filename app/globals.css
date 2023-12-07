@@ -14784,36 +14784,3 @@ textarea.form-control {
   z-index: 0;
   animation: sparkle 1s infinite alternate;
 }
-
-.promo-banner {
-  background-color: #ffbd39; 
-  color: black !important;
-  text-align: center;
-  padding: 10px 0;
-  width: 100%;
-  z-index: 100; 
-}
-
-#ftco-navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 99; 
-}
-
-
-.promo-banner p {
-  margin: 0; 
-  font-size: 1.2em; 
-  color: black !important;
-}
-
-.promo-banner a {
-  color: #FFFF00; 
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.promo-banner a:hover {
-  text-decoration: underline; 
-}
