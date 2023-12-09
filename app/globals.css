@@ -14784,3 +14784,10 @@ textarea.form-control {
   z-index: 0;
   animation: sparkle 1s infinite alternate;
 }
+
+.sticky-top {
+  position: -webkit-sticky; /* Necessary for Safari */
+  position: sticky !important;
+  top: 0; /* Set the top position for the sticky element */
+  z-index: 1000; /* Optional: to ensure it stays on top of other elements */
+}
