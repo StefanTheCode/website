@@ -2,31 +2,18 @@
 newsletterTitle: "#45 Stefan's Newsletter"
 title: "Better Error Handling with Result<T> object"
 subtitle: "Exceptions are designed to handle unexpected and rare events. Using them for regular control flow, like handling business logic or validations, is generally considered a bad practice because it misrepresents the intention of the exception mechanism."
-date: "February 13 2023"
-readTime: "Read Time: 2 minutes"
+date: "December 1 2023"
+readTime: "Read Time: 6 minutes"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore the latest methods to handle Nullable References in .NET. This comprehensive guide covers 4 key strategies, essential for C# developers working with .NET 6 and beyond."
 ---
 
-[](https://stefandjokic.tech)&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
+&nbsp;
+##### • If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** [writing tests for your gRPC requests in Postman](https://blog.postman.com/testing-grpc-apis-with-postman/) **
+##### For more info about gRPC, they created a great beginner article ** [here](https://blog.postman.com/what-is-grpc/) **.
 &nbsp;  
-##### • If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for
-&nbsp;  
-[**writing tests for your gRPC requests in Postman**](https://blog.postman.com/testing-grpc-apis-with-postman/)##### . For more info about gRPC, they created a great beginner article
-&nbsp;  
-[**here**](https://blog.postman.com/what-is-grpc/)##### .
-&nbsp;  
-##### •
-&nbsp;  
-[](https://workflowengine.io/)[](https://workflowengine.io/)[**Workflow Engine**](https://workflowengine.io/)[](https://workflowengine.io/)[](https://workflowengine.io/)##### is the perfect solution if you are dealing with business entities life cycle management in a project. Using embedded drag&amp;drop designer you can create processes in your system and manage your workflows via a simple API. Check it out
-&nbsp;  
-[**here**](https://workflowengine.io/)##### .&nbsp;
+##### • [**Workflow Engine**](https://workflowengine.io/) is the perfect solution if you are dealing with business entities life cycle management in a project. Using embedded drag&amp;drop designer you can create processes in your system and manage your workflows via a simple API. Check it out ** [here](https://workflowengine.io/) **.
 &nbsp;  
 &nbsp;  
 ### The Background
@@ -51,8 +38,8 @@ meta_description: "Explore the latest methods to handle Nullable References in .
 ##### Even Microsoft has a recommendation:
 &nbsp;  
 ##### • Do not use throwing or catching exceptions as a means of normal program flow, especially in hot code paths.&nbsp;
-• Do include logic in the app to detect and handle conditions that would cause an exception.&nbsp;
-• Do throw or catch exceptions for unusual or unexpected conditions.
+##### • Do include logic in the app to detect and handle conditions that would cause an exception.&nbsp;
+##### • Do throw or catch exceptions for unusual or unexpected conditions.
 &nbsp;  
 ##### So what to do?
 &nbsp;  
@@ -67,9 +54,7 @@ meta_description: "Explore the latest methods to handle Nullable References in .
 &nbsp;  
 &nbsp;  
 ##### Let's consider a common business logic scenario: validating user input for a registration form.
-&nbsp;  
 ##### Initially, let's see how this might be done using exceptions:
-&nbsp;  
 
 ```csharp
 
@@ -99,14 +84,12 @@ public class UserRegistration
 ##### For regular and predictable events like input validation, standard control flow mechanisms (like Result&lt;T&gt;) are more appropriate and efficient.
 &nbsp;  
 &nbsp;  
-### Handling errors with Result&lt;T&gt; object&nbsp;
+### Handling errors with Result&lt;T&gt; object
 &nbsp;  
 &nbsp;  
 ##### By using Result, you're ensuring that your code is handling expected scenarios (like invalid user input) in a more predictable and maintainable way, improving the overall quality and readability of your codebase.
 &nbsp;  
 ##### Let's see the same example with Result&lt;T&gt; object:
-&nbsp;  
-
 ```csharp
 
 public class UserRegistration
@@ -134,8 +117,6 @@ public class UserRegistration
 ##### Result&lt;T&gt; does not come with any library (there are various libraries that already implement the Result object, like FluentResults) which means that I created it myself.
 &nbsp;  
 ##### Let me show you how:
-&nbsp;  
-
 ```csharp
 
 public class Result
@@ -175,11 +156,7 @@ public class Result
 &nbsp;  
 ##### Here we can create a class (or record) that will display the error as a combination of error type and error description.
 &nbsp;  
-##### &nbsp;
-&nbsp;  
-##### Let' take a look how to represent it:&nbsp;
-&nbsp;  
-
+##### Let' take a look how to represent it:
 ```csharp
 
 public record Error(string Type, string Description)
@@ -189,8 +166,6 @@ public record Error(string Type, string Description)
 ```
 
 ##### And now for each of the failed validations we can create a separate Error object that will represent a unique error for that type of validation:
-&nbsp;  
-
 ```csharp
 
 public static class RegistrationErrors
@@ -204,8 +179,6 @@ public static class RegistrationErrors
 ```
 
 ##### So, instead of an ordinary string, we can return a more structured value (this means that Error in the Result&lt;T&gt; object should be an Error type, and no longer a string):
-&nbsp;  
-
 ```csharp
 
 return Result.Failure(RegistrationErrors.PasswordTooShort);
@@ -216,19 +189,15 @@ return Result.Failure(RegistrationErrors.PasswordTooShort);
 &nbsp;  
 &nbsp;  
 ##### **Improved Readability** :
-&nbsp;  
 ##### The Result pattern clearly indicates that user input validation is a part of the normal flow and not an exceptional circumstance.
 &nbsp;  
 ##### **Easier Error Handling:**
-&nbsp;  
 ##### It guides the caller to handle both success and failure cases explicitly, making the code more robust.
 &nbsp;  
 ##### **Enhanced Performance:**
-&nbsp;  
 ##### Avoiding exceptions for regular control flow scenarios like input validation is more performance-efficient.
 &nbsp;  
 ##### **Flexibility and Extensibility:**
-&nbsp;  
 ##### The Result pattern can easily be extended or modified to include additional details about the failure or even success scenarios, without changing the method signature.
 &nbsp;  
 &nbsp;  
@@ -236,18 +205,13 @@ return Result.Failure(RegistrationErrors.PasswordTooShort);
 &nbsp;  
 &nbsp;  
 ##### Let's distill the essence of this week's discussion: reserve exceptions for truly unforeseen events.
-&nbsp;  
 ##### They are best suited for situations where the error is beyond your immediate handling capabilities.
-&nbsp;  
 ##### For everything else, the clarity and structure offered by the Result pattern are far more beneficial.
 &nbsp;  
 ##### Embracing the Result class in your code allows you to:
 &nbsp;  
-##### •
-Clearly indicate that a method might not always succeed.
-&nbsp;  
+##### • Clearly indicate that a method might not always succeed.
 ##### • Neatly wrap up an error occurring within your application.
-&nbsp;  
 ##### • Offer a streamlined, functional approach to managing errors.
 &nbsp;  
 ##### What's more, you can systematically catalog all the errors in your application using the Error class. This is incredibly useful, providing a clear guide on which errors to anticipate and handle.
