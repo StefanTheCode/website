@@ -2,7 +2,7 @@
 newsletterTitle: "#45 Stefan's Newsletter"
 title: "Better Error Handling with Result<T> object"
 subtitle: "Exceptions are designed to handle unexpected and rare events. Using them for regular control flow, like handling business logic or validations, is generally considered a bad practice because it misrepresents the intention of the exception mechanism."
-date: "December 1 2023"
+date: "Dec 11 2023"
 readTime: "Read Time: 6 minutes"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore the latest methods to handle Nullable References in .NET. This comprehensive guide covers 4 key strategies, essential for C# developers working with .NET 6 and beyond."
