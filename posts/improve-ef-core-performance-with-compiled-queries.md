@@ -3,7 +3,9 @@ newsletterTitle: "#42 Stefan's Newsletter"
 title: "Improve EF Core Performance with Compiled Queries"
 subtitle: "Compiled queries in .NET emerged as a response to the performance challenges faced in data retrieval operations, particularly in applications using ORMs like Entity Framework."
 date: "Nov 20 2023"
+readTime: "Read Time: 2 minutes"
 photoUrl: "/images/blog/newsletter21.png"
+meta_description: "Unlock the secrets to enhancing Entity Framework Core performance with Stefan Đokić's guide on compiled queries. Learn to optimize database interactions in .NET applications by utilizing compiled queries for faster execution and efficient resource use. Ideal for developers seeking to refine EF Core operations and achieve superior performance in data-intensive .NET environments."
 ---
 
 <br>
