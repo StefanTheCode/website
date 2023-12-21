@@ -84,7 +84,7 @@ builder.Services.AddHostedService&lt;SomeService&gt;();
 ##### Let' take a look on the example:
 ```csharp
 
-builder.Services.Configure&lt;HostOptions&gt;(options =&gt;
+builder.Services.Configure&lt;HostOptions&gt;(options =>
 {
     options.ServicesStartConcurrently = true;
     options.ServicesStopConcurrently = true;

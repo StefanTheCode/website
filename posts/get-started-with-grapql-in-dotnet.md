@@ -71,7 +71,7 @@ public class UserQuery
         new User { Id = 2, FirstName = "Dajana", LastName = "Milosevic", BirthDate = new DateTime(1996, 6, 22)},
     };
 
-    public List&lt;User&gt; GetUsers() =&gt; users;
+    public List&lt;User&gt; GetUsers() => users;
 }
 ```
 

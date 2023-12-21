@@ -122,7 +122,7 @@ public class UserRegistration
 public class Result
 {
     public bool IsSuccess { get; private set; }
-    public bool IsFailure { get; private set; } =&gt; !IsSuccess
+    public bool IsFailure { get; private set; } => !IsSuccess
     public string ErrorMessage { get; private set; }
 
     protected Result(bool isSuccess, string errorMessage)
@@ -131,8 +131,8 @@ public class Result
         ErrorMessage = errorMessage;
     }
 
-    public static Result Success() =&gt; new Result(true, null);
-    public static Result Failure(string message) =&gt; new Result(false, message);
+    public static Result Success() => new Result(true, null);
+    public static Result Failure(string message) => new Result(false, message);
 }
 ```
 

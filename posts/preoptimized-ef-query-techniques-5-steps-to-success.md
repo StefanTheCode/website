@@ -41,7 +41,7 @@ meta_description: "Dive into advanced Entity Framework Core query optimization t
 ```csharp
 
 var employeeList = context.Employees
-        .Select(e =&gt; new EmployeeDto
+        .Select(e => new EmployeeDto
         {
             Name = e.Name,
             Email = e.Email
@@ -95,7 +95,7 @@ foreach (var blog in blogs)
 ```csharp
 
 // Retrieve all blogs and their posts in a single query using eager loading
-var blogs = context.Blogs.Include(b =&gt; b.Posts).ToList();
+var blogs = context.Blogs.Include(b => b.Posts).ToList();
 
 foreach (var blog in blogs)
 {
@@ -108,10 +108,10 @@ foreach (var blog in blogs)
 
 ##### **Eager Loading with Include:**
 &nbsp;  
-##### The Include(b =&gt; b.Posts) method tells EF Core to load the Posts related to each Blog as part of the initial query. This way, when you access, **the data is already loaded, and no additional queries are needed**.
+##### The Include(b => b.Posts) method tells EF Core to load the Posts related to each Blog as part of the initial query. This way, when you access, **the data is already loaded, and no additional queries are needed**.
 &nbsp;  
 ##### **Single Query Execution:**
-##### The context.Blogs.Include(b =&gt; b.Posts).ToList() line executes a single query that retrieves all the Blogs along with their associated Posts. This effectively eliminates the N+1 queries issue.
+##### The context.Blogs.Include(b => b.Posts).ToList() line executes a single query that retrieves all the Blogs along with their associated Posts. This effectively eliminates the N+1 queries issue.
 &nbsp;  
 ##### **Iterating Over Results:** 
 ##### The nested foreach loops then iterate over the blogs and their posts. Since the posts are already loaded into memory, no additional queries are executed during iteration.
@@ -216,7 +216,7 @@ var results = query.ToList(); // This produces the correct result
 ```csharp
 
 var authors = context.Authors
-                .Include(a =&gt; a.Books)
+                .Include(a => a.Books)
                 .ToList();
 ```
 
@@ -226,7 +226,7 @@ var authors = context.Authors
 ```csharp
 
 var authors = context.Authors
-                .Include(a =&gt; a.Books)
+                .Include(a => a.Books)
                 .AsSplitQuery()
                 .ToList();
 ```
