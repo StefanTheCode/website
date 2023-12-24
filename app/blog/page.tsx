@@ -4,7 +4,7 @@ import PostPreview from "@/components/PostPreview";
 import { Metadata } from "next";
 import config from '@/config.json'
 
-export const metadata:Metadata = {
+export const metadata: Metadata = {
   title: "Stefan Djokic | Blog",
   description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
 }
@@ -25,37 +25,68 @@ const Blog = () => {
 
   return (
     <>
-      <section className="img ftco-section">
-        <div className="container">
-          <div className="row justify-content-center pb-5">
-            <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7 heading-section text-center ">
-              <h5 className="text-yellow">The blog is under development. Other posts will be visible soon.</h5>
-              <h2 className="mb-4 mt-10">Blog posts</h2>
+      <section id="home-section" className="hero container background-black padding-bottom-5per">
+        <div className="row d-md-flex no-gutters">
+          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per" >
+            <div className="text" >
+              <p className="header-text">Become a </p>
+              <p className="header-text mtopminus10"><span className='text-yellow'>.NET Pro</span> </p>
+              <p className="header-text mtbottom20 ">while drinking coffee</p>
+              <p className="mb-4 header-sub-text">Every <span className='text-yellow'>Monday
+                morning</span>, start
+                the week with a
+                cup of coffee and <span className='text-yellow'>1 actionable .NET tip</span> that you can use
+                right away.</p>
+              <p className="header-sub-text-join">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to the
+                Monday coffee.</p>
+              <div className='row'>
+                <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
+                <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                <script async src="https://eocampaign1.com/form/33e483be-a0b1-11ed-b1bd-9b9d338510f2.js"
+								data-form="33e483be-a0b1-11ed-b1bd-9b9d338510f2"></script>
+            `
+                  }}
+                ></div>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-12">
-            {postPreviews}
+          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top-10per" id="profile-image">
+            <img src="/images/blog-header.png" alt="Profile image of Stefan Djokic" width="100%" />
+          </div>
+        </div>
+      </section>
+     
+      <section className="img ftco-section">
+        <div className="container">
+        <div className="col-md-12 text-center">
+              <h2>The .NET Pro Weekly previous issues </h2>
             </div>
-            {/* <div className="col-md-3">
-            <div className="row justify-content-center pb-5">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 sticky-top">
-              <h3 className="newsletter-post-title">Subscribe to <br/>.NET Pro Weekly</h3>
-              <p className="text-slate-400 mt-2">Subscribe to the .NET Pro Weekly and be among the <span className="text-yellow"> {config.NewsletterSubCount}</span> gaining practical tips and resources to enhance your .NET expertise.</p>
-              <div className="row">
-              <div className="col-md-12"
-              dangerouslySetInnerHTML={{
-                __html: `
+          <div className="row pt-5 mt-5">
+          
+            <div className="col-md-10">
+              {postPreviews}
+            </div>
+            <div className="col-md-2">
+              <div className="row justify-content-center pb-5">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h4 >Subscribe to <br />.NET Pro Weekly</h4>
+                  <p className="text-slate-400 mt-2">Subscribe to the .NET Pro Weekly and be among the <span className="text-yellow"> {config.NewsletterSubCount}</span> gaining practical tips and resources to enhance your .NET expertise.</p>
+                  <div className="row">
+                    <div className="col-md-12 padding-left0 padding-right0"
+                      dangerouslySetInnerHTML={{
+                        __html: `
               <script async src="https://eocampaign1.com/form/e85a08a0-d239-11ed-bf00-69996e57973d.js"
                 data-form="e85a08a0-d239-11ed-bf00-69996e57973d">
               </script>
             `
-              }}
-            />
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-            </div> */}
           </div>
         </div>
       </section>

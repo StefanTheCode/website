@@ -722,6 +722,8 @@ pre {
   background-color: #212529;
 }
 
+
+
 pre code {
   font-size: inherit;
   color: inherit;
@@ -14257,7 +14259,7 @@ textarea.form-control {
 .blog-post-img {
   border: solid;
   border-radius: 50px;
-  margin-top: 40px;
+  margin-top: 0px;
   width: 80% !important;
 }
 
@@ -14323,6 +14325,11 @@ textarea.form-control {
   padding-top: 10%;
 }
 
+.padding-bottom-5per {
+  padding-bottom: 5%;
+}
+
+
 .padding-10px {
   padding: 10px 10px 10px 10px;
 }
@@ -14349,7 +14356,17 @@ textarea.form-control {
 
   .blog-content {
     text-align: justify;
+    color: #ffffff !important;
   }
+
+  .padding-left0 {
+    padding-left: 0 !important;
+  }
+
+  .padding-right0 {
+    padding-right: 0 !important;
+  }
+
 
   .sponsorship-header {
     margin-top: 0px;
@@ -14417,7 +14434,7 @@ textarea.form-control {
 .blog-post-img {
   border: solid;
   border-radius: 50px;
-  margin-top: 40px;
+  margin-top: 0px;
   width: 100% !important;
 }
 
@@ -14796,4 +14813,8 @@ textarea.form-control {
   position: sticky !important;
   top: 0; /* Set the top position for the sticky element */
   z-index: 1000; /* Optional: to ensure it stays on top of other elements */
+}
+
+.background-black {
+  background-color: black !important;
 }
