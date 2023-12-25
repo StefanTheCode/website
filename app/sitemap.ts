@@ -28,6 +28,24 @@ export default async function sitemap() : Promise<MetadataRoute.Sitemap> {
             changeFrequency: "daily",
             priority: 0.7
         },
+        {
+            url: `https://stefandjokic.tech/sponsorship`,
+            lastModified: new Date(config.ChangeDate),
+            changeFrequency: "daily",
+            priority: 0.7
+        },
+        {
+            url: `https://stefandjokic.tech/blog`,
+            lastModified: new Date(config.ChangeDate),
+            changeFrequency: "daily",
+            priority: 0.7
+        },
+        {
+            url: `https://stefandjokic.tech/design-patterns-simplified`,
+            lastModified: new Date(config.ChangeDate),
+            changeFrequency: "daily",
+            priority: 0.7
+        },
         ... postEntries
     ]
 }
