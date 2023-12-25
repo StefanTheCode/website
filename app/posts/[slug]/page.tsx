@@ -37,7 +37,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
       description: post.data.meta_description,
       images: [
         {
-          url: "/images/a.png"
+          url: "/images/blog/" + slug + ".png"
         }
       ]
     },
