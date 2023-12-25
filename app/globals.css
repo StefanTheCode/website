@@ -14198,6 +14198,7 @@ textarea.form-control {
 
 .blog-content {
   text-align: justify;
+  color: white !important;
 }
 
 .sponsorship-header {
@@ -14234,6 +14235,7 @@ textarea.form-control {
 
   .blog-content {
     text-align: justify;
+  color: white !important;
   }
 
   .sponsorship-header {
@@ -14481,6 +14483,7 @@ textarea.form-control {
 
   .blog-content {
     text-align: justify;
+  color: white !important;
   }
 
   .sponsorship-header {
@@ -14589,7 +14592,9 @@ textarea.form-control {
     width: 100% !important;
     max-width: 100% !important;
   }
-
+  .border-right {
+    border-right: none !important;
+  }
   .hr-between-posts {
     background-color: white;
     margin-top: -20px;
@@ -14612,6 +14617,7 @@ textarea.form-control {
 
   .blog-content {
     text-align: justify;
+    color: white !important;
   }
 
   .sponsorship-header {
@@ -14701,7 +14707,9 @@ textarea.form-control {
   .padding-right-45px {
   padding-right: 0px;
 }
-
+.border-right {
+  border-right: none !important;
+}
 }
 
 @media (max-width: 350px) {
@@ -14716,6 +14724,10 @@ textarea.form-control {
 
   .padding-right-45px {
     padding-right: 0px;
+  }
+
+  .border-right {
+    border-right: none !important;
   }
 }
 

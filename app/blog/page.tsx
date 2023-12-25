@@ -65,10 +65,10 @@ const Blog = () => {
             </div>
           <div className="row pt-5 mt-5">
           
-            <div className="col-md-10">
+            <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12 border-right">
               {postPreviews}
             </div>
-            <div className="col-md-2">
+            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
               <div className="row justify-content-center pb-5">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                   <h4 >Subscribe to <br />.NET Pro Weekly</h4>
