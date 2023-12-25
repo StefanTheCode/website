@@ -6,8 +6,8 @@ import '../[slug]/page.module.css'
 import Subscribe from "@/app/subscribe";
 import Affiliate from "@/app/affiliate";
 import config from '@/config.json'
-import { Props } from "@mdx-js/react/lib";
 import { Metadata } from "next";
+import { exitCode } from "process";
 
 
 const getPostContent = (slug: string) => {
@@ -18,18 +18,36 @@ const getPostContent = (slug: string) => {
   return matterResult;
 };
 
-export async function generateMetadata(props: any): Promise<Metadata> {
+export async function generateMetadata(props: any) : Promise<Metadata> {
+
   const slug = props.params.slug;
   const post = getPostContent(slug);
 
+  console.log(post.data);
   if(!post) return {
     title: "Stefan Djokic | Not Found",
     description: "The page is not found"
   }
 
   return {
-    title: "Stefan Djokic Blog | " + post.data.title,
-    description: post.data.subtitle
+    title: post.data.title,
+    description: post.data.subtitle,
+    openGraph: {
+      title: post.data.title,
+      description: post.data.subtitle,
+     images: [
+        {
+          url: "/images/a.png"
+        }
+      ],
+    },
+    twitter: {
+      title: post.data.title,
+      card: "summary_large_image",
+      site: "@TheCodeMan__",
+      creator: "@TheCodeMan__",
+      description: post.data.subtitle
+    }
   }
 }
 
