@@ -3,7 +3,8 @@ import config from '@/config.json'
 import { Metadata } from 'next';
 
 export const metadata:Metadata = {
-  title: "Stefan Djokic | Sponsorship",
+  metadataBase: new URL('https://stefandjokic.tech/sponsorship'),
+  title: "Sponsorship",
   description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community."
 }
 
