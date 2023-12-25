@@ -13,7 +13,7 @@ export const metadata:Metadata = {
   openGraph: {
     images: [
       {
-        url: ogImage.src,
+        url: '/og-image.png',
         width: ogImage.width,
         height: ogImage.height
       }
@@ -39,7 +39,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-2MN7C3CEX2"></script>
