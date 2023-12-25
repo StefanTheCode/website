@@ -7,15 +7,26 @@ import Subscribe from "@/app/subscribe";
 import Affiliate from "@/app/affiliate";
 import config from '@/config.json'
 import { Metadata } from "next";
-import { exitCode } from "process";
+import { notFound } from "next/navigation";
 
 
 const getPostContent = (slug: string) => {
+
+  if(!slug || slug == null) {
+    notFound();
+  }
+
+  try
+  {
   const folder = "posts/";
   const file = `${folder}${slug}.md`;
   const content = fs.readFileSync(file, "utf8");
   const matterResult = matter(content);
   return matterResult;
+  }
+  catch {
+    notFound();
+  }
 };
 
 export async function generateMetadata(props: any): Promise<Metadata> {
@@ -24,10 +35,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
   const post = getPostContent(slug);
 
   console.log(post.data);
-  if (!post) return {
-    title: "Stefan Djokic | Not Found",
-    description: "The page is not found"
-  }
+
+  if (!post) notFound();
+
 
   return {
     title: post.data.title,
@@ -69,6 +79,11 @@ export const generateStaticParams = async () => {
 const PostPage = (props: any) => {
   const slug = props.params.slug;
   const post = getPostContent(slug);
+
+  if(!post || post == null) {
+    notFound();
+  }
+
   return (
     <>
       <section className="img ftco-section">
