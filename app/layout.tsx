@@ -1,8 +1,28 @@
+import { Metadata } from 'next'
 import Footer from './footer'
 import './globals.css'
 import Head from './head'
 import Header from './header'
 
+export const metadata:Metadata = {
+  metadataBase: new URL('https://stefandjokic.tech'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    images: '/og-image.png',
+  },
+  title: {
+    default: "Stefan Djokic | I'm Your Guide to Becoming a .NET Pro!",
+    template: "%s | Stefan Djokic"
+  } ,
+  description: "Discover Stefan Djokic's journey as a Senior Software Engineer and C# and .NET specialist. His personal website is a treasure trove of knowledge for .NET enthusiasts seeking to advance their skills with expert advice.",
+  twitter: {
+    card: "summary_large_image",
+    site: "@TheCodeMan__",
+    creator: "@TheCodeMan__"
+  }
+}
 
 export default function RootLayout({
   children,

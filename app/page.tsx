@@ -9,11 +9,6 @@ import { Metadata } from 'next'
 const postMetadata = getPostMetadata();
 
 
-export const metadata:Metadata = {
-  title: "Stefan Djokic | I'm Your Guide to Becoming a .NET Pro!",
-  description: "Discover Stefan Djokic's journey as a Senior Software Engineer and .NET specialist. His personal website is a treasure trove of knowledge for .NET enthusiasts seeking to advance their skills with expert advice."
-}
-
 const sortedPostMetadata = postMetadata.sort((a, b) => {
   const dateA = new Date(a.date) as unknown as number;
   const dateB = new Date(b.date) as unknown as number;
