@@ -18,35 +18,35 @@ const getPostContent = (slug: string) => {
   return matterResult;
 };
 
-export async function generateMetadata(props: any) : Promise<Metadata> {
+export async function generateMetadata(props: any): Promise<Metadata> {
 
   const slug = props.params.slug;
   const post = getPostContent(slug);
 
   console.log(post.data);
-  if(!post) return {
+  if (!post) return {
     title: "Stefan Djokic | Not Found",
     description: "The page is not found"
   }
 
   return {
     title: post.data.title,
-    description: post.data.subtitle,
+    description: post.data.meta_description,
     openGraph: {
       title: post.data.title,
-      description: post.data.subtitle,
-     images: [
+      description: post.data.meta_description,
+      images: [
         {
           url: "/images/a.png"
         }
-      ],
+      ]
     },
     twitter: {
       title: post.data.title,
       card: "summary_large_image",
       site: "@TheCodeMan__",
       creator: "@TheCodeMan__",
-      description: post.data.subtitle
+      description: post.data.meta_description
     }
   }
 }
@@ -81,27 +81,27 @@ const PostPage = (props: any) => {
       </section >
       <Subscribe />
       <section className="ftco-section contact-section text-center" id="newsletter-section">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className='col-md-2'></div>
-          <div className="col-md-8 heading-section text-center " id="footer-news-web">
-            <hr className="hr" />
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className='col-md-2'></div>
+            <div className="col-md-8 heading-section text-center " id="footer-news-web">
+              <hr className="hr" />
 
-            <p className="header-text">Design Patterns Simplified</p>
+              <p className="header-text">Design Patterns Simplified</p>
+            </div>
+            <div className='col-md-2'></div>
           </div>
-          <div className='col-md-2'></div>
-        </div>
-        <div className="row text-center">
-          <div className="col-md-2"></div>
-          <div className="col-md-8">
-            <h2 className='subheading'>In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. <br/>
-            <a href="https://stefandjokic.tech/design-patterns-simplified"><b> Join {config.EbookCopiesNumber}+ readers here.</b></a></h2>
+          <div className="row text-center">
+            <div className="col-md-2"></div>
+            <div className="col-md-8">
+              <h2 className='subheading'>In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. <br />
+                <a href="https://stefandjokic.tech/design-patterns-simplified"><b> Join {config.EbookCopiesNumber}+ readers here.</b></a></h2>
+            </div>
+            <div className="col-md-2"></div>
           </div>
-          <div className="col-md-2"></div>
-        </div>
 
-      </div>
-    </section>
+        </div>
+      </section>
       <Affiliate />
     </>
   );
