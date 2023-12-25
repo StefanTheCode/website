@@ -13,6 +13,8 @@ export const metadata:Metadata = {
   title: "Design Patterns Simplified ebook",
   description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.",
   openGraph: {
+    title: "Design Patterns Simplified ebook",
+    description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.",
     images: [
       {
         url: '/og-image.png',

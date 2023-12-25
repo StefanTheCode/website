@@ -8,7 +8,11 @@ import Image from 'next/image'
 export const metadata: Metadata = {
   metadataBase: new URL('https://stefandjokic.tech/blog'),
   title: "Blog",
-  description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
+  description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world.",
+  openGraph: {
+    title: "Blog",
+    description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
+  }
 }
 
 const Blog = () => {
