@@ -5,11 +5,21 @@ import SponsorsNewsletter from '@/components/sponsorsTestimonials';
 import EbookNewsletter from '@/components/ebookTestimonials';
 import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
+import ogImage from './og-ebookimage.png'
 
 export const metadata:Metadata = {
   metadataBase: new URL('https://stefandjokic.tech/design-patterns-simplified'),
   title: "Design Patterns Simplified ebook",
-  description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level."
+  description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.",
+  openGraph: {
+    images: [
+      {
+        url: '/og-ebookimage.png',
+        width: ogImage.width,
+        height: ogImage.height
+      }
+    ],
+  },
 }
 
 const Ebook = () => {
