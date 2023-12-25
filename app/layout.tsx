@@ -3,6 +3,7 @@ import Footer from './footer'
 import './globals.css'
 import Head from './head'
 import Header from './header'
+import ogImage from './og-image.png'
 
 export const metadata:Metadata = {
   metadataBase: new URL('https://stefandjokic.tech'),
@@ -10,7 +11,13 @@ export const metadata:Metadata = {
     canonical: '/',
   },
   openGraph: {
-    images: '/og-image.png',
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height
+      }
+    ],
   },
   title: {
     default: "Stefan Djokic | I'm Your Guide to Becoming a .NET Pro!",
