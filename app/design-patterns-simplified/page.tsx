@@ -5,7 +5,7 @@ import SponsorsNewsletter from '@/components/sponsorsTestimonials';
 import EbookNewsletter from '@/components/ebookTestimonials';
 import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
-import ogImage from './og-ebookimage.png'
+import ogImage from './og-image.png'
 
 export const metadata:Metadata = {
   metadataBase: new URL('https://stefandjokic.tech/design-patterns-simplified'),
@@ -14,7 +14,7 @@ export const metadata:Metadata = {
   openGraph: {
     images: [
       {
-        url: '/og-ebookimage.png',
+        url: '/og-image.png',
         width: ogImage.width,
         height: ogImage.height
       }
