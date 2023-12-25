@@ -5,6 +5,7 @@ import SponsorsNewsletter from '@/components/sponsorsTestimonials';
 import EbookNewsletter from '@/components/ebookTestimonials';
 import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
+import Image from 'next/image'
 import ogImage from './og-image.png'
 
 export const metadata:Metadata = {
@@ -42,7 +43,7 @@ const Ebook = () => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
-            <img src="/images/ebook.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+          <Image src={'/images/ebook.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
           </div>
         </div>
       </section>
@@ -150,14 +151,14 @@ const Ebook = () => {
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-              <img src="/images/ebook-devices.png"  alt="Profile image of Stefan Djokic" width="100%"  />
+          <Image src={'/images/ebook-devices.png'} alt={'Design Patterns Simplified ebook devices'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
 
           </div>
           <hr className='background-yellow'/>
           <div className="row text-center">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-              <img className='border-radius-20px' src="/images/real-world-example.png" alt="Profile image of Stefan Djokic" width="100%" />
+          <Image src={'/images/real-world-example.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
               <h2 className='text-yellow text-center pb-5'><b>Real-World Examples</b></h2>
@@ -181,7 +182,7 @@ const Ebook = () => {
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-              <img src="/images/github-repo.png" className='border-radius-20px' alt="Profile image of Stefan Djokic" width="100%"/>
+          <Image src={'/images/github-repo.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Github repo'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
         </div>
@@ -201,7 +202,7 @@ const Ebook = () => {
             <div className="col-md-6">
               <div className="row">
                 <div className="col-md-6 ebook-profile-div">
-                <img src="/images/ebook-stefan.png" className='mb-5 border-radius-20px ebook-profile-img' alt="Profile image of Stefan Djokic" />
+          <Image src={'/images/ebook-stefan.png'}  className='mb-5 border-radius-20px ebook-profile-img' alt={'Design Patterns Simplified ebook - Profile image of the author, Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-md-6 ebook-about-div">
                   <p className='text-black text-font-2rem'><b>Hi friend, I'm Stefan</b></p>

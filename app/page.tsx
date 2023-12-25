@@ -65,7 +65,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="profile-image">
-            <img src="/images/test.png" alt="Profile image of Stefan Djokic" width="100%" height="100%" />
+            <Image src={'/images/stefan-djokic.png'} priority={true} quality={100} alt={'Profile image of Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
           </div>
         </div>
       </section>
@@ -138,21 +138,22 @@ export default function Home() {
             <div className="col-md-4 ">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <img className='skill-csharp-img' src="/images/csharp.png" alt="C# Logo" width="110px" />
+                  <Image src={'/images/csharp.png'} className='skill-csharp-img' alt={'C# Logo'} width={110} height={120} />
                 </div>
               </div>
             </div>
             <div className="col-md-4 ">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <img className='skill-img' src="/images/dotnet.png" alt="Dotnet (.NET) Logo" width="128px" />
+                  <Image src={'/images/dotnet.png'} className='skill-img' alt={'Dotnet (.NET) Logo'} width={128} height={128} />
+
                 </div>
               </div>
             </div>
             <div className="col-md-4 ">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <img className='skill-img' src="/images/sql-server.png" alt="SQL Server Logo" width="128px" />
+                  <Image src={'/images/sql-server.png'} className='skill-img' alt={'SQL Server Logo'} width={128} height={128} />
                 </div>
               </div>
             </div>
@@ -174,7 +175,7 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank">
-                    <img className='social-icon' src='/images/icons/linkedin-icon.png' alt='Linkedin logo' width='30%' height='auto' />
+                    <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                   </a>
                 </div>
                 <h3 className="mb-4">Linkedin</h3>
@@ -184,7 +185,8 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://twitter.com/TheCodeMan__" target="_blank">
-                    <img className='social-icon' src='/images/icons/twitter-icon.png' alt='Twitter logo' width='30%' height='auto' />
+                    <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+
                   </a>
                 </div>
                 <h3 className="mb-4">Twitter</h3>
@@ -194,7 +196,8 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://github.com/StefanTheCode" target="_blank">
-                    <img className='social-icon' src='/images/icons/github-icon.png' alt='Github logo' width='30%' height='auto' />
+                    <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+
                   </a>
                 </div>
                 <h3 className="mb-4">Github</h3>
@@ -204,7 +207,9 @@ export default function Home() {
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
                   <a href="https://www.instagram.com/the.code.man/" target="_blank">
-                    <img className='social-icon' src='/images/icons/instagram-icon.png' alt='Instagram logo' width='30%' height='auto' /></a>
+                    <Image src={'/images/icons/instagram-icon.png'} className='social-icon' alt={'Instagram Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+
+                  </a>
                 </div>
                 <h3 className="mb-4">Instagram</h3>
               </div>

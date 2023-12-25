@@ -3,8 +3,9 @@ import Subscribe from "../subscribe";
 import PostPreview from "@/components/PostPreview";
 import { Metadata } from "next";
 import config from '@/config.json'
+import Image from 'next/image'
 
-export const metadata:Metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL('https://stefandjokic.tech/blog'),
   title: "Blog",
   description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
@@ -54,18 +55,18 @@ const Blog = () => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top-10per" id="profile-image">
-            <img src="/images/blog-header.png" alt="Profile image of Stefan Djokic" width="100%" />
+            <Image src={'/images/blog-header.png'} priority={true} alt={'Blog header image'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
           </div>
         </div>
       </section>
-     
+
       <section className="img ftco-section">
         <div className="container">
-        <div className="col-md-12 text-center">
-              <h2>The .NET Pro Weekly previous issues </h2>
-            </div>
+          <div className="col-md-12 text-center">
+            <h2>The .NET Pro Weekly previous issues </h2>
+          </div>
           <div className="row pt-5 mt-5">
-          
+
             <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12 border-right">
               {postPreviews}
             </div>

@@ -14259,7 +14259,7 @@ textarea.form-control {
 }
 
 .blog-post-img {
-  border: solid;
+  border: 1px solid #ffbd39;
   border-radius: 50px;
   margin-top: 0px;
   width: 80% !important;
@@ -14434,7 +14434,7 @@ textarea.form-control {
 
   
 .blog-post-img {
-  border: solid;
+  border: 1px solid #ffbd39;
   border-radius: 50px;
   margin-top: 0px;
   width: 100% !important;

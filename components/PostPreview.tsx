@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from 'next/image'
 import { PostMetadata } from "./PostMetadata";
 
 const PostPreview = (props: PostMetadata) => {
@@ -27,7 +28,10 @@ const PostPreview = (props: PostMetadata) => {
                                 </h6>
                             </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-5 text-center">
-                                <a href={href}><img className="blog-post-img" src={photo}  width="80%" /></a>
+
+                                <a href={href}>
+                                <Image src={photo} className="blog-post-img" alt={props.title} width={0} height={0} sizes="100vw" style={{ width: '80%', height: 'auto' }} />
+                                    </a>
                             </div>
                         </div>
                     </div>
