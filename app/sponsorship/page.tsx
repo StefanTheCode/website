@@ -8,8 +8,17 @@ export const metadata:Metadata = {
   description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community.",
   openGraph: {
     title: "Sponsorship",
+    type: "website",
+    url: "https://stefandjokic.tech/sponsorship",
     description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community."
-   }
+   },
+   twitter: {
+    title: "Sponsorship",
+    card: "summary_large_image",
+    site: "@TheCodeMan__",
+    creator: "@TheCodeMan__",
+    description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community."
+  }
 }
 
 const Sponsorship = () => {

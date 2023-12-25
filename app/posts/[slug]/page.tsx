@@ -34,19 +34,27 @@ export async function generateMetadata(props: any): Promise<Metadata> {
     description: post.data.meta_description,
     openGraph: {
       title: post.data.title,
+      type: "article",
+      publishedTime: post.data.date,
+      authors: "Stefan Djokic",
       description: post.data.meta_description,
       images: [
         {
           url: "/images/blog/" + slug + ".png"
         }
-      ]
+      ],
     },
     twitter: {
       title: post.data.title,
       card: "summary_large_image",
       site: "@TheCodeMan__",
       creator: "@TheCodeMan__",
-      description: post.data.meta_description
+      description: post.data.meta_description,
+    images: [
+        {
+          url: "/images/blog/" + slug + ".png"
+        }
+      ]
     }
   }
 }

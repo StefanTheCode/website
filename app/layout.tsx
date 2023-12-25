@@ -23,6 +23,8 @@ export const metadata:Metadata = {
         height: ogImage.height
       }
     ],
+    type: "website",
+    url: "https://stefandjokic.tech"
   },
   title: {
     default: "Stefan Djokic | I'm Your Guide to Becoming a .NET Pro!",
@@ -30,9 +32,21 @@ export const metadata:Metadata = {
   } ,
   description: "The .NET Pro Weekly: Elevate Your Coding Skills! Subscribe to receive a weekly dose of practical, implementable tips on .NET and software architecture, tailored for efficient and innovative development. Discover Stefan Djokic's journey as a Senior Software Engineer and C# and .NET specialist. His personal website is a treasure trove of knowledge for .NET enthusiasts seeking to advance their skills with expert advice.",
   twitter: {
+    title: {
+      default: "Stefan Djokic | I'm Your Guide to Becoming a .NET Pro!",
+      template: "%s | Stefan Djokic"
+    },
     card: "summary_large_image",
     site: "@TheCodeMan__",
-    creator: "@TheCodeMan__"
+    creator: "@TheCodeMan__",
+    description: "The .NET Pro Weekly: Elevate Your Coding Skills! Subscribe to receive a weekly dose of practical, implementable tips on .NET and software architecture, tailored for efficient and innovative development. Discover Stefan Djokic's journey as a Senior Software Engineer and C# and .NET specialist. His personal website is a treasure trove of knowledge for .NET enthusiasts seeking to advance their skills with expert advice.",
+    images: [
+      {
+        url: '/og-image.png',
+        width: ogImage.width,
+        height: ogImage.height
+      }
+    ]
   }
 }
 

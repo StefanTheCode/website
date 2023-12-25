@@ -14,6 +14,8 @@ export const metadata:Metadata = {
   description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.",
   openGraph: {
     title: "Design Patterns Simplified ebook",
+    type: "website",
+    url: "https://stefandjokic.tech/design-patterns-simplified",
     description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.",
     images: [
       {
@@ -23,6 +25,13 @@ export const metadata:Metadata = {
       }
     ],
   },
+  twitter: {
+    title: "Design Patterns Simplified ebook",
+    card: "summary_large_image",
+    site: "@TheCodeMan__",
+    creator: "@TheCodeMan__",
+    description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level."
+  }
 }
 
 const Ebook = () => {

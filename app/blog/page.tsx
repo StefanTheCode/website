@@ -11,6 +11,15 @@ export const metadata: Metadata = {
   description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world.",
   openGraph: {
     title: "Blog",
+    type: "website",
+    url: "https://stefandjokic.tech/blog",
+    description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
+  },
+  twitter: {
+    title: "Blog",
+    card: "summary_large_image",
+    site: "@TheCodeMan__",
+    creator: "@TheCodeMan__",
     description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
   }
 }
