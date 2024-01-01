@@ -12,7 +12,7 @@ const PostPreview = (props: PostMetadata) => {
                     <div className="justify-content-start pb-3">
                         <div className="row" >
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
-                                {/* <h5><a href={href} className="newsletter-title"><i>{props.newsletterTitle}</i></a></h5> */}
+                                <h5><a href={href} className="newsletter-title"><i>{props.newsletterTitle}</i></a></h5>
                                 <h3 className="text-left"><a href={href} className="newsletter-post-title" >{props.title}</a></h3>
                                 <div className="row">
                                     <div className="col-md-6">

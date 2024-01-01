@@ -1,11 +1,11 @@
 ---
 newsletterTitle: "#48 Stefan's Newsletter"
 title: "MediatR Pipeline Behavior"
-subtitle: "Security headers are HTTP response headers that provide an additional layer of security to web applications. They help to protect against attacks such as cross-site scripting (XSS), clickjacking, and more."
+subtitle: "MediatR is a popular library in .NET used for implementing the Mediator pattern. It helps in reducing coupling between components and makes it easier to manage code by sending requests to the appropriate handlers."
 readTime: "Read Time: 3 minutes"
 date: "Jan 1 2024"
 photoUrl: "/images/blog/newsletter21.png"
-meta_description: "Explore innovative error handling strategies for .NET developers in this insightful blog post. Learn the advantages of using the Result<T> object over traditional exceptions, and how to effectively implement custom Result and Error classes for clearer, more efficient code management. A must-read for enhancing your coding practices in .NET."
+meta_description: "Explore the concept of MediatR Pipeline Behavior in .NET in this insightful blog post. Learn how to implement cross-cutting concerns like logging and validation in your MediatR requests. Understand the creation of pipeline behaviors, their registration, and practical applications. This guide is perfect for .NET developers looking to enhance application monitoring and debugging while adhering to best coding practices."
 ---
 
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
