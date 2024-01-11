@@ -11,12 +11,15 @@ import ogImage from './og-image.png'
 export const metadata:Metadata = {
   metadataBase: new URL('https://stefandjokic.tech/design-patterns-simplified'),
   title: "Design Patterns Simplified ebook",
-  description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.",
+  alternates: {
+    canonical: '/',
+  },
+  description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
   openGraph: {
     title: "Design Patterns Simplified ebook",
     type: "website",
     url: "https://stefandjokic.tech/design-patterns-simplified",
-    description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level.",
+    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
     images: [
       {
         url: '/og-image.png',
@@ -30,7 +33,7 @@ export const metadata:Metadata = {
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level."
+    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns."
   }
 }
 
@@ -232,7 +235,7 @@ const Ebook = () => {
             <div className="col-md-4">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'>Newsletter</p>
+                  <p className='text-black text-font-2rem'><a className='text-black' href='https://stefandjokic.tech/blog'>Newsletter</a></p>
                   <p className='text-black text-font-2rem'><b>{config.NewsletterSubCount}</b></p>
                 </div>
               </div>
@@ -240,7 +243,7 @@ const Ebook = () => {
             <div className="col-md-4">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'>Linkedin</p>
+                  <p className='text-black text-font-2rem'><a className='text-black' href='https://www.linkedin.com/in/djokic-stefan/'>Linkedin</a></p>
                   <p className='text-black text-font-2rem'><b>{config.LinkedinFollowers}</b></p>
                 </div>
               </div>
@@ -248,7 +251,7 @@ const Ebook = () => {
             <div className="col-md-4">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'>Twitter</p>
+                  <p className='text-black text-font-2rem'><a className='text-black' href='https://twitter.com/TheCodeMan__'>Twitter</a></p>
                   <p className='text-black text-font-2rem'><b>{config.TwitterFollowers}</b></p>
                 </div>
               </div>
