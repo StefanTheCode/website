@@ -206,7 +206,7 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.instagram.com/the.code.man/" target="_blank">
+                  <a href="https://www.instagram.com/stefandjokic.tech/" target="_blank">
                     <Image src={'/images/icons/instagram-icon.png'} className='social-icon' alt={'Instagram Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
 
                   </a>
