@@ -45,20 +45,47 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### To start using BenchmarkDotNet, you should install it via NuGet:
 
-![Install NuGet Package DotnetBenchmark](/images/blog/posts/benchmarking-in-dotnet-step-by-step/install-package-benchmarkdotnet.png)
+```csharp
+
+Install-Package BenchmarkDotNet
+
+```
 <br>
 #### 2. Create Benchmarks
 <br>
 ##### Write the code you want to benchmark in a method and annotate it with the <b>[Benchmark]</b> attribute.
 
+```csharp
 
-![Create Benchmarks](/images/blog/posts/benchmarking-in-dotnet-step-by-step/create-benchmarks.png)
+using BenchmarkDotNet.Atrributes;
+
+public class MyBenchmarks
+{
+    [Benchmark]
+    public void SomeBenchmark()
+    {
+        //Your code here...
+    }
+}
+```
 <br>
 #### 3. Run Benchmarks
 <br>
-##### To run the benchmarks, you create a new instance of the <b>BenchmarkRunner</b> class and call the Run method.
 
-![Running Benchmarks](/images/blog/posts/benchmarking-in-dotnet-step-by-step/running-benchmarks.png)
+##### To run the benchmarks, you create a new instance of the <b>BenchmarkRunner</b> class and call the Run method.
+```csharp
+
+using BenchmarkDotNet.Running;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var summary = BenchmarkRunner.Run<MyBenchmarks>();
+    }
+}
+```
+
 <br>
 ##### This will run the benchmark and print the results in the console. The summary object also contains the results, which can be used programmatically if needed.
 <br>
@@ -86,7 +113,29 @@ photoUrl: "/images/blog/newsletter21.png"
 #### • Parameterization
 <br>
 #####  You can run benchmarks with different parameters to see how they affect performance.
-![Parameterized Benchmarks](/images/blog/posts/benchmarking-in-dotnet-step-by-step/parameterized-benchmarks.png)
+
+```csharp
+
+using BenchmarkDotNet.Attributes;
+
+public class ParameterizedBenchmarks
+{
+    [Params(100, 200, 300)]
+    public int N;
+
+    [Benchmark]
+    public in SumUpToN()
+    {
+        int sum = 0;
+        
+        for(int i=0; i < N; i++)
+            sum+=i;
+
+        return sum;
+    }
+}
+
+```
 <br>
 #### • Multiple Runtimes
 <br>
@@ -98,12 +147,51 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### Then, in your benchmark class:
 
-![Multi Runtime Benchmarks](/images/blog/posts/benchmarking-in-dotnet-step-by-step/multi-runtime-benchmarks.png)
+```csharp
+
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
+
+[CoreJob, ClrJob, MonoJob]
+public class MultiRuntimeBenchmarks
+{
+    [Benchmark]
+    public void SomeBenchmark()
+    {
+        //Your code here...
+    }
+}
+
+```
 <br>
 #### • Custom Configurations
 <br>
 ##### You can create a custom configuration that controls the benchmarking process.
-![Custom Benchmarking Configuration](/images/blog/posts/benchmarking-in-dotnet-step-by-step/custom-benchmarking-configuration.png)
+
+```csharp
+
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Attributes;
+
+public class CustomConfig : ManualConfig
+{
+    public CustomConfig()
+    {
+        AddJob(Job.Default.WithWarmupCount(3).WithIterationCount(10));
+    }
+}
+
+[Config(typeof(CustomConfig))]
+public class CustomConfigurationBenchmarks
+{
+    [Benchmark]
+    public void SomeBenchmark()
+    {
+        //Your code here...
+    }
+}
+```
 <br>
 #### • Diagnostics
 <br>
@@ -111,8 +199,21 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### For more detailed diagnostics, you might consider other diagnosers available in BenchmarkDotNet, like <b>[DisassemblyDiagnoser]</b>.
 
-![Memory Diagnostics Benchmarking](/images/blog/posts/benchmarking-in-dotnet-step-by-step/memory-diagnostics-benchmarks.png)
+```csharp
 
+using BenchmarkDotNet.Attributes;
+
+[MemoryDiagnoser]
+public class MemoryDiagnosticsBenchmarks
+{
+    [Benchmark]
+    public List<int> CreateList()
+    {
+        return new List<int> { 1, 2, 3, 4, 5 };
+    }
+}
+
+```
 <br>
 <br>
 ### Wrapping up
