@@ -1,5 +1,5 @@
 ---
-newsletterTitle: "#25 Stefan's Newsletter"
+newsletterTitle: "#28 Stefan's Newsletter"
 title: "Real-Time applications with SignalR"
 subtitle: "SignalR is like that cool tech wizard in the .NET, making real-time communication feel like a piece of cake. From chat apps, quick notifications, to live dashboard updates – SignalR is the secret sauce."
 readTime: "Read Time: 6 minutes"
