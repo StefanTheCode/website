@@ -158,9 +158,17 @@ body {
   padding-right: 5% !important;
 }
 
+.read-time {
+  text-align: end;
+}
+
 @media (max-width: 800px) {
   .header-sub-text {
     font-size: 20px;
+  }
+
+  .read-time {
+    text-align: start;
   }
 
   #profile-image {
@@ -14221,6 +14229,7 @@ textarea.form-control {
   width: 30% !important;
 }
 
+
 @media only screen and (max-width: 600px) {
   .container {
     width: 100% !important;
@@ -14264,8 +14273,8 @@ textarea.form-control {
 
 .blog-post-img {
   border: 1px solid #ffbd39;
-  border-radius: 50px;
   margin-top: 0px;
+  height: 80% !important;
   width: 80% !important;
 }
 
@@ -14439,8 +14448,8 @@ textarea.form-control {
   
 .blog-post-img {
   border: 1px solid #ffbd39;
-  border-radius: 50px;
   margin-top: 0px;
+  height: 70% !important;
   width: 100% !important;
 }
 
