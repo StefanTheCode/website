@@ -52,8 +52,7 @@ const Blog = () => {
                 the week with a
                 cup of coffee and <span className='text-yellow'>1 actionable .NET tip</span> that you can use
                 right away.</p>
-              <p className="header-sub-text-join">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to the
-                Monday coffee.</p>
+              <p className="header-sub-text-join">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
               <div className='row'>
                 <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
                 <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"

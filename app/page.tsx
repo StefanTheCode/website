@@ -37,23 +37,22 @@ const postPreviews = sortedPostMetadata.slice(0, 3).map((post) => {
 export default function Home() {
   return (
     <>
-      <section id="home-section" className="hero container">
+      <section id="home-section " className="hero container">
         <div className="row d-md-flex no-gutters">
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per" >
+          <div className="col-xl-12 mt-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center slider-text padding-top-10per" >
             <div className="text" >
-              <p className="header-text">Become a </p>
-              <p className="header-text mtopminus10"><span className='text-yellow'>.NET Pro</span> </p>
+              <p className="header-text">Become a <span className='text-yellow'>.NET Pro</span> </p>
               <p className="header-text mtbottom20 ">while drinking coffee</p>
-              <p className="mb-4 header-sub-text">Every <span className='text-yellow'>Monday
+              <p className="mb-4 mt-5 header-sub-text">Every <span className='text-yellow'>Monday
                 morning</span>, start
                 the week with a
-                cup of coffee and <span className='text-yellow'>1 actionable .NET tip</span> that you can use
+                cup of coffee and <span className='text-yellow'><br/>1 actionable .NET tip</span> that you can use
                 right away.</p>
-              <p className="header-sub-text-join">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to the
-                Monday coffee.</p>
-              <div className='row'>
-                <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
-                <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"
+              <p className="header-sub-text-join mt-5">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
+              <div className='container'>
+              <div className='row text-center  mb-5'>
+                <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
+                <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center"
                   dangerouslySetInnerHTML={{
                     __html: `
                 <script async src="https://eocampaign1.com/form/33e483be-a0b1-11ed-b1bd-9b9d338510f2.js"
@@ -61,12 +60,14 @@ export default function Home() {
             `
                   }}
                 ></div>
+                <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
+              </div>
               </div>
             </div>
           </div>
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="profile-image">
+          {/* <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="profile-image">
             <Image src={'/images/stefan-djokic.png'} priority={true} quality={100} alt={'Profile image of Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -226,11 +227,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="ftco-section contact-section ftco-no-pb" id="contact-section">
+        <div className="container">
       <div className='row'>
         <div className='col-md-12'>
         <Subscribe />
         </div>
-      </div>
+      </div></div>
+      </section>
     </>
   )
 }

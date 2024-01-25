@@ -13,6 +13,8 @@ export default function Subscribe() {
               <p>Join <span className='text-yellow'> {config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
             </div>
           </div>
+          <div className='container'>
+
           <div className="row text-center">
             <div className="col-md-2"></div>
             <div className="col-md-8"
@@ -25,6 +27,7 @@ export default function Subscribe() {
               }}
             />
             <div className="col-md-2"></div>
+          </div>
           </div>
         </div>
       </section>
