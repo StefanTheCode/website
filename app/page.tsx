@@ -90,7 +90,26 @@ export default function Home() {
             </div>
           </div>
           <div className="row text-center">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-5">
+          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div className="blog-entry text-center">
+                <h3><a href="blog/github-webhook.html">Design Patterns Simplified ebook
+                </a></h3>
+                <br />
+                <h5> In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level. </h5>
+                <a href='/design-patterns-simplified' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Check out it here</button></a>
+              </div>
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div className="blog-entry text-center">
+                <h3><a href="blog/github-webhook.html">Promote your business to {config.NewsletterSubCount}
+                </a></h3>
+                <br />
+                <h5 >Looking to expand your followers, subscribers, or clientele swiftly? <br /> Feature your brand in my newsletter!
+                </h5>
+                <a href='/sponsorship' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'> Reserve a spot</button></a>
+              </div>
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-5">
               <div className="blog-entry text-center">
                 <h3><a href="blog/github-webhook.html">Become .NET Pro Weekly Newsletter
                 </a></h3>
@@ -99,16 +118,6 @@ export default function Home() {
                 </h5>
                 <a href='/'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join {config.NewsletterSubCount}</button>
                 </a>
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-              <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">Promote your business to {config.NewsletterSubCount}
-                </a></h3>
-                <br />
-                <h5 >Looking to expand your followers, subscribers, or clientele swiftly? <br /> Feature your brand in my newsletter!
-                </h5>
-                <a href='/sponsorship' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'> Reserve a spot</button></a>
               </div>
             </div>
           </div>

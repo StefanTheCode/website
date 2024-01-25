@@ -83,8 +83,8 @@ const Blog = () => {
             <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12 border-right">
               {postPreviews}
             </div>
-            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-              <div className="row justify-content-center pb-5">
+            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
+            <div className="row justify-content-center pb-5">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                   <h4 >Subscribe to <br />.NET Pro Weekly</h4>
                   <p className="text-slate-400 mt-2">Subscribe to the .NET Pro Weekly and be among the <span className="text-yellow"> {config.NewsletterSubCount}</span> gaining practical tips and resources to enhance your .NET expertise.</p>
