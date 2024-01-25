@@ -1,6 +1,6 @@
 ---
 newsletterTitle: "#47 Stefan's Newsletter"
-title: "Getting Started with PLINQ email"
+title: "Getting Started with PLINQ"
 subtitle: "PLINQ queries are similar to regular LINQ queries, but they're designed to run faster by using all the processors on your computer. They work with any in-memory data and start executing only when needed, just like regular LINQ."
 readTime: "Read Time: 3 minutes"
 date: "Dec 25 2023"

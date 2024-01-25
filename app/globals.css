@@ -232,7 +232,7 @@ h6 {
 p {
   margin-top: 0;
   color: white;
-  margin-bottom: 1rem;
+  margin-bottom: 0 !important;
 }
 
 abbr[title],
@@ -7744,7 +7744,7 @@ button.bg-dark:focus {
 }
 
 .border-right {
-  border-right: 1px solid #dee2e6 !important;
+  border-right: 1px solid gray !important;
 }
 
 .border-bottom {
@@ -9643,6 +9643,10 @@ button.bg-dark:focus {
 
 .p-5 {
   padding: 3rem !important;
+}
+
+.pt-10 {
+  padding-top: 10rem !important;
 }
 
 .pt-5,
@@ -14829,4 +14833,9 @@ textarea.form-control {
 
 .background-black {
   background-color: black !important;
+}
+
+.fixed-position {
+  position: fixed;
+  width: 25%; 
 }

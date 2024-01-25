@@ -217,7 +217,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Subscribe />
+      <div className='row'>
+        <div className='col-md-12'>
+        <Subscribe />
+        </div>
+      </div>
     </>
   )
 }
