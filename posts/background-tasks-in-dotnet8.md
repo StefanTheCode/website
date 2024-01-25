@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#44 Stefan's Newsletter"
 title: "Background Tasks in .NET 8"
-subtitle: "A Background Task in .NET typically refers to any operation that runs in the background, separate from the main flow of your application. This can include tasks like processing data, performing I/O operations, or any other long-running processes that you don't want to run on the main thread because they might block the user interface or the main operation of your application."
+subtitle: "A Background Task in .NET typically refers to any operation that runs in the background..."
 readTime: "Read Time: 7 minutes"
 date: "Dec 04 2023"
 photoUrl: "/images/blog/newsletter21.png"

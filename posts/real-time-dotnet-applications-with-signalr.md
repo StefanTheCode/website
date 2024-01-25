@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#28 Stefan's Newsletter"
 title: "Real-Time applications with SignalR"
-subtitle: "SignalR is like that cool tech wizard in the .NET, making real-time communication feel like a piece of cake. From chat apps, quick notifications, to live dashboard updates – SignalR is the secret sauce."
+subtitle: "SignalR is like that cool tech wizard in the .NET, making real-time communication feel like a piece of cake..."
 readTime: "Read Time: 6 minutes"
 date: "Aug 21 2023"
 photoUrl: "/images/blog/newsletter21.png"

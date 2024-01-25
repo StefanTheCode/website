@@ -1,8 +1,7 @@
 ---
 newsletterTitle: "#35 Stefan's Newsletter"
 title: "Using CORS in your applications"
-subtitle: "Cross-Origin Resource Sharing (CORS) is a security feature implemented by web browsers that controls how web pages in one domain can request resources, like APIs, from another domain.
-By default, web pages are not allowed to make requests to a different domain than the one that served the web page. This is a security measure to prevent a malicious website from making unwanted requests to a legitimate one."
+subtitle: "Cross-Origin Resource Sharing (CORS) is a security feature implemented by web browsers that controls how web pages in one domain can request resources, like APIs, from another domain..."
 date: "Oct 9 2023"
 readTime: "Read Time: 3 minutes"
 photoUrl: "/images/blog/newsletter21.png"

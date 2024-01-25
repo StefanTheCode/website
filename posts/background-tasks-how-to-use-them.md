@@ -1,8 +1,7 @@
 ---
 newsletterTitle: "#38 Stefan's Newsletter"
 title: "Background tasks and how to use them. Stale Cache example in C#"
-subtitle: "In .NET, background tasks are asynchronous operations that run independently of the main application thread.
-They are used to perform tasks that should not block the main thread, such as long-running computations, I/O operations, or tasks that can be executed concurrently."
+subtitle: "In .NET, background tasks are asynchronous operations that run independently of the main application thread..."
 date: "Oct 23 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---

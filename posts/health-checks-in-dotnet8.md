@@ -1,8 +1,7 @@
 ---
 newsletterTitle: "#49 Stefan's Newsletter"
 title: "Health Checks in .NET 8"
-subtitle: "Health Checks in ASP.NET are a way to assess the health of an application and its dependencies.
-They are used to monitor the status and performance of various components of an application, such as databases, external services, or internal services."
+subtitle: "Health Checks in ASP.NET are a way to assess the health of an application and its dependencies..."
 readTime: "Read Time: 4 minutes"
 date: "Jan 08 2024"
 photoUrl: "/images/blog/newsletter21.png"

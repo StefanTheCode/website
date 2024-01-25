@@ -1,8 +1,7 @@
 ---
 newsletterTitle: "#39 Stefan's Newsletter"
 title: "Compile-time logging source generation for highly performant logging"
-subtitle: "With the release of .NET 6, there's a new tool in town called LoggerMessageAttribute, and it's here to make logging better and easier.
-It's a part of the Microsoft.Extensions.Logging family, and when you use it, it generates super-efficient code for logging. This means your application can log things much faster, which is great for performance."
+subtitle: "With the release of .NET 6, there's a new tool in town called LoggerMessageAttribute..."
 date: "Oct 30 2023"
 readTime: "Read Time: 2 minutes"
 photoUrl: "/images/blog/newsletter21.png"

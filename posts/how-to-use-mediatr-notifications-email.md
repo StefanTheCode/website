@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#31 Stefan's Newsletter"
 title: "How to use MediatR Notifications email"
-subtitle: "MediatR is a popular open-source library for implementing the Mediator pattern in .NET applications. It provides a simple and elegant way to handle communication between different parts of an application by encapsulating the logic of sending and handling messages."
+subtitle: "MediatR is a popular open-source library for implementing the Mediator pattern in .NET applications..."
 readTime: "Read Time: 5 minutes"
 date: "Sep 11 2023"
 photoUrl: "/images/blog/newsletter21.png"

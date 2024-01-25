@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#33 Stefan's Newsletter"
 title: "Benchmarking in .NET Step by step"
-subtitle: "We often find ourselves in a situation where a certain method or part of the code does not work as we want in terms of execution speed on the CPU, memory usage, and the like. In such cases, we approach code optimization. But in order to improve the parts of the code that are not good, it is necessary to measure the performance."
+subtitle: "We often find ourselves in a situation where a certain method or part of the code does not work as we want in terms of execution speed on the CPU..."
 date: "Sep 25 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---

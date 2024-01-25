@@ -1,8 +1,7 @@
 ---
 newsletterTitle: "#3 Stefan's Newsletter"
 title: "How and why I create my own mapper (avoid Automapper)?"
-subtitle: "In the beginning I used Automapper constantly and it was a great replacement for the tedious work of typing mapping code. Until the moment when I encountered bigger projects where using Automapper only caused me big problems.
-Here I will share my experiences and ways to replace Automapper.
+subtitle: "In the beginning I used Automapper constantly and it was a great replacement for the tedious work of typing mapping code...
 "
 date: "February 27 2023"
 photoUrl: "/images/blog/newsletter21.png"

@@ -1,8 +1,7 @@
 ---
 newsletterTitle: "#4 Stefan's Newsletter"
 title: "GitHub Webhook with C#"
-subtitle: "A Webhook is a mechanism that allows a web application to send real-time notifications or data to another web application.
-It is essentially a way for two different applications to communicate with each other in 'real time' rather than relying on periodic polling or manual data transfer."
+subtitle: "A Webhook is a mechanism that allows a web application to send real-time notifications or data to another web application..."
 date: "March 06 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---

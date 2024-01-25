@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#11 Stefan's Newsletter"
 title: "SOLID Principles in .NET"
-subtitle: "SOLID is an acronym for a set of 5 design principles that help improve the maintainability, scalability, and stability of software systems. These principles were introduced by Robert C. Martin and are widely used in object-oriented programming."
+subtitle: "SOLID is an acronym for a set of 5 design principles that help improve the maintainability, scalability, and stability of software systems..."
 readTime: "Read Time: 4 minutes"
 date: "Apr 24 2023"
 photoUrl: "/images/blog/newsletter21.png"

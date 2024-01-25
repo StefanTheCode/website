@@ -2,8 +2,7 @@
 newsletterTitle: "#6 Stefan's Newsletter"
 title: "Clean Code - Best Practices"
 subtitle: "
-I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is.
-If by some miracle you are one of them, it's a concept that refers to writing code that is easy to read and maintain.
+I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is...
 "
 date: "March 20 2023"
 photoUrl: "/images/blog/newsletter21.png"

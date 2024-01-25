@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#41 Stefan's Newsletter"
 title: "How do I implement a workflow using a .NET workflow engine?"
-subtitle: "A project workflow is like a roadmap that guides you from the very beginning of a project all the way to its successful completion. It's essentially a series of well-defined steps and processes that you and your team follow to make sure everything gets done correctly and on time. Think of it as a recipe for success, tailored to the unique needs of your project."
+subtitle: "A project workflow is like a roadmap that guides you from the very beginning of a project all the way to its successful..."
 date: "Nov 13 2023"
 readTime: "Read Time: 9 minutes"
 photoUrl: "/images/blog/newsletter21.png"

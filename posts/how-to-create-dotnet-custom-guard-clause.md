@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#50 Stefan's Newsletter"
 title: "How to create .NET Custom Guard Clause"
-subtitle: "Guard clauses in .NET are a programming practice used for improving the readability and reliability of code. They are simple checks at the beginning of a function or a method that validate inputs or conditions before proceeding with the rest of the code."
+subtitle: "Guard clauses in .NET are a programming practice used for improving the readability and reliability of code..."
 readTime: "Read Time: 4 minutes"
 date: "Jan 15 2024"
 photoUrl: "/images/blog/newsletter21.png"

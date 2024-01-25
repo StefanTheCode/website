@@ -1,8 +1,7 @@
 ---
 newsletterTitle: "#37 Stefan's Newsletter"
 title: "Unlock the Power of High-Performance Web Applications with gRPC"
-subtitle: "gRPC, which stands for Google Remote Procedure Call, is an open-source, high-performance framework for building efficient and scalable distributed systems.
-It was initially developed by Google and has gained widespread adoption in the software development community due to its versatility and performance advantages."
+subtitle: "gRPC, which stands for Google Remote Procedure Call, is an open-source, high-performance framework for..."
 date: "Oct 16 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---

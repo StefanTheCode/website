@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#5 Stefan's Newsletter"
 title: "SAGA Implementation in C#"
-subtitle: "The SAGA pattern is used to manage transactions across multiple services in a distributed system. It ensures that all services involved in a transaction are coordinated and that the transaction can be rolled back if any of the services fail."
+subtitle: "The SAGA pattern is used to manage transactions across multiple services in a distributed system..."
 date: "March 13 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---

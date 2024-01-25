@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#48 Stefan's Newsletter"
 title: "MediatR Pipeline Behavior"
-subtitle: "MediatR is a popular library in .NET used for implementing the Mediator pattern. It helps in reducing coupling between components and makes it easier to manage code by sending requests to the appropriate handlers."
+subtitle: "MediatR is a popular library in .NET used for implementing the Mediator pattern. It helps in reducing coupling between components..."
 readTime: "Read Time: 3 minutes"
 date: "Jan 1 2024"
 photoUrl: "/images/blog/newsletter21.png"

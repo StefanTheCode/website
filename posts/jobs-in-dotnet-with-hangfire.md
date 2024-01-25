@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#10 Stefan's Newsletter"
 title: "Jobs in .NET with Hangfire"
-subtitle: "Hangfire is an open-source library for .NET that provides a simple way to perform background processing in your application. It allows you to run jobs (methods or functions) asynchronously and schedule them to run at a specific time or regularly."
+subtitle: "Hangfire is an open-source library for .NET that provides a simple way to perform background processing in your application..."
 readTime: "Read Time: 6 minutes"
 date: "Apr 17 2023"
 photoUrl: "/images/blog/newsletter21.png"

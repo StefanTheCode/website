@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#8 Stefan's Newsletter"
 title: "How to put localhost online in Visual Studio?"
-subtitle: "Imagine creating a .NET API project that you call in a front-end web or mobile application. At some point, you need the option to debug the code directly online, or quickly send the application to someone for review without deploying it to the server - so you need to expose localhost to the web."
+subtitle: "Imagine creating a .NET API project that you call in a front-end web or mobile application..."
 date: "Apr 3 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---

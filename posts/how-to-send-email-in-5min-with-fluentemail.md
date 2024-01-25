@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#29 Stefan's Newsletter"
 title: "How to send email in 5min with FluentEmail?"
-subtitle: "FluentEmail is a popular open-source library for sending emails from .NET applications. It provides an fluent interface (fluent syntax). That means we can easily create an email message, add recipients, set the subject, etc. by chaining methods."
+subtitle: "FluentEmail is a popular open-source library for sending emails from .NET applications..."
 readTime: "Read Time: 5 minutes"
 date: "Aug 28 2023"
 photoUrl: "/images/blog/newsletter21.png"

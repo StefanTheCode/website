@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#1 Stefan's Newsletter"
 title: "4 methods to handle Nullable Reference in .NET"
-subtitle: "Reference types in C# have always been nullable, meaning that variables of any reference type can be assigned a value of null. In previous versions of C#, dereferencing a null variable was permitted without any checks.  The Nullable Reference Types feature was introduced in C# 8 to address this issue, and with the release of .NET 6, this feature is now enabled by default."
+subtitle: "Reference types in C# have always been nullable, meaning that variables of any reference type can be assigned a value of null..."
 date: "February 13 2023"
 readTime: "Read Time: 2 minutes"
 photoUrl: "/images/blog/newsletter21.png"
