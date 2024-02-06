@@ -33,7 +33,14 @@ export const metadata:Metadata = {
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns."
+    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
+    images: [
+      {
+        url: 'https://stefandjokic.tech/og-ebookimage.png',
+        width: "1000px",
+        height: "700px"
+      }
+    ]
   }
 }
 
