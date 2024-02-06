@@ -22,7 +22,7 @@ export const metadata:Metadata = {
     description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
     images: [
       {
-        url: '/og-ebookimage.png',
+        url: 'https://stefandjokic.tech/og-ebookimage.png',
         width: "1000px",
         height: "700px"
       }
