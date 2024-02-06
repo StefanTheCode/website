@@ -6,7 +6,7 @@ import EbookNewsletter from '@/components/ebookTestimonials';
 import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
 import Image from 'next/image'
-import ogImage from './og-image.png'
+// import ogImage from '/og-ebookimage.png'
 
 export const metadata:Metadata = {
   metadataBase: new URL('https://stefandjokic.tech/design-patterns-simplified'),
@@ -22,9 +22,9 @@ export const metadata:Metadata = {
     description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
     images: [
       {
-        url: '/og-image.png',
-        width: ogImage.width,
-        height: ogImage.height
+        url: '/og-ebookimage.png',
+        width: "1000px",
+        height: "700px"
       }
     ],
   },
