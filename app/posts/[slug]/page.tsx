@@ -50,7 +50,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
       description: post.data.meta_description,
       images: [
         {
-          url: "/images/blog/" + slug + ".png"
+          url: "/images/blog/" + slug + ".png",
+          width: "1000px",
+          height: "700px"
         }
       ],
     },
@@ -62,7 +64,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
       description: post.data.meta_description,
       images: [
         {
-          url: "/images/blog/" + slug + ".png"
+          url: "/images/blog/" + slug + ".png",
+          width: "1000px",
+          height: "700px"
         }
       ]
     }
