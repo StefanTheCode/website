@@ -93,7 +93,7 @@ const PostPage = (props: any) => {
       <section className="img ftco-section">
         <div className="container">
           <div className="row justify-content-center pb-5 pt-10">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section text-justify border-right">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section border-right">
               <div className="row justify-content-center pb-5">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center">
                   {/* <h2 className="blog-header">{post.data.newsletterTitle}</h2> */}
