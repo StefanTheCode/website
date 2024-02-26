@@ -34,7 +34,29 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### Initially, we can handle this logic using a series of If statements:
 
-![Series of if statemenets](/images/blog/posts/chain-responsibility-pattern/series-of-if-statements.png)
+```csharp
+
+public decimal CalculateDiscount(Customer customer, decimal orderTotal)
+{
+    if (customer.IsVIP)
+    {
+        return orderTotal * 0.8m; // 20% discount
+    }
+    else if (customer.IsRegular)
+    {
+        return orderTotal * 0.9m; // 10% discount
+    }
+    else if (customer.IsNew)
+    {
+        return orderTotal * 0.95m; // 5% discount
+    }
+    else
+    {
+        return orderTotal; // no discount
+    }
+}
+
+```
 
 <br>
 <br>
@@ -48,29 +70,120 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### Let's refactor the code to use this pattern.
 <br>
 #####  <b> Step #1</b>: Create an <b>abstract handler class, DiscountHandler</b>, that defines a common interface for all discount handlers:
-![Discount Handler class](/images/blog/posts/chain-responsibility-pattern/discount-handler-class.png)
+
+```csharp
+
+public abstract class DiscountHandler
+{
+    protected DiscountHandler _nextHandler;
+
+    public void SetNextHandler(DiscountHandler nextHandler)
+    {
+        _nextHandler = nextHandler;
+    }
+
+    public abstract decimal CalculateDiscount(Customer customer, decimal orderTotal);
+}
+
+```
+
 <br>
 ##### <b>Step #2</b>: Implement <b>concrete discount handlers</b> by deriving from DiscountHandler. Each handler will handle a specific rule and decide whether to apply a discount or pass the request to the next handler.
 <br>
 ##### <b>VIPDiscountHandler:</b>
-![Vip Discount Handler class](/images/blog/posts/chain-responsibility-pattern/vip-discount-handler.png)
+
+```csharp
+
+public class VIPDiscountHandler : DiscountHandler
+{
+    public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
+    {
+        if (customer.IsVIP)
+        {
+            return orderTotal * 0.8m; // 20% discount
+        }
+
+        return _nextHandler?.CalculateDiscount(customer, orderTotal) ?? orderTotal;
+    }
+}
+
+```
+
 <br>
 ##### <b>RegularDiscountHandler:</b>
-![Regular Discount Handler class](/images/blog/posts/chain-responsibility-pattern/regular-discount-handler.png)
+
+```csharp
+
+public class RegularDiscountHandler : DiscountHandler
+{
+    public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
+    {
+        if (customer.IsRegular)
+        {
+            return orderTotal * 0.9m; // 10% discount
+        }
+
+        return _nextHandler?.CalculateDiscount(customer, orderTotal) ?? orderTotal;
+    }
+}
+
+```
+
 <br>
 ##### <b>NewCustomerDiscountHandler:</b>
-![New Customer Discount Handler class](/images/blog/posts/chain-responsibility-pattern/new-customer-discount-handler.png)
+
+```csharp
+
+public class NewCustomerDiscountHandler : DiscountHandler
+{
+    public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
+    {
+        if (customer.IsNew)
+        {
+            return orderTotal * 0.95m; // 5% discount
+        }
+
+        return _nextHandler?.CalculateDiscount(customer, orderTotal) ?? orderTotal;
+    }
+}
+
+```
 
 <br>
 ##### <b>NoDiscountHandler:</b>
-![No Discount Handler class](/images/blog/posts/chain-responsibility-pattern/no-discount-handler.png)
+
+```csharp
+
+public class NoDiscountHandler : DiscountHandler
+{
+    public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
+    {
+        return orderTotal; // no discount
+    }
+}
+
+```
 
 <br>
 ##### <b>Step #3:</b> With the concrete handlers in place, we can create the chain by linking them together:
-![Chaining Discount Handlers](/images/blog/posts/chain-responsibility-pattern/chaining-discount-handlers.png)
+
+```csharp
+
+var vipHandler = new VIPDiscountHandler();
+
+vipHandler.SetNextHandler(new RegularDiscountHandler())
+          .SetNextHandler(new NewCustomerDiscountHandler())
+          .SetNextHandler(new NoDiscountHandler());
+
+```
+
 <br>
 ##### Finally, we can invoke the chain by calling the <b>CalculateDiscount method</b> on the first handler in the chain:
-![Chaining Discount Handlers](/images/blog/posts/chain-responsibility-pattern/calling-calculate-discount-method.png)
+
+```csharp
+
+decimal discountAmount = vipHandler.CalculateDiscount(customer, orderTotal);
+```
 
 <br>
 <br>
