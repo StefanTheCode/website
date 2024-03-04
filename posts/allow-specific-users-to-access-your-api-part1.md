@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#57 Stefan's Newsletter"
 title: "Allow specific users to access your API - Part 1"
-subtitle: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
+subtitle: "Just as a bouncer checks your pass before letting you into a club, an API uses an API key to decide who gets access to its data and services."
 date: "Mar 04 2024"
 photoUrl: "/images/blog/newsletter21.png"
 ---
