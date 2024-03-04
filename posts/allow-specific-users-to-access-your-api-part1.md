@@ -11,7 +11,7 @@ photoUrl: "/images/blog/newsletter21.png"
 &nbsp;  
 ##### • Streamline your API development with [Postman's REST Client](https://www.postman.com/product/rest-client/) a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at [link](https://www.postman.com/product/rest-client/).
 &nbsp;  
-##### • Elevate your Angular skills with the updated recipes in the new edition of [Angular Cookbook](https://packt.link/LK0bg) written by Google Developer Expert! Discover cutting-edge solutions and tooling for seamless app development. Check the full book [here](https://packt.link/LK0bg).
+##### • Get instant insights about your API quality from VS Code with [Treblle's latest extension](https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code) for VS Code. API Insights will score your API on Design, Performance, and Security. Get it [here](https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code).
 
 &nbsp;  
 &nbsp;  
