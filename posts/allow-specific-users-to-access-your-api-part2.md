@@ -1,7 +1,7 @@
 ---
 newsletterTitle: "#57 Stefan's Newsletter"
 title: "Allow specific users to access your API - Part 2"
-subtitle: "Just as a bouncer checks your pass before letting you into a club, an API uses an API key to decide who gets access to its data and services."
+subtitle: " IP whitelisting is a security measure used to control access to networks, servers, and services, including APIs..."
 date: "Mar 11 2024"
 photoUrl: "/images/blog/newsletter21.png"
 ---
