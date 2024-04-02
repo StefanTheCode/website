@@ -40,8 +40,8 @@ const Sponsorship = () => {
               <h1>Audience</h1>
               <br/>
               <h5>• Reach: <span  className="text-yellow">{config.NewsletterSubCount}</span></h5>
-              <h5>• Growth: <span  className="text-yellow">{config.Growth}</span></h5>
-              <h5>• Number of issues so far: <span  className="text-yellow">{config.IssuesCount}</span></h5>
+              {/* <h5>• Growth: <span  className="text-yellow">{config.Growth}</span></h5> */}
+              {/* <h5>• Number of issues so far: <span  className="text-yellow">{config.IssuesCount}</span></h5> */}
               <h5>• Average Open Rate: <span  className="text-yellow">{config.OpenRate}</span></h5>
               <h5>• Audience: <span  className="text-yellow">{config.Audience} </span></h5>
               <br/>
