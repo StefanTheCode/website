@@ -9390,6 +9390,10 @@ button.bg-dark:focus {
   margin-top: 0 !important;
 }
 
+.mt-minus15 {
+  margin-top: -15px;
+}
+
 .mr-0,
 .mx-0 {
   margin-right: 0 !important;

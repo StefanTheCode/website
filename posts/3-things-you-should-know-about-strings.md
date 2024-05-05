@@ -3,6 +3,7 @@ newsletterTitle: "#61 Stefan's Newsletter"
 title: "3 things you should know about Strings"
 subtitle: "We often don't see the mistakes we're making, or we don't see ways to potentially optimize the code. And there are many of them...."
 date: "Apr 01 2024"
+readTime: "Read Time: 3 minutes"
 meta_description: "Optimize .NET string manipulation: Discover tips on StringBuilder for concatenation, StringComparison for performance, and Span<T> for memory efficiency."
 photoUrl: "/images/blog/newsletter21.png"
 ---
@@ -13,8 +14,8 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### • Streamline your API development with [Postman's REST Client](https://www.postman.com/product/rest-client/) a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at [link](https://www.postman.com/product/rest-client/).
 &nbsp;  
 
-&nbsp;  
-&nbsp;  
+<!--START-->
+
 ### Introduction
 &nbsp;  
 &nbsp;  
@@ -180,7 +181,7 @@ bool areEqual = string.Equals(string1, string2, StringComparison.OrdinalIgnoreCa
 
 ##### This opens the JSON configuration where you can define your Rate Limiting Policy in detail.
 
-```csharp
+```
 
 public class SpanVsSubstring
 {
@@ -224,3 +225,5 @@ public class SpanVsSubstring
 &nbsp; 
 
 ##### That's all from me today.
+
+<!--END-->

@@ -46,6 +46,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
       title: post.data.title,
       type: "article",
       publishedTime: post.data.date,
+      url: "https://stefandjokic.tech/images/blog/" + slug + ".png",
       authors: "Stefan Djokic",
       description: post.data.meta_description,
       images: [
