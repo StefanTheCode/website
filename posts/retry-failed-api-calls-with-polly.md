@@ -1,11 +1,18 @@
 ---
-newsletterTitle: "#15 Stefan's Newsletter"
+newsletterTitle: "#70 Stefan's Newsletter"
 title: "Retry Failed API calls with Polly"
 subtitle: "Polly is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner."
-date: "May 23 2023"
+date: "June 03 2024"
 photoUrl: "/images/blog/newsletter21.png"
 ---
 
+&nbsp;  
+##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
+&nbsp;  
+##### • Discover the principles and best practices of API design with Postman's comprehensive guide. Learn how to create adaptable, testable, and well-documented APIs that support your business objectives. Dive into the full process and enhance your API design capabilities at [Postman API Design](https://www.postman.com/api-platform/api-design/).
+&nbsp;  
+
+<!--START-->
 
 ### The background
 <br>
@@ -48,7 +55,32 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### In a real-world scenario, instead of randomly determining the success or failure, you'd typically interact with some business logic or data access layer, and the result could depend on various factors.
 
-![Finding Randomly Fail Edge](/images/blog/posts/retry-failed-api-calls-with-polly/finding-randomly-fail-edge.png)
+```csharp
+
+[Route("api/[controller]")]
+[ApiController]
+public class UserController : ControllerBase
+{
+    [Route("getUser/{id}")]
+    [HttpGet]
+    public ActionResult GetUser(int id)
+    {
+        Random random = new Random();
+
+        var failEdge = random.Next(1, 50);
+
+        if (id < failEdge)
+        {
+            Console.WriteLine("I'm returning Success - 200");
+            return Ok();
+        }
+
+        Console.WriteLine("I'm returning Error - 500");
+        return StatusCode(StatusCodes.Status500InternalServerError);
+    }
+}
+
+```
 
 <br>
 <br>
@@ -75,7 +107,32 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### Example below:
 ##### The first retry will happen after 2 seconds, the second retry after 4 seconds, the third after 8 seconds, and so on.
 
-![Client Retry Exponential Backoff](/images/blog/posts/retry-failed-api-calls-with-polly/client-retry-exponential-backoff.png)
+```csharp
+
+public class ClientRetryPolicy
+{
+    public AsyncRetryPolicy<HttpResponseMessage> JustHttpRetry { get; set; }
+    public AsyncRetryPolicy<HttpResponseMessage> HttpRetryWithWaiting { get; set; }
+    public AsyncRetryPolicy<HttpResponseMessage> ExponentialHttpRetry { get; set; }
+
+    public ClientRetryPolicy()
+    {
+        JustHttpRetry = Policy.HandleResult<HttpResponseMessage>(
+            response => !response.IsSuccessStatusCode)
+            .RetryAsync(3);
+
+        HttpRetryWithWaiting = Policy.HandleResult<HttpResponseMessage>(
+            response => !response.IsSuccessStatusCode)
+            .WaitAndRetryAsync(3, attempt => TimeSpan.FromSeconds(5));
+
+        ExponentialHttpRetry = Policy.HandleResult<HttpResponseMessage>(
+            response => !response.IsSuccessStatusCode)
+            .WaitAndRetryAsync(3,
+                attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)));
+    }
+}
+
+```
 
 <br>
 <br>
@@ -87,7 +144,32 @@ photoUrl: "/images/blog/newsletter21.png"
 <br>
 ##### We call endpoint with the help of HTTP Client, with the fact that we will use the Retry Policy by calling that call.
 
-![Testing Retry Policy with Postman](/images/blog/posts/retry-failed-api-calls-with-polly/httpclient-retry-policy.png)
+```csharp
+
+[HttpGet]
+[Route("returnUser/{id}")]
+public async Task<ActionResult> ReturnUser(int id)
+{
+    string apiURL = $"https://localhost:7071/api/User/getUser/{id}";
+
+    var response = await _retryPolicy.HttpRetryWithWaiting.ExecuteAsync(() =>
+        _client.GetAsync(apiURL));
+
+    if (response.IsSuccessStatusCode)
+    {
+        Console.WriteLine("Success 200");
+
+        return Ok(response);
+    }
+    else
+    {
+        Console.WriteLine("Error 500");
+
+        return StatusCode(StatusCodes.Status500InternalServerError);
+    }
+}
+
+```
 <br>
 ##### In this example I used the "Fixed Interval Retry" policy. Which would practically mean that if the API returns an error, it will be called <b>3 times with an interval of 5 seconds between</b> each or less times if it returns a successful result.
 <br>
@@ -115,4 +197,4 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### Make a coffee and check out source code directly on my <b> [GitHub repository](https://github.com/StefanTheCode/PollyRetryPolicy)</b>.
 <br>
 
-## <b > dream BIG! </b>
+<!--END-->
