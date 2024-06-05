@@ -1,11 +1,22 @@
 ---
-newsletterTitle: "#3 Stefan's Newsletter"
+newsletterTitle: "#69 Stefan's Newsletter"
 title: "How and why I create my own mapper (avoid Automapper)?"
 subtitle: "In the beginning I used Automapper constantly and it was a great replacement for the tedious work of typing mapping code...
 "
-date: "February 27 2023"
+date: "May 27 2024"
 photoUrl: "/images/blog/newsletter21.png"
 ---
+
+
+&nbsp;  
+##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
+&nbsp;  
+##### • Postman has brought a lot of new and great things with the new v11 version. For example, today, you can generate API documentation in a few clicks.
+
+##### Read more about it here [here](https://www.postman.com/api-platform/api-documentation/).
+&nbsp;  
+
+<!--START-->
 
 ### Background
 <br>
@@ -48,10 +59,44 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### If I don't have many properties to map, all property names that I need to map in both objects are identical, and performance is not the most important thing for me at the moment (although this is certainly faster than Automapper), I use simple reflection to map all properties.
 <br>
 
-![Custom mapper using reflection](/images/blog/posts/why-to-avoid-automapper/custom-mapper-using-reflection.png)
+```csharp
+
+public class Mapper<TSource, TDestination>
+{
+    public TDestination Map(TSource source)
+    {
+        var destination = Activator.CreateInstance<TDestination>();
+
+        foreach (var sourceProperty in typeof(TSource).GetProperties())
+        {
+            var destinationProperty = typeof(TDestination).GetProperty(sourceProperty.Name);
+
+            if (destinationProperty != null)
+            {
+                destinationProperty.SetValue(destination, sourceProperty.GetValue(source));
+            }
+        }
+
+        return destination;
+    }
+
+    public List<TDestination> Map(List<TSource> sourceList)
+    {
+        return sourceList.Select(source => Map(source)).ToList();
+    }
+}
+
+```
 <br>
 ##### Usage:
-![Using of custom mapper with reflection](/images/blog/posts/why-to-avoid-automapper/using-of-custom-mapper-with-reflection.png)
+
+```csharp
+
+var mapper = new Mapper<User, UserModel>();
+List<UserModel> userModels = mapper.Map(users);
+
+```
+
 <br>
 <br>
 ##### <b>Potential problem:</b>
@@ -66,9 +111,54 @@ photoUrl: "/images/blog/newsletter21.png"
 
 ##### This is the most common way I implement mapping. For a certain entity/DTO, I'm creating a service class that I put in DI. Inside the service class, I implement both mappings. This way I have complete control over the mapping with tremendous ease in debugging and testing the code.
 <br>
-![Custom Mapper Service](/images/blog/posts/why-to-avoid-automapper/custom-mapper-service.png)
+
+```csharp
+
+public class UserMapperService
+{
+    public User MapToUser(UserModel userModel)
+    {
+        return new User
+        {
+            Id = userModel.Id,
+            Address = userModel.Address,
+            City = userModel.City,
+            Email = userModel.Email,
+            FirstName = userModel.FirstName,
+            LastName = userModel.LastName,
+            Password = userModel.Password,
+            PostalCode = userModel.PostalCode,
+            Region = userModel.Region
+        };
+    }
+
+    public UserModel MapToUserModel(User user)
+    {
+        return new UserModel
+        {
+            Id = user.Id,
+            Address = user.Address,
+            City = user.City,
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Password = user.Password,
+            PostalCode = user.PostalCode,
+            Region = user.Region
+        };
+    }
+}
+
+```
+
 ##### Usage:
-![Usage Custom Mapper Service](/images/blog/posts/why-to-avoid-automapper/usage-custom-mapper-service.png)
+
+```csharp
+
+UserModel userModel = _userMapperService.MapToUserModel(user);
+
+```
+
 <br>
 <br>
 ##### <b>Potential problem:</b>
@@ -85,12 +175,38 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### I use the .Select() method from EntityFramework mainly when I directly map entities from the domain/database to the DTO without any changes. In an ideal world, I believe there is nothing better than this mapping.
 
 
-![Select Method From LINQ ](/images/blog/posts/why-to-avoid-automapper/entity-framework-select-method.png)
+```csharp
+
+List<User> users = _userRepository.GetUsers();
+
+List<UserModel> userModels = users.Select(x => new UserModel
+    {
+        Address = x.Address,
+        City = x.City,
+        Email = x.City,
+        FirstName = x.FirstName,
+        Id = x.Id,
+        LastName = x.LastName,
+        Password = x.Password,
+        PostalCode = x.PostalCode,
+        Region = x.Region
+    }).ToList();
+
+```
+### Wrapping up
+
 ##### That's all from me for today.
 
 <br>
+##### Using AutoMapper is not wrong. Any of these ways has its pros and cons.
+<br>
+
+##### I used Automapper myself, but as the project got bigger and bigger, I realized that it was a serious maintenance problem.
+<br>
+
+##### These are some of the methods I use. Try it yourself.
 <br>
 ##### Make a coffee and check out source code directly on my <b> [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/3%23%20-%20Mappers)</b>.
 <br>
 
-## <b > dream BIG! </b>
+<!--END-->
