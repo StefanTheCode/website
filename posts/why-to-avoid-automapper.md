@@ -15,6 +15,10 @@ photoUrl: "/images/blog/newsletter21.png"
 
 ##### Read more about it here [here](https://www.postman.com/api-platform/api-documentation/).
 &nbsp;  
+##### • Dive deep into the React ecosystem and harness the power of modern development techniques. Learn everything from React fundamentals to mobile development with React Native.
+
+##### Know more [here](https://packt.link/BH9Y8).
+&nbsp;   
 
 <!--START-->
 
