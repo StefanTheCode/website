@@ -9,7 +9,7 @@ export default async function sitemap() : Promise<MetadataRoute.Sitemap> {
 
     const postEntries : MetadataRoute.Sitemap = postMetadata.map((post) => 
     ({ 
-        url: `https://stefandjokic.tech/posts/${post.slug}`,
+        url: `https://thecodeman.net/posts/${post.slug}`,
         lastModified: new Date(config.ChangeDate),
         changeFrequency: "daily",
         priority: 0.7
@@ -23,19 +23,19 @@ export default async function sitemap() : Promise<MetadataRoute.Sitemap> {
             priority: 0.7
         },
         {
-            url: `https://stefandjokic.tech/sponsorship`,
+            url: `https://thecodeman.net/sponsorship`,
             lastModified: new Date(config.ChangeDate),
             changeFrequency: "daily",
             priority: 0.7
         },
         {
-            url: `https://stefandjokic.tech/blog`,
+            url: `https://thecodeman.net/blog`,
             lastModified: new Date(config.ChangeDate),
             changeFrequency: "daily",
             priority: 0.7
         },
         {
-            url: `https://stefandjokic.tech/design-patterns-simplified`,
+            url: `https://thecodeman.net/design-patterns-simplified`,
             lastModified: new Date(config.ChangeDate),
             changeFrequency: "daily",
             priority: 0.7

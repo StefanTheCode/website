@@ -14728,6 +14728,15 @@ textarea.form-control {
 .border-right {
   border-right: none !important;
 }
+
+.header-text {
+  font-weight: 800 !important;
+  font-size: 34px !important;
+  text-align: center;
+  color: #ffffff !important;
+  margin-top: 20px !important;
+  line-height: 1 !important;
+}
 }
 
 @media (max-width: 350px) {
@@ -14738,6 +14747,15 @@ textarea.form-control {
     width: 60%; 
     height: auto;
     z-index: 10; 
+  }
+
+  .header-text {
+    font-weight: 800 !important;
+    font-size: 32px !important;
+    text-align: center;
+    color: #ffffff !important;
+    margin-top: 20px !important;
+    line-height: 1 !important;
   }
 
   .padding-right-45px {

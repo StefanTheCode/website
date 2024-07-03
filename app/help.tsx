@@ -46,7 +46,7 @@ export default function Help() {
     //        <div className="col-md-2"></div>
     //        <div className="col-md-8">
     //          <h2 className='subheading'>In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. <br />
-    //            <a href="https://stefandjokic.tech/design-patterns-simplified"><b> Join {config.EbookCopiesNumber}+ readers here.</b></a></h2>
+    //            <a href="https://thecodeman.net/design-patterns-simplified"><b> Join {config.EbookCopiesNumber}+ readers here.</b></a></h2>
     //        </div>
     //        <div className="col-md-2"></div>
     //      </div>

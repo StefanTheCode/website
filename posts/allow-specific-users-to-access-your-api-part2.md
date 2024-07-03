@@ -31,7 +31,7 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### Last week I showed how to achieve this with an API Key.
 &nbsp;  
 
-##### You can read that article [here](https://stefandjokic.tech/posts/allow-specific-users-to-access-your-api-part1).
+##### You can read that article [here](https://thecodeman.net/posts/allow-specific-users-to-access-your-api-part1).
 &nbsp;  
 
 ##### Today, I'm going to talk about IP Whitelisting.

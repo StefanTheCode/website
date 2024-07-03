@@ -6,13 +6,13 @@ import config from '@/config.json'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://stefandjokic.tech/blog'),
+  metadataBase: new URL('https://thecodeman.net/blog'),
   title: "Blog",
   description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world.",
   openGraph: {
     title: "Blog",
     type: "website",
-    url: "https://stefandjokic.tech/blog",
+    url: "https://thecodeman.net/blog",
     description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
   },
   twitter: {

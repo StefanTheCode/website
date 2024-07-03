@@ -51,8 +51,8 @@ const BlackFriday = () => {
                     <li className='padding-5'>Average Open Rate: 46%</li>
                     <li className='padding-5'>Ad Clicks Average: 100 - 300</li>
                     <li className='padding-5'><h5><b className='text-yellow'>Examples</b></h5></li>
-                    <li className='padding-5'><a href='https://stefandjokic.tech/posts/improve-ef-core-performance-with-compiled-queries' target='_blank'>#42 Stefan's Newsletter</a></li>
-                    <li className='padding-5'><a href='https://stefandjokic.tech/posts/background-tasks-how-to-use-them' target='_blank'>#38 Stefan's Newsletter</a></li>
+                    <li className='padding-5'><a href='https://thecodeman.net/posts/improve-ef-core-performance-with-compiled-queries' target='_blank'>#42 Stefan's Newsletter</a></li>
+                    <li className='padding-5'><a href='https://thecodeman.net/posts/background-tasks-how-to-use-them' target='_blank'>#38 Stefan's Newsletter</a></li>
                     <li className="grey">
                       <h5>Reserve here</h5>
                       <h5 className='mail-address'><a href="mailto:stefan@stefandjokic.tech">{config.Email}</a></h5>

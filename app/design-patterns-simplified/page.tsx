@@ -9,7 +9,7 @@ import Image from 'next/image'
 // import ogImage from '/og-ebookimage.png'
 
 export const metadata:Metadata = {
-  metadataBase: new URL('https://stefandjokic.tech/design-patterns-simplified'),
+  metadataBase: new URL('https://thecodeman.net/design-patterns-simplified'),
   title: "Design Patterns Simplified ebook",
   alternates: {
     canonical: '/',
@@ -18,11 +18,11 @@ export const metadata:Metadata = {
   openGraph: {
     title: "Design Patterns Simplified ebook",
     type: "website",
-    url: "https://stefandjokic.tech/design-patterns-simplified",
+    url: "https://thecodeman.net/design-patterns-simplified",
     description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
     images: [
       {
-        url: 'https://stefandjokic.tech/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-ebookimage.png',
         width: "1000px",
         height: "700px"
       }
@@ -36,7 +36,7 @@ export const metadata:Metadata = {
     description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
     images: [
       {
-        url: 'https://stefandjokic.tech/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-ebookimage.png',
         width: "1000px",
         height: "700px"
       }
@@ -242,7 +242,7 @@ const Ebook = () => {
             <div className="col-md-4">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'><a className='text-black' href='https://stefandjokic.tech/blog'>Newsletter</a></p>
+                  <p className='text-black text-font-2rem'><a className='text-black' href='https://thecodeman.net/blog'>Newsletter</a></p>
                   <p className='text-black text-font-2rem'><b>{config.NewsletterSubCount}</b></p>
                 </div>
               </div>

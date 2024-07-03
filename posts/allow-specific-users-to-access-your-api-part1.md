@@ -94,7 +94,7 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### An API key is typically a long, random string that is difficult to guess. Secure generation is crucial to ensure that keys cannot be easily predicted or brute-forced. 
 &nbsp; 
 
-##### There are several ways to implement the use of API Key, here I will explain using MIddleware. And how you can implement it with the ApiKey Authorization Filter, you can read [here](https://stefandjokic.tech/posts/how-to-implement-api-key-authentication).
+##### There are several ways to implement the use of API Key, here I will explain using MIddleware. And how you can implement it with the ApiKey Authorization Filter, you can read [here](https://thecodeman.net/posts/how-to-implement-api-key-authentication).
 
 &nbsp; 
 

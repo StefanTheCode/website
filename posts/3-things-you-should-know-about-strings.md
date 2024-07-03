@@ -221,7 +221,7 @@ public class SpanVsSubstring
 #### What next?
 &nbsp; 
 
-##### Check what are 5 new cool features in C# 12 here: [Link](https://stefandjokic.tech/posts/5-new-cool-features-in-csharp)
+##### Check what are 5 new cool features in C# 12 here: [Link](https://thecodeman.net/posts/5-new-cool-features-in-csharp)
 &nbsp; 
 
 ##### That's all from me today.

@@ -46,12 +46,12 @@ export async function generateMetadata(props: any): Promise<Metadata> {
       title: post.data.title,
       type: "article",
       publishedTime: post.data.date,
-      url: "https://stefandjokic.tech/images/blog/" + slug + ".png",
+      url: "https://thecodeman.net/images/blog/" + slug + ".png",
       authors: "Stefan Djokic",
       description: post.data.meta_description,
       images: [
         {
-          url: "https://stefandjokic.tech/images/blog/" + slug + ".png",
+          url: "https://thecodeman.net/images/blog/" + slug + ".png",
           width: "1000px",
           height: "700px"
         }
@@ -65,7 +65,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
       description: post.data.meta_description,
       images: [
         {
-          url: "https://stefandjokic.tech/images/blog/" + slug + ".png",
+          url: "https://thecodeman.net/images/blog/" + slug + ".png",
           width: "1000px",
           height: "700px"
         }

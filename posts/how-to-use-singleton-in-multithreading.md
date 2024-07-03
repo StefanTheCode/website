@@ -238,7 +238,7 @@ public class Singleton
 ##### ___
 &nbsp;  
 
-##### P.S. If you want to see some more examples of this pattern or 9 more patterns I explained in my ebook "Design Patterns Simplified", you can check out it [here](https://stefandjokic.tech/design-patterns-simplified?utm_source=newsletter).
+##### P.S. If you want to see some more examples of this pattern or 9 more patterns I explained in my ebook "Design Patterns Simplified", you can check out it [here](https://thecodeman.net/design-patterns-simplified?utm_source=newsletter).
 
 &nbsp;  
 ##### 800+ enigneers already read it. 

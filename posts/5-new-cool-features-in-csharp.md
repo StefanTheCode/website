@@ -245,7 +245,7 @@ WelcomeUser();
 ##### If you’re looking for more info or some step-by-step guides, check out the [official C# documentation](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12).
 &nbsp; 
 
-##### Take a look on this [Clean Code Best Practices](https://stefandjokic.tech/posts/clean-code-best-practices).
+##### Take a look on this [Clean Code Best Practices](https://thecodeman.net/posts/clean-code-best-practices).
 &nbsp; 
 
 ##### That's all from me today.
