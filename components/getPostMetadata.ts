@@ -18,6 +18,7 @@ const getPostMetadata = (): PostMetadata[] => {
       subtitle: matterResult.data.subtitle,
       readTime: matterResult.data.readTime,
       slug: fileName.replace(".md", ""),
+      photo: `/images/blog/${fileName.replace(".md", "")}.png`
     };
   });
 

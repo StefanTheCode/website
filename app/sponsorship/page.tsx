@@ -28,7 +28,7 @@ const Sponsorship = () => {
     <div className="container">
       <div className="pb-5">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section mt-5">
-          <h2 className="mb-4 text-align-center">Stefan's .NET Newsletter <br/>
+          <h2 className="mb-4 text-align-center">TheCodeMan .NET Newsletter <br/>
           <span className="text-yellow"><b>Sponsorship</b></span>
           </h2>
         </div>

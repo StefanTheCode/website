@@ -75,7 +75,8 @@ const Blog = () => {
       <section className="img ftco-section">
         <div className="container">
           <div className="col-md-12 text-center">
-            <h2>The .NET Pro Weekly previous issues </h2>
+            <h2><b className='text-yellow'>TheCodeMan.NET</b></h2>
+            <h2>previous issues </h2>
           </div>
           <div className="row pt-5 mt-5">
 

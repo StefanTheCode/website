@@ -20,15 +20,14 @@ const postPreviews = sortedPostMetadata.slice(0, 3).map((post) => {
   return (
     <div className="col-xl-4 col-lg-12 col-md-12 d-flex mb-5">
       <div className="blog-entry text-center">
-        <h5><a href={href} className='newsletter-title'
-        >{post.newsletterTitle}</a></h5>
+        <div>
+        <Image src={post.photo} className="blog-post-img" alt={post.title} width={0} height={0} sizes="100vw" style={{ width: '80%', height: '20%' }} />
+      </div>
         <h3><a href={href}
         >{post.title}
         </a></h3>
         <h6>{post.date}</h6>
         <br />
-        <h5 >{post.subtitle}
-        </h5>
       </div>
     </div>
   )
@@ -41,8 +40,9 @@ export default function Home() {
         <div className="row d-md-flex no-gutters">
           <div className="col-xl-12 mt-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center slider-text padding-top-10per" >
             <div className="text" >
-              <p className="header-text">Become a <span className='text-yellow'>.NET Pro</span> </p>
-              <p className="header-text mtbottom20 ">while drinking coffee</p>
+              <p className="header-text">Master .NET Technologies </p>
+              <p className="header-text">with</p>
+              <p className="header-text mtbottom20"><span className='text-yellow'>TheCodeMan.NET</span></p>
               <p className="mb-4 mt-5 header-sub-text">Every <span className='text-yellow'>Monday
                 morning</span>, start
                 the week with a
@@ -50,7 +50,7 @@ export default function Home() {
                 right away.</p>
               <p className="header-sub-text-join mt-5">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
               <div className='container'>
-              <div className='row text-center  mb-5'>
+              <div className='row text-center mb-5'>
                 <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
                 <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center"
                   dangerouslySetInnerHTML={{
@@ -112,7 +112,7 @@ export default function Home() {
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-5">
               <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">Become .NET Pro Weekly Newsletter
+                <h3><a href="blog/github-webhook.html">TheCodeMan.NET Newsletter
                 </a></h3>
                 <br />
                 <h5 >Every Monday morning, I share 1 actionable tip on C#, .NET & Arcitecture topic, that you can use right away.
@@ -133,7 +133,7 @@ export default function Home() {
           </div>
           <div className="row justify-content-center mb-5 pb-5">
             <div className="col-md-12 heading-section text-center">
-              <p className="header-text">Recent <span className='text-yellow'> .Net Weekly </span>Issues</p>
+              <p className="header-text">Recent <span className='text-yellow'> TheCodeMan.NET </span>Issues</p>
             </div>
           </div>
           <div className="row d-flex">
@@ -216,7 +216,7 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.instagram.com/stefandjokic.tech/" target="_blank">
+                  <a href="https://www.instagram.com/the.code.man/" target="_blank">
                     <Image src={'/images/icons/instagram-icon.png'} className='social-icon' alt={'Instagram Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
 
                   </a>
