@@ -4,6 +4,7 @@ export interface PostMetadata {
     date: string,
     subtitle: string,
     slug: string,
-    readTime: string
+    readTime: string,
+    photo: string
   }
   
