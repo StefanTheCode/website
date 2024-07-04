@@ -17,7 +17,7 @@ export default async function sitemap() : Promise<MetadataRoute.Sitemap> {
     
     return [
         {
-            url: `https://stefandjokic.tech`,
+            url: `https://thecodeman.net`,
             lastModified: new Date(config.ChangeDate),
             changeFrequency: "daily",
             priority: 0.7

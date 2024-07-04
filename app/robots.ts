@@ -9,7 +9,7 @@ export default function robots() : MetadataRoute.Robots {
                 allow: "/"
             }
         ],
-        host: `https://stefandjokic.tech`,
+        host: `https://thecodeman.net`,
         sitemap: `https://thecodeman.net/sitemap.xml`
     }
 }

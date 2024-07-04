@@ -8,19 +8,19 @@ import Image from 'next/image'
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net/blog'),
   title: "Blog",
-  description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world.",
+  description: "Explore TheCodeMan.NET blog for expert articles on .NET development, C# tutorials, and software engineering trends. Stay ahead in the tech world with in-depth insights.",
   openGraph: {
     title: "Blog",
     type: "website",
     url: "https://thecodeman.net/blog",
-    description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
+    description: "Explore TheCodeMan.NET blog for expert articles on .NET development, C# tutorials, and software engineering trends. Stay ahead in the tech world with in-depth insights."
   },
   twitter: {
     title: "Blog",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Delve into Stefan Djokic's Blog for insightful articles on .NET development, software engineering trends, and expert tips. Whether you're a beginner or an advanced coder, Stefan's blog provides valuable knowledge and updates to enrich your understanding of the evolving tech world."
+    description: "Explore TheCodeMan.NET blog for expert articles on .NET development, C# tutorials, and software engineering trends. Stay ahead in the tech world with in-depth insights."
   }
 }
 
