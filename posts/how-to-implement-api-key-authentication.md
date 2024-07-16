@@ -1,23 +1,20 @@
 ---
-newsletterTitle: "#30 Stefan's Newsletter"
 title: "How to implement API Key Authentication"
 subtitle: "Explore Stefan Đokić's insightful blog post on API Key Authentication in ASP.NET Core..."
 readTime: "Read Time: 5 minutes"
-date: "Sep 04 2023"
+date: "July 04 2024"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore Stefan Đokić's insightful blog post on API Key Authentication in ASP.NET Core. This post offers a thorough walkthrough on securing APIs, managing access, and monitoring usage through API keys. Learn to set up an API key attribute, build an authorization filter, and create a validator class. Ideal for developers focused on enhancing API security and management in their .NET projects."
 ---
 
 &nbsp;  
+##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
-### Write testimonial and get a reward!
+##### •  Unlock Seamless API Testing with Postman! Ensure your APIs are reliable and performant with Postman's comprehensive testing platform. Automate your tests, monitor results, and catch issues early to deliver a flawless digital experience. [Get started now](https://www.postman.com/api-platform/api-testing/)!
 &nbsp;  
 &nbsp;  
-##### I would like you to write me testimonials that would help me and other people who would come to the Newsletter. At the end of the completed testimonials, as a sign of gratitude, **I will give you something valuable.**
-&nbsp;  
-##### [Write it here](https://senja.io/p/newsletter-AWD/r/gNtLlU).
-&nbsp;  
-##### Thank you!
+
+<!--START-->
 &nbsp;  
 &nbsp;  
 ### Background
