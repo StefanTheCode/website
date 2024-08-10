@@ -184,7 +184,7 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank">
+                  <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank"  rel="noopener">
                     <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                   </a>
                 </div>
@@ -194,7 +194,7 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://twitter.com/TheCodeMan__" target="_blank">
+                  <a href="https://twitter.com/TheCodeMan__" target="_blank"  rel="noopener">
                     <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
 
                   </a>
@@ -205,7 +205,7 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://github.com/StefanTheCode" target="_blank">
+                  <a href="https://github.com/StefanTheCode" target="_blank"  rel="noopener">
                     <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
 
                   </a>
@@ -216,7 +216,7 @@ export default function Home() {
             <div className="col-md-6 col-lg-3 d-flex ">
               <div className="align-self-stretch box p-4 text-center">
                 <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.instagram.com/the.code.man/" target="_blank">
+                  <a href="https://www.instagram.com/the.code.man/" target="_blank"  rel="noopener">
                     <Image src={'/images/icons/instagram-icon.png'} className='social-icon' alt={'Instagram Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
 
                   </a>

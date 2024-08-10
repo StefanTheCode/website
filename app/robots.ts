@@ -6,10 +6,10 @@ export default function robots() : MetadataRoute.Robots {
         rules: [
             {
                 userAgent: "*",
-                allow: "/"
+                allow: "/",
             }
         ],
-        host: `https://thecodeman.net`,
-        sitemap: `https://thecodeman.net/sitemap.xml`
+        host: 'https://thecodeman.net',
+        sitemap: 'https://thecodeman.net/sitemap.xml'
     }
 }

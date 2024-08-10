@@ -12,7 +12,7 @@ export const metadata:Metadata = {
   metadataBase: new URL('https://thecodeman.net/design-patterns-simplified'),
   title: "Design Patterns Simplified ebook",
   alternates: {
-    canonical: '/',
+    canonical: 'https://thecodeman.net/design-patterns-simplified',
   },
   description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
   openGraph: {

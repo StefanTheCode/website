@@ -8,7 +8,7 @@ import ogImage from './og-image.png'
 export const metadata:Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://thecodeman.net',
   },
   openGraph: {
     title: {
