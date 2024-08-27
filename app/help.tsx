@@ -22,7 +22,7 @@ export default function Help() {
             <br/>
         </div>
         <div className='col-md-12'>
-          <h4 ><a href='/'>Join .NET Pro Weekly Newsletter</a></h4>
+          <h4 ><a href='/'>Join TheCodeMan.net Newsletter</a></h4>
             
             <p>Every Monday morning, I share 1 actionable tip on C#, .NET & Arcitecture topic, that you can use right away.</p>
         </div>
