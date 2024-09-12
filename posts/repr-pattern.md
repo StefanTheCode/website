@@ -40,11 +40,11 @@ Explore it [here](https://marketplace.visualstudio.com/items?itemName=Postman.po
 &nbsp;  
 
 ##### [1. What is the REPR design pattern](#what-is-the-repr-design-pattern)
-##### 2. Replacement of the controller with REPR pattern
-##### 3. REPR pattern with FastEndpoints
-##### 4. Cons
-##### 5. Where to use it?
-##### 6. Conclusion
+##### [2. Replacement of the controller with REPR pattern](#replacement-of-the-controller-with-repr-pattern)
+##### [3. REPR pattern with FastEndpoints](#repr-pattern-with-fastendpoints)
+##### [4. Cons](#cons-of-using-repr-pattern)
+##### [5. Where to use it?](#where-to-use-it)
+##### [6. Conclusion](#conclusion)
 &nbsp;  
 
 ##### But did you know that there is something better that is also easier to implement?
