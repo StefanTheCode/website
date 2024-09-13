@@ -1,6 +1,22 @@
-import './globals.css'
+"use client"; // Add this line
+
+import { useEffect } from 'react';
+import './globals.css';
 
 export default function Header() {
+    useEffect(() => {
+        const currentPath = window.location.pathname;
+        const navItems = document.querySelectorAll('.navbar-nav .nav-item a');
+
+        navItems.forEach(item => {
+            if (item.getAttribute('href') === currentPath) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }, []);
+
     return (
         <>
            <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
