@@ -1,9 +1,8 @@
 ---
-newsletterTitle: "#50 Stefan's Newsletter"
 title: "How to create .NET Custom Guard Clause"
 subtitle: "Guard clauses in .NET are a programming practice used for improving the readability and reliability of code..."
-readTime: "Read Time: 4 minutes"
-date: "Jan 15 2024"
+readTime: "Read Time: 3 minutes"
+date: "September 30 2024"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore innovative error handling strategies for .NET developers in this insightful blog post. Learn the advantages of using the Result<T> object over traditional exceptions, and how to effectively implement custom Result and Error classes for clearer, more efficient code management. A must-read for enhancing your coding practices in .NET."
 ---
@@ -11,9 +10,10 @@ meta_description: "Explore innovative error handling strategies for .NET develop
 &nbsp;  
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
-##### • If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for [writing tests for your gRPC requests in Postman](https://blog.postman.com/testing-grpc-apis-with-postman/). For more info about gRPC, they created a great beginner article [here](https://blog.postman.com/what-is-grpc/).
-&nbsp;  
-##### • Renowned author Mark Price is your guide through the latest in .NET development, covering essential technologies like Blazor Full Stack, ASP.NET Core MVC, .NET MAUI, and more! Explore the intricacies of gRPC, GraphQL, SQL Server, Cosmos DB, SignalR, Azure Functions, and beyond. Elevate your skills with confidence. Check the book [here](https://packt.link/liQ2T).
+##### • Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at [this webinar](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d) which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers.
+##### Join [here](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d).
+
+<!--START-->
 &nbsp;  
 &nbsp;  
 ### The Background
@@ -164,3 +164,5 @@ public static class Ensure
 ##### And finally, if you wouldn't do it, I gave you an example of 3 existing libraries that do it in an excellent way.
 &nbsp;  
 ##### That's all from me today.
+
+<!--END-->
