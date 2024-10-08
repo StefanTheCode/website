@@ -1,17 +1,18 @@
 ---
-newsletterTitle: "#51 Stefan's Newsletter"
-title: "How to use Singleton in Multithreading in .NET"
+title: "Using Singleton in Multithreading in .NET"
 subtitle: "The core idea of a Singleton is that it is a class designed to only create one instance of itself, and it typically provides an easy way to access that instance."
 readTime: "Read Time: 4 minutes"
-date: "Jan 22 2024"
+date: "Oct 08 2024"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Unlock Singleton pattern in multithreading with .NET: Expert insights on thread safety, double check locking, and Lazy<T> implementation for robust applications."
 ---
 
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
-##### • If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for [writing tests for your gRPC requests in Postman](https://blog.postman.com/testing-grpc-apis-with-postman/). For more info about gRPC, they created a great beginner article [here](https://blog.postman.com/what-is-grpc/).
-
+##### • Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at [this webinar](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d) which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers.
+##### Join [here](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d).
+&nbsp;  
+##### • Learn effective testing strategies, explore powerful new features, and automate your API workflows effortlessly. Avoid common pitfalls and elevate your API development with [API Testing and Development with Postman by Dave Westerveld](https://bit.ly/4eJtsEb).
 
 &nbsp;  
 &nbsp;  
