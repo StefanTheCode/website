@@ -1,9 +1,10 @@
-import getPostMetadata from "@/components/getPostMetadata";
+import getPatternsMetadata from "@/components/getPatternsMetadata";
 import Subscribe from "../subscribe";
 import PostPreview from "@/components/PostPreview";
 import { Metadata } from "next";
 import config from '@/config.json'
 import Image from 'next/image'
+import PatternPreview from "@/components/PatternPreview";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net/design-patterns'),
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 
 const DesignPatterns = () => {
 
-  const postMetadata = getPostMetadata();
+  const postMetadata = getPatternsMetadata();
 
   const sortedPostMetadata = postMetadata.sort((a, b) => {
     const dateA = new Date(a.date) as unknown as number;
@@ -35,7 +36,7 @@ const DesignPatterns = () => {
   });
 
   const postPreviews = sortedPostMetadata.map((post) => (
-    <PostPreview key={post.slug} {...post} />
+    <PatternPreview key={post.slug} {...post} />
   ));
 
   return (
@@ -44,15 +45,14 @@ const DesignPatterns = () => {
         <div className="row d-md-flex no-gutters">
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per" >
             <div className="text" >
-              <p className="header-text">Become a </p>
-              <p className="header-text mtopminus10"><span className='text-yellow'>.NET Pro</span> </p>
-              <p className="header-text mtbottom20 ">while drinking coffee</p>
-              <p className="mb-4 header-sub-text">Every <span className='text-yellow'>Monday
-                morning</span>, start
-                the week with a
-                cup of coffee and <span className='text-yellow'>1 actionable .NET tip</span> that you can use
+              <p className="header-text">Learn </p>
+              <p className="header-text mtopminus10"><span className='text-yellow'>Design Patterns </span> </p>
+              <p className="header-text mtbottom20 ">on this page.</p>
+              <p className="mb-4 mt-4 header-sub-text">Every <span className='text-yellow'>Monday
+                morning</span> on Design Patterns and other engineering topics I send an email with 
+                <span className='text-yellow'>1 actionable tip</span> that you can use
                 right away.</p>
-              <p className="header-sub-text-join">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
+              <p className="header-sub-text-join">Be a part of our community with <span className='text-yellow'>{config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
               <div className='row'>
                 <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
                 <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"
