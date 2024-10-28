@@ -2,7 +2,7 @@
 newsletterTitle: "#63 Stefan's Newsletter"
 title: "LINQ Performance Optimization Tips & Tricks"
 subtitle: "LINQ (Language Integrated Query) is a powerful feature in C# that lets developers perform complex queries easily across various data sources like databases, collections, and XML..."
-date: "Apr 15 2024"
+date: "OCt 28 2024"
 readTime: "Read Time: 3 minutes"
 meta_description: "LINQ (Language Integrated Query) is a powerful feature in C# that lets developers perform complex queries easily across various data sources like databases, collections, and XML."
 photoUrl: "/images/blog/newsletter21.png"
