@@ -2,7 +2,7 @@
 newsletterTitle: "#63 Stefan's Newsletter"
 title: "LINQ Performance Optimization Tips & Tricks"
 subtitle: "LINQ (Language Integrated Query) is a powerful feature in C# that lets developers perform complex queries easily across various data sources like databases, collections, and XML..."
-date: "OCt 28 2024"
+date: "Oct 28 2024"
 readTime: "Read Time: 3 minutes"
 meta_description: "LINQ (Language Integrated Query) is a powerful feature in C# that lets developers perform complex queries easily across various data sources like databases, collections, and XML."
 photoUrl: "/images/blog/newsletter21.png"
@@ -11,10 +11,8 @@ photoUrl: "/images/blog/newsletter21.png"
 &nbsp;  
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
-##### • POST/CON, [the largest API conference by Postman](https://www.postman.com/postcon/?utm_source=influencer&utm_medium=Social&utm_campaign=POSTCON_2024&utm_term=Stefan_Djokic&utm_content=Conference_Landing_Page), is scheduled for April 30 to May 1. It's designed for anyone involved with APIs or businesses dependent on APIs.
-&nbsp;  
-##### Check it out [here](https://www.postman.com/postcon/?utm_source=influencer&utm_medium=Social&utm_campaign=POSTCON_2024&utm_term=Stefan_Djokic&utm_content=Conference_Landing_Page).
-
+##### • Don't miss this one.
+##### Free event by Postman: [Visualize, Accelerate, and Collaborate with Postman Flows](https://app.zuddl.com/p/a/event/b718e16b-9456-4da3-9af1-f990b252ceb5?utm_source=influencer&utm_medium=Newsletter&utm_campaign=Flows_collab&utm_term=Stefan_Djokic&utm_content=Webinar).
 &nbsp;  
 
 <!--START-->
