@@ -20,7 +20,7 @@ const BlackFriday = () => {
                     <li className='padding-5'>1+ URLs to your website</li>
                     <li className='padding-5'>Your image, carousel or video</li>
                     <li className="grey padding-5">
-                      <button className="btn btn-primary border-radius-5px coming-soon">Reserve here</button>
+                      <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
                     </li>
                     <li className='padding-5'><h5><b className='text-yellow'>Stats</b></h5></li>
 
@@ -30,7 +30,7 @@ const BlackFriday = () => {
                     <li className='padding-5'>Profile reach last month: ~ 2.5m views</li>
                     <li className='padding-5'>Average weekly profile reach: ~ 450k - 650k</li>
                     <li className="grey padding-5">
-                      <button className="btn btn-primary border-radius-5px coming-soon">Reserve here</button>
+                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
                     </li>
                    </ul>
                 </div>
@@ -44,7 +44,8 @@ const BlackFriday = () => {
                     <li className='padding-5'>Sponsorship remains live forever on website</li>
                     <li className='padding-5'>2 links per sponsorship</li>
                     <li className="grey padding-5">
-                      <button className="btn btn-primary border-radius-5px coming-soon">Reserve here</button>
+                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
+
                     </li>
                     <li className='padding-5'><h5><b className='text-yellow'>Stats</b></h5></li>
                     <li className='padding-5'>Reach: 14,000+ subscribers</li>
@@ -52,7 +53,8 @@ const BlackFriday = () => {
                     <li className='padding-5'>Average Open Rate: 53%</li>
                     <li className='padding-5'>Ad Clicks Average: 100 - 300</li>
                     <li className="grey padding-5">
-                      <button className="btn btn-primary border-radius-5px coming-soon">Reserve here</button>
+                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
+
                     </li>
                     </ul>
                 </div>
@@ -66,7 +68,8 @@ const BlackFriday = () => {
                     <li className='padding-5'>1+ URLs to your website</li>
                     <li className='padding-5'>Your image, document or video</li>
                     <li className="grey padding-5">
-                      <button className="btn btn-primary border-radius-5px coming-soon">Reserve here</button>
+                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
+
                     </li>
                     <li className='padding-5'><h5><b className='text-yellow'>Stats</b></h5></li>
                     <li className='padding-5'>Average post reach: ~5k people</li>
@@ -74,7 +77,8 @@ const BlackFriday = () => {
                     <li className='padding-5'>Growth: 200 - 400 followers weekly</li>
                     <li className='padding-5'>Profile reach last month: ~ 320k views</li>
                     <li className="grey padding-5">
-                      <button className="btn btn-primary border-radius-5px coming-soon">Reserve here</button>
+                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
+
                     </li>
                     </ul>
                 </div>
@@ -117,8 +121,7 @@ const BlackFriday = () => {
               <br />
               <div className='row'>
               <div className='col-sm-12 col-md-12 col-lg-12 text-center pb-5 mt-5'>
-               <button className="btn btn-lg btn-primary border-radius-5px" data-eo-form-toggle-id="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></button>
-               <a data-eo-form-toggle-id="9ade17e6-9c87-11ef-86b3-890d9e639bbe" href="#">Reserve here</a>
+              <a className="btn btn-lg btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
             </div>
               </div>
             </div>
@@ -132,7 +135,7 @@ const BlackFriday = () => {
                   <br />
                   <div className='row'>
               <div className='col-sm-12 col-md-12 col-lg-12 text-center pb-5 mt-5'>
-               <button className="btn btn-lg btn-primary border-radius-5px">Reserve here</button>
+              <a className="btn btn-lg btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
             </div>
               </div>
                 </div>
@@ -140,15 +143,24 @@ const BlackFriday = () => {
               </div>
             </div>
           </div>
+          <div className='row'>
+            <div className='col-sm-12 col-md-12 col-lg-12'>
+            <div className="row text-center">
+            <div className="col-md-3"></div>
+            <div className="col-md-8" id='reserveSpotForm'
+              dangerouslySetInnerHTML={{
+                __html: `
+                         <script async src="https://eomail4.com/form/9ade17e6-9c87-11ef-86b3-890d9e639bbe.js" data-form="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></script>
+
+            `
+              }}
+            />
+            <div className="col-md-2"></div>
+          </div>
+            </div>
+          </div>
         </div>
       </section>
-      <div dangerouslySetInnerHTML={{
-                    __html: `
-                <script async src="https://eocampaign1.com/form/33e483be-a0b1-11ed-b1bd-9b9d338510f2.js"
-								data-form="33e483be-a0b1-11ed-b1bd-9b9d338510f2"></script>
-            `
-                  }}>
-     </div>
     </>
   )
 }
