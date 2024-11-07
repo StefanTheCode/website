@@ -426,7 +426,7 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
+  -appearance: button;
 }
 
 button:not(:disabled),
@@ -14870,4 +14870,31 @@ textarea.form-control {
 .fixed-position {
   position: fixed;
   width: 25%; 
+}
+
+.black-friday-link {
+  background-color: #ff4136; /* Red background for Black Friday */
+  color: #fff; /* White text */
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.black-friday-link:hover {
+  background-color: #ffbd39; /* Change background on hover */
+  color: #000; /* Change text color on hover */
+}
+
+.black-friday-link span {
+  position: relative;
+  display: inline-block;
+}
+
+.black-friday-link span:before {
+  content: '🔥'; /* Add an icon before the text */
+  position: absolute;
+  left: -20px;
+  top: 0;
+  font-size: 1.2em;
 }

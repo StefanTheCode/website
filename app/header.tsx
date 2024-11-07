@@ -38,6 +38,11 @@ export default function Header() {
              <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
             href="/sponsorship"
             className="nav-link"><span>Sponsorship</span></a></li>
+           <li className="nav-item special-offer" data-toggle="collapse" data-target="#ftco-nav">
+  <a href="/black-friday" className="nav-link black-friday-link">
+    <span>🔥 Black Friday 🔥</span>
+  </a>
+</li>
       </ul>
     </div>
   </div>
