@@ -8,7 +8,9 @@ const BlackFriday = () => {
         <div className="container">
           <div className='row pb-5 pt-5'>
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h1 className='sponsorship-name text-center'><b className='text-yellow'>Black Friday</b><br/> Sponsorship opportunities</h1>
+              <h1 className='sponsorship-name text-center mt-5'><b className='text-yellow'>BLACK FRIDAY</b></h1>
+              <h2 className='sponsorship-name text-center'>Sponsorship opportunities</h2>
+              <h4 className='mt-5'>Take advantage of this exclusive offer available until <b>December 1, 2024!</b></h4>
               <div className="row">
                 <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
                 <img src="/images/discount_40.png" alt="Discount Tag" className="discount-image"/>
@@ -83,11 +85,12 @@ const BlackFriday = () => {
                     </ul>
                 </div>
               </div>
+            <h4 className='text-center'> Secure your spot for posts anytime, including bookings for next year. Don’t miss out—reserve now to lock in your future posts.</h4>
             </div>
           </div>
           <div className="d-flex">
             <div className="col-sm-12 col-md-12 col-lg-12 pb-5">
-            <h2 className='text-center'>Examples</h2>
+            <h2 className='text-center mt-5'>Examples</h2>
              <div className='row'>
               <div className='col-sm-4 col-md-4 col-lg-4'>
               <h3 className='pt-5'><b className='text-yellow'>LinkedIn</b></h3>
