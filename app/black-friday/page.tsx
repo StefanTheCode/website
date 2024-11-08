@@ -1,5 +1,42 @@
 import SponsorsNewsletter from '@/components/sponsorsTestimonials';
+import { Metadata } from "next";
 import config from '@/config.json'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://thecodeman.net/black-friday'),
+  title: "Black Friday Sponsorship Opportunities - TheCodeMan.NET",
+  alternates: {
+    canonical: 'https://thecodeman.net/black-friday',
+  },
+  description: "Promote your brand with exclusive Black Friday sponsorship deals, including LinkedIn posts, newsletter ads, and more. Reach an engaged audience with high visibility opportunities.",
+  openGraph: {
+    title: "Black Friday Sponsorship Opportunities",
+    type: "website",
+    url: "https://thecodeman.net/black-friday",
+    description: "Take advantage of Black Friday with high-impact sponsorship options across LinkedIn, newsletters, and social media to reach TheCodeMan.NET's dedicated followers.",
+    images: [
+      {
+        url: 'https://thecodeman.net/black-friday-og-image.png',
+        width: "1000px",
+        height: "700px"
+      }
+    ],
+  },
+  twitter: {
+    title: "Black Friday Sponsorship Opportunities",
+    card: "summary_large_image",
+    site: "@TheCodeMan__",
+    creator: "@TheCodeMan__",
+    description: "Promote your brand this Black Friday with sponsorships reaching thousands through LinkedIn, newsletter ads, and social media posts.",
+    images: [
+      {
+        url: 'https://thecodeman.net/black-friday-og-image.png',
+        width: "1000px",
+        height: "700px"
+      }
+    ]
+  }
+};
 
 const BlackFriday = () => {
   return (
