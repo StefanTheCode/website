@@ -9,7 +9,7 @@ meta_description: "Learn how to deal with Feature Flags in .NET using Azure Feat
 
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
-##### • Accelerate your .NET web app development with [ABP](https://abp.io/?utm_source=newsletter&utm_medium=affiliate&utm_campaign=stefandjokic_bf24)! Access framework’s robust modules, architecture templates and full-stack features - Black Friday prices start on 25th November so stay tuned!
+##### • Accelerate your .NET web app development with [ABP.IO](https://abp.io/?utm_source=newsletter&utm_medium=affiliate&utm_campaign=stefandjokic_bf24)! Access framework’s pre-built modules, startup templates and full-stack features - Black Friday prices start on 25th November so stay tuned!
 ##### [Stay tuned!](https://abp.io/?utm_source=newsletter&utm_medium=affiliate&utm_campaign=stefandjokic_bf24)
 &nbsp;  
 ##### • Unlock [Postman's latest features](https://community.postman.com/t/the-postman-drop-october-edition/70044?utm_medium=social_sharing&utm_source=newsletter&utm_content=Stefan_Djokic) for seamless API management! Now with a centralized variable experience and secure secret storage via Postman Vault, your team can streamline workflows and safeguard sensitive data effortlessly.
