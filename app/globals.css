@@ -14898,3 +14898,13 @@ textarea.form-control {
   top: 0;
   font-size: 1.2em;
 }
+
+.collapsible {
+  padding: 10px; /* Smaller padding when collapsed */
+  border-radius: 10px;
+  transition: padding 0.3s ease;
+}
+
+.collapsible[open] {
+  padding: 20px; /* Larger padding when expanded */
+}
