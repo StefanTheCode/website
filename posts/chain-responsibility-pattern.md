@@ -1,10 +1,20 @@
 ---
-newsletterTitle: "#22 Stefan's Newsletter"
 title: "Chain Responsibility Pattern"
 subtitle: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
-date: "Jul 10 2023"
+date: "Nov 25 2024"
+readTime: "Read Time: 3 minutes"
 photoUrl: "/images/blog/newsletter21.png"
+meta_description: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
 ---
+
+##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
+&nbsp;  
+##### • [JetBrains Rider](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter) is **now FREE for non-commercial development**, making it more accessible for hobbyists, students, content creators, and open source contributors.
+
+##### [Download and start today!](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter)
+&nbsp;  
+##### • Tired of outdated API documentation holding your team back? Postman simplifies your life by [automatically syncing documentation with your API updates](https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic) - no more static docs, no more guesswork!
+##### [Read more](https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic).
 
 <br>
 <br>

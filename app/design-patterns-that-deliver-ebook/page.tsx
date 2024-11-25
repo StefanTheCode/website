@@ -64,7 +64,7 @@ const Ebook = () => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
-          <Image src={'/images/ebook2.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
+          <Image src={'/images/djokic-ebook.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
           </div>
         </div>
       </section>
