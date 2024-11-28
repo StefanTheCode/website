@@ -19,7 +19,14 @@ export default function Header() {
 
     return (
         <>
-           <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+        <nav className="navbar background-yellow text-black navbar-expand-lg text-center ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+  <div className="container text-black">
+    <div className="collapse navbar-collapse text-center">
+      <p className='text-black'>BLACK FRIDAY SPECIAL OFFER: <b>36% OFF</b> all products. Use Code: <b>BLACKFRI</b> at checkout.</p>
+    </div>
+  </div>
+</nav>
+   <nav className="mt-5 navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
   <div className="container">
     <a className="navbar-brand" href="/">Stefan Đokić</a>
     <button className="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
@@ -33,11 +40,18 @@ export default function Header() {
             className="nav-link"><span>Blog</span></a></li>
                <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns"
             className="nav-link"><span>Design Patterns</span></a></li>
+
         <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns-simplified"
-            className="nav-link"><span>E Book</span></a></li>
-             <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
-            href="/sponsorship"
-            className="nav-link"><span>Sponsorship</span></a></li>
+            className="nav-link"><span>Ebook Simplified</span></a></li>
+
+              {/* <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns-simplified"
+            className="nav-link"><span>EBook Advanced</span></a></li> */}
+               <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
+            href="/design-patterns-that-deliver-ebook"
+            className="nav-link"><span>5 Patterns Ebook</span></a></li>
+             {/* <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
+            href="/design-patterns-that-deliver"
+            className="nav-link"><span>Ebook Advanced</span></a></li> */}
            <li className="nav-item special-offer" data-toggle="collapse" data-target="#ftco-nav">
   <a href="/black-friday" className="nav-link black-friday-link">
     <span>🔥 Black Friday 🔥</span>
@@ -47,6 +61,7 @@ export default function Header() {
     </div>
   </div>
 </nav>
+
 
             <div>
                 <script dangerouslySetInnerHTML={{
