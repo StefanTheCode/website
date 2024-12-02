@@ -8,6 +8,9 @@ meta_description: "Learn how to use the Decorator Pattern in .NET to enhance you
 ---
 
 <!--START-->
+##### **Many thanks to the sponsors who make it possible for this blog post to be free for readers.**
+&nbsp;  
+##### • **[Depot](https://depot.dev/sign-up?utm_source=newsletter&utm_medium=sdjokic&utm_campaign=depot-december&utm_term=black-friday-promo&utm_content=depot-signup)** presents **Ultra Runners**, speeding up GitHub Actions by up to 3x compared to GitHub's default runners. Don’t miss their **[Black Friday Sale](https://depot.dev/sign-up?utm_source=newsletter&utm_medium=sdjokic&utm_campaign=depot-december&utm_term=black-friday-promo&utm_content=depot-signup)** - use the code **DEPOTFRIENDS24** to get your first month free on any plan. Offer valid until December 20th.
 
 &nbsp;  
 &nbsp;  
@@ -288,7 +291,7 @@ services.AddTransient<IProductService>(provider =>
 ##### P.S. If you want to see some more advanced examples of this pattern or 4 more patterns I explained in my ebook [**"Design Patterns that Deliver"**](https://thecodeman.net/design-patterns-that-deliver-ebook?utm_source=Website&utm_campaign=0212), you can check out it [here](https://thecodeman.net/design-patterns-that-deliver-ebook?utm_source=Website&utm_campaign=0212).
 &nbsp;  
 
-##### Last day you can use Black Friday Discount 45% OFF.
+##### Last day you can use **Black Friday Discount 45% OFF**.
 &nbsp;  
 #### Use Code: **THECODEMAN**
 
