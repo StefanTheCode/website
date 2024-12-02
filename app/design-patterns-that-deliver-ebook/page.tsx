@@ -59,7 +59,7 @@ const Ebook = () => {
               <p className="header-text mt-4">Solve <span className='text-yellow'>Real Problems</span></p>
               <p className="header-text"> with<span className='text-yellow'> 5 Design Patterns</span> </p>
               <p className="mb-4 text-white mt-4"><b><span className='text-yellow'><b>This isn’t just another design patterns book.</b></span> <br />Dive into <span className='text-yellow'><b>real-world examples</b></span> and practical solutions to <span className='text-yellow'><b>real problems</b></span> in <span className='text-yellow'><b>real applications</b></span>. With advanced topics and hands-on guidance, this ebook equips you to implement these patterns effectively and tackle complex challenges with confidence.</b></p>
-              <p className="mb-4 text-white"><b><span className='text-yellow'> 100+ developers</span> are already building better software - <span className='text-yellow'><b>join them NOW!</b></span></b></p>
+              <p className="mb-4 text-white"><b><span className='text-yellow'> 650+ developers</span> are already building better software - <span className='text-yellow'><b>join them NOW!</b></span></b></p>
               <EbookTestimonials2 />
               <a href='https://stefandjokic.lemonsqueezy.com/buy/5e943b0e-a3fd-4c3d-950e-3671762ebf85'><button className='btn btn-lg btn-primary border-radius-10px button-padding'>Start Reading Now</button></a>
             </div>

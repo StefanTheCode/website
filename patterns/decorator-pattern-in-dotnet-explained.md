@@ -285,9 +285,14 @@ services.AddTransient<IProductService>(provider =>
 ##### That's all from me today.
 &nbsp;  
 
-##### P.S. If you want to see some more examples of this pattern or 9 more patterns I explained in my ebook **"Design Patterns Simplified"**, you can check out it [here](https://thecodeman.net/design-patterns-simplified?utm_source=design_patterns_page).
+##### P.S. If you want to see some more advanced examples of this pattern or 4 more patterns I explained in my ebook [**"Design Patterns that Deliver"**](https://thecodeman.net/design-patterns-that-deliver-ebook?utm_source=Website&utm_campaign=0212), you can check out it [here](https://thecodeman.net/design-patterns-that-deliver-ebook?utm_source=Website&utm_campaign=0212).
+&nbsp;  
+
+##### Last day you can use Black Friday Discount 45% OFF.
+&nbsp;  
+#### Use Code: **THECODEMAN**
 
 &nbsp;  
-##### 1200+ enigneers already read it. 
+##### 600+ enigneers already read it. 
 
 <!--END-->
