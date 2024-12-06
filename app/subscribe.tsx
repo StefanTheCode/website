@@ -20,7 +20,7 @@ export default function Subscribe() {
             <div className="col-md-8"
               dangerouslySetInnerHTML={{
                 __html: `
-             <script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>
+            <script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>
             `
               }}
             />
