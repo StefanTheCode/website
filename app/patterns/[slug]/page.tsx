@@ -103,8 +103,8 @@ const PostPage = (props: any) => {
                 </div>
               </div>
               <Markdown>{post.content}</Markdown>
-              <Subscribe />
           <Help />
+          <Subscribe />
             </div>
             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
               <div className="row justify-content-center pb-5 fixed-position">

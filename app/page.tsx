@@ -15,20 +15,20 @@ const sortedPostMetadata = postMetadata.sort((a, b) => {
   return dateB - dateA;
 });
 
-const postPreviews = sortedPostMetadata.slice(0, 3).map((post) => {
+const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
   const href = `/posts/${post.slug}`
   return (
-    <div className="col-xl-4 col-lg-12 col-md-12 d-flex mb-5">
+    <div className="col-xl-3 col-lg-12 col-md-12 d-flex mb-5">
+      <a href={href}>
       <div className="blog-entry text-center">
         <div>
         <Image src={post.photo} className="blog-post-img" alt={post.title} width={0} height={0} sizes="100vw" style={{ width: '80%', height: '20%' }} />
       </div>
-        <h3><a href={href}
-        >{post.title}
-        </a></h3>
-        <h6>{post.date}</h6>
+        <h6>{post.title}
+       </h6>
         <br />
       </div>
+      </a>
     </div>
   )
 });

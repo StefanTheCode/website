@@ -12,19 +12,25 @@ export default function Help() {
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <h4><a href='/design-patterns-simplified'>Design Patterns Simplified ebook</a></h4>
-             <p>Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level. <span><a href='/design-patterns-simplified'>Check out it here.</a></span></p>
+            <h4>My Design Patterns Ebooks</h4>
+             <p><span><a href='/design-patterns-that-deliver-ebook?utm_source=website'>1. Design Patterns that Deliver</a></span></p>
+             <p>This isn’t just another design patterns book.
+             Dive into real-world examples and practical solutions to real problems in real applications.<span><a href='/design-patterns-that-deliver-ebook?utm_source=website'>Check out it here.</a></span></p>
+             <br/>
+             <p><span><a href='/design-patterns-simplified?utm_source=website'>1. Design Patterns Simplified</a></span></p>
+             <p>Go-to resource for understanding the core concepts of design patterns without the overwhelming complexity. In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level. <span><a href='/design-patterns-simplified?utm_source=website'>Check out it here.</a></span></p>
              <br/>
           </div>
-          <div className='col-md-12'>
-          <h4><a href='/sponsorship'>Sponsorship</a></h4>
-            <p>Promote yourself to {config.NewsletterSubCount} by sponsoring this newsletter.</p>
+          
+        <div className='col-md-12'>
+          <h4 ><a href='/'>Join TheCodeMan.net Newsletter</a></h4>
+            <p>Every Monday morning, I share 1 actionable tip on C#, .NET & Arcitecture topic, that you can use right away.</p>
             <br/>
         </div>
         <div className='col-md-12'>
-          <h4 ><a href='/'>Join TheCodeMan.net Newsletter</a></h4>
-            
-            <p>Every Monday morning, I share 1 actionable tip on C#, .NET & Arcitecture topic, that you can use right away.</p>
+          <h4><a href='/sponsorship'>Sponsorship</a></h4>
+            <p>Promote yourself to {config.NewsletterSubCount} by sponsoring this newsletter.</p>
+            <br/>
         </div>
         </div>
         <br />

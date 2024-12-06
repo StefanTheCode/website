@@ -39,16 +39,30 @@ export default function Header() {
         <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/blog"
             className="nav-link"><span>Blog</span></a></li>
                <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns"
-            className="nav-link"><span>Design Patterns</span></a></li>
+            className="nav-link"><span>Design Patterns Blog</span></a></li>
 
-        <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns-simplified"
-            className="nav-link"><span>Ebook Simplified</span></a></li>
+<li className="nav-item dropdown">
+  <a
+    className="nav-link dropdown-toggle"
+    href="#"
+    id="navbarDropdown"
+    role="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    Ebooks
+  </a>
+  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a className="dropdown-item" href="/design-patterns-simplified">
+      Ebook Simplified
+    </a>
+    <a className="dropdown-item" href="/design-patterns-that-deliver-ebook">
+      5 Patterns Ebook
+    </a>
+  </div>
+</li>
 
-              {/* <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns-simplified"
-            className="nav-link"><span>EBook Advanced</span></a></li> */}
-               <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
-            href="/design-patterns-that-deliver-ebook"
-            className="nav-link"><span>5 Patterns Ebook</span></a></li>
              <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a
             href="/sponsorship"
             className="nav-link"><span>For Sponsors</span></a></li>
@@ -92,15 +106,28 @@ export default function Header() {
                 var dropdowns = document.querySelectorAll('nav .dropdown');
                 dropdowns.forEach(function(dropdown) {
                     dropdown.addEventListener('mouseover', function() {
-                        this.classList.add('show');
-                        this.querySelector('> a').setAttribute('aria-expanded', true);
-                        this.querySelector('.dropdown-menu').classList.add('show');
-                    });
-                    dropdown.addEventListener('mouseout', function() {
-                        this.classList.remove('show');
-                        this.querySelector('> a').setAttribute('aria-expanded', false);
-                        this.querySelector('.dropdown-menu').classList.remove('show');
-                    });
+    this.classList.add('show');
+    const link = this.querySelector('a');
+    if (link) {
+        link.setAttribute('aria-expanded', true);
+    }
+    const dropdownMenu = this.querySelector('.dropdown-menu');
+    if (dropdownMenu) {
+        dropdownMenu.classList.add('show');
+    }
+});
+dropdown.addEventListener('mouseout', function() {
+    this.classList.remove('show');
+    const link = this.querySelector('a');
+    if (link) {
+        link.setAttribute('aria-expanded', false);
+    }
+    const dropdownMenu = this.querySelector('.dropdown-menu');
+    if (dropdownMenu) {
+        dropdownMenu.classList.remove('show');
+    }
+});
+
                 });
                 
                 // Scroll Window
