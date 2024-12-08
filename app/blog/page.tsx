@@ -57,9 +57,7 @@ const Blog = () => {
                 <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
                 <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"
                   dangerouslySetInnerHTML={{
-                    __html: `
-               <script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>
-            `
+                    __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
                   }}
                 ></div>
               </div>
@@ -90,9 +88,7 @@ const Blog = () => {
                   <div className="row">
                     <div className="col-md-12 padding-left0 padding-right0"
                       dangerouslySetInnerHTML={{
-                        __html: `
-            <script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>
-            `
+                        __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
                       }}
                     />
                   </div>

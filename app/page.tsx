@@ -49,9 +49,7 @@ export default function Home() {
                 <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
                 <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center"
                   dangerouslySetInnerHTML={{
-                    __html: `
-                <script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>
-            `
+                    __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
                   }}
                 ></div>
                 <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
