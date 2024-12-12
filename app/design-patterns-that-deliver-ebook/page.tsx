@@ -15,29 +15,29 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://thecodeman.net/design-patterns-that-deliver-ebook',
   },
-  description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
+  description: "This isn’t just another design patterns book. Dive into real-world examples and practical solutions to real problems in real applications. ",
   openGraph: {
-    title: "Design Patterns Simplified ebook",
+    title: "Design Patterns that Deliver ebook",
     type: "website",
     url: "https://thecodeman.net/design-patterns-that-deliver-ebook",
-    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
+    description: "This isn’t just another design patterns book. Dive into real-world examples and practical solutions to real problems in real applications. ",
     images: [
       {
-        url: 'https://thecodeman.net/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-ebookimage2.png',
         width: "1000px",
         height: "700px"
       }
     ],
   },
   twitter: {
-    title: "Design Patterns Simplified ebook",
+    title: "Design Patterns that Deliver ebook",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
+    description: "This isn’t just another design patterns book. Dive into real-world examples and practical solutions to real problems in real applications. ",
     images: [
       {
-        url: 'https://thecodeman.net/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-ebookimage2.png',
         width: "1000px",
         height: "700px"
       }
