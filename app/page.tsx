@@ -5,6 +5,8 @@ import Subscribe from './subscribe'
 import getPostMetadata from '@/components/getPostMetadata'
 import MyComponent from '@/components/newsletterTestimonials'
 import { Metadata } from 'next'
+import EbookNewsletter from '@/components/ebookTestimonials'
+import Script from 'next/script'
 
 const postMetadata = getPostMetadata();
 
@@ -40,27 +42,31 @@ export default function Home() {
         <div className="row d-md-flex no-gutters">
           <div className="col-xl-12 mt-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center slider-text padding-top-10per" >
             <div className="text" >
-              <p className="header-text">Master .NET Technologies </p>
-              <p className="header-text">with</p>
-              <p className="header-text mtbottom20"><span className='text-yellow'>TheCodeMan.NET</span></p>
-              <p className="mb-4 mt-5 header-sub-text">Every <span className='text-yellow'>Monday
-                morning</span>, start
-                the week with a
-                cup of coffee and <span className='text-yellow'><br/>1 actionable .NET tip</span> that you can use
-                right away.</p>
-              <p className="header-sub-text-join mt-5">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
-              <div className='container'>
-              <div className='row text-center mb-5'>
+              <p className="header-text-feature-b  mtbottom20"><span className='text-yellow'>Level Up Your .NET Skills</span></p>
+              <p className="header-text-feature-b mtbottom20">One Tip at a Time</p>
+              <div className='container mt-5'>
+              <div className='row text-center'>
                 <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
                 <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center"
                   dangerouslySetInnerHTML={{
-                    __html: `
-                <script async src="https://eocampaign1.com/form/33e483be-a0b1-11ed-b1bd-9b9d338510f2.js"
-								data-form="33e483be-a0b1-11ed-b1bd-9b9d338510f2"></script>
-            `
+                    __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
                   }}
                 ></div>
                 <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
+              </div>
+              </div>
+              <p className="mb-4 mt-5 header-sub-text">Every <span className='text-yellow'>
+              Every Monday</span>, learn a <span className='text-yellow'>New .NET Trick</span> you can apply instantly!</p>
+              <div className='container'>
+              <div className='row text-center'>
+              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2 mb-5">
+    <div className="senja-embed" data-id="ea80a7ca-913b-44b0-be8f-ff917bc894e0" data-lazyload="false"></div>
+    <Script 
+      src="https://static.senja.io/dist/platform.js" 
+      async 
+      type="text/javascript">
+    </Script>
+  </div>
               </div>
               </div>
             </div>
