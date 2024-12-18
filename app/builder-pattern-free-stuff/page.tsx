@@ -2,21 +2,21 @@ import { Metadata } from 'next';
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/sponsorship'),
-  title: "Sponsorship",
-  description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community.",
+  metadataBase: new URL('https://thecodeman.net/builder-pattern-free-stuff'),
+  title: "Builder Pattern Free Stuff",
+  description: "TheCodeMan's FREE Builder Pattern Chapter from Design Patterns that Deliver ebook.",
   openGraph: {
-    title: "Sponsorship",
+    title: "Builder Pattern Free Stuff",
     type: "website",
-    url: "https://thecodeman.net/sponsorship",
-    description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community."
-  },
+    url: "https://thecodeman.net/builder-pattern-free-stuff",
+    description: "TheCodeMan's FREE Builder Pattern Chapter from Design Patterns that Deliver ebook."
+    },
   twitter: {
-    title: "Sponsorship",
+    title: "Builder Pattern Free Stuff",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Partner with Stefan Djokic for impactful sponsorship opportunities in our widely-read newsletter and popular blog. A unique platform for companies to showcase their products to a dedicated audience of tech enthusiasts and professionals in the software engineering and .NET community."
+    description: "TheCodeMan's FREE Builder Pattern Chapter from Design Patterns that Deliver ebook."
   }
 }
 
