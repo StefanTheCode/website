@@ -36,7 +36,7 @@ const Sponsorship = () => {
       <div className="d-flex">
         <div className="col-sm-12 col-md-12 col-lg-12 pb-5">
           <div className="row pb-3">
-            <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <h1>Audience</h1>
               <br/>
               <h5>• Reach: <span  className="text-yellow">{config.NewsletterSubCount}</span></h5>
@@ -51,7 +51,7 @@ const Sponsorship = () => {
             </div>
             <SponsorsNewsletter />
           </div>
-          <div className="pb-3 mt-5">
+          <div className="row pb-3 mt-5">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <h1 className='sponsorship-name'>Sponsorship opportunities</h1>
               <div className="row">
@@ -64,8 +64,7 @@ const Sponsorship = () => {
                   <li>2 links per sponsorship</li>
                   <li>2 sentences maximum</li>
                   <li className="grey" >
-                    <h5>Reserve here</h5>
-                   <h5 className='mail-address'> <a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
+                  <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
                   </li>
                 </ul>
               </div>
@@ -79,8 +78,7 @@ const Sponsorship = () => {
                   <li>2 links per sponsorship</li>
                   <li>2 sentences maximum</li>
                   <li className="grey" >
-                    <h5>Reserve here</h5>
-                   <h5 className='mail-address'><a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
+                  <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
                   </li>
                 </ul>
               </div>
@@ -93,8 +91,7 @@ const Sponsorship = () => {
                   <li>Sponsorship will remain live forever on website</li>
                   <li>Logo included</li>
                   <li className="grey">
-                    <h5>Reserve here</h5>
-                   <h5 className='mail-address'>  <a href="mailto: stefan@stefandjokic.tech">{config.Email}</a></h5>
+                  <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
                   </li>
                 </ul>
                <p> *Article or tutorial related to C#/.NET</p> The entire newsletter issue is written on the topic of the sponsor's product/service so that it fits into the C#/.NET content.
@@ -102,8 +99,24 @@ const Sponsorship = () => {
             </div>
             </div>
           </div>
+          <div className="row pb-3 mt-5">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h1 className='sponsorship-name'>Example</h1>
+              <div className="row">
+              <div className="col-md-4 mb-5">
+               <p><a href='https://eomail4.com/web-version?p=a57fbf8c-8545-11ef-ae7d-85df232e2a82&pt=campaign&t=1728379993&s=784b945bc08f7b01ba1243c91db3cc19b19e59426863f51d69a39e55bbd61185' target='_blank'> In newsletter</a></p>
+               <p><a href='https://thecodeman.net/posts/how-to-use-singleton-in-multithreading?utm_source=sponsorship' target='_blank'> On website</a></p>
+               </div>
+             <div className='row'>
+             <div className="col-md-12 mb-5">
+             <p>I also offer sponsorships on LinkedIn (90k+ followers) and X (6.5k+) platforms. For more information contact me here.</p>
+              </div>
+              </div>
+              </div>
+            </div>
+            </div>
+          </div>
         </div>
-      </div>
     </div>
   </section>
 
