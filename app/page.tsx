@@ -22,14 +22,14 @@ const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
   return (
     <div className="col-xl-3 col-lg-12 col-md-12 d-flex mb-5">
       <a href={href}>
-      <div className="blog-entry text-center">
-        <div>
-        <Image src={post.photo} className="blog-post-img" alt={post.title} width={0} height={0} sizes="100vw" style={{ width: '80%', height: '20%' }} />
-      </div>
-        <h6>{post.title}
-       </h6>
-        <br />
-      </div>
+        <div className="blog-entry text-center">
+          <div>
+            <Image src={post.photo} className="blog-post-img" alt={post.title} width={0} height={0} sizes="100vw" style={{ width: '80%', height: '20%' }} />
+          </div>
+          <h5 className='text-yellow mt-3'>{post.title}
+          </h5>
+          <br />
+        </div>
       </a>
     </div>
   )
@@ -43,31 +43,31 @@ export default function Home() {
           <div className="col-xl-12 mt-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center slider-text padding-top-10per" >
             <div className="text" >
               <p className="header-text-feature-b  mtbottom20"><span className='text-yellow'>Level Up Your .NET Skills</span></p>
-              <p className="header-text-feature-b mtbottom20">One Tip at a Time</p>
+              <p className="header-text-feature-b mtbottom20">One Tip Weekly</p>
               <div className='container mt-5'>
-              <div className='row text-center'>
-                <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
-                <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center"
-                  dangerouslySetInnerHTML={{
-                    __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
-                  }}
-                ></div>
-                <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
+                <div className='row text-center'>
+                  <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
+                  <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center"
+                    dangerouslySetInnerHTML={{
+                      __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
+                    }}
+                  ></div>
+                  <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
+                </div>
               </div>
-              </div>
-              <p className="mb-4 mt-5 header-sub-text">Every <span className='text-yellow'>
-              Every Monday</span>, learn a <span className='text-yellow'>New .NET Trick</span> you can apply instantly!</p>
+              <p className="mb-4 mt-5 header-sub-text"><span className='text-yellow'>
+                Every Monday</span>, learn a <span className='text-yellow'>New .NET Trick</span> you can apply instantly!</p>
               <div className='container'>
-              <div className='row text-center'>
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2 mb-5">
-    <div className="senja-embed" data-id="ea80a7ca-913b-44b0-be8f-ff917bc894e0" data-lazyload="false"></div>
-    <Script 
-      src="https://static.senja.io/dist/platform.js" 
-      async 
-      type="text/javascript">
-    </Script>
-  </div>
-              </div>
+                <div className='row text-center'>
+                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2 mb-5">
+                    <div className="senja-embed" data-id="ea80a7ca-913b-44b0-be8f-ff917bc894e0" data-lazyload="false"></div>
+                    <Script
+                      src="https://static.senja.io/dist/platform.js"
+                      async
+                      type="text/javascript">
+                    </Script>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -97,13 +97,14 @@ export default function Home() {
             </div>
           </div>
           <div className="row text-center">
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-5">
               <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">Design Patterns Simplified ebook
+                <h3><a href="blog/github-webhook.html">TheCodeMan Community
                 </a></h3>
                 <br />
-                <h5> In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format. It is a Beginner level. </h5>
-                <a href='/design-patterns-simplified' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Check out it here</button></a>
+                <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. Your hub for .NET content, mini-courses, and expert advice for silly price! </h5>
+                <a href='https://www.skool.com/thecodeman'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join Community</button>
+                </a>
               </div>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -116,24 +117,23 @@ export default function Home() {
                 <a href='/sponsorship' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'> Reserve a spot</button></a>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-5">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">TheCodeMan.NET Newsletter
+                <h3><a href="blog/github-webhook.html">Design Patterns ebooks
                 </a></h3>
                 <br />
-                <h5 >Every Monday morning, I share 1 actionable tip on C#, .NET & Arcitecture topic, that you can use right away.
-                </h5>
-                <a href='/'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join {config.NewsletterSubCount}</button>
-                </a>
+                <h5> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</h5>
+                <a href='/design-patterns-that-deliver-ebook' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Check out the last ebook</button></a>
               </div>
             </div>
+
           </div>
         </div>
       </section>
-
+      <hr className='background-yellow'></hr>
       <section className="ftco-section" id="blog-section">
         <div className="container">
-          <div className="row justify-content-center mb-5 pb-5">
+          <div className="row justify-content-center">
             <div className="col-md-7 heading-section text-center">
             </div>
           </div>
@@ -185,61 +185,55 @@ export default function Home() {
               <p className='text-white'>Reach out to me and follow my content on one of the following networks:</p>
             </div>
           </div>
-
-          <div className="row d-flex contact-info mb-5">
-            <div className="col-md-6 col-lg-3 d-flex ">
-              <div className="align-self-stretch box p-4 text-center">
-                <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank"  rel="noopener">
-                    <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-                  </a>
-                </div>
-                <h3 className="mb-4">Linkedin</h3>
+          <div className="row d-flex text-center contact-info mb-5">
+          <div className='col-md-2'></div>
+            <div className='col-md-8'>
+              <div className='row'>
+              <div className="col-md-2 d-flex">
+              <a href="https://www.skool.com/thecodeman" target="_blank" rel="noopener">
+                <Image src={'/images/icons/skool-icon.webp'} className='social-icon' alt={'Skool Community'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+              </a>
+            </div>
+            <div className="col-md-2 d-flex">
+              <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener">
+                <Image src={'/images/icons/youtube-icon.png'} className='social-icon' alt={'YouTube Channel'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+              </a>
+            </div>
+            <div className="col-md-2 d-flex">
+              <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank" rel="noopener">
+                <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+              </a>
+            </div>
+            <div className="col-md-2 d-flex ">
+              <a href="https://twitter.com/TheCodeMan__" target="_blank" rel="noopener">
+                <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter (X)'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+              </a>
+            </div>
+            <div className="col-md-2 d-flex ">
+              <a href="https://github.com/StefanTheCode" target="_blank" rel="noopener">
+                <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+              </a>
+            </div>
+            <div className="col-md-2 d-flex">
+              <a href="https://medium.com/@thecodeman" target="_blank" rel="noopener">
+                <Image src={'/images/icons/medium-icon.png'} className='social-icon' alt={'Medium'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+              </a>
+            </div>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 d-flex ">
-              <div className="align-self-stretch box p-4 text-center">
-                <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://twitter.com/TheCodeMan__" target="_blank"  rel="noopener">
-                    <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-
-                  </a>
-                </div>
-                <h3 className="mb-4">Twitter</h3>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3 d-flex ">
-              <div className="align-self-stretch box p-4 text-center">
-                <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://github.com/StefanTheCode" target="_blank"  rel="noopener">
-                    <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-
-                  </a>
-                </div>
-                <h3 className="mb-4">Github</h3>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3 d-flex ">
-              <div className="align-self-stretch box p-4 text-center">
-                <div className="icon d-flex align-items-center justify-content-center">
-                  <a href="https://www.instagram.com/the.code.man/" target="_blank"  rel="noopener">
-                    <Image src={'/images/icons/instagram-icon.png'} className='social-icon' alt={'Instagram Logo'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-
-                  </a>
-                </div>
-                <h3 className="mb-4">Instagram</h3>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
+      <hr className='background-yellow'></hr>
+
       <section className="ftco-section contact-section ftco-no-pb" id="contact-section">
         <div className="container">
-      <div className='row'>
-        <div className='col-md-12'>
-        <Subscribe />
-        </div>
-      </div></div>
+          <div className='row'>
+            <div className='col-md-12'>
+              <Subscribe />
+            </div>
+          </div></div>
       </section>
     </>
   )

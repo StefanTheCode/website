@@ -4,8 +4,7 @@ export default function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-md-12 text-center">
-            <p>Copyright &copy;
-              2024 All rights reserved
+            <p> &copy; 2024 STEFAN ĐOKIĆ PR THE CODE MAN
             </p>
           </div>
         </div>
