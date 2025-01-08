@@ -12,6 +12,8 @@ meta_description: ".NET 9 introduces exciting enhancements to LINQ (Language Int
 ##### • Tired of outdated API documentation holding your team back? Postman simplifies your life by [automatically syncing documentation with your API updates](https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic) - no more static docs, no more guesswork!
 ##### [Read more](https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic).
 
+<!--START-->
+
 &nbsp; &nbsp; 
 ### The background
 &nbsp; &nbsp; 
@@ -172,4 +174,7 @@ foreach ((var index, var person) in people.Index())
 
 ##### That's all from me for today.
 &nbsp;
+
+<!--END-->
+
 ## <b > dream BIG! </b>
