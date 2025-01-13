@@ -8,7 +8,7 @@ photoUrl: "/images/blog/newsletter21.png"
 &nbsp;  
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
-##### • Download JetBrains for [FREE NOW here](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter).
+##### • Download JetBrains Rider IDE for [FREE NOW here](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter).
 &nbsp;  
 &nbsp;  
 
