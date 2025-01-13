@@ -1,16 +1,14 @@
 ---
 title: "Saga Orchestration Pattern"
 subtitle: "SAGA is a sequential process that manages transactions between microservices by breaking each operation into multiple smaller transactions that can be independently executed and compensated."
-date: "June 24 2024"
+date: "January 13 2025"
 photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
-##### • Boost your API development with Postman's API Documentation! Experience seamless integration, detailed endpoint information, and real-time updates, all designed to enhance your developer experience and streamline your workflow. Explore the Postman API Platform now and elevate your API project [here](https://www.postman.com/api-platform/api-documentation/).
-&nbsp;  
-##### • Create a production-ready Blazor application from start to finish with the latest edition of Web Development with Blazor by Jimmy Engstrom. You can learn more [here](https://amzn.to/3KNEATs).
+##### • Download JetBrains for [FREE NOW here](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter).
 &nbsp;  
 &nbsp;  
 
