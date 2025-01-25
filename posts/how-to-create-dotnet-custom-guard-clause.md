@@ -13,6 +13,11 @@ meta_description: "Explore innovative error handling strategies for .NET develop
 ##### • Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at [this webinar](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d) which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers.
 ##### Join [here](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d).
 
+&nbsp;  
+&nbsp;  
+### Watch YouTube video here
+[![Watch YouTube video](/images/blog/posts/how-to-create-dotnet-custom-guard-clause/youtube.png)](https://www.youtube.com/watch?v=jQxK02IdI4A&t=3s&ab_channel=TheCodeMan)
+
 <!--START-->
 &nbsp;  
 &nbsp;  

@@ -14,6 +14,11 @@ meta_description: "Learn how to use the Decorator Pattern in .NET to enhance you
 
 &nbsp;  
 &nbsp;  
+### Watch YouTube video here
+[![Watch YouTube video](/images/blog/posts/decorator-pattern-in-dotnet-explained/youtube.png)](https://www.youtube.com/watch?v=y5QoeiyywiA&ab_channel=TheCodeMan)
+
+&nbsp;  
+&nbsp;  
 ### The Background
 &nbsp;  
 &nbsp; 
