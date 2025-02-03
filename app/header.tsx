@@ -36,6 +36,27 @@ export default function Header() {
     <div className="collapse navbar-collapse" id="ftco-nav">
       <ul className="navbar-nav nav margin-left-auto">
         <li className="nav-item"><a href="/" className="nav-link"><span>Home</span></a></li>
+        <li className="nav-item dropdown">
+  <a
+    className="nav-link dropdown-toggle"
+    href="#"
+    id="navbarDropdown"
+    role="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    Get for Free
+  </a>
+  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a className="dropdown-item" href="/pass-your-interview">
+      Pass Interview Prep Kit
+    </a>
+    <a className="dropdown-item" href="/builder-pattern-free-stuff">
+    Builder Pattern Chapter
+    </a>
+  </div>
+</li>
         <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/blog"
             className="nav-link"><span>Blog</span></a></li>
                <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/design-patterns"
