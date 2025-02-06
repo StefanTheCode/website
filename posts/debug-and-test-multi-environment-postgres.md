@@ -225,7 +225,7 @@ app.MapDelete("/api/blog/{id:int}", async (int id, BlogService blogService) =>
 &nbsp; 
 
 ##### In order to add Aspire Orchestrator to your existing project, you just need to add it from the right-click menu on the API project:
-![Aspire Orchestrator](/images/blog/posts/debug-and-test-multi-environment-postgres/blog-posts-table.png)
+![Aspire Orchestrator](/images/blog/posts/debug-and-test-multi-environment-postgres/add-aspire.png)
 
 &nbsp; 
 &nbsp; 
