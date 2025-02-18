@@ -8,11 +8,11 @@ const PostPreview = (props: PostMetadata) => {
     return (
         <>
             <div className="d-flex">
-                <div className="col-sm-12 col-md-12 col-lg-12 pb-5">
-                    <div className="justify-content-start pb-3">
+                <div className="col-sm-12 col-md-12 col-lg-12">
+                    <div className="justify-content-start">
                         <div className="row" >
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
-                                <h3 className="text-left mt-minus15"><a href={href} className="newsletter-post-title" >{props.title}</a></h3>
+                                <h4 className="text-left"><a href={href} className="newsletter-post-title" >{props.title}</a></h4>
                                 <div className="row">
                                     <div className="col-md-6">
                                     <h6>{props.date}</h6>
@@ -22,7 +22,7 @@ const PostPreview = (props: PostMetadata) => {
                                     </div>
                                 </div>
                                 <br />
-                                <h6 className="blog-content mt-minus15">
+                                <h6 className="blog-content">
                                     {props.subtitle}
                                 </h6>
                             </div>
