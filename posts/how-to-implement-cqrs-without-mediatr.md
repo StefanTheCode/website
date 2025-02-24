@@ -14,6 +14,10 @@ meta_description: "CQRS (Command Query Responsibility Segregation) is a design p
 &nbsp;  
 &nbsp;  
 
+
+### [Watch YouTube video here](https://youtu.be/46DQDu0TJJU?si=ifbb4BrJ-Jz5tGjR)
+![Watch YouTube video](/images/blog/posts/how-to-implement-cqrs-without-mediatr/youtube.png)
+
 <!--START-->
 
 &nbsp;  

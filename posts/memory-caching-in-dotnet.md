@@ -39,6 +39,12 @@ photoUrl: "/images/blog/newsletter21.png"
 
 &nbsp;  
 &nbsp;  
+
+### [4 Important types of caching - Watch YouTube video here](https://youtu.be/PpKEcbTrR4w?si=lkSRdS604rzhAJwa)
+![Watch YouTube video](/images/blog/posts/memory-caching-in-dotnet/youtube.png)
+
+&nbsp;  
+&nbsp;  
 ### Memory Cache Implementation in .NET
 &nbsp;  
 &nbsp;  

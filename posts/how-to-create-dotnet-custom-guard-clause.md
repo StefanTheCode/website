@@ -15,8 +15,9 @@ meta_description: "Explore innovative error handling strategies for .NET develop
 
 &nbsp;  
 &nbsp;  
-### Watch YouTube video here
-[![Watch YouTube video](/images/blog/posts/how-to-create-dotnet-custom-guard-clause/youtube.png)](https://www.youtube.com/watch?v=jQxK02IdI4A&t=3s&ab_channel=TheCodeMan)
+### [Watch YouTube video here](https://www.youtube.com/watch?v=jQxK02IdI4A&t=3s&ab_channel=TheCodeMan)
+![Watch YouTube video](/images/blog/posts/how-to-create-dotnet-custom-guard-clause/youtube.png)
+
 
 <!--START-->
 &nbsp;  
