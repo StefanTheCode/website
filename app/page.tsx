@@ -99,7 +99,7 @@ export default function Home() {
           <div className="row text-center">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
               <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">TheCodeMan Community
+                <h3><a href="https://www.skool.com/thecodeman">TheCodeMan Community
                 </a></h3>
                 <br />
                 <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. <br/>  Your hub for .NET content, mini-courses, and expert advice for silly price! </h5>
@@ -112,7 +112,7 @@ export default function Home() {
 
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">Promote your business to {config.NewsletterSubCount}
+                <h3><a href="/sponsorship">Promote your business to {config.NewsletterSubCount}
                 </a></h3>
                 <br />
                 <h5 >Looking to expand your followers, subscribers, or clientele swiftly? <br /> Feature your brand in my newsletter!
@@ -122,11 +122,11 @@ export default function Home() {
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">YouTube Channel
+                <h3><a href="https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-">YouTube Channel
                 </a></h3>
                 <br />
                 <h5> Check out the last video:</h5>
-                <a href='https://www.youtube.com/watch?v=46DQDu0TJJU' target='_blank'  className='text-black'>
+                <a href='https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-' target='_blank'  className='text-black'>
                 <h4>How to implement CQRS without MediatR in .NET?</h4>
                 <Image src={'/images/last-youtube.png'} className='social-icon' alt={'Last YouTube video'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                 </a>
@@ -134,7 +134,7 @@ export default function Home() {
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="blog-entry text-center">
-                <h3><a href="blog/github-webhook.html">Design Patterns ebooks
+                <h3><a href="/design-patterns-that-deliver-ebook">Design Patterns ebooks
                 </a></h3>
                 <br />
                 <h5> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</h5>

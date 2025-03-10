@@ -14238,6 +14238,10 @@ textarea.form-control {
   width: 128px !important;
 }
 
+.sponsors-img {
+  width: auto !important;
+}
+
 .social-icon {
   width: 50% !important;
 }

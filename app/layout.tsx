@@ -98,6 +98,11 @@ export default function RootLayout({
         <Header></Header>
         {children}
         <Footer></Footer>
+        <div
+                      dangerouslySetInnerHTML={{
+                        __html: `<script async src="https://eomail4.com/form/68cdd53c-a55f-11ed-a80d-c50d697f08bd.js" data-form="68cdd53c-a55f-11ed-a80d-c50d697f08bd"></script>`
+                      }}
+                    />
       </body>
     </html>
   )

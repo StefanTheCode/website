@@ -1,4 +1,5 @@
 import SponsorsNewsletter from '@/components/sponsorsTestimonials';
+import Image from 'next/image'
 import config from '@/config.json'
 import { Metadata } from 'next';
 
@@ -47,7 +48,23 @@ const Sponsorship = () => {
                   <br />
                   <h5 className='mb-5'>Reserve your sponsorship: <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a></h5>
                   {/* <h5><b>Currently booked out 2 weeks</b></h5> */}
-                  <h5>Previous Sponsors: <b>{config.PreviousSponsors}</b></h5>
+                </div>
+              </div>
+              <div className="row pb-3">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h1>Previous Sponsors</h1>
+                </div>
+                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                <Image src={'/images/sponsors/postman.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                <Image src={'/images/sponsors/jetbrains.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                <Image src={'/images/sponsors/neon.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                <Image src={'/images/sponsors/abp.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                </div>
+                </div>
+              <div className="row pb-3">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h1>Previous Sponsors</h1>
+                  <br />
                 </div>
                 <SponsorsNewsletter />
               </div>

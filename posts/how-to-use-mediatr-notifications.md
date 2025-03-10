@@ -13,6 +13,8 @@ meta_description: "Discover the intricacies of MediatR Notifications in .NET in 
 &nbsp;  
 ##### • Level up your projects with FREE Clean Architecture template created by Milan Jovanovic, trusted by over 10,000 developers. Packed with features like CQRS, JWT authentication, Domain Events, and Docker support, it’s everything you need to start strong. [Download Now](https://www.milanjovanovic.tech/templates/clean-architecture?utm_source=stefan&utm_medium=website)
 
+<!--START-->
+
 &nbsp;  
 &nbsp;  
 ### Background
@@ -186,3 +188,5 @@ public record UserRegistrationRequest(string Email);
 ##### That's all from me today. 
 
 ##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+
+<!--END-->
