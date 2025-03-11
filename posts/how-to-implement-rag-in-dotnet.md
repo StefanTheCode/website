@@ -420,7 +420,7 @@ public class Program
 ##### Whether you're building a developer assistant, a smart knowledge base, or an AI-powered search engine, this foundation sets you up for scalable and efficient AI-driven retrieval!
 &nbsp;
 
-##### Check out the [source code here](https://github.com/StefanTheCode/RAG_System_Basics).
+##### Check out the [source code here](https://thecodeman.net/rag-system-dotnet).
 &nbsp;
 
 ##### That's all from me today.
