@@ -55,6 +55,9 @@ export default function Header() {
     <a className="dropdown-item" href="/builder-pattern-free-stuff">
     Builder Pattern Chapter
     </a>
+    <a className="dropdown-item" href="/rag-system-dotnet">
+    RAG System in .NET
+    </a>
   </div>
 </li>
         <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav"><a href="/blog"
