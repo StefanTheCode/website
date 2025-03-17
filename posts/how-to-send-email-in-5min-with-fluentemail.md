@@ -1,24 +1,17 @@
 ---
-newsletterTitle: "#29 Stefan's Newsletter"
 title: "How to send email in 5min with FluentEmail?"
 subtitle: "FluentEmail is a popular open-source library for sending emails from .NET applications..."
-readTime: "Read Time: 5 minutes"
-date: "Aug 28 2023"
-photoUrl: "/images/blog/newsletter21.png"
+readTime: "Read Time: 3 minutes"
+date: "Mar 17 2025"
 meta_description: "Effortlessly integrate email functionality in .NET: Learn about FluentEmail's quick setup, versatile email sender options, and template rendering. Ideal for .NET developers."
 ---
 &nbsp;  
 &nbsp;  
-### Thank you!
+##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
+&nbsp;   
+##### • I'm preapring **Enforcing Code Style course** in my **[TheCodeMan Community](https://www.skool.com/thecodeman)**. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 **[Join now](https://www.skool.com/thecodeman)** and grab my first ebook for free.
 &nbsp;  
-&nbsp;  
-##### We just passed **6000 of you really wonderful people** who follow me here and send content. I try to ensure that each newsletter issue is of sufficient quality to provide you with enough value.
-&nbsp;  
-##### I would like you to write me testimonials that would help me and other people who would come to the Newsletter. At the end of the completed testimonials, as a sign of gratitude, **I will give you something valuable.**
-&nbsp;  
-##### [Write it here](https://senja.io/p/newsletter-AWD/r/gNtLlU).
-&nbsp;  
-##### Thank you!
+##### • The best **[Pragmatic RESTful APIs in .NET course](https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla)** is finally live! It's created by Milan Jovanovic. This is not a paid ad - it's just my recommendation. I didn't watch the better material than this. You have a discount through my affiliate link. [Check it out now](https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla).
 &nbsp;  
 &nbsp;  
 ### Background
@@ -32,7 +25,7 @@ meta_description: "Effortlessly integrate email functionality in .NET: Learn abo
 &nbsp;  
 ##### And a thousand more such examples. Production applications today cannot live without some kind of email sending. That's why we need something easily and quickly configurable for sending emails.
 &nbsp;  
-##### Introducing FluentEmail.
+##### Introducing **FluentEmail**.
 &nbsp;  
 ##### FluentEmail is a popular open-source library for sending emails from .NET applications. It provides an fluent interface (fluent syntax). That means we can easily create an email message, add recipients, set the subject, etc. by chaining methods.
 &nbsp;  
@@ -93,7 +86,6 @@ builder.Services.
        .AddFluentEmail("from@gmail.com")
        .AddRazorRenderer()
        .AddSmtpSender("localhost", 25);
-
 ```
 &nbsp;  
 ##### What I did here?
@@ -136,7 +128,6 @@ public class EmailService : IEmailService
 ```csharp
 
 dotnet add package FluentEmail.Razor
-
 ```
 &nbsp;  
 ##### The RazorRenderer supports **any valid Razor code** .
@@ -163,7 +154,6 @@ var email = new Email()
       .To("test@gmail.com")
       .Subject("Razor template example")
       .UsingTemplate(template, model);
-
 ```
 &nbsp;  
 ##### **Some other templates?**
@@ -191,7 +181,6 @@ var email = new Email()
 ```csharp
 
 dotnet add package FluentEmail.SendGrid
-
 ```
 &nbsp;  
 ##### And lastly, you just need to configure it in Program.cs:
@@ -200,7 +189,6 @@ dotnet add package FluentEmail.SendGrid
 builder.Services
        .AddFluentEmail("from@gmail.com")
        .AddSendGridSender("apikey");
-
 ```
 &nbsp;  
 ##### And that's it. You have integrated it.
@@ -214,5 +202,13 @@ builder.Services
 ##### I showed you how with the help of the FluentEmail library it is possible to send an email in 5 minutes. It can be easily integrated with various Email Senders, as well as being able to include various renders.
 &nbsp;  
 ##### You can go to the project's [GitHub repository](https://github.com/lukencode/FluentEmail?ref=lukelowrey.com) and get acquainted with the details.
-&nbsp;  
+&nbsp;
+
 ##### That's all from me today.
+&nbsp;
+ 
+##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+
+<!--END-->
+
+## <b > dream BIG! </b>
