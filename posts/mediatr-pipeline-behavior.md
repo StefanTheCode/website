@@ -14,6 +14,11 @@ meta_description: "Explore the concept of MediatR Pipeline Behavior in .NET in t
 ##### For more info about gRPC, they created a great beginner article ** [here](https://blog.postman.com/what-is-grpc/) **.
 &nbsp;  
 &nbsp;  
+### [Watch YouTube video here](https://youtu.be/km4W27ggQzY?si=hRtPd4ZrXP79Q6uF)
+![Watch YouTube video](/images/blog/posts/mediatr-pipeline-behavior/youtube.png)
+
+&nbsp;  
+&nbsp;  
 ### The Background
 &nbsp;  
 &nbsp;  
