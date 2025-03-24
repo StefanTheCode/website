@@ -1,17 +1,21 @@
 ---
-newsletterTitle: "#55 Stefan's Newsletter"
 title: "Response Compression in ASP.NET"
 subtitle: "Since there's a limited amount of network bandwidth available...
 "
-readTime: "Read Time: 6 minutes"
-date: "Feb 19 2024"
+readTime: "Read Time: 4 minutes"
+date: "Mar 24 2024"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Optimize your .NET APIs with Response Compression: A deep dive into enhancing performance, setting up compression providers, and understanding the impact on server load and security."
 ---
 
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;
-##### • Streamline your API development with **[Postman's REST Client](https://www.postman.com/product/rest-client/)** a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at **[link](https://www.postman.com/product/rest-client/)**.
+##### • Big news for .NET developers!
+
+##### You asked, and Heroku from Salesforce delivered. Their official .NET support is here. Developers have been using community buildpacks to run .NET apps on Heroku for a while. But now, Heroku is bringing native support into the mix. 
+&nbsp;
+##### That means you get all the capabilities of .NET, paired with [Heroku’s streamlined platform]((https://fnf.dev/4kH4x81)). No hacks, no workarounds - just a seamless way to build and scale .NET apps on a platform you already love. [Check it out here](https://fnf.dev/4kH4x81)
+
 &nbsp;  
 &nbsp;  
 ### The Background
