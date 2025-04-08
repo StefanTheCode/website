@@ -40,6 +40,10 @@ meta_description: "Wolverine is a high-performance .NET library for CQRS, messag
 ##### This has sparked interest in **alternatives** - and one name stands out: [Wolverine](https://wolverinefx.net/).
 &nbsp;  
 
+##### Wolverine is a high-performance .NET library for CQRS, messaging, and background processing. Built with source generators, it replaces MediatR and adds advanced features like retries, scheduling, sagas, and outbox support.
+
+&nbsp;  
+
 ##### Wolverine is more than just a drop-in replacement for MediatR. It offers:
 &nbsp;  
 
