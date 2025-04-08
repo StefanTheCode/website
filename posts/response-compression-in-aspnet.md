@@ -16,6 +16,8 @@ meta_description: "Optimize your .NET APIs with Response Compression: A deep div
 &nbsp;
 ##### That means you get all the capabilities of .NET, paired with [Heroku’s streamlined platform]((https://fnf.dev/4kH4x81)). No hacks, no workarounds - just a seamless way to build and scale .NET apps on a platform you already love. [Check it out here](https://fnf.dev/4kH4x81)
 
+<!--START-->
+
 &nbsp;  
 &nbsp;  
 ### The Background
@@ -242,3 +244,5 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 &nbsp;  
 
 ##### That's all from me today. 
+
+<!--END-->
