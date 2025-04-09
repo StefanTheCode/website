@@ -57,7 +57,14 @@ const PassYourInterview = () => {
               <h6 className='text-white'> 🟡 Basic, Intermediate and Advanced levels </h6>
               <h6 className='text-white'> 🟡 General, Framework-Specific, Testing & Best Practices </h6>
               <br/>
-
+              <div className='bg-green'>
+                <h6>NEW!</h6>
+              </div>
+              <h5>✅ The Job-Seeking .NET Developer’s LinkedIn Handbook </h5>
+              <h6 className='text-white'> 🟡 Short ebook with ready-to-start actions </h6>
+              <h6 className='text-white'> 🟡 Real examples, checklists & tools </h6>
+              <h6 className='text-white'> 🟡 Casual, recruiter-friendly language </h6>
+              <br/>
               <h5>✅ Monthly Updates</h5>
               <div className='row text-center'>
             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center' 

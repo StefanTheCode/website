@@ -49,6 +49,15 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.bg-green
+{
+  background-color: #004b00;
+  width: 20%;
+  text-align: center;
+  border-radius: 9999px;
+  color: rgb(74 222 128);
+}
+
 article,
 aside,
 figcaption,
