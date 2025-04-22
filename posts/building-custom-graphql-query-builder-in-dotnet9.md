@@ -7,6 +7,8 @@ photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Optimize your .NET APIs with Response Compression: A deep dive into enhancing performance, setting up compression providers, and understanding the impact on server load and security."
 ---
 
+<!--START-->
+
 ##### **🚀 Coming Soon: Enforcing Code Style**
 &nbsp;
 ##### A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
@@ -409,3 +411,4 @@ app.MapGet("/orders", async (
 &nbsp;  
 
 ##### That's all from me today. 
+<!--END-->

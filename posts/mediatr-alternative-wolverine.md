@@ -7,6 +7,7 @@ photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Wolverine is a high-performance .NET library for CQRS, messaging, and background processing. Built with source generators, it replaces MediatR and adds advanced features like retries, scheduling, sagas, and outbox support."
 ---
 
+<!--START-->
 ##### **🚀 Coming Soon: Enforcing Code Style**
 &nbsp;
 ##### A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
@@ -341,3 +342,4 @@ app.Run();
 &nbsp;  
  
 ##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+<!--END-->

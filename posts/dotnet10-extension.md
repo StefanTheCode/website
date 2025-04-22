@@ -7,6 +7,7 @@ photoUrl: "/images/blog/newsletter21.png"
 meta_description: "With .NET 10 extension feature now you can define extension blocks for any type."
 ---
 
+<!--START-->
 ##### **🚀 Coming Soon: Enforcing Code Style**
 &nbsp;
 ##### A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
@@ -244,3 +245,4 @@ if (order.TotalAmount > 1000 && order.IsComplete)
 &nbsp;  
  
 ##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+<!--END-->
