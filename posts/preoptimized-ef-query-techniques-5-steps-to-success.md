@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#43 Stefan's Newsletter"
 title: "Pre-Optimized EF Query Techniques 5 Steps to Success"
 subtitle: "How to optimize the EF Core queries? Write them properly the first time. We often hear about optimizing a piece of code, or a query, and it mostly refers to refactoring code that wasn't written well from the beginning."
 readTime: "Read Time: 4 minutes"
@@ -11,8 +10,10 @@ meta_description: "Dive into advanced Entity Framework Core query optimization t
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
 ##### • If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** [writing tests for your gRPC requests in Postman](https://blog.postman.com/testing-grpc-apis-with-postman/) **. For more info about gRPC, they created a great beginner article ** [here](https://blog.postman.com/what-is-grpc/)**.
-&nbsp;  
-##### • Demystify C# 12 and .NET 8 (hyperlink) with a ** [user-friendly guide](https://packt.link/3dY1N) ** - tailored for beginner-to-intermediate programmers, exploring essential concepts, real-world applications, and cutting-edge features. Dive into the latest features, master ASP.NET Core 8, and build professional websites using Visual Studio 2022 and Visual Studio Code.
+&nbsp;   
+##### **• Struggling with slow EF Core performance?**
+##### Unlock up to 14x faster operations and cut execution time by 94% with [high-performance library for EF Core](https://entityframework-extensions.net/).  Seamlessly enhance your app with Bulk Insert, Update, Delete, and Merge—fully integrated into your existing EF Core workflows.
+##### Trusted by 5,000+ developers since 2014. Ready to boost your performance? **[Explore the solution](https://entityframework-extensions.net/)**
 &nbsp;  
 &nbsp;  
 ### The Background

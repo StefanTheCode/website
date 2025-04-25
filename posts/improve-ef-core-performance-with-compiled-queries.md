@@ -8,14 +8,14 @@ photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Unlock the secrets to enhancing Entity Framework Core performance with Stefan Đokić's guide on compiled queries. Learn to optimize database interactions in .NET applications by utilizing compiled queries for faster execution and efficient resource use. Ideal for developers seeking to refine EF Core operations and achieve superior performance in data-intensive .NET environments."
 ---
 
-<br>
+&nbsp;  
 ##### <b>Many thanks to the sponsors who make it possible for this newsletter to be free for readers.</b>
-<br>
-<br>
+&nbsp;  
 ##### • If you have ever used Postman to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for [writing tests for your gRPC requests in Postman](https://blog.postman.com/testing-grpc-apis-with-postman/). For more info about gRPC, they created a great beginner article [here](https://blog.postman.com/what-is-grpc/).  
-<br>
-<br>
-#####• If you’re an existing Java developer who wants to go full stack or pick up another frontend framework, [this book](https://packt.link/EYtrA) is your concise introduction to <b>React</b>. Along the way, you’ll explore modern libraries and tools, such as Gradle, Vite, Vitest, and React Query. For the first time ever, it also covers React development with the in-demand TypeScript.
+&nbsp;  
+##### **• Struggling with slow EF Core performance?**
+##### Unlock up to 14x faster operations and cut execution time by 94% with [high-performance library for EF Core](https://entityframework-extensions.net/).  Seamlessly enhance your app with Bulk Insert, Update, Delete, and Merge—fully integrated into your existing EF Core workflows.
+##### Trusted by 5,000+ developers since 2014. Ready to boost your performance? **[Explore the solution](https://entityframework-extensions.net/)**
 
 <br>
 <hr style='background-color: #fff'>

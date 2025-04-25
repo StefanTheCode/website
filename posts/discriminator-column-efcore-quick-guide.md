@@ -9,10 +9,12 @@ meta_description: "In Entity Framework (EF) Core, a discriminator is a special c
 
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;   
+##### **• Struggling with slow EF Core performance?**
+##### Unlock up to 14x faster operations and cut execution time by 94% with [high-performance library for EF Core](https://entityframework-extensions.net/).  Seamlessly enhance your app with Bulk Insert, Update, Delete, and Merge—fully integrated into your existing EF Core workflows.
+##### Trusted by 5,000+ developers since 2014. Ready to boost your performance? **[Explore the solution](https://entityframework-extensions.net/)**
+&nbsp;  
 ##### • With Postman’s AI Agent Builder making waves, I can’t wait to see what’s in store at [POST/CON](https://www.postman.com/postcon/?utm_campaign=fy26_global_postcon_25&utm_medium=influencer_pd&utm_source=stefan-djokic&utm_content=save-the-date-influencers) this year. Last year was phenomenal - you remember I attended it in SF. Sign up for updates now! Save the date and join the mailing list [here](https://www.postman.com/postcon/?utm_campaign=fy26_global_postcon_25&utm_medium=influencer_pd&utm_source=stefan-djokic&utm_content=save-the-date-influencers).
 &nbsp;   
-
-##### • I launched my YouTube channel and built [TheCodeMan Community](https://www.skool.com/thecodeman) - your hub for .NET content, mini-courses, and expert advice! The first 100 members get in for just $4/month! 70 member are already there. 🚀 [Join now](https://www.skool.com/thecodeman) and grab my first ebook for free.
 
 <!--START-->
 
