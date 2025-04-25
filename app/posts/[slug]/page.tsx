@@ -5,17 +5,13 @@ import getPostMetadata from "../../../components/getPostMetadata";
 import '../[slug]/page.module.css'
 import Subscribe from "@/app/subscribe";
 import Affiliate from "@/app/affiliate";
-import config from '@/config.json'
-import { Metadata } from "next";
+import config from '@/config.json';
 import { notFound } from "next/navigation";
+import Head from "next/head";
 import Help from "@/app/help";
 
-
 const getPostContent = (slug: string) => {
-
-  if (!slug || slug == null) {
-    notFound();
-  }
+  if (!slug) notFound();
 
   try {
     const folder = "posts/";
@@ -23,56 +19,10 @@ const getPostContent = (slug: string) => {
     const content = fs.readFileSync(file, "utf8");
     const matterResult = matter(content);
     return matterResult;
-  }
-  catch {
+  } catch {
     notFound();
   }
 };
-
-export async function generateMetadata(props: any): Promise<Metadata> {
-
-  const slug = props.params.slug;
-  const post = getPostContent(slug);
-
-  console.log(post.data);
-
-  if (!post) notFound();
-
-
-  return {
-    title: post.data.title,
-    description: post.data.meta_description,
-    openGraph: {
-      title: post.data.title,
-      type: "article",
-      publishedTime: post.data.date,
-      url: "https://thecodeman.net/images/blog/" + slug + ".png",
-      authors: "Stefan Djokic",
-      description: post.data.meta_description,
-      images: [
-        {
-          url: "https://thecodeman.net/images/blog/" + slug + ".png",
-          width: "1000px",
-          height: "700px"
-        }
-      ],
-    },
-    twitter: {
-      title: post.data.title,
-      card: "summary_large_image",
-      site: "@TheCodeMan__",
-      creator: "@TheCodeMan__",
-      description: post.data.meta_description,
-      images: [
-        {
-          url: "https://thecodeman.net/images/blog/" + slug + ".png",
-          width: "1000px",
-          height: "700px"
-        }
-      ]
-    }
-  }
-}
 
 export const generateStaticParams = async () => {
   const posts = getPostMetadata();
@@ -85,36 +35,68 @@ const PostPage = (props: any) => {
   const slug = props.params.slug;
   const post = getPostContent(slug);
 
-  if (!post || post == null) {
-    notFound();
-  }
+  if (!post) notFound();
+
+  const meta = {
+    title: post.data.title,
+    description: post.data.meta_description || "",
+    image: `https://thecodeman.net/images/blog/${slug}.png`,
+    url: `https://thecodeman.net/posts/${slug}`,
+    date: post.data.date
+  };
 
   return (
     <>
+      <Head>
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={meta.image} />
+        <meta property="og:url" content={meta.url} />
+        <meta property="article:published_time" content={meta.date} />
+        <meta property="article:author" content="Stefan Djokic" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+        <meta name="twitter:site" content="@TheCodeMan__" />
+        <meta name="twitter:creator" content="@TheCodeMan__" />
+      </Head>
+
       <section className="img ftco-section">
         <div className="container">
           <div className="row justify-content-center pb-5 pt-10">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section border-right">
               <div className="row justify-content-center pb-5">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center">
-                  {/* <h2 className="blog-header">{post.data.newsletterTitle}</h2> */}
-                  <h2 className="blog-header2">{post.data.title}</h2>
-                  <p className="text-slate-400 mt-2">{post.data.date}</p>
+                  <h2 className="blog-header2">{meta.title}</h2>
+                  <p className="text-slate-400 mt-2">{meta.date}</p>
                 </div>
               </div>
               <Markdown>{post.content}</Markdown>
-          <Help />
-          <Subscribe />
+              <Help />
+              <Subscribe />
             </div>
+
             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
               <div className="row justify-content-center pb-5 fixed-position">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h4 >Subscribe to <br />TheCodeMan.net</h4>
-                  <p className="text-slate-400 mt-2">Subscribe to the TheCodeMan.net and be among the <span className="text-yellow"> {config.NewsletterSubCount}</span> gaining practical tips and resources to enhance your .NET expertise.</p>
+                  <h4>Subscribe to <br />TheCodeMan.net</h4>
+                  <p className="text-slate-400 mt-2">
+                    Subscribe to the TheCodeMan.net and be among the{" "}
+                    <span className="text-yellow">{config.NewsletterSubCount}</span> gaining practical tips and resources to enhance your .NET expertise.
+                  </p>
                   <div className="row">
-                    <div className="col-md-12 padding-left0 padding-right0"
+                    <div
+                      className="col-md-12 padding-left0 padding-right0"
                       dangerouslySetInnerHTML={{
-                        __html: `<script async src="https://eomail4.com/form/03cc8224-cde8-11ef-b5d5-4bdfe653a4b5.js" data-form="03cc8224-cde8-11ef-b5d5-4bdfe653a4b5"></script>`
+                        __html: `<script async src="https://eomail4.com/form/03cc8224-cde8-11ef-b5d5-4bdfe653a4b5.js" data-form="03cc8224-cde8-11ef-b5d5-4bdfe653a4b5"></script>`,
                       }}
                     />
                   </div>
@@ -122,9 +104,8 @@ const PostPage = (props: any) => {
               </div>
             </div>
           </div>
-        </div>  
-      </section >
-    
+        </div>
+      </section>
     </>
   );
 };
