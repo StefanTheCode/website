@@ -9,6 +9,7 @@ import config from '@/config.json'
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Help from "@/app/help";
+import MetadataHead from "@/app/posts/[slug]/MetadataHead";
 
 
 const getPostContent = (slug: string) => {
@@ -91,6 +92,8 @@ const PostPage = (props: any) => {
 
   return (
     <>
+    <MetadataHead slug={slug} folder="patterns" />
+    
       <section className="img ftco-section">
         <div className="container">
           <div className="row justify-content-center pb-5 pt-10">

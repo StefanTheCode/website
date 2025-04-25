@@ -9,6 +9,7 @@ import config from '@/config.json';
 import { notFound } from "next/navigation";
 import Head from "next/head";
 import Help from "@/app/help";
+import MetadataHead from "./MetadataHead";
 
 const getPostContent = (slug: string) => {
   if (!slug) notFound();
@@ -47,28 +48,8 @@ const PostPage = (props: any) => {
 
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-
-        {/* Open Graph */}
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={meta.image} />
-        <meta property="og:url" content={meta.url} />
-        <meta property="article:published_time" content={meta.date} />
-        <meta property="article:author" content="Stefan Djokic" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={meta.title} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.image} />
-        <meta name="twitter:site" content="@TheCodeMan__" />
-        <meta name="twitter:creator" content="@TheCodeMan__" />
-      </Head>
-
+      <MetadataHead slug={slug} folder="posts" />
+      
       <section className="img ftco-section">
         <div className="container">
           <div className="row justify-content-center pb-5 pt-10">
