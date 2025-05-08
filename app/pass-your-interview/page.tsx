@@ -1,22 +1,40 @@
 import { Metadata } from 'next';
 import Image from 'next/image'
+import ogImage from '../pass-your-interview.png'
 
-export const metadata: Metadata = {
+export const metadata:Metadata = {
   metadataBase: new URL('https://thecodeman.net/pass-your-interview'),
-  title: "Pass your interview - FREE Questions with Answers",
-  description: "Prepare your .NET interview - use this TheCodeMan's FREE Builder Pattern Chapter from Design Patterns that Deliver ebook.",
+  alternates: {
+    canonical: 'https://thecodeman.net/pass-your-interview',
+  },
   openGraph: {
     title: "Pass your interview - FREE Questions with Answers",
+    description: "Prepare your .NET interview - use this TheCodeMan's FREE Preparation Kit to land your .NET Developer Job.",
+    images: [
+      {
+        url: '../pass-your-interview.png',
+        width: ogImage.width,
+        height: ogImage.height
+      }
+    ],
     type: "website",
-    url: "https://thecodeman.net/pass-your-interview",
-    description: "Pass your interview - FREE Questions with Answers."
-    },
-  twitter: {
-    title: "Pass your interview - FREE Questions with Answers",
+    url: "https://thecodeman.net/pass-your-interview"
+  },
+  title: "Pass your interview - FREE Questions with Answers",
+    description: "Prepare your .NET interview - use this TheCodeMan's FREE Preparation Kit to land your .NET Developer Job.",
+    twitter: {
+      title: "Pass your interview - FREE Questions with Answers",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Pass your interview - FREE Questions with Answers."
+    description: "Prepare your .NET interview - use this TheCodeMan's FREE Preparation Kit to land your .NET Developer Job.",
+    images: [
+      {
+        url: '/images/pass-your-interview.png',
+        width: ogImage.width,
+        height: ogImage.height
+      }
+    ]
   }
 }
 
