@@ -54,7 +54,7 @@ const BlogClient = ({ allPosts }: Props) => {
   const changePage = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", newPage.toString());
-    router.push(`/blog?${params.toString()}`, { shallow: true, scroll: false });
+    router.push(`/blog?${params.toString()}`, { scroll: false });
   };
 
   const selectCategory = (category: string | null) => {
@@ -65,7 +65,7 @@ const BlogClient = ({ allPosts }: Props) => {
       params.delete("category");
     }
     params.set("page", "1");
-    router.push(`/blog?${params.toString()}`, { shallow: true, scroll: false });
+    router.push(`/blog?${params.toString()}`, {  scroll: false });
   };
 
   const uniqueCategories = Array.from(new Set(allPosts.map(post => post.category))).filter(Boolean);

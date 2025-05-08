@@ -2,7 +2,7 @@
 title: "Deep dive into Source Generators"
 subtitle: "Source generators are components that run during the compilation process to inspect your code and generate additional C# source files."
 date: "August 12 2024"
-category: "Csharp"
+category: "CSharp"
 photoUrl: "/images/blog/newsletter21.png"
 ---
 

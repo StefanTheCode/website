@@ -5,7 +5,7 @@ subtitle: "Reference types in C# have always been nullable, meaning that variabl
 date: "February 13 2023"
 readTime: "Read Time: 2 minutes"
 photoUrl: "/images/blog/newsletter21.png"
-category: "Csharp"
+category: "CSharp"
 meta_description: "Explore the latest methods to handle Nullable References in .NET. This comprehensive guide covers 4 key strategies, essential for C# developers working with .NET 6 and beyond."
 ---
 
