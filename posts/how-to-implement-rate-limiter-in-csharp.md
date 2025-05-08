@@ -1,6 +1,7 @@
 ---
 newsletterTitle: "#7 Stefan's Newsletter"
 title: "How to implement a Rate Limiter in C#"
+category: ".NET"
 subtitle: "
 A rate limiter is a software mechanism that controls the amount of traffic or requests that can be sent to a server or API within a given time period...
 "

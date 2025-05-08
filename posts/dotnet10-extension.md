@@ -3,6 +3,7 @@ title: ".NET 10 Extension"
 subtitle: "With .NET 10 extension feature now you can define extension blocks for any type..."
 readTime: "Read Time: 3 minutes"
 date: "Apr 15 2025"
+category: "Csharp"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "With .NET 10 extension feature now you can define extension blocks for any type."
 ---

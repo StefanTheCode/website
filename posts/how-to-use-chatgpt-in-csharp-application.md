@@ -2,6 +2,7 @@
 newsletterTitle: "#2 Stefan's Newsletter"
 title: "How to use ChatGPT in C# application?"
 subtitle: "ChatGPT (Generative Pre-trained Transforer) is a large language model developed by OpenAI. It is designed to understand natural language ..."
+category: "AI"
 date: "February 20 2023"
 readTime: "Read Time: 3 minutes"
 photoUrl: "/images/blog/newsletter21.png"

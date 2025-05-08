@@ -4,6 +4,7 @@ subtitle: "
 Semantic search goes beyond traditional keyword matching. 
 Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here’s how it works:"
 date: "Feb 24 2025"
+category: "AI"
 readTime: "Read Time: 4 minutes"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "In the context of AI, semantic search has been widely used for tasks like document retrieval, recommendation systems, and conversational search applications."

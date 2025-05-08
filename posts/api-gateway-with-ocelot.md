@@ -4,6 +4,7 @@ title: "API Gateway with Ocelot"
 subtitle: "An API Gateway is a component of the app-delivery infrastructure that sits between clients..."
 readTime: "Read Time: 4 minutes"
 date: "Jan 29 2024"
+category: "APIs"
 photoUrl: "/images/blog/api-gateway-with-ocelot.png"
 meta_description: "Master API Gateway Ocelot in .NET: Learn to streamline microservices with efficient routing, load balancing, and authentication for robust API management."
 ---

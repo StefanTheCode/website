@@ -3,6 +3,7 @@ title: "Pre-Optimized EF Query Techniques 5 Steps to Success"
 subtitle: "How to optimize the EF Core queries? Write them properly the first time. We often hear about optimizing a piece of code, or a query, and it mostly refers to refactoring code that wasn't written well from the beginning."
 readTime: "Read Time: 4 minutes"
 date: "Dec 04 2023"
+category: "Entity Framework"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Dive into advanced Entity Framework Core query optimization techniques with Stefan Đokić's informative blog post. Discover five essential steps for efficient EF Core queries, including avoiding common pitfalls like N+1 queries and Cartesian explosions, and leveraging performance-enhancing methods like AsNoTracking and AsSplitQuery. Perfect for .NET developers aiming to elevate their database interaction skills."
 ---

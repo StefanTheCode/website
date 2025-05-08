@@ -2,6 +2,7 @@
 title: "Simplifying Integration with the Adapter Pattern"
 subtitle: "Imagine you’ve just moved to a new country. You’re excited to set up your home and plug in your laptop, only to realize the power outlets are completely different from the ones back home. "
 date: "Jan 27 2025"
+category: "Design Patterns"
 readTime: "Read Time: 8 minutes"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "The Adapter Design Pattern is a structural design pattern that allows two incompatible interfaces to work together by acting as a bridge. "

@@ -2,6 +2,7 @@
 title: "REPR Pattern - For C# developers"
 subtitle: "The Request, Endpoint, Response (REPR) pattern is a modern architectural approach often used in web development to design robust, scalable, and maintainable APIs..."
 date: "September 2 2024"
+category: "APIs"
 photoUrl: "/images/blog/newsletter21.png"
 ---
 

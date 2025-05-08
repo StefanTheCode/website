@@ -4,6 +4,7 @@ title: "Health Checks in .NET 8"
 subtitle: "Health Checks in ASP.NET are a way to assess the health of an application and its dependencies..."
 readTime: "Read Time: 4 minutes"
 date: "Jan 08 2024"
+category: "APIs"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Master Health Checks in .NET 8: Essential Guide for ASP.NET Core Apps - Learn to monitor application health effectively and ensure reliability. Ideal for .NET developers."
 ---

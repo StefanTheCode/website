@@ -4,6 +4,7 @@ title: "Getting Started with PLINQ"
 subtitle: "PLINQ queries are similar to regular LINQ queries, but they're designed to run faster by using all the processors on your computer..."
 readTime: "Read Time: 3 minutes"
 date: "Dec 25 2023"
+category: ".NET"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Delve into the world of Parallel LINQ (PLINQ) in Stefan Đokić's latest newsletter, exploring its power to process data faster by using multiple threads. Understand the basics of PLINQ, how it differs from regular LINQ, and its application in .NET programming. Learn about key features like the degree of parallelism, the ForAll operator, handling exceptions, and performance considerations. Ideal for developers seeking to enhance data processing efficiency in their .NET applications."
 ---

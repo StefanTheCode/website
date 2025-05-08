@@ -3,6 +3,7 @@ title: "How to create .NET Custom Guard Clause"
 subtitle: "Guard clauses in .NET are a programming practice used for improving the readability and reliability of code..."
 readTime: "Read Time: 3 minutes"
 date: "September 30 2024"
+category: "CSharp"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore innovative error handling strategies for .NET developers in this insightful blog post. Learn the advantages of using the Result<T> object over traditional exceptions, and how to effectively implement custom Result and Error classes for clearer, more efficient code management. A must-read for enhancing your coding practices in .NET."
 ---

@@ -1,6 +1,7 @@
 ---
 newsletterTitle: "#6 Stefan's Newsletter"
 title: "Clean Code - Best Practices"
+category: "CSharp"
 subtitle: "
 I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is...
 "

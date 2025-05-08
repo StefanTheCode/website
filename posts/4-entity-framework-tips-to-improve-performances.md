@@ -2,6 +2,7 @@
 title: "4 Entity Framework Tips to improve performances"
 subtitle: "If you are a beginner (seniors, wait a bit, there will be something for you too, and until then you can remind yourself) and you use EF Core, I strongly recommend you to go through this issue, and look at the code and benchmarks..."
 date: "September 16 2024"
+category: "Entity Framework"
 ---
 
 &nbsp;  

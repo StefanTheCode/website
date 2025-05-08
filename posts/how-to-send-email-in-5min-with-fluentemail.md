@@ -3,6 +3,7 @@ title: "How to send email in 5min with FluentEmail?"
 subtitle: "FluentEmail is a popular open-source library for sending emails from .NET applications..."
 readTime: "Read Time: 3 minutes"
 date: "Mar 17 2025"
+category: ".NET"
 meta_description: "Effortlessly integrate email functionality in .NET: Learn about FluentEmail's quick setup, versatile email sender options, and template rendering. Ideal for .NET developers."
 ---
 &nbsp;  

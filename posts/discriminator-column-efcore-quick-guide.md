@@ -2,6 +2,7 @@
 title: "Discriminator Column in EF Core: A Quick Guide"
 subtitle: "In Entity Framework (EF) Core, a discriminator is a special column used in Table Per Hierarchy (TPH) inheritance to differentiate between multiple entity types stored in a single table."
 date: "Feb 17 2025"
+category: "Entity Framework"
 readTime: "Read Time: 4 minutes"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "In Entity Framework (EF) Core, a discriminator is a special column used in Table Per Hierarchy (TPH) inheritance to differentiate between multiple entity types stored in a single table."

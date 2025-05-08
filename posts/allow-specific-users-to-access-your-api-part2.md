@@ -3,6 +3,7 @@ newsletterTitle: "#57 Stefan's Newsletter"
 title: "Allow specific users to access your API - Part 2"
 subtitle: " IP whitelisting is a security measure used to control access to networks, servers, and services, including APIs..."
 date: "Mar 11 2024"
+category: "Security"
 readTime: "Read Time: 4 minutes"
 photoUrl: "/images/blog/newsletter21.png"
 ---

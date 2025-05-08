@@ -2,6 +2,7 @@
 title: "6 ways to eleveate your 'clean' code"
 subtitle: "I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is...."
 date: "August 22 2024"
+category: "Csharp"
 photoUrl: "/images/blog/newsletter21.png"
 ---
 

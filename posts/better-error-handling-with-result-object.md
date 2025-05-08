@@ -2,6 +2,7 @@
 newsletterTitle: "#45 Stefan's Newsletter"
 title: "Better Error Handling with Result<T> object"
 subtitle: "Exceptions are designed to handle unexpected and rare events..."
+category: ".NET"
 date: "Dec 11 2023"
 readTime: "Read Time: 6 minutes"
 photoUrl: "/images/blog/newsletter21.png"

@@ -632,7 +632,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid gray;
 }
 
 small,
@@ -11929,7 +11929,7 @@ a.text-dark:focus {
 
 body {
   font-family: "Poppins", Arial, sans-serif;
-  background: linear-gradient(90deg, rgba(66, 4, 107, 1) 17%, rgba(36, 0, 50, 1) 75%);
+  background: linear-gradient(0deg, #1b004aff, #620094ff, #1d004aff);
   font-size: 16px;
   line-height: 1.8;
   font-weight: 400;
@@ -12792,6 +12792,32 @@ h5,
   border: 2px solid transparent !important;
   background: #ffbd39 !important;
   color: #fff !important;
+}
+
+.btn-outline-yellow {
+  color: #f9b801; /* Match your .text-yellow */
+  border: 1px solid #f9b801;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-yellow:hover {
+  background-color: #f9b801;
+  color: #000;
+  border-color: #f9b801;
+}
+
+.btn.btn-category {
+  background: #fff !important; 
+  border-radius: 5px !important; 
+  border: #000 !important; 
+  color: black !important;
+}
+
+.btn.btn-category:hover {
+  border: 1px solid #ffbd39 !important;
+  background: transparent !important;
+  color: #ffbd39 !important;
 }
 
 .btn.btn-secondary {
@@ -14283,9 +14309,10 @@ textarea.form-control {
 }
 
 .hr {
-  background-color: white !important;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid gray;
 }
 
 .newsletter-title {
@@ -14519,9 +14546,10 @@ textarea.form-control {
   }
 
   .hr-between-posts {
-    background-color: white;
-    margin-top: -20px;
-    margin-bottom: 50px;
+    margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid gray;
   }
 
   .blog-header {
@@ -14603,9 +14631,10 @@ textarea.form-control {
   }
 
   .hr-between-posts {
-    background-color: white;
-    margin-top: -20px;
-    margin-bottom: 50px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid gray;
   }
 
   .blog-header {
@@ -14661,9 +14690,10 @@ textarea.form-control {
     border-right: none !important;
   }
   .hr-between-posts {
-    background-color: white;
-    margin-top: -20px;
-    margin-bottom: 50px;
+    margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid gray;
   }
 
   .blog-header {

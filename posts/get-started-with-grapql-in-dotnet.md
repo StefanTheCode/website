@@ -4,6 +4,7 @@ title: "Get Started with GraphQL in .NET"
 subtitle: "The GraphQL is a query language for our API that allows us to define the data structure we need, and the server will return only the requested data."
 date: "Dec 18 2023"
 readTime: "Read Time: 7 minutes"
+category: "APIs"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore the world of GraphQL in .NET with Stefan's Newsletter's latest blog post. Dive into a detailed guide on implementing GraphQL, understanding its benefits over REST, and setting up a .NET project. This post offers practical steps, from creating entity models to running queries, and provides insights into enhancing GraphQL schemas. Ideal for developers looking to advance their skills in GraphQL and .NET."
 ---

@@ -3,6 +3,7 @@ title: "MediatR Alternative - Wolverine"
 subtitle: "MediatR will soon require a commercial license for some usage. This has sparked interest in alternatives - and one name stands out: Wolverine..."
 readTime: "Read Time: 6 minutes"
 date: "Apr 08 2025"
+category: ".NET"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Wolverine is a high-performance .NET library for CQRS, messaging, and background processing. Built with source generators, it replaces MediatR and adds advanced features like retries, scheduling, sagas, and outbox support."
 ---

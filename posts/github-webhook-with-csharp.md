@@ -2,6 +2,7 @@
 newsletterTitle: "#4 Stefan's Newsletter"
 title: "GitHub Webhook with C#"
 subtitle: "A Webhook is a mechanism that allows a web application to send real-time notifications or data to another web application..."
+category: "APIs"
 date: "March 06 2023"
 photoUrl: "/images/blog/newsletter21.png"
 ---

@@ -17,6 +17,7 @@ const getPostMetadata = (): PostMetadata[] => {
       date: matterResult.data.date,
       subtitle: matterResult.data.subtitle,
       readTime: matterResult.data.readTime,
+      category: matterResult.data.category,
       slug: fileName.replace(".md", ""),
       photo: `/images/blog/${fileName.replace(".md", "")}.png`
     };
@@ -40,6 +41,7 @@ const getPatterns = (): PostMetadata[] => {
       date: matterResult.data.date,
       subtitle: matterResult.data.subtitle,
       readTime: matterResult.data.readTime,
+      category: matterResult.data.category,
       slug: fileName.replace(".md", ""),
       photo: `/images/blog/${fileName.replace(".md", "")}.png`
     };

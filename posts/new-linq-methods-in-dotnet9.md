@@ -1,6 +1,7 @@
 ---
 title: ".NET 9 - New LINQ Methods"
 subtitle: ".NET 9 introduces exciting enhancements to LINQ (Language Integrated Query), adding new methods - Index, CountBy, and AggregateBy..."
+category: ".NET"
 date: "Dec 16 2024"
 readTime: "Read Time: 3 minutes"
 photoUrl: "/images/blog/newsletter21.png"

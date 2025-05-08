@@ -2,6 +2,7 @@
 title: "3 Tips to Elevate your Swagger UI"
 subtitle: "Swashbuckle is an open-source project that integrates Swagger with .NET applications. It provides seamless support for generating Swagger documents and exposing them via a web interface in ASP.NET Core applications."
 date: "August 10 2024"
+category: "APIs"
 photoUrl: "/images/blog/newsletter21.png"
 ---
 

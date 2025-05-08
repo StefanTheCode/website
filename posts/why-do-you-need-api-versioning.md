@@ -2,6 +2,7 @@
 newsletterTitle: "#40 Stefan's Newsletter"
 title: "What is and why do you need API Versioning?"
 subtitle: "API versioning is a technique used to manage changes in an API while maintaining backward compatibility for existing clients..."
+category: "APIs"
 date: "Nov 06 2023"
 readTime: "Read Time: 4 minutes"
 photoUrl: "/images/blog/newsletter21.png"

@@ -3,6 +3,7 @@ newsletterTitle: "#57 Stefan's Newsletter"
 title: "Allow specific users to access your API - Part 1"
 subtitle: "Just as a bouncer checks your pass before letting you into a club, an API uses an API key to decide who gets access to its data and services."
 date: "Mar 04 2024"
+category: "Security"
 readTime: "Read Time: 4 minutes"
 photoUrl: "/images/blog/newsletter21.png"
 ---

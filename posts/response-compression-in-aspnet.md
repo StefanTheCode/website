@@ -4,6 +4,7 @@ subtitle: "Since there's a limited amount of network bandwidth available...
 "
 readTime: "Read Time: 4 minutes"
 date: "Mar 24 2025"
+category: "APIs"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Optimize your .NET APIs with Response Compression: A deep dive into enhancing performance, setting up compression providers, and understanding the impact on server load and security."
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Debug and Test Multi-Environment Postgres Db in .NET with Aspire + Neon"
 subtitle: "Imagine a growing .NET team working on a cloud-native application. They need to test their microservices across multiple environments - development, test, and production. "
+category: ".NET"
 date: "Feb 03 2025"
 readTime: "Read Time: 8 minutes"
 photoUrl: "/images/blog/newsletter21.png"

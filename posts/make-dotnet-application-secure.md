@@ -4,6 +4,7 @@ title: "Make your .NET application secure"
 subtitle: "Security headers are HTTP response headers that provide an additional layer of security to web applications. They help to protect against attacks such as cross-site scripting (XSS), clickjacking, and more."
 readTime: "Read Time: 8 minutes"
 date: "Apr 10 2023"
+category: "Security"
 photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Enhance .NET application security: Learn to implement crucial security headers, protect against XSS, clickjacking, and more for robust web app defense."
 ---
