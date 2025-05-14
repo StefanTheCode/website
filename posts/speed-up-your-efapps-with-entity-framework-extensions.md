@@ -3,6 +3,7 @@ title: "Speed Up Your EF Core Apps with Entity Framework Extensions - preview"
 subtitle: "If you're using Entity Framework Core (EF Core), you've probably hit some performance walls when trying to insert or update a large number of records."
 readTime: "Read Time: 5 minutes"
 date: "May 12 2025"
+category: "Entity Framework"
 photoUrl: "/images/blog/newsletter21.png"
 category: "APIs"
 meta_description: "EF Extensions is a commercial library developed by ZZZ Projects that supercharges Entity Framework (both EF Core and EF6) by adding true bulk operation capabilities. "
@@ -51,7 +52,7 @@ meta_description: "EF Extensions is a commercial library developed by ZZZ Proje
 
 ##### However, when you start pushing it with large datasets, it quickly reveals some limitations:
 &nbsp;  
-##### **• SaveChanges() isn’t built for speed.** It sends one SQL command per entity. If you're inserting 10,000 records, that's 10,000 round-trips.
+##### **• EF6: SaveChanges() isn’t built for speed.** It sends one SQL command per entity. If you're inserting 10,000 records, that's 10,000 round-trips. Alotugh, this has been changed in EF Core.
 ##### **• Change tracking adds overhead.** EF Core tries to track every entity you insert, which consumes memory and slows down performance.
 ##### **• Bulk insert, update, and delete support is limited.** Until EF Core 8, there was no built-in way to update or delete records in bulk - and even now, it's still fairly basic.
 &nbsp;  
@@ -135,6 +136,8 @@ context.BulkMerge(orders, options => {
 
 ##### That’s a huge win - not just in performance, but in developer sanity.
 &nbsp;  
+##### Check the [benchmarks online](https://dotnetfiddle.net/cFWgKV).
+&nbsp;  
 &nbsp;  
 ### Advanced Features That Save Development Time
 &nbsp;  
@@ -155,6 +158,8 @@ context.BulkMerge(orders, options => {
 
 await context.BulkUpdate(inactiveCustomers);
 ```
+&nbsp;  
+##### Check the [benchmarks online](https://dotnetfiddle.net/ope4nq).
 &nbsp;  
 
 #### [Bulk Merge (UPSERT)](https://entityframework-extensions.net/bulk-merge)
@@ -184,6 +189,8 @@ await context.BulkDelete(expiredLogs);
 &nbsp;  
 
 ##### No loading into memory, no loops, just clean and efficient SQL.
+&nbsp;  
+##### Check the [benchmarks online](https://dotnetfiddle.net/zzMQgZ).
 &nbsp;  
 
 ##### I have tested it in my test API, these are result: 
