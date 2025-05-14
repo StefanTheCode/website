@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import getPostMetadata from "@/components/getPostMetadata";
 import BlogClient from "./blogClient";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net/blog'),
@@ -23,7 +24,12 @@ export const metadata: Metadata = {
 
 const BlogPage = () => {
   const postMetadata = getPostMetadata();
-  return <BlogClient allPosts={postMetadata} />;
+
+  return (
+    <Suspense fallback={<div>Loading blog...</div>}>
+      <BlogClient allPosts={postMetadata} />
+    </Suspense>
+  );
 };
 
 export default BlogPage;
