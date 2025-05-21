@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#34 Stefan's Newsletter"
 title: "HashIDs. What are they, and why should we use them?"
 subtitle: "Hashids are an effective approach for generating opaque non-sequential IDs derived from numbers/sequential IDs (e.g., Integer) and hashing algorithms; converting numbers like 347 into an opaque strings identifier such as 'ir8'."
 readTime: "Read Time: 5 minutes"

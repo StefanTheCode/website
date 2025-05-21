@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#41 Stefan's Newsletter"
 title: "How do I implement a workflow using a .NET workflow engine?"
 subtitle: "A project workflow is like a roadmap that guides you from the very beginning of a project all the way to its successful..."
 date: "Nov 13 2023"

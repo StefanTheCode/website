@@ -5,7 +5,7 @@ readTime: "Read Time: 3 minutes"
 date: "Feb 10 2025"
 category: ".NET"
 photoUrl: "/images/blog/newsletter21.png"
-meta_description: "Discover the intricacies of MediatR Notifications in .NET in Stefan Đokić's comprehensive guide. Learn to implement a robust notification system in ASP.NET Core using MediatR, perfect for scenarios like alerting emergency services."
+meta_description: "Discover the intricacies of MediatR Notifications in .NET in Stefan Đokić's comprehensive guide. Learn to implement a robust notification system in ASP.NET Core using MediatR, perfect for scenarios like alerting emergency services. "
 ---
 
 &nbsp;  

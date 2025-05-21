@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#49 Stefan's Newsletter"
 title: "Health Checks in .NET 8"
 subtitle: "Health Checks in ASP.NET are a way to assess the health of an application and its dependencies..."
 readTime: "Read Time: 4 minutes"
