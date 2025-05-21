@@ -1,10 +1,11 @@
 ---
-title: "Decorator Pattern in .NET Explained: Add Caching, Logging, and More with Ease"
-subtitle: "The Decorator Pattern in .NET is ideal when you want to add responsibilities to objects dynamically. It allows you to extend functionality without modifying the existing code structure, adhering to the Open/Closed Principle. "
-readTime: "Read Time: 6 minutes"
-date: "Oct 29 2024"
-photoUrl: "/images/blog/newsletter21.png"
-meta_description: "Learn how to use the Decorator Pattern in .NET to enhance your applications with caching, logging, and other functionalities without modifying core code. Discover real-world examples, benefits, and best practices to boost code flexibility and maintainability."
+title: 'Decorator Pattern in .NET Explained: Add Caching, Logging, and More with Ease'
+subtitle: 'The Decorator Pattern in .NET is ideal when you want to add responsibilities to objects dynamically. It allows you to extend functionality without modifying the existing code structure, adhering to the Open/Closed Principle. '
+readTime: 'Read Time: 6 minutes'
+date: 'Oct 29 2024'
+category: 'Design Patterns'
+photoUrl: '/images/blog/newsletter21.png'
+meta_description: 'Learn how to use the Decorator Pattern in .NET to enhance your applications with caching, logging, and other functionalities without modifying core code. Discover real-world examples, benefits, and best practices to boost code flexibility and maintainability.'
 ---
 
 <!--START-->

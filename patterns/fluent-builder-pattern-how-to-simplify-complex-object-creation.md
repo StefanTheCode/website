@@ -1,10 +1,11 @@
 ---
-title: "Fluent Builder Pattern: How to Simplify Complex Object Creation"
-subtitle: "The Fluent Builder Pattern in C# is an extension of the Builder pattern, making object creation more readable by chaining method calls together."
-readTime: "Read Time: 4 minutes"
-date: "Oct 08 2024"
-photoUrl: "/images/blog/newsletter21.png"
-meta_description: "Discover how the Fluent Builder Design Pattern in C# simplifies complex object creation, enhances code readability, and boosts flexibility. Learn best practices and advanced techniques in this comprehensive guide."
+title: 'Fluent Builder Pattern: How to Simplify Complex Object Creation'
+subtitle: 'The Fluent Builder Pattern in C# is an extension of the Builder pattern, making object creation more readable by chaining method calls together.'
+readTime: 'Read Time: 4 minutes'
+date: 'Oct 08 2024'
+category: 'Design Patterns'
+photoUrl: '/images/blog/newsletter21.png'
+meta_description: 'Discover how the Fluent Builder Design Pattern in C# simplifies complex object creation, enhances code readability, and boosts flexibility. Learn best practices and advanced techniques in this comprehensive guide.'
 ---
 
 <!--START-->
