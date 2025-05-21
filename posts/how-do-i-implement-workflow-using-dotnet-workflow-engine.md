@@ -2,10 +2,10 @@
 title: "How do I implement a workflow using a .NET workflow engine?"
 subtitle: "A project workflow is like a roadmap that guides you from the very beginning of a project all the way to its successful..."
 date: "Nov 13 2023"
-readTime: "Read Time: 9 minutes"
 category: ".NET"
+readTime: "Read Time: 9 minutes"
 photoUrl: "/images/blog/newsletter21.png"
-meta_description: "Master the art of implementing effective workflows in .NET applications with Stefan Đokić's comprehensive guide. Explore the seamless integration of Workflow Engine into your projects, learn to set up databases, initialize WorkflowRuntime, and connect with WorkflowDesigner for enhanced process management. Ideal for developers seeking practical solutions for workflow management in .NET environments."
+meta_description: "Master the art of implementing effective workflows in .NET applications with Stefan Đokić's comprehensive guide. Explore the seamless integration of Workflow Engine into your projects, learn to set up databases, initialize WorkflowRuntime, and connect with WorkflowDesigner for enhanced process management. "
 ---
 
 ##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**

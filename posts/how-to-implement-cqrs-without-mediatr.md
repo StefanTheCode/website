@@ -1,6 +1,6 @@
 ---
 title: "How to implement CQRS without MediatR"
-subtitle: "CQRS (Command Query Responsibility Segregation) is a design pattern that separates the read (query) and write (command) operations of an application, leading to better maintainability, scalability, and flexibility."
+subtitle: "CQRS (Command Query Responsibility Segregation) is a design pattern that separates the read (query) and write (command) operations of an application, leading to better maintainability, scalability, and flexibility. "
 date: "September 24 2024"
 category: ".NET"
 readTime: "Read Time: 4 minutes"

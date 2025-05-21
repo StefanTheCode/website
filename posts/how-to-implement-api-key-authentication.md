@@ -1,11 +1,11 @@
 ---
 title: "How to implement API Key Authentication"
-subtitle: "Explore Stefan Đokić's insightful blog post on API Key Authentication in ASP.NET Core..."
+subtitle: "Explore Stefan Đokić's insightful blog post on API Key Authentication in ASP.NET Core... "
 readTime: "Read Time: 5 minutes"
 date: "July 04 2024"
 category: "Security"
 photoUrl: "/images/blog/newsletter21.png"
-meta_description: "Explore Stefan Đokić's insightful blog post on API Key Authentication in ASP.NET Core. This post offers a thorough walkthrough on securing APIs, managing access, and monitoring usage through API keys. Learn to set up an API key attribute, build an authorization filter, and create a validator class. Ideal for developers focused on enhancing API security and management in their .NET projects."
+meta_description: "Explore Stefan Đokić's insightful blog post on API Key Authentication in ASP.NET Core. This post offers a thorough walkthrough on securing APIs, managing access, and monitoring usage through API keys. Learn to set up an API key attribute, build an authorization filter, and create a validator class."
 ---
 
 &nbsp;  

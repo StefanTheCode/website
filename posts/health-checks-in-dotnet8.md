@@ -1,6 +1,6 @@
 ---
 title: "Health Checks in .NET 8"
-subtitle: "Health Checks in ASP.NET are a way to assess the health of an application and its dependencies..."
+subtitle: "Health Checks in ASP.NET are a way to assess the health of an application and its dependencies... "
 readTime: "Read Time: 4 minutes"
 date: "Jan 08 2024"
 category: "APIs"
@@ -227,6 +227,5 @@ private static Task WriteResponse(HttpContext context, HealthReport healthReport
 ##### While you have the option to create your own custom health checks, it's often a good idea to first look into existing solutions that might already meet your needs.
 &nbsp;  
 ##### That's all from me today.
-
 
 <!--END-->

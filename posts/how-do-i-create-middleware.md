@@ -1,6 +1,6 @@
 ---
 title: "How do I create Middleware? And what are the alternatives?"
-subtitle: "Middleware in the context of web development is a piece of software that sits between two or more software applications or layers..."
+subtitle: "Middleware in the context of web development is a piece of software that sits between two or more software applications or layers... "
 category: ".NET"
 date: "Sep 18 2023"
 photoUrl: "/images/blog/newsletter21.png"
