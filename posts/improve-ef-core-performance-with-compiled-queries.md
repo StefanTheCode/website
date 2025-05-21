@@ -4,7 +4,6 @@ subtitle: "Compiled queries in .NET emerged as a response to the performance cha
 date: "Nov 20 2023"
 category: "Entity Framework"
 readTime: "Read Time: 2 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Unlock the secrets to enhancing Entity Framework Core performance with Stefan Đokić's guide on compiled queries. Learn to optimize database interactions in .NET applications by utilizing compiled queries for faster execution and efficient resource use. Ideal for developers seeking to refine EF Core operations and achieve superior performance in data-intensive .NET environments."
 ---
 

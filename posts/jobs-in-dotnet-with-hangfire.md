@@ -4,7 +4,6 @@ subtitle: "Hangfire is an open-source library for .NET that provides a simple wa
 readTime: "Read Time: 6 minutes"
 date: "Apr 17 2023"
 category: ".NET"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Efficiently manage background jobs in .NET with Hangfire: A complete guide to setting up, executing, and monitoring various job types, including fire-and-forget and recurring tasks."
 ---
 

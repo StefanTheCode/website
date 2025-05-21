@@ -4,7 +4,6 @@ subtitle: "OpenTelemetry is an open-source framework for observability that prov
 date: "Jan 21 2025"
 readTime: "Read Time: 7minutes"
 category: ".NET"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "OpenTelemetry is an open-source framework for observability that provides tools, APIs, and SDKs to help developers generate, collect, and export telemetry data such as traces, metrics, and logs. "
 ---
 

@@ -5,7 +5,6 @@ date: "Apr 08 2024"
 category: ".NET"
 readTime: "Read Time: 3 minutes"
 meta_description: "The IServiceCollection interface represents a contract for a collection of service descriptors, providing an abstraction to add, remove, and retrieve services."
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

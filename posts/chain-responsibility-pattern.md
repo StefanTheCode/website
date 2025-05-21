@@ -4,7 +4,6 @@ subtitle: "The Chain of Responsibility pattern is a behavioral design pattern th
 date: "Nov 25 2024"
 category: "Design Patterns"
 readTime: "Read Time: 3 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
 ---
 

@@ -4,7 +4,6 @@ subtitle: "Security headers are HTTP response headers that provide an additional
 readTime: "Read Time: 8 minutes"
 date: "Apr 10 2023"
 category: "Security"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Enhance .NET application security: Learn to implement crucial security headers, protect against XSS, clickjacking, and more for robust web app defense."
 ---
 

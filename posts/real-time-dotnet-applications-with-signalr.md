@@ -4,7 +4,6 @@ subtitle: "SignalR is like that cool tech wizard in the .NET, making real-time c
 readTime: "Read Time: 6 minutes"
 date: "Aug 21 2023"
 category: ".NET"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Learn to create real-time applications with SignalR in .NET: A step-by-step guide to setting up SignalR, configuring client-side interactions, and handling real-time messaging."
 ---
 

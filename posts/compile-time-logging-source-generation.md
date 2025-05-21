@@ -4,7 +4,6 @@ subtitle: "With the release of .NET 6, there's a new tool in town called LoggerM
 date: "Oct 30 2023"
 category: ".NET"
 readTime: "Read Time: 2 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore the power of compile-time logging source generation in .NET 6 with Stefan Đokić's insightful guide. Learn how LoggerMessageAttribute enhances application logging, making it faster and more efficient. Perfect for .NET developers eager to optimize their logging practices using the latest advancements in the Microsoft.Extensions.Logging library."
 ---
 

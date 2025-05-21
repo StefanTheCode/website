@@ -4,7 +4,6 @@ subtitle: "This blog post delves into the use of Architecture Tests in software 
 readTime: "Read Time: 2 minutes"
 category: ".NET"
 date: "Aug 14 2023"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "This blog post delves into the use of Architecture Tests in software development, emphasizing their role in maintaining code integrity and design consistency, especially in .NET environments. It guides readers on creating and implementing these tests, underlining their significance in early problem detection, preserving design principles, and fostering effective team collaboration. A must-read for developers and architects focused on enforcing strong design standards in their software projects."
 ---
 

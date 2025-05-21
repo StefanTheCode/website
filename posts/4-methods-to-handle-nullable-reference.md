@@ -3,7 +3,6 @@ title: "4 methods to handle Nullable Reference in .NET"
 subtitle: "Reference types in C# have always been nullable, meaning that variables of any reference type can be assigned a value of null..."
 date: "February 13 2023"
 readTime: "Read Time: 2 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 category: "CSharp"
 meta_description: "Explore the latest methods to handle Nullable References in .NET. This comprehensive guide covers 4 key strategies, essential for C# developers working with .NET 6 and beyond."
 ---

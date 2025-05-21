@@ -4,7 +4,6 @@ subtitle: "Feature Flags are one of the most powerful techniques to achieve this
 readTime: "Read Time: 4 minutes"
 date: "Nov 18 2024"
 category: "Azure"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Learn how to deal with Feature Flags in .NET using Azure Feature Management."
 ---
 

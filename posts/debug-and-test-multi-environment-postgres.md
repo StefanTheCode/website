@@ -4,7 +4,6 @@ subtitle: "Imagine a growing .NET team working on a cloud-native application. Th
 category: ".NET"
 date: "Feb 03 2025"
 readTime: "Read Time: 8 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Neon is a serverless Postgres database designed for modern cloud applications."
 ---
 

@@ -4,7 +4,6 @@ subtitle: "API versioning is a technique used to manage changes in an API while 
 category: "APIs"
 date: "Nov 06 2023"
 readTime: "Read Time: 4 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Delve into the complexities of API versioning in .NET with Stefan Đokić's detailed exploration. Discover various strategies like URI, Query String, Header, Media Type, and Host Name versioning, each with unique benefits and trade-offs. This comprehensive guide is essential for developers seeking to maintain API reliability while evolving their services in a .NET environment."
 ---
 

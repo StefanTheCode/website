@@ -4,7 +4,6 @@ subtitle: "gRPC, which stands for Google Remote Procedure Call, is an open-sourc
 date: "Oct 16 2023"
 readTime: "Read Time: 6 minutes"
 category: "APIs"
-photoUrl: "/images/blog/newsletter21.png"
 ---
 &nbsp;
 &nbsp;

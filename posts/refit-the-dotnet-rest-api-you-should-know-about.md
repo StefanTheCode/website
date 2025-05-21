@@ -3,7 +3,6 @@ title: "Refit - The .NET Rest API you should know about"
 subtitle: "Refit is a REST API client library for .NET that allows you to define an API as an interface in your application..."
 date: "August 27 2024"
 category: "APIs"
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

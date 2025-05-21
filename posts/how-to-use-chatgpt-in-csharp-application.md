@@ -4,7 +4,6 @@ subtitle: "ChatGPT (Generative Pre-trained Transforer) is a large language model
 category: "AI"
 date: "February 20 2023"
 readTime: "Read Time: 3 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 --- 
 
 ### Background

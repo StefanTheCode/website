@@ -4,7 +4,6 @@ subtitle: "If you're using Entity Framework Core (EF Core), you've probably hit 
 readTime: "Read Time: 5 minutes"
 date: "May 12 2025"
 category: "Entity Framework"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "EF Extensions is a commercial library developed by ZZZ Projects that supercharges Entity Framework (both EF Core and EF6) by adding true bulk operation capabilities. "
 ---
 

@@ -4,7 +4,6 @@ subtitle: "While convenient, this approach can pose security risks if not handle
 readTime: "Read Time: 4 minutes"
 date: "Nov 04 2024"
 category: "Azure"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Learn how to securely manage and access secrets in .NET 8 applications using Azure Key Vault. This guide covers best practices for storing sensitive data, setting up Key Vault, and integrating it with .NET for secure and scalable applications."
 ---
 

@@ -4,7 +4,6 @@ subtitle: "Coravel is a zero-configuration, developer-friendly .NET library... "
 readTime: "Read Time: 4 minutes"
 date: "Apr 23 2025"
 category: ".NET"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Coravel is a zero-configuration, developer-friendly .NET library."
 ---
 

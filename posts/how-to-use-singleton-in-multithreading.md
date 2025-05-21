@@ -4,7 +4,6 @@ subtitle: "The core idea of a Singleton is that it is a class designed to only c
 readTime: "Read Time: 4 minutes"
 date: "Oct 08 2024"
 category: ".NET"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Unlock Singleton pattern in multithreading with .NET: Expert insights on thread safety, double check locking, and Lazy<T> implementation for robust applications."
 ---
 

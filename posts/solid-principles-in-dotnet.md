@@ -3,7 +3,6 @@ title: "SOLID Principles in .NET"
 subtitle: "SOLID is an acronym for a set of 5 design principles that help improve the maintainability, scalability, and stability of software systems..."
 readTime: "Read Time: 4 minutes"
 date: "Apr 24 2023"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Gain insights into SOLID principles in .NET: Discover how to apply these core design principles for more maintainable and scalable software. Essential for .NET developers."
 ---
 

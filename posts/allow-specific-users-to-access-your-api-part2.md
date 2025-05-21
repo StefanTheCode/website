@@ -4,7 +4,6 @@ subtitle: " IP whitelisting is a security measure used to control access to netw
 date: "Mar 11 2024"
 category: "Security"
 readTime: "Read Time: 4 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

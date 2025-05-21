@@ -3,7 +3,6 @@ title: "Memory Caching in .NET"
 subtitle: ".NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources."
 category: ".NET"
 date: "August 10 2024"
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

@@ -12,25 +12,39 @@ import Help from "@/app/help";
 import MetadataHead from "./MetadataHead";
 
 const getPostContent = (slug: string) => {
-  if (!slug) notFound();
+  if (!slug) {
+    console.error("Missing slug");
+    notFound();
+  }
 
   try {
     const folder = "posts/";
     const file = `${folder}${slug}.md`;
     const content = fs.readFileSync(file, "utf8");
     const matterResult = matter(content);
+
+    // Ensure required fields are present
+    if (!matterResult.data.title) {
+      throw new Error(`Missing title in frontmatter for slug: ${slug}`);
+    }
+
     return matterResult;
-  } catch {
+  } catch (err) {
+    console.error(`Error reading post "${slug}":`, err);
     notFound();
   }
 };
 
+
 export const generateStaticParams = async () => {
   const posts = getPostMetadata();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts
+    .filter(p => !!p.slug) // Ensure slug is present
+    .map((post) => ({
+      slug: post.slug,
+    }));
 };
+
 
 const PostPage = (props: any) => {
   const slug = props.params.slug;
@@ -60,7 +74,8 @@ const PostPage = (props: any) => {
                   <p className="text-slate-400 mt-2">{meta.date}</p>
                 </div>
               </div>
-              <Markdown>{post.content}</Markdown>
+              {post?.content ? <Markdown>{post.content}</Markdown> : <p>Post content missing.</p>}
+
               <Help />
               <Subscribe />
             </div>

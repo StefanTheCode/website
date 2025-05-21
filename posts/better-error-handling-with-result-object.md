@@ -4,7 +4,6 @@ subtitle: "Exceptions are designed to handle unexpected and rare events..."
 category: ".NET"
 date: "Dec 11 2023"
 readTime: "Read Time: 6 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Explore the latest methods to handle Nullable References in .NET. This comprehensive guide covers 4 key strategies, essential for C# developers working with .NET 6 and beyond."
 ---
 

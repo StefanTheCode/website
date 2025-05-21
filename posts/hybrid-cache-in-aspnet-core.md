@@ -3,7 +3,6 @@ title: "HybridCache in ASP.NET Core - .NET 9"
 subtitle: "Caching is a mechanism to store frequently used data in a temporary storage layer so that future requests for the same data can be served faster, reducing the need for repetitive data fetching or computation. "
 date: "Dec 08 2024"
 readTime: "Read Time: 6 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
 ---
 

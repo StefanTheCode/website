@@ -4,7 +4,6 @@ subtitle: "RAG (Retrieval-Augmented Generation) is an AI framework that enhances
 category: "AI"
 date: "Mar 10 2025"
 readTime: "Read Time: 5 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "RAG (Retrieval-Augmented Generation) is an AI framework that enhances generative large language models (LLMs) by integrating traditional information retrieval methods, such as search engines and databases."
 ---
 

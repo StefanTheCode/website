@@ -1,9 +1,8 @@
 ---
 title: "Strategy Design Pattern will help you refactor code"
-subtitle: "The Strategy pattern is a behavioral design pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable."
+subtitle: "The Strategy pattern is a behavioral design pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable. "
 category: "Design Patterns"
 date: "July 11 2024"
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

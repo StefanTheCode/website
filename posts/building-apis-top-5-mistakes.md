@@ -3,7 +3,6 @@ title: "Top 5 Mistakes Developers Make When Building APIs (and How to Avoid Them
 subtitle: "Let’s be honest: Building APIs sounds easy… until you have to maintain them."
 readTime: "Read Time: 4 minutes"
 date: "Apr 29 2025"
-photoUrl: "/images/blog/newsletter21.png"
 category: "APIs"
 meta_description: "The 5 most common mistakes developers make when building APIs - and how you can avoid falling into these traps"
 ---

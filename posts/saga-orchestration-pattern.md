@@ -1,8 +1,8 @@
 ---
 title: "Saga Orchestration Pattern"
 subtitle: "SAGA is a sequential process that manages transactions between microservices by breaking each operation into multiple smaller transactions that can be independently executed and compensated."
+category: ".NET"
 date: "January 13 2025"
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

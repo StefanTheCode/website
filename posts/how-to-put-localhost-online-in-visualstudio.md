@@ -3,7 +3,6 @@ title: "How to put localhost online in Visual Studio?"
 category: ".NET"
 subtitle: "Imagine creating a .NET API project that you call in a front-end web or mobile application..."
 date: "Apr 3 2023"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "The dev tunnels feature of Visual Studio 2022 enables ad-hoc connections between machines that can't directly connect. This feature helps you to debug web API endpoints with a publicly accessible endpoint."
 ---
 

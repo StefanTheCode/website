@@ -4,7 +4,6 @@ subtitle: "Just as a bouncer checks your pass before letting you into a club, an
 date: "Mar 04 2024"
 category: "Security"
 readTime: "Read Time: 4 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

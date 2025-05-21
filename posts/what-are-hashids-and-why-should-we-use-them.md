@@ -3,7 +3,7 @@ title: "HashIDs. What are they, and why should we use them?"
 subtitle: "Hashids are an effective approach for generating opaque non-sequential IDs derived from numbers/sequential IDs (e.g., Integer) and hashing algorithms; converting numbers like 347 into an opaque strings identifier such as 'ir8'."
 readTime: "Read Time: 5 minutes"
 date: "Oct 02 2023"
-photoUrl: "/images/blog/newsletter21.png"
+category: ".NET"
 meta_description: "Unlock the secrets of using HashIDs for secure and efficient data referencing in APIs. Learn to protect your .NET applications against security risks while maintaining performance."
 ---
 

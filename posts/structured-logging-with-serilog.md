@@ -4,7 +4,6 @@ subtitle: "Traditional plain-text logs can be hard to read and analyze..."
 readTime: "Read Time: 5 minutes"
 category: ".NET"
 date: "May 15 2023"
-photoUrl: "/images/blog/structured-logging-with-serilog.png"
 meta_description: "Enhance .NET applications with Structured Logging using Serilog: A practical guide to advanced logging techniques for clearer context, improved analytics, and searchability."
 ---
 

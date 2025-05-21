@@ -4,7 +4,6 @@ subtitle: "A project workflow is like a roadmap that guides you from the very be
 date: "Nov 13 2023"
 category: ".NET"
 readTime: "Read Time: 9 minutes"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Master the art of implementing effective workflows in .NET applications with Stefan Đokić's comprehensive guide. Explore the seamless integration of Workflow Engine into your projects, learn to set up databases, initialize WorkflowRuntime, and connect with WorkflowDesigner for enhanced process management. "
 ---
 

@@ -5,7 +5,6 @@ date: "Mar 25 2024"
 category: "APIs"
 readTime: "Read Time: 4 minutes"
 meta_description: "Unveil the power of API Gateways for scalable and secure API management. Learn about routing, authentication, and rate limiting with Zuplo to enhance your APIs."
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

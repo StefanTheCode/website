@@ -3,46 +3,45 @@ title: "Benchmarking in .NET Step by step"
 category: ".NET"
 subtitle: "We often find ourselves in a situation where a certain method or part of the code does not work as we want in terms of execution speed on the CPU..."
 date: "Sep 25 2023"
-photoUrl: "/images/blog/newsletter21.png"
 ---
-<br>
-<br>
+&nbsp;
+&nbsp;
 
 ### The background
-<br>
-<br>
+&nbsp;
+&nbsp;
 ##### <b>"You can't improve what you don't measure."</b> - someone once said.
 ##### And he/she was right.
-<br>
+&nbsp;
 ##### We often find ourselves in a situation where a certain method or part of the code does not work as we want in terms of execution speed on the CPU, memory usage, and the like. In such cases, we approach <b>code optimization</b>. But in order to improve the parts of the code that are not good, it is necessary to measure the performance.
-<br>
+&nbsp;
 ##### You can use the <b>BenchmarkDotNet library</b> for that.
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### What is BenchamrkDotNet?
-<br>
-<br>
+&nbsp;
+&nbsp;
 
-<br>
+&nbsp;
 ##### BenchmarkDotNet is an open-source, efficient .NET library that turns your methods into benchmarks, monitors them, and offers insights into the collected performance data.
-<br>
+&nbsp;
 ##### It takes care of all the best practices related to benchmarking, like:
-<br>
+&nbsp;
 ##### • Running the benchmarks in a standalone process.
 ##### • Warming up.
 ##### • Minimizing side effects.
 ##### • Collecting and aggregating the data.
 ##### • Producing detailed performance reports.
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### How to use BenchamrkDotNet?
-<br>
-<br>
+&nbsp;
+&nbsp;
 
 #### 1. Install the NuGet Package
-<br>
+&nbsp;
 ##### To start using BenchmarkDotNet, you should install it via NuGet:
 
 ```csharp
@@ -50,9 +49,9 @@ photoUrl: "/images/blog/newsletter21.png"
 Install-Package BenchmarkDotNet
 
 ```
-<br>
+&nbsp;
 #### 2. Create Benchmarks
-<br>
+&nbsp;
 ##### Write the code you want to benchmark in a method and annotate it with the <b>[Benchmark]</b> attribute.
 
 ```csharp
@@ -68,9 +67,9 @@ public class MyBenchmarks
     }
 }
 ```
-<br>
+&nbsp;
 #### 3. Run Benchmarks
-<br>
+&nbsp;
 
 ##### To run the benchmarks, you create a new instance of the <b>BenchmarkRunner</b> class and call the Run method.
 ```csharp
@@ -86,32 +85,32 @@ class Program
 }
 ```
 
-<br>
+&nbsp;
 ##### This will run the benchmark and print the results in the console. The summary object also contains the results, which can be used programmatically if needed.
-<br>
+&nbsp;
 ##### What do the results look like?
 ![Benchmarking Results](/images/blog/posts/benchmarking-in-dotnet-step-by-step/benchmarking-results.png)
-<br>
+&nbsp;
 #### 4. Interpret Result
-<br>
+&nbsp;
 ##### BenchmarkDotNet provides a detailed summary including:
-<br>
+&nbsp;
 ##### • Mean execution time
 ##### • Standard deviation
 ##### • Allocated memory (if you enable it)
 ##### • And many other metrics.
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### Advanced features
-<br>
-<br>
+&nbsp;
+&nbsp;
 
-<br>
+&nbsp;
 ##### BenchmarkDotNet has a wealth of advanced features, including:
-<br>
+&nbsp;
 #### • Parameterization
-<br>
+&nbsp;
 #####  You can run benchmarks with different parameters to see how they affect performance.
 
 ```csharp
@@ -136,15 +135,15 @@ public class ParameterizedBenchmarks
 }
 
 ```
-<br>
+&nbsp;
 #### • Multiple Runtimes
-<br>
+&nbsp;
 #####  To run benchmarks against different .NET runtimes, you can use the <b>[CoreJob, ClrJob, MonoJob]</b> attributes. You'll also need to adjust your project file to target multiple frameworks.
-<br>
+&nbsp;
 ##### First, adjust your .csproj:
-<br>
+&nbsp;
 ##### <b>< TargetFrameworks >net7.0;net6.0;net5.0</ TargetFrameworks ></b>
-<br>
+&nbsp;
 ##### Then, in your benchmark class:
 
 ```csharp
@@ -163,9 +162,9 @@ public class MultiRuntimeBenchmarks
 }
 
 ```
-<br>
+&nbsp;
 #### • Custom Configurations
-<br>
+&nbsp;
 ##### You can create a custom configuration that controls the benchmarking process.
 
 ```csharp
@@ -192,11 +191,11 @@ public class CustomConfigurationBenchmarks
     }
 }
 ```
-<br>
+&nbsp;
 #### • Diagnostics
-<br>
+&nbsp;
 ##### To capture diagnostics like memory traffic or GC collections, you'll use the <b>[MemoryDiagnoser]</b> attribute.
-<br>
+&nbsp;
 ##### For more detailed diagnostics, you might consider other diagnosers available in BenchmarkDotNet, like <b>[DisassemblyDiagnoser]</b>.
 
 ```csharp
@@ -214,39 +213,39 @@ public class MemoryDiagnosticsBenchmarks
 }
 
 ```
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### Wrapping up
-<br>
-<br>
+&nbsp;
+&nbsp;
 ##### BenchmarkDotNet is an open-source, efficient .NET library that turns your methods into benchmarks, monitors them, and offers insights into the collected performance data.
-<br>
+&nbsp;
 #### Key Takeaways
-<br>
+&nbsp;
 ##### <b>Basic Usage</b>
-<br>
+&nbsp;
 ##### • Install via NuGet.
 ##### • Annotate methods with [Benchmark] to denote them as benchmarks.
 ##### • Use BenchmarkRunner.Run<> to execute benchmarks.
-<br>
+&nbsp;
 ##### <b>Advanced Features</b>
-<br>
+&nbsp;
 ##### • Parameterization: With [Params], one can input different parameters to the benchmarking method, allowing the assessment of performance across various scenarios.
 ##### • Multiple Runtimes: By targeting different runtimes like .NET Core, .NET Framework, and Mono, you can gauge the cross-runtime performance of code.
 ##### • Custom Configurations: Define precise benchmarking scenarios, controlling factors like the number of iterations or the warm-up phase.
 ##### Diagnostics: Beyond just timings, delve into memory allocation, garbage collection, and even disassembly to comprehend the deeper performance attributes and implications of your code.
 
-<br>
+&nbsp;
 ##### <b>Best Practices</b>
-<br>
+&nbsp;
 ##### • Craft concise benchmarks focusing on specific tasks
 ##### • Isolate benchmarks from external factors such as databases or network calls
 ##### • Guard against unintended code optimizations by ensuring the benchmarked code produces tangible side effects.
-<br>
+&nbsp;
 ##### A year ago I created a challenge to optimize some functions and I used Benchmarking there. You can see the code [here](https://github.com/StefanTheCode/OptimizeMePlease).
 
-<br>
+&nbsp;
 ##### That's all from me for today.
-<br>
+&nbsp;
 
 ## <b > dream BIG! </b>

@@ -3,7 +3,7 @@ title: "Using CORS in your applications"
 subtitle: "Cross-Origin Resource Sharing (CORS) is a security feature implemented by web browsers that controls how web pages in one domain can request resources, like APIs, from another domain..."
 date: "Oct 9 2023"
 readTime: "Read Time: 3 minutes"
-photoUrl: "/images/blog/newsletter21.png"
+category: ".NET"
 meta_description: "Enhance your .NET applications with Stefan Đokić's expert guide to Cross-Origin Resource Sharing (CORS) implementation. Learn essential CORS concepts, set up and adjust CORS policies, handle pre-flight requests, and tighten security for robust API development. Essential reading for .NET developers aiming to build secure, cross-origin enabled web applications."
 ---
 

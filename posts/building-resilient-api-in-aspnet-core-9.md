@@ -4,7 +4,6 @@ subtitle: "What if your app could handle those hiccups gracefully without cras
 readTime: "Read Time: 5 minutes"
 date: "May 19 2025"
 category: ".NET"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Microsoft.Extensions.Resilience is a set of libraries that help you: Retry failed operations, Set timeouts, Break circuits on repeated failures, Control request rates, Send backup (hedged) requests"
 ---
 

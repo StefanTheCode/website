@@ -4,7 +4,6 @@ subtitle: "Modern APIs are all about flexibility—and that’s where GraphQL sh
 readTime: "Read Time: 6 minutes"
 category: "APIs"
 date: "Mar 31 2025"
-photoUrl: "/images/blog/newsletter21.png"
 meta_description: "Optimize your .NET APIs with Response Compression: A deep dive into enhancing performance, setting up compression providers, and understanding the impact on server load and security."
 ---
 
