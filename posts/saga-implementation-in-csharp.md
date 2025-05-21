@@ -6,13 +6,13 @@ category: ".NET"
 ---
 
 &nbsp;
-#### <b>Many thanks to the sponsors who make it possible for this newsletter to be free for readers.</b>
+#### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;
 &nbsp;
-#### Today's issue is sponsored by <b> [Packt](https://www.packtpub.com/)</b> 
+#### Today's issue is sponsored by ** [Packt](https://www.packtpub.com/)** 
 &nbsp;
 &nbsp;
-#### Working with React doesn't have to be complex. "React 18 Design Patterns and Best Practices" empowers you to harness React's potential, making your applications flexible, easy to manage, and high-performing. Discover and unravel the dynamic features of React 18 and Node 19. This updated fourth edition equips you with insights into the cutting-edge tools that will elevate your projects. <b> [Book Link](https://packt.link/IxSPS)</b>.
+#### Working with React doesn't have to be complex. "React 18 Design Patterns and Best Practices" empowers you to harness React's potential, making your applications flexible, easy to manage, and high-performing. Discover and unravel the dynamic features of React 18 and Node 19. This updated fourth edition equips you with insights into the cutting-edge tools that will elevate your projects. ** [Book Link](https://packt.link/IxSPS)**.
 &nbsp;
 <hr style='background-color: #fff'>
 &nbsp;
@@ -102,7 +102,7 @@ category: ".NET"
 ### Step 5#: Publish events
 &nbsp;
 &nbsp;
-##### Finally, you need to publish the events from the Hotel and Flight microservices. You can use the <b>IBus interface</b> provided by MassTransit to publish the events to the appropriate queue.
+##### Finally, you need to publish the events from the Hotel and Flight microservices. You can use the **IBus interface** provided by MassTransit to publish the events to the appropriate queue.
 &nbsp;
 ##### Here is an example how I'm publishing the first event on API call:
 ![Publishing Event Saga Pattern](/images/blog/posts/saga-implementation-in-csharp/publishing-event-saga-pattern.png)
@@ -125,7 +125,7 @@ category: ".NET"
 &nbsp;
 ##### That's all from me for today.
 &nbsp;
-##### Make a coffee and check out source code directly on my <b> [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/5%23%20-%20Saga%20Pattern)</b>.
+##### Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/5%23%20-%20Saga%20Pattern)**.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

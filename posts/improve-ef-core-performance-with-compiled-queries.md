@@ -8,7 +8,7 @@ meta_description: "Unlock the secrets to enhancing Entity Framework Core perform
 ---
 
 &nbsp;  
-##### <b>Many thanks to the sponsors who make it possible for this newsletter to be free for readers.</b>
+##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
 &nbsp;  
 ##### • If you have ever used Postman to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for [writing tests for your gRPC requests in Postman](https://blog.postman.com/testing-grpc-apis-with-postman/). For more info about gRPC, they created a great beginner article [here](https://blog.postman.com/what-is-grpc/).  
 &nbsp;  
@@ -23,7 +23,7 @@ meta_description: "Unlock the secrets to enhancing Entity Framework Core perform
 ### The background
 &nbsp;
 &nbsp;
-##### <b>Compiled queries in .NET</b> emerged as a response to the performance challenges faced in data retrieval operations, particularly in applications using ORMs like Entity Framework.
+##### **Compiled queries in .NET** emerged as a response to the performance challenges faced in data retrieval operations, particularly in applications using ORMs like Entity Framework.
 &nbsp;
 ##### Before the introduction of compiled queries, every data retrieval operation required the ORM to translate LINQ queries into SQL queries, a process that was both time-consuming and resource-intensive.
 &nbsp;
@@ -51,9 +51,9 @@ meta_description: "Unlock the secrets to enhancing Entity Framework Core perform
 
 ##### What we have done here?
 &nbsp;
-##### <b>• GetUser field</b>: This is a static field of type Func< AppDbContext, int, User>. It's a compiled query using Entity Framework's EF.CompileQuery method.
+##### **• GetUser field**: This is a static field of type Func< AppDbContext, int, User>. It's a compiled query using Entity Framework's EF.CompileQuery method.
 &nbsp;
-##### <b>• GetUser Method</b>: his is a public instance method that takes an int id as a parameter. It uses the static GetUser field (the compiled query) to retrieve a User object from the database. It does so by passing this (the current instance of AppDbContext) and the provided id to the compiled query.
+##### **• GetUser Method**: his is a public instance method that takes an int id as a parameter. It uses the static GetUser field (the compiled query) to retrieve a User object from the database. It does so by passing this (the current instance of AppDbContext) and the provided id to the compiled query.
 &nbsp;
 ##### And now we can just call the method created within the our context:
 ![Using Compiled Query](/images/blog/posts/improve-ef-core-performance-with-compiled-queries/using-compiled-query.png)
@@ -64,15 +64,15 @@ meta_description: "Unlock the secrets to enhancing Entity Framework Core perform
 &nbsp;
 &nbsp;
 
-####  <b>Improved Performance</b> 
+####  **Improved Performance** 
 &nbsp;
 ##### The primary advantage is faster execution time, as the query translation from LINQ to SQL is done only once and reused, which is particularly beneficial for queries executed frequently.
 &nbsp;
-####  <b>Efficient Resource Utilization</b> 
+####  **Efficient Resource Utilization** 
 &nbsp;
 ##### Since the query is compiled once and cached, it reduces CPU usage and resource consumption associated with the query compilation process.
 &nbsp;
-####  <b>Automatic Caching</b> 
+####  **Automatic Caching** 
 &nbsp;
 ##### EF Core automatically compiles and caches the most common queries, reducing the need for manual intervention and simplifying development.
 
@@ -83,15 +83,15 @@ meta_description: "Unlock the secrets to enhancing Entity Framework Core perform
 &nbsp;
 &nbsp;
 
-####  <b>Highly Dynamic Queries</b> 
+####  **Highly Dynamic Queries** 
 &nbsp;
 ##### Avoid them if your queries change frequently or are dynamically constructed based on various conditions.
 &nbsp;
-####  <b>Infrequently Executed Queries</b> 
+####  **Infrequently Executed Queries** 
 &nbsp;
 ##### Not necessary for queries executed rarely, as the performance benefit may be negligible.
 &nbsp;
-####  <b>Limited Resource Environments</b> 
+####  **Limited Resource Environments** 
 &nbsp;
 ##### If memory usage is a concern, be cautious with the number of compiled queries.
 
@@ -106,4 +106,4 @@ meta_description: "Unlock the secrets to enhancing Entity Framework Core perform
 ##### That's all from me for today.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

@@ -5,7 +5,6 @@ date: "Mar 18 2024"
 category: "CSharp"
 readTime: "Read Time: 5 minutes"
 meta_description: "In November 2023, C# 12 arrived with a bang, bundled with .NET 8, bringing with it a bunch of cool new features that have made developers sit up and take notice."
-photoUrl: "/images/blog/newsletter21.png"
 ---
 
 &nbsp;  

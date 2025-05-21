@@ -10,7 +10,7 @@ date: "Sep 18 2023"
 ### The background
 &nbsp;
 &nbsp;
-##### <b>Middleware</b> in the context of web development is a piece of software that sits between two or more software applications or layers, enabling them to communicate, manage data, or execute other functions.
+##### **Middleware** in the context of web development is a piece of software that sits between two or more software applications or layers, enabling them to communicate, manage data, or execute other functions.
 
 &nbsp;
 ##### Middleware enables us to add extra functionality either before or after the processing of an HTTP request.
@@ -30,9 +30,9 @@ date: "Sep 18 2023"
 
 ##### There are a couple of ways that middleware can be implemented, which I'll talk about a little later.
 &nbsp;
-##### My way is to create <b>Factory-Based Middleware</b> through the implementation of the existing <b>IMiddleware</b> interface.
+##### My way is to create **Factory-Based Middleware** through the implementation of the existing **IMiddleware** interface.
 &nbsp;
-##### This class actually represents the middleware itself and has only one <b>InvokeAsync method</b> that is executed during each request. This is where you implement the logic of your middleware.
+##### This class actually represents the middleware itself and has only one **InvokeAsync method** that is executed during each request. This is where you implement the logic of your middleware.
 &nbsp;
 ##### Here's how you can do it:
 
@@ -50,15 +50,15 @@ date: "Sep 18 2023"
 &nbsp;
 &nbsp;
 
-####  <b>Explicit Interface</b> 
+####  **Explicit Interface** 
 &nbsp;
 ##### The IMiddleware interface makes it clear what a middleware component should do, and it ensures that you don't accidentally miss the InvokeAsync method.
 &nbsp;
-####  <b>Reusability and Testability</b> 
+####  **Reusability and Testability** 
 &nbsp;
 ##### Because it's strongly-typed and follows a clear interface, this kind of middleware is often easier to unit test. You can mock dependencies more easily and validate whether your middleware behaves as expected under different conditions.
 &nbsp;
-####  <b>Readability</b> 
+####  **Readability** 
 &nbsp;
 ##### The strongly-typed nature of the middleware can make the code more readable and easier to understand, particularly for developers who are new to the project or are not as familiar with middleware in general.
 
@@ -69,16 +69,16 @@ date: "Sep 18 2023"
 &nbsp;
 &nbsp;
 
-####  <b>Alternative #1: Convention Middleware</b> 
+####  **Alternative #1: Convention Middleware** 
 &nbsp;
 ##### In this case, instead of implementing the interface, I use RequestDelegate.
 &nbsp;
 ##### Here is the implementation:
 ![Custom Middleware](/images/blog/posts/how-do-i-create-middleware/custom-middleware.png)
 &nbsp;
-####  <b>Alternative #2: Middleware with Request Delegate</b> 
+####  **Alternative #2: Middleware with Request Delegate** 
 &nbsp;
-##### You can do that by calling the <b>Use method</b> on the WebApplication instance and providing a lambda method with two arguments. The first argument is the HttpContext and the second argument is the actual next request delegate in the pipeline RequestDelegate.
+##### You can do that by calling the **Use method** on the WebApplication instance and providing a lambda method with two arguments. The first argument is the HttpContext and the second argument is the actual next request delegate in the pipeline RequestDelegate.
 &nbsp;
 ##### Here is the implementation:
 ![Middleware with request delegate](/images/blog/posts/how-do-i-create-middleware/middleware-with-request-delegate.png)
@@ -97,4 +97,4 @@ date: "Sep 18 2023"
 ##### That's all from me for today.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

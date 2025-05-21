@@ -83,4 +83,4 @@ readTime: "Read Time: 3 minutes"
 ##### Make a coffee and check out source code directly on my <b> [GitHub repository](https://github.com/StefanTheCode/Newsletter)</b>.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! </b>

@@ -5,13 +5,13 @@ date: "Oct 16 2023"
 readTime: "Read Time: 6 minutes"
 category: "APIs"
 ---
-&nbsp;
-&nbsp;
 
+&nbsp;
+&nbsp;
 ### The background
 &nbsp;
 &nbsp;
-##### <b>gRPC</b>, which stands for <b>Google Remote Procedure Call</b>, is an open-source, high-performance framework for building efficient and scalable distributed systems.
+##### **gRPC**, which stands for **Google Remote Procedure Call**, is an open-source, high-performance framework for building efficient and scalable distributed systems.
 ##### It was initially developed by Google and has gained widespread adoption in the software development community due to its versatility and performance advantages.
 
 &nbsp;
@@ -51,11 +51,11 @@ category: "APIs"
 ### Real-world use cases in applications
 &nbsp;
 &nbsp;
-##### <b>Microservices Communication:</b> One of the most common use cases for gRPC is facilitating communication between microservices in a web application. Microservices often need to communicate with each other to perform various tasks, and gRPC's efficiency, low latency, and language-agnostic capabilities make it an excellent choice for building communication channels between these services.
+##### **Microservices Communication:** One of the most common use cases for gRPC is facilitating communication between microservices in a web application. Microservices often need to communicate with each other to perform various tasks, and gRPC's efficiency, low latency, and language-agnostic capabilities make it an excellent choice for building communication channels between these services.
 &nbsp;
-##### <b>Real-time Chat Applications:</b> Chat applications require low-latency and bidirectional communication between clients and servers. gRPC's support for bidirectional streaming is well-suited for building real-time chat applications, allowing messages to be sent and received in near real-time while maintaining a persistent connection.
+##### **Real-time Chat Applications:** Chat applications require low-latency and bidirectional communication between clients and servers. gRPC's support for bidirectional streaming is well-suited for building real-time chat applications, allowing messages to be sent and received in near real-time while maintaining a persistent connection.
 &nbsp;
-##### <b>Streaming Media:</b> Video streaming and conferencing applications can benefit from gRPC's support for bidirectional streaming. Users can stream media content while also sending and receiving real-time chat messages or annotations within the streaming interface.
+##### **Streaming Media:** Video streaming and conferencing applications can benefit from gRPC's support for bidirectional streaming. Users can stream media content while also sending and receiving real-time chat messages or annotations within the streaming interface.
 
 &nbsp;
 &nbsp;
@@ -79,7 +79,7 @@ category: "APIs"
 &nbsp;
 ##### The .NET offers us to create a ready-made project template through Visual Studio.
 &nbsp;
-##### In the search, type "gRPC" and create the <b>"ASP.NET Core gRPC Service"</b> project. Name the project "gRPC Server" or something similar, since we are now creating a Server application.
+##### In the search, type "gRPC" and create the **"ASP.NET Core gRPC Service"** project. Name the project "gRPC Server" or something similar, since we are now creating a Server application.
 ![gRPC Creating Server Project](/images/blog/posts/unlock-the-power-of-high-performance-web-applications-with-grpc/grpc-creating-server-project.png)
 &nbsp;
 ##### Now you have a project that can be run immediately.
@@ -90,11 +90,11 @@ category: "APIs"
 ##### The structure of the project looks like this:
 ![gRPC Server Project Structure](/images/blog/posts/unlock-the-power-of-high-performance-web-applications-with-grpc/grpc-server-project-structure.png)
 &nbsp;
-##### The most important file is <b> greet.proto</b> in the Protos folder. gRPC proto files are the way we define the contract between the server and the client. Let’s look at different pieces of this file:
+##### The most important file is ** greet.proto** in the Protos folder. gRPC proto files are the way we define the contract between the server and the client. Let’s look at different pieces of this file:
 ![gRPC Proto file](/images/blog/posts/unlock-the-power-of-high-performance-web-applications-with-grpc/greet-proto-file.png)
 &nbsp;
 
-##### <b>Greeter Service class:</b>
+##### **Greeter Service class:**
 &nbsp;
 ##### We have the GreeterService, which inherits from Greeter.GreeterBase. We pull this from service Greeter in the proto file. But where does Greeter.GreeterBase come from? If you press F12 (Go to Definition) here, you get GreetGrpc.cs file.
 &nbsp;
@@ -156,4 +156,4 @@ category: "APIs"
 ##### That's all from me for today.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

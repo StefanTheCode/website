@@ -132,4 +132,4 @@ date: "March 20 2023"
 ##### Make a coffee and check out source code directly on my <b> [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/6%23%20-%20Clean%20Code)</b>.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! </b>

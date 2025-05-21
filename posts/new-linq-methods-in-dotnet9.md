@@ -177,4 +177,4 @@ foreach ((var index, var person) in people.Index())
 
 <!--END-->
 
-## <b > dream BIG! </b>
+## ** dream BIG! </b>

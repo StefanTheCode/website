@@ -10,12 +10,12 @@ date: "Sep 25 2023"
 ### The background
 &nbsp;
 &nbsp;
-##### <b>"You can't improve what you don't measure."</b> - someone once said.
+##### **"You can't improve what you don't measure."** - someone once said.
 ##### And he/she was right.
 &nbsp;
-##### We often find ourselves in a situation where a certain method or part of the code does not work as we want in terms of execution speed on the CPU, memory usage, and the like. In such cases, we approach <b>code optimization</b>. But in order to improve the parts of the code that are not good, it is necessary to measure the performance.
+##### We often find ourselves in a situation where a certain method or part of the code does not work as we want in terms of execution speed on the CPU, memory usage, and the like. In such cases, we approach **code optimization**. But in order to improve the parts of the code that are not good, it is necessary to measure the performance.
 &nbsp;
-##### You can use the <b>BenchmarkDotNet library</b> for that.
+##### You can use the **BenchmarkDotNet library** for that.
 
 &nbsp;
 &nbsp;
@@ -52,7 +52,7 @@ Install-Package BenchmarkDotNet
 &nbsp;
 #### 2. Create Benchmarks
 &nbsp;
-##### Write the code you want to benchmark in a method and annotate it with the <b>[Benchmark]</b> attribute.
+##### Write the code you want to benchmark in a method and annotate it with the **[Benchmark]** attribute.
 
 ```csharp
 
@@ -71,7 +71,7 @@ public class MyBenchmarks
 #### 3. Run Benchmarks
 &nbsp;
 
-##### To run the benchmarks, you create a new instance of the <b>BenchmarkRunner</b> class and call the Run method.
+##### To run the benchmarks, you create a new instance of the **BenchmarkRunner** class and call the Run method.
 ```csharp
 
 using BenchmarkDotNet.Running;
@@ -138,11 +138,11 @@ public class ParameterizedBenchmarks
 &nbsp;
 #### • Multiple Runtimes
 &nbsp;
-#####  To run benchmarks against different .NET runtimes, you can use the <b>[CoreJob, ClrJob, MonoJob]</b> attributes. You'll also need to adjust your project file to target multiple frameworks.
+#####  To run benchmarks against different .NET runtimes, you can use the **[CoreJob, ClrJob, MonoJob]** attributes. You'll also need to adjust your project file to target multiple frameworks.
 &nbsp;
 ##### First, adjust your .csproj:
 &nbsp;
-##### <b>< TargetFrameworks >net7.0;net6.0;net5.0</ TargetFrameworks ></b>
+##### **< TargetFrameworks >net7.0;net6.0;net5.0</ TargetFrameworks >**
 &nbsp;
 ##### Then, in your benchmark class:
 
@@ -194,9 +194,9 @@ public class CustomConfigurationBenchmarks
 &nbsp;
 #### • Diagnostics
 &nbsp;
-##### To capture diagnostics like memory traffic or GC collections, you'll use the <b>[MemoryDiagnoser]</b> attribute.
+##### To capture diagnostics like memory traffic or GC collections, you'll use the **[MemoryDiagnoser]** attribute.
 &nbsp;
-##### For more detailed diagnostics, you might consider other diagnosers available in BenchmarkDotNet, like <b>[DisassemblyDiagnoser]</b>.
+##### For more detailed diagnostics, you might consider other diagnosers available in BenchmarkDotNet, like **[DisassemblyDiagnoser]**.
 
 ```csharp
 
@@ -222,13 +222,13 @@ public class MemoryDiagnosticsBenchmarks
 &nbsp;
 #### Key Takeaways
 &nbsp;
-##### <b>Basic Usage</b>
+##### **Basic Usage**
 &nbsp;
 ##### • Install via NuGet.
 ##### • Annotate methods with [Benchmark] to denote them as benchmarks.
 ##### • Use BenchmarkRunner.Run<> to execute benchmarks.
 &nbsp;
-##### <b>Advanced Features</b>
+##### **Advanced Features**
 &nbsp;
 ##### • Parameterization: With [Params], one can input different parameters to the benchmarking method, allowing the assessment of performance across various scenarios.
 ##### • Multiple Runtimes: By targeting different runtimes like .NET Core, .NET Framework, and Mono, you can gauge the cross-runtime performance of code.
@@ -236,7 +236,7 @@ public class MemoryDiagnosticsBenchmarks
 ##### Diagnostics: Beyond just timings, delve into memory allocation, garbage collection, and even disassembly to comprehend the deeper performance attributes and implications of your code.
 
 &nbsp;
-##### <b>Best Practices</b>
+##### **Best Practices**
 &nbsp;
 ##### • Craft concise benchmarks focusing on specific tasks
 ##### • Isolate benchmarks from external factors such as databases or network calls
@@ -248,4 +248,4 @@ public class MemoryDiagnosticsBenchmarks
 ##### That's all from me for today.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

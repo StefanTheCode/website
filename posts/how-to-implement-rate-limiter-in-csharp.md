@@ -24,7 +24,7 @@ meta_description: "A rate limiter is a software mechanism that controls the amou
 ##### You don't need it. :)
 &nbsp;
 
-##### Rate Limiting is coming from <b> Microsoft.AspNetCore.RateLimiting </b> middleware which is included in .NET 7 by default.
+##### Rate Limiting is coming from ** Microsoft.AspNetCore.RateLimiting ** middleware which is included in .NET 7 by default.
 
 &nbsp;
 &nbsp;
@@ -54,11 +54,11 @@ meta_description: "A rate limiter is a software mechanism that controls the amou
 
 ![Adding Rate Limiter to Service Collection](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/adding-rate-limiter-to-service-collection.png)
 &nbsp;
-##### <b> • AddFixedWindowLimiter </b> - the method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
-##### <b>• PermitLimit </b> - A maximum of 10 requests
-##### <b>• Window </b> - per 5 seconds window.
-##### <b> • QueueProcessingOrder </b> - behaviour when not enough resources can be leased (Process oldest requests first).
-##### <b> • QueueLimit </b> - Maximum cumulative permit count of queued acquisition requests.
+##### ** • AddFixedWindowLimiter ** - the method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
+##### **• PermitLimit ** - A maximum of 10 requests
+##### **• Window ** - per 5 seconds window.
+##### ** • QueueProcessingOrder ** - behaviour when not enough resources can be leased (Process oldest requests first).
+##### ** • QueueLimit ** - Maximum cumulative permit count of queued acquisition requests.
 
 &nbsp;
 &nbsp;
@@ -78,7 +78,7 @@ meta_description: "A rate limiter is a software mechanism that controls the amou
 
 ##### Finally, you can use a rate limiting. 
 &nbsp;
-##### For Minimal API, just call a method <b>RequireRateLimiting</b> on defined API route. Argument "fixed" is a policyName of created RateLimiting service (in our case it is Fixed Window).
+##### For Minimal API, just call a method **RequireRateLimiting** on defined API route. Argument "fixed" is a policyName of created RateLimiting service (in our case it is Fixed Window).
 &nbsp;
 ##### For the Controllers, you need also to tell the middleware to require rate limiting:
 ![Require Rate Limiter](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/require-rate-limiter.png)
@@ -102,4 +102,4 @@ meta_description: "A rate limiter is a software mechanism that controls the amou
 ##### Make a coffee and try it on your projects.
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

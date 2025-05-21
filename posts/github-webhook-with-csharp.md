@@ -8,7 +8,7 @@ date: "March 06 2023"
 ### Background
 &nbsp;
 &nbsp;
-##### A <b>Webhook</b> is a mechanism that allows a web application to send real-time notifications or data to another web application.
+##### A **Webhook** is a mechanism that allows a web application to send real-time notifications or data to another web application.
 &nbsp;
 
 ##### It is essentially a way for two different applications to communicate with each other in "real time" rather than relying on periodic polling or manual data transfer.
@@ -23,11 +23,11 @@ date: "March 06 2023"
 &nbsp;
 &nbsp;
 
-##### A webhook receiver for an event that happened on Github or any other service can be represented in the simplest way as an <b>HttpPost API endpoint</b> in a C# controller.
+##### A webhook receiver for an event that happened on Github or any other service can be represented in the simplest way as an **HttpPost API endpoint** in a C# controller.
 
 &nbsp;
 
-##### <b> • Create an action in C# Controller</b>
+##### ** • Create an action in C# Controller**
 ##### You need to create C # API Controller with GitHubWebhookController name. This is a controller to serve for all Events that happen within Github repository.
 &nbsp;
 ##### After that, you need to add an endpoint Pushed for the "push" event on github, which will practically serve as a callback event. 
@@ -38,7 +38,7 @@ date: "March 06 2023"
 ##### This method must be HttpPost. 
 ##### Since I currently don't know what the GitHub payload looks like, ie. object/JSON that GitHub sends during a specific event, I will state that the object that the method receives as a parameter is type dynamic.
 &nbsp;
-##### <b> ​• Run the application</b>
+##### ** ​• Run the application**
 &nbsp;
 ##### When you start the API project, through Swagger you can see Endpoint there is and that everything is fine for now.
 &nbsp;
@@ -54,12 +54,12 @@ date: "March 06 2023"
 &nbsp;
 ![GitHub Platform Adding Webhook](/images/blog/posts/github-webhook-with-csharp/github-platform-adding-webhook.png)
 &nbsp;
-##### The most important field to fill in is of course the <b>PayloadUrl</b>.
+##### The most important field to fill in is of course the **PayloadUrl**.
 &nbsp;
-##### <b>This field represents the endpoint of our application that Github will call the moment a push event occurs on the selected repository.<b>
+##### **This field represents the endpoint of our application that Github will call the moment a push event occurs on the selected repository.**
 &nbsp;
-##### <b>Content type:</b> You can choose application/json
-##### <b>Secret:</b> You can generate via some online generator. This secret is used to verify that the payload was actually sent by Github and not by a malicious third party pretending to be Github. For demo purposes I will leave it blank, but <b> do not do this on production</b>.
+##### **Content type:** You can choose application/json
+##### **Secret:** You can generate via some online generator. This secret is used to verify that the payload was actually sent by Github and not by a malicious third party pretending to be Github. For demo purposes I will leave it blank, but ** do not do this on production**.
 &nbsp;
 ##### Okay, now, what will happen if you put the localhost link (http://localhost:7030/api/GithubWebhook/push) like a Payload URL? 
 &nbsp;
@@ -67,21 +67,21 @@ date: "March 06 2023"
 ##### GitHub doesn't know that your localhost exists somewhere on your computer. It is necessary that the application is deployed somewhere, say Azure.
 ##### But for testing and debugging, ngrok can help you. 
 &nbsp;
-##### <b>What is ngrok?</b>
+##### **What is ngrok?**
 &nbsp;
 ##### Ngrok is a software tool that creates a secure tunnel between a local machine and the public internet, allowing developers to expose a web server running on their local machine to the internet.
 &nbsp;
-##### <b>Ngrok setup</b>
+##### **Ngrok setup**
 &nbsp;
 ##### • Download from: [Ngrok]( https://ngrok.com/)
 ##### • Install it and run it
-##### • Execute the following command: <b>ngrok http port</b>
+##### • Execute the following command: **ngrok http port**
 &nbsp;
 ##### *Port should be your port which you can see when you start the application
-##### *You should <b>disable https protocol</b> for the application by replacing https urls with http in <b>launchSettings.json</b>.
+##### *You should **disable https protocol** for the application by replacing https urls with http in **launchSettings.json**.
 &nbsp;
 ##### Now you will see in CMD the url that is online and to which the localhost url is mapped. 
-##### If you visit the url from the <b>'forwarding'</b> part, you will see exactly the same result as for localhost. Of course, the advantage of this is that the debugger is active.
+##### If you visit the url from the **'forwarding'** part, you will see exactly the same result as for localhost. Of course, the advantage of this is that the debugger is active.
 ![Ngrok Console Running](/images/blog/posts/github-webhook-with-csharp/ngrok-console-running.png)
 &nbsp;
 ##### The next thing is to put that ngrok url together with the API endpoint in the Payload Url field: https://9739-178-220-34-243.eu.ngrok.io/api/GitHubWebhook/pushed
@@ -114,8 +114,8 @@ date: "March 06 2023"
 &nbsp;
 ##### That's all from me for today.
 &nbsp;
-##### Make a coffee and check out source code directly on my <b> [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/4%23%20-%20Webhooks)</b>.
+##### Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/4%23%20-%20Webhooks)**.
 
 &nbsp;
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

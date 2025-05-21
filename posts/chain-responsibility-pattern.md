@@ -18,32 +18,32 @@ meta_description: "The Chain of Responsibility pattern is a behavioral design pa
 
 <!--START-->
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### The background
-<br>
-<br>
+&nbsp;
+&nbsp;
 ##### The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task.
-<br>
+&nbsp;
 ##### Each object in the chain has the ability to either handle the request or pass it on to the next object in the chain. This pattern promotes loose coupling and flexibility in handling requests.
-<br>
+&nbsp;
 ##### Let's explore how to implement the Chain of Responsibility pattern in .NET 6 using a practical example.
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### Example Scenario
-<br>
-<br>
+&nbsp;
+&nbsp;
 
 ##### Let's consider a scenario where we have a series of discount rules for an e-commerce application. Depending on the customer's profile, we want to apply different discount percentages to their orders.
-<br>
+&nbsp;
 ##### The discount rules are as follows:
-<br>
+&nbsp;
 ##### • If the customer is a VIP, apply a 20% discount.
 ##### • If the customer is a regular customer, apply a 10% discount.
 ##### • If the customer is a new customer, apply a 5% discount.
 ##### • If none of the above rules match, apply no discount.
-<br>
+&nbsp;
 ##### Initially, we can handle this logic using a series of If statements:
 
 ```csharp
@@ -70,18 +70,18 @@ public decimal CalculateDiscount(Customer customer, decimal orderTotal)
 
 ```
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### Chain of Responsibility
-<br>
-<br>
+&nbsp;
+&nbsp;
 ##### While the If statements approach works, it can become unwieldy when the number of rules grows.
-<br>
+&nbsp;
 ##### The Chain of Responsibility pattern provides a more flexible and maintainable solution.
-<br>
+&nbsp;
 ##### Let's refactor the code to use this pattern.
-<br>
-#####  <b> Step #1</b>: Create an <b>abstract handler class, DiscountHandler</b>, that defines a common interface for all discount handlers:
+&nbsp;
+#####  ** Step #1**: Create an **abstract handler class, DiscountHandler**, that defines a common interface for all discount handlers:
 
 ```csharp
 
@@ -99,10 +99,10 @@ public abstract class DiscountHandler
 
 ```
 
-<br>
-##### <b>Step #2</b>: Implement <b>concrete discount handlers</b> by deriving from DiscountHandler. Each handler will handle a specific rule and decide whether to apply a discount or pass the request to the next handler.
-<br>
-##### <b>VIPDiscountHandler:</b>
+&nbsp;
+##### **Step #2**: Implement **concrete discount handlers** by deriving from DiscountHandler. Each handler will handle a specific rule and decide whether to apply a discount or pass the request to the next handler.
+&nbsp;
+##### **VIPDiscountHandler:**
 
 ```csharp
 
@@ -121,8 +121,8 @@ public class VIPDiscountHandler : DiscountHandler
 
 ```
 
-<br>
-##### <b>RegularDiscountHandler:</b>
+&nbsp;
+##### **RegularDiscountHandler:**
 
 ```csharp
 
@@ -141,8 +141,8 @@ public class RegularDiscountHandler : DiscountHandler
 
 ```
 
-<br>
-##### <b>NewCustomerDiscountHandler:</b>
+&nbsp;
+##### **NewCustomerDiscountHandler:**
 
 ```csharp
 
@@ -161,8 +161,8 @@ public class NewCustomerDiscountHandler : DiscountHandler
 
 ```
 
-<br>
-##### <b>NoDiscountHandler:</b>
+&nbsp;
+##### **NoDiscountHandler:**
 
 ```csharp
 
@@ -176,8 +176,8 @@ public class NoDiscountHandler : DiscountHandler
 
 ```
 
-<br>
-##### <b>Step #3:</b> With the concrete handlers in place, we can create the chain by linking them together:
+&nbsp;
+##### **Step #3:** With the concrete handlers in place, we can create the chain by linking them together:
 
 ```csharp
 
@@ -189,56 +189,56 @@ vipHandler.SetNextHandler(new RegularDiscountHandler())
 
 ```
 
-<br>
-##### Finally, we can invoke the chain by calling the <b>CalculateDiscount method</b> on the first handler in the chain:
+&nbsp;
+##### Finally, we can invoke the chain by calling the **CalculateDiscount method** on the first handler in the chain:
 
 ```csharp
 
 decimal discountAmount = vipHandler.CalculateDiscount(customer, orderTotal);
 ```
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### Pros and Cons? 
-<br>
-<br>
+&nbsp;
+&nbsp;
 
 ##### What are the benefits from this?
-<br>
-##### <b>1. Flexibility</b>
-<br>
+&nbsp;
+##### **1. Flexibility**
+&nbsp;
 ##### The Chain of Responsibility pattern allows you to dynamically modify or extend the chain without affecting other parts of the code. You can add or remove handlers as needed.
 
-<br>
-##### <b>2. Loose coupling</b>
-<br>
+&nbsp;
+##### **2. Loose coupling**
+&nbsp;
 ##### The pattern promotes loose coupling between the sender of a request and its receivers. Each handler only needs to know about its immediate successor, minimizing dependencies.
 
-<br>
-##### <b>3. Single Responsibility Principle</b>
-<br>
+&nbsp;
+##### **3. Single Responsibility Principle**
+&nbsp;
 ##### You can decouple classes that invoke operations from classes that perform operations.
-<br>
-<br>
-####  <b>Okay,what about Drawbacks?</b>
+&nbsp;
+&nbsp;
+####  **Okay,what about Drawbacks?**
 
-<br>
-##### <b>1. Request may go unhandled</b>
-<br>
+&nbsp;
+##### **1. Request may go unhandled**
+&nbsp;
 ##### If none of the handlers in the chain can handle the request, it may go unhandled, leading to unexpected behavior. It's important to have a default handler or a way to handle such scenarios.
 
-<br>
-##### <b>2. Potential performance impact</b>
-<br>
+&nbsp;
+##### **2. Potential performance impact**
+&nbsp;
 ##### If the chain becomes very long, it may result in performance overhead due to the traversal of multiple handlers.
-<br>
+&nbsp;
 
 ##### Remember, it's essential to strike a balance between the number of handlers and performance considerations when applying this pattern to real-world scenarios.
 
-<br>
+&nbsp;
 ##### That's all from me for today.
-<br>
+&nbsp;
 
 <!--END-->
 
-## <b > dream BIG! </b>
+## ** dream BIG! **

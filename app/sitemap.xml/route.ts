@@ -24,17 +24,12 @@ export async function GET() {
   const staticRoutes = ["", "pass-your-interview", "sponsorship", "design-patterns", "blog", "design-patterns-simplified", "design-patterns-that-deliver-ebook", "builder-pattern-free-stuff", "rag-system-dotnet"]; // add any static routes here
 
   const posts = getSlugsFromFolder("posts");
-  const patterns = getSlugsFromFolder("patterns");
 
   const dynamicRoutes = [
     ...posts.map((p) => ({
       url: `${BASE_URL}/posts/${p.slug}`,
       lastmod: p.date,
-    })),
-    ...patterns.map((p) => ({
-      url: `${BASE_URL}/patterns/${p.slug}`,
-      lastmod: p.date,
-    })),
+    }))
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
