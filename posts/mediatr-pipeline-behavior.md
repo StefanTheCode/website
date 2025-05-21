@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#48 Stefan's Newsletter"
 title: "MediatR Pipeline Behavior"
 subtitle: "MediatR is a popular library in .NET used for implementing the Mediator pattern. It helps in reducing coupling between components..."
 readTime: "Read Time: 3 minutes"

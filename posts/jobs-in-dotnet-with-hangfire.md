@@ -1,7 +1,6 @@
 ---
-newsletterTitle: "#10 Stefan's Newsletter"
 title: "Jobs in .NET with Hangfire"
-subtitle: "Hangfire is an open-source library for .NET that provides a simple way to perform background processing in your application..."
+subtitle: "Hangfire is an open-source library for .NET that provides a simple way to perform background processing in your application... "
 readTime: "Read Time: 6 minutes"
 date: "Apr 17 2023"
 category: ".NET"

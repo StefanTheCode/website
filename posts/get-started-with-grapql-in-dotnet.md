@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#46 Stefan's Newsletter"
 title: "Get Started with GraphQL in .NET"
 subtitle: "The GraphQL is a query language for our API that allows us to define the data structure we need, and the server will return only the requested data."
 date: "Dec 18 2023"

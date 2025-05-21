@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#61 Stefan's Newsletter"
 title: "3 things you should know about Strings"
 subtitle: "We often don't see the mistakes we're making, or we don't see ways to potentially optimize the code. And there are many of them...."
 date: "Apr 01 2024"

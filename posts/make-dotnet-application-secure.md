@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#9 Stefan's Newsletter"
 title: "Make your .NET application secure"
 subtitle: "Security headers are HTTP response headers that provide an additional layer of security to web applications. They help to protect against attacks such as cross-site scripting (XSS), clickjacking, and more."
 readTime: "Read Time: 8 minutes"

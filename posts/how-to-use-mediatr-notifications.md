@@ -1,6 +1,6 @@
 ---
 title: "How to use MediatR Notifications"
-subtitle: "MediatR is a popular open-source library for implementing the Mediator pattern in .NET applications..."
+subtitle: "MediatR is a popular open-source library for implementing the Mediator pattern in .NET applications... "
 readTime: "Read Time: 3 minutes"
 date: "Feb 10 2025"
 category: ".NET"

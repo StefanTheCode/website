@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#1 Stefan's Newsletter"
 title: "4 methods to handle Nullable Reference in .NET"
 subtitle: "Reference types in C# have always been nullable, meaning that variables of any reference type can be assigned a value of null..."
 date: "February 13 2023"

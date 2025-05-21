@@ -1,7 +1,6 @@
 ---
-newsletterTitle: "#42 Stefan's Newsletter"
 title: "Improve EF Core Performance with Compiled Queries"
-subtitle: "Compiled queries in .NET emerged as a response to the performance challenges faced in data retrieval operations, particularly in applications using ORMs like Entity Framework."
+subtitle: "Compiled queries in .NET emerged as a response to the performance challenges faced in data retrieval operations, particularly in applications using ORMs like Entity Framework. "
 date: "Nov 20 2023"
 category: "Entity Framework"
 readTime: "Read Time: 2 minutes"
@@ -18,94 +17,94 @@ meta_description: "Unlock the secrets to enhancing Entity Framework Core perform
 ##### Unlock up to 14x faster operations and cut execution time by 94% with [high-performance library for EF Core](https://entityframework-extensions.net/).  Seamlessly enhance your app with Bulk Insert, Update, Delete, and Merge—fully integrated into your existing EF Core workflows.
 ##### Trusted by 5,000+ developers since 2014. Ready to boost your performance? **[Explore the solution](https://entityframework-extensions.net/)**
 
-<br>
+&nbsp;
 <hr style='background-color: #fff'>
-<br>
+&nbsp;
 
 ### The background
-<br>
-<br>
+&nbsp;
+&nbsp;
 ##### <b>Compiled queries in .NET</b> emerged as a response to the performance challenges faced in data retrieval operations, particularly in applications using ORMs like Entity Framework.
-<br>
+&nbsp;
 ##### Before the introduction of compiled queries, every data retrieval operation required the ORM to translate LINQ queries into SQL queries, a process that was both time-consuming and resource-intensive.
-<br>
+&nbsp;
 ##### This translation had to be done every time a query was executed, significantly impacting performance, especially in applications with high database interaction.
-<br>
+&nbsp;
 ##### Let's dive in...
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### How To Create Compiled Queries
-<br>
-<br>
+&nbsp;
+&nbsp;
 
 ##### Let's say we have a Domain class that represents a data model:
 ![User Domain Class](/images/blog/posts/improve-ef-core-performance-with-compiled-queries/user-domain-class.png)
-<br>
+&nbsp;
 ##### How can we construct a basic query to retrieve a User using its Id?
-<br>
+&nbsp;
 ##### Very simple...
 ![Getting User By Id](/images/blog/posts/improve-ef-core-performance-with-compiled-queries/getting-user-by-id.png)
-<br>
+&nbsp;
 ##### Now, how do we convert this query into a Complied Query?
 ![Compiled Query](/images/blog/posts/improve-ef-core-performance-with-compiled-queries/compiled-query.png)
-<br>
+&nbsp;
 
 ##### What we have done here?
-<br>
+&nbsp;
 ##### <b>• GetUser field</b>: This is a static field of type Func< AppDbContext, int, User>. It's a compiled query using Entity Framework's EF.CompileQuery method.
-<br>
+&nbsp;
 ##### <b>• GetUser Method</b>: his is a public instance method that takes an int id as a parameter. It uses the static GetUser field (the compiled query) to retrieve a User object from the database. It does so by passing this (the current instance of AppDbContext) and the provided id to the compiled query.
-<br>
+&nbsp;
 ##### And now we can just call the method created within the our context:
 ![Using Compiled Query](/images/blog/posts/improve-ef-core-performance-with-compiled-queries/using-compiled-query.png)
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### Why to use Compiled Queries?
-<br>
-<br>
+&nbsp;
+&nbsp;
 
 ####  <b>Improved Performance</b> 
-<br>
+&nbsp;
 ##### The primary advantage is faster execution time, as the query translation from LINQ to SQL is done only once and reused, which is particularly beneficial for queries executed frequently.
-<br>
+&nbsp;
 ####  <b>Efficient Resource Utilization</b> 
-<br>
+&nbsp;
 ##### Since the query is compiled once and cached, it reduces CPU usage and resource consumption associated with the query compilation process.
-<br>
+&nbsp;
 ####  <b>Automatic Caching</b> 
-<br>
+&nbsp;
 ##### EF Core automatically compiles and caches the most common queries, reducing the need for manual intervention and simplifying development.
 
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### When <span style='color: red'>Not</span> to use Compiled Queries?
-<br>
-<br>
+&nbsp;
+&nbsp;
 
 ####  <b>Highly Dynamic Queries</b> 
-<br>
+&nbsp;
 ##### Avoid them if your queries change frequently or are dynamically constructed based on various conditions.
-<br>
+&nbsp;
 ####  <b>Infrequently Executed Queries</b> 
-<br>
+&nbsp;
 ##### Not necessary for queries executed rarely, as the performance benefit may be negligible.
-<br>
+&nbsp;
 ####  <b>Limited Resource Environments</b> 
-<br>
+&nbsp;
 ##### If memory usage is a concern, be cautious with the number of compiled queries.
 
 
-<br>
-<br>
+&nbsp;
+&nbsp;
 ### Conclusion
-<br>
-<br>
+&nbsp;
+&nbsp;
 ##### Compiled queries in EF Core are a powerful feature for optimizing database access in specific scenarios. They are most beneficial for improving performance in scenarios with repetitive and frequent database queries. However, their use should be balanced against the potential drawbacks, such as increased memory usage and complexity, especially in applications with dynamic query patterns or limited resources.
-<br>
+&nbsp;
 ##### That's all from me for today.
-<br>
+&nbsp;
 
 ## <b > dream BIG! </b>

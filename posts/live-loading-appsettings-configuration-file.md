@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#71 Stefan's Newsletter"
 title: "Live loading appsettings.json configuration file"
 subtitle: "The IOptions pattern is part of the Microsoft.Extensions.Options namespace and provides a way to define a configuration class and bind settings from various sources such as appsettings.json files, environment variables, or command-line arguments."
 category: ".NET"

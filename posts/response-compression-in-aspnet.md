@@ -1,7 +1,6 @@
 ---
 title: "Response Compression in ASP.NET"
-subtitle: "Since there's a limited amount of network bandwidth available...
-"
+subtitle: "Since there's a limited amount of network bandwidth available..."
 readTime: "Read Time: 4 minutes"
 date: "Mar 24 2025"
 category: "APIs"

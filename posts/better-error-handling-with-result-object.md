@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#45 Stefan's Newsletter"
 title: "Better Error Handling with Result<T> object"
 subtitle: "Exceptions are designed to handle unexpected and rare events..."
 category: ".NET"

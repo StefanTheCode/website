@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#70 Stefan's Newsletter"
 title: "Retry Failed API calls with Polly"
 subtitle: "Polly is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner."
 date: "June 03 2024"
@@ -21,7 +20,7 @@ photoUrl: "/images/blog/newsletter21.png"
 ##### Polly is a .NET resilience and transient-fault-handling library that allows developers to express policies such as <b>Retry</b>, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 &nbsp;
 
-####<b>Retry Policy</b>
+#### <b>Retry Policy</b>
 ##### A Retry Policy is a strategy used in software development, particularly in distributed systems and microservices, to handle transient failures. This policy dictates that an operation, such as a network request or database transaction, should be attempted again if it fails, for a certain number of times.
 
 &nbsp;

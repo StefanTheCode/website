@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#60 Stefan's Newsletter"
 title: "Api Gateways - The secure bridge for exposing your api"
 subtitle: "An API Gateway acts as a gatekeeper for your APIs, managing requests from clients (such as web or mobile apps) to your backend services..."
 date: "Mar 25 2024"

@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#44 Stefan's Newsletter"
 title: "Background Tasks in .NET 8"
 subtitle: "A Background Task in .NET typically refers to any operation that runs in the background..."
 readTime: "Read Time: 7 minutes"

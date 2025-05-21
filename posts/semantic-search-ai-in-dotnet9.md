@@ -1,8 +1,6 @@
 ---
 title: "Semantic Search in 50 Lines of Code - AI in .NET"
-subtitle: "
-Semantic search goes beyond traditional keyword matching. 
-Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here’s how it works:"
+subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here’s how it works:"
 date: "Feb 24 2025"
 category: "AI"
 readTime: "Read Time: 4 minutes"

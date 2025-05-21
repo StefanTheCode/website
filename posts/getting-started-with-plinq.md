@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#47 Stefan's Newsletter"
 title: "Getting Started with PLINQ"
 subtitle: "PLINQ queries are similar to regular LINQ queries, but they're designed to run faster by using all the processors on your computer..."
 readTime: "Read Time: 3 minutes"

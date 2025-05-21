@@ -1,6 +1,6 @@
 ---
 title: "Job Scheduling with Coravel"
-subtitle: "Coravel is a zero-configuration, developer-friendly .NET library..."
+subtitle: "Coravel is a zero-configuration, developer-friendly .NET library... "
 readTime: "Read Time: 4 minutes"
 date: "Apr 23 2025"
 category: ".NET"

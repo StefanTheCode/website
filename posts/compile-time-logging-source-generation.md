@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#39 Stefan's Newsletter"
 title: "Compile-time logging source generation for highly performant logging"
 subtitle: "With the release of .NET 6, there's a new tool in town called LoggerMessageAttribute..."
 date: "Oct 30 2023"

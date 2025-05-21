@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#32 Stefan's Newsletter"
 title: "How do I create Middleware? And what are the alternatives?"
 subtitle: "Middleware in the context of web development is a piece of software that sits between two or more software applications or layers..."
 category: ".NET"

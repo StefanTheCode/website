@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#11 Stefan's Newsletter"
 title: "SOLID Principles in .NET"
 subtitle: "SOLID is an acronym for a set of 5 design principles that help improve the maintainability, scalability, and stability of software systems..."
 readTime: "Read Time: 4 minutes"

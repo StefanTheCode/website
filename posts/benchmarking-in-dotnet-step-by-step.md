@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#33 Stefan's Newsletter"
 title: "Benchmarking in .NET Step by step"
 category: ".NET"
 subtitle: "We often find ourselves in a situation where a certain method or part of the code does not work as we want in terms of execution speed on the CPU..."

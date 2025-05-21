@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#14 Stefan's Newsletter"
 title: "Structured Logging with Serilog"
 subtitle: "Traditional plain-text logs can be hard to read and analyze..."
 readTime: "Read Time: 5 minutes"

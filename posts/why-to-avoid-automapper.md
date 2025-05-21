@@ -1,8 +1,6 @@
 ---
-newsletterTitle: "#69 Stefan's Newsletter"
 title: "How and why I create my own mapper (avoid Automapper)?"
-subtitle: "In the beginning I used Automapper constantly and it was a great replacement for the tedious work of typing mapping code...
-"
+subtitle: "In the beginning I used Automapper constantly and it was a great replacement for the tedious work of typing mapping code..."
 date: "May 27 2024"
 category: ".NET"
 photoUrl: "/images/blog/newsletter21.png"

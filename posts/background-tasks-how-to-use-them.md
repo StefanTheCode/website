@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#38 Stefan's Newsletter"
 title: "Background tasks and how to use them. Stale Cache example in C#"
 subtitle: "In .NET, background tasks are asynchronous operations that run independently of the main application thread..."
 date: "Oct 23 2023"

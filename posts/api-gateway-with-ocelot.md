@@ -1,5 +1,4 @@
 ---
-newsletterTitle: "#52 Stefan's Newsletter"
 title: "API Gateway with Ocelot"
 subtitle: "An API Gateway is a component of the app-delivery infrastructure that sits between clients..."
 readTime: "Read Time: 4 minutes"
