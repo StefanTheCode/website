@@ -3,7 +3,7 @@ title: "Building API with Carter Library in .NET"
 subtitle: "Let’s be honest: writing APIs with controllers in .NET can feel... heavy. Sure, Minimal APIs were a breath of fresh air when they landed. But once your app grows? "
 readTime: "Read Time: 4 minutes"
 date: "May 26 2025"
-category: ".NET"
+category: "APIs"
 meta_description: "Carter is basically Minimal APIs on steroids. It lets you organize routes by feature using small modular classes. "
 ---
 
