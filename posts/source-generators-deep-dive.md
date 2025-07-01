@@ -1,16 +1,10 @@
 ---
 title: "Deep dive into Source Generators"
 subtitle: "Source generators are components that run during the compilation process to inspect your code and generate additional C# source files."
-date: "August 12 2024"
+date: "July 1 2025"
 category: "CSharp"
+meta_description: "Source generators are components that run during the compilation process to inspect your code and generate additional C# source files."
 ---
-
-&nbsp;  
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### • Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of API management and enhance your productivity [here](https://www.postman.com/product/flows/).
-&nbsp;  
-&nbsp;  
 
 <!--START-->
 &nbsp;  
@@ -45,11 +39,8 @@ category: "CSharp"
 
 &nbsp;  
 &nbsp;  
-### Enhancements in C# 12 Source Generators
+### Enhancements in C# 12+ Source Generators
 &nbsp;  
-&nbsp;   
-
-##### C# 12 introduces several enhancements that make source generators more powerful and easier to use. These include:
 &nbsp;   
 
 ##### **1. Incremental Generators:**
@@ -85,11 +76,11 @@ category: "CSharp"
 
 &nbsp;   
 &nbsp;   
-### Creating a Source Generator in C# 12
+### Creating a Source Generator in C#
 &nbsp;   
 &nbsp;   
 
-##### Let’s walk through the process of creating a simple source generator in C# 12.
+##### Let’s walk through the process of creating a simple source generator in C#.
 &nbsp;   
 
 ##### **Step 1: Setting Up the Project**
@@ -186,9 +177,6 @@ class Program
 &nbsp;  
 ### Advanced Use Cases for Source Generators
 &nbsp;  
-&nbsp;  
-
-##### C# 12's enhancements open up several advanced use cases for source generators:
 &nbsp;  
 
 ##### **1. Automatic Dependency Injection:**
@@ -570,7 +558,7 @@ class Program
 &nbsp;  
 &nbsp;  
 
-##### C# 12 and .NET 8 bring exciting enhancements to source generators, making them even more powerful and versatile.
+##### .NET 8 bring exciting enhancements to source generators, making them even more powerful and versatile.
 &nbsp;  
 
 ##### By leveraging these new features, developers can create more efficient, maintainable, and performant applications.
