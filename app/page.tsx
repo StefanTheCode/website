@@ -102,7 +102,7 @@ export default function Home() {
                 <h3><a href="https://www.skool.com/thecodeman">TheCodeMan Community
                 </a></h3>
                 <br />
-                <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. <br/>  Your hub for .NET content, mini-courses, and expert advice for silly price! </h5>
+                <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. <br/>  Your hub for .NET content, mini-courses, and expert advice for FREE! </h5>
                 <a href='https://www.skool.com/thecodeman'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join Community</button>
                 </a>
               </div>
