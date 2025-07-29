@@ -3,7 +3,7 @@ title: "Building a PostgreSQL EF Core Model Using Entity Developer"
 subtitle: "Working with EF Core and PostgreSQL in .NET can be a rewarding experience - until you find yourself deep in the weeds of manually writing schema definitions."
 readTime: "Read Time: 6 minutes"
 date: "July 15 2025"
-category: "Entity Framewework"
+category: "Entity Framework"
 meta_description: "Working with EF Core and PostgreSQL in .NET can be a rewarding experience - until you find yourself deep in the weeds of manually writing schema definitions"
 ---
 
