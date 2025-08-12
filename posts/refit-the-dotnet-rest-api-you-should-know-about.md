@@ -5,14 +5,6 @@ date: "August 12 2025"
 category: "APIs"
 ---
 
-&nbsp;  
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### • Complete 2024 State of the #API survey by Postman for a chance to win prizes including a Apple Vision Pro, a Sony PlayStation 5, gift certificates for Postman swag and more!
-##### Complete it [here](https://www.surveymonkey.com/r/2024-state-of-api-survey).
-&nbsp;  
-&nbsp;  
-
 <!--START-->
 
 ##### When Rest API Client is mentioned in .NET, most of us think and most of us use HttpClient which is excellent.
