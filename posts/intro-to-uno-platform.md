@@ -8,7 +8,7 @@ meta_description: "Uno Platform lets you write C# + XAML once and run it everywh
 
 <!--START-->
 
-##### Uno Platform lets you write **C# + XAML once** and run it **everywhere**: WebAssembly (in the browser), Windows (WinUI/WPF host), macOS, Linux (Skia/GTK), Android, and iOS. 
+##### [Uno Platform](https://platform.uno?utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article) lets you write **C# + XAML once** and run it **everywhere**: WebAssembly (in the browser), Windows (WinUI/WPF host), macOS, Linux (Skia/GTK), Android, and iOS. 
 &nbsp;  
 
 ##### If you’re a .NET dev, you already have the skills: XAML for UI, C# for logic, MVVM for structure. 
@@ -31,7 +31,7 @@ meta_description: "Uno Platform lets you write C# + XAML once and run it everywh
 &nbsp;  
 &nbsp;  
 
-##### First, set up your toolchain with [uno-check](https://platform.uno/docs/articles/external/uno.check/doc/using-uno-check.html?tabs=windows). Open Windows Terminal/PowerShell and install the tool, then run it:
+##### First, set up your toolchain with [uno-check](https://platform.uno/docs/articles/external/uno.check/doc/using-uno-check.html?tabs=windows&utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article). Open Windows Terminal/PowerShell and install the tool, then run it:
 
 ```csharp
 
@@ -107,7 +107,7 @@ uno.check
 ##### **10. Testing:** You can skip now; add unit tests for VMs first, UI tests once you have navigation/async flows.
 &nbsp;  
 
-##### Check all the details [here](https://platform.uno/docs/articles/getting-started/wizard/using-wizard.html?utm_source=chatgpt.com).
+##### Check all the details [here](https://platform.uno/docs/articles/getting-started/wizard/using-wizard.html?utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article).
 
 &nbsp;  
 &nbsp;  
@@ -472,7 +472,7 @@ public partial class MainModel : ObservableObject
 ##### That's all from me for today. 
 &nbsp;  
 
-##### Make a coffee and try the Uno Platform.
+##### Make a coffee and [try the Uno Platform](https://aka.platform.uno/get-started?utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article).
 &nbsp;  
 
 ##### [Download the Source Code for free](https://www.skool.com/thecodeman).
