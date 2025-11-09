@@ -28,7 +28,22 @@ export default function Header() {
 </nav> */}
    <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
   <div className="container">
-    <a className="navbar-brand" href="/">Stefan Đokić</a>
+    <a className="navbar-brand" href="/">Stefan Đokić
+   <span
+    style={{
+      display: "block",
+      fontSize: "1.2rem",
+      lineHeight: "0.9rem",
+      marginTop: "-25px",
+      fontWeight: 400
+    }}
+  >
+    <hr style={{
+      marginBottom: "0.5rem",
+    }}></hr>
+    Microsoft MVP
+  </span>
+   </a>
     <button className="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
         data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="oi oi-menu"></span> Menu

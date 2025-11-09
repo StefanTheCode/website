@@ -102,7 +102,7 @@ body {
 
 .header-text-feature-b {
   font-weight: 800 !important;
-  font-size: 80px !important;
+  font-size: 70px !important;
   color: #ffffff !important;
   line-height: 1.6 !important;
   margin-top: -30px !important;
@@ -11929,7 +11929,8 @@ a.text-dark:focus {
 
 body {
   font-family: "Poppins", Arial, sans-serif;
-  background: linear-gradient(0deg, #1b004aff, #620094ff, #1d004aff);
+  background: #1a0224;
+  background: linear-gradient(90deg, rgba(26, 2, 36, 1) 0%, rgba(37, 0, 54, 1) 100%);
   font-size: 16px;
   line-height: 1.8;
   font-weight: 400;
@@ -14456,7 +14457,7 @@ textarea.form-control {
 
   .header-text-feature-b {
     font-weight: 800 !important;
-    font-size: 60px !important;
+    font-size: 50px !important;
     color: #ffffff !important;
     margin-top: 0px !important;
     line-height: 1 !important;
@@ -14586,7 +14587,7 @@ textarea.form-control {
 
   .header-text-feature-b {
     font-weight: 800 !important;
-    font-size: 60px !important;
+    font-size: 50px !important;
     color: #ffffff !important;
     margin-top: 20px !important;
     line-height: 1 !important;
@@ -14744,7 +14745,7 @@ textarea.form-control {
 
   .header-text-feature-b {
     font-weight: 800 !important;
-    font-size: 60px !important;
+    font-size: 50px !important;
     text-align: center;
     color: #ffffff !important;
     margin-top: 20px !important;
@@ -14826,7 +14827,7 @@ textarea.form-control {
 
 .header-text-feature-b {
   font-weight: 800 !important;
-  font-size: 50px !important;
+  font-size: 45px !important;
   text-align: center;
   color: #ffffff !important;
   margin-top: 20px !important;

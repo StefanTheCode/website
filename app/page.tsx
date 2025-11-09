@@ -42,7 +42,7 @@ export default function Home() {
         <div className="row d-md-flex no-gutters">
           <div className="col-xl-12 mt-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center slider-text padding-top-10per" >
             <div className="text" >
-              <p className="header-text-feature-b  mtbottom20"><span className='text-yellow'>Level Up Your .NET Skills</span></p>
+              <p className="header-text-feature-b  mtbottom20">Become a Better <span className='text-yellow'>.NET</span> Engineer</p>
               <p className="header-text-feature-b mtbottom20">One Tip Weekly</p>
               <div className='container mt-5'>
                 <div className='row text-center'>
@@ -55,8 +55,18 @@ export default function Home() {
                   <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
                 </div>
               </div>
-              <p className="mb-4 mt-5 header-sub-text"><span className='text-yellow'>
-                Every Monday</span>, learn a <span className='text-yellow'>New .NET Trick</span> you can apply instantly!</p>
+                <p className="text-white">
+                ✅ One practical .NET tip every Monday
+                </p>
+                <p className="text-white">
+                ✅ Real-world architecture guidance and code examples
+                </p>
+                <p className="text-white">
+                ✅ Learn from a Microsoft MVP with 10+ years of experience
+                </p>
+                <p className="mb-4 mt-5 header-sub-text">
+                Get your first tip this Monday – <span className='text-yellow'>FREE!</span>
+                </p>
               <div className='container'>
                 <div className='row text-center'>
                   <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2 mb-5">
