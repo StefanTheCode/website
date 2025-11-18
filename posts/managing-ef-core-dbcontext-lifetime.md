@@ -7,6 +7,13 @@ meta_description: "Learn when to use AddDbContext (scoped), AddDbContextFactory,
 ---
 
 <!--START-->
+##### This issue is made possible thanks to **[ZZZ Projects](https://zzzprojects.com/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)**, who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community.
+&nbsp;  
+##### Thousands of developers fixed EF Core performance - with just one method.  
+&nbsp;  
+##### [👉 Discover this extension](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=x&utm_campaign=birthday)
+&nbsp;
+
 &nbsp;  
 &nbsp;  
 ### Background

@@ -7,6 +7,13 @@ meta_description: "EF Core 10 finally adds native LeftJoin and RightJoin LINQ op
 ---
 
 <!--START-->
+##### This issue is made possible thanks to **[ZZZ Projects](https://zzzprojects.com/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)**, who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community.
+&nbsp;  
+##### EF Core too slow? Insert data 14x faster and cut saving time by 94%.
+&nbsp;  
+##### [👉 Boost performance with Bulk Insert](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=linkedin&utm_campaign=birthday)
+&nbsp;
+
 &nbsp;  
 &nbsp;  
 ### The “simple” join that was never simple  
