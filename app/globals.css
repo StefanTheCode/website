@@ -125,6 +125,14 @@ body {
   color: #ffffff !important;
 }
 
+.text-overlay {
+    background-color: black;
+    color: #ffbd39;
+    padding: 6px;
+    border-top-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+}
+
 .header-sub-text-join {
   font-size: 1.2vw !important;
   font-weight: 400 !important;
@@ -160,6 +168,10 @@ body {
 
 .ebook-profile-img {
   width: 50% !important;
+}
+
+.course-profile-img {
+  width: 20% !important;
 }
 
 .ebook-profile-div {
@@ -12755,13 +12767,13 @@ h5,
   -webkit-border-radius: 40px;
   -moz-border-radius: 40px;
   -ms-border-radius: 40px;
-  border-radius: 40px;
+  border-radius: 30px;
   -webkit-box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
   -moz-box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
   box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: 600;
 }
 
