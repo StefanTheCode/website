@@ -9,20 +9,20 @@ import Image from 'next/image'
 // import ogImage from '/og-ebookimage.png'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/design-patterns-simplified'),
+  metadataBase: new URL('https://thecodeman.net/pragmatic-dotnet-code-rules'),
   title: "Pragmatic .NET Code Rules",
   alternates: {
-    canonical: 'https://thecodeman.net/design-patterns-simplified',
+    canonical: 'https://thecodeman.net/pragmatic-dotnet-code-rules',
   },
-  description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
+  description: "Learn how to build a predictable, consistent, self-cleaning codebase using .editorconfig, analyzers, Visual Studio Cleanup, and CI enforcement.",
   openGraph: {
     title: "Pragmatic .NET Code Rules",
     type: "website",
-    url: "https://thecodeman.net/design-patterns-simplified",
-    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
+    url: "https://thecodeman.net/pragmatic-dotnet-code-rules",
+    description: "Learn how to build a predictable, consistent, self-cleaning codebase using .editorconfig, analyzers, Visual Studio Cleanup, and CI enforcement.",
     images: [
       {
-        url: 'https://thecodeman.net/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-course.png',
         width: "1000px",
         height: "700px"
       }
@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
+    description: "Learn how to build a predictable, consistent, self-cleaning codebase using .editorconfig, analyzers, Visual Studio Cleanup, and CI enforcement.",
     images: [
       {
-        url: 'https://thecodeman.net/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-course.png',
         width: "1000px",
         height: "700px"
       }
