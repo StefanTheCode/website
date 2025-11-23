@@ -52,7 +52,7 @@ const CodeRules = () => {
           <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text text-center mt-10'>
             {/* <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p> */}
           </div>
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5 float-left">
+          <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 slider-text pt-5 float-left">
             <div className="text" >
               <h1 className='display-none'>Pragmatic .NET Code Rules</h1>
               <p className="header-text mt-4">Pragmatic .NET</p>
@@ -66,7 +66,7 @@ const CodeRules = () => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
-            <Image src={'/images/course.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
+            <Image src={'/images/course.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
           </div>
         </div>
       </section>
@@ -103,7 +103,7 @@ const CodeRules = () => {
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-              <Image src={'/images/course.png'} alt={'Design Patterns Simplified ebook devices'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+              <Image src={'/images/course2.png'} alt={'Design Patterns Simplified ebook devices'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
           <div className="row text-center">
@@ -172,14 +172,14 @@ const CodeRules = () => {
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/ebook-devices.png'} alt={'Design Patterns Simplified ebook devices'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/mindset.png'} alt={'Design Patterns Simplified ebook devices'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
 
               </div>
               <hr className='background-yellow' />
               <div className="row text-center">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/real-world-example.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/editorconfig.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
                   <h2 className='text-yellow text-center pb-5'><b>.editorconfig Deep Dive</b></h2>
@@ -203,13 +203,13 @@ const CodeRules = () => {
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/github-repo.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Github repo'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/cleanup.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Github repo'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
               <hr className='background-yellow' />
               <div className="row text-center">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/real-world-example.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/errors.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
                   <h2 className='text-yellow text-center pb-5'><b>Analyzers & Warnings-As-Errors</b></h2>
@@ -233,16 +233,17 @@ const CodeRules = () => {
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/github-repo.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Github repo'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/ci.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Github repo'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
               <hr className='background-yellow' />
               <div className="row text-center">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/real-world-example.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                <div className='col-xl-1 col-lg-1 col-md-1 col-sm-1'></div>
+                <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-5 text-center vertical-center">
+                  <Image src={'/images/slack.png'} className='border-radius-20px text-center' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-                  <h2 className='text-yellow text-center pb-5'><b>Team-Wide Adoption Strategys</b></h2>
+                  <h2 className='text-yellow text-center pb-5'><b>Team-Wide Adoption Strategies</b></h2>
                   <h5 className='text-center'>Roll out code rules across your team smoothly, confidently, and without the usual resistance.</h5>
                   <h5 className='text-center pt-3'>• Introduce new rules gradually and strategically</h5>
                   <h5 className='text-center'>• Build a culture where clean, consistent code is the default</h5>
@@ -298,14 +299,14 @@ const CodeRules = () => {
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5">
               <div className="blog-entry text-center pt-3">
                 <h2 className='text-danger'>Not for developers who:</h2>
-                <h3 className='text-success pt-3'>X <span className='text-white'> Prefer manual cleanup</span></h3>
-                <h3 className='text-success'>X <span className='text-white'> Believe “style doesn’t matter”</span></h3>
-                <h3 className='text-success'>X <span className='text-white'> Don’t want automation in their workflow</span></h3>
+                <h3 className='text-danger pt-3'>X <span className='text-white'> Prefer manual cleanup</span></h3>
+                <h3 className='text-danger'>X <span className='text-white'> Believe “style doesn’t matter”</span></h3>
+                <h3 className='text-danger'>X <span className='text-white'> Don’t want automation in their workflow</span></h3>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5">
               <div className="blog-entry text-center pt-3">
-                <h2 className='text-success'>Not for developers who:</h2>
+                <h2 className='text-success'>For developers who:</h2>
                 <h3 className='text-success pt-3'>✔ <span className='text-white'>Work in .NET teams</span></h3>
                 <h3 className='text-success'>✔ <span className='text-white'>Want predictable, standardized code</span></h3>
                 <h3 className='text-success'>✔ <span className='text-white'>Are tired of PRs full of style corrections</span></h3>
@@ -461,6 +462,9 @@ const CodeRules = () => {
                   <p className='text-black'><i><b>"Keep it simple and focus on what matters. Don't let yourself be overwhelmed."</b></i> - Confucius</p>
                   <p className='text-black text-center'>My goal is to convey knowledge to people in such a way - <b>simple.</b></p>
                 </div>
+                <div className="col-md-12 pt-3 text-center">
+                  <Image src={'/images/mvp.png'} className='course-profile-img' alt={'Profile image of the author, Stefan Djokic'} width={0} height={0} sizes="20vw" style={{ width: '100%', height: 'auto' }} />
+                </div>
               </div>
             </div>
             <div className="col-md-2">
@@ -510,35 +514,35 @@ const CodeRules = () => {
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-5">
               <div className="blog-entry text-left pt-3">
                 <h3 className="text-yellow text-left pt-3">
-                  01. What platform is the course hosted on?
+                  ❓01. What platform is the course hosted on?
                 </h3>
                 <h5 className="text-white text-left">
-                  The course is hosted on <span className="text-yellow">Skool</span>, a modern platform that combines
+                 💡 The course is hosted on <span className="text-yellow">Skool</span>, a modern platform that combines
                   video lessons, community, and discussions in one place.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
-                  02. Is there a community included and is it free?
+                  ❓02. Is there a community included and is it free?
                 </h3>
                 <h5 className="text-white text-left">
-                  Yes. You get access to a private <span className="text-yellow">Skool community</span> where we discuss
+                 💡 Yes. You get access to a private <span className="text-yellow">Skool community</span> where we discuss
                   code rules, share setups, and ask questions. Community access is{' '}
                   <span className="text-yellow">completely free</span> and included with the course.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
-                  03. Who is this course for?
+                  ❓03. Who is this course for?
                 </h3>
                 <h5 className="text-white text-left">
-                  .NET developers who want clean, consistent, automated code. It’s great for people working in teams,
+                 💡 .NET developers who want clean, consistent, automated code. It’s great for people working in teams,
                   maintaining long-lived projects, or leading code quality initiatives.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
-                  04. What knowledge level do I need?
+                  ❓04. What knowledge level do I need?
                 </h3>
                 <h5 className="text-white text-left">
-                  You should be comfortable with C# and basic .NET projects. The content is practical and accessible for
+                 💡 You should be comfortable with C# and basic .NET projects. The content is practical and accessible for
                   <span className="text-yellow"> beginner+</span> and <span className="text-yellow">intermediate</span>{' '}
                   developers, and still very useful for seniors and team leads who want a system they can roll out to
                   their teams.
@@ -550,42 +554,42 @@ const CodeRules = () => {
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-5">
               <div className="blog-entry text-left pt-3">
                 <h3 className="text-yellow text-left pt-3">
-                  05. When does the course release?
+                ❓ 05. When does the course release?
                 </h3>
                 <h5 className="text-white text-left">
-                  Early access to the first module is planned for <span className="text-yellow">January 2026</span>, and the
+                 💡 Early access to the first module is planned for <span className="text-yellow">January 2026</span>, and the
                   full course is scheduled for <span className="text-yellow">February 2026</span>.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
-                  06. Do I get lifetime access and updates?
+                 ❓ 06. Do I get lifetime access and updates?
                 </h3>
                 <h5 className="text-white text-left">
-                  Yes. Your purchase includes <span className="text-yellow">lifetime access</span> to all lessons and any
+                 💡 Yes. Your purchase includes <span className="text-yellow">lifetime access</span> to all lessons and any
                   future updates or improvements to the course.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
-                  07. Will the price increase later?
+                 ❓ 07. Will the price increase later?
                 </h3>
                 <h5 className="text-white text-left">
-                  Yes. The pre-order is <span className="text-yellow">heavily discounted</span>.
+                 💡 Yes. The pre-order is <span className="text-yellow">heavily discounted</span>.
                   When the course officially launches, the price will increase.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
-                  08. Is there a refund policy?
+                ❓  08. Is there a refund policy?
                 </h3>
                 <h5 className="text-white text-left">
-                  Pre-orders are <span className="text-yellow">refundable up until the official course release</span>.
+                 💡 Pre-orders are <span className="text-yellow">refundable up until the official course release</span>.
                   If you feel it’s not for you, just reach out before launch.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
-                  09. What should I do next if I want to enroll?
+                 ❓ 09. What should I do next if I want to enroll?
                 </h3>
                 <h5 className="text-white text-left">
-                  Click the <span className="text-yellow">Pre-Order</span> button below and secure your spot in the
+                 💡 Click the <span className="text-yellow">Pre-Order</span> button below and secure your spot in the
                   limited pre-release. You’ll get early access to content and free community access.
                 </h5>
               </div>
