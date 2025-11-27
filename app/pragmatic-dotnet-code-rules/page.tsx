@@ -62,7 +62,7 @@ const CodeRules = () => {
               <h3 className="mb-4 text-white"><b><span className='text-yellow'>🎉 Black Friday Pre-Order - 50% OFF</span></b></h3>
               <EbookNewsletter />
               <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
-            <p>⚠️ Only 10 spots left at this price.</p>
+            <p>⚠️ Only 4 spots left at this price.</p>
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
