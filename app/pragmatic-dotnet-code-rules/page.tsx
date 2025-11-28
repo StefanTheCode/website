@@ -61,8 +61,8 @@ const CodeRules = () => {
               <p className="mb-4 text-white"><b>Learn how to build a predictable, consistent, self-cleaning codebase using .editorconfig, analyzers, Visual Studio Cleanup, and CI enforcement.</b></p>
               <h3 className="mb-4 text-white"><b><span className='text-yellow'>🎉 Black Friday Pre-Order - 50% OFF</span></b></h3>
               <EbookNewsletter />
-              <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
-            <p>⚠️ Only 4 spots left at this price.</p>
+              <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
+            <p>⚠️ Only 16 spots left at this price.</p>
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
@@ -98,7 +98,7 @@ const CodeRules = () => {
                   <h5>It destroys PR velocity.</h5>
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 pt-5 mb-5 text-center">
-                  <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+                  <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
                 </div>
               </div>
             </div>
@@ -144,7 +144,7 @@ const CodeRules = () => {
           </div>
         </div>
         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
-          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
         </div>
       </section >
 
@@ -167,7 +167,7 @@ const CodeRules = () => {
                   <h5>• Learn the mindset top engineering teams use to stay aligned</h5>
                   <div className='row'>
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 pt-5  mb-5 text-center">
-                      <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+                      <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
                     </div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ const CodeRules = () => {
                   <h5 className='text-center pt-3'>• Build rock-solid formatting, naming, and analyzer rules</h5>
                   <h5 className='text-center'>• Structure .editorconfig for both small projects and massive solutions</h5>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 pt-5  text-center">
-                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
                   </div>
                 </div>
               </div>
@@ -199,7 +199,7 @@ const CodeRules = () => {
                   <h5 className='text-center pt-3'>• Create Cleanup Profiles that instantly fix styling issues</h5>
                   <h5 className='text-center'>• Remove 90% of manual cleanup from your workflow</h5>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 pt-5  text-center">
-                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
@@ -217,7 +217,7 @@ const CodeRules = () => {
                   <h5 className='text-center pt-3'>• Configure analyzers that actually matter</h5>
                   <h5 className='text-center'>• Enforce rules without overwhelming developers with noise</h5>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 pt-5 text-center">
-                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
                   </div>
                 </div>
               </div>
@@ -229,7 +229,7 @@ const CodeRules = () => {
                   <h5 className='text-center pt-3'>• Add dotnet format to your local and CI workflows</h5>
                   <h5 className='text-center'>• Fail PRs automatically when formatting rules are violated</h5>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 pt-5 text-center">
-                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
@@ -248,7 +248,7 @@ const CodeRules = () => {
                   <h5 className='text-center pt-3'>• Introduce new rules gradually and strategically</h5>
                   <h5 className='text-center'>• Build a culture where clean, consistent code is the default</h5>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 pt-5 text-center">
-                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+                    <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
                   </div>
                 </div>
               </div>
@@ -281,7 +281,7 @@ const CodeRules = () => {
               </div>
             </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
-          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
         </div>
           </div>
         </div>
@@ -315,7 +315,7 @@ const CodeRules = () => {
               </div>
             </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
-          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
         </div>
           </div>
         </div>
@@ -430,7 +430,7 @@ const CodeRules = () => {
               </div>
             </div>
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
-          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+          <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
         </div>
           </div>
         </div>
@@ -609,7 +609,7 @@ const CodeRules = () => {
           </div>
           <div className="row text-center">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 text-center">
-              <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $49.89</span></button></a>
+              <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
             </div>
           </div>
         </div>
