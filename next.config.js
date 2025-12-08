@@ -3,6 +3,7 @@ const nextConfig = {
     experimental: {
       mdxRs: true,
     },
+    turbopack: {}
   }
    
   const withMDX = require('@next/mdx')()
