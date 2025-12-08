@@ -1,69 +1,72 @@
 import fs from "fs";
+import path from "path";
 import Markdown from "markdown-to-jsx";
 import matter from "gray-matter";
 import getPostMetadata from "../../../components/getPostMetadata";
-import '../[slug]/page.module.css'
+import "../[slug]/page.module.css";
 import Subscribe from "@/app/subscribe";
-import Affiliate from "@/app/affiliate";
-import config from '@/config.json';
-import { notFound } from "next/navigation";
-import Head from "next/head";
 import Help from "@/app/help";
+import config from "@/config.json";
+import { notFound } from "next/navigation";
 import MetadataHead from "./MetadataHead";
 
-const getPostContent = (slug: string) => {
-  if (!slug) {
-    console.error("Missing slug");
+const postsDir = path.join(process.cwd(), "posts");
+
+function getPostContent(slug: string) {
+  const filePath = path.join(postsDir, `${slug}.md`);
+
+  if (!fs.existsSync(filePath)) {
+    console.error(`Post file not found for slug "${slug}" at path: ${filePath}`);
     notFound();
   }
 
-  try {
-    const folder = "posts/";
-    const file = `${folder}${slug}.md`;
-    const content = fs.readFileSync(file, "utf8");
-    const matterResult = matter(content);
+  const content = fs.readFileSync(filePath, "utf8");
+  const matterResult = matter(content);
 
-    // Ensure required fields are present
-    if (!matterResult.data.title) {
-      throw new Error(`Missing title in frontmatter for slug: ${slug}`);
-    }
-
-    return matterResult;
-  } catch (err) {
-    console.error(`Error reading post "${slug}":`, err);
+  if (!matterResult.data?.title) {
+    console.error(`Missing title in frontmatter for slug: ${slug}`);
     notFound();
   }
-};
 
+  return matterResult;
+}
 
-export const generateStaticParams = async () => {
+export async function generateStaticParams() {
   const posts = getPostMetadata();
+
+  console.log("generateStaticParams slugs:", posts.map(p => p.slug));
+
   return posts
-    .filter(p => !!p.slug) // Ensure slug is present
+    .filter((p) => !!p.slug)
     .map((post) => ({
       slug: post.slug,
     }));
-};
+}
 
+export default async function PostPage(
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
 
-const PostPage = (props: any) => {
-  const slug = props.params.slug;
+  if (!slug) {
+    console.error("Missing slug in route params:", params);
+    notFound();
+  }
+
   const post = getPostContent(slug);
-
-  if (!post) notFound();
 
   const meta = {
     title: post.data.title,
     description: post.data.meta_description || "",
     image: `https://thecodeman.net/images/blog/${slug}.png`,
     url: `https://thecodeman.net/posts/${slug}`,
-    date: post.data.date
+    date: post.data.date,
   };
 
   return (
     <>
       <MetadataHead slug={slug} folder="posts" />
-      
+
       <section className="img ftco-section">
         <div className="container">
           <div className="row justify-content-center pb-5 pt-10">
@@ -74,7 +77,12 @@ const PostPage = (props: any) => {
                   <p className="text-slate-400 mt-2">{meta.date}</p>
                 </div>
               </div>
-              {post?.content ? <Markdown>{post.content}</Markdown> : <p>Post content missing.</p>}
+
+              {post.content ? (
+                <Markdown>{post.content}</Markdown>
+              ) : (
+                <p>Post content missing.</p>
+              )}
 
               <Help />
               <Subscribe />
@@ -83,10 +91,14 @@ const PostPage = (props: any) => {
             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
               <div className="row justify-content-center pb-5 fixed-position">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h4>Subscribe to <br />TheCodeMan.net</h4>
+                  <h4>
+                    Subscribe to <br />
+                    TheCodeMan.net
+                  </h4>
                   <p className="text-slate-400 mt-2">
                     Subscribe to the TheCodeMan.net and be among the{" "}
-                    <span className="text-yellow">{config.NewsletterSubCount}</span> gaining practical tips and resources to enhance your .NET expertise.
+                    <span className="text-yellow">{config.NewsletterSubCount}</span> gaining
+                    practical tips and resources to enhance your .NET expertise.
                   </p>
                   <div className="row">
                     <div
@@ -99,11 +111,10 @@ const PostPage = (props: any) => {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
     </>
   );
-};
-
-export default PostPage;
+}
