@@ -78,7 +78,7 @@ meta_description: "CQRS (Command Query Responsibility Segregation) is a design p
 ##### But let's see what exactly is MediatR?
 &nbsp;  
 
-##### **MediatR** is a popular open-source library for .NET applications, developed by Jimmy Bogard. It helps in implementing the "mediator" design pattern, which promotes loosely coupled communication between components in a system.
+##### **MediatR** is a popular open-source ([Not anymore](https://www.jimmybogard.com/automapper-and-mediatr-going-commercial/) - But here is an alternative [Wolverine](https://thecodeman.net/posts/mediatr-alternative-wolverine)) library for .NET applications, developed by Jimmy Bogard. It helps in implementing the "mediator" design pattern, which promotes loosely coupled communication between components in a system.
 &nbsp;  
 
 ##### **Mediator Pattern:** MediatR follows the mediator design pattern, where a central mediator object facilitates communication between different components without them needing to be aware of each other. This reduces the coupling between components and makes the system easier to maintain and evolve.
