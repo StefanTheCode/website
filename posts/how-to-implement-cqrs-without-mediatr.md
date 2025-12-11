@@ -126,8 +126,6 @@ public interface IQueryHandler<in TQuery, TQueryResult>
 {
     Task<TQueryResult> Handle(TQuery query, CancellationToken cancellation);
 }
-
-
 ```
 &nbsp;  
 
@@ -139,7 +137,6 @@ public interface ICommandHandler<in TCommand, TCommandResult>
 {
     Task<TCommandResult> Handle(TCommand command, CancellationToken cancellation);
 }
-
 ```
 &nbsp;  
 
@@ -151,7 +148,6 @@ public interface IQueryDispatcher
 {
     Task<TQueryResult> Dispatch<TQuery, TQueryResult>(TQuery query, CancellationToken cancellation);
 }
-
 ```
 &nbsp;
 
@@ -163,7 +159,6 @@ public interface ICommandDispatcher
 {
     Task<TCommandResult> Dispatch<TCommand, TCommandResult>(TCommand command, CancellationToken cancellation);
 }
-
 ```
 &nbsp;
 
@@ -188,7 +183,6 @@ public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatche
         return handler.Handle(query, cancellation);
     }
 }
-
 ```
 
 ##### **CommandDispatcher** implementation:
@@ -205,7 +199,6 @@ public class CommandDispatcher(IServiceProvider serviceProvider) : ICommandDispa
         return handler.Handle(command, cancellation);
     }
 }
-
 ```
 
 ##### The Dispatch method of the CommandDispatcher class takes two type parameters, *TCommand* and *TCommandResult*, and two arguments, command and cancellation, respectively.
@@ -253,7 +246,6 @@ public class UsersController(IQueryDispatcher queryDispatcher, ICommandDispatche
         return Ok(user);
     }
 }
-
 ```
 &nbsp;  
 
@@ -289,7 +281,6 @@ public class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, User>
         return new User();
     }
 }
-
 ```
 ##### For every other command or query, you would create the same class structure.
 &nbsp;  
