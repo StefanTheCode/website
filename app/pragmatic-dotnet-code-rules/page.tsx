@@ -59,10 +59,9 @@ const CodeRules = () => {
               <p className="header-text mtopminus10"><span className='text-yellow'>Code Rules</span> </p>
               <p className="mb-4 text-white"><b>A practical system for <span className='text-yellow'>automating clean, consistent, professional code</span> - in every .NET project you touch.</b></p>
               <p className="mb-4 text-white"><b>Learn how to build a predictable, consistent, self-cleaning codebase using .editorconfig, analyzers, Visual Studio Cleanup, and CI enforcement.</b></p>
-              <h3 className="mb-4 text-white"><b><span className='text-yellow'>🎉 Black Friday Pre-Order - 60% OFF</span></b></h3>
               <EbookNewsletter />
               <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
-            <p>⚠️ Only 16 spots left at this price.</p>
+            <p>⚠️ Only 4 spots left at this price.</p>
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
