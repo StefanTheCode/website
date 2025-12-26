@@ -83,6 +83,9 @@ export default function Header() {
                   Get for Free
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="/dotnet-code-rules-starter-kit">
+                    .NET Code Rules Starter Kit
+                  </a>
                   <a className="dropdown-item" href="/pass-your-interview">
                     Pass Interview Prep Kit
                   </a>
