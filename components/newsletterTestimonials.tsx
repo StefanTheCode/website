@@ -5,7 +5,8 @@ const NewsletterTestimonials = () => (
   <iframe 
     src="https://widget.senja.io/widget/3aab87ef-ff9d-4582-a844-a6fc1b3b35e4"
     width="100%"
-    height="250vw"
+    //height="250vw"
+    height="350vw"
     frameBorder="0">
   </iframe>
 </div>
