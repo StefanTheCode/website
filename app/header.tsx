@@ -70,7 +70,7 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="ftco-nav">
             <ul className="navbar-nav nav margin-left-auto">
               <li className="nav-item"><a href="/" className="nav-link"><span>Home</span></a></li>
-              <li className="nav-item"><a href="/about-me" className="nav-link">About</a></li>       
+              {/* <li className="nav-item"><a href="/about-me" className="nav-link">About</a></li>        */}
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
