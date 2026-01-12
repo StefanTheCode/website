@@ -37,7 +37,7 @@ const Sponsorship = () => {
           <div className="d-flex">
             <div className="col-sm-12 col-md-12 col-lg-12 pb-5">
               <div className="row pb-3">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div className="col-12 col-md-6">
                   <h1>Audience</h1>
                   <br />
                   <h5>• Reach: <span className="text-yellow">{config.NewsletterSubCount}</span></h5>
@@ -46,24 +46,32 @@ const Sponsorship = () => {
                   <h5>• Average Open Rate: <span className="text-yellow">{config.OpenRate}</span></h5>
                   <h5>• Audience: <span className="text-yellow">{config.Audience} </span></h5>
                   <br />
-                  <h5 className='mb-5'>Reserve your sponsorship: <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a></h5>
+                  {/* <h5 className='mb-5'>Reserve your sponsorship: <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a></h5> */}
                   {/* <h5><b>Currently booked out 2 weeks</b></h5> */}
                 </div>
+                <div className="col-12 col-md-6" id='reserveSpotForm'
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                            <script async src="https://eomail4.com/form/9ade17e6-9c87-11ef-86b3-890d9e639bbe.js" data-form="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></script>
+
+                `
+                  }}
+                />
               </div>
               <div className="row pb-3">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 pb-2">
                   <h1>Previous Sponsors</h1>
                 </div>
-                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
-                <Image src={'/images/sponsors/postman.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
-                <Image src={'/images/sponsors/jetbrains.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
-                <Image src={'/images/sponsors/neon.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
-                <Image src={'/images/sponsors/abp.png'} className='sponsors-img' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left pb-5'>
+                <Image src={'/images/sponsors/postman.png'} className='sponsors-img m-2' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                <Image src={'/images/sponsors/jetbrains.png'} className='sponsors-img m-3' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                <Image src={'/images/sponsors/neon.png'} className='sponsors-img m-3' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
+                <Image src={'/images/sponsors/abp.png'} className='sponsors-img m-3' alt={'Dotnet (.NET) Logo'} width={1000} height={128} />
                 </div>
                 </div>
               <div className="row pb-3">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h1>Previous Sponsors</h1>
+                  <h1>Others Said About Me</h1>
                   <br />
                 </div>
                 <SponsorsNewsletter />
@@ -103,22 +111,7 @@ const Sponsorship = () => {
                   </div>
                 </div>
               </div>
-              <div className='row'>
-            <div className='col-sm-12 col-md-12 col-lg-12'>
-            <div className="row text-center">
-            <div className="col-md-4"></div>
-            <div className="col-md-8" id='reserveSpotForm'
-              dangerouslySetInnerHTML={{
-                __html: `
-                         <script async src="https://eomail4.com/form/9ade17e6-9c87-11ef-86b3-890d9e639bbe.js" data-form="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></script>
-
-            `
-              }}
-            />
-            <div className="col-md-2"></div>
-          </div>
-            </div>
-          </div>
+              
             </div>
           </div>
         </div>

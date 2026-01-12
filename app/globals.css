@@ -11942,7 +11942,7 @@ a.text-dark:focus {
 body {
   font-family: "Poppins", Arial, sans-serif;
   background: #1a0224;
-  background: linear-gradient(90deg, rgba(26, 2, 36, 1) 0%, rgba(37, 0, 54, 1) 100%);
+  background: linear-gradient(90deg, rgb(108 23 143), rgb(33 8 44));
   font-size: 16px;
   line-height: 1.8;
   font-weight: 400;
@@ -13321,6 +13321,7 @@ textarea.form-control {
 
 .ftco-section {
   padding: 3em 0;
+  padding-bottom: 0.5em;
   position: relative;
 }
 
@@ -14232,7 +14233,7 @@ textarea.form-control {
 .price .header {
   background-color: #ffbd39;
   color: black;
-  font-size: 25px;
+  font-size: 23px;
 }
 
 /* List items */
