@@ -541,6 +541,7 @@ output {
 summary {
   display: list-item;
   cursor: pointer;
+  font-size: 20px;
 }
 
 template {

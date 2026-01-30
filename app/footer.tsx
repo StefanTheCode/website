@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-md-12 text-center">
-            <p> &copy; 2025 STEFAN ĐOKIĆ PR THE CODE MAN
+            <p> &copy; 2026 STEFAN ĐOKIĆ PR THE CODE MAN
             </p>
           </div>
         </div>
