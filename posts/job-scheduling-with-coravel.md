@@ -19,7 +19,7 @@ meta_description: "Discover how to use Coravel to add simple, powerful backgroun
 &nbsp;
 
 ##### The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
-##### You can find all the details [here]((https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226)).
+##### You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226).
 
 &nbsp;  
 &nbsp;  
