@@ -63,7 +63,15 @@ const CodeRules = () => {
               <p className="text-white">• No more broken builds because of formatting</p>
               <p className="mb-4 text-white">• No more relying on code reviews to enforce rules</p>
               <h2 className="text-white">Get the exact setup I use in production:</h2>
-              <a href='https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e'><button className='btn btn-lg btn-primary border-radius-10px button-padding'> 🛒 Preorder for <span className='text-green'> $59.89</span></button></a>
+              <a
+  href="https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e"
+  className="lemonsqueezy-button"
+>
+  <button className="btn btn-lg btn-primary border-radius-10px button-padding">
+    🛒 Preorder for <span className="text-green"> $59.89</span>
+  </button>
+</a>
+
               <p className='mb-4'>⚠️ Only 4 spots left at this price.</p>
               <EbookNewsletter />
             </div>

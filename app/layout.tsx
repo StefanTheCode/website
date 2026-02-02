@@ -4,8 +4,9 @@ import './globals.css'
 import Head from './head'
 import Header from './header'
 import ogImage from './og-image.png'
+import Script from "next/script";
 
-export const metadata:Metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
   alternates: {
     canonical: 'https://thecodeman.net',
@@ -29,7 +30,7 @@ export const metadata:Metadata = {
   title: {
     default: "TheCodeMan | Master .NET Technologies",
     template: "%s | TheCodeMan"
-  } ,
+  },
   description: "Stay updated with TheCodeMan.NET! Authored by Microsoft MVP Stefan Djokic, providing expert insights, tutorials, and news on .NET and C# technologies.",
   twitter: {
     title: {
@@ -99,10 +100,15 @@ export default function RootLayout({
         {children}
         <Footer></Footer>
         <div
-                      dangerouslySetInnerHTML={{
-                        __html: `<script async src="https://eomail4.com/form/68cdd53c-a55f-11ed-a80d-c50d697f08bd.js" data-form="68cdd53c-a55f-11ed-a80d-c50d697f08bd"></script>`
-                      }}
-                    />
+          dangerouslySetInnerHTML={{
+            __html: `<script async src="https://eomail4.com/form/68cdd53c-a55f-11ed-a80d-c50d697f08bd.js" data-form="68cdd53c-a55f-11ed-a80d-c50d697f08bd"></script>`
+          }}
+        />
+
+        <Script
+          src="https://app.lemonsqueezy.com/js/lemon.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
