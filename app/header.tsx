@@ -38,7 +38,7 @@ export default function Header() {
         🔥 <strong>Pragmatic .NET Code Rules</strong> is on Presale - 40% off!
       </span>
 
-      <a href="/pragmatic-dotnet-code-rules" className="promo-buy-btn">
+      <a href="/pragmatic-dotnet-code-rules?utm_source=promo" className="promo-buy-btn">
         BUY NOW
       </a>
     </div>
