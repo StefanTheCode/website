@@ -35,7 +35,7 @@ export default function Header() {
         <div className="container promo-inner-center">
           <div className="promo-center-group">
             <span className="promo-text">
-              🔥 <strong>Pragmatic .NET Code Rules</strong> is on Presale - 40% off!
+              🔥 <strong>Pragmatic .NET Code Rules Course</strong> is on Presale - 40% off!
             </span>
 
             <a href="/pragmatic-dotnet-code-rules?utm_source=promo" className="promo-buy-btn">
