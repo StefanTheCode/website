@@ -1,10 +1,10 @@
 ---
-title: ".NET 10 + Docker + Traefik"
+title: "How to Run .NET 10 with Docker and Traefik (Real-World Setup)"
 subtitle: "Stop fighting ports -> Add Traefik to your solution"
 readTime: "Read Time: 4 minutes"
 date: "Jan 26 2026"
 category: ".NET"
-meta_description: "A full, runnable .NET + Docker Compose + Traefik setup with two Minimal APIs, path/subdomain routing, forwarded headers, health checks, and clear explanations for every file."
+meta_description: "Learn how to run .NET 10 with Docker and Traefik using a realistic, production-ready setup. Step-by-step reverse proxy configuration with multiple APIs."
 ---
 
 <!--START-->
@@ -19,7 +19,7 @@ meta_description: "A full, runnable .NET + Docker Compose + Traefik setup with t
 ##### You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126).
 &nbsp;  
 &nbsp;  
-### Introduction
+### .NET 10 with Docker and Traefik – A Production-Ready Reverse Proxy Setup
 &nbsp;  
 &nbsp;  
 ##### Every .NET developer eventually runs into the same problem.
