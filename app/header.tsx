@@ -32,18 +32,18 @@ export default function Header() {
     <>
       {/* PROMO BAR */}
       <div ref={promoRef} className="promo-bar">
-  <div className="container promo-inner-center">
-    <div className="promo-center-group">
-      <span className="promo-text">
-        🔥 <strong>Pragmatic .NET Code Rules</strong> is on Presale - 40% off!
-      </span>
+        <div className="container promo-inner-center">
+          <div className="promo-center-group">
+            <span className="promo-text">
+              🔥 <strong>Pragmatic .NET Code Rules</strong> is on Presale - 40% off!
+            </span>
 
-      <a href="/pragmatic-dotnet-code-rules?utm_source=promo" className="promo-buy-btn">
-        BUY NOW
-      </a>
-    </div>
-  </div>
-</div>
+            <a href="/pragmatic-dotnet-code-rules?utm_source=promo" className="promo-buy-btn">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+      </div>
 
 
       {/* NAVBAR */}
@@ -124,6 +124,13 @@ export default function Header() {
               <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav">
                 <a href="/sponsorship" className="nav-link"><span>For Sponsors</span></a>
               </li>
+
+              <li className="nav-item nav-join-cta">
+                <a href="https://www.skool.com/thecodeman-community-2911" className="join-community-btn">
+                  Join FREE Community
+                </a>
+              </li>
+
             </ul>
           </div>
         </div>
