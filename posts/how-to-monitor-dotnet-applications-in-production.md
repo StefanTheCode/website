@@ -272,6 +272,7 @@ app.MapGet("/api/ping", () => Results.Ok (new { ok = true, at = DateTimeOffset.U
 &nbsp;  
  
 ##### **Billing.Worker/Program.cs**
+
 ```csharp
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -337,6 +338,7 @@ public partial class Program
     }
 }
 ```
+
 &nbsp;  
 ##### **Explanation**
 ##### • This worker now exposes `/metrics` and health endpoints.

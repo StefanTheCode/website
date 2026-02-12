@@ -72,6 +72,7 @@ export default function RootLayout({
         `
           }}>
         </script>
+        
         <script
           dangerouslySetInnerHTML={{
             __html: `

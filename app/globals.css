@@ -15283,3 +15283,186 @@ textarea.form-control {
 .dropdown-item:hover {
   background-color: #ddd; /* Adjust as needed */
 }
+
+/* ===== TheCodeMan VS-like code blocks ===== */
+.tcm-code {
+  margin: 18px 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: #0b0f16;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.tcm-code__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.tcm-code__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.tcm-code__dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+  opacity: 0.9;
+}
+
+.tcm-code__dots span:nth-child(1) { background: #ff5f56; }
+.tcm-code__dots span:nth-child(2) { background: #ffbd2e; }
+.tcm-code__dots span:nth-child(3) { background: #27c93f; }
+
+.tcm-code__meta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.tcm-code__lang {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: rgba(255,255,255,0.75);
+  padding: 2px 8px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+}
+
+.tcm-code__copy {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.85);
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.2s ease;
+}
+
+.tcm-code__copy:hover { background: rgba(255,255,255,0.08); }
+.tcm-code__copy:active { transform: scale(0.98); }
+
+.tcm-code__pre {
+  margin: 0;
+  padding: 14px 16px;
+  overflow: auto;
+  line-height: 1.55;
+}
+
+.tcm-code__pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  color: rgba(255,255,255,0.86);
+  white-space: pre;
+}
+
+.tcm-shiki pre.shiki {
+  margin: 16px 0;
+  padding: 14px 16px;
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.tcm-shiki code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.55;
+}
+/* Fix: Shiki code must keep new lines */
+.tcm-shiki pre.shiki {
+  white-space: pre !important;
+}
+
+.tcm-shiki pre.shiki code {
+  white-space: pre !important;
+  display: block;
+}
+
+/* Shiki tokens should not become inline-wrapped weirdly */
+.tcm-shiki pre.shiki span {
+  white-space: pre !important;
+}
+.tcm-shiki pre,
+.tcm-shiki code {
+  white-space: pre !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+.tcm-shiki pre.shiki {
+  overflow-x: auto;
+}
+
+.tcm-code__line { display: block; }
+.tcm-code__pre code { white-space: pre; }
+
+.tcm-code__pre {
+  margin: 0;
+  padding: 14px 0;              /* gore/dole */
+  overflow: auto;
+  line-height: 1.55;
+}
+
+.tcm-code__row {
+  display: grid;
+  grid-template-columns: 52px 1fr; /* gutter širina + code */
+  align-items: start;
+}
+
+.tcm-code__gutter {
+  padding: 0 12px 0 16px;        /* levo/desno */
+  text-align: right;
+  color: rgba(255,255,255,0.35);
+  user-select: none;
+}
+
+.tcm-code__code {
+  padding: 0 18px 0 14px;        /* malo padding udesno */
+  white-space: pre;
+}
+
+.tcm-code__line {
+  display: block;
+}
+
+.tcm-code__ln {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* Fix: prevent code blocks from stretching vertically */
+.tcm-code,
+.tcm-code__pre,
+.tcm-code__row,
+.tcm-code__code {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.tcm-code__pre {
+  padding-bottom: 14px !important; /* ili 0 ako hoćeš skroz tight */
+}
+
+.tcm-code__row {
+  align-items: start !important;
+}
+
+/* If some global css sets pre/code to display:flex or similar */
+.tcm-code__pre,
+.tcm-code__code {
+  display: block !important;
+}

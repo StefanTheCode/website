@@ -9,6 +9,10 @@ import Help from "@/app/help";
 import config from "@/config.json";
 import { notFound } from "next/navigation";
 import MetadataHead from "./MetadataHead";
+import CodeBlock from "@/components/CodeBlock";
+import CodeFrame from "@/components/CodeFrame";
+import ShikiCode from "@/components/ShikiCode";
+import { highlightFencedCode } from "@/components/highlightMarkdown";
 
 const postsDir = path.join(process.cwd(), "posts");
 
@@ -54,6 +58,7 @@ export default async function PostPage(
   }
 
   const post = getPostContent(slug);
+  const highlightedContent = await highlightFencedCode(post.content);
 
   const meta = {
     title: post.data.title,
@@ -79,7 +84,24 @@ export default async function PostPage(
               </div>
 
               {post.content ? (
-                <Markdown>{post.content}</Markdown>
+                <Markdown
+                  options={{
+                    overrides: {
+                      pre: {
+                        component: (props: any) => {
+                          const child = Array.isArray(props.children) ? props.children[0] : props.children;
+
+                          const className = child?.props?.className ?? "";
+                          const code = child?.props?.children ?? "";
+
+                          return <ShikiCode className={className} code={code} />;
+                        },
+                      },
+                    },
+                  }}
+                >
+                  {post.content}
+                </Markdown>
               ) : (
                 <p>Post content missing.</p>
               )}
