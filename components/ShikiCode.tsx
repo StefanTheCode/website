@@ -46,45 +46,52 @@ const highlighterPromise = createHighlighter({
 });
 
 export default async function ShikiCode({ className, code }: Props) {
-  // 1) normalize + trim ONLY trailing empty lines
+  // --- NORMALIZE INPUT ---
   const raw = typeof code === "string" ? code : String(code ?? "");
   const normalized = raw.replace(/\r\n/g, "\n");
 
- const lines = normalized.split("\n");
+  // --- TRIM TRAILING "EMPTY" LINES (unicode-safe) ---
+  const lines = normalized.split("\n");
 
-const isEmptyLine = (s: string) => {
-  // NBSP -> space, pa trim
- const cleanedLine = s
-  .replace(/\u00A0/g, " ")
-  .replace(/\u200B/g, "")
-  .trim();
+  const isEmptyLine = (s: string) => {
+  const cleaned = s
+    .replace(/\u00A0/g, " ")   // NBSP
+    .replace(/\u200B/g, "")    // zero-width space
+    .replace(/\u200C/g, "")
+    .replace(/\u200D/g, "")
+    .replace(/\uFEFF/g, "")
+    .trim();
 
-  return cleanedLine.length === 0;
+  return cleaned.length === 0;
 };
 
-while (lines.length > 0 && isEmptyLine(lines[lines.length - 1])) {
-  lines.pop();
-}
+  while (lines.length > 0 && isEmptyLine(lines[lines.length - 1])) {
+    lines.pop();
+  }
 
-const cleaned = lines.join("\n");
+  const cleaned = lines.join("\n");
 
-  console.log("CODE LINES:", cleaned.split("\n").length);
-
+  // --- LANGUAGE ---
   const langRaw = detectLang(className);
   const lang = normalizeLangForShiki(langRaw);
 
   const highlighter = await highlighterPromise;
 
-  const safeLang = highlighter.getLoadedLanguages().includes(lang as any) ? lang : "text";
+  const safeLang = highlighter
+    .getLoadedLanguages()
+    .includes(lang as any)
+    ? lang
+    : "text";
 
-  // 2) tokens
+  // --- SHIKI TOKENS ---
   const result = highlighter.codeToTokens(cleaned, {
     lang: safeLang as any,
     theme: "dark-plus",
   });
 
-  const tokens = result.tokens; // <-- OVO je niz linija
+  const tokens = result.tokens;
 
+  // --- RENDER ---
   return (
     <CodeFrame language={label(safeLang)} code={cleaned}>
       <pre className="tcm-code__pre">
