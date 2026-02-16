@@ -13,6 +13,7 @@ import CodeBlock from "@/components/CodeBlock";
 import CodeFrame from "@/components/CodeFrame";
 import ShikiCode from "@/components/ShikiCode";
 import { highlightFencedCode } from "@/components/highlightMarkdown";
+import Author from "@/app/author";
 
 const postsDir = path.join(process.cwd(), "posts");
 
@@ -106,6 +107,7 @@ export default async function PostPage(
                 <p>Post content missing.</p>
               )}
 
+              <Author />
               <Help />
               <Subscribe />
             </div>

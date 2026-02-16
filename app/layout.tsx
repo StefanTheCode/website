@@ -72,7 +72,7 @@ export default function RootLayout({
         `
           }}>
         </script>
-        
+
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -93,6 +93,53 @@ export default function RootLayout({
             }}>
 
         </script> */}
+
+        <Script
+          id="ld-json-person"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "@id": "https://thecodeman.net/#/schema/person/stefan-djokic",
+              name: "Stefan Djokic",
+              url: "https://thecodeman.net",
+              jobTitle: "Microsoft MVP and .NET Engineer",
+              worksFor: {
+                "@type": "Organization",
+                name: "TheCodeMan.net",
+                url: "https://thecodeman.net"
+              },
+              sameAs: [
+                "https://www.linkedin.com/in/djokic-stefan",
+                "https://x.com/TheCodeMan__",
+                "https://www.youtube.com/@thecodeman_"
+              ]
+            }),
+          }}
+        />
+
+        <Script
+          id="ld-json-organization"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://thecodeman.net/#/schema/org",
+              name: "TheCodeMan.net",
+              url: "https://thecodeman.net",
+              logo: "https://thecodeman.net/og-image.png",
+              sameAs: [
+                "https://www.linkedin.com/in/djokic-stefan",
+                "https://x.com/TheCodeMan__",
+                "https://www.youtube.com/@thecodeman_"
+              ]
+            }),
+          }}
+        />
       </head>
       <body>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBBCS5FT"
