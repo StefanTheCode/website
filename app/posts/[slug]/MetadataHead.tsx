@@ -51,6 +51,7 @@ export default function MetadataHead({ slug, folder }: Props) {
     dateModified: published
   };
 
+  // Handle FAQ structured data if present
   const faq = Array.isArray(data.faq) ? data.faq : [];
   const faqLd = faq.length
     ? {
@@ -87,7 +88,7 @@ export default function MetadataHead({ slug, folder }: Props) {
       <meta name="twitter:image" content={image} />
       <meta name="twitter:site" content="@TheCodeMan__" />
       <meta name="twitter:creator" content="@TheCodeMan__" />
-
+      
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
