@@ -391,7 +391,7 @@ app.MapPost("/orders/{orderId:guid}/simulate", async (
 ##### Would you like to record a YouTube video doing this?
 &nbsp;  
 
-##### Find the source code on [the GitHub repo](https://github.com/thecodeman/server-sent-events-demo).
+##### Find the source code on [the GitHub repo](https://github.com/StefanTheCode/Server-Sent-Events).
 &nbsp;  
 
 ##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
