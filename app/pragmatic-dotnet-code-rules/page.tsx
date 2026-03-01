@@ -665,8 +665,8 @@ const CodeRules = () => {
                   ❓ 05. When does the course release?
                 </h3>
                 <h5 className="text-white text-left">
-                  💡 Early access to the first module is planned for <span className="text-yellow">January 2026</span>, and the
-                  full course is scheduled for <span className="text-yellow">February 2026</span>.
+                  💡 Early access to the first module is planned for <span className="text-yellow">February 2026</span>, and the
+                  full course is scheduled for <span className="text-yellow">March 2026</span>.
                 </h5>
 
                 <h3 className="text-yellow text-left pt-3">
