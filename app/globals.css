@@ -15466,3 +15466,255 @@ textarea.form-control {
 .tcm-code__code {
   display: block !important;
 }
+
+/* Media Kit - clean dashboard look */
+.mk-subtitle {
+  max-width: 900px;
+  margin: 0 auto;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.mk-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.mk-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mk-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mk-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 992px) {
+  .mk-grid-2, .mk-grid-3, .mk-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mk-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 18px;
+  backdrop-filter: blur(6px);
+}
+
+.mk-card-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.mk-muted {
+  opacity: 0.75;
+  font-size: 14px;
+}
+
+.mk-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.10);
+  margin: 14px 0;
+}
+
+.mk-rate-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.mk-rate-row:last-child { border-bottom: none; }
+
+.mk-rate-name {
+  font-weight: 600;
+}
+
+.mk-rate-pill {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.mk-logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.mk-logo {
+  height: auto;
+  max-width: 170px;
+  opacity: 0.95;
+}
+
+.mk-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.mk-stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.mk-stat-label {
+  opacity: 0.75;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.mk-audience-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 992px) {
+  .mk-audience-grid { grid-template-columns: 1fr; }
+}
+.mk-span-2 { grid-column: span 2; }
+@media (max-width: 992px) {
+  .mk-span-2 { grid-column: span 1; }
+}
+
+.mk-audience-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.mk-mini-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.mk-donut-wrap {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.mk-donut {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  /* fake donut (replace later with real data / chart lib) */
+  background: conic-gradient(rgba(114,9,183,0.9) 0 77%, rgba(255,255,255,0.18) 77% 100%);
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.mk-donut::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  background: rgba(10,10,10,0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.mk-donut-legend {
+  display: grid;
+  gap: 6px;
+}
+
+.mk-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.mk-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.mk-dot-1 { background: rgba(255,255,255,0.25); }
+.mk-dot-2 { background: rgba(114,9,183,0.9); }
+
+.mk-bars {
+  display: grid;
+  gap: 10px;
+}
+
+.mk-bar-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 42px;
+  gap: 10px;
+  align-items: center;
+}
+
+.mk-bar-label {
+  opacity: 0.8;
+  font-size: 13px;
+}
+
+.mk-bar-track {
+  height: 10px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.mk-bar-fill {
+  height: 100%;
+  background: rgba(114,9,183,0.85);
+  border-radius: 999px;
+}
+
+.mk-bar-pct {
+  text-align: right;
+  font-weight: 700;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.mk-package {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 14px;
+  position: relative;
+}
+
+.mk-package-name {
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.mk-package-price {
+  font-weight: 800;
+  opacity: 0.95;
+  margin-bottom: 10px;
+}
+
+.mk-list {
+  margin: 0;
+  padding-left: 18px;
+  opacity: 0.85;
+}
+
+.mk-package-highlight {
+  border-color: rgba(114,9,183,0.55);
+  box-shadow: 0 0 0 1px rgba(114,9,183,0.25) inset;
+}
+
+.mk-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(114,9,183,0.25);
+  border: 1px solid rgba(114,9,183,0.35);
+}
