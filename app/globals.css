@@ -508,9 +508,18 @@ h6 {
 }
 
 p {
-  margin-top: 0;
   color: white;
-  margin-bottom: 0 !important;
+  font-size: 1.25rem;
+}
+
+p b {
+  font-size: 1.25rem;
+  color: #ffbd39 !important;
+}
+
+p strong {
+  font-size: 1.25rem;
+  color: #ffbd39 !important;
 }
 
 abbr[title],
@@ -539,8 +548,34 @@ dl {
 ol ol,
 ul ul,
 ol ul,
-ul ol {
-  margin-bottom: 0;
+ol li {
+  color: white;
+  font-size: 1.25rem;
+}
+
+ol li b {
+  font-size: 1.25rem;
+  color: #ffbd39 !important;
+}
+
+ol li p strong {
+  font-size: 1.25rem;
+  color: #ffbd39 !important;
+}
+
+ul li {
+  color: white;
+  font-size: 1.25rem;
+}
+
+ul li b {
+  font-size: 1.25rem;
+  color: #ffbd39 !important;
+}
+
+ul li p strong {
+  font-size: 1.25rem;
+  color: #ffbd39 !important;
 }
 
 dt {
@@ -816,7 +851,9 @@ h1,
 
 h2,
 .h2 {
-  font-size: 2rem;
+  font-size: 1.75rem !important;
+  text-align: center;
+  color: #ffbd39 !important;
 }
 
 h3,
@@ -13769,6 +13806,8 @@ textarea.form-control {
 
 .heading-section h2 {
   font-size: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   font-weight: 700;
 }
 
