@@ -62,7 +62,7 @@ const starterKitItems = [
   {
     title: 'Git Pre-Commit Hooks for Formatting',
     description:
-      'Add a lightweight GitHub-based quality gate so formatting and code rules do not get ignored.',
+      'Automatically format and validate your code before every commit — no more messy diffs.',
     isNew: true,
   },
   {
