@@ -92,6 +92,7 @@ export default function Header() {
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a className="dropdown-item" href="/dotnet-code-rules-starter-kit">.NET Code Rules Starter Kit</a>
+                  <a className="dropdown-item" href="/vertical-slices-architecture">Vertical Slice Architecture</a>
                   <a className="dropdown-item" href="/pass-your-interview">Pass Interview Prep Kit</a>
                   <a className="dropdown-item" href="/builder-pattern-free-stuff">Builder Pattern Chapter</a>
                   <a className="dropdown-item" href="/rag-system-dotnet">RAG System in .NET</a>
