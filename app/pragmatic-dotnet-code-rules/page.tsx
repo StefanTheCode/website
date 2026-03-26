@@ -7,6 +7,7 @@ import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
 import Image from 'next/image'
 import Video from 'next/image'
+import FreePreviewButton from '@/components/FreePreviewButton';
 // import ogImage from '/og-ebookimage.png'
 
 export const metadata: Metadata = {
@@ -350,26 +351,28 @@ const CodeRules = () => {
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
               <div className="blog-entry text-left pt-3">
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🧱 00. Course Introduction
                   </summary>
 
                   <div className="pt-3">
-                    <h5 className="text-white text-left">00.01 – Welcome</h5>
-                    <h5 className="text-white text-left">00.02 – What You Will Learn</h5>
-                    <h5 className="text-white text-left">00.03 – Who This Course Is For</h5>
-                    <h5 className="text-white text-left">00.04 – Tools & Requirements</h5>
+                    <h5 className="text-white text-left">00.01 – Welcome <FreePreviewButton videoId="vlJhmURwVSM" /></h5>
+                    <h5 className="text-white text-left">00.02 – What You Will Learn <FreePreviewButton videoId="o9rwJhYA-P4" /></h5>
+                    <h5 className="text-white text-left">00.03 – Who This Course Is For <FreePreviewButton videoId="poQCgDSWfdw" /></h5>
+                    <h5 className="text-white text-left">00.04 – Tools & Requirements <FreePreviewButton videoId="PMqs_dSs0LU" /></h5>
+                    <h5 className="text-white text-left">00.05 – How to follow the course <FreePreviewButton videoId="2fUxoUnMpI0" /></h5>
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🗂️ 01. The Foundation: EditorConfig
                   </summary>
 
                   <div className="pt-3">
-                    <h5 className="text-white text-left">01.01 – Why Code Style Consistency Matters</h5>
+                    <h5 className="text-white text-left">01.00 – Module Intro <FreePreviewButton videoId="vBLHCsSoHP0" /></h5>
+                    <h5 className="text-white text-left">01.01 – Why Code Style Consistency Matters <FreePreviewButton videoId="L8BtAQO1t4I" /></h5>
                     <h5 className="text-white text-left">01.02 – Creating the CleanStart Solution Structure</h5>
                     <h5 className="text-white text-left">01.03 – What EditorConfig Is & How It Works</h5>
                     <h5 className="text-white text-left">01.04 – Adding the <code>.editorconfig</code> File</h5>
@@ -379,12 +382,13 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🧹 02. Automating Code Cleanup
                   </summary>
 
                   <div className="pt-3">
+                    <h5 className="text-white text-left">02.00 – Module Intro <FreePreviewButton videoId="CzkPS4jzgsY" /></h5>
                     <h5 className="text-white text-left">02.01 – Visual Studio Code Cleanup Profiles</h5>
                     <h5 className="text-white text-left">02.02 – Running Cleanup Automatically on Save</h5>
                     <h5 className="text-white text-left">02.03 – One-Click Full Solution Cleanup</h5>
@@ -393,7 +397,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🚨 03. Diagnostics & Treating Warnings as Errors
                   </summary>
@@ -407,7 +411,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🔍 04. Static Analysis in .NET
                   </summary>
@@ -422,7 +426,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🏗️ 05. Centralized Settings with Directory.Build.props
                   </summary>
@@ -436,7 +440,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     ⚙️ 06. Visual Studio Productivity &amp; Clean Code Features
                   </summary>
@@ -451,7 +455,7 @@ const CodeRules = () => {
                 </details>
 
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🧹 07. Project Cleanup &amp; Consistency Maintenance
                   </summary>
@@ -465,7 +469,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🧱 08. Architecture Tests (Enforcing Boundaries)
                   </summary>
@@ -479,7 +483,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🔄 09. Integrating Code Quality into CI/CD
                   </summary>
@@ -493,7 +497,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🧭 10. Logging &amp; Observability
                   </summary>
@@ -507,7 +511,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🎁 11. Bonus: Create Your Own Clean .NET Project Template
                   </summary>
@@ -521,7 +525,7 @@ const CodeRules = () => {
                   </div>
                 </details>
 
-                <details className="curriculum-details">
+                <details className="curriculum-details" open>
                   <summary className="text-yellow">
                     🤖 12. AI-Assisted Dependency &amp; PR Review
                   </summary>
