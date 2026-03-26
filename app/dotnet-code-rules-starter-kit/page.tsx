@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
   title: 'Pragmatic .NET Code Rules Starter Kit',
   description:
-    'Stop arguing about code style in .NET projects. Get a production-ready .editorconfig, Directory.Build.props, pinned SDK, CI quality gate, and Visual Studio setup checklist.',
+    'Production-ready code quality defaults for .NET teams. .editorconfig, Directory.Build.props, CI quality gate, architecture tests, pre-commit hooks, and more.',
   keywords: [
     '.NET code rules',
     '.editorconfig .NET',
@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     'CI quality gate .NET',
     'Pragmatic .NET Code Rules',
     'C# code style',
+    'NetArchTest',
+    'architecture tests .NET',
+    'pre-commit hook dotnet',
+    'dependabot .NET',
   ],
   alternates: {
     canonical: 'https://thecodeman.net/dotnet-code-rules-starter-kit',
@@ -27,7 +31,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://thecodeman.net/dotnet-code-rules-starter-kit',
     description:
-      'Get the exact .NET code rules starter kit used in real-world teams: .editorconfig, Directory.Build.props, pinned SDK, CI quality gate, and Visual Studio checklist.',
+      'Production-ready code quality defaults for .NET teams. .editorconfig, Directory.Build.props, CI quality gate, architecture tests, pre-commit hooks, and more.',
     siteName: 'TheCodeMan.net',
   },
   twitter: {
@@ -36,7 +40,7 @@ export const metadata: Metadata = {
     site: '@TheCodeMan__',
     creator: '@TheCodeMan__',
     description:
-      'Production-ready .NET code rules starter kit: .editorconfig, build rules, pinned SDK, CI quality gate, and Visual Studio checklist.',
+      'Production-ready code quality defaults for .NET teams. .editorconfig, Directory.Build.props, CI quality gate, architecture tests, pre-commit hooks, and more.',
   },
 }
 
@@ -44,51 +48,85 @@ const starterKitItems = [
   {
     title: 'Production-ready .editorconfig',
     description:
-      'Start with pragmatic code style rules you can actually use in a real .NET project.',
+      'Code style, naming conventions, formatting rules, and diagnostic severities for C# and .NET.',
     isNew: false,
   },
   {
     title: 'Centralized build rules with Directory.Build.props',
     description:
-      'Keep important project-wide defaults in one place instead of repeating them everywhere.',
+      'Centralized compiler settings, analyzers, and pragmatic warnings-as-errors - applied to every project in the solution.',
     isNew: false,
   },
   {
-    title: 'Pinned .NET SDK',
+    title: 'Pinned .NET SDK with global.json',
     description:
-      'Reduce environment drift and make local setup more predictable across machines and teams.',
+      'Pins the .NET SDK version with rollForward for reproducible builds across machines and CI.',
     isNew: false,
   },
   {
-    title: 'Git Pre-Commit Hooks for Formatting',
+    title: 'CI Quality Gate (GitHub Actions)',
     description:
-      'Automatically format and validate your code before every commit — no more messy diffs.',
+      'Restore → format check → build → test. Runs on every push and PR. SDK version read from global.json.',
     isNew: true,
   },
   {
-    title: 'Visual Studio setup checklist',
+    title: 'PR Template & Issue Templates',
     description:
-      'Apply the right IDE settings faster and avoid missing the basics that keep teams consistent.',
+      'PR checklist focused on code quality and consistency, plus clean bug report and feature request templates.',
+    isNew: true,
+  },
+  {
+    title: 'Dependabot Configuration',
+    description:
+      'Automated dependency updates - NuGet and GitHub Actions, grouped and low-noise. Max 5 open PRs at a time.',
+    isNew: true,
+  },
+  {
+    title: 'Git Pre-Commit Hook',
+    description:
+      'Runs dotnet format --verify-no-changes before every commit - no more messy diffs.',
     isNew: false,
+  },
+  {
+    title: 'Architecture Tests (NetArchTest)',
+    description:
+      'Starter architecture tests that enforce interface naming, layer dependency rules, and naming smell detection.',
+    isNew: true,
+  },
+  {
+    title: 'Visual Studio Cleanup Checklist',
+    description:
+      'Step-by-step VS setup for format-on-save and code cleanup.',
+    isNew: false,
+  },
+  {
+    title: 'dotnet format Guide',
+    description:
+      'How to run dotnet format locally, common commands, and pre-commit setup.',
+    isNew: true,
   },
 ]
 
 const beforeAfterItems = [
   {
     before: 'Inconsistent formatting across the codebase',
-    after: 'Clean, consistent code style across projects',
+    after: 'Consistent code style enforced by .editorconfig',
   },
   {
     before: 'Endless pull request comments about styling',
-    after: 'Fewer code style debates during reviews',
+    after: 'Formatting verified automatically in CI',
   },
   {
     before: 'Warnings and rules handled differently by each developer',
-    after: 'Shared defaults the whole team can follow',
+    after: 'Nullable warnings treated as errors - the ones that matter',
+  },
+  {
+    before: 'No architectural guardrails in the codebase',
+    after: 'Architecture test starters ready to adapt',
   },
   {
     before: 'Messy project setup when starting from scratch',
-    after: 'A repeatable starter setup you can use immediately',
+    after: 'PR hygiene and dependency management out of the box',
   },
 ]
 
@@ -134,8 +172,8 @@ const CodeRulesStarterKit = () => {
               </h1>
 
               <h3 className="text-white mb-4">
-                A production-ready starting point with practical defaults,
-                cleaner project setup, and fewer style-related review comments.
+                Drop these files into any .NET solution and get consistent code style,
+                CI quality gates, architecture tests, and PR hygiene out of the box.
               </h3>
 
               <div className="d-flex justify-content-center mb-4">
@@ -154,14 +192,14 @@ const CodeRulesStarterKit = () => {
                   }}
                 >
                   <span>🟢</span>
-                  <span>New in the Kit → Git Pre-Commit Hooks for Formatting</span>
+                  <span>New in the Kit → CI Quality Gate, Architecture Tests, Dependabot & more</span>
                 </div>
               </div>
 
               <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-                <div className="text-white">✅ Pragmatic defaults </div>
-                <div className="text-white"> ✅ Real project setup </div>
-                <div className="text-white"> ✅ Built for .NET teams</div>
+                <div className="text-white">✅ No theory </div>
+                <div className="text-white"> ✅ No bloated frameworks </div>
+                <div className="text-white"> ✅ Defaults that work on day one</div>
               </div>
 
               <div className="row justify-content-center" id="download-kit">
@@ -229,12 +267,12 @@ const CodeRulesStarterKit = () => {
                     </div>
                   )}
 
-                  <h4
+                  <h5
                     className="text-white mb-3"
                     style={{ paddingRight: item.isNew ? '70px' : 0 }}
                   >
                     <span className="text-yellow">✓</span> {item.title}
-                  </h4>
+                  </h5>
                   <p className="text-white mb-0">{item.description}</p>
                 </div>
               </div>
@@ -302,15 +340,16 @@ const CodeRulesStarterKit = () => {
               >
                 <h3 className="text-white mb-3">What is this exactly?</h3>
                 <p className="text-white mb-0">
-                  This starter kit contains real material from my upcoming{' '}
+                  This starter kit is Module 01 material from{' '}
                   <Link
                     href="/pragmatic-dotnet-code-rules"
                     target="_blank"
                     className="text-yellow"
                   >
                     Pragmatic .NET Code Rules
-                  </Link>{' '}
-                  course, released to newsletter subscribers.
+                  </Link>
+                  . The full course goes deeper into advanced EditorConfig patterns,
+                  static code analysis, full architecture test suites, and more.
                 </p>
               </div>
             </div>
