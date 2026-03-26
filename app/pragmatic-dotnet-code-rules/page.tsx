@@ -73,7 +73,7 @@ const CodeRules = () => {
   </button>
 </a>
 
-              <p className='mb-4'>⚠️ 20 spots left at this price.</p>
+              <p className='mb-4'>⚠️ 12 spots left at this price.</p>
               <EbookNewsletter />
             </div>
           </div>
