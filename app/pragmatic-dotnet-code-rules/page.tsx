@@ -51,14 +51,11 @@ const CodeRules = () => {
     <>
       <section id="home-section" className="hero container">
         <div className="row d-md-flex no-gutters">
-          <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text text-center mt-10'>
-            {/* <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p> */}
-          </div>
           <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 slider-text pt-5 float-left">
             <div className="text" >
               <h1 className='display-none'>Pragmatic .NET Code Rules</h1>
-              <p className="header-text mt-4">Pragmatic .NET</p>
-              <p className="header-text mtopminus10"><span className='text-yellow'>Code Rules</span> </p>
+              <p className="header-text mt-4" style={{ marginBottom: 0, lineHeight: 1.1 }}>Pragmatic</p>
+              <p className="header-text" style={{ marginTop: 0, lineHeight: 1.1 }}><span className='text-yellow'>.NET Code Rules</span></p>
               <h2 className="mb-4 text-white">Stop Arguing About Code Style in .NET Projects!</h2>
               <p className="mb-4 text-white">Enforce clean code, analyzers, and CI quality gates automatically - using the exact setup I run in production.</p>
               <p className="text-white">• No more “tabs vs spaces” debates</p>

@@ -50,9 +50,6 @@ const Ebook = () => {
     <>
       <section id="home-section" className="hero container">
         <div className="row d-md-flex no-gutters">
-          <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text text-center mt-10'>
-            {/* <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p> */}
-          </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5 float-left">
             <div className="text" >
               <h1 className='display-none'>Design Patterns that Deliver</h1>
@@ -377,7 +374,6 @@ const Ebook = () => {
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Practical and Actionable                </h3>
-                <br />
                 <h5 >Say goodbye to pages of fluff and endless theory. This book dives straight into the <b className='text-yellow'>core of what matters</b> - practical, real-world design patterns you can use right away.</h5>
               </div>
             </div>
@@ -385,21 +381,19 @@ const Ebook = () => {
               <div className="blog-entry text-center">
                 <h3>Real-World Implementation
                 </h3>
-                <br />
+
                 <h5 >Each design pattern is explained with <b className='text-yellow'>real-world examples</b>, so you’ll know not just what to do, but why and how it applies to real projects.</h5>
               </div>
             </div>
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Advanced Yet Accessible</h3>
-                <br />
                 <h5 >The book balances advanced concepts with <b className='text-yellow'>easy-to-follow explanations</b>, making it perfect for intermediate and experienced developers looking to level up.</h5>
               </div>
             </div>
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>All-in-One Learning Package</h3>
-                <br />
                 <h5 >From real-world scenarios to a complete <b className='text-yellow'>GitHub repository</b> with C# examples, plus bonus code in 4 other languages, this book gives you everything you need in one place.
                 </h5>
               </div>
@@ -409,14 +403,14 @@ const Ebook = () => {
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Interview-Ready Knowledge</h3>
-                <br />
+
                 <h5>With a mini-ebook featuring <b className='text-yellow'>100 interview questions and answers</b>, you’ll not only master design patterns but also gain a competitive edge in job interviews.</h5>
               </div>
             </div>
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Affordable and Value-Packed</h3>
-                <br />
+
                 <h5>For that price, you’ll get a <b className='text-yellow'>treasure trove of knowledge</b> and resources—making this book an investment in your future as a developer.</h5>
               </div>
             </div>
@@ -445,7 +439,6 @@ const Ebook = () => {
               </h5>
               <div className='row'>
                 <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center'>
-                  <br />
                   <h4>1. Builder</h4>
                   <h4>2. Decorator</h4>
                   <h4>3. Strategy</h4>

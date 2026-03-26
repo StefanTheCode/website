@@ -49,7 +49,7 @@ const Ebook = () => {
     <>
       <section id="home-section" className="hero container">
         <div className="row d-md-flex no-gutters">
-          <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text text-center mt-10'>
+          <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text text-center'>
             <p className="mb-4 header-sub-text">Who still wants to read a 500+ page book that costs over $100?<br />Instead, dive into...</p>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text pt-5 float-left">
@@ -100,7 +100,6 @@ const Ebook = () => {
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Short and Focused</h3>
-                <br />
                 <h5 >No more wading through hundreds of pages of theory. I've trimmed the fat to deliver only what you need in a brief <b> 30-page guide</b>.
                 </h5>
               </div>
@@ -109,7 +108,6 @@ const Ebook = () => {
               <div className="blog-entry text-center">
                 <h3>Real-World Examples
                 </h3>
-                <br />
                 <h5 >Learn each design pattern through real-world examples, making it <b> easier to apply</b> them to your own projects.
                 </h5>
               </div>
@@ -117,7 +115,6 @@ const Ebook = () => {
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Affordable</h3>
-                <br />
                 <h5 >Get access to valuable knowledge without breaking the bank. <b>Affordable pricing</b> for every developer.
                 </h5>
               </div>
@@ -125,7 +122,6 @@ const Ebook = () => {
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-5">
               <div className="blog-entry text-center">
                 <h3>Code Access</h3>
-                <br />
                 <h5 >Access code samples and <b>practical implementations</b> to reinforce your understanding.
                 </h5>
               </div>

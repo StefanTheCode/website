@@ -59,7 +59,7 @@ const RagSystem = () => {
               </div>
             </div>
                     <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center pb-5">
-                      <Image className='mt-10' src={'/images/rag-system-cover.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                      <Image src={'/images/rag-system-cover.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                     </div>
                   </div>
                  

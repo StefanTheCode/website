@@ -28,7 +28,6 @@ const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
           </div>
           <h5 className='text-yellow mt-3'>{post.title}
           </h5>
-          <br />
         </div>
       </a>
     </div>
@@ -111,8 +110,7 @@ export default function Home() {
               <div className="blog-entry text-center">
                 <h3><a href="https://www.skool.com/thecodeman-community-2911">TheCodeMan Community
                 </a></h3>
-                <br />
-                <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. <br/>  Your hub for .NET content, mini-courses, and expert advice for FREE! </h5>
+                <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. Your hub for .NET content, mini-courses, and expert advice for FREE! </h5>
                 <a href='https://www.skool.com/thecodeman-community-2911'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join Community</button>
                 </a>
               </div>
@@ -124,8 +122,7 @@ export default function Home() {
               <div className="blog-entry text-center">
                 <h3><a href="/sponsorship">Promote your business to {config.NewsletterSubCount}
                 </a></h3>
-                <br />
-                <h5 >Looking to expand your followers, subscribers, or clientele swiftly? <br /> Feature your brand in my newsletter!
+                <h5 >Looking to expand your followers, subscribers, or clientele swiftly? Feature your brand in my newsletter!
                 </h5>
                 <a href='/sponsorship' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'> Reserve a spot</button></a>
               </div>
@@ -134,7 +131,6 @@ export default function Home() {
               <div className="blog-entry text-center">
                 <h3><a href="https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-">YouTube Channel
                 </a></h3>
-                <br />
                 <h5> Check out the last video:</h5>
                 <a href='https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-' target='_blank'  className='text-black'>
                 <h4>How to implement CQRS without MediatR in .NET?</h4>
@@ -146,7 +142,6 @@ export default function Home() {
               <div className="blog-entry text-center">
                 <h3><a href="/design-patterns-that-deliver-ebook">Design Patterns ebooks
                 </a></h3>
-                <br />
                 <h5> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</h5>
                 <a href='/design-patterns-that-deliver-ebook' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Check out the last ebook</button></a>
               </div>
@@ -158,11 +153,7 @@ export default function Home() {
       <hr className='background-yellow'></hr>
       <section className="ftco-section" id="blog-section">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-7 heading-section text-center">
-            </div>
-          </div>
-          <div className="row justify-content-center mb-5 pb-5">
+          <div className="row justify-content-center mb-5">
             <div className="col-md-12 heading-section text-center">
               <p className="header-text">Recent <span className='text-yellow'> TheCodeMan.NET </span>Issues</p>
             </div>

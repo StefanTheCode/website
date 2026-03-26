@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./globals.css";
 import Image from "next/image";
 
 export default function Header() {
   const promoRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const setPromoHeight = () => {
@@ -28,6 +30,27 @@ export default function Header() {
     });
   }, []);
 
+  // Close menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 992) {
+        setMenuOpen(false);
+        setOpenDropdown(null);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleDropdown = (id: string) => {
+    setOpenDropdown(openDropdown === id ? null : id);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
   return (
     <>
       {/* PROMO BAR */}
@@ -44,7 +67,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
 
       {/* NAVBAR */}
       <nav
@@ -72,62 +94,82 @@ export default function Header() {
           </a>
 
           <button
-            className="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
+            className="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#ftco-nav"
+            onClick={() => setMenuOpen(!menuOpen)}
             aria-controls="ftco-nav"
-            aria-expanded="false"
+            aria-expanded={menuOpen}
             aria-label="Toggle navigation"
           >
-            <span className="oi oi-menu"></span> Menu
+            <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="ftco-nav">
+          <div className={`navbar-collapse ${menuOpen ? 'show' : 'collapse'}`} id="ftco-nav">
             <ul className="navbar-nav nav margin-left-auto">
-              <li className="nav-item"><a href="/" className="nav-link"><span>Home</span></a></li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              <li className="nav-item">
+                <a href="/" className="nav-link" onClick={closeMenu}><span>Home</span></a>
+              </li>
+
+              <li className={`nav-item dropdown ${openDropdown === 'free' ? 'show' : ''}`}>
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  onClick={(e) => { e.preventDefault(); toggleDropdown('free'); }}
+                  aria-expanded={openDropdown === 'free'}
+                >
                   Get for Free
                 </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="/dotnet-code-rules-starter-kit">.NET Code Rules Starter Kit</a>
-                  <a className="dropdown-item" href="/vertical-slices-architecture">Vertical Slice Architecture</a>
-                  <a className="dropdown-item" href="/pass-your-interview">Pass Interview Prep Kit</a>
-                  <a className="dropdown-item" href="/builder-pattern-free-stuff">Builder Pattern Chapter</a>
-                  <a className="dropdown-item" href="/rag-system-dotnet">RAG System in .NET</a>
+                <div className={`dropdown-menu ${openDropdown === 'free' ? 'show' : ''}`}>
+                  <a className="dropdown-item" href="/dotnet-code-rules-starter-kit" onClick={closeMenu}>.NET Code Rules Starter Kit</a>
+                  <a className="dropdown-item" href="/vertical-slices-architecture" onClick={closeMenu}>Vertical Slice Architecture</a>
+                  <a className="dropdown-item" href="/pass-your-interview" onClick={closeMenu}>Pass Interview Prep Kit</a>
+                  <a className="dropdown-item" href="/builder-pattern-free-stuff" onClick={closeMenu}>Builder Pattern Chapter</a>
+                  <a className="dropdown-item" href="/rag-system-dotnet" onClick={closeMenu}>RAG System in .NET</a>
                 </div>
               </li>
 
-              <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav">
-                <a href="/blog" className="nav-link"><span>Blog</span></a>
+              <li className="nav-item">
+                <a href="/blog" className="nav-link" onClick={closeMenu}><span>Blog</span></a>
               </li>
 
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownCourses" role="button" data-toggle="dropdown">
+              <li className={`nav-item dropdown ${openDropdown === 'courses' ? 'show' : ''}`}>
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  onClick={(e) => { e.preventDefault(); toggleDropdown('courses'); }}
+                  aria-expanded={openDropdown === 'courses'}
+                >
                   Courses
                 </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdownCourses">
-                  <a className="dropdown-item" href="/pragmatic-dotnet-code-rules">Pragmatic .NET Code Rules</a>
+                <div className={`dropdown-menu ${openDropdown === 'courses' ? 'show' : ''}`}>
+                  <a className="dropdown-item" href="/pragmatic-dotnet-code-rules" onClick={closeMenu}>Pragmatic .NET Code Rules</a>
                 </div>
               </li>
 
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownEbooks" role="button" data-toggle="dropdown">
+              <li className={`nav-item dropdown ${openDropdown === 'ebooks' ? 'show' : ''}`}>
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  onClick={(e) => { e.preventDefault(); toggleDropdown('ebooks'); }}
+                  aria-expanded={openDropdown === 'ebooks'}
+                >
                   Ebooks
                 </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdownEbooks">
-                  <a className="dropdown-item" href="/design-patterns-simplified">Ebook Simplified</a>
-                  <a className="dropdown-item" href="/design-patterns-that-deliver-ebook">5 Patterns Ebook</a>
+                <div className={`dropdown-menu ${openDropdown === 'ebooks' ? 'show' : ''}`}>
+                  <a className="dropdown-item" href="/design-patterns-simplified" onClick={closeMenu}>Ebook Simplified</a>
+                  <a className="dropdown-item" href="/design-patterns-that-deliver-ebook" onClick={closeMenu}>5 Patterns Ebook</a>
                 </div>
               </li>
 
-              <li className="nav-item" data-toggle="collapse" data-target="#ftco-nav">
-                <a href="/sponsorship" className="nav-link"><span>For Sponsors</span></a>
+              <li className="nav-item">
+                <a href="/sponsorship" className="nav-link" onClick={closeMenu}><span>For Sponsors</span></a>
               </li>
 
               <li className="nav-item nav-join-cta">
-                <a href="https://www.skool.com/thecodeman-community-2911" className="join-community-btn">
+                <a href="https://www.skool.com/thecodeman-community-2911" className="join-community-btn" onClick={closeMenu}>
                   Join FREE Community
                 </a>
               </li>
@@ -136,8 +178,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-
-      {/* ostatak tvog script-a može da ostane */}
     </>
   );
 }
