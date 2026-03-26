@@ -3,48 +3,35 @@ title: "Bullet-Proof .NET CI on GitHub"
 subtitle: "Bullet-Proof .NET CI on GitHub – Enforce Build Rules, dotnet format, and Roslyn Analyzers"
 date: "November 10 2025"
 category: ".NET"
+readTime: "Read Time: 5 minutes"
 meta_description: "Learn how to make your .NET CI fail fast when code style or analyzer rules are broken. Step-by-step example repo with dotnet format, Roslyn analyzers, and GitHub Actions."
 ---
 
 <!--START-->
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
+## Background
 
-##### Imagine this:
-&nbsp;  
+Imagine this:
  
-##### You’re reviewing a pull request and realize 40 files were changed… just because someone’s Visual Studio auto-formatter is configured differently.
-##### Or maybe you merge a branch and suddenly dozens of warnings pop up in the build.
-##### Or someone pushed code with tabs instead of spaces, different brace styles, or ignored analyzer hints.
-&nbsp;  
+You’re reviewing a pull request and realize 40 files were changed… just because someone’s Visual Studio auto-formatter is configured differently.
+Or maybe you merge a branch and suddenly dozens of warnings pop up in the build.
+Or someone pushed code with tabs instead of spaces, different brace styles, or ignored analyzer hints.
 
-##### Sound familiar?
-&nbsp;  
+Sound familiar?
  
-##### We can fix all of that **by making our CI pipeline the single source of truth** for style and quality.
-&nbsp;  
+We can fix all of that **by making our CI pipeline the single source of truth** for style and quality.
 
-##### Our CI should *not only build and test code*, but also ensure:
-&nbsp;  
+Our CI should *not only build and test code*, but also ensure:
  
-##### ✅ Every line follows the same style rules
-##### ✅ Code passes all Roslyn analyzer checks
-##### ✅ No formatting differences sneak in
-##### ✅ Developers see consistent results locally and in CI
-&nbsp;  
+✅ Every line follows the same style rules
+✅ Code passes all Roslyn analyzer checks
+✅ No formatting differences sneak in
+✅ Developers see consistent results locally and in CI
  
-##### That’s exactly what we’ll build here - a simple GitHub repo that *fails a pull request* if any of those rules are broken.
+That’s exactly what we’ll build here - a simple GitHub repo that *fails a pull request* if any of those rules are broken.
 
-&nbsp;  
-&nbsp;  
-### Step 1 - Setting up the playground  
-&nbsp;  
-&nbsp;  
+## Step 1 - Setting up the playground  
 
-##### Let’s start from scratch:
+Let’s start from scratch:
 
 ```csharp
 
@@ -56,21 +43,14 @@ dotnet new classlib -n Acme.Calculator
 dotnet sln Acme.sln add Acme.Calculator/Acme.Calculator.csproj
 ```
 
-##### This gives us a clean repo with one small class library.
-&nbsp;  
-##### Now we’ll add build rules that enforce analyzer and formatting policies everywhere - locally and in CI.   
+This gives us a clean repo with one small class library.
+Now we’ll add build rules that enforce analyzer and formatting policies everywhere - locally and in CI.   
 
-&nbsp;  
-&nbsp;  
-### Step 2 - Locking down build rules with Directory.Build.props
-&nbsp;  
-&nbsp;  
+## Step 2 - Locking down build rules with [Directory.Build.props](https://thecodeman.net/posts/mastering-directory-build-props-in-dotnet)
 
-##### This file lives at the root of your repo. It automatically applies to every project underneath it.
-&nbsp;  
-##### Think of it as your global .editorconfig for MSBuild.
-&nbsp;  
-##### **Directory.Build.props:**
+This file lives at the root of your repo. It automatically applies to every project underneath it.
+Think of it as your global .editorconfig for MSBuild.
+Directory.Build.props:
 
 ```csharp
 
@@ -103,33 +83,25 @@ dotnet sln Acme.sln add Acme.Calculator/Acme.Calculator.csproj
   </ItemGroup>
 </Project>
 ```
-##### What’s happening here?  
-&nbsp;  
+What’s happening here?  
 
-##### • **EnableNETAnalyzers** - turns on Microsoft’s built-in analyzer set (performance, naming, etc.) 
-##### • **AnalysisLevel=latest** - uses the latest rules for your .NET SDK version
-##### • **EnforceCodeStyleInBuild** - actually respects your .editorconfig during the build
-##### • **TreatWarningsAsErrors** - no more “I’ll fix that later” excuses
-##### •** Extra analyzer packages** - StyleCop and Roslynator add hundreds of best-practice rules
-&nbsp;  
-##### From this point, every build will fail if a warning is raised.
-##### Let’s make sure those warnings are defined clearly next.
+• **EnableNETAnalyzers** - turns on Microsoft’s built-in analyzer set (performance, naming, etc.) 
+• **AnalysisLevel=latest** - uses the latest rules for your .NET SDK version
+• **EnforceCodeStyleInBuild** - actually respects your .editorconfig during the build
+• **TreatWarningsAsErrors** - no more “I’ll fix that later” excuses
+•** Extra analyzer packages** - StyleCop and Roslynator add hundreds of best-practice rules
+From this point, every build will fail if a warning is raised.
+Let’s make sure those warnings are defined clearly next.
 
-&nbsp;  
-&nbsp;  
-### Step 3 - Defining your style rules (.editorconfig)  
-&nbsp;  
-&nbsp;  
+## Step 3 - Defining your style rules (.editorconfig)  
 
-##### **Before:** branch explosion
-&nbsp;  
+**Before:** branch explosion
 
-##### Your .editorconfig is the contract for code style.
-&nbsp;  
+Your .editorconfig is the contract for code style.
 
-##### Every developer (and the CI) will follow it exactly.
+Every developer (and the CI) will follow it exactly.
  
-##### **.editorconfig:**
+.editorconfig:
 
 ```csharp
 
@@ -169,41 +141,28 @@ dotnet_diagnostic.CS1591.severity = none   # Ignore "missing XML comment" warnin
 dotnet_diagnostic.IDE0005.severity = none
 ```
 
-##### **Why this matters**
-&nbsp;  
+Why this matters
  
-##### When EnforceCodeStyleInBuild=true, these rules become part of your build.
-&nbsp;  
+When EnforceCodeStyleInBuild=true, these rules become part of your build.
 
-##### You can fine-tune severity levels (suggestion, warning, error), and CI will honor them.
+You can fine-tune severity levels (suggestion, warning, error), and CI will honor them.
 
-&nbsp;  
-&nbsp;  
-### Step 4 - Push this to the main branch
-&nbsp;  
-&nbsp;  
+## Step 4 - Push this to the main branch
 
-##### When you push to the main branch on GitHub, next to the name of the commit, the pipeline icon will be displayed, from which we will find out whether the pipeline passed or failed.
-&nbsp;  
+When you push to the main branch on GitHub, next to the name of the commit, the pipeline icon will be displayed, from which we will find out whether the pipeline passed or failed.
 
-##### Check [the main branch here](https://github.com/StefanTheCode/Dotnet-CI).
+Check [the main branch here](https://github.com/StefanTheCode/Dotnet-CI).
 
 ![Main Branch](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/main-branch.png)
-&nbsp;  
 
-##### If we go into details, we will see all the processes that happened in that pipeline, where we can see more details for each one.
+If we go into details, we will see all the processes that happened in that pipeline, where we can see more details for each one.
 
 ![Pipeline Details](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/pipeline-details.png)
 
-&nbsp;  
-&nbsp;  
-### Step 5 - Add intentionally bad code(to prove it works)  
-&nbsp;  
-&nbsp;  
+## Step 5 - Add intentionally bad code(to prove it works)  
 
-##### Let’s create a class that violates multiple rules.
-&nbsp;  
-##### **Acme.Calculator/Calculator.cs**
+Let’s create a class that violates multiple rules.
+Acme.Calculator/Calculator.cs
 
 ```csharp
 
@@ -219,44 +178,35 @@ namespace Acme.Calculator
     }
 }
 ```
-##### If you run:
+If you run:
 
 ```csharp
 
 dotnet build -c Release /warnaserror
 ```
-##### You’ll probably get warnings turned into errors. 
+You’ll probably get warnings turned into errors. 
 
 ![Build errors](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/build-errors.png)
-&nbsp;  
 
-##### And if you run:
+And if you run:
 
 ```csharp
 
 dotnet format --verify-no-changes
 ```
-##### You’ll get: **Formatting differences were found. Run 'dotnet format' to fix them.**
-&nbsp;  
+You’ll get: **Formatting differences were found. Run 'dotnet format' to fix them.**
 
-##### Perfect - that’s exactly what we want!
-&nbsp;  
+Perfect - that’s exactly what we want!
 
-##### Now let’s make CI do the same check automatically.
+Now let’s make CI do the same check automatically.
 
-&nbsp;  
-&nbsp;  
-###  Step 5 - GitHub Actions: Automate your standards  
-&nbsp;  
-&nbsp;  
+##  Step 5 - GitHub Actions: Automate your standards  
 
-##### Here’s the real magic.
-&nbsp;  
+Here’s the real magic.
 
-##### This workflow will fail your PR if analyzers or formatting are off.
-&nbsp;  
+This workflow will fail your PR if analyzers or formatting are off.
  
-##### **.github/workflows/ci.yml:**
+.github/workflows/ci.yml:
 ```csharp
 
 name: CI
@@ -293,22 +243,16 @@ jobs:
         run: dotnet format --no-restore --verify-no-changes
 ```
 
-##### Explanation 
-&nbsp;  
-##### • **dotnet build /warnaserror** - fails if any analyzer or code-style warning occurs
-##### • **dotnet format --verify-no-changes** - fails if code isn’t properly formatted
-##### • **actions/cache** - speeds up builds by caching your NuGet packages
-##### • **actions/setup-dotnet** - installs the SDK version you specify 
-&nbsp;  
-##### Now every pull request runs these checks automatically.  
+Explanation 
+• **dotnet build /warnaserror** - fails if any analyzer or code-style warning occurs
+• **dotnet format --verify-no-changes** - fails if code isn’t properly formatted
+• **actions/cache** - speeds up builds by caching your NuGet packages
+• **actions/setup-dotnet** - installs the SDK version you specify 
+Now every pull request runs these checks automatically.  
 
-&nbsp;  
-&nbsp;  
-### Step 6 - Open a PR and watch it fail  
-&nbsp;  
-&nbsp;  
+## Step 6 - Open a PR and watch it fail  
 
-##### Push your branch with the bad code:
+Push your branch with the bad code:
 ```csharp
 
 git checkout -b feature/failing-pr
@@ -316,32 +260,25 @@ git add .
 git commit -m "add intentionally bad formatting"
 git push -u origin feature/failing-pr
 ```
-##### Open a pull request on GitHub. You’ll see red ❌ status checks.
-&nbsp;  
-##### GitHub will annotate your PR inline with messages like:
+Open a pull request on GitHub. You’ll see red ❌ status checks.
+GitHub will annotate your PR inline with messages like:
 ```csharp
 
 IDE0005: Using directive is unnecessary.
 SA1200: Using directives must be placed outside the namespace.
 ```
-##### This is CI doing code review for you.
-##### No more *“Please fix spacing”* comments from teammates.
+This is CI doing code review for you.
+No more *“Please fix spacing”* comments from teammates.
 
 ![Failing PR](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/failing-pr.png)
-&nbsp;  
 
-##### And if you check the details:
+And if you check the details:
 ![Failing PR](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/failing-pr-details.png)
 
-&nbsp;  
-&nbsp;  
-### Step 7 - Fix and make it green  
-&nbsp;  
-&nbsp;  
+## Step 7 - Fix and make it green  
 
-##### Now fix the class:
-&nbsp;  
-##### **Calculator.cs:**
+Now fix the class:
+Calculator.cs:
 ```csharp
 
 namespace Acme.Calculator
@@ -355,26 +292,21 @@ namespace Acme.Calculator
     }
 }
 ```
-##### Commit and push again:
+Commit and push again:
 ```csharp
 
 git add .
 git commit -m "fix: clean code formatting and remove unused usings"
 git push
 ```
-##### Re-run CI → everything turns green ✅
-&nbsp;  
-##### That’s your happy path: style, analyzers, and format all clean. 
+Re-run CI → everything turns green ✅
+That’s your happy path: style, analyzers, and format all clean. 
 
 ![Passed pipeline](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/passed-pipeline.png)
 
-&nbsp;  
-&nbsp;  
-### Bonus: Add a simple test (optional but realistic) 
-&nbsp;  
-&nbsp;
+## Bonus: Add a simple test (optional but realistic) 
 
-##### A quick test project helps validate the whole pipeline:
+A quick test project helps validate the whole pipeline:
 
 ```csharp
 
@@ -383,7 +315,7 @@ dotnet sln add Acme.Calculator.Tests/Acme.Calculator.Tests.csproj
 dotnet add Acme.Calculator.Tests reference Acme.Calculator
 ```
 
-##### **Acme.Calculator.Tests/CalculatorTests.cs: **
+Acme.Calculator.Tests/CalculatorTests.cs:
 ```csharp
 
 namespace Acme.Calculator.Tests
@@ -405,7 +337,7 @@ namespace Acme.Calculator.Tests
     }
 }
 ```
-##### Add a new step to CI before formatting:
+Add a new step to CI before formatting:
 
 ```csharp
 
@@ -413,66 +345,46 @@ namespace Acme.Calculator.Tests
      run: dotnet test --no-build -c Release
 ```
 
-##### After pushing to the branch, you will see new pipeline job "Test":
+After pushing to the branch, you will see new pipeline job "Test":
 
 ![Pipeline test](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/pipeline-test.png)
 
-&nbsp;  
-&nbsp;  
-### Bonus 2: Protect your main branch
-&nbsp;  
-&nbsp;  
+## Bonus 2: Protect your main branch
 
-##### Go to your GitHub repo settings → Branches → Branch protection rules.
-&nbsp;  
+Go to your GitHub repo settings → Branches → Branch protection rules.
 
-##### Add a rule for main:
-&nbsp;  
+Add a rule for main:
  
-##### ✅ Require status checks to pass before merging
-##### ✅ Select the workflow named CI
-&nbsp;  
-##### This ensures that no code can be merged unless it’s clean, tested, and formatted.
+✅ Require status checks to pass before merging
+✅ Select the workflow named CI
+This ensures that no code can be merged unless it’s clean, tested, and formatted.
 
-&nbsp;  
-&nbsp;  
-### Conclusion 
-&nbsp;  
-&nbsp;  
+## Wrapping Up 
 
-##### You’ve just built a **bullet-proof CI pipeline** for your .NET projects - one that doesn’t just build and test code, but **actively enforces quality**.
-&nbsp;  
+You’ve just built a **bullet-proof CI pipeline** for your .NET projects - one that doesn’t just build and test code, but **actively enforces quality**.
 
-##### By the end of this walkthrough, you’ll have seen how to:
-&nbsp;  
+By the end of this walkthrough, you’ll have seen how to:
  
-##### • ✅ Use Directory.Build.props to centralize analyzer and build rules
-##### • ✅ Define a consistent style with .editorconfig
-##### • ✅ Automate checks with dotnet format --verify-no-changes
-##### • ✅ Catch real issues early using Roslyn and StyleCop analyzers
-##### • ✅ Keep GitHub Actions as your single source of truth for code quality
-&nbsp;  
+• ✅ Use Directory.Build.props to centralize analyzer and build rules
+• ✅ Define a consistent style with .editorconfig
+• ✅ Automate checks with dotnet format --verify-no-changes
+• ✅ Catch real issues early using Roslyn and StyleCop analyzers
+• ✅ Keep GitHub Actions as your single source of truth for code quality
 
-##### Most importantly, you’ve learned how to **tune these rules to your team’s needs** - turning off noisy documentation analyzers and keeping only what truly matters: readable, maintainable, and consistent code.
-&nbsp;  
+Most importantly, you’ve learned how to **tune these rules to your team’s needs** - turning off noisy documentation analyzers and keeping only what truly matters: readable, maintainable, and consistent code.
  
-##### Every pull request now gets a free, automated code review.
-&nbsp;  
+Every pull request now gets a free, automated code review.
 
-##### No more style debates, no more “forgot to run formatter,” inconsistent builds between developers.
-&nbsp;  
+No more style debates, no more “forgot to run formatter,” inconsistent builds between developers.
 
-##### Your CI does the hard work - and your team ships cleaner code with confidence.
-&nbsp;  
+Your CI does the hard work - and your team ships cleaner code with confidence.
  
-##### So the next time you push a branch, remember:
-&nbsp;  
+So the next time you push a branch, remember:
  
-##### ✅ If it builds clean and formats perfectly on CI, it’s ready for main.
-&nbsp;  
+✅ If it builds clean and formats perfectly on CI, it’s ready for main.
 
-##### Check the [source code here](https://github.com/StefanTheCode/Dotnet-CI).
-&nbsp;  
+Check the [source code here](https://github.com/StefanTheCode/Dotnet-CI).
 
-##### That's all from me for today. 
+That's all from me for today. 
 <!--END-->
+

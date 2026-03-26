@@ -1,104 +1,75 @@
 ---
 title: "How to Run .NET 10 with Docker and Traefik (Real-World Setup)"
 subtitle: "Stop fighting ports -> Add Traefik to your solution"
-readTime: "Read Time: 4 minutes"
 date: "Jan 26 2026"
 category: ".NET"
+readTime: "Read Time: 4 minutes"
 meta_description: "Learn how to run .NET 10 with Docker and Traefik using a realistic, production-ready setup. Step-by-step reverse proxy configuration with multiple APIs."
 ---
 
 <!--START-->
-##### This issue is **self-sponsored**.
-##### By supporting my work and purchasing my products, you directly help me keep this newsletter free and continue creating high-quality, practical .NET content for the community. 
-&nbsp;
-##### Thank you for the support 🙌
-&nbsp;
-##### I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
-&nbsp;
-##### The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
-##### You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126).
-&nbsp;  
-&nbsp;  
-### .NET 10 with Docker and Traefik – A Production-Ready Reverse Proxy Setup
-&nbsp;  
-&nbsp;  
-##### Every .NET developer eventually runs into the same problem.
-&nbsp;  
+This issue is **self-sponsored**.
+By supporting my work and purchasing my products, you directly help me keep this newsletter free and continue creating high-quality, practical .NET content for the community. 
+Thank you for the support 🙌
+I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
+The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
+You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126).
+## .NET 10 with Docker and Traefik – A Production-Ready Reverse Proxy Setup
+Every .NET developer eventually runs into the same problem.
  
-##### You start with one API → everything is fine.
-##### Then you add another service.
-##### Then a UI.
-##### Then a webhook endpoint.
-##### Then a background worker.
-&nbsp;  
+You start with one API → everything is fine.
+Then you add another service.
+Then a UI.
+Then a webhook endpoint.
+Then a background worker.
  
-##### And suddenly your local environment looks like this: 
-##### • **localhost:5001**
-##### • **localhost:5173**
-##### • **localhost:6012**
-##### • “Wait… which service was on which port?”
-&nbsp;  
-##### Ports collide.
-##### CORS starts breaking.
-##### Auth redirects fail.
-##### README files become outdated the moment you add a new service.
-&nbsp;  
+And suddenly your local environment looks like this: 
+• **localhost:5001**
+• **localhost:5173**
+• **localhost:6012**
+• “Wait… which service was on which port?”
+Ports collide.
+[CORS](https://thecodeman.net/posts/using-cors-in-your-application) starts breaking.
+Auth redirects fail.
+README files become outdated the moment you add a new service.
  
-##### The problem is **not .NET**.
-##### The problem is **how traffic is routed**.
-&nbsp;  
+The problem is **not .NET**.
+The problem is **how traffic is routed**.
  
-##### That’s exactly where **Traefik** fits in.
+That’s exactly where **Traefik** fits in.
  
-&nbsp;  
   
-##### In this newsletter, we’ll build a **complete .NET 10 + Docker + Traefik setup**, including:
-##### • Two real .NET APIs
-##### • Correct reverse-proxy handling
-##### • Clean local URLs
-##### • A setup you can **extend without rewriting everything**  
+In this newsletter, we’ll build a **complete .NET 10 + Docker + Traefik setup**, including:
+• Two real .NET APIs
+• Correct reverse-proxy handling
+• Clean local URLs
+• A setup you can **extend without rewriting everything**  
 
-&nbsp;  
-&nbsp;  
-### What we’re building
-&nbsp;  
-&nbsp;  
-##### 
-##### A simple but realistic setup:
-##### • **Traefik** as a reverse proxy (Docker provider)
-##### • Two .NET 10 Minimal APIs
-##### 1) Catalog API
-##### 2) Billing API
-&nbsp;  
+## What we’re building
 
-##### • Clean, human-readable URLs:
-##### 1) http://catalog.localhost
-##### 2) http://billing.localhost
-&nbsp;  
-##### • Correct reverse-proxy handling in ASP. NET
-##### • Everything runs with **one docker compose up**
-&nbsp;  
-##### This is not a toy example.
-##### This is a **pattern you can keep using**.
+A simple but realistic setup:
+• **Traefik** as a reverse proxy (Docker provider)
+• Two .NET 10 Minimal APIs
+1) Catalog API
+2) Billing API
 
-&nbsp;  
-&nbsp;  
-### Project structure
-&nbsp;  
-&nbsp;  
+• Clean, human-readable URLs:
+1) http://catalog.localhost
+2) http://billing.localhost
+• Correct reverse-proxy handling in ASP. NET
+• Everything runs with **one docker compose up**
+This is not a toy example.
+This is a **pattern you can keep using**.
+
+## Project structure
 
 ![Project Structure](/images/blog/posts/dotnet-docker-and-traefik/project-structure.png)
-&nbsp;  
 
-##### Traefik is the only container exposed to the host.
-##### All APIs are internal and reachable only through Traefik.  
+Traefik is the only container exposed to the host.
+All APIs are internal and reachable only through Traefik.  
 
-&nbsp;  
-&nbsp;  
-### Traefik & Docker Compose
-&nbsp;  
-&nbsp;  
-##### **docker-compose.yml:**
+## Traefik & Docker Compose
+docker-compose.yml:
 ```csharp
 
 services:
@@ -153,20 +124,15 @@ services:
       - traefik.http.services.billing.loadbalancer.server.port=8080
 ```
 
-##### **Why does this work?**
-##### • Traefik **watches Docker** and reads container labels
-##### • Services declare **how they are exposed**
-##### • No ports are exposed per service
-##### • Routing is declarative and local to the service
+Why does this work?
+• Traefik **watches Docker** and reads container labels
+• Services declare **how they are exposed**
+• No ports are exposed per service
+• Routing is declarative and local to the service
 
-&nbsp;  
-&nbsp;  
-### Catalog API (.NET 10)
-&nbsp;  
-&nbsp;  
-##### This API represents a typical read-only service.
-&nbsp;  
-##### **Program.cs**
+## Catalog API (.NET 10)
+This API represents a typical read-only service.
+Program.cs
 ```csharp
 
 using Microsoft.AspNetCore.HttpOverrides;
@@ -230,18 +196,16 @@ if (app.Environment.IsDevelopment())
 app.Run();
 ```
 
-##### **Why forwarded headers matter**
+Why forwarded headers matter
  
-##### Without UseForwardedHeaders():
-&nbsp;  
-##### • ASP .NET thinks every request is http
-##### • Redirects break
-##### • Auth callbacks break
-##### • Absolute URLs are wrong
-&nbsp;  
-##### This is **mandatory** behind any reverse proxy.
+Without UseForwardedHeaders():
+• ASP .NET thinks every request is http
+• Redirects break
+• Auth callbacks break
+• Absolute URLs are wrong
+This is **mandatory** behind any reverse proxy.
 
-##### **Dockerfile**
+Dockerfile
 ```yml
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
@@ -255,14 +219,9 @@ COPY --from=build /app .
 EXPOSE 8080
 ENTRYPOINT ["dotnet", "CatalogApi.dll"]
 ```
-&nbsp;  
-&nbsp;  
-### Billing API (.NET 10)
-&nbsp;  
-&nbsp;  
-##### This API represents a write-heavy, business-oriented service.
-&nbsp;  
-##### **Program.cs**
+## Billing API (.NET 10)
+This API represents a write-heavy, business-oriented service.
+Program.cs
 ```csharp
 
 using Microsoft.AspNetCore.HttpOverrides;
@@ -279,7 +238,6 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownIPNetworks.Clear();
     options.KnownProxies.Clear();
 });
-
 
 builder.Services.AddOpenApi();
 
@@ -318,8 +276,7 @@ public record InvoiceItem(
     decimal UnitPrice,
     int Quantity);
 ```
-&nbsp;  
-##### **Dockerfile**
+Dockerfile
 ```csharp
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
@@ -333,69 +290,54 @@ COPY --from=build /app .
 EXPOSE 8080
 ENTRYPOINT ["dotnet", "BillingApi.dll"]
 ```
-&nbsp;
 
-##### **Running everything:**
+Running everything:
 
 ```csharp
 
 docker compose up --build
 ```
 
-&nbsp;
-##### Open:
-##### • http://catalog.localhost:8080
-##### • http://catalog.localhost:8080/api/products
-##### • http://billing.localhost:8080/api/invoices/calculate
-##### • http://traefik.localhost:8080
+Open:
+• http://catalog.localhost:8080
+• http://catalog.localhost:8080/api/products
+• http://billing.localhost:8080/api/invoices/calculate
+• http://traefik.localhost:8080
 
-&nbsp;  
-&nbsp;  
-### Why this setup is actually good
-&nbsp;  
-&nbsp;  
-##### ✅ Clean URLs
-##### • No ports per service.
-##### ✅ Scales naturally
-##### • Adding a new service = copy labels.
-##### ✅ Matches production architecture
-##### • Reverse proxy first, services internal.
-##### ✅ No proxy config hell
-##### • Routing lives with the service.
-&nbsp;  
-&nbsp;  
-### How to extend this setup
-&nbsp;  
-&nbsp;  
+## Why this setup is actually good
+✅ Clean URLs
+• No ports per service.
+✅ Scales naturally
+• Adding a new service = copy labels.
+✅ Matches production architecture
+• Reverse proxy first, services internal.
+✅ No proxy config hell
+• Routing lives with the service.
+## How to extend this setup
 
-&nbsp;  
-##### **HTTPS** - Add a websecure entrypoint + cert resolver.
+**HTTPS** - Add a websecure entrypoint + cert resolver.
  
-##### **Middlewares** - Rate limiting, headers, auth - reusable via labels.
+**Middlewares** - [Rate limiting](https://thecodeman.net/posts/how-to-implement-rate-limiter-in-csharp), headers, auth - reusable via labels.
  
-##### **Observability** - Metrics, access logs, tracing - without touching .NET code.
+**Observability** - Metrics, access logs, tracing - without touching .NET code.
  
-##### **Path-based routing** - Switch from subdomains to /api/* if needed.
-&nbsp;  
-&nbsp;  
-### Wrapping up
-&nbsp;  
-&nbsp;
+**Path-based routing** - Switch from subdomains to /api/* if needed.
+## Wrapping up
 
-##### Traefik is more than just a reverse proxy - it’s what makes **Docker + .NET feel clean and predictable**.
-&nbsp;
+Traefik is more than just a reverse proxy - it’s what makes **Docker + .NET feel clean and predictable**.
  
-##### Instead of fighting ports and proxy configs, you get:
-##### • clear routing rules
-##### • production-like local environments
-##### • services that stay focused on business logic 
-##### Once this setup is in place, adding new services becomes trivial, local development becomes boring (in a good way), and your architecture starts scaling naturally.
-&nbsp;
+Instead of fighting ports and proxy configs, you get:
+• clear routing rules
+• production-like local environments
+• services that stay focused on business logic 
+Once this setup is in place, adding new services becomes trivial, local development becomes boring (in a good way), and your architecture starts scaling naturally.
  
-##### If you’re already running .NET in Docker, Traefik is the missing piece that makes everything click.
-&nbsp;
+If you’re already running .NET in Docker, Traefik is the missing piece that makes everything click.
  
-##### That's all for today!
-&nbsp;
+That's all for today!
 
-##### Happy shipping 🚢  
+Happy shipping 🚢
+
+<!--END-->
+
+

@@ -1,86 +1,57 @@
 ---
 title: "Building API with Carter Library in .NET"
 subtitle: "Let’s be honest: writing APIs with controllers in .NET can feel... heavy. Sure, Minimal APIs were a breath of fresh air when they landed. But once your app grows? "
-readTime: "Read Time: 4 minutes"
 date: "May 26 2025"
 category: "APIs"
+readTime: "Read Time: 4 minutes"
 meta_description: "Carter is basically Minimal APIs on steroids. It lets you organize routes by feature using small modular classes. "
 ---
 
 <!--START-->
-##### 🚀 Coming Soon: Enforcing Code Style
-&nbsp;
+🚀 Coming Soon: Enforcing Code Style
  
-##### A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
-&nbsp;
+A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
  
-##### Join now to lock in early access when it drops - plus get everything else already inside the group.
-&nbsp;
+Join now to lock in early access when it drops - plus get everything else already inside the group.
  
-##### Founding Member Offer:
-##### • First 100 members get in for just $4/month - 80 spots already taken!
-##### • Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
-&nbsp;
+Founding Member Offer:
+• First 100 members get in for just $4/month - 80 spots already taken!
+• Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
  
-##### Get ahead of the game - and make clean, consistent code your superpower.
-&nbsp;
-##### [Join here](https://www.skool.com/thecodeman)
+Get ahead of the game - and make clean, consistent code your superpower.
+[Join here](https://www.skool.com/thecodeman)
 
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
-##### Let’s be honest: writing APIs with controllers in .NET can feel... heavy.
-&nbsp;  
+## Background
+Let’s be honest: writing APIs with controllers in .NET can feel... heavy.
 
-##### Sure, Minimal APIs were a breath of fresh air when they landed. But once your app grows? 
-&nbsp;  
+Sure, Minimal APIs were a breath of fresh air when they landed. But once your app grows? 
 
-##### Your Program.cs turns into a giant spaghetti of MapGet, MapPost, and “where the heck is that route?” chaos.
-&nbsp;  
+Your Program.cs turns into a giant spaghetti of MapGet, MapPost, and “where the heck is that route?” chaos.
 
-##### That’s where [Carter](https://github.com/CarterCommunity/Carter) steps in.
-&nbsp;  
+That’s where [Carter](https://github.com/CarterCommunity/Carter) steps in.
 
-##### Carter gives you a super clean, modular way to write Minimal APIs - while keeping everything fast, testable, and organized.
-&nbsp;  
+Carter gives you a super clean, modular way to write Minimal APIs - while keeping everything fast, testable, and organized.
 
-##### Let me walk you through how to build a complete Carter-based API with proper validation, services, and even a touch of Swagger.
+Let me walk you through how to build a complete Carter-based API with proper validation, services, and even a touch of [Swagger](https://thecodeman.net/posts/3-tips-to-elevate-swagger-ui).
 
-&nbsp;  
-&nbsp;  
-### What is Carter?
-&nbsp;  
-&nbsp;  
-##### Carter is basically **Minimal APIs on steroids**.
-&nbsp;  
-##### It lets you organize routes by feature using small modular classes. Instead of one giant Program.cs, each feature lives in its own file - and Carter wires it all up for you.
-&nbsp;  
-##### What you get:
-##### • Minimal APIs with clean structure
-##### • Built-in support for FluentValidation
-##### • Native dependency injection
-##### • Works perfectly with Swagger and unit tests
+## What is Carter?
+Carter is basically **Minimal APIs on steroids**.
+It lets you organize routes by feature using small modular classes. Instead of one giant Program.cs, each feature lives in its own file - and Carter wires it all up for you.
+What you get:
+• Minimal APIs with clean structure
+• Built-in support for FluentValidation
+• Native dependency injection
+• Works perfectly with Swagger and unit tests
 
-&nbsp;  
-&nbsp;  
-### Project Structure
-&nbsp;  
-&nbsp;  
+## Project Structure
 
-##### Here’s the setup we’ll use:
+Here’s the setup we’ll use:
 ![Project Structure](/images/blog/posts/building-api-with-carter-library-in-dotnet/project-structure.png)
-&nbsp;  
-##### Each feature gets its own module, model, validator, and service. It’s simple and scales well.
+Each feature gets its own module, model, validator, and service. It’s simple and scales well.
 
-&nbsp;  
-&nbsp;  
-### Setting Things Up
-&nbsp;  
-&nbsp;  
+## Setting Things Up
 
-##### **1. Install the NuGet packages:**
+1. Install the NuGet packages:
 
 ```csharp
 
@@ -88,8 +59,7 @@ dotnet add package Carter
 dotnet add package FluentValidation
 dotnet add package FluentValidation.DependencyInjectionExtensions
 ```
-&nbsp;  
-##### **2. Configure Carter in Program.cs**
+2. Configure Carter in Program.cs
 
 ```csharp
 
@@ -106,13 +76,9 @@ app.MapCarter();
 app.Run();
 ```
 
-&nbsp;  
-&nbsp;  
-### Data/Model
-&nbsp;  
-&nbsp;  
+## Data/Model
 
-##### Create the User Model and the DTO for incoming data
+Create the User Model and the DTO for incoming data
 
 ```csharp
 
@@ -125,8 +91,7 @@ public class User
 
 public record CreateUserRequest(string Name, string Email);
 ```
-&nbsp;  
-##### Add Validation with FluentValidation
+Add Validation with FluentValidation
 
 ```csharp
 
@@ -143,15 +108,10 @@ public class CreateUserValidator : AbstractValidator<CreateUserRequest>
 }
 ```
 
-&nbsp;  
-&nbsp;  
-### Set Up a Simple User Service
-&nbsp;  
-&nbsp;  
+## Set Up a Simple User Service
 
-##### This keeps your logic out of the route definitions.
-&nbsp;  
-##### Interface:
+This keeps your logic out of the route definitions.
+Interface:
 
 ```csharp
 
@@ -162,8 +122,7 @@ public interface IUserService
     User CreateUser(CreateUserRequest request);
 }
 ```
-&nbsp;  
-##### Implementation:
+Implementation:
 
 ```csharp
 
@@ -201,13 +160,9 @@ public class UserService : IUserService
 }
 ```
 
-&nbsp;  
-&nbsp;  
-### Create the Carter Module
-&nbsp;  
-&nbsp;  
+## Create the Carter Module
 
-##### Here’s where the routing magic happens.
+Here’s where the routing magic happens.
 
 ```csharp
 
@@ -246,25 +201,19 @@ public class UserModule : ICarterModule
     }
 }
 ```
-&nbsp;  
-##### In Carter, instead of writing all your route handlers in Program.cs, you define them inside **classes that implement ICarterModule**. 
+In Carter, instead of writing all your route handlers in Program.cs, you define them inside **classes that implement ICarterModule**. 
 
-##### These classes represent a group of related routes - typically per feature (like “Users”).
+These classes represent a group of related routes - typically per feature (like “Users”).
 
-##### The Carter framework will **automatically discover and register** all modules at startup (when you call app.MapCarter() in Program.cs).
+The Carter framework will **automatically discover and register** all modules at startup (when you call app.MapCarter() in Program.cs).
 
-&nbsp;  
-&nbsp;  
-### MapGroup
-&nbsp;  
-&nbsp;  
+## MapGroup
 
-##### MapGroup("/users") creates a **route group** — a way to group multiple endpoints under a common URL prefix (in this case /users).
-&nbsp;  
-##### This makes your code:
-##### • **Cleaner** — You don’t repeat the /users prefix for every route.
-##### • **Organized** — Groups related endpoints logically.
-##### • **More powerful** — You can apply filters (auth, validation, etc.) to the whole group later.
+MapGroup("/users") creates a **route group** — a way to group multiple endpoints under a common URL prefix (in this case /users).
+This makes your code:
+• **Cleaner** — You don’t repeat the /users prefix for every route.
+• **Organized** — Groups related endpoints logically.
+• **More powerful** — You can apply filters (auth, validation, etc.) to the whole group later.
 
 ```csharp
 
@@ -280,18 +229,12 @@ group.MapGet("/{id:int}", (int id, IUserService service) =>
 });
 ```
 
-&nbsp;  
-&nbsp;  
-### Advanced Endpoint Configuration
-&nbsp;  
-&nbsp;  
-##### Once you've set up your Carter-based API and it's working like a charm, you might wonder: 
-&nbsp;  
+## Advanced Endpoint Configuration
+Once you've set up your Carter-based API and it's working like a charm, you might wonder: 
 
-##### *"How do I make my routes more discoverable in Swagger? How do I group them? How can I prefix everything under /api without repeating myself?"*
-&nbsp;  
+*"How do I make my routes more discoverable in Swagger? How do I group them? How can I prefix everything under /api without repeating myself?"*
 
-##### Carter has you covered with its advanced configuration capabilities - especially when using the CarterModule base class.
+Carter has you covered with its advanced configuration capabilities - especially when using the CarterModule base class.
 
 ```csharp
 
@@ -303,37 +246,30 @@ public UserModule()
 }
 ```
 
-&nbsp;  
-&nbsp;  
-### Wrapping Up
-&nbsp;  
-&nbsp;  
 
-##### As you've seen, Carter doesn't just make routing modular - it also makes it smartly configurable.
-&nbsp;  
+Also check out [Building Clean Minimal APIs with Carter](https://thecodeman.net/posts/building-clean-minimal-api-with-carter).
 
-##### By inheriting from CarterModule, you can add route prefixes, tag your endpoints for better Swagger organization, and automatically include everything in your API docs without extra clutter. 
-&nbsp;  
+## Wrapping Up
 
-##### It's a simple upgrade that brings a ton of polish to your API.
-##### Whether you're building a small internal tool or a large public-facing API, these small touches go a long way in keeping your code clean, your docs clear, and your life easier.
-&nbsp;  
+As you've seen, Carter doesn't just make routing modular - it also makes it smartly configurable.
 
-##### So the next time you’re setting up a new Carter module, remember:
-##### • Use base("/api") to avoid repeating yourself
-##### • Group routes with WithTags()
-##### • Let Swagger handle the docs with IncludeInOpenApi()
-&nbsp;  
+By inheriting from CarterModule, you can add route prefixes, tag your endpoints for better Swagger organization, and automatically include everything in your API docs without extra clutter. 
 
-##### It's minimal effort for maximum structure. 
-&nbsp;  
+It's a simple upgrade that brings a ton of polish to your API.
+Whether you're building a small internal tool or a large public-facing API, these small touches go a long way in keeping your code clean, your docs clear, and your life easier.
 
-##### [Download code here](https://github.com/StefanTheCode/CarterApiDemo) (give it a start :) ).
-&nbsp;  
+So the next time you’re setting up a new Carter module, remember:
+• Use base("/api") to avoid repeating yourself
+• Group routes with WithTags()
+• Let Swagger handle the docs with IncludeInOpenApi()
 
-##### That's all from me today. 
+It's minimal effort for maximum structure. 
 
-&nbsp;  
+[Download code here](https://github.com/StefanTheCode/CarterApiDemo) (give it a start :) ).
+
+That's all from me today. 
+
  
-##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
 <!--END-->
+

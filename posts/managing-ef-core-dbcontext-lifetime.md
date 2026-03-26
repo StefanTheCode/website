@@ -3,41 +3,28 @@ title: "Managing EF Core DbContext Lifetime (Without Shooting Yourself in the Fo
 subtitle: "Learn when to use AddDbContext (scoped), AddDbContextFactory, and AddDbContextPool in EF Core."
 date: "September 16 2025"
 category: "Entity Framework"
+readTime: "Read Time: 4 minutes"
 meta_description: "Learn when to use AddDbContext (scoped), AddDbContextFactory, and AddDbContextPool in EF Core. See production-ready patterns for web requests, background jobs, and singletons—plus thread-safety gotchas and code you can paste into your .NET app."
 ---
 
 <!--START-->
-##### This issue is made possible thanks to **[ZZZ Projects](https://zzzprojects.com/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)**, who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community.
-&nbsp;  
-##### Thousands of developers fixed EF Core performance - with just one method.  
-&nbsp;  
-##### [👉 Discover this extension](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=x&utm_campaign=birthday)
-&nbsp;
+This issue is made possible thanks to **[ZZZ Projects](https://zzzprojects.com/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)**, who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community.
+Thousands of developers fixed [EF Core performance](https://thecodeman.net/posts/4-entity-framework-tips-to-improve-performances) - with just one method.  
+[👉 Discover this extension](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=x&utm_campaign=birthday)
 
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
+## Background
 
-##### DbContext is the heart of EF Core - but it’s easy to misuse. The big rules:
-&nbsp;  
+DbContext is the heart of EF Core - but it’s easy to misuse. The big rules:
 
-##### • A DbContext represents a unit of work and should be short-lived. 
-##### • It is not thread-safe; never share one instance across concurrent operations.
-##### • In ASP.NET Core, the default and usually correct choice is a scoped DbContext per request. For work outside the request scope (background services, singletons, UI apps), use a factory to create fresh contexts on demand.
-&nbsp;  
+• A DbContext represents a unit of work and should be short-lived. 
+• It is not thread-safe; never share one instance across concurrent operations.
+• In ASP.NET Core, the default and usually correct choice is a scoped DbContext per request. For work outside the request scope (background services, singletons, UI apps), use a factory to create fresh contexts on demand.
 
-##### This post shows how to wire it correctly, when to choose each registration, and the traps to avoid.
+This post shows how to wire it correctly, when to choose each registration, and the traps to avoid.
 
+## The three registrations you should know
 
-&nbsp;  
-&nbsp;  
-### The three registrations you should know
-&nbsp;  
-&nbsp;  
-
-#### 1. AddDbContext (Scoped - default, per request)
+### 1. AddDbContext (Scoped - default, per request)
 
 ```csharp
 
@@ -45,13 +32,11 @@ meta_description: "Learn when to use AddDbContext (scoped), AddDbContextFactory,
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 ```
-##### **When to use:** MVC/Minimal API controllers, Razor Pages, SignalR hubs - anything that lives inside a web request.
-&nbsp;  
+**When to use:** MVC/Minimal API controllers, Razor Pages, [SignalR](https://thecodeman.net/posts/real-time-dotnet-applications-with-signalr) hubs - anything that lives inside a web request.
 
-##### **Why:** You get one context per request automatically; EF Core handles connection usage efficiently.
-&nbsp;  
+**Why:** You get one context per request automatically; EF Core handles connection usage efficiently.
 
-#### 2. AddDbContextFactory<TContext> (Transient factory for on-demand contexts)
+### 2. AddDbContextFactory<TContext> (Transient factory for on-demand contexts)
 
 ```csharp
 
@@ -59,7 +44,7 @@ builder.Services.AddDbContextFactory<AppDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 ```
 
-##### How to use it:
+How to use it:
 ```csharp
 
 public sealed class ReportService(IDbContextFactory<AppDbContext> factory)
@@ -75,19 +60,15 @@ public sealed class ReportService(IDbContextFactory<AppDbContext> factory)
 }
 ```
 
-##### ** When to use:**
-&nbsp;  
+When to use:
 
-##### • Background/hosted services (IHostedService, BackgroundService)
-##### • Any singleton service that needs a DbContext
-##### • Desktop/Blazor apps where you want a fresh context per operation
-&nbsp;  
+• Background/hosted services (IHostedService, BackgroundService)
+• Any singleton service that needs a DbContext
+• Desktop/Blazor apps where you want a fresh context per operation
 
-##### **Why:** Factories create clean, short-lived contexts without relying on ambient scopes.
+**Why:** Factories create clean, short-lived contexts without relying on ambient scopes.
 
-&nbsp;  
-
-#### 3. AddDbContextPool<TContext> (Scoped with pooling)
+### 3. AddDbContextPool<TContext> (Scoped with pooling)
 
 ```csharp
 
@@ -95,20 +76,14 @@ builder.Services.AddDbContextPool<AppDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 ```
 
-##### **When to use:** High-throughput APIs when the context configuration is stable and stateless.
-&nbsp;  
+**When to use:** High-throughput APIs when the context configuration is stable and stateless.
 
-##### **Why:** Reuses DbContext instances from a pool for lower allocation overhead. 
-&nbsp;  
-##### **Caveat:** don’t stash per-request state in your context; pooled instances are reset and reused. 
+**Why:** Reuses DbContext instances from a pool for lower allocation overhead. 
+**Caveat:** don’t stash per-request state in your context; pooled instances are reset and reused. 
 
-&nbsp;  
-&nbsp;  
-### Real-world patterns (copy/paste friendly)
-&nbsp;  
-&nbsp;  
+## Real-world patterns (copy/paste friendly)
 
-#### Controller / Minimal API (Scoped is perfect)
+### Controller / Minimal API (Scoped is perfect)
 
 ```csharp
 
@@ -119,9 +94,8 @@ app.MapGet("/orders/{id:int}", async (int id, AppDbContext db, CancellationToken
 });
 ```
 
-##### **Why it works:** DI gives you a scoped context bound to the request; one unit-of-work, no leaks.
-&nbsp;  
-#### BackgroundService with IServiceScopeFactory (or use the factory directly)
+**Why it works:** DI gives you a scoped context bound to the request; one unit-of-work, no leaks.
+### [BackgroundService](https://thecodeman.net/posts/background-tasks-in-dotnet8) with IServiceScopeFactory (or use the factory directly)
 
 ```csharp
 
@@ -145,7 +119,7 @@ public sealed class CleanupService(IServiceScopeFactory scopes, ILogger<CleanupS
 }
 ```
 
-##### Alternative (my go-to):
+Alternative (my go-to):
 
 ```csharp
 
@@ -163,9 +137,8 @@ public sealed class CleanupService(IDbContextFactory<AppDbContext> factory, ILog
     }
 }
 ```
-##### **Why:** Hosted services don’t have a request scope; you must create one (or use a factory).
-&nbsp;  
-#### Singleton service that needs the database
+**Why:** Hosted services don’t have a request scope; you must create one (or use a factory).
+### Singleton service that needs the database
 
 ```csharp
 
@@ -187,9 +160,8 @@ public sealed class PricingCache(IDbContextFactory<AppDbContext> factory, IMemor
 }
 ```
 
-##### **Why:** Singletons must not capture scoped DbContext; creating a fresh one per call avoids threading and lifetime bugs. 
-&nbsp;  
-#### High-throughput APIs (pooling)
+**Why:** Singletons must not capture scoped DbContext; creating a fresh one per call avoids threading and lifetime bugs. 
+### High-throughput APIs (pooling)
 
 ```csharp
 
@@ -199,71 +171,52 @@ builder.Services.AddDbContextPool<AppDbContext>(o =>
     // Keep options stateless; avoid per-request mutable state
 });
 ```
-##### **Tip:** Pooling helps allocation/throughput. It doesn’t make DbContext thread-safe. Still one context per request.
+**Tip:** Pooling helps allocation/throughput. It doesn’t make DbContext thread-safe. Still one context per request.
 
-&nbsp;  
-&nbsp;  
-### Five common pitfalls (and fixes)
-&nbsp;  
-&nbsp;  
+## Five common pitfalls (and fixes)
 
-##### **• Sharing one DbContext across threads**
-&nbsp;  
+• Sharing one DbContext across threads
 
-##### **Symptom:** “A second operation started on this context before a previous operation was completed.”
-##### **Fix:** One context per unit of work; never run parallel queries on the same context. Use separate contexts.
-&nbsp;  
-##### **• Injecting DbContext into singletons**
-&nbsp;  
+**Symptom:** “A second operation started on this context before a previous operation was completed.”
+**Fix:** One context per unit of work; never run parallel queries on the same context. Use separate contexts.
+• Injecting DbContext into singletons
 
-##### **Fix:** Inject IDbContextFactory<T> or IServiceScopeFactory and create contexts on demand.
-&nbsp;  
+**Fix:** Inject IDbContextFactory<T> or IServiceScopeFactory and create contexts on demand.
 
-##### **• Keeping contexts alive too long**
-&nbsp;  
+• Keeping contexts alive too long
 
-##### **Fix:** Keep them short-lived; long-lived contexts bloat change trackers and retain connections.
-&nbsp;  
+**Fix:** Keep them short-lived; long-lived contexts bloat change trackers and retain connections.
 
-##### **• Using pooling with per-request state**
-&nbsp;  
+• Using pooling with per-request state
 
-##### **Fix:** Don’t put user-specific state on the context (e.g., CurrentUserId field). Pooled contexts are reused.
-&nbsp;  
+**Fix:** Don’t put user-specific state on the context (e.g., CurrentUserId field). Pooled contexts are reused.
 
-##### **• Trying to “speed up” by running multiple queries concurrently on one context**
-&nbsp;  
+• Trying to “speed up” by running multiple queries concurrently on one context
 
-##### **Fix:** Either serialize the work or create multiple contexts. DbContext is not thread-safe.
-&nbsp;  
-&nbsp;  
-### Performance notes
-&nbsp;  
-&nbsp;  
+**Fix:** Either serialize the work or create multiple contexts. DbContext is not thread-safe.
+## Performance notes
 
-##### **• Pooling** reduces allocations under heavy load; measure with your workload.
-##### **• Thread-safety checks:** EF Core can detect some multi-thread misuse; you can disable checks to squeeze perf, but only if you’re absolutely sure no concurrency occurs on the same context. I rarely recommend turning them off. 
+**• Pooling** reduces allocations under heavy load; measure with your workload.
+**• Thread-safety checks:** EF Core can detect some multi-thread misuse; you can disable checks to squeeze perf, but only if you’re absolutely sure no concurrency occurs on the same context. I rarely recommend turning them off. 
 
-&nbsp;  
-&nbsp;  
-### Conclusion
-&nbsp;  
-&nbsp;  
 
-##### Managing DbContext lifetime correctly is the difference between a **stable, high-performance EF Core** app and one that randomly throws concurrency errors or quietly leaks memory. The rule of thumb is simple:
-&nbsp;  
+For more EF Core best practices, see [EF Core Interceptors](https://thecodeman.net/posts/ef-interceptors-in-dotnet) and [4 EF Core Performance Tips](https://thecodeman.net/posts/4-entity-framework-tips-to-improve-performances).
 
-##### **• Default:** AddDbContext (scoped) - one context per request.
-##### **• Background/singleton:** AddDbContextFactory - create short-lived contexts on demand.
-##### **• High throughput:** AddDbContextPool - recycle contexts, but only if your configuration is stateless.
-&nbsp;  
+## Wrapping Up
 
-##### Think of DbContext as a **notepad for a single unit of work**: you grab a fresh sheet, write your changes, and toss it away when you’re done. 
-##### Don’t pass it around the whole office, and don’t try to write on it with two pens at once.
-&nbsp;  
+Managing DbContext lifetime correctly is the difference between a **stable, high-performance EF Core** app and one that randomly throws concurrency errors or quietly leaks memory. The rule of thumb is simple:
 
-##### By keeping contexts short-lived, isolated, and created in the right way for your workload, you’ll avoid the classic EF Core pitfalls - while keeping your app fast, predictable, and easy to maintain.
-&nbsp;  
+**• Default:** AddDbContext (scoped) - one context per request.
+**• Background/singleton:** AddDbContextFactory - create short-lived contexts on demand.
+**• High throughput:** AddDbContextPool - recycle contexts, but only if your configuration is stateless.
 
-##### That's all from me for today. 
+Think of DbContext as a **notepad for a single unit of work**: you grab a fresh sheet, write your changes, and toss it away when you’re done. 
+Don’t pass it around the whole office, and don’t try to write on it with two pens at once.
+
+By keeping contexts short-lived, isolated, and created in the right way for your workload, you’ll avoid the classic EF Core pitfalls - while keeping your app fast, predictable, and easy to maintain.
+
+That's all from me for today. 
 <!--END-->
+
+
+

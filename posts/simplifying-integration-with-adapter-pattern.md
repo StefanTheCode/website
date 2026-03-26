@@ -134,7 +134,7 @@ internal class Program
 * The adapter handles all translation
 * The legacy system is fully isolated
 
-👉 This is exactly what clean architecture looks like in practice.
+👉 This is exactly what [clean architecture](https://thecodeman.net/posts/architecture-tests-dotnet-clean-architecture) looks like in practice.
 
 ## Definition (Formal)
 
@@ -276,6 +276,9 @@ Avoid when:
 * performance is extremely critical
 * abstraction adds unnecessary complexity
 
+
+For more design patterns in .NET, check out the [Strategy Pattern](https://thecodeman.net/posts/strategy-design-pattern-will-help-you-refactor-code) and the [Chain of Responsibility Pattern](https://thecodeman.net/posts/chain-responsibility-pattern).
+
 ## Wrapping Up
 
 The Adapter Pattern is one of the most practical patterns in real-world .NET applications.
@@ -322,3 +325,4 @@ That's all from me today.
 P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
 
 <!--END-->
+

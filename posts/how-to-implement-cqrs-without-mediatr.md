@@ -7,118 +7,78 @@ readTime: "Read Time: 4 minutes"
 meta_description: "CQRS (Command Query Responsibility Segregation) is a design pattern that separates the read (query) and write (command) operations of an application, leading to better maintainability, scalability, and flexibility."
 ---
 
-&nbsp;  
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### • Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at [this webinar](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d) which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers.
-##### Join [here](https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d).
-&nbsp;  
-&nbsp;  
-
-
-### [Watch YouTube video here](https://youtu.be/46DQDu0TJJU?si=ifbb4BrJ-Jz5tGjR)
-![Watch YouTube video](/images/blog/posts/how-to-implement-cqrs-without-mediatr/youtube.png)
-
 <!--START-->
 
-&nbsp;  
-&nbsp;  
-### Introduction
-&nbsp;  
-&nbsp;  
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-##### **CQRS (Command Query Responsibility Segregation)** is a design pattern that separates the read (query) and write (command) operations of an application, leading to better maintainability, scalability, and flexibility.
-&nbsp;  
-##### It's particularly suitable for applications with complex business logic, high read/write ratio, or a need to scale independently.
-&nbsp;  
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
-##### How it works:
-&nbsp;  
+<p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+</p>
+</div>
 
-##### **• Commands:** Operations that change the state of the system. Commands usually don't return data, only the status of the operation.
-&nbsp;  
 
-##### **• Queries:** Operations that retrieve data from the system. Queries only read data and don't modify the system state.
+## Introduction
 
-&nbsp;  
-&nbsp;  
-### CQRS in Microservices and Separate Databases
-&nbsp;  
-&nbsp;  
+**CQRS (Command Query Responsibility Segregation)** is a design pattern that separates the read (query) and write (command) operations of an application, leading to better maintainability, scalability, and flexibility.
+It's particularly suitable for applications with complex business logic, high read/write ratio, or a need to scale independently.
 
-##### When using CQRS in a microservices architecture, you can separate read and write operations within individual services or across multiple services, providing several benefits:
-&nbsp;  
+How it works:
 
-##### **• Event Sourcing:** Combine CQRS with Event Sourcing for better auditability, data versioning, and troubleshooting.
-&nbsp;  
+**• Commands:** Operations that change the state of the system. Commands usually don't return data, only the status of the operation.
 
-##### **• Separate Data Stores:** Maintain separate data stores for read and write sides, optimizing performance and ensuring data consistency.
-&nbsp;  
+**• Queries:** Operations that retrieve data from the system. Queries only read data and don't modify the system state.
 
-##### **• Independent Scaling:** Scale the read and write sides of your microservices independently for optimal resource usage.Using separate databases for reading and writing can offer several advantages:
-&nbsp;  
+## CQRS in Microservices and Separate Databases
 
-##### **• Optimized Performance:** Tailor each database to the specific requirements of your read and write operations.
-&nbsp;  
+When using CQRS in a microservices architecture, you can separate read and write operations within individual services or across multiple services, providing several benefits:
 
-##### **• Independent Scaling:** Scale the read and write databases independently based on your application's needs.
-&nbsp;  
+**• Event Sourcing:** Combine CQRS with Event Sourcing for better auditability, data versioning, and troubleshooting.
 
-##### ** • Flexibility:** Choose the most suitable database technology for each side of your application.
+**• Separate Data Stores:** Maintain separate data stores for read and write sides, optimizing performance and ensuring data consistency.
 
-&nbsp;  
-&nbsp;  
-### CQRS + MediatR?
-&nbsp;  
-&nbsp;  
+**• Independent Scaling:** Scale the read and write sides of your microservices independently for optimal resource usage.Using separate databases for reading and writing can offer several advantages:
 
-##### This is the most common combination of implementation of the CQRS pattern seen on projects of the past few years.
-&nbsp;  
+**• Optimized Performance:** Tailor each database to the specific requirements of your read and write operations.
 
-##### But let's see what exactly is MediatR?
-&nbsp;  
+**• Independent Scaling:** Scale the read and write databases independently based on your application's needs.
 
-##### **MediatR** is a popular open-source ([Not anymore](https://www.jimmybogard.com/automapper-and-mediatr-going-commercial/) - But here is an alternative [Wolverine](https://thecodeman.net/posts/mediatr-alternative-wolverine)) library for .NET applications, developed by Jimmy Bogard. It helps in implementing the "mediator" design pattern, which promotes loosely coupled communication between components in a system.
-&nbsp;  
+** • Flexibility:** Choose the most suitable database technology for each side of your application.
 
-##### **Mediator Pattern:** MediatR follows the mediator design pattern, where a central mediator object facilitates communication between different components without them needing to be aware of each other. This reduces the coupling between components and makes the system easier to maintain and evolve.
-&nbsp;  
+## CQRS + MediatR?
 
-##### **Why do people use MediatR in combination with CQRS?**
-&nbsp;  
+This is the most common combination of implementation of the CQRS pattern seen on projects of the past few years.
 
-##### In my opinion, using MediatR with CQRS encourages developers to create dedicated command and query classes and their corresponding handlers, which results in better code organization.
-&nbsp;  
+But let's see what exactly is MediatR?
 
-##### Also, MediatR provides a simple request/response model and a central mediator for handling commands, queries, and events. This makes it easier to implement the CQRS pattern in a consistent and straightforward way.
-&nbsp;  
+**MediatR** is a popular open-source ([Not anymore](https://www.jimmybogard.com/automapper-and-mediatr-going-commercial/) - But here is an alternative [Wolverine](https://thecodeman.net/posts/mediatr-alternative-wolverine)) library for .NET applications, developed by Jimmy Bogard. It helps in implementing the "mediator" design pattern, which promotes loosely coupled communication between components in a system.
 
-##### But **is this really necessary?**
-&nbsp;  
+**Mediator Pattern:** MediatR follows the mediator design pattern, where a central mediator object facilitates communication between different components without them needing to be aware of each other. This reduces the coupling between components and makes the system easier to maintain and evolve.
 
-##### Of course not.
-&nbsp;  
-##### I will show that in the following text.
+Why do people use MediatR in combination with CQRS?
 
-&nbsp;  
-&nbsp;  
-### Clean CQRS
-&nbsp;  
-&nbsp;  
+In my opinion, using MediatR with CQRS encourages developers to create dedicated command and query classes and their corresponding handlers, which results in better code organization.
 
-##### The project CQRS has a following structure:
+Also, MediatR provides a simple request/response model and a central mediator for handling commands, queries, and events. This makes it easier to implement the CQRS pattern in a consistent and straightforward way.
+
+But **is this really necessary?**
+
+Of course not.
+I will show that in the following text.
+
+## Clean CQRS
+
+The project CQRS has a following structure:
 
 ![Clean CQRS](/images/blog/posts/how-to-implement-cqrs-without-mediatr/cqrs-without-mediatr.png)
 
+To implement the CQRS pattern, without using any libraries, it is necessary to create only 4 interfaces.
 
+All 4 interfaces are located in the Common folder:
 
-##### To implement the CQRS pattern, without using any libraries, it is necessary to create only 4 interfaces.
-&nbsp;  
-
-##### All 4 interfaces are located in the Common folder:
-&nbsp;  
-
-##### **- IQueryHandler** - This interface is responsible for handling query operations. It has a single Handle method that takes a query object of type *TQuery* and a cancellation token, and returns a *Task<TQueryResult>* representing the result of the query operation.
+**- IQueryHandler** - This interface is responsible for handling query operations. It has a single Handle method that takes a query object of type *TQuery* and a cancellation token, and returns a *Task<TQueryResult>* representing the result of the query operation.
 
 ```csharp
 
@@ -127,9 +87,8 @@ public interface IQueryHandler<in TQuery, TQueryResult>
     Task<TQueryResult> Handle(TQuery query, CancellationToken cancellation);
 }
 ```
-&nbsp;  
 
-##### **- ICommandHandler** - This interface is responsible for handling command operations. 
+**- ICommandHandler** - This interface is responsible for handling command operations. 
 
 ```csharp
 
@@ -138,9 +97,8 @@ public interface ICommandHandler<in TCommand, TCommandResult>
     Task<TCommandResult> Handle(TCommand command, CancellationToken cancellation);
 }
 ```
-&nbsp;  
 
-##### **- IQueryDispatcher** - This interface is responsible for dispatching queries to their respective query handlers. It has a generic Dispatch method that takes a query object and a cancellation token, and returns a Task<TQueryResult> representing the result of the dispatched query.
+**- IQueryDispatcher** - This interface is responsible for dispatching queries to their respective query handlers. It has a generic Dispatch method that takes a query object and a cancellation token, and returns a Task<TQueryResult> representing the result of the dispatched query.
 
 ```csharp
 
@@ -149,9 +107,8 @@ public interface IQueryDispatcher
     Task<TQueryResult> Dispatch<TQuery, TQueryResult>(TQuery query, CancellationToken cancellation);
 }
 ```
-&nbsp;
 
-##### **- ICommandDispatcher** - This interface is responsible for dispatching commands to their respective command handlers.
+**- ICommandDispatcher** - This interface is responsible for dispatching commands to their respective command handlers.
 
 ```csharp
 
@@ -160,16 +117,12 @@ public interface ICommandDispatcher
     Task<TCommandResult> Dispatch<TCommand, TCommandResult>(TCommand command, CancellationToken cancellation);
 }
 ```
-&nbsp;
 
+In order for dispatchers to know which handlers (queries or commands) they will call, it is necessary to tell them how to select handlers.
 
-##### In order for dispatchers to know which handlers (queries or commands) they will call, it is necessary to tell them how to select handlers.
-&nbsp;
+That is why we will make implementations of both dispatchers. Place them in the Dispatchers folder.
 
-##### That is why we will make implementations of both dispatchers. Place them in the Dispatchers folder.
-&nbsp;
-
-##### **QueryDispatcher** implementation:
+**QueryDispatcher** implementation:
 
 ```csharp
 
@@ -185,7 +138,7 @@ public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatche
 }
 ```
 
-##### **CommandDispatcher** implementation:
+**CommandDispatcher** implementation:
 
 ```csharp
 
@@ -201,27 +154,19 @@ public class CommandDispatcher(IServiceProvider serviceProvider) : ICommandDispa
 }
 ```
 
-##### The Dispatch method of the CommandDispatcher class takes two type parameters, *TCommand* and *TCommandResult*, and two arguments, command and cancellation, respectively.
-&nbsp;
+The Dispatch method of the CommandDispatcher class takes two type parameters, *TCommand* and *TCommandResult*, and two arguments, command and cancellation, respectively.
 
-##### Within the Dispatch method, the appropriate *ICommandHandler<TCommand, TCommandResult>* is obtained from the _serviceProvider field using the GetRequiredService method, which returns a new instance of the service.
-&nbsp;
+Within the Dispatch method, the appropriate *ICommandHandler<TCommand, TCommandResult>* is obtained from the _serviceProvider field using the GetRequiredService method, which returns a new instance of the service.
 
-##### Then the Handle method of the obtained handler is called with the provided command and cancellation arguments. Finally, the Task returned from the Handle method is returned from the Dispatch method.
+Then the Handle method of the obtained handler is called with the provided command and cancellation arguments. Finally, the Task returned from the Handle method is returned from the Dispatch method.
 
-&nbsp;  
-&nbsp;  
-### How to use it?
-&nbsp;  
-&nbsp;  
+## How to use it?
 
-##### As you would use it with MediatR, you use it in an identical way without the library.
-&nbsp;  
+As you would use it with MediatR, you use it in an identical way without the library.
 
-##### Let's say we have a **UsersController** that represents an endpoint in the API and returns a user with a given Id. Since it queries the database, we know that we will have some *Query* and *QueryHandler*.
-&nbsp;  
+Let's say we have a **UsersController** that represents an endpoint in the API and returns a user with a given Id. Since it queries the database, we know that we will have some *Query* and *QueryHandler*.
 
-##### The first thing that needs to be done is to inject the **QueryDispatcher** (this is how we also inject IMediatR) through DI.
+The first thing that needs to be done is to inject the **QueryDispatcher** (this is how we also inject IMediatR) through DI.
 
 ```csharp
 
@@ -247,27 +192,20 @@ public class UsersController(IQueryDispatcher queryDispatcher, ICommandDispatche
     }
 }
 ```
-&nbsp;  
 
-##### The **_queryDispatcher.Dispatch** method sends the query to the appropriate query handler registered with the application's dependency injection container, which executes the query and returns the result.
-&nbsp;  
+The **_queryDispatcher.Dispatch** method sends the query to the appropriate query handler registered with the application's dependency injection container, which executes the query and returns the result.
 
-##### In this case, the query handler retrieves the user with the specified ID from the data store and returns it as a **User** object as result.
-&nbsp;  
+In this case, the query handler retrieves the user with the specified ID from the data store and returns it as a **User** object as result.
 
-##### A similar way to how MediatR calls the corresponding handlers.
-&nbsp;  
+A similar way to how MediatR calls the corresponding handlers.
 
-##### In order for this to work, it is necessary to create a **Query** and its **Handler**.
-&nbsp;  
+In order for this to work, it is necessary to create a **Query** and its **Handler**.
 
-##### **GetUserByIdQuery** is nothing but a simple wrapper around Id.
-&nbsp;  
+**GetUserByIdQuery** is nothing but a simple wrapper around Id.
 
-##### For the same Query, there is also a **QueryHandler** that will be called when the Dispatcher dispatches this Query.
-&nbsp;  
+For the same Query, there is also a **QueryHandler** that will be called when the Dispatcher dispatches this Query.
 
-##### The QueryHandler looks like this:
+The QueryHandler looks like this:
 
 ```csharp
 
@@ -282,28 +220,23 @@ public class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, User>
     }
 }
 ```
-##### For every other command or query, you would create the same class structure.
-&nbsp;  
+For every other command or query, you would create the same class structure.
 
-##### What is missing here is validation, which can be represented as the GetUserByIdQueryValidation class and which will validate the input.
+What is missing here is validation, which can be represented as the GetUserByIdQueryValidation class and which will validate the input.
 
-&nbsp;  
-&nbsp;  
-### Wrapping Up
-&nbsp;  
-&nbsp;  
 
-##### That's all from me today.
-&nbsp;  
+Also check out [MediatR Pipeline Behaviors](https://thecodeman.net/posts/mediatr-pipeline-behavior) and [Wolverine as a MediatR Alternative](https://thecodeman.net/posts/mediatr-alternative-wolverine).
 
-##### I strongly recommend that you read/watch something about the Mediator pattern as well as about the MediatR library itself, where it is most suitable for use.
-&nbsp;  
+## Wrapping Up
 
-##### Using MediatR in CQRS implementation is not wrong. Considering the increasing use of 'Clean Architecture', it is a great way to make code more readable and maintainable.
-&nbsp;  
+That's all from me today.
 
-##### I have certainly shown here that the purpose of MediatR is not to be used to implement CQRS, and that it is absolutely possible to implement this pattern without any libraries in a very simple way.
-&nbsp;  
+I strongly recommend that you read/watch something about the Mediator pattern as well as about the MediatR library itself, where it is most suitable for use.
 
-##### It's Monday, make a coffee and check the whole project implementation on [GitHub repository](https://github.com/StefanTheCode/CleanCQRS).
+Using MediatR in CQRS implementation is not wrong. Considering the increasing use of '[Clean Architecture](https://thecodeman.net/posts/architecture-tests-dotnet-clean-architecture)', it is a great way to make code more readable and maintainable.
+
+I have certainly shown here that the purpose of MediatR is not to be used to implement CQRS, and that it is absolutely possible to implement this pattern without any libraries in a very simple way.
+
+It's Monday, make a coffee and check the whole project implementation on [GitHub repository](https://github.com/StefanTheCode/CleanCQRS).
 <!--END-->
+

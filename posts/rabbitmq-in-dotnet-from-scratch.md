@@ -1,53 +1,38 @@
 ---
 title: "RabbitMQ in .NET from Scratch"
 subtitle: "RabbitMQ is a message broker. Think of it like a reliable postal service for your software. Instead of one system directly calling another (which creates tight coupling), RabbitMQ acts as the middleman."
-readTime: "Read Time: 4 minutes"
 date: "June 16 2025"
 category: ".NET"
+readTime: "Read Time: 4 minutes"
 meta_description: "RabbitMQ is a message broker. Think of it like a reliable postal service for your software. Instead of one system directly calling another (which creates tight coupling), RabbitMQ acts as the middleman."
 ---
 
 <!--START-->
-##### Shape the future of .NET tooling by spending just 10 minutes on JetBrains’ .NET development market research. Fill out the survey and enter the prize draw!
-&nbsp;
-##### [Start now](https://surveys.jetbrains.com/s3/dotnet-development-survey-newsletters?utm_source=newsletter_the_code_man&utm_medium=cpc&utm_campaign=rider_brand_survey)
-&nbsp;
+Shape the future of .NET tooling by spending just 10 minutes on JetBrains’ .NET development market research. Fill out the survey and enter the prize draw!
+[Start now](https://surveys.jetbrains.com/s3/dotnet-development-survey-newsletters?utm_source=newsletter_the_code_man&utm_medium=cpc&utm_campaign=rider_brand_survey)
 
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
-##### Whether you're building microservices or just want to offload work from your main app, [RabbitMQ](https://www.rabbitmq.com/) is one of the best tools to help you get there.
-&nbsp;  
+## Background
+Whether you're building microservices or just want to offload work from your main app, [RabbitMQ](https://www.rabbitmq.com/) is one of the best tools to help you get there.
 
-##### RabbitMQ is a **message broker**. Think of it like a reliable postal service for your software.
-&nbsp;  
+RabbitMQ is a **message broker**. Think of it like a reliable postal service for your software.
 
-##### Instead of one system directly calling another (which creates tight coupling), RabbitMQ acts as the **middleman**:
-&nbsp;  
+Instead of one system directly calling another (which creates tight coupling), RabbitMQ acts as the **middleman**:
 
-##### • One part of your app **sends** a message.
-##### • Another part **receives** and processes it **when it's ready**.
-&nbsp;  
+• One part of your app **sends** a message.
+• Another part **receives** and processes it **when it's ready**.
 
-##### This is called **asynchronous communication**, and it’s great for performance, reliability, and scalability.
-&nbsp;  
+This is called **asynchronous communication**, and it’s great for performance, reliability, and scalability.
 
-##### **Key Components:**
-##### • **Producer**: The one who sends the messages.
-##### • **Consumer**: The one who receives the messages.
-##### • **Queue**: Where the messages wait until they are processed.
-##### • **Exchange**: The "dispatcher" that directs the messages to the appropriate queues.
-##### • **Binding**: The rules that connect exchanges with queues. 
+Key Components:
+• **Producer**: The one who sends the messages.
+• **Consumer**: The one who receives the messages.
+• **Queue**: Where the messages wait until they are processed.
+• **Exchange**: The "dispatcher" that directs the messages to the appropriate queues.
+• **Binding**: The rules that connect exchanges with queues. 
 
-&nbsp;  
-&nbsp;  
-### Setup RabbitMQ (Local with Docker)
-&nbsp;  
-&nbsp; 
+## Setup RabbitMQ (Local with Docker)
 
-##### You can install RabbitMQ using Docker:
+You can install RabbitMQ using [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik):
 
 ```csharp
 
@@ -55,36 +40,27 @@ docker run -d --hostname rabbitmq
     --name rabbitmq \
     -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
-&nbsp; 
 
-##### • Visit the dashboard at http://localhost:15672
-##### • Default login: guest / guest
+• Visit the dashboard at http://localhost:15672
+• Default login: guest / guest
 
-&nbsp;  
-&nbsp;  
-### Implementing in .NET 
-&nbsp;  
-&nbsp;  
+## Implementing in .NET 
 
-##### Let’s build a simple project:
-&nbsp;  
+Let’s build a simple project:
 
-##### • The **API** sends an "email message" to RabbitMQ.
-##### • A **BackgroundService** listens and "processes" the message.
-&nbsp;  
+• The **API** sends an "email message" to RabbitMQ.
+• A **[BackgroundService](https://thecodeman.net/posts/background-tasks-in-dotnet8)** listens and "processes" the message.
 
-##### Through this example I'm going to explain how it works.
-&nbsp;  
+Through this example I'm going to explain how it works.
 
-##### Firstly, you need to add RabbitMQ library to your project:
+Firstly, you need to add RabbitMQ library to your project:
 
 ```csharp
 
 Install-Package RabbitMQ.Client
 ```
-&nbsp;  
 
-##### Let’s define a C# class to represent an email message:
+Let’s define a C# class to represent an email message:
 
 ```csharp
 
@@ -95,25 +71,20 @@ public class EmailMessage
     public string Body { get; set; } = default!;
 }
 ```
-&nbsp;  
 
-##### **Publisher**
-&nbsp;  
+Publisher
 
-##### The Publisher is the part of your app that **sends messages** to RabbitMQ.
-&nbsp;  
+The Publisher is the part of your app that **sends messages** to RabbitMQ.
 
-##### Its Job:
-##### • Connect to RabbitMQ
-##### • Create (or ensure) a queue exists
-##### • Serialize the message (e.g., to JSON)
-##### • Send the message into the queue
-&nbsp;  
+Its Job:
+• Connect to RabbitMQ
+• Create (or ensure) a queue exists
+• Serialize the message (e.g., to JSON)
+• Send the message into the queue
 
-##### Real-World Analogy:
-&nbsp;  
+Real-World Analogy:
 
-##### Think of it like dropping a letter into a mailbox. You’re not handling the delivery - just making sure it gets into the system.
+Think of it like dropping a letter into a mailbox. You’re not handling the delivery - just making sure it gets into the system.
 
 ```csharp
 
@@ -148,33 +119,26 @@ public class EmailMessagePublisher
     }
 }
 ```
-&nbsp;  
 
-##### Parameters:
-&nbsp;  
+Parameters:
 
-##### - durable: save to disk so the queue isn’t lost on broker restart
-##### - exclusive: can be used by other connections
-##### - autoDelete: don’t delete when the last consumer disconnects
-&nbsp;  
+- durable: save to disk so the queue isn’t lost on broker restart
+- exclusive: can be used by other connections
+- autoDelete: don’t delete when the last consumer disconnects
 
-##### **Receiver**
-&nbsp;  
+Receiver
 
-##### The **Receiver** listens to the queue and processes messages as they arrive.
-&nbsp;  
+The **Receiver** listens to the queue and processes messages as they arrive.
 
-##### Its Job:
-##### • Connect to RabbitMQ
-##### • Subscribe to the queue
-##### • Wait for messages
-##### • Deserialize and process the messages
-&nbsp;  
+Its Job:
+• Connect to RabbitMQ
+• Subscribe to the queue
+• Wait for messages
+• Deserialize and process the messages
 
-##### Real-World Analogy:
-&nbsp;  
+Real-World Analogy:
 
-##### Think of it like a mailroom clerk who monitors the inbox and acts whenever a new letter shows up.
+Think of it like a mailroom clerk who monitors the inbox and acts whenever a new letter shows up.
 
 ```csharp
 
@@ -218,59 +182,44 @@ public class EmailMessageConsumer : BackgroundService
 }
 ```
 
-&nbsp;  
-&nbsp;  
-###  RabbitMQ Exchange Types Explained
-&nbsp;  
-&nbsp;  
+##  RabbitMQ Exchange Types Explained
 
-##### An **Exchange** in RabbitMQ is like a post office: it decides **where to send the message**. 
-##### Each exchange type has a different strategy for routing messages.
-&nbsp;  
+An **Exchange** in RabbitMQ is like a post office: it decides **where to send the message**. 
+Each exchange type has a different strategy for routing messages.
 
-##### Here are the 4 main types:
-&nbsp;  
+Here are the 4 main types:
 
-##### 1. Direct Exchange
-##### 2. Fanout
-##### 3. Topic
-##### 4. Headers
-&nbsp;  
+1. Direct Exchange
+2. Fanout
+3. Topic
+4. Headers
 
-##### **1. Direct Exchange (One-to-One Routing)**
-&nbsp;  
+1. Direct Exchange (One-to-One Routing)
 
-##### • A message is routed to queues with the exact same routing key.
-##### • Think of this as sending mail to a specific recipient.
-&nbsp;  
+• A message is routed to queues with the exact same routing key.
+• Think of this as sending mail to a specific recipient.
 
-##### Example Use Case:
-##### You want to send emails only to a queue responsible for “welcome” emails.
+Example Use Case:
+You want to send emails only to a queue responsible for “welcome” emails.
 
-&nbsp;  
-##### .NET Setup:
+.NET Setup:
 
 ```csharp
 
 channel.ExchangeDeclare("direct-exchange", ExchangeType.Direct);
 channel.QueueBind("email-welcome-queue", "direct-exchange", "welcome");
 ```
-&nbsp;
-##### If you publish with routingKey = "welcome", it will go to email-welcome-queue.
-&nbsp;
+If you publish with routingKey = "welcome", it will go to email-welcome-queue.
 
-##### **2. Fanout Exchange (Broadcast to All)**
-&nbsp;  
+2. Fanout Exchange (Broadcast to All)
 
-##### • Messages go to **all queues bound to the exchange**, ignoring routing keys.
-##### • It’s a **broadcast**—like shouting in a room and everyone hears it.
-&nbsp;  
+• Messages go to **all queues bound to the exchange**, ignoring routing keys.
+• It’s a **broadcast**—like shouting in a room and everyone hears it.
 
-##### Example Use Case:
-##### You want to send a system-wide notification to all services (email, SMS, push).
+Example Use Case:
+You want to send a system-wide notification to all services (email, SMS, push).
 
-&nbsp;  
-##### .NET Setup:
+.NET Setup:
 
 ```csharp
 
@@ -278,27 +227,21 @@ channel.ExchangeDeclare("fanout-exchange", ExchangeType.Fanout);
 channel.QueueBind("email-queue", "fanout-exchange", "");
 channel.QueueBind("sms-queue", "fanout-exchange", "");
 ```
-&nbsp;  
 
-##### Any message sent to "fanout-exchange" goes to both queues.
-&nbsp;
+Any message sent to "fanout-exchange" goes to both queues.
 
-##### **3. Topic Exchange (Wildcard Routing)**
-&nbsp;  
+3. Topic Exchange (Wildcard Routing)
 
-##### • Uses **wildcards** in the routing key to allow flexible, pattern-based routing.
-&nbsp; 
+• Uses **wildcards** in the routing key to allow flexible, pattern-based routing.
 
-##### Wildcards
-&nbsp;  
-##### • * matches exactly one word
-##### • # matches zero or more words
+Wildcards
+• * matches exactly one word
+• # matches zero or more words
 
-##### Example Use Case:
-##### Route logs based on severity and system.
+Example Use Case:
+Route logs based on severity and system.
 
-&nbsp;  
-##### .NET Setup:
+.NET Setup:
 
 ```csharp
 
@@ -306,24 +249,19 @@ channel.ExchangeDeclare("topic-exchange", ExchangeType.Topic);
 channel.QueueBind("error-queue", "topic-exchange", "log.error.#");
 channel.QueueBind("auth-queue", "topic-exchange", "log.*.auth");
 ```
-&nbsp;  
 
-##### "log.error.auth" goes to both queues.
-##### "log.info.auth" goes to auth-queue.
-##### "log.error.database" goes to error-queue.
-&nbsp;
+"log.error.auth" goes to both queues.
+"log.info.auth" goes to auth-queue.
+"log.error.database" goes to error-queue.
 
-##### **4. Headers Exchange (Route by Metadata)**
-&nbsp;  
+4. Headers Exchange (Route by Metadata)
 
-##### • Instead of routing keys, it uses **message headers** for routing.
-&nbsp; 
+• Instead of routing keys, it uses **message headers** for routing.
 
-##### Example Use Case:
-##### Route messages with complex conditions (e.g., "x-type": "invoice" and "region": "EU")
+Example Use Case:
+Route messages with complex conditions (e.g., "x-type": "invoice" and "region": "EU")
 
-&nbsp;  
-##### .NET Setup:
+.NET Setup:
 
 ```csharp
 
@@ -338,34 +276,29 @@ var args = new Dictionary<string, object>
 
 channel.QueueBind("invoice-eu-queue", "headers-exchange", string.Empty, args);
 ```
-&nbsp;  
 
-##### Only messages that include both x-type=invoice and region=EU in their headers will be routed.
-&nbsp;  
+Only messages that include both x-type=invoice and region=EU in their headers will be routed.
 
-##### When to Use Which Exchange?
-&nbsp;  
+When to Use Which Exchange?
 
-##### **Direct** - Exact one-to-one message routing
-##### **Fanout** - Broadcasting to multiple consumers
-##### **Topic** - Flexible, pattern-based routing (e.g., logs)
-##### **Headers** - Complex routing based on multiple conditions
+**Direct** - Exact one-to-one message routing
+**Fanout** - Broadcasting to multiple consumers
+**Topic** - Flexible, pattern-based routing (e.g., logs)
+**Headers** - Complex routing based on multiple conditions
 
-&nbsp;  
-&nbsp;  
-### Wrapping Up
-&nbsp;  
-&nbsp;  
 
-##### RabbitMQ is a powerful tool for building scalable, decoupled systems - and .NET makes it surprisingly easy to integrate with. 
-&nbsp;  
+For alternative messaging solutions, check out [Redis Pub/Sub Messaging](https://thecodeman.net/posts/messaging-in-dotnet-with-redis) and [NATS Real-Time Messaging](https://thecodeman.net/posts/introduction-to-nats-real-time-messaging).
 
-##### Whether you're building microservices or just want to offload some long-running tasks, RabbitMQ has your back.
-&nbsp;  
+## Wrapping Up
 
-##### That's all from me today. 
+RabbitMQ is a powerful tool for building scalable, decoupled systems - and .NET makes it surprisingly easy to integrate with. 
 
-&nbsp;  
+Whether you're building microservices or just want to offload some long-running tasks, RabbitMQ has your back.
+
+That's all from me today. 
+
  
-##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
 <!--END-->
+
+

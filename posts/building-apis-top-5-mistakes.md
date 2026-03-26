@@ -1,63 +1,43 @@
 ---
 title: "Top 5 Mistakes Developers Make When Building APIs (and How to Avoid Them)"
 subtitle: "Let’s be honest: Building APIs sounds easy… until you have to maintain them."
-readTime: "Read Time: 4 minutes"
 date: "Apr 29 2025"
 category: "APIs"
+readTime: "Read Time: 4 minutes"
 meta_description: "The 5 most common mistakes developers make when building APIs - and how you can avoid falling into these traps"
 ---
 
 <!--START-->
-##### **🚀 Coming Soon: Enforcing Code Style**
-&nbsp;
-##### A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
-&nbsp;
+🚀 Coming Soon: Enforcing Code Style
+A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
 
-##### Join now to lock in early access when it drops - plus get everything else already inside the group.
-&nbsp;
+Join now to lock in early access when it drops - plus get everything else already inside the group.
 
-##### Founding Member Offer:
-##### • First 100 members get in for **just $4/month** - *70 spots already taken*!
-##### • Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
-&nbsp;
-##### Get ahead of the game -  and make clean, consistent code your superpower.
-&nbsp;
-##### [Join here](https://www.skool.com/thecodeman)
+Founding Member Offer:
+• First 100 members get in for **just $4/month** - *70 spots already taken*!
+• Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
+Get ahead of the game -  and make clean, consistent code your superpower.
+[Join here](https://www.skool.com/thecodeman)
 
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
-##### Let’s be honest:
-&nbsp;  
+## Background
+Let’s be honest:
 
-##### **Building APIs sounds easy… until you have to maintain them.**
-&nbsp;  
+Building APIs sounds easy… until you have to maintain them.
 
-##### I've seen beautifully-coded APIs crash and burn simply because of tiny decisions made early on - things you don't even notice until your API is under real-world pressure.
-&nbsp;  
+I've seen beautifully-coded APIs crash and burn simply because of tiny decisions made early on - things you don't even notice until your API is under real-world pressure.
 
-##### Let’s break down **the 5 most common mistakes developers make** when building APIs - and how you can avoid falling into these traps, with real .NET 9 examples along the way.
+Let’s break down **the 5 most common mistakes developers make** when building APIs - and how you can avoid falling into these traps, with real .NET 9 examples along the way.
 
-&nbsp;  
-&nbsp;  
-### 1. Poor or Missing Input Validation
-&nbsp;  
-&nbsp;  
-##### **The Mistake:**
-&nbsp;  
+## 1. Poor or Missing Input Validation
+The Mistake:
 
-##### Trusting that clients will always send valid data.
-&nbsp;  
+Trusting that clients will always send valid data.
 
-##### **Reality:**
-&nbsp;  
+Reality:
 
-##### If you don’t validate input properly, your API becomes vulnerable to bugs, crashes, and even security risks.
-&nbsp;  
+If you don’t validate input properly, your API becomes vulnerable to bugs, crashes, and even security risks.
 
-##### **Bad Example (Before - Trusting Input):**
+Bad Example (Before - Trusting Input):
 
 ```csharp
 
@@ -71,20 +51,15 @@ app.MapPost("/users", async (UserDto user) =>
 });
 ```
 
-&nbsp;  
+*Note: Don't put logic and database call directly in controllers/endpoints.*
 
-##### *Note: Don't put logic and database call directly in controllers/endpoints.*
-&nbsp;  
+Problem:
 
-##### **Problem:**
-&nbsp;  
+• No checks for null/empty fields.
+• No format validation (like for Email).
+• No business rules applied (like min/max lengths).
 
-##### • No checks for null/empty fields.
-##### • No format validation (like for Email).
-##### • No business rules applied (like min/max lengths).
-&nbsp;  
-
-##### **Better Example (After - Defensive API Design):**
+Better Example (After - Defensive API Design):
 
 ```csharp
 
@@ -102,38 +77,27 @@ app.MapPost("/users", async (UserDto user) =>
     return Results.Ok(newUser);
 });
 ```
-&nbsp;  
 
-##### Or even better? Use FluentValidation or a custom ValidatorService to avoid cluttering your endpoints!
-&nbsp;  
+Or even better? Use FluentValidation or a custom ValidatorService to avoid cluttering your endpoints!
 
-##### **Why It’s Important:**
-&nbsp;  
+Why It’s Important:
 
-##### • Protects your database integrity.
-##### • Makes client-side debugging easier ("BadRequest" vs "500 error").
-##### • Saves your backend from mysterious errors later.
+• Protects your database integrity.
+• Makes client-side debugging easier ("BadRequest" vs "500 error").
+• Saves your backend from mysterious errors later.
 
-&nbsp;  
-&nbsp;  
-### 2. Not Versioning Your APIs
-&nbsp;  
-&nbsp;  
+## 2. Not Versioning Your APIs
 
-##### **The Mistake:**
-&nbsp;  
+The Mistake:
 
-##### Releasing APIs with no version control because "we’ll fix it later."
-&nbsp;  
+Releasing APIs with no version control because "we’ll fix it later."
 
-##### **Reality:**
-&nbsp;  
+Reality:
 
-##### *You will need* to change APIs.
-##### And when you do, you’ll regret not planning for versions.
-&nbsp;  
+*You will need* to change APIs.
+And when you do, you’ll regret not planning for versions.
 
-##### **Bad Example (Before - No Versioning):**
+Bad Example (Before - No Versioning):
 
 ```csharp
 
@@ -143,15 +107,12 @@ app.MapGet("/products", () =>
 });
 
 ```
-&nbsp;  
 
-##### **Problem:**
-&nbsp;  
+Problem:
 
-##### When your response structure changes, older clients break immediately.
-&nbsp;  
+When your response structure changes, older clients break immediately.
 
-##### **Better Example (After - Versioned API):**
+Better Example (After - Versioned API):
 
 ```csharp
 
@@ -167,49 +128,35 @@ app.MapGroup("/api/v2")
         // returns products v2 with improvements
     });
 ```
-&nbsp;  
 
-##### Or using .RequireHost() for different subdomains if you want real-world production scaling.
-&nbsp;  
+Or using .RequireHost() for different subdomains if you want real-world production scaling.
 
-##### Why It’s Important:
-&nbsp;  
+Why It’s Important:
 
-##### • You can deploy improvements without breaking existing apps.
-##### • Gives your team breathing room to phase out old clients cleanly.
+• You can deploy improvements without breaking existing apps.
+• Gives your team breathing room to phase out old clients cleanly.
 
-&nbsp;  
-&nbsp;  
-### 3. Confusing or Incorrect Status Codes
-&nbsp;  
-&nbsp;  
+## 3. Confusing or Incorrect Status Codes
 
-##### **The Mistake:**
-&nbsp;  
+The Mistake:
 
-##### Returning 200 OK for *everything* — even when things fail.
-&nbsp;  
+Returning 200 OK for *everything* — even when things fail.
 
-##### **Reality:**
-&nbsp;  
+Reality:
 
-##### HTTP status codes exist for a reason: communication.
-&nbsp;  
+HTTP status codes exist for a reason: communication.
 
-##### **Bad Example (Before - Everything is OK):**
+Bad Example (Before - Everything is OK):
 
 ```csharp
 
 return Results.Ok("User not found.");
 ```
-&nbsp;  
-##### **Problem:**
-&nbsp;  
+Problem:
 
-##### Client sees 200. But the user doesn’t exist. Confusing! Now they have to parse the message string. Bad practice.
-&nbsp;  
+Client sees 200. But the user doesn’t exist. Confusing! Now they have to parse the message string. Bad practice.
 
-##### **Better Example (After - Correct Status Codes):**
+Better Example (After - Correct Status Codes):
 ```csharp
 
 var user = await dbContext.Users.FindAsync(id);
@@ -218,42 +165,30 @@ if (user is null)
 
 return Results.Ok(user);
 ```
-&nbsp;  
 
-##### Use:
-&nbsp;  
+Use:
 
-##### • 400 BadRequest → Bad input
-##### • 401 Unauthorized → Not logged in
-##### • 403 Forbidden → No access
-##### • 404 Not Found → No such resource
-##### • 500 Internal Server Error → Something broke on server
-&nbsp;  
+• 400 BadRequest → Bad input
+• 401 Unauthorized → Not logged in
+• 403 Forbidden → No access
+• 404 Not Found → No such resource
+• 500 Internal Server Error → Something broke on server
 
-##### Why It’s Important:
-&nbsp;  
+Why It’s Important:
 
-##### • Clients can react programmatically (retry, redirect, show error, etc).
-##### • Your API behaves like a good citizen on the internet.
-&nbsp;  
-&nbsp;  
-### 4. Overcomplicating the Response Models
-&nbsp;  
-&nbsp;  
+• Clients can react programmatically (retry, redirect, show error, etc).
+• Your API behaves like a good citizen on the internet.
+## 4. Overcomplicating the Response Models
 
-##### **The Mistake:**
-&nbsp;  
+The Mistake:
 
-##### Returning entire database entities or gigantic nested models.
-&nbsp;  
+Returning entire database entities or gigantic nested models.
 
-##### **Reality:**
-&nbsp;  
+Reality:
 
-##### Clients usually need a small slice of data, not your entire database schema.
-&nbsp;  
+Clients usually need a small slice of data, not your entire database schema.
 
-##### **Bad Example (Before - Entity Dumping):**
+Bad Example (Before - Entity Dumping):
 
 ```csharp
 
@@ -263,15 +198,12 @@ app.MapGet("/orders", async (DbContext db) =>
     return Results.Ok(orders);
 });
 ```
-&nbsp; 
-##### Problem:
-&nbsp;  
-##### • Leaks internal database structure.
-##### • Might expose sensitive fields accidentally.
-##### • Causes huge payloads = slow APIs.
-&nbsp; 
+Problem:
+• Leaks internal database structure.
+• Might expose sensitive fields accidentally.
+• Causes huge payloads = slow APIs.
 
-##### **Better Example (After - DTO Mapping):**
+Better Example (After - DTO Mapping):
 
 ```csharp
 
@@ -290,33 +222,23 @@ app.MapGet("/orders", async (DbContext db) =>
     return Results.Ok(orders);
 });
 ```
-&nbsp;  
-##### **Why It’s Important:**
-&nbsp;  
+Why It’s Important:
 
-##### • You control exactly what data leaves your server.
-##### • Smaller, faster responses = happier users and better SEO.
-##### • Less security risk if your model changes later.
+• You control exactly what data leaves your server.
+• Smaller, faster responses = happier users and better SEO.
+• Less security risk if your model changes later.
 
-&nbsp;  
-&nbsp;  
-### 5. No Centralized Error Handling
-&nbsp;  
-&nbsp;  
+## 5. No Centralized Error Handling
 
-##### **The Mistake:**
-&nbsp;  
+The Mistake:
 
-##### Scattering try-catch blocks randomly, or worse, letting unhandled exceptions bubble up.
-&nbsp;  
+Scattering try-catch blocks randomly, or worse, letting unhandled exceptions bubble up.
 
-##### **Reality:**
-&nbsp;  
+Reality:
 
-##### You need **one single plac**e to handle unexpected errors cleanly.
-&nbsp;  
+You need **one single plac**e to handle unexpected errors cleanly.
 
-##### **Bad Example (Before - Scattered Try-Catch):**
+Bad Example (Before - Scattered Try-Catch):
 
 ```csharp
 
@@ -330,16 +252,13 @@ catch (Exception ex)
     return Results.Problem(ex.Message);
 }
 ```
-&nbsp;  
 
-##### **Problem:**
-&nbsp;  
-##### • Code duplication.
-##### • Inconsistent error responses.
-##### • Hard to log properly.
-&nbsp;  
+Problem:
+• Code duplication.
+• Inconsistent error responses.
+• Hard to log properly.
 
-##### **Better Example (After - Global Exception Handling Middleware):**
+Better Example (After - Global Exception Handling Middleware):
 
 ```csharp
 
@@ -356,38 +275,28 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 ```
-&nbsp;  
 
-##### Or even better?
-##### Use **ProblemDetails (application/problem+json)** in .NET 9 automatically via Problem() responses.
-&nbsp;  
+Or even better?
+Use **[ProblemDetails](https://thecodeman.net/posts/better-error-handling-with-problemdetails) (application/problem+json)** in .NET 9 automatically via Problem() responses.
 
-##### **Why It’s Important:**
-&nbsp;  
-##### • Cleaner code.
-##### • Standard error messages for all clients.
-##### • Easier to plug in logging (Serilog, OpenTelemetry, etc).
-&nbsp;  
+Why It’s Important:
+• Cleaner code.
+• Standard error messages for all clients.
+• Easier to plug in logging (Serilog, [OpenTelemetry](https://thecodeman.net/posts/getting-started-with-opentelemetry), etc).
 
-##### But here's the thing:
-&nbsp;  
+But here's the thing:
 
-##### I’m not advising you to use exceptions as your primary way of handling errors.
-&nbsp;  
+I’m not advising you to use exceptions as your primary way of handling errors.
 
-##### Instead, if you’re building new APIs today, **[strongly consider the Result pattern](https://thecodeman.net/posts/better-error-handling-with-result-object)** (like Result<T>, OneOf, etc.).
-&nbsp;  
+Instead, if you’re building new APIs today, **[strongly consider the Result pattern](https://thecodeman.net/posts/better-error-handling-with-result-object)** (like Result<T>, OneOf, etc.).
 
-##### That way you explicitly return success/failure results without relying on exceptions at all.
-&nbsp;  
+That way you explicitly return success/failure results without relying on exceptions at all.
 
-##### **Exceptions should be for exceptional, truly unexpected cases - not regular validation errors.**
-&nbsp;  
+Exceptions should be for exceptional, truly unexpected cases - not regular validation errors.
 
-##### That said, if your project (or your team) already uses exceptions, the next best thing is **centralizing** how you handle them.
-&nbsp;  
+That said, if your project (or your team) already uses exceptions, the next best thing is **centralizing** how you handle them.
 
-##### If you’re curious, here’s a super simple Result-style error handling:
+If you’re curious, here’s a super simple Result-style error handling:
 
 ```csharp
 
@@ -404,41 +313,33 @@ app.MapGet("/users/{id}", async (Guid id, DbContext db) =>
 });
 ```
 
-&nbsp;  
-&nbsp;  
-### Bonus
-&nbsp;  
-&nbsp;  
+## Bonus
 
-##### If you're serious about building clean, real-world RESTful APIs in .NET - the way we discussed throughout this post - I highly recommend checking out the new **Pragmatic RESTful APIs in .NET course** by **Milan Jovanovic**.
-&nbsp;  
+If you're serious about building clean, real-world RESTful APIs in .NET - the way we discussed throughout this post - I highly recommend checking out the new **Pragmatic RESTful APIs in .NET course** by **Milan Jovanovic**.
 
-##### This isn't a sponsored recommendation - it's genuinely the best material I've seen on the topic.
-&nbsp;  
+This isn't a sponsored recommendation - it's genuinely the best material I've seen on the topic.
 
-##### You’ll even get a discount through my affiliate link. 
-##### Highly worth it if you want to take your API skills to the next level!
-&nbsp;  
+You’ll even get a discount through my affiliate link. 
+Highly worth it if you want to take your API skills to the next level!
 
-##### **[Check it out here](https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla)**.
+**[Check it out here](https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla)**.
 
-&nbsp;  
-&nbsp;  
-### Wrapping Up
-&nbsp;  
-&nbsp;  
 
-##### APIs aren't just about "sending data back and forth."
-##### **APIs are contracts**.
-##### **APIs are promises**.
+For building better APIs, check out [API Versioning](https://thecodeman.net/posts/why-do-you-need-api-versioning), [Rate Limiting](https://thecodeman.net/posts/how-to-implement-rate-limiter-in-csharp), and [API Key Authentication](https://thecodeman.net/posts/how-to-implement-api-key-authentication).
 
-##### When you build APIs defensively - with good validation, versioning, error handling, and thoughtful responses - you're making a promise to your clients (and your future self) that your system will be **reliable** and **predictable**.
+## Wrapping Up
 
-##### Even small improvements in your API hygiene now can save you dozens (or hundreds) of hours later.
-&nbsp;  
+APIs aren't just about "sending data back and forth."
+**APIs are contracts**.
+**APIs are promises**.
 
-##### That's all from me today. 
-&nbsp;  
+When you build APIs defensively - with good validation, versioning, error handling, and thoughtful responses - you're making a promise to your clients (and your future self) that your system will be **reliable** and **predictable**.
+
+Even small improvements in your API hygiene now can save you dozens (or hundreds) of hours later.
+
+That's all from me today. 
  
-##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
 <!--END-->
+
+

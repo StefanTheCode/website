@@ -3,54 +3,36 @@ title: "EF Core Interceptors in .NET"
 subtitle: "Add Auditing, Guardrails, and Observability Without Polluting Your DbContext"
 date: "January 12 2026"
 category: "Entity Framework"
+readTime: "Read Time: 4 minutes"
 meta_description: "Learn how to use Feature Flags in .NET to enable or disable features at runtime without redeploying your application. Includes a real production-ready example with Azure App Configuration, caching, and multi-instance support."
 ---
 
 <!--START-->
-##### This issue is made possible thanks to [ZZZ Projects](https://zzzprojects.com/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday), who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community. Let's thank them by entering the link below.
-&nbsp;  
-##### EF Core too slow? Insert data 14x faster and cut saving time by 94%.
-##### [👉 Boost performance with Bulk Insert](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=linkedin&utm_campaign=birthday) 
-&nbsp;  
-##### [Check EF Extensions here.](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=linkedin&utm_campaign=birthday)
-&nbsp;
+This issue is made possible thanks to [ZZZ Projects](https://zzzprojects.com/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday), who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community. Let's thank them by entering the link below.
+EF Core too slow? Insert data 14x faster and cut saving time by 94%.
+[👉 Boost performance with Bulk Insert](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=linkedin&utm_campaign=birthday) 
+[Check EF Extensions here.](https://entityframework-extensions.net/bulk-insert?utm_source=stefandjokic&utm_medium=linkedin&utm_campaign=birthday)
 
-&nbsp;  
-&nbsp;  
-### Introduction
-&nbsp;  
-&nbsp;  
+## Introduction
 
-##### Most teams start with the same two problems:
-&nbsp;  
-##### 1. “We need audit fields everywhere (CreatedAt, UpdatedAt, UpdatedBy…), and we keep forgetting to set them.”
-##### 2. “We need better visibility into SQL in production (correlation IDs, tenant IDs, slow query alerts).”
-&nbsp;  
+Most teams start with the same two problems:
+1. “We need audit fields everywhere (CreatedAt, UpdatedAt, UpdatedBy…), and we keep forgetting to set them.”
+2. “We need better visibility into SQL in production (correlation IDs, tenant IDs, slow query alerts).”
 
-##### The usual outcome: your DbContext.SaveChanges override becomes a junk drawer, or every repository repeats the same cross-cutting logic.
-&nbsp;  
+The usual outcome: your DbContext.SaveChanges override becomes a junk drawer, or every repository repeats the same cross-cutting logic.
  
-##### **EF Core interceptors** exist exactly for this: they let you **intercept, modify, or suppress EF operations** at different pipeline stages - commands, connections, transactions, SaveChanges, materialization, etc.
-&nbsp;  
-&nbsp;  
-### The domain: “SaaS Billing” with audit + compliance needs
-&nbsp;  
-&nbsp;
+**EF Core interceptors** exist exactly for this: they let you **intercept, modify, or suppress EF operations** at different pipeline stages - commands, connections, transactions, SaveChanges, materialization, etc.
+## The domain: “SaaS Billing” with audit + compliance needs
 
-##### Imagine a billing system where: 
-##### • Every row must be attributable to a user and tenant.
-##### • Deletes must be soft (regulators + “oops” recovery).
-##### • When a payment job spikes DB load, you want slow query logs tied to the request/job ID.
-&nbsp;
-##### We’ll solve this with two interceptors.
+Imagine a billing system where: 
+• Every row must be attributable to a user and tenant.
+• Deletes must be soft (regulators + “oops” recovery).
+• When a payment job spikes DB load, you want slow query logs tied to the request/job ID.
+We’ll solve this with two interceptors.
   
-&nbsp;  
-&nbsp;  
-### 1) Auditing + soft delete with SaveChangesInterceptor
-&nbsp;  
-&nbsp;  
+## 1) Auditing + soft delete with SaveChangesInterceptor
 
-##### Step 1 - Define a tiny audit/soft-delete contract
+Step 1 - Define a tiny audit/soft-delete contract
 
 ```csharp
 
@@ -70,11 +52,10 @@ public interface ISoftDelete
 }
 ```
 
-##### **Why this matters:**
-##### Interceptors work best when you can apply logic by capability (interfaces), instead of hardcoding entity types.
-&nbsp;  
+Why this matters:
+Interceptors work best when you can apply logic by capability (interfaces), instead of hardcoding entity types.
 
-#### Step 2 - Example entity
+### Step 2 - Example entity
 
 ```csharp
 
@@ -94,10 +75,9 @@ public sealed class Invoice : IAuditableEntity, ISoftDelete
 }
 ```
 
-##### **What’s “real” here:**
-##### Billing data often requires immutability/auditability, and soft deletes are a very common compliance-friendly default.  
-&nbsp;  
-#### Step 3 - “Current user” abstraction (works for APIs + background jobs)
+What’s “real” here:
+Billing data often requires immutability/auditability, and soft deletes are a very common compliance-friendly default.  
+### Step 3 - “Current user” abstraction (works for APIs + background jobs)
 
 ```csharp
 
@@ -128,10 +108,9 @@ public sealed class CurrentActor : ICurrentActor
     public string CorrelationId { get; }
 }
 ```
-##### **Why this matters:**
-##### Interceptors are cross-cutting. You need one place to define “who is doing the action” and “what request/job is this”.
-&nbsp;  
-#### Step 4 - The interceptor itself
+Why this matters:
+Interceptors are cross-cutting. You need one place to define “who is doing the action” and “what request/job is this”.
+### Step 4 - The interceptor itself
 
 ```csharp
 
@@ -207,22 +186,17 @@ public sealed class AuditAndSoftDeleteInterceptor : SaveChangesInterceptor
 }
 ```
 
-##### **What this gives you: **
-##### • Nobody can “forget” audit fields anymore.
-##### • Nobody can accidentally hard-delete rows (unless they bypass EF, which you can also detect via DB perms).
-##### • Your DbContext stays clean.
+What this gives you:
+• Nobody can “forget” audit fields anymore.
+• Nobody can accidentally hard-delete rows (unless they bypass EF, which you can also detect via DB perms).
+• Your DbContext stays clean.
 
-&nbsp;  
-&nbsp;  
-### 2) SQL observability with DbCommandInterceptor (tagging + slow query logging)
-&nbsp;  
-&nbsp;  
+## 2) SQL observability with DbCommandInterceptor (tagging + slow query logging)
 
-##### This is one of my favorite “production maturity” uses of interceptors: 
-##### • Attach a correlation ID and tenant ID to SQL as a comment.
-##### • Log slow queries with that same metadata. 
-&nbsp;  
-#### Step 1 - The interceptor
+This is one of my favorite “production maturity” uses of interceptors: 
+• Attach a correlation ID and tenant ID to SQL as a comment.
+• Log slow queries with that same metadata. 
+### Step 1 - The interceptor
 
 ```csharp
 
@@ -339,17 +313,12 @@ public sealed class ObservabilityCommandInterceptor : DbCommandInterceptor
 }
 ```
 
-##### **Why this is powerful:**
-##### • When production slows down, you’ll see which request/job caused the expensive SQL.
-##### • Your DBA/observability stack can correlate SQL traces back to app traces.
-&nbsp;
-##### **Also important:** Microsoft explicitly positions interceptors as more than logging—they can modify operations. 
+Why this is powerful:
+• When production slows down, you’ll see which request/job caused the expensive SQL.
+• Your DBA/observability stack can correlate SQL traces back to app traces.
+**Also important:** Microsoft explicitly positions interceptors as more than logging—they can modify operations. 
 
-&nbsp;  
-&nbsp;  
-### 3) Wire it up in .NET 9 (DI + AddInterceptors)
-&nbsp;  
-&nbsp;  
+## 3) Wire it up in .NET 9 (DI + AddInterceptors)
 
 ```csharp
 
@@ -380,40 +349,29 @@ app.MapGet("/", () => "OK");
 app.Run();
 ```
 
-##### **Key detail about execution order:**
-&nbsp;  
-##### EF Core can run interceptors coming from DI (“injected”) and those added directly to the context (“application interceptors”). Injected ones run first (in resolution order), then application interceptors run in the order they were added.
+Key detail about execution order:
+EF Core can run interceptors coming from DI (“injected”) and those added directly to the context (“application interceptors”). Injected ones run first (in resolution order), then application interceptors run in the order they were added.
 
-&nbsp;  
-&nbsp;  
-### Practical tips (the stuff that bites in real projects)
-&nbsp;  
-&nbsp;  
+## Practical tips (the stuff that bites in real projects)
 
-##### **Keep interceptors fast**. If your interceptor does heavy work, you just moved latency into the hot path.
+**Keep interceptors fast**. If your interceptor does heavy work, you just moved latency into the hot path.
 
-##### **Be careful with service lifetimes**. If you register an interceptor as a singleton but it depends on scoped services, you’ll have a bad day.
+**Be careful with service lifetimes**. If you register an interceptor as a singleton but it depends on scoped services, you’ll have a bad day.
  
-##### **Don’t call EF from inside a command interceptor** (you can create recursion or deadlocks).
+**Don’t call EF from inside a command interceptor** (you can create recursion or deadlocks).
  
-##### **Prefer interceptors for cross-cutting concerns**, and keep domain rules in the domain.
+**Prefer interceptors for cross-cutting concerns**, and keep domain rules in the domain.
 
-&nbsp;  
-&nbsp;  
-### Wrapping up 
-&nbsp;  
-&nbsp;  
+## Wrapping up 
 
-##### Interceptors are one of those EF Core features that quietly upgrade your codebase maturity:
-##### • Your DbContext stays focused on modeling and mapping. 
-##### • Auditing/soft-delete becomes consistent and automatic.
-##### • SQL observability stops being “best effort” and becomes built-in. 
-##### If you want to go even further, the next “adult” use case is an **Outbox pattern** using SaveChangesInterceptor (capture domain events, persist them, publish reliably) - Milan has a [great article](https://www.milanjovanovic.tech/blog/how-to-use-ef-core-interceptors#store-outbox-messages-with-ef-interceptors) about it.
+Interceptors are one of those EF Core features that quietly upgrade your codebase maturity:
+• Your DbContext stays focused on modeling and mapping. 
+• Auditing/soft-delete becomes consistent and automatic.
+• SQL observability stops being “best effort” and becomes built-in. 
+If you want to go even further, the next “adult” use case is an **Outbox pattern** using SaveChangesInterceptor (capture domain events, persist them, publish reliably) - Milan has a [great article](https://www.milanjovanovic.tech/blog/how-to-use-ef-core-interceptors#store-outbox-messages-with-ef-interceptors) about it.
 
-##### That's all for today.
-&nbsp;
-##### P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=120126), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
-&nbsp;
-##### The course is available in presale until the official release, with early-bird pricing for early adopters.
-##### You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=120126).
+That's all for today.
+P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=120126), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
+The course is available in presale until the official release, with early-bird pricing for early adopters.
+You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=120126).
 <!--END-->

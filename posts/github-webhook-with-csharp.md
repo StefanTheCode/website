@@ -1,121 +1,84 @@
 ---
 title: "GitHub Webhook with C#"
 subtitle: "A Webhook is a mechanism that allows a web application to send real-time notifications or data to another web application..."
-category: "APIs"
 date: "March 06 2023"
+category: "APIs"
+readTime: "Read Time: 4 minutes"
+meta_description: "A Webhook is a mechanism that allows a web application to send real-time notifications or data to another web application..."
 ---
 
-### Background
-&nbsp;
-&nbsp;
-##### A **Webhook** is a mechanism that allows a web application to send real-time notifications or data to another web application.
-&nbsp;
+<!--START-->
 
-##### It is essentially a way for two different applications to communicate with each other in "real time" rather than relying on periodic polling or manual data transfer.
+## Background
+A **Webhook** is a mechanism that allows a web application to send real-time notifications or data to another web application.
 
-##### An example of a simple implementation of a C# Webhook receiver for Github will be shown below.
-&nbsp;
+It is essentially a way for two different applications to communicate with each other in "real time" rather than relying on periodic polling or manual data transfer.
 
-##### **In this edition of the newsletter, there will be no mention of the implementation of the webhook mechanism (sender & receiver) due to the volume of the problem, which is not adequate for the newsletter.
-&nbsp;
-&nbsp;
-### C# Webhook receiver
-&nbsp;
-&nbsp;
+An example of a simple implementation of a C# Webhook receiver for Github will be shown below.
 
-##### A webhook receiver for an event that happened on Github or any other service can be represented in the simplest way as an **HttpPost API endpoint** in a C# controller.
+**In this edition of the newsletter, there will be no mention of the implementation of the webhook mechanism (sender & receiver) due to the volume of the problem, which is not adequate for the newsletter.
+## C# Webhook receiver
 
-&nbsp;
+A webhook receiver for an event that happened on Github or any other service can be represented in the simplest way as an **HttpPost API endpoint** in a C# controller.
 
-##### ** • Create an action in C# Controller**
-##### You need to create C # API Controller with GitHubWebhookController name. This is a controller to serve for all Events that happen within Github repository.
-&nbsp;
-##### After that, you need to add an endpoint Pushed for the "push" event on github, which will practically serve as a callback event. 
-&nbsp;
+• Create an action in C# Controller
+You need to create C # API Controller with GitHubWebhookController name. This is a controller to serve for all Events that happen within Github repository.
+After that, you need to add an endpoint Pushed for the "push" event on github, which will practically serve as a callback event. 
 
 ![GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/github-webhook-api-endpoint.png)
-&nbsp;
-##### This method must be HttpPost. 
-##### Since I currently don't know what the GitHub payload looks like, ie. object/JSON that GitHub sends during a specific event, I will state that the object that the method receives as a parameter is type dynamic.
-&nbsp;
-##### ** ​• Run the application**
-&nbsp;
-##### When you start the API project, through Swagger you can see Endpoint there is and that everything is fine for now.
-&nbsp;
+This method must be HttpPost. 
+Since I currently don't know what the GitHub payload looks like, ie. object/JSON that GitHub sends during a specific event, I will state that the object that the method receives as a parameter is type dynamic.
+​• Run the application
+When you start the API project, through [Swagger](https://thecodeman.net/posts/3-tips-to-elevate-swagger-ui) you can see Endpoint there is and that everything is fine for now.
 ![Swagger GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/swagger-github-webhook-endpoint.png)
-&nbsp;
-&nbsp;
 
-### Create Webhook instance on GitHub
-&nbsp;
-&nbsp;
+## Create Webhook instance on GitHub
 
-##### Within the GitHub repository for which you want to receive events, you need to generate a Webhook instance. In the repository settings, you should select the Webhooks link from the left menu. And click on the Add webhook button. You should see the following form: 
-&nbsp;
+Within the GitHub repository for which you want to receive events, you need to generate a Webhook instance. In the repository settings, you should select the Webhooks link from the left menu. And click on the Add webhook button. You should see the following form: 
 ![GitHub Platform Adding Webhook](/images/blog/posts/github-webhook-with-csharp/github-platform-adding-webhook.png)
-&nbsp;
-##### The most important field to fill in is of course the **PayloadUrl**.
-&nbsp;
-##### **This field represents the endpoint of our application that Github will call the moment a push event occurs on the selected repository.**
-&nbsp;
-##### **Content type:** You can choose application/json
-##### **Secret:** You can generate via some online generator. This secret is used to verify that the payload was actually sent by Github and not by a malicious third party pretending to be Github. For demo purposes I will leave it blank, but ** do not do this on production**.
-&nbsp;
-##### Okay, now, what will happen if you put the localhost link (http://localhost:7030/api/GithubWebhook/push) like a Payload URL? 
-&nbsp;
-##### Nothing. 
-##### GitHub doesn't know that your localhost exists somewhere on your computer. It is necessary that the application is deployed somewhere, say Azure.
-##### But for testing and debugging, ngrok can help you. 
-&nbsp;
-##### **What is ngrok?**
-&nbsp;
-##### Ngrok is a software tool that creates a secure tunnel between a local machine and the public internet, allowing developers to expose a web server running on their local machine to the internet.
-&nbsp;
-##### **Ngrok setup**
-&nbsp;
-##### • Download from: [Ngrok]( https://ngrok.com/)
-##### • Install it and run it
-##### • Execute the following command: **ngrok http port**
-&nbsp;
-##### *Port should be your port which you can see when you start the application
-##### *You should **disable https protocol** for the application by replacing https urls with http in **launchSettings.json**.
-&nbsp;
-##### Now you will see in CMD the url that is online and to which the localhost url is mapped. 
-##### If you visit the url from the **'forwarding'** part, you will see exactly the same result as for localhost. Of course, the advantage of this is that the debugger is active.
+The most important field to fill in is of course the **PayloadUrl**.
+This field represents the endpoint of our application that Github will call the moment a push event occurs on the selected repository.
+**Content type:** You can choose application/json
+**Secret:** You can generate via some online generator. This secret is used to verify that the payload was actually sent by Github and not by a malicious third party pretending to be Github. For demo purposes I will leave it blank, but ** do not do this on production**.
+Okay, now, what will happen if you put the localhost link (http://localhost:7030/api/GithubWebhook/push) like a Payload URL? 
+Nothing. 
+GitHub doesn't know that your localhost exists somewhere on your computer. It is necessary that the application is deployed somewhere, say Azure.
+But for testing and debugging, [ngrok](https://thecodeman.net/posts/how-to-put-localhost-online-in-visualstudio) can help you. 
+What is ngrok?
+Ngrok is a software tool that creates a secure tunnel between a local machine and the public internet, allowing developers to expose a web server running on their local machine to the internet.
+Ngrok setup
+• Download from: [Ngrok]( https://ngrok.com/)
+• Install it and run it
+• Execute the following command: **ngrok http port**
+*Port should be your port which you can see when you start the application
+*You should **disable https protocol** for the application by replacing https urls with http in **launchSettings.json**.
+Now you will see in CMD the url that is online and to which the localhost url is mapped. 
+If you visit the url from the **'forwarding'** part, you will see exactly the same result as for localhost. Of course, the advantage of this is that the debugger is active.
 ![Ngrok Console Running](/images/blog/posts/github-webhook-with-csharp/ngrok-console-running.png)
-&nbsp;
-##### The next thing is to put that ngrok url together with the API endpoint in the Payload Url field: https://9739-178-220-34-243.eu.ngrok.io/api/GitHubWebhook/pushed
+The next thing is to put that ngrok url together with the API endpoint in the Payload Url field: https://9739-178-220-34-243.eu.ngrok.io/api/GitHubWebhook/pushed
 
-&nbsp;
-&nbsp;
-### #1 Testing
-&nbsp;
-##### 1. Run the application
-##### 2. Put a breakpoint in the Pushed method
-##### 3. Go to the repository and make some changes
+## #1 Testing
+1. Run the application
+2. Put a breakpoint in the Pushed method
+3. Go to the repository and make some changes
 ![GitHub Commit Changes](/images/blog/posts/github-webhook-with-csharp/github-commit-changes.png)
-##### 3. Wait for a couple of seconds, and call should hit the debugger
-##### 4. You can see parameter payload is full of data
+3. Wait for a couple of seconds, and call should hit the debugger
+4. You can see parameter payload is full of data
 ![Webhook Endpoint Payload](/images/blog/posts/github-webhook-with-csharp/webhook-endpoint-payload.png)
-&nbsp;
-&nbsp;
 
-### What next?
-&nbsp;
-&nbsp;
-##### On this very simple example, I have shown how a webhook receiver for Github can be implemented.
-&nbsp;
-##### In this way, any service that supports WebHooks works. With the fact that there is a difference from service to service in the payload that is sent, so based on what you need, you will create a class with properties instead of receiving a dynamic type of payload.
-&nbsp;
-##### Also, this can be implemented with Azure Functions, so be sure you do a research on that topic.
-&nbsp;
-##### For GitHub payload for each webhook you can find at: [Github Webhook Documentation](https://docs.github.com/en/webhooks/webhook-events-and-payloads)
+## What next?
+On this very simple example, I have shown how a webhook receiver for Github can be implemented.
+In this way, any service that supports WebHooks works. With the fact that there is a difference from service to service in the payload that is sent, so based on what you need, you will create a class with properties instead of receiving a dynamic type of payload.
+Also, this can be implemented with Azure Functions, so be sure you do a research on that topic.
+For GitHub payload for each webhook you can find at: [Github Webhook Documentation](https://docs.github.com/en/webhooks/webhook-events-and-payloads)
 
-&nbsp;
-##### That's all from me for today.
-&nbsp;
-##### Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/4%23%20-%20Webhooks)**.
+That's all from me for today.
+Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/4%23%20-%20Webhooks)**.
 
-&nbsp;
+## dream BIG!
 
-## ** dream BIG! **
+## Wrapping Up
+
+<!--END-->
+
+

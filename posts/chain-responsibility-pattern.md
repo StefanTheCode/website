@@ -7,44 +7,35 @@ readTime: "Read Time: 3 minutes"
 meta_description: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
 ---
 
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### • [JetBrains Rider](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter) is **now FREE for non-commercial development**, making it more accessible for hobbyists, students, content creators, and open source contributors.
-
-##### [Download and start today!](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter)
-&nbsp;  
-##### • Tired of outdated API documentation holding your team back? Postman simplifies your life by [automatically syncing documentation with your API updates](https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic) - no more static docs, no more guesswork!
-##### [Read more](https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic).
-
 <!--START-->
 
-&nbsp;
-&nbsp;
-### The background
-&nbsp;
-&nbsp;
-##### The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task.
-&nbsp;
-##### Each object in the chain has the ability to either handle the request or pass it on to the next object in the chain. This pattern promotes loose coupling and flexibility in handling requests.
-&nbsp;
-##### Let's explore how to implement the Chain of Responsibility pattern in .NET 6 using a practical example.
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-&nbsp;
-&nbsp;
-### Example Scenario
-&nbsp;
-&nbsp;
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• <a href="https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter" style="color: #a5b4fc; text-decoration: underline;">JetBrains Rider</a> is **now FREE for non-commercial development**, making it more accessible for hobbyists, students, content creators, and open source contributors.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;"><a href="https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter" style="color: #a5b4fc; text-decoration: underline;">Download and start today!</a></p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Tired of outdated API documentation holding your team back? Postman simplifies your life by <a href="https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">automatically syncing documentation with your API updates</a> - no more static docs, no more guesswork! <a href="https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Read more</a>.</p>
 
-##### Let's consider a scenario where we have a series of discount rules for an e-commerce application. Depending on the customer's profile, we want to apply different discount percentages to their orders.
-&nbsp;
-##### The discount rules are as follows:
-&nbsp;
-##### • If the customer is a VIP, apply a 20% discount.
-##### • If the customer is a regular customer, apply a 10% discount.
-##### • If the customer is a new customer, apply a 5% discount.
-##### • If none of the above rules match, apply no discount.
-&nbsp;
-##### Initially, we can handle this logic using a series of If statements:
+<p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+</p>
+</div>
+
+
+## The background
+The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task.
+Each object in the chain has the ability to either handle the request or pass it on to the next object in the chain. This pattern promotes loose coupling and flexibility in handling requests.
+Let's explore how to implement the Chain of Responsibility pattern in .NET 6 using a practical example.
+
+## Example Scenario
+
+Let's consider a scenario where we have a series of discount rules for an e-commerce application. Depending on the customer's profile, we want to apply different discount percentages to their orders.
+The discount rules are as follows:
+• If the customer is a VIP, apply a 20% discount.
+• If the customer is a regular customer, apply a 10% discount.
+• If the customer is a new customer, apply a 5% discount.
+• If none of the above rules match, apply no discount.
+Initially, we can handle this logic using a series of If statements:
 
 ```csharp
 
@@ -70,18 +61,11 @@ public decimal CalculateDiscount(Customer customer, decimal orderTotal)
 
 ```
 
-&nbsp;
-&nbsp;
-### Chain of Responsibility
-&nbsp;
-&nbsp;
-##### While the If statements approach works, it can become unwieldy when the number of rules grows.
-&nbsp;
-##### The Chain of Responsibility pattern provides a more flexible and maintainable solution.
-&nbsp;
-##### Let's refactor the code to use this pattern.
-&nbsp;
-#####  ** Step #1**: Create an **abstract handler class, DiscountHandler**, that defines a common interface for all discount handlers:
+## Chain of Responsibility
+While the If statements approach works, it can become unwieldy when the number of rules grows.
+The Chain of Responsibility pattern provides a more flexible and maintainable solution.
+Let's refactor the code to use this pattern.
+** Step #1**: Create an **abstract handler class, DiscountHandler**, that defines a common interface for all discount handlers:
 
 ```csharp
 
@@ -99,10 +83,8 @@ public abstract class DiscountHandler
 
 ```
 
-&nbsp;
-##### **Step #2**: Implement **concrete discount handlers** by deriving from DiscountHandler. Each handler will handle a specific rule and decide whether to apply a discount or pass the request to the next handler.
-&nbsp;
-##### **VIPDiscountHandler:**
+**Step #2**: Implement **concrete discount handlers** by deriving from DiscountHandler. Each handler will handle a specific rule and decide whether to apply a discount or pass the request to the next handler.
+VIPDiscountHandler:
 
 ```csharp
 
@@ -121,8 +103,7 @@ public class VIPDiscountHandler : DiscountHandler
 
 ```
 
-&nbsp;
-##### **RegularDiscountHandler:**
+RegularDiscountHandler:
 
 ```csharp
 
@@ -141,8 +122,7 @@ public class RegularDiscountHandler : DiscountHandler
 
 ```
 
-&nbsp;
-##### **NewCustomerDiscountHandler:**
+NewCustomerDiscountHandler:
 
 ```csharp
 
@@ -161,8 +141,7 @@ public class NewCustomerDiscountHandler : DiscountHandler
 
 ```
 
-&nbsp;
-##### **NoDiscountHandler:**
+NoDiscountHandler:
 
 ```csharp
 
@@ -176,8 +155,7 @@ public class NoDiscountHandler : DiscountHandler
 
 ```
 
-&nbsp;
-##### **Step #3:** With the concrete handlers in place, we can create the chain by linking them together:
+**Step #3:** With the concrete handlers in place, we can create the chain by linking them together:
 
 ```csharp
 
@@ -189,56 +167,41 @@ vipHandler.SetNextHandler(new RegularDiscountHandler())
 
 ```
 
-&nbsp;
-##### Finally, we can invoke the chain by calling the **CalculateDiscount method** on the first handler in the chain:
+Finally, we can invoke the chain by calling the **CalculateDiscount method** on the first handler in the chain:
 
 ```csharp
 
 decimal discountAmount = vipHandler.CalculateDiscount(customer, orderTotal);
 ```
 
-&nbsp;
-&nbsp;
-### Pros and Cons? 
-&nbsp;
-&nbsp;
+## Pros and Cons? 
 
-##### What are the benefits from this?
-&nbsp;
-##### **1. Flexibility**
-&nbsp;
-##### The Chain of Responsibility pattern allows you to dynamically modify or extend the chain without affecting other parts of the code. You can add or remove handlers as needed.
+What are the benefits from this?
+1. Flexibility
+The Chain of Responsibility pattern allows you to dynamically modify or extend the chain without affecting other parts of the code. You can add or remove handlers as needed.
 
-&nbsp;
-##### **2. Loose coupling**
-&nbsp;
-##### The pattern promotes loose coupling between the sender of a request and its receivers. Each handler only needs to know about its immediate successor, minimizing dependencies.
+2. Loose coupling
+The pattern promotes loose coupling between the sender of a request and its receivers. Each handler only needs to know about its immediate successor, minimizing dependencies.
 
-&nbsp;
-##### **3. Single Responsibility Principle**
-&nbsp;
-##### You can decouple classes that invoke operations from classes that perform operations.
-&nbsp;
-&nbsp;
-####  **Okay,what about Drawbacks?**
+3. Single Responsibility Principle
+You can decouple classes that invoke operations from classes that perform operations.
+### Okay,what about Drawbacks?
 
-&nbsp;
-##### **1. Request may go unhandled**
-&nbsp;
-##### If none of the handlers in the chain can handle the request, it may go unhandled, leading to unexpected behavior. It's important to have a default handler or a way to handle such scenarios.
+1. Request may go unhandled
+If none of the handlers in the chain can handle the request, it may go unhandled, leading to unexpected behavior. It's important to have a default handler or a way to handle such scenarios.
 
-&nbsp;
-##### **2. Potential performance impact**
-&nbsp;
-##### If the chain becomes very long, it may result in performance overhead due to the traversal of multiple handlers.
-&nbsp;
+2. Potential performance impact
+If the chain becomes very long, it may result in performance overhead due to the traversal of multiple handlers.
 
-##### Remember, it's essential to strike a balance between the number of handlers and performance considerations when applying this pattern to real-world scenarios.
+Remember, it's essential to strike a balance between the number of handlers and performance considerations when applying this pattern to real-world scenarios.
 
-&nbsp;
-##### That's all from me for today.
-&nbsp;
+That's all from me for today.
+
+
+For more design patterns, check out the [Strategy Pattern in .NET](https://thecodeman.net/posts/strategy-design-pattern-will-help-you-refactor-code) and the [Adapter Pattern in .NET](https://thecodeman.net/posts/simplifying-integration-with-adapter-pattern).
+
+## Wrapping Up
 
 <!--END-->
 
-## ** dream BIG! **
+## dream BIG!

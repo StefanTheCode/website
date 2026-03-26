@@ -1,107 +1,67 @@
 ---
 title: "How to put localhost online in Visual Studio?"
-category: ".NET"
 subtitle: "Imagine creating a .NET API project that you call in a front-end web or mobile application..."
 date: "Apr 3 2023"
+category: ".NET"
+readTime: "Read Time: 3 minutes"
 meta_description: "The dev tunnels feature of Visual Studio 2022 enables ad-hoc connections between machines that can't directly connect. This feature helps you to debug web API endpoints with a publicly accessible endpoint."
 ---
 
+<!--START-->
 
-### The background
-&nbsp;
-&nbsp;
-##### Imagine creating a .NET API project that you call in a front-end web or mobile application. At some point, you need the option to debug the code directly online, or quickly send the application to someone for review without deploying it to the server - so you need to expose localhost to the web.
-&nbsp;
-##### You are probably familiar with the ngrok application, which creates a temporary URL address on a server with the help of which it is possible to access the application.
-&nbsp;
-##### Now it is possible in Visual Studio 2022 with the built-in **Dev Tunnels** feature.
-&nbsp;
-&nbsp;
-### What is Dev Tunnels?
-&nbsp;
-&nbsp;
+## The background
+Imagine creating a .NET API project that you call in a front-end web or mobile application. At some point, you need the option to debug the code directly online, or quickly send the application to someone for review without deploying it to the server - so you need to expose localhost to the web.
+You are probably familiar with the ngrok application, which creates a temporary URL address on a server with the help of which it is possible to access the application.
+Now it is possible in Visual Studio 2022 with the built-in **Dev Tunnels** feature.
+## What is Dev Tunnels?
 
-##### The dev tunnels feature of Visual Studio 2022 enables ad-hoc connections between machines that can't directly connect. A URL is created that allows any device with an internet connection to communicate to an ASP.NET  project while it runs on localhost.
-&nbsp;
-##### This feature helps you to debug web API endpoints with a publicly accessible endpoint.
-&nbsp;
-##### Let's see how to use it.
-&nbsp;
-&nbsp;
-### Enable Dev Tunnels
-&nbsp;
-&nbsp;
+The dev tunnels feature of Visual Studio 2022 enables ad-hoc connections between machines that can't directly connect. A URL is created that allows any device with an internet connection to communicate to an ASP.NET  project while it runs on localhost.
+This feature helps you to debug web API endpoints with a publicly accessible endpoint.
+Let's see how to use it.
+## Enable Dev Tunnels
 
-##### Prerequisite:
-&nbsp;
-##### • Required version Visual Studio is 17.5
-##### • You must sign into Visual Studio
-##### • Dev Tunnels is not available for Visual Studio on Mac  
-&nbsp;
-##### To use this feature, first you need to enable Dev Tunnel feature from: **Tools -> Options -> Environment -> Preview Features** (or just search for dev keyword). Then search for keyword dev. Check the <span style="color: #ffbd39"> **Enable dev tunnels for Web Applications** checkbox.
-&nbsp;
+Prerequisite:
+• Required version Visual Studio is 17.5
+• You must sign into Visual Studio
+• Dev Tunnels is not available for Visual Studio on Mac  
+To use this feature, first you need to enable Dev Tunnel feature from: **Tools -> Options -> Environment -> Preview Features** (or just search for dev keyword). Then search for keyword dev. Check the <span style="color: #ffbd39"> **Enable dev tunnels for Web Applications** checkbox.
 ![Enable Dev Tunnels](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/enable-dev-tunnels.png)
-&nbsp;
-&nbsp;
-### Create a Tunnel
-&nbsp;
-&nbsp;
+## Create a Tunnel
 
-##### To run with the Dev tunnel, it is necessary to create a tunnel from the private network (local) to the public (Internet network).
-&nbsp;
-##### You can do this in 2 ways:
-&nbsp;
-##### **Way #1**: From the Debug menu, select Dev Tunnels and then Create a Tunnel.
-&nbsp;
+To run with the Dev tunnel, it is necessary to create a tunnel from the private network (local) to the public (Internet network).
+You can do this in 2 ways:
+**Way #1**: From the Debug menu, select Dev Tunnels and then Create a Tunnel.
 ![Create Dev Tunnel from Debug Menu](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/create-dev-tunnel-from-debug-menu.jpg)
-&nbsp;
-##### You should see a following window:
-&nbsp;
+You should see a following window:
 ![Create Dev Tunnel from Debug Menu](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/account-to-create-dev-tunnel.png)
-&nbsp;
-##### Details:
-&nbsp;
-##### **• Account**: Like I said, you should be logged in
-##### **• Name**: Give a name for a tunnel
-##### **• Type**:
-##### - Temporary -  a new URL each time Visual Studio is started
-##### - Permanent - the same URL each time Visual Studio is started. 
-##### **• Access**:
-##### - Private - accessible only to the account that created it
-##### - Organization - The tunnel is accessible to accounts in the same organization as the one that created it. If this option is selected for a personal Microsoft account (MSA), the effect is the same as selecting Private. Organization support for GitHub accounts isn't supported. 
-#####  - Public - No authentication required. 
-&nbsp;
-##### **Way #2**: Modify the **launchSettings.json** file under Properties folder. Add the following code under https section: 
-&nbsp;
+Details:
+**• Account**: Like I said, you should be logged in
+**• Name**: Give a name for a tunnel
+**• Type**:
+- Temporary -  a new URL each time Visual Studio is started
+- Permanent - the same URL each time Visual Studio is started. 
+**• Access**:
+- Private - accessible only to the account that created it
+- Organization - The tunnel is accessible to accounts in the same organization as the one that created it. If this option is selected for a personal Microsoft account (MSA), the effect is the same as selecting Private. Organization support for GitHub accounts isn't supported. 
+- Public - No authentication required. 
+**Way #2**: Modify the **launchSettings.json** file under Properties folder. Add the following code under https section: 
 ![Launch Settings Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/launchsettings-dev-tunnels.png)
-&nbsp;
-&nbsp;
-### Run application with Dev Tunnel
-&nbsp;
-&nbsp;
+## Run application with Dev Tunnel
 
-##### Now you can run the application with Dev Tunnel and be able to expose a localhost to the internet.
-&nbsp;
-##### To do that, you just need to select a created tunnel.
-&nbsp;
+Now you can run the application with Dev Tunnel and be able to expose a localhost to the internet.
+To do that, you just need to select a created tunnel.
 ![Run application with Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/run-application-with-dev-tunnel.jpg)
-&nbsp;
-##### When you run the application, you should see the following window:
-&nbsp;
+When you run the application, you should see the following window:
 ![Run application with Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/test-dev-tunnels.png)
-&nbsp;
-##### And when you click on **Continue** button, you will see the full application like when you run it on localhost. But this one will have a public URL.
+And when you click on **Continue** button, you will see the full application like when you run it on localhost. But this one will have a public URL.
 
-&nbsp;
-&nbsp;
-### What next?
-&nbsp;
-&nbsp;
-##### Try to expose Azure functions - it's also possible.
-&nbsp;
-##### That's all from me for today.
-&nbsp;
-##### Make a coffee and try it on your projects.
-&nbsp;
+## What next?
+Try to expose Azure functions - it's also possible.
+That's all from me for today.
+Make a coffee and try it on your projects.
 
-## ** dream BIG! **
+## dream BIG!
+
+## Wrapping Up
+
+<!--END-->

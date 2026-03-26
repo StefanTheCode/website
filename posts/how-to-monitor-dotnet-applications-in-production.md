@@ -1,213 +1,150 @@
 ---
 title: "How to Monitor .NET Applications in Production with Health Checks, Prometheus, and Grafana"
 subtitle: "Learn a complete, production-ready monitoring setup for .NET: liveness and readiness health checks, PostgreSQL dependency checks, Prometheus scraping via /metrics, Grafana dashboards, Docker Compose wiring, and custom metrics you can extend."
-readTime: "Read Time: 10 minutes"
 date: "Feb 11 2026"
 category: ".NET"
+readTime: "Read Time: 10 minutes"
 meta_description: "Learn a complete, production-ready monitoring setup for .NET: liveness and readiness health checks, PostgreSQL dependency checks, Prometheus scraping via /metrics, Grafana dashboards, Docker Compose wiring, and custom metrics you can extend."
 ---
 
 <!--START-->
-##### This issue is **self-sponsored**.
-##### By supporting my work and purchasing my products, you directly help me keep this newsletter free and continue creating high-quality, practical .NET content for the community. 
-&nbsp;
+This issue is **self-sponsored**.
+By supporting my work and purchasing my products, you directly help me keep this newsletter free and continue creating high-quality, practical .NET content for the community. 
 
-##### Thank you for the support 🙌  
-&nbsp;
+Thank you for the support 🙌  
 
-##### P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
-&nbsp;
+P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
 
-##### The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
-##### You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226).
+The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
+You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226).
 
-&nbsp;  
-&nbsp;  
-### Why .NET Monitoring Is Not Optional in Production
-&nbsp;  
-&nbsp;
-##### A .NET app rarely “dies” in production.
-&nbsp;
-##### More often:
-##### • the API is running but **can’t reach the database**
-##### • requests start timing out because **connection pool is exhausted**
-##### • background jobs silently stop, but the process remains alive
-##### • latency increases after a deployment, and you notice it **hours later**
-&nbsp;
-##### That’s why production monitoring needs two layers:
-##### 1. **Health checks** - “Is the service alive? Is it ready? 
-##### 2. **Metrics** - “How is it behaving over time?”
-&nbsp;
-##### This guide builds a complete .NET monitoring setup with:
-##### • ASP.NET Core health checks (liveness + readiness)
-##### • PostgreSQL dependency health
-##### • Prometheus /metrics endpoint
-##### • Grafana dashboards
-##### • Docker Compose to run the entire stack locally like production
-##### • custom metrics you can extend later
+## Why .NET Monitoring Is Not Optional in Production
+A .NET app rarely “dies” in production.
+More often:
+• the API is running but **can’t reach the database**
+• requests start timing out because **connection pool is exhausted**
+• background jobs silently stop, but the process remains alive
+• latency increases after a deployment, and you notice it **hours later**
+That’s why production monitoring needs two layers:
+1. **[Health checks](https://thecodeman.net/posts/health-checks-in-dotnet8)** - “Is the service alive? Is it ready? 
+2. **Metrics** - “How is it behaving over time?”
+This guide builds a complete .NET monitoring setup with:
+• ASP.NET Core health checks (liveness + readiness)
+• [PostgreSQL](https://thecodeman.net/posts/debug-and-test-multi-environment-postgres) dependency health
+• Prometheus /metrics endpoint
+• Grafana dashboards
+• [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik) Compose to run the entire stack locally like production
+• custom metrics you can extend later
 
-&nbsp;  
-&nbsp;  
-### What Problem Health Checks and Metrics Actually Solve
-&nbsp;  
-&nbsp;  
-##### Before writing code, let’s be clear about why this setup exists.
-&nbsp;  
-##### In production, you need answers to questions like:
-##### • Is the service running or just stuck?
-##### • Is it ready to receive traffic?
-##### • Are dependencies healthy?
-##### • Are background jobs actually executing?
-##### • Is performance degrading over time?
-&nbsp;  
+## What Problem Health Checks and Metrics Actually Solve
+Before writing code, let’s be clear about why this setup exists.
+In production, you need answers to questions like:
+• Is the service running or just stuck?
+• Is it ready to receive traffic?
+• Are dependencies healthy?
+• Are background jobs actually executing?
+• Is performance degrading over time?
 
-#### Health checks and metrics solve different problems:
-&nbsp;  
-##### Health checks answer binary questions
-##### • Is the service alive?
-##### • Is it ready to serve requests?
-&nbsp;  
-##### Metrics answer behavioral questions
-##### • How many requests per second?
-##### • How long do requests take?
-##### • How many jobs were processed?
-##### • How often do failures happen?
-&nbsp;  
-##### You need **both**.
+### Health checks and metrics solve different problems:
+Health checks answer binary questions
+• Is the service alive?
+• Is it ready to serve requests?
+Metrics answer behavioral questions
+• How many requests per second?
+• How long do requests take?
+• How many jobs were processed?
+• How often do failures happen?
+You need **both**.
 
-&nbsp;  
-&nbsp;  
-### What Prometheus Is?
-&nbsp;  
-&nbsp;  
+## What Prometheus Is?
 
-##### Prometheus is a time-series metrics system.
-&nbsp;  
-##### It does three key things:
-##### • scrapes metrics from apps (pull model)
-##### • stores them over time
-##### • lets you query them using PromQL
-&nbsp;  
-##### Important detail for juniors:
+Prometheus is a time-series metrics system.
+It does three key things:
+• scrapes metrics from apps (pull model)
+• stores them over time
+• lets you query them using PromQL
+Important detail for juniors:
  
-##### ✅ Your app exposes `/metrics`
-##### ✅ Prometheus periodically calls `/metrics`
-##### ✅ Prometheus stores the numeric values
-##### ❌ Prometheus is not a dashboard  
+✅ Your app exposes `/metrics`
+✅ Prometheus periodically calls `/metrics`
+✅ Prometheus stores the numeric values
+❌ Prometheus is not a dashboard  
 
-&nbsp;  
-&nbsp;  
-### What Grafana Is?
-&nbsp;  
-&nbsp;  
+## What Grafana Is?
 
-##### **Grafana** is a visualization layer.
-&nbsp;  
-##### It: 
-##### • connects to Prometheus as a data source (in our case)
-##### • turns metrics into dashboards
-##### • can trigger alerts
-&nbsp;  
-##### Prometheus stores data.
-##### Grafana makes it visible. 
+**Grafana** is a visualization layer.
+It: 
+• connects to Prometheus as a data source (in our case)
+• turns metrics into dashboards
+• can trigger alerts
+Prometheus stores data.
+Grafana makes it visible. 
 
-&nbsp;  
-&nbsp;  
-### Understanding Liveness and Readiness Health Checks in .NET
-&nbsp;  
-&nbsp;  
+## Understanding Liveness and Readiness Health Checks in .NET
 
-##### One of the most common production mistakes is exposing a single health endpoint.
-&nbsp;  
+One of the most common production mistakes is exposing a single health endpoint.
 
-##### That leads to broken deployments and unnecessary restarts.
-&nbsp;  
+That leads to broken deployments and unnecessary restarts.
 
-#### Liveness checks
-&nbsp;  
+### Liveness checks
 
-##### Liveness answers one question:
-&nbsp;  
+Liveness answers one question:
 
-##### *Is the process running?*
-&nbsp;  
+*Is the process running?*
  
-##### It must not check databases, HTTP calls, or external dependencies.
-&nbsp;  
+It must not check databases, HTTP calls, or external dependencies.
  
-##### If this fails, the service is considered dead.
-&nbsp;  
+If this fails, the service is considered dead.
  
-#### Readiness checks
-&nbsp;  
+### Readiness checks
  
-##### Readiness answers a different question:
-&nbsp;  
+Readiness answers a different question:
  
-##### *Is the service ready to handle traffic?*
-&nbsp;  
+*Is the service ready to handle traffic?*
  
-##### This must check:
-##### • databases
-##### • external APIs
-##### • message brokers
-&nbsp;  
+This must check:
+• databases
+• external APIs
+• message brokers
 
-##### If readiness fails, traffic should be stopped, but the service should not be killed.
-&nbsp;  
+If readiness fails, traffic should be stopped, but the service should not be killed.
  
-##### We will expose two endpoints:
-##### • `/health/live`
-##### • `/health/ready`
+We will expose two endpoints:
+• `/health/live`
+• `/health/ready`
 
-&nbsp;  
-&nbsp;  
-### The Demo System We’ll Build (Two .NET Services + PostgreSQL)
-&nbsp;  
-&nbsp;  
+## The Demo System We’ll Build (Two .NET Services + PostgreSQL)
 
-##### We’ll build a small but realistic system consisting of:
-&nbsp;  
-##### **1. Orders API**
-##### • ASP.NET Core Web API
-##### • Exposes health checks
-##### • Exposes /metrics for Prometheus
-&nbsp;  
-##### **2. Billing Worker**
-##### • Background service
-##### • Periodically processes jobs
-##### • Exposes health checks
-##### • Includes **custom metric**: `billing_jobs_processed_total`
-&nbsp;  
-##### **3. PostgreSQL database**
-##### • Used as a readiness dependency
-&nbsp;  
-##### **4. Prometheus**
-##### • Scrapes metrics from both services 
-&nbsp;  
-##### **5. Grafana**
-##### • Visualizes metrics via dashboards
-&nbsp;  
-##### All services will run locally using Docker Compose, exactly like a real environment.
+We’ll build a small but realistic system consisting of:
+1. Orders API
+• ASP.NET Core Web API
+• Exposes health checks
+• Exposes /metrics for Prometheus
+2. Billing Worker
+• Background service
+• Periodically processes jobs
+• Exposes health checks
+• Includes **custom metric**: `billing_jobs_processed_total`
+3. PostgreSQL database
+• Used as a readiness dependency
+4. Prometheus
+• Scrapes metrics from both services 
+5. Grafana
+• Visualizes metrics via dashboards
+All services will run locally using Docker Compose, exactly like a real environment.
 
-&nbsp;  
-&nbsp;  
-### Orders API: Implementing Health Checks and Metrics
-&nbsp;  
-&nbsp;  
+## Orders API: Implementing Health Checks and Metrics
 
-##### **Add required NuGet packages:**
+Add required NuGet packages:
 ```csharp
 
 dotnet add OrderManagement.Api package AspNetCore.HealthChecks.NpgSql
 dotnet add OrderManagement.Api package prometheus-net.AspNetCore
 ```
-&nbsp;  
-##### **Explanation**
-##### • `AspNetCore.HealthChecks.NpgSql` gives us a ready-made PostgreSQL health probe.
-##### • `prometheus-net.AspNetCore` exposes `/metrics` and HTTP request metrics.
-&nbsp;  
-##### **Health check configuration (Program.cs):**
+Explanation
+• `AspNetCore.HealthChecks.NpgSql` gives us a ready-made PostgreSQL health probe.
+• `prometheus-net.AspNetCore` exposes `/metrics` and HTTP request metrics.
+Health check configuration (Program.cs):
 ```csharp
 
 var postgres = builder.Configuration.GetConnectionString("Postgres")
@@ -220,13 +157,11 @@ builder.Services.AddHealthChecks()
     // Readiness: “dependencies are reachable”
     .AddNpgSql(postgres, name: "postgres", tags: new[] { "ready" });
 ```
-&nbsp;  
 
-##### • self is the liveness probe
-##### • PostgreSQL is checked only for readiness
-&nbsp;  
+• self is the liveness probe
+• PostgreSQL is checked only for readiness
 
-##### **Health endpoints:**
+Health endpoints:
 ```csharp
 
 var app = builder.Build();
@@ -244,34 +179,25 @@ app.MapHealthChecks("/health/ready", new HealthCheckOptions {
 
 app.MapGet("/api/ping", () => Results.Ok (new { ok = true, at = DateTimeOffset.UtcNow }));
 ```
-&nbsp;  
 
-##### **Explanation**
-##### • `/health/live` checks only the app itself.
-##### • `/health/ready` checks PostgreSQL connectivity.
-##### • `/metrics` exposes Prometheus-format metrics.
-##### • `UseHttpMetrics()` auto-collects request metrics.
+Explanation
+• `/health/live` checks only the app itself.
+• `/health/ready` checks PostgreSQL connectivity.
+• `/metrics` exposes Prometheus-format metrics.
+• `UseHttpMetrics()` auto-collects request metrics.
 
-&nbsp;  
-&nbsp;  
-### Billing Worker: Add an HTTP host + Health + Custom Metrics
-&nbsp;  
-&nbsp;  
+## Billing Worker: Add an HTTP host + Health + Custom Metrics
 
-##### You need the same packages as for the Order API.
-&nbsp;  
-##### A worker template doesn’t expose HTTP endpoints by default.
-&nbsp;  
+You need the same packages as for the Order API.
+A worker template doesn’t expose HTTP endpoints by default.
 
-##### But we want:
-##### • `/health/*`
-##### • `/metrics`
-&nbsp;  
+But we want:
+• `/health/*`
+• `/metrics`
 
-##### So we host a minimal web server **inside the worker**.
-&nbsp;  
+So we host a minimal web server **inside the worker**.
  
-##### **Billing.Worker/Program.cs**
+Billing.Worker/Program.cs
 
 ```csharp
 using Microsoft.AspNetCore.Builder;
@@ -339,25 +265,18 @@ public partial class Program
 }
 ```
 
-&nbsp;  
-##### **Explanation**
-##### • This worker now exposes `/metrics` and health endpoints.
-##### • `billing_jobs_processed_total` is a **custom metric** you’ll graph in Grafana.
-##### • This is how you monitor background processing in real systems..
+Explanation
+• This worker now exposes `/metrics` and health endpoints.
+• `billing_jobs_processed_total` is a **custom metric** you’ll graph in Grafana.
+• This is how you monitor background processing in real systems..
 
-&nbsp;  
-&nbsp;  
-### Docker: Containerize both .NET services correctly  
-&nbsp;  
-&nbsp;  
+## Docker: Containerize both .NET services correctly  
 
-##### This is where my previous version was too hand-wavy.
-&nbsp;  
+This is where my previous version was too hand-wavy.
 
-##### Here’s the correct, production-style approach: **multi-stage Dockerfiles**.  
-&nbsp;  
+Here’s the correct, production-style approach: **multi-stage Dockerfiles**.  
 
-##### **OrderManagement.Api/Dockerfile:**
+OrderManagement.Api/Dockerfile:
 
 ```csharp
 
@@ -384,8 +303,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "OrderManagement.Api.dll"]
 ```
-&nbsp;
-##### **Billing.Worker/Dockerfile:**
+Billing.Worker/Dockerfile:
 
 ```csharp
 
@@ -410,21 +328,15 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "OrderManagement.Billing.Worker.dll"]
 ```
-&nbsp;  
 
-##### **Explanation**
-##### • The SDK image builds the app.
-##### • The runtime image runs the published output.
-##### • Both listen on port 8080 inside their containers.
+Explanation
+• The SDK image builds the app.
+• The runtime image runs the published output.
+• Both listen on port 8080 inside their containers.
 
+## Docker Compose: Start in the correct order (DB → apps → Prometheus → Grafana) 
 
-&nbsp;  
-&nbsp;  
-### Docker Compose: Start in the correct order (DB → apps → Prometheus → Grafana) 
-&nbsp;  
-&nbsp;  
-
-#####  Create `docker-compose.yml` in the solution root:
+Create `docker-compose.yml` in the solution root:
 
 ```csharp
 services:
@@ -481,23 +393,18 @@ services:
     depends_on:
       - prometheus
 ```
-&nbsp; 
 
-##### **Explanation**
-##### • Postgres must exist before readiness checks can pass.
-##### • Both .NET apps start after Postgres.
-##### • Prometheus starts after apps because it needs targets to scrape.
-##### • Grafana starts after Prometheus because it needs a data source.
+Explanation
+• Postgres must exist before readiness checks can pass.
+• Both .NET apps start after Postgres.
+• Prometheus starts after apps because it needs targets to scrape.
+• Grafana starts after Prometheus because it needs a data source.
 
 ![Docker Compose Up](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/docker.png)
 
-&nbsp;  
-&nbsp;  
-### How to Add Scraping Configuration with Prometheus - /metrics
-&nbsp;  
-&nbsp;
+## How to Add Scraping Configuration with Prometheus - /metrics
 
-##### Create `ops/prometheus/prometheus.yml` in your root folder of the solution:
+Create `ops/prometheus/prometheus.yml` in your root folder of the solution:
 
 ```csharp
 
@@ -517,20 +424,15 @@ scrape_configs:
       - targets:
           - "billing-worker:8080"
 ```
-&nbsp;
 
-##### **Explanation**
-##### • Prometheus scrapes every 5 seconds.
-##### • Each .NET service becomes its own job.
-##### • targets are Docker service names  - Docker Compose provides DNS for them.
+Explanation
+• Prometheus scrapes every 5 seconds.
+• Each .NET service becomes its own job.
+• targets are Docker service names  - Docker Compose provides DNS for them.
 
-&nbsp;  
-&nbsp;  
-### How to Add a Grafana Container: Provision the Prometheus datasource automatically
-&nbsp;  
-&nbsp;  
+## How to Add a Grafana Container: Provision the Prometheus datasource automatically
 
-##### `ops/grafana/provisioning/datasources/datasource.yml`
+`ops/grafana/provisioning/datasources/datasource.yml`
 
 ```csharp
 
@@ -544,195 +446,157 @@ datasources:
     isDefault: true
 ```
 
-##### **Explanation**
-##### • Grafana will start with Prometheus already connected.
-##### • This is how teams avoid the “works on my machine” dashboard setup.
+Explanation
+• Grafana will start with Prometheus already connected.
+• This is how teams avoid the “works on my machine” dashboard setup.
 
-&nbsp;  
-&nbsp;  
-### Run everything and verify each layer
-&nbsp;  
-&nbsp; 
+## Run everything and verify each layer
 
-##### Start the stack:
+Start the stack:
 
 ```csharp
 
 docker compose up --build
 ```
-&nbsp; 
 
-##### Now verify in this order:
-&nbsp; 
+Now verify in this order:
  
-#### 1) Check health endpoints
-##### • Orders API liveness: `http://localhost:8082/health/live`
-##### • Orders API readiness: `http://localhost:8082/health/ready`
-##### • Worker readiness: `http://localhost:8081/health/ready`
+### 1) Check health endpoints
+• Orders API liveness: `http://localhost:8082/health/live`
+• Orders API readiness: `http://localhost:8082/health/ready`
+• Worker readiness: `http://localhost:8081/health/ready`
 
 ![HealthCheck endpoints](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/health-check-endpoints.png)
-&nbsp;  
 
-#### 2) Check /metrics
-##### • Orders API metrics: `http://localhost:8082/metrics`
-##### • Worker metrics: `http://localhost:8081/metrics`
+### 2) Check /metrics
+• Orders API metrics: `http://localhost:8082/metrics`
+• Worker metrics: `http://localhost:8081/metrics`
 ![Metrics](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/metrics.png)
-&nbsp;
 
-##### Look for:
-##### • `http_requests_received_total`
-##### • `billing_jobs_processed_total`
-&nbsp;
+Look for:
+• `http_requests_received_total`
+• `billing_jobs_processed_total`
   
-#### 3) Check Prometheus targets
-##### • Prometheus UI: `http://localhost:9090`
-##### • Go to **Status → Targets**
-##### • Both targets should be **UP**
+### 3) Check Prometheus targets
+• Prometheus UI: `http://localhost:9090`
+• Go to **Status → Targets**
+• Both targets should be **UP**
 ![Prometheus](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/prometheus.png)
-&nbsp;
 
-####  4) Check the Grafana dashboard
-##### • Grafana: `http://localhost:3000` (default login `admin`/`admin`)
-&nbsp;
+###  4) Check the Grafana dashboard
+• Grafana: `http://localhost:3000` (default login `admin`/`admin`)
 
-##### At this point, Prometheus is already running and successfully scraping metrics from both .NET services.
-&nbsp;
+At this point, Prometheus is already running and successfully scraping metrics from both .NET services.
 
-##### Grafana is also running, but it doesn’t show anything yet, because dashboards do not exist by default.
-&nbsp;
+Grafana is also running, but it doesn’t show anything yet, because dashboards do not exist by default.
  
-##### So, let's create the first dashboard.
-&nbsp;
+So, let's create the first dashboard.
 
-##### Before creating a dashboard, Grafana needs to know **where the metrics are coming from**.
-&nbsp;
+Before creating a dashboard, Grafana needs to know **where the metrics are coming from**.
 
-##### 1. In the left-hand menu, click **Connections → Data sources**
-##### 2. You should already see **Prometheus** in the list
-##### • If you used provisioning, it will be there automatically
-##### 3. Click on **Prometheus**
-##### 4. Verify the URL: `http://prometheus:9090 `
-##### 5. Click **Save & Test**
-&nbsp;
+1. In the left-hand menu, click **Connections → Data sources**
+2. You should already see **Prometheus** in the list
+• If you used provisioning, it will be there automatically
+3. Click on **Prometheus**
+4. Verify the URL: `http://prometheus:9090 `
+5. Click **Save & Test**
 
-##### You should see a green confirmation message saying that the data source is working.
-&nbsp;
+You should see a green confirmation message saying that the data source is working.
 
-##### Now we can create a dashboard.
-&nbsp;
+Now we can create a dashboard.
 
-##### 1. In the left-hand menu, click **Dashboards**
-##### 2. Click New
-##### 3. Click New dashboard
-##### 4. Click **Add visualization**
-&nbsp;
+1. In the left-hand menu, click **Dashboards**
+2. Click New
+3. Click New dashboard
+4. Click **Add visualization**
 
-##### Grafana will now ask you to choose a **data source**.
-##### 5. Select **Prometheus**
-&nbsp;
+Grafana will now ask you to choose a **data source**.
+5. Select **Prometheus**
 
-##### At this point, you are inside the panel editor.
+At this point, you are inside the panel editor.
 ![Grafana Dashboard](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/grafana-dashboard.png)
-&nbsp;
 
-#### 5) Create Your First Panel (HTTP Requests per Second)
-&nbsp;
+### 5) Create Your First Panel (HTTP Requests per Second)
  
-##### Let’s start with a very common and useful metric: HTTP requests per second for the Orders API.
-&nbsp;
+Let’s start with a very common and useful metric: HTTP requests per second for the Orders API.
  
-##### **Write the PromQL query**
-&nbsp;
+Write the PromQL query
  
-##### In the **Query section**, enter:
+In the **Query section**, enter:
 
 ```csharp
 
 rate(http_requests_received_total{job="orders-api"}[1m])
 ```
-##### You should get something like this:
+You should get something like this:
 ![Http Requests Grafana](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/http-request-grafana.png)
-&nbsp;
 
-##### Give it a name and save Dashboard. 
-&nbsp;
+Give it a name and save Dashboard. 
 
-##### Okay, what about the custom metric we have added: `billing_jobs_processed_total`
-&nbsp;
+Okay, what about the custom metric we have added: `billing_jobs_processed_total`
 
-##### Let's use the same approach and in the Query section write:
+Let's use the same approach and in the Query section write:
 
 ```csharp
 rate(billing_jobs_processed_total[1m]) * 60
 ```
-##### What this shows
-##### • approximate **jobs per minute**
-##### • easier for non-technical stakeholders to understand
+What this shows
+• approximate **jobs per minute**
+• easier for non-technical stakeholders to understand
 ![First Grafana Dashboard](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/first-grafana-dashboard.png)
 
-&nbsp;  
-&nbsp;  
-### Wrapping Up: Monitoring Is a Skill, Not a Tool
-&nbsp;  
-&nbsp;  
 
-##### Monitoring is not something you “add later”.
-&nbsp;  
+For more observability tools, check out [OpenTelemetry in .NET](https://thecodeman.net/posts/getting-started-with-opentelemetry), [Structured Logging with Serilog](https://thecodeman.net/posts/structured-logging-with-serilog), and [Health Checks](https://thecodeman.net/posts/health-checks-in-dotnet8).
+
+## Wrapping Up: Monitoring Is a Skill, Not a Tool
+
+Monitoring is not something you “add later”.
  
-##### It’s a **skill**.
-##### And like every skill, it’s built through:
-##### • understanding the concepts
-##### • wiring the system end to end
-##### • knowing what actually matters in production
-&nbsp;  
+It’s a **skill**.
+And like every skill, it’s built through:
+• understanding the concepts
+• wiring the system end to end
+• knowing what actually matters in production
 
-##### In this article, you saw:
-##### • How liveness and readiness health checks should really be used
-##### • How to expose meaningful /metrics from .NET
-##### • How Prometheus scrapes those metrics
-##### • How Grafana turns them into answers
-##### • How to monitor **background work**, not just HTTP requests
-&nbsp;  
+In this article, you saw:
+• How liveness and readiness health checks should really be used
+• How to expose meaningful /metrics from .NET
+• How Prometheus scrapes those metrics
+• How Grafana turns them into answers
+• How to monitor **background work**, not just HTTP requests
 
-##### This is the baseline I expect in real .NET systems, not an advanced setup, not over-engineered, just correct.
-&nbsp;  
+This is the baseline I expect in real .NET systems, not an advanced setup, not over-engineered, just correct.
   
-##### **📦 Want the Full Source Code?**
-&nbsp;  
+📦 Want the Full Source Code?
  
-##### All source code from this article (projects, Docker setup, Prometheus config, Grafana dashboards) is available for free inside [my private .NET community](https://www.skool.com/thecodeman-community-2911).
-&nbsp;  
+All source code from this article (projects, Docker setup, Prometheus config, Grafana dashboards) is available for free inside [my private .NET community](https://www.skool.com/thecodeman-community-2911).
  
-#### [🎓 This Topic Goes Even Deeper in My Upcoming Course](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_medium=website?utm_campaign=how_to_monitor)
-&nbsp;  
+### [🎓 This Topic Goes Even Deeper in My Upcoming Course](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_medium=website?utm_campaign=how_to_monitor)
  
-##### I’m currently building a course focused on **production-grade .NET practices**, not theory, not “hello world”.
-&nbsp;  
+I’m currently building a course focused on **production-grade .NET practices**, not theory, not “hello world”.
  
-##### Monitoring is a **core chapter** in that course.
-&nbsp;  
+Monitoring is a **core chapter** in that course.
  
-##### We’ll go deeper into:
-##### • alerting strategies (what should wake you up at night)
-##### • PromQL basics for .NET developers
-##### • choosing the right metrics (and avoiding metric noise)
-##### • OpenTelemetry integration
-##### • structuring monitoring across multiple services
-##### • and common production mistakes teams repeat for years
-&nbsp;  
+We’ll go deeper into:
+• alerting strategies (what should wake you up at night)
+• PromQL basics for .NET developers
+• choosing the right metrics (and avoiding metric noise)
+• [OpenTelemetry](https://thecodeman.net/posts/getting-started-with-opentelemetry) integration
+• structuring monitoring across multiple services
+• and common production mistakes teams repeat for years
 
-##### The course is currently available for **$59.89**.
-&nbsp;  
+The course is currently available for **$59.89**.
  
-##### Here is the **HINT**:👇
-##### **Community members get an even bigger discount.** (shhh, I didn't say that)
-&nbsp;  
+Here is the **HINT**:👇
+**Community members get an even bigger discount.** (shhh, I didn't say that)
  
-##### So if you’re thinking: *“I want the source code anyway…”*
-&nbsp;  
+So if you’re thinking: *“I want the source code anyway…”*
  
-##### Joining the group first is simply the smarter move. 
-&nbsp;  
+Joining the group first is simply the smarter move. 
 
-##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
 <!--END-->
+
+
+
+

@@ -1,126 +1,96 @@
 ---
 title: "Memory Caching in .NET"
 subtitle: ".NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources."
-category: ".NET"
 date: "August 10 2024"
+category: ".NET"
+readTime: "Read Time: 7 minutes"
+meta_description: ".NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especiall..."
 ---
-
-&nbsp;  
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### • Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of API management and enhance your productivity [here](https://www.postman.com/product/flows/).
-&nbsp;  
-&nbsp;  
 
 <!--START-->
 
-### What is .NET Caching?
-&nbsp;  
-&nbsp;  
-##### .NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources.
-&nbsp;  
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-##### **Types of Caching**
-&nbsp;  
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of API management and enhance your productivity <a href="https://www.postman.com/product/flows/" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
-##### **- In-Memory Caching**: Data is stored in the memory of the web server. It's fast but limited to the server's memory capacity.
-&nbsp;  
+<p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+</p>
+</div>
 
-##### **- Distributed Caching**: Data is stored across multiple servers. This is useful in web farm scenarios where there are multiple servers.
-&nbsp;  
 
-##### **Caching Key components**
-&nbsp;  
+## What is .NET Caching?
+.NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources.
 
-##### **- Cache Key**: A unique identifier for each cache entry.
-##### **- Cache Value**: The data stored in the cache. This can be of any object type.
-##### **- Expiration Policy**: Determines how long an item stays in the cache. Can be absolute (fixed duration) or sliding (reset on access).
-##### **- Priority**: Determines the order in which items are removed from the cache under memory pressure.
+Types of Caching
 
-&nbsp;  
-&nbsp;  
+**- In-Memory Caching**: Data is stored in the memory of the web server. It's fast but limited to the server's memory capacity.
 
-### [4 Important types of caching - Watch YouTube video here](https://youtu.be/PpKEcbTrR4w?si=lkSRdS604rzhAJwa)
+**- Distributed Caching**: Data is stored across multiple servers. This is useful in web farm scenarios where there are multiple servers.
+
+Caching Key components
+
+**- Cache Key**: A unique identifier for each cache entry.
+**- Cache Value**: The data stored in the cache. This can be of any object type.
+**- Expiration Policy**: Determines how long an item stays in the cache. Can be absolute (fixed duration) or sliding (reset on access).
+**- Priority**: Determines the order in which items are removed from the cache under memory pressure.
+
+## [4 Important types of caching - Watch YouTube video here](https://youtu.be/PpKEcbTrR4w?si=lkSRdS604rzhAJwa)
 ![Watch YouTube video](/images/blog/posts/memory-caching-in-dotnet/youtube.png)
 
-&nbsp;  
-&nbsp;  
-### Memory Cache Implementation in .NET
-&nbsp;  
-&nbsp;  
+## Memory Cache Implementation in .NET
 
-##### .NET provides various ways to implement caching, but the most common are:
-&nbsp;  
+.NET provides various ways to implement caching, but the most common are:
 
-##### **• MemoryCache Class (System.Runtime.Caching)**: Used for in-memory caching. It's part of the .NET Framework and .NET Core.
-&nbsp;  
+**• MemoryCache Class (System.Runtime.Caching)**: Used for in-memory caching. It's part of the .NET Framework and .NET Core.
 
-##### **• IMemoryCache (Microsoft.Extensions.Caching.Memory)**: Introduced in .NET Core, it offers more features and better performance compared to MemoryCache.
-&nbsp;  
+**• IMemoryCache (Microsoft.Extensions.Caching.Memory)**: Introduced in .NET Core, it offers more features and better performance compared to MemoryCache.
 
-##### In this issue I'll talk about IMemoryCache.
+In this issue I'll talk about IMemoryCache.
 
-&nbsp;  
-&nbsp;  
-### IMemoryCache in .NET
-&nbsp;  
-&nbsp;  
+## IMemoryCache in .NET
 
-##### What are the key features of this library?
-&nbsp;  
+What are the key features of this library?
 
-##### **1. Strongly Typed**: Unlike the earlier MemoryCache, IMemoryCache is strongly typed, reducing errors and improving code readability.
-&nbsp;  
+**1. Strongly Typed**: Unlike the earlier MemoryCache, IMemoryCache is strongly typed, reducing errors and improving code readability.
 
-##### **2. Dependency Injection Friendly**: IMemoryCache is designed to be used with dependency injection, making it easy to manage and test.
-&nbsp;  
+**2. Dependency Injection Friendly**: IMemoryCache is designed to be used with dependency injection, making it easy to manage and test.
 
-##### **3. Expiration Policies**:   
-&nbsp;  
+**3. Expiration Policies**:   
 
-##### **- Absolute Expiration**: The cache entry will expire after a set duration.  
-##### **- Sliding Expiration**: The cache entry will expire if it's not accessed within a set duration.  
-##### **- Expiration Tokens**: These allow cache entries to be evicted based on external triggers, like file changes.
-&nbsp;  
+**- Absolute Expiration**: The cache entry will expire after a set duration.  
+**- Sliding Expiration**: The cache entry will expire if it's not accessed within a set duration.  
+**- Expiration Tokens**: These allow cache entries to be evicted based on external triggers, like file changes.
 
-##### **4. Size Limitations**: You can set a size limit for the cache and define the size for each entry, helping to manage memory usage effectively.
-&nbsp;  
+**4. Size Limitations**: You can set a size limit for the cache and define the size for each entry, helping to manage memory usage effectively.
 
-##### **5. Eviction Callbacks**: Callbacks can be registered to execute custom logic when a cache entry is evicted.
-&nbsp;  
+**5. Eviction Callbacks**: Callbacks can be registered to execute custom logic when a cache entry is evicted.
 
-##### **6. Thread Safety**: IMemoryCache is thread-safe, allowing concurrent access by multiple threads.
-&nbsp;  
+**6. Thread Safety**: IMemoryCache is thread-safe, allowing concurrent access by multiple threads.
 
-##### Nice. Now when we know the basics about IMemoryCache, let me show how to implement it.
+Nice. Now when we know the basics about IMemoryCache, let me show how to implement it.
 
-&nbsp;  
-&nbsp;  
-### IMemoryCache in .NET
-&nbsp;  
-&nbsp;  
+## IMemoryCache in .NET
 
-##### The first thing we need to do is to add nuget package, of course:
+The first thing we need to do is to add nuget package, of course:
 
 ```csharp
 
 dotnet add package Microsoft.Extensions.Caching.Memory
 
 ```
-&nbsp;  
 
-##### To successfully use the library, we need to add it through Dependency Injection in Program.cs class:
+To successfully use the library, we need to add it through Dependency Injection in Program.cs class:
 
 ```csharp
 
 builder.Services.AddMemoryCache();
 
 ```
-&nbsp;  
 
-##### And you can use it with practically no configuration. 
-&nbsp;  
-##### I will inject it directly into the controller that .NET created for me by default.
+And you can use it with practically no configuration. 
+I will inject it directly into the controller that .NET created for me by default.
 
 ```csharp
 
@@ -132,9 +102,8 @@ public WeatherForecastController(IMemoryCache cacheService)
 }
 
 ```
-&nbsp;  
 
-##### And now in the GET method where we capture the weather forecast from various weather stations, we will include cached ones. We understand that the weather will not change every minute, so we can cache the weather forecast values for a while.
+And now in the GET method where we capture the weather forecast from various weather stations, we will include cached ones. We understand that the weather will not change every minute, so we can cache the weather forecast values for a while.
 
 ```csharp
 
@@ -159,63 +128,44 @@ public List<WeatherForecast> Get()
 }
 
 ```
-&nbsp;  
 
-##### Explanation:
-&nbsp;  
+Explanation:
 
-##### **• Cache Check _casheService.TryGetValue...**:
-&nbsp;  
+**• Cache Check _casheService.TryGetValue...**:
 
-##### - It attempts to retrieve a cached value associated with the key "MyCacheKey" (Don't hardcode this).
-##### - If the value is found in the cache, it is output into weathersFromCache.
-##### - The method TryGetValue returns true if the key was found in the cache, and false otherwise.
-&nbsp;  
+- It attempts to retrieve a cached value associated with the key "MyCacheKey" (Don't hardcode this).
+- If the value is found in the cache, it is output into weathersFromCache.
+- The method TryGetValue returns true if the key was found in the cache, and false otherwise.
 
-##### **• Cache Miss Handling**:
-&nbsp;  
+**• Cache Miss Handling**:
 
-##### - If the cache does not contain the key (i.e., TryGetValue returned false), the code block inside the if statement is executed.
-##### - A new list of WeatherForecast objects is created by generating 300 forecasts.
-##### - This newly created list is then stored in the cache with the key "MyCacheKey".
-&nbsp;  
+- If the cache does not contain the key (i.e., TryGetValue returned false), the code block inside the if statement is executed.
+- A new list of WeatherForecast objects is created by generating 300 forecasts.
+- This newly created list is then stored in the cache with the key "MyCacheKey".
 
-##### **• Returning the Result**:
-&nbsp;  
+**• Returning the Result**:
 
-##### If the data was retrieved from the cache, it is returned directly.If the data was not in the cache (cache miss), the newly generated list is returned.
+If the data was retrieved from the cache, it is returned directly.If the data was not in the cache (cache miss), the newly generated list is returned.
 
-&nbsp;  
-&nbsp;  
-### IMemoryCache Expiration Time
-&nbsp;  
-&nbsp; 
+## IMemoryCache Expiration Time
 
-##### In the provided code snippet, there is no explicit cache expiration time set. This means the cache entry for "MyCacheKey" **will remain in the cache indefinitely**, or until it is explicitly removed or replaced, or if the cache evicts it due to memory pressure.
-&nbsp;  
+In the provided code snippet, there is no explicit cache expiration time set. This means the cache entry for "MyCacheKey" **will remain in the cache indefinitely**, or until it is explicitly removed or replaced, or if the cache evicts it due to memory pressure.
 
-##### To set an explicit cache expiration time, you would need to modify the code where the cache entry is set.
-&nbsp;  
+To set an explicit cache expiration time, you would need to modify the code where the cache entry is set.
 
-##### This involves using **MemoryCacheEntryOptions** to specify the desired expiration policy.
-&nbsp;  
+This involves using **MemoryCacheEntryOptions** to specify the desired expiration policy.
 
-##### There are two common ways to set expiration:
-&nbsp;  
+There are two common ways to set expiration:
 
-##### **• Absolute Expiration**: The cache entry will expire after a specified duration regardless of whether it is accessed or not.
-&nbsp;  
+**• Absolute Expiration**: The cache entry will expire after a specified duration regardless of whether it is accessed or not.
 
-##### **• Sliding Expiration**: The cache entry will expire after a specified duration if it is not accessed within that timeframe. Each access to the cache entry resets the expiration timer.
-&nbsp;  
+**• Sliding Expiration**: The cache entry will expire after a specified duration if it is not accessed within that timeframe. Each access to the cache entry resets the expiration timer.
 
-##### Let's see both in action.
-&nbsp;  
+Let's see both in action.
 
-##### **Setting Absolute Expiration**
-&nbsp;  
+Setting Absolute Expiration
 
-##### Here's how you can modify the code to set an absolute expiration of, for example, 30 minutes:
+Here's how you can modify the code to set an absolute expiration of, for example, 30 minutes:
 
 ```csharp
 
@@ -227,19 +177,15 @@ var cacheEntryOptions = new MemoryCacheEntryOptions
 _cacheService.Set<List<WeatherForecast>>("MyCacheKey", weathers, cacheEntryOptions);
 
 ```
-&nbsp;  
 
-##### When to use?
-&nbsp;  
+When to use?
 
-##### 1. When data has a known and fixed expiry time.
-##### 2. When it's important to refresh data at predictable intervals, regardless of how often it is accessed.
-&nbsp;  
+1. When data has a known and fixed expiry time.
+2. When it's important to refresh data at predictable intervals, regardless of how often it is accessed.
 
-##### **Setting Sliding Expiration**
-&nbsp;  
+Setting Sliding Expiration
 
-##### And here's how you can set a sliding expiration of 30 minutes:
+And here's how you can set a sliding expiration of 30 minutes:
 
 ```csharp
 
@@ -251,18 +197,14 @@ var cacheEntryOptions = new MemoryCacheEntryOptions
 _cacheService.Set<List<WeatherForecast>>("MyCacheKey", weathers, cacheEntryOptions);
 
 ```
-&nbsp;  
-##### When to use?
-&nbsp;  
+When to use?
 
-##### 1. When the importance of the data is based on how recently it has been accessed.
-##### 2. To automatically manage memory by removing less frequently accessed items.
-&nbsp;  
+1. When the importance of the data is based on how recently it has been accessed.
+2. To automatically manage memory by removing less frequently accessed items.
 
-##### **Combining Both**
-&nbsp;  
+Combining Both
 
-##### You can also combine both absolute and sliding expirations for more complex caching scenarios:
+You can also combine both absolute and sliding expirations for more complex caching scenarios:
 
 ```csharp
 
@@ -276,54 +218,37 @@ _cacheService.Set<List<WeatherForecast>>("MyCacheKey", weathers, cacheEntryOptio
 
 ```
 
-##### In this combined scenario, the cache entry will expire if it's not accessed for 30 minutes, but it will also expire unconditionally after 1 hour from when it was added to the cache.
+In this combined scenario, the cache entry will expire if it's not accessed for 30 minutes, but it will also expire unconditionally after 1 hour from when it was added to the cache.
 
-&nbsp;  
-&nbsp;  
-### IMemoryCache MemoryCacheEntryOptions
-&nbsp;  
-&nbsp;   
+## IMemoryCache MemoryCacheEntryOptions
 
-##### MemoryCacheEntryOptions is a versatile class in .NET Core's caching infrastructure that allows you to configure various aspects of how individual items are cached in memory.
-&nbsp;   
+MemoryCacheEntryOptions is a versatile class in .NET Core's caching infrastructure that allows you to configure various aspects of how individual items are cached in memory.
 
-##### This configuration plays a crucial role in optimizing the performance and resource management of your application.
-&nbsp;   
+This configuration plays a crucial role in optimizing the performance and resource management of your application.
 
-##### Here's a more detailed look at what you can set using MemoryCacheEntryOptions besides Expiration Settings:
-&nbsp;   
+Here's a more detailed look at what you can set using MemoryCacheEntryOptions besides Expiration Settings:
 
-##### **1. Priority**
-&nbsp;   
+1. Priority
 
-##### CacheItemPriority: Determines the priority of a cache entry. During memory pressure, entries with lower priority may be removed first to free up space. Values range from Low to NeverRemove.
-&nbsp;   
+CacheItemPriority: Determines the priority of a cache entry. During memory pressure, entries with lower priority may be removed first to free up space. Values range from Low to NeverRemove.
 
-##### **2. Size**
-&nbsp;   
+2. Size
 
-##### Specifies the size of the cache entry, which is considered when the cache size limit is set on the IMemoryCache instance. This helps in controlling the memory footprint of the cache.
-&nbsp;   
+Specifies the size of the cache entry, which is considered when the cache size limit is set on the IMemoryCache instance. This helps in controlling the memory footprint of the cache.
 
-##### **3. Callbacks and Tokens**
-&nbsp;   
+3. Callbacks and Tokens
 
-##### **• PostEvictionCallbacks**: A list of callbacks that will be executed after the cache entry is removed. This is useful for performing actions like logging or cleanup operations.
-&nbsp;   
+**• PostEvictionCallbacks**: A list of callbacks that will be executed after the cache entry is removed. This is useful for performing actions like logging or cleanup operations.
 
-##### **• RegisterPostEvictionCallback**: A method to add a post-eviction callback directly to the cache entry options.
-&nbsp;   
+**• RegisterPostEvictionCallback**: A method to add a post-eviction callback directly to the cache entry options.
 
-##### **• ExpirationTokens**: These allow the cache entry to be dependent on external triggers. For example, you can link a cache entry to a file using a FileChangeToken, and the cache entry will be evicted if the file changes.
-&nbsp;   
+**• ExpirationTokens**: These allow the cache entry to be dependent on external triggers. For example, you can link a cache entry to a file using a FileChangeToken, and the cache entry will be evicted if the file changes.
 
-##### **4. Change Tokens**
-&nbsp;   
+4. Change Tokens
 
-##### **AddExpirationToken(IChangeToken token)**: This method allows you to add a custom implementation of IChangeToken to trigger cache evictions. It's a powerful feature for creating complex cache invalidation logic based on external changes.
-&nbsp;   
+**AddExpirationToken(IChangeToken token)**: This method allows you to add a custom implementation of IChangeToken to trigger cache evictions. It's a powerful feature for creating complex cache invalidation logic based on external changes.
 
-##### **Example usage**:
+**Example usage**:
 
 ```csharp
 
@@ -346,27 +271,23 @@ _memoryCache.Set("MyCacheKey", myObject, cacheEntryOptions);
 
 ```
 
-&nbsp;  
-&nbsp;  
-### What next?
-&nbsp;  
-&nbsp;  
+## What next?
 
-##### This was a junior and practical "tutorial" on how to use MemoryCache in a .NET application, which options exist, and what they are for.
-&nbsp;  
+This was a junior and practical "tutorial" on how to use MemoryCache in a .NET application, which options exist, and what they are for.
 
-##### It is certainly an excellent start for those who have not had experience with cashing.
-&nbsp;  
+It is certainly an excellent start for those who have not had experience with cashing.
 
-##### IMemoryCache often does not find a real and practical role in real projects, especially if distributed caching is necessary.In those cases, I would recommend **caching with Redis**, which I will also talk about.
-&nbsp;  
+IMemoryCache often does not find a real and practical role in real projects, especially if distributed caching is necessary.In those cases, I would recommend **caching with Redis**, which I will also talk about.
 
-##### Write to me about what you would like me to write about when it comes to cashing.
-&nbsp;  
+Write to me about what you would like me to write about when it comes to cashing.
 
-##### You can see the full code for today's issue at the following [GitHub repository](https://github.com/StefanTheCode/IMemoryCacheDemo).
-&nbsp;  
+You can see the full code for today's issue at the following [GitHub repository](https://github.com/StefanTheCode/IMemoryCacheDemo).
 
-##### That's all from me today.
+That's all from me today.
+
+
+For a more advanced caching strategy, check out [HybridCache in ASP.NET Core](https://thecodeman.net/posts/hybrid-cache-in-aspnet-core) and [Dual-Key Redis Caching](https://thecodeman.net/posts/dual-key-redis-caching-in-dotnet).
+
+## Wrapping Up
 
 <!--END-->

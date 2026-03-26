@@ -1,105 +1,75 @@
 ---
 title: "How to implement a Rate Limiter in C#"
-category: ".NET"
 subtitle: "A rate limiter is a software mechanism that controls the amount of traffic or requests that can be sent to a server or API within a given time period..."
 date: "March 27 2023"
+category: ".NET"
+readTime: "Read Time: 3 minutes"
 meta_description: "A rate limiter is a software mechanism that controls the amount of traffic or requests that can be sent to a server or API within a given time period. It is used to prevent a single user or application from overwhelming the server or consuming excessive resources."
 ---
 
-### Background
+<!--START-->
 
-##### A rate limiter is a software mechanism that controls the amount of traffic or requests that can be sent to a server or API within a given time period. It is used to prevent a single user or application from overwhelming the server or consuming excessive resources.
+## Background
 
-&nbsp;
-##### The rate limiter sets a limit on the number of requests that can be made within a certain time frame, and it can also define how long a user or application must wait before sending another request. This helps to ensure that the server remains available to all users and that its performance is not negatively impacted by excessive traffic.
-&nbsp;
-##### The new .NET 7 Framework brought us a built-in implementation of rate limiters.
-&nbsp;
-&nbsp;
+A rate limiter is a software mechanism that controls the amount of traffic or requests that can be sent to a server or API within a given time period. It is used to prevent a single user or application from overwhelming the server or consuming excessive resources.
 
-### NuGet package
-&nbsp;
-&nbsp;
+The rate limiter sets a limit on the number of requests that can be made within a certain time frame, and it can also define how long a user or application must wait before sending another request. This helps to ensure that the server remains available to all users and that its performance is not negatively impacted by excessive traffic.
+The new .NET 7 Framework brought us a built-in implementation of rate limiters.
 
-##### You don't need it. :)
-&nbsp;
+## NuGet package
 
-##### Rate Limiting is coming from ** Microsoft.AspNetCore.RateLimiting ** middleware which is included in .NET 7 by default.
+You don't need it. :)
 
-&nbsp;
-&nbsp;
+Rate Limiting is coming from ** Microsoft.AspNetCore.RateLimiting ** middleware which is included in .NET 7 by default.
 
-### 2#: Rate Limiter Algorithms
-&nbsp;
-&nbsp;
+## 2#: Rate Limiter Algorithms
 
-##### The RateLimiterOptionsExtensions class provides the following extension methods for rate limiting:
-&nbsp;
-##### • Fixed Window
-##### • Sliding Window
-##### • Token Bucket
-##### • Concurency
-&nbsp;
-##### We will talk about Fixed Window in this issue. 
-&nbsp;
-&nbsp;
+The RateLimiterOptionsExtensions class provides the following extension methods for rate limiting:
+• Fixed Window
+• Sliding Window
+• Token Bucket
+• Concurency
+We will talk about Fixed Window in this issue. 
 
-### Add RateLimiter Service
-&nbsp;
-&nbsp;
+## Add RateLimiter Service
 
-##### We need to add a RateLimiter Service to the service collection. This should be done in Program.cs C# file. 
-&nbsp;
-##### Here is an example:
+We need to add a RateLimiter Service to the service collection. This should be done in Program.cs C# file. 
+Here is an example:
 
 ![Adding Rate Limiter to Service Collection](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/adding-rate-limiter-to-service-collection.png)
-&nbsp;
-##### ** • AddFixedWindowLimiter ** - the method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
-##### **• PermitLimit ** - A maximum of 10 requests
-##### **• Window ** - per 5 seconds window.
-##### ** • QueueProcessingOrder ** - behaviour when not enough resources can be leased (Process oldest requests first).
-##### ** • QueueLimit ** - Maximum cumulative permit count of queued acquisition requests.
+** • AddFixedWindowLimiter ** - the method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
+**• PermitLimit ** - A maximum of 10 requests
+**• Window ** - per 5 seconds window.
+** • QueueProcessingOrder ** - behaviour when not enough resources can be leased (Process oldest requests first).
+** • QueueLimit ** - Maximum cumulative permit count of queued acquisition requests.
 
-&nbsp;
-&nbsp;
-### Enable using RateLimiter middleware
-&nbsp;
-&nbsp;
+## Enable using RateLimiter middleware
 
-##### After adding a service to the collection of services, it is necessary to enable its use:
+After adding a service to the collection of services, it is necessary to enable its use:
 ![Enabling Rate Limiter Middleware](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/enabling-rate-limiter-middleware.png)
 
-&nbsp;
-&nbsp;
+## Use it
 
-### Use it
-&nbsp;
-&nbsp;
-
-##### Finally, you can use a rate limiting. 
-&nbsp;
-##### For Minimal API, just call a method **RequireRateLimiting** on defined API route. Argument "fixed" is a policyName of created RateLimiting service (in our case it is Fixed Window).
-&nbsp;
-##### For the Controllers, you need also to tell the middleware to require rate limiting:
+Finally, you can use a rate limiting. 
+For Minimal API, just call a method **RequireRateLimiting** on defined API route. Argument "fixed" is a policyName of created RateLimiting service (in our case it is Fixed Window).
+For the Controllers, you need also to tell the middleware to require rate limiting:
 ![Require Rate Limiter](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/require-rate-limiter.png)
 
-##### Or for each contoller and/or actions you can to specify an attribute:
+Or for each contoller and/or actions you can to specify an attribute:
 ![Rate Limiting Controller Atrribute](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/rate-limiting-controller-attribute.png)
-&nbsp;
-##### Note: Do not use "magic strings", instead put "fixed" and other values in the configuration file.
+Note: Do not use "magic strings", instead put "fixed" and other values in the configuration file.
+
+## How to test?
+
+Load testing with  [JMeter from Apache](https://jmeter.apache.org/).
+That's all from me for today.
+Make a coffee and try it on your projects.
+
+## dream BIG!
 
 
-&nbsp;
-&nbsp;
-### How to test?
-&nbsp;
-&nbsp;
+For API security, also consider [API Key Authentication](https://thecodeman.net/posts/how-to-implement-api-key-authentication) and [using CORS properly](https://thecodeman.net/posts/using-cors-in-your-application).
 
-##### Load testing with  [JMeter from Apache](https://jmeter.apache.org/).
-&nbsp;
-##### That's all from me for today.
-&nbsp;
-##### Make a coffee and try it on your projects.
-&nbsp;
+## Wrapping Up
 
-## ** dream BIG! **
+<!--END-->

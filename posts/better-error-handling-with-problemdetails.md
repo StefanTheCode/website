@@ -1,37 +1,27 @@
 ---
 title: "Better Error Handling in .NET using ProblemDetails"
 subtitle: "Let’s be honest - error handling is usually the last thing we think about when building APIs. But it should be one of the first."
-readTime: "Read Time: 3 minutes"
 date: "June 23 2025"
 category: ".NET"
+readTime: "Read Time: 3 minutes"
 meta_description: "ProblemDetails is a standard way of returning error responses in APIs, defined in RFC 7807."
 ---
 
 <!--START-->
-##### JetBrains is bringing the power of ReSharper to Visual Studio Code! Here’s your chance to influence its future – [join the public preview](https://jb.gg/rs-vsc-thecodeman-newsletter) to get early access, test powerful new tools, and share your feedback directly with the development team. 
-&nbsp;
-##### [Join now](https://jb.gg/rs-vsc-thecodeman-newsletter)
-&nbsp;
+JetBrains is bringing the power of ReSharper to Visual Studio Code! Here’s your chance to influence its future – [join the public preview](https://jb.gg/rs-vsc-thecodeman-newsletter) to get early access, test powerful new tools, and share your feedback directly with the development team. 
+[Join now](https://jb.gg/rs-vsc-thecodeman-newsletter)
 
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
-##### Let’s be honest - error handling is usually the last thing we think about when building APIs. But it should be one of the first.
-&nbsp;  
+## Background
+Let’s be honest - error handling is usually the last thing we think about when building APIs. But it should be one of the first.
 
-##### Imagine this:
-##### Your frontend calls an API, and gets this in return:
-&nbsp;  
+Imagine this:
+Your frontend calls an API, and gets this in return:
 
-##### "Object reference not set to an instance of an object."
-&nbsp;  
+"Object reference not set to an instance of an object."
 
-##### Not helpful.
-&nbsp;  
+Not helpful.
 
-##### Now imagine getting this instead:
+Now imagine getting this instead:
 ```json
 
 {
@@ -41,17 +31,11 @@ meta_description: "ProblemDetails is a standard way of returning error responses
     "instance": "/products/0"
 }
 ```
-##### Now that’s helpful and clean. And that’s exactly what ProblemDetails gives us.
+Now that’s helpful and clean. And that’s exactly what ProblemDetails gives us.
 
+##  What is ProblemDetails?
 
-&nbsp;  
-&nbsp;  
-###  What is ProblemDetails?
-&nbsp;  
-&nbsp; 
-
-##### It’s a **standard way** of returning error responses in APIs, defined in [RFC 7807](https://datatracker.ietf.org/doc/html/rfc7807). Instead of random text or inconsistent JSON, you return structured errors like this:
-
+It’s a **standard way** of returning error responses in APIs, defined in [RFC 7807](https://datatracker.ietf.org/doc/html/rfc7807). Instead of random text or inconsistent JSON, you return structured errors like this:
 
 ```json
 
@@ -62,37 +46,28 @@ meta_description: "ProblemDetails is a standard way of returning error responses
     "instance": "/products/42"
 }
 ```
-##### ASP.NET has built-in support for this - and it works great with Minimal APIs too.
+ASP.NET has built-in support for this - and it works great with Minimal APIs too.
 
-&nbsp;  
-&nbsp;  
-### Let’s Build It with Minimal API
-&nbsp;  
-&nbsp;  
+## Let’s Build It with Minimal API
 
-##### We’ll create a simple Web API where you can:
-##### • Get a product by ID
-##### • Return errors using ProblemDetails
-##### • Handle exceptions globally
-&nbsp;  
+We’ll create a simple Web API where you can:
+• Get a product by ID
+• Return errors using ProblemDetails
+• Handle exceptions globally
 
-##### All using Minimal API style.
-&nbsp;  
+All using Minimal API style.
 
-#### 1: Define the Product Logic
-&nbsp;  
+### 1: Define the Product Logic
 
-##### Let’s fake a product lookup that throws an error if the ID is invalid or not found.
+Let’s fake a product lookup that throws an error if the ID is invalid or not found.
 
 ```csharp
 
 public record Product(int Id, string Name);
 ```
-&nbsp;  
 
-#### 2: Add Global Error Handling Middleware
-&nbsp;  
-##### We’ll catch all unhandled exceptions and return a structured ProblemDetails response.
+### 2: Add Global Error Handling Middleware
+We’ll catch all unhandled exceptions and return a structured ProblemDetails response.
 
 ```csharp
 
@@ -135,9 +110,8 @@ public class ExceptionHandlingMiddleware
 }
 ```
 
-#### 4: Wire Everything Up in Program.cs
-&nbsp;  
-##### This is where Minimal API really shines - everything in one file:
+### 4: Wire Everything Up in Program.cs
+This is where Minimal API really shines - everything in one file:
 
 ```csharp
 
@@ -190,18 +164,14 @@ app.MapGet("/products/{id:int}", (int id, HttpContext http) =>
 app.Run();
 ```
 
-##### Then try:
-##### • ✅ GET /products/1 - returns product
-##### • ❌ GET /products/0 - throws exception → returns 500 ProblemDetails
-##### • ❌ GET /products/999 - returns 404 ProblemDetails
+Then try:
+• ✅ GET /products/1 - returns product
+• ❌ GET /products/0 - throws exception → returns 500 ProblemDetails
+• ❌ GET /products/999 - returns 404 ProblemDetails
 
-&nbsp;  
-&nbsp;  
-### Optional: Add Custom Fields
-&nbsp;  
-&nbsp;  
+## Optional: Add Custom Fields
 
-##### You can extend ProblemDetails with your own data:
+You can extend ProblemDetails with your own data:
 
 ```csharp
 
@@ -210,39 +180,29 @@ public class CustomProblemDetails : ProblemDetails
     public string ErrorCode { get; set; } = default!;
 }
 ```
-##### Then return it with Results.Problem(...) and pass additional metadata.
+Then return it with Results.Problem(...) and pass additional metadata.
 
-&nbsp;  
-&nbsp;  
-### Benefits of This Approach
-&nbsp;  
-&nbsp;  
+## Benefits of This Approach
 
-##### • Clean error responses
-##### • Easy to understand for frontend devs
-##### • Standards-based (RFC 7807)
-##### • Built into .NET 
-&nbsp;  
+• Clean error responses
+• Easy to understand for frontend devs
+• Standards-based (RFC 7807)
+• Built into .NET 
 
-&nbsp;  
-&nbsp;  
-### Wrapping Up
-&nbsp;  
-&nbsp;  
 
-##### Never return ex.ToString() to the user - it may leak sensitive info.
-&nbsp;  
+Also check out the [Result Object Pattern](https://thecodeman.net/posts/better-error-handling-with-result-object) for a complementary error handling approach.
 
-##### ✅Log full exception
-##### ❌Show minimal, generic details in the API response
-&nbsp;  
+## Wrapping Up
 
-##### With just a few lines of code, you now have a Minimal API that returns beautif
-&nbsp;  
+Never return ex.ToString() to the user - it may leak sensitive info.
 
-##### That's all from me today. 
+✅Log full exception
+❌Show minimal, generic details in the API response
 
-&nbsp;  
+With just a few lines of code, you now have a Minimal API that returns beautif
+
+That's all from me today. 
+
  
-##### P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
 <!--END-->

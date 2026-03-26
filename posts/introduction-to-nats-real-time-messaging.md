@@ -3,199 +3,144 @@ title: "A Friendly Introduction to NATS: Real-Time Messaging for .NET Developers
 subtitle: "Learn how to build a high-performance event bus in .NET using NATS. This guide covers Pub/Sub, queues, request-reply, distributed messaging, reconnection strategies, and production-ready code examples."
 date: "December 15 2025"
 category: ".NET"
+readTime: "Read Time: 8 minutes"
 meta_description: "Learn how to build a high-performance event bus in .NET using NATS. This guide covers Pub/Sub, queues, request-reply, distributed messaging, reconnection strategies, and production-ready code examples."
 ---
 
 <!--START-->
-##### This issue is made possible thanks to JetBrains, who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community. Let's thank them by entering the link below.
-&nbsp;  
-##### Struggling with slow builds, tricky bugs, or hard-to-understand performance issues?
-##### [dotUltimate](https://www.jetbrains.com/dotnet/?utm_source=newsletter_the_code_man&utm_medium=cpc&utm_campaign=dul_promo) fixes all of that.
-##### It’s the all-in-one toolbox for serious .NET developers.
-&nbsp;  
-##### [👉 Upgrade your .NET workflow.](https://www.jetbrains.com/dotnet/?utm_source=newsletter_the_code_man&utm_medium=cpc&utm_campaign=dul_promo)
-&nbsp;
+This issue is made possible thanks to JetBrains, who help keep this newsletter free for everyone. A huge shout-out to them for their support of our community. Let's thank them by entering the link below.
+Struggling with slow builds, tricky bugs, or hard-to-understand performance issues?
+[dotUltimate](https://www.jetbrains.com/dotnet/?utm_source=newsletter_the_code_man&utm_medium=cpc&utm_campaign=dul_promo) fixes all of that.
+It’s the all-in-one toolbox for serious .NET developers.
+[👉 Upgrade your .NET workflow.](https://www.jetbrains.com/dotnet/?utm_source=newsletter_the_code_man&utm_medium=cpc&utm_campaign=dul_promo)
 
-&nbsp;  
-&nbsp;  
-### Did you hear about NATS?
-&nbsp;  
-&nbsp;  
+## Did you hear about NATS?
 
-##### Seriously - **have you**?
-&nbsp;  
+Seriously - **have you**?
 
-##### Most .NET developers haven’t, and that’s a shame because NATS solves a completely different category of messaging problems than the tools we usually reach for.
-&nbsp;  
+Most .NET developers haven’t, and that’s a shame because NATS solves a completely different category of messaging problems than the tools we usually reach for.
  
-##### When we think “messaging,” the same names pop up:
-&nbsp;  
+When we think “messaging,” the same names pop up:
  
-##### • RabbitMQ
-##### • Azure Service Bus
-##### • Kafka
-##### • Redis Pub/Sub
-&nbsp;  
+• [RabbitMQ](https://thecodeman.net/posts/rabbitmq-in-dotnet-from-scratch)
+• Azure Service Bus
+• Kafka
+• [Redis Pub/Sub](https://thecodeman.net/posts/messaging-in-dotnet-with-redis)
 
-##### They’re all great, and they all have their place...
-&nbsp;  
+They’re all great, and they all have their place...
 
-##### But they’re not the whole story.
-&nbsp;  
+But they’re not the whole story.
  
-##### There’s an entire class of systems where those brokers either become too slow, too heavy, or too complex.
-&nbsp;  
+There’s an entire class of systems where those brokers either become too slow, too heavy, or too complex.
  
-##### And that’s exactly where **NATS** appears as a surprisingly simple answer.
+And that’s exactly where **NATS** appears as a surprisingly simple answer.
 
-&nbsp;  
-&nbsp;  
-### So What Makes NATS Different?
-&nbsp;  
-&nbsp;
+## So What Makes NATS Different?
 
-##### While traditional brokers focus on features like durability, transactions, partitions, advanced routing, and so on…
-&nbsp;
+While traditional brokers focus on features like durability, transactions, partitions, advanced routing, and so on…
  
-##### NATS focuses on something else entirely:
-&nbsp;
+NATS focuses on something else entirely:
  
-##### 👉 Tiny latency
-##### 👉 Huge throughput
-##### 👉 Simple operation
-##### 👉 Lightweight footprint
-##### 👉 Scales like crazy
-##### 👉 Works beautifully with distributed edge devices
-&nbsp;
+👉 Tiny latency
+👉 Huge throughput
+👉 Simple operation
+👉 Lightweight footprint
+👉 Scales like crazy
+👉 Works beautifully with distributed edge devices
  
-##### If your system needs:
-&nbsp;
+If your system needs:
 
-##### • thousands of small messages per second
-##### • real-time reactions
-##### • low-latency communication
-##### • services loosely connected with zero overhead
-##### • resilient connections over shaky networks
-##### • tiny agents that can run anywhere 
-&nbsp;
+• thousands of small messages per second
+• real-time reactions
+• low-latency communication
+• services loosely connected with zero overhead
+• resilient connections over shaky networks
+• tiny agents that can run anywhere 
 
-##### …then NATS suddenly becomes very interesting.
+…then NATS suddenly becomes very interesting.
 
-&nbsp;  
-&nbsp;  
-### A Different Kind of Problem: Real-Time Smart Agriculture
-&nbsp;  
-&nbsp;  
+## A Different Kind of Problem: Real-Time Smart Agriculture
 
-##### Let me give you a scenario where NATS actually makes perfect sense.
-&nbsp;  
+Let me give you a scenario where NATS actually makes perfect sense.
  
-##### Imagine a modern agriculture system spread across a huge field.
-&nbsp;  
+Imagine a modern agriculture system spread across a huge field.
 
-##### You have:
-&nbsp;  
+You have:
 
-##### • soil moisture sensors
-##### • small climate sensors
-##### • drone stations
-##### • irrigation controllers
-##### • a dashboard
-##### • and some lightweight AI logic that helps make decisions
-&nbsp;  
+• soil moisture sensors
+• small climate sensors
+• drone stations
+• irrigation controllers
+• a dashboard
+• and some lightweight AI logic that helps make decisions
 
-##### These sensors send data every few hundred milliseconds.
-&nbsp;  
+These sensors send data every few hundred milliseconds.
 
-##### Some devices drop offline.
-##### Some reconnect.
-##### Some flood the system with bursts of readings.
-##### Some need instructions back immediately (“turn on irrigation now”).
-&nbsp;  
+Some devices drop offline.
+Some reconnect.
+Some flood the system with bursts of readings.
+Some need instructions back immediately (“turn on irrigation now”).
  
-##### It’s not a big “enterprise event bus” job.
-&nbsp;  
+It’s not a big “enterprise event bus” job.
 
-##### It’s a **high-frequency, real-time, lightweight messaging challenge**.
-&nbsp;  
+It’s a **high-frequency, real-time, lightweight messaging challenge**.
  
-##### And this is exactly the kind of system where RabbitMQ or Kafka start to feel too heavy and too slow.
+And this is exactly the kind of system where RabbitMQ or Kafka start to feel too heavy and too slow.
 
-&nbsp;  
-&nbsp;  
-### This Is Where NATS Fits Perfectly    
-&nbsp;  
-&nbsp;  
+## This Is Where NATS Fits Perfectly    
 
-##### NATS is built for situations like this:
-&nbsp;  
+NATS is built for situations like this:
 
-##### • Where messages are extremely frequent
-##### • Where low latency really matters
-##### • Where devices or services come and go
-##### • Where you need both Pub/Sub and request-reply
-##### • Where you want to scale easily without complexity
-##### • Where you want something simple and fast, not a big distributed monster
-&nbsp;  
+• Where messages are extremely frequent
+• Where low latency really matters
+• Where devices or services come and go
+• Where you need both Pub/Sub and request-reply
+• Where you want to scale easily without complexity
+• Where you want something simple and fast, not a big distributed monster
 
-##### If your message volume is small and you want durability or transactions, use RabbitMQ or Service Bus.
-&nbsp;  
+If your message volume is small and you want durability or transactions, use RabbitMQ or Service Bus.
  
-##### If you want big data analytics or huge event streams, Kafka is the king.
-&nbsp;  
+If you want big data analytics or huge event streams, Kafka is the king.
  
-##### But if you need:
-&nbsp;  
+But if you need:
 
-##### • **speed**
-##### • **simplicity**
-##### • **easy fan-out**
-##### • **real-time messaging**
-##### • **millions of events per second**
-&nbsp;  
+• **speed**
+• **simplicity**
+• **easy fan-out**
+• **real-time messaging**
+• **millions of events per second**
 
-##### …that’s NATS territory. 
+…that’s NATS territory. 
  
-&nbsp;  
-&nbsp;  
-### Let’s Build Something in .NET
-&nbsp;  
-&nbsp;  
+## Let’s Build Something in .NET
 
-##### Here’s a realistic example using NATS for that smart agriculture system.
-&nbsp;  
+Here’s a realistic example using NATS for that smart agriculture system.
  
-##### We’ll build:
-&nbsp;  
+We’ll build:
 
-##### • sensor simulators
-##### • real-time analytics
-##### • irrigation controllers (queue groups)
-##### • device actuators
-##### • and a request–reply endpoint
-&nbsp;  
+• sensor simulators
+• real-time analytics
+• irrigation controllers (queue groups)
+• device actuators
+• and a request–reply endpoint
 
-#### 1. Install the client
-&nbsp;  
+### 1. Install the client
 
-##### First, install the official .NET client:
+First, install the official .NET client:
 
 ```csharp
 
 dotnet add package NATS.Client.Core
 ```
 
-##### What’s happening here?
-&nbsp;  
+What’s happening here?
 
-##### • NATS.Client.Core is the modern, high-performance NATS client for .NET.
-##### • You’ll use NatsConnection from this package to publish and subscribe to messages.
-&nbsp;  
+• NATS.Client.Core is the modern, high-performance NATS client for .NET.
+• You’ll use NatsConnection from this package to publish and subscribe to messages.
   
-#### 2.  Creating a Reusable NATS Connection
-&nbsp;  
+### 2.  Creating a Reusable NATS Connection
  
-##### You generally want **one connection per service**, reused everywhere (like HttpClient)
+You generally want **one connection per service**, reused everywhere (like HttpClient)
 
 ```csharp
 
@@ -215,24 +160,19 @@ public static class NatsConnectionFactory
 }
 ```
 
-##### **Explanation**
-&nbsp;  
-##### • Url - where your NATS server lives (locally, Docker, Kubernetes, cloud, etc.).
-##### • Name - just a human-friendly identifier, helpful in monitoring tools.
-##### • Reconnect = true - NATS will try to reconnect if the connection drops (important for sensors on a weak network).
-##### • MaxReconnect + ReconnectWait - limits and spreads out reconnection attempts so your app doesn’t go crazy if the server is temporarily down.
-&nbsp;  
-##### In a real app, you’d typically wrap this in DI as a singleton.
-&nbsp;  
+Explanation
+• Url - where your NATS server lives (locally, [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik), Kubernetes, cloud, etc.).
+• Name - just a human-friendly identifier, helpful in [monitoring](https://thecodeman.net/posts/how-to-monitor-dotnet-applications-in-production) tools.
+• Reconnect = true - NATS will try to reconnect if the connection drops (important for sensors on a weak network).
+• MaxReconnect + ReconnectWait - limits and spreads out reconnection attempts so your app doesn’t go crazy if the server is temporarily down.
+In a real app, you’d typically wrap this in DI as a singleton.
 
-#### 3. Defining the Messages (Contracts)
-&nbsp;  
+### 3. Defining the Messages (Contracts)
  
-##### Let’s define simple message types for:
-&nbsp;  
+Let’s define simple message types for:
 
-##### • soil moisture readings, and
-##### • irrigation commands.
+• soil moisture readings, and
+• irrigation commands.
 
 ```csharp
 
@@ -248,21 +188,18 @@ public record IrrigationCommand(
   DateTime TimestampUtc);
 ```
 
-##### **Explanation**
-&nbsp;  
-##### • SoilMoistureReading - a single reading from one sensor.
-##### • FieldId - groups sensors by field/zone.
-##### • IrrigationCommand - a decision: “turn irrigation on/off for this field, targeting X% moisture”.
-##### • Records are convenient because:
+Explanation
+• SoilMoistureReading - a single reading from one sensor.
+• FieldId - groups sensors by field/zone.
+• IrrigationCommand - a decision: “turn irrigation on/off for this field, targeting X% moisture”.
+• Records are convenient because:
  
-##### 1. they’re immutable,
-##### 2. serialize nicely,
-##### 3. and clearly express intent.
-&nbsp;  
+1. they’re immutable,
+2. serialize nicely,
+3. and clearly express intent.
 
-#### 4. Simulating a Sensor (Publisher)
-&nbsp;  
-##### Now, let’s simulate a sensor sending readings every 500ms.
+### 4. Simulating a Sensor (Publisher)
+Now, let’s simulate a sensor sending readings every 500ms.
 
 ```csharp
 
@@ -298,24 +235,21 @@ public sealed class SoilSensorSimulator
 }
 ```
 
-##### **Explanation**
-##### • subject is like a topic. Here we use a structured pattern: sensors.soil.moisture.{fieldId}. This makes it easy to subscribe to:
-##### 1. all soil sensors,
-##### 2. or a specific field,
-##### 3. or even a subset using wildcards.
-&nbsp;  
+Explanation
+• subject is like a topic. Here we use a structured pattern: sensors.soil.moisture.{fieldId}. This makes it easy to subscribe to:
+1. all soil sensors,
+2. or a specific field,
+3. or even a subset using wildcards.
  
-##### • We send a new reading every 500ms to simulate a real sensor.
-##### • In a real system:
+• We send a new reading every 500ms to simulate a real sensor.
+• In a real system:
 
-##### 1. this code might run on a device,
-##### 2. or you’d have multiple instances for multiple sensors.
-&nbsp;  
+1. this code might run on a device,
+2. or you’d have multiple instances for multiple sensors.
   
-#### 5. Real-Time Analytics (Subscriber with Wildcard)
-&nbsp;  
+### 5. Real-Time Analytics (Subscriber with Wildcard)
  
-##### Now let’s build a consumer that listens to all soil moisture sensors and logs them.
+Now let’s build a consumer that listens to all soil moisture sensors and logs them.
 
 ```csharp
 
@@ -348,27 +282,23 @@ public sealed class SoilAnalyticsWorker : BackgroundService
 }
 ```
 
-##### **Explanation**
-##### • BackgroundService integrates nicely with ASP.NET Core / generic host.
-##### • SubscribeAsync<SoilMoistureReading> tells NATS to:
+Explanation
+• [BackgroundService](https://thecodeman.net/posts/background-tasks-in-dotnet8) integrates nicely with ASP.NET Core / generic host.
+• SubscribeAsync<SoilMoistureReading> tells NATS to:
  
-##### 1. subscribe to this subject,
-##### 2. and deserialize payloads into SoilMoistureReading.
+1. subscribe to this subject,
+2. and deserialize payloads into SoilMoistureReading.
 
-##### • sensors.soil.moisture.* uses a wildcard to listen to all fields.
-##### • We process messages in a simple await foreach loop. When the app stops, the loop ends via the stoppingToken.
-&nbsp;  
+• sensors.soil.moisture.* uses a wildcard to listen to all fields.
+• We process messages in a simple await foreach loop. When the app stops, the loop ends via the stoppingToken.
 
-#### 6. Irrigation Controller with Queue Groups (Load Balancing)
-&nbsp;  
+### 6. Irrigation Controller with Queue Groups (Load Balancing)
  
-##### What if we have multiple instances of an irrigation controller service?
-&nbsp;  
+What if we have multiple instances of an irrigation controller service?
 
-##### We want **only one instance** to handle each reading and decide on irrigation, not all of them.
-&nbsp;  
+We want **only one instance** to handle each reading and decide on irrigation, not all of them.
  
-##### That’s exactly what NATS **queue groups** do.
+That’s exactly what NATS **queue groups** do.
 
 ```csharp
 
@@ -414,21 +344,17 @@ public sealed class IrrigationControllerWorker : BackgroundService
 }
 ```
 
-##### **Explanation**
-&nbsp;  
+Explanation
 
-##### • queueGroup: "irrigation-controllers" makes this subscription part of a queue group.
-##### • If you run 3 instances of this worker:
+• queueGroup: "irrigation-controllers" makes this subscription part of a queue group.
+• If you run 3 instances of this worker:
  
-##### 1. NATS will load-balance messages across them.
-##### 2. Each message goes to exactly one instance in the group.
-&nbsp;  
+1. NATS will load-balance messages across them.
+2. Each message goes to exactly one instance in the group.
  
-##### • This is perfect for scaling “decision” services horizontally.
-&nbsp;  
-#### 7. Irrigation Device (Command Subscriber)
-&nbsp;  
-##### Now we simulate a device that receives irrigation commands and acts on them.
+• This is perfect for scaling “decision” services horizontally.
+### 7. Irrigation Device (Command Subscriber)
+Now we simulate a device that receives irrigation commands and acts on them.
 
 ```csharp
 
@@ -461,28 +387,26 @@ public sealed class IrrigationDeviceWorker : BackgroundService
 }
 ```
 
-##### **Explanation**
-&nbsp;  
+Explanation
 
-##### • This worker subscribes to a simple subject: irrigation.commands.
-##### • Commands are broadcast - multiple devices can listen if needed.
-##### • In reality, you might:
+• This worker subscribes to a simple subject: irrigation.commands.
+• Commands are broadcast - multiple devices can listen if needed.
+• In reality, you might:
  
-##### 1. use per-device subjects,
-##### 2. or add addressing fields inside the command. 
+1. use per-device subjects,
+2. or add addressing fields inside the command. 
  
-##### • The core idea: the controller and device are loosely coupled via NATS.
-&nbsp;  
+• The core idea: the controller and device are loosely coupled via NATS.
 
-#### 8. Request–Reply: Ask for a Field’s Status
+### 8. Request–Reply: Ask for a Field’s Status
  
-##### Sometimes you don’t want just a stream - you want to ask the system something:
+Sometimes you don’t want just a stream - you want to ask the system something:
  
-##### “What’s the current moisture in Field-42?”
+“What’s the current moisture in Field-42?”
 
-##### NATS supports this pattern natively with **request–reply**.
+NATS supports this pattern natively with **request–reply**.
  
-##### **8.1. Define request/response models and cache**
+8.1. Define request/response models and cache
 
 ```csharp
 
@@ -498,11 +422,11 @@ public record FieldStatusResponse(
       (double AverageMoisture, DateTime LastUpdatedUtc) GetStatusForField(string fieldId);
     }
 ```
-##### **Explanation**
-##### • FieldStatusRequest - what the caller sends (just a FieldId).
-##### • FieldStatusResponse - what the responder returns.
-##### • IFieldStatusCache - simple abstraction; your analytics worker could update this cache as readings arrive.
-##### **8.2. The responder (service answering status requests)**
+Explanation
+• FieldStatusRequest - what the caller sends (just a FieldId).
+• FieldStatusResponse - what the responder returns.
+• IFieldStatusCache - simple abstraction; your analytics worker could update this cache as readings arrive.
+8.2. The responder (service answering status requests)
 
 ```csharp
 
@@ -536,19 +460,17 @@ public sealed class FieldStatusResponder : BackgroundService
 }
 ```
 
-##### **Explanation**
-&nbsp;  
-##### • We subscribe to fields.status.get.
-##### • For each incoming request:
+Explanation
+• We subscribe to fields.status.get.
+• For each incoming request:
  
-##### 1. we look up the field in the cache,
-##### 2. create a response,
-##### 3. and send it back using msg.ReplyAsync.
+1. we look up the field in the cache,
+2. create a response,
+3. and send it back using msg.ReplyAsync.
  
-##### • NATS handles the internal reply subject and correlation.
-&nbsp;  
+• NATS handles the internal reply subject and correlation.
 
-##### **8.3. The client (e.g., your ASP.NET Core endpoint)**
+8.3. The client (e.g., your ASP.NET Core endpoint)
 
 ```csharp
 
@@ -574,18 +496,16 @@ public sealed class FieldStatusClient
 }
 ```
 
-##### **Explanation**
-&nbsp;  
-##### • RequestAsync<TRequest, TResponse> sends a request and waits for the reply.
-##### • Under the hood:
+Explanation
+• RequestAsync<TRequest, TResponse> sends a request and waits for the reply.
+• Under the hood:
  
-##### 1. NATS creates a unique reply subject,
-##### 2. the responder replies to it,
-##### 3. the client gets the response mapped to FieldStatusResponse
+1. NATS creates a unique reply subject,
+2. the responder replies to it,
+3. the client gets the response mapped to FieldStatusResponse
  
-##### • This pattern is very handy for internal RPC between services without needing gRPC/HTTP.
-&nbsp;  
-##### You could easily expose this in ASP.NET Core:
+• This pattern is very handy for internal RPC between services without needing [gRPC](https://thecodeman.net/posts/unlock-the-power-of-high-performance-web-applications-with-grpc)/HTTP.
+You could easily expose this in ASP.NET Core:
 
 ```csharp
 
@@ -596,63 +516,50 @@ app.MapGet("/fields/{fieldId}/status", async (string fieldId, FieldStatusClient 
 });
 ```
 
-&nbsp;  
-&nbsp;  
-### When NATS Makes Sense (And When It Doesn’t)
-&nbsp;  
-&nbsp;
+## When NATS Makes Sense (And When It Doesn’t)
 
-##### You don’t have to replace RabbitMQ or Kafka everywhere.
-##### Use the right tool for the right job.
-&nbsp;
+You don’t have to replace RabbitMQ or Kafka everywhere.
+Use the right tool for the right job.
  
-##### **NATS is a good fit when:**
-&nbsp;
+NATS is a good fit when:
 
-##### • You have lots of small, frequent messages
-##### • Latency and responsiveness really matter
-##### • You’re dealing with IoT, sensors, or edge devices
-##### • You want simple, fast, real-time messaging
-##### • You prefer minimal operational overhead
-##### • You like the idea of Pub/Sub, queue groups, and request-reply in one system
-&nbsp;
+• You have lots of small, frequent messages
+• Latency and responsiveness really matter
+• You’re dealing with IoT, sensors, or edge devices
+• You want simple, fast, real-time messaging
+• You prefer minimal operational overhead
+• You like the idea of Pub/Sub, queue groups, and request-reply in one system
 
-##### **NATS is not ideal when:**
-&nbsp;
+NATS is not ideal when:
 
-##### • You need heavy analytics over huge event streams → Kafka is better
-##### • You rely on advanced broker features (transactions, sessions, dead-lettering, etc.) → RabbitMQ / Azure Service Bus
-##### • You want exactly-once semantics (in practice: Kafka territory)
-&nbsp;  
-&nbsp;  
-### Wrapping up
-&nbsp;  
-&nbsp;  
+• You need heavy analytics over huge event streams → Kafka is better
+• You rely on advanced broker features (transactions, sessions, dead-lettering, etc.) → RabbitMQ / Azure Service Bus
+• You want exactly-once semantics (in practice: Kafka territory)
+## Wrapping up
 
-##### Most developers never think about NATS simply because it doesn’t dominate headlines the way Kafka or RabbitMQ do.
-&nbsp;
+Most developers never think about NATS simply because it doesn’t dominate headlines the way Kafka or RabbitMQ do.
 
-##### But once you see what kinds of problems it solves, it becomes one of those tools you’re genuinely happy to have discovered.
-&nbsp;
+But once you see what kinds of problems it solves, it becomes one of those tools you’re genuinely happy to have discovered.
  
-##### NATS doesn’t try to be everything.
-##### It doesn’t come with a huge learning curve.
-##### It doesn’t require a cluster of heavyweight brokers.
-&nbsp;
+NATS doesn’t try to be everything.
+It doesn’t come with a huge learning curve.
+It doesn’t require a cluster of heavyweight brokers.
  
-##### It just gives you:
-&nbsp;
+It just gives you:
 
-##### • a ridiculously fast messaging system,
-##### • a tiny operational footprint,
-##### • extremely simple APIs,
-##### • and the flexibility to build real-time systems without complexity.
-&nbsp;
+• a ridiculously fast messaging system,
+• a tiny operational footprint,
+• extremely simple APIs,
+• and the flexibility to build real-time systems without complexity.
 
-##### If your next project involves devices, sensors, real-time updates, automation, or anything where speed and simplicity matter more than heavy enterprise features, give NATS a try.
-&nbsp;
+If your next project involves devices, sensors, real-time updates, automation, or anything where speed and simplicity matter more than heavy enterprise features, give NATS a try.
  
-##### It might surprise you how far you can go with something this small and this fast.
-&nbsp;
-##### That's all from me for today. 
+It might surprise you how far you can go with something this small and this fast.
+That's all from me for today. 
 <!--END-->
+
+
+
+
+
+

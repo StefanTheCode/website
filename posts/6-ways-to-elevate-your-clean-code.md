@@ -3,54 +3,43 @@ title: "6 ways to eleveate your 'clean' code"
 subtitle: "I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is...."
 date: "August 22 2024"
 category: "CSharp"
+readTime: "Read Time: 6 minutes"
+meta_description: "Im not sure if I know any programmer, engineer, architect, or even HR who doesnt know who Uncle Bob is and what the Clean Code book is...."
 ---
-
-&nbsp;  
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### • Complete 2024 State of the #API survey by Postman for a chance to win prizes including a Apple Vision Pro, a Sony PlayStation 5, gift certificates for Postman swag and more!
-##### Complete it [here](https://www.surveymonkey.com/r/2024-state-of-api-survey).
-&nbsp;  
-&nbsp;  
 
 <!--START-->
 
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
+
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Complete 2024 State of the #API survey by Postman for a chance to win prizes including a Apple Vision Pro, a Sony PlayStation 5, gift certificates for Postman swag and more! Complete it <a href="https://www.surveymonkey.com/r/2024-state-of-api-survey" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+
+<p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+</p>
+</div>
 
 
-##### I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is.
-&nbsp;  
+## Background
 
-##### If by some miracle you are one of them, it's a concept that refers to writing code that is easy to read and maintain.
-&nbsp;  
+I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the [Clean Code](https://thecodeman.net/posts/clean-code-best-practices) book is.
 
-##### Today I'm going to show you 6 things you should or shouldn't be doing in your code that you can change in your code right away.
-&nbsp;  
+If by some miracle you are one of them, it's a concept that refers to writing code that is easy to read and maintain.
 
-##### You may know some of these, but it's okay to remember some things because we all make mistakes even after many years of experience.
-&nbsp;  
+Today I'm going to show you 6 things you should or shouldn't be doing in your code that you can change in your code right away.
 
-&nbsp;  
-&nbsp;  
-### 1#: Avoid Nested (Pyramids)
-### What are Source Generators?
-&nbsp;  
-&nbsp;  
+You may know some of these, but it's okay to remember some things because we all make mistakes even after many years of experience.
 
-##### When we talk about pyramids or ladders in code, we're referring to **multiple layers of if/else statements** that can quickly become confusing and difficult to read.
-&nbsp;  
+## 1#: Avoid Nested (Pyramids)
+## What are [Source Generators](https://thecodeman.net/posts/source-generators-deep-dive)?
 
-##### This can happen when we have a complex set of conditions that we need to check in order to execute a particular block of code.
-&nbsp;  
+When we talk about pyramids or ladders in code, we're referring to **multiple layers of if/else statements** that can quickly become confusing and difficult to read.
 
-##### The problem with pyramids is that they make it hard to follow the logic of the code. It's easy to get lost in the maze of nested statements and lose sight of what's really happening.
-&nbsp;  
+This can happen when we have a complex set of conditions that we need to check in order to execute a particular block of code.
 
-##### This can make it difficult to debug and maintain the code in the future.
+The problem with pyramids is that they make it hard to follow the logic of the code. It's easy to get lost in the maze of nested statements and lose sight of what's really happening.
+
+This can make it difficult to debug and maintain the code in the future.
 
 ```csharp
 
@@ -72,12 +61,10 @@ public int DontDoThis(int x, bool y)
 }
 
 ```
-&nbsp;  
 
-##### So, what's the solution?
-&nbsp;  
+So, what's the solution?
 
-##### One approach is to use guard clauses, which are essentially early return statements that check for a condition and exit the method or function if it's not met.
+One approach is to use [guard clauses](https://thecodeman.net/posts/how-to-create-dotnet-custom-guard-clause), which are essentially early return statements that check for a condition and exit the method or function if it's not met.
 
 ```csharp
 
@@ -94,19 +81,13 @@ public int DoThis(int x, bool y)
 
 ```
 
-&nbsp;  
-&nbsp;  
-### 2#: Avoid magic (numbers, strings)
-&nbsp;  
-&nbsp;  
+## 2#: Avoid magic (numbers, strings)
 
-##### The problem here are hard-coded values that are used throughout the codebase without any clear explanation of what they mean.
-&nbsp;  
+The problem here are hard-coded values that are used throughout the codebase without any clear explanation of what they mean.
 
-##### For example, imagine a scenario where the number "100" is used multiple times throughout the codebase without any indication of what it represents. This can make the code difficult to understand and maintain over time.
-&nbsp;  
+For example, imagine a scenario where the number "100" is used multiple times throughout the codebase without any indication of what it represents. This can make the code difficult to understand and maintain over time.
 
-##### Here is an example:
+Here is an example:
 
 ```csharp
 
@@ -120,11 +101,9 @@ public void DontDoThis(int numberOfUsers)
 }
 
 ```
-&nbsp;  
 
-##### Solution?
-&nbsp;  
-##### The key is to use constants or enums to represent these values instead of hard-coding them. This makes it clear what the values represent, and also allows you to change them in a single place if needed, rather than having to update every instance throughout the codebase.
+Solution?
+The key is to use constants or enums to represent these values instead of hard-coding them. This makes it clear what the values represent, and also allows you to change them in a single place if needed, rather than having to update every instance throughout the codebase.
 
 ```csharp
 
@@ -141,18 +120,13 @@ public void DoThis(int numberOfUsers)
 
 ```
 
-&nbsp;  
-&nbsp;  
-### 3#: Avoid Return null collection
-&nbsp;  
-&nbsp;  
+## 3#: Avoid Return null collection
 
-##### Why you should not do this:
-&nbsp;  
+Why you should not do this:
 
-##### • Possible NullReferenceException
-##### • We always need to check for null   
-##### • Slow Performance (checking for null, throwing/catching an exception, etc.)
+• Possible NullReferenceException
+• We always need to check for null   
+• Slow Performance (checking for null, throwing/catching an exception, etc.)
 
 ```csharp
 
@@ -164,8 +138,7 @@ public IEnumerable<string> DontDoThis()
 
 ```
 
-&nbsp;  
-##### Instead, just return an empty collection.
+Instead, just return an empty collection.
 
 ```csharp
 
@@ -176,16 +149,11 @@ public IEnumerable<string> DoThis()
 
 ```
 
-&nbsp;  
-&nbsp;  
-### 4#: Avoid Too Many Method Parameters
-&nbsp;  
-&nbsp;  
+## 4#: Avoid Too Many Method Parameters
 
-##### Let's say we have a class that's working with Addresses. We are calling a method AddAddress to persistence details. The address can have StreetName, StreetNumber, PostalCode, Country, City, and Region properties. If all of these parameters are passed into the method separately, it can become difficult to read and understand the code.
-&nbsp;  
+Let's say we have a class that's working with Addresses. We are calling a method AddAddress to persistence details. The address can have StreetName, StreetNumber, PostalCode, Country, City, and Region properties. If all of these parameters are passed into the method separately, it can become difficult to read and understand the code.
 
-##### Example:
+Example:
 
 ```csharp
 
@@ -196,9 +164,8 @@ public void AddAddress(string streetName, string streetNumber, string postalCode
 }
 
 ```
-&nbsp;  
 
-##### To avoid too many method parameters, you can use a few different techniques. One approach is to group related parameters into a single object or struct.
+To avoid too many method parameters, you can use a few different techniques. One approach is to group related parameters into a single object or struct.
 
 ```csharp
 
@@ -220,21 +187,14 @@ public class Address
 
 ```
 
-&nbsp;  
-&nbsp;  
-### 5#: Be Strongly Typed
-&nbsp;  
-&nbsp;  
+## 5#: Be Strongly Typed
 
-##### Don't be "Stringly" typed.
-&nbsp;  
+Don't be "Stringly" typed.
 
-##### Similar to "Avoid Magic" but on a higher level. Imagine you have an employee class/object with 10+ types in a company (manager, hr, CEO, etc.).
-&nbsp;  
+Similar to "Avoid Magic" but on a higher level. Imagine you have an employee class/object with 10+ types in a company (manager, hr, CEO, etc.).
 
-##### Whenever you check the type through "magic strings", it can be disastrous on multiple levels.
-&nbsp;  
-##### Don't do this ever:
+Whenever you check the type through "magic strings", it can be disastrous on multiple levels.
+Don't do this ever:
 
 ```csharp
 
@@ -247,9 +207,8 @@ public void DontDoThis(string employeeType)
 }
 
 ```
-&nbsp;  
 
-##### Just create an enum that will represent the type:
+Just create an enum that will represent the type:
 
 ```csharp
 
@@ -275,13 +234,9 @@ public enum Type
 
 ```
 
-&nbsp;  
-&nbsp;  
-### 6#: Your method should do one thing only
-&nbsp;  
-&nbsp;  
+## 6#: Your method should do one thing only
 
-##### When you're writing code, it can be tempting to include multiple functions within a single method to make it more efficient. However, this can actually make your code more difficult to read, and maintain over time."Bad" example:
+When you're writing code, it can be tempting to include multiple functions within a single method to make it more efficient. However, this can actually make your code more difficult to read, and maintain over time."Bad" example:
 
 ```csharp
 
@@ -301,15 +256,12 @@ public void DontDoThis()
 }
 
 ```
-&nbsp;  
 
-##### Way to resolve?
-&nbsp;  
+Way to resolve?
 
-##### **Single Responsibility Principle (SRP)**. By following the SRP, you can create more modular and organized code that is easier to work with.
-&nbsp;  
+**Single Responsibility Principle (SRP)**. By following the SRP, you can create more modular and organized code that is easier to work with.
 
-##### Just separate concerns:
+Just separate concerns:
 
 ```csharp
 
@@ -341,102 +293,89 @@ private void PrintUsers(List<User> users)
 
 ```
 
-&nbsp;  
-&nbsp;  
-### Bonus: Summary of Clean Code book rules
-&nbsp;  
-&nbsp;  
+## Bonus: Summary of Clean Code book rules
 
-##### **General rules:**
-&nbsp;  
+General rules:
 
-##### • Follow standard conventions
-##### • Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.
-##### • Boy scout rule. Leave the campground cleaner than you found it. 
-##### • Always find root cause. Always look for the root cause of a problem.
-&nbsp;  
+• Follow standard conventions
+• Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.
+• Boy scout rule. Leave the campground cleaner than you found it. 
+• Always find root cause. Always look for the root cause of a problem.
 
-##### **Design rules:**
-&nbsp;
-##### • Keep configurable data at high levels.
-##### • Prefer polymorphism to if/else or switch/case.
-##### • Separate multi-threading code.
-##### • Prevent over-configurability.
-##### • Use dependency injection.
-##### • Follow Law of Demeter. A class should know only its direct dependencies.
-&nbsp;
-##### **Understandability tips:**
-&nbsp;
-##### • Be consistent. If you do something a certain way, do all similar things in the same way.
-##### • Use explanatory variables.
-##### • Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.
-##### • Prefer dedicated value objects to primitive type.
-##### • Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.
-##### • Avoid negative conditionals.
-&nbsp;
-##### **Names rules:**
-&nbsp;
-##### • Choose descriptive and unambiguous names.
-##### • Make meaningful distinction.
-##### • Use pronounceable names.
-##### • Use searchable names.
-##### • Replace magic numbers with named constants.
-##### • Avoid encodings.
-##### • Don't append prefixes or type information.
-&nbsp;
-##### **Comments rules:**
-&nbsp;
-##### • Always try to explain yourself in code.
-##### • Don't be redundant.
-##### • Don't add obvious noise.
-##### • Don't use closing brace comments.
-##### • Don't comment out code.
-##### • Just remove.
-##### • Use as explanation of intent.
-##### • Use as clarification of code.
-##### • Use as warning of consequences.
-&nbsp;
-##### **Source code structure:**
-&nbsp;
-##### • Separate concepts vertically.
-##### • Related code should appear vertically dense.
-##### • Declare variables close to their usage.
-##### • Dependent functions should be close.
-##### • Similar functions should be close.
-##### • Place functions in the downward direction.
-##### • Keep lines short.
-##### • Don't use horizontal alignment.
-##### • Use white space to associate related things and disassociate weakly related.
-##### • Don't break indentation.
-&nbsp;
-##### **Objects and data structures:**
-&nbsp;
-##### • Hide internal structure.
-##### • Prefer data structures.
-##### • Avoid hybrids structures (half object and half data).
-##### • Should be small.
-##### • Do one thing.
-##### • Small number of instance variables.
-##### • Base class should know nothing about their derivatives.
-##### • Better to have many functions than to pass some code into a function to select a behavior.
-##### • Prefer non-static methods to static methods.
-&nbsp;
-##### **Tests:**
-&nbsp;
-##### • One assert per test.
-##### • Readable.
-##### • Fast.
-##### • Independent.
-##### • Repeatable.
-&nbsp;
-##### **Code smells:**
-&nbsp;
-##### • Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.
-##### • Fragility. The software breaks in many places due to a single change.
-##### • Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.
-##### • Needless Complexity.
-##### • Needless Repetition.
-##### • Opacity. The code is hard to understand.
-&nbsp;
-##### That's all from me for today. Make a coffee and clean up your code.  
+Design rules:
+• Keep configurable data at high levels.
+• Prefer polymorphism to if/else or switch/case.
+• Separate multi-threading code.
+• Prevent over-configurability.
+• Use dependency injection.
+• Follow Law of Demeter. A class should know only its direct dependencies.
+Understandability tips:
+• Be consistent. If you do something a certain way, do all similar things in the same way.
+• Use explanatory variables.
+• Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.
+• Prefer dedicated value objects to primitive type.
+• Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.
+• Avoid negative conditionals.
+Names rules:
+• Choose descriptive and unambiguous names.
+• Make meaningful distinction.
+• Use pronounceable names.
+• Use searchable names.
+• Replace magic numbers with named constants.
+• Avoid encodings.
+• Don't append prefixes or type information.
+Comments rules:
+• Always try to explain yourself in code.
+• Don't be redundant.
+• Don't add obvious noise.
+• Don't use closing brace comments.
+• Don't comment out code.
+• Just remove.
+• Use as explanation of intent.
+• Use as clarification of code.
+• Use as warning of consequences.
+Source code structure:
+• Separate concepts vertically.
+• Related code should appear vertically dense.
+• Declare variables close to their usage.
+• Dependent functions should be close.
+• Similar functions should be close.
+• Place functions in the downward direction.
+• Keep lines short.
+• Don't use horizontal alignment.
+• Use white space to associate related things and disassociate weakly related.
+• Don't break indentation.
+Objects and data structures:
+• Hide internal structure.
+• Prefer data structures.
+• Avoid hybrids structures (half object and half data).
+• Should be small.
+• Do one thing.
+• Small number of instance variables.
+• Base class should know nothing about their derivatives.
+• Better to have many functions than to pass some code into a function to select a behavior.
+• Prefer non-static methods to static methods.
+Tests:
+• One assert per test.
+• Readable.
+• Fast.
+• Independent.
+• Repeatable.
+Code smells:
+• Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.
+• Fragility. The software breaks in many places due to a single change.
+• Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.
+• Needless Complexity.
+• Needless Repetition.
+• Opacity. The code is hard to understand.
+That's all from me for today. Make a coffee and clean up your code.
+
+
+For more on this topic, see [Clean Code Best Practices](https://thecodeman.net/posts/clean-code-best-practices) and [SOLID Principles in .NET](https://thecodeman.net/posts/solid-principles-in-dotnet).
+
+## Wrapping Up
+
 <!--END-->
+
+
+

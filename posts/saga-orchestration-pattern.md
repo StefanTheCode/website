@@ -1,86 +1,64 @@
 ---
 title: "Saga Orchestration Pattern"
 subtitle: "SAGA is a sequential process that manages transactions between microservices by breaking each operation into multiple smaller transactions that can be independently executed and compensated."
-category: ".NET"
 date: "January 13 2025"
+category: ".NET"
+readTime: "Read Time: 6 minutes"
+meta_description: "SAGA is a sequential process that manages transactions between microservices by breaking each operation into multiple smaller transactions that can be indepe..."
 ---
-
-&nbsp;  
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### • Download JetBrains Rider IDE for [FREE NOW here](https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter).
-&nbsp;  
-&nbsp;  
 
 <!--START-->
 
-### The Challenge
-&nbsp;  
-&nbsp;  
-##### In today's digital age, the travel booking process is becoming increasingly complex due to the variety of services travelers require. This domain problem includes the integration of different services such as hotel reservation, airline ticket reservation and transportation organization (eg taxi) from the airport to the accommodation. All these services must be coordinated in an efficient manner to enable a smooth user experience.
-&nbsp;  
-##### The main challenge in this domain **is managing transactions across multiple microservices that are not directly connected**. Each microservice (hotel, plane, car/taxi) operates independently, which means that there is no simple way to ensure consistency of transactions across all services.
-&nbsp;  
-##### For example, if a traveler wants to cancel a trip, it is necessary to coordinate the cancellation of all reservations (hotel, plane, taxi), which can be complex and prone to errors.
-&nbsp;  
-&nbsp;  
-### The Solution?
-&nbsp;  
-&nbsp;  
-##### To solve this problem, the SAGA pattern is used.
-&nbsp;  
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-##### SAGA is a sequential process that manages transactions between microservices by breaking each operation into multiple smaller transactions that can be independently executed and compensated.
-&nbsp;  
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Download JetBrains Rider IDE for <a href="https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter" style="color: #a5b4fc; text-decoration: underline;">FREE NOW here</a>.</p>
 
-##### Each of these transactions is part of a larger "saga" that ensures system-wide consistency.
-&nbsp;  
+<p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+</p>
+</div>
 
-##### Implementation in the context of travel booking:
-&nbsp;  
 
-##### In our case, the SAGA template could be applied as follows:
-&nbsp;  
+## The Challenge
+In today's digital age, the travel booking process is becoming increasingly complex due to the variety of services travelers require. This domain problem includes the integration of different services such as hotel reservation, airline ticket reservation and transportation organization (eg taxi) from the airport to the accommodation. All these services must be coordinated in an efficient manner to enable a smooth user experience.
+The main challenge in this domain **is managing transactions across multiple microservices that are not directly connected**. Each microservice (hotel, plane, car/taxi) operates independently, which means that there is no simple way to ensure consistency of transactions across all services.
+For example, if a traveler wants to cancel a trip, it is necessary to coordinate the cancellation of all reservations (hotel, plane, taxi), which can be complex and prone to errors.
+## The Solution?
+To solve this problem, the [SAGA pattern](https://thecodeman.net/posts/saga-implementation-in-csharp) is used.
 
-##### **1. Initial booking**: The traveler starts the travel booking process. The first transaction may be a hotel room reservation.
-&nbsp;  
+SAGA is a sequential process that manages transactions between microservices by breaking each operation into multiple smaller transactions that can be independently executed and compensated.
 
-##### **2. Sequential transactions**: After a successful hotel reservation, the flight reservation follows, and then the organization of taxi transportation.
-&nbsp;  
+Each of these transactions is part of a larger "saga" that ensures system-wide consistency.
 
-##### **3. Compensation transactions**: If there is a problem at any stage (eg the hotel is full), SAGA initiates compensation transactions. This means that previously made reservations (such as an airline ticket) will be canceled or modified, in order to maintain the integrity of the entire reservation. (not part of this newsletter issue)
+Implementation in the context of travel booking:
+
+In our case, the SAGA template could be applied as follows:
+
+**1. Initial booking**: The traveler starts the travel booking process. The first transaction may be a hotel room reservation.
+
+**2. Sequential transactions**: After a successful hotel reservation, the flight reservation follows, and then the organization of taxi transportation.
+
+**3. Compensation transactions**: If there is a problem at any stage (eg the hotel is full), SAGA initiates compensation transactions. This means that previously made reservations (such as an airline ticket) will be canceled or modified, in order to maintain the integrity of the entire reservation. (not part of this newsletter issue)
 
 ![Saga Orchestration Diagram](/images/blog/posts/saga-orchestration-pattern/saga-orchestration.png)
 
-&nbsp;  
+This represents the Saga orchestration process.
 
-##### This represents the Saga orchestration process.
-&nbsp;  
+Orchestration is a method where one service acts as the central coordinator for communication among microservices. In this setup, a single service, known as the orchestrator, manages and directs the interactions between other services.
 
-##### Orchestration is a method where one service acts as the central coordinator for communication among microservices. In this setup, a single service, known as the orchestrator, manages and directs the interactions between other services.
-&nbsp;  
+This approach relies on command-driven communication, where commands specify the desired actions. The sender issues a command to trigger a specific event, and the recipient executes it without needing to know the origin of the command. 
 
-##### This approach relies on command-driven communication, where commands specify the desired actions. The sender issues a command to trigger a specific event, and the recipient executes it without needing to know the origin of the command. 
-&nbsp;  
+Let's take a look on the implementation.
+## .NET Implementation
 
-##### Let's take a look on the implementation.
-&nbsp;  
-&nbsp;  
-### .NET Implementation
-&nbsp;  
-&nbsp;  
+I will use MassTransit Automatonymous (there are many libraries for working with sagas, even lightweight ones), which is a state machine library for building distributed systems. 
 
-##### I will use MassTransit Automatonymous (there are many libraries for working with sagas, even lightweight ones), which is a state machine library for building distributed systems. 
-&nbsp;  
+It provides a way to define the behavior of a system as a state machine, and it handles the coordination between services using the SAGA pattern.
 
-##### It provides a way to define the behavior of a system as a state machine, and it handles the coordination between services using the SAGA pattern.
-&nbsp;  
+### Persistence:
 
-#### Persistence:
-&nbsp;  
-
-##### I use EF DbContext with SQL Server in the background (any other provider can be used).
-
+I use EF DbContext with SQL Server in the background (any other provider can be used).
 
 ```csharp
 
@@ -96,8 +74,7 @@ public class BookingDbContext(DbContextOptions<BookingDbContext> options) : DbCo
     }
 }
 ```
-&nbsp;  
-##### Where Traveler is an entity repesenting a person who are booking the trip:
+Where Traveler is an entity repesenting a person who are booking the trip:
 
 ```csharp
 
@@ -110,32 +87,23 @@ public class Traveler
     public DateTime BookedOn { get; set; }
 }
 ```
-&nbsp;  
-#### Saga State Machine
-&nbsp;  
+### Saga State Machine
 
-##### A Saga State Machine in the context of MassTransit and .NET is used to manage the state and coordination of a long-running process that involves multiple services.
-&nbsp;  
+A Saga State Machine in the context of MassTransit and .NET is used to manage the state and coordination of a long-running process that involves multiple services.
 
-##### A Saga ensures that the process completes successfully or compensates for any failures by managing the state transitions and interactions between the various services involved.
-&nbsp;  
+A Saga ensures that the process completes successfully or compensates for any failures by managing the state transitions and interactions between the various services involved.
 
-##### Key Concepts of Saga State Machine
-&nbsp;  
+Key Concepts of Saga State Machine
 
-##### **1. State Machine**: A state machine manages the states and transitions of a saga. It defines the different states a saga can be in and the events that cause transitions between these states.
-&nbsp;  
+**1. State Machine**: A state machine manages the states and transitions of a saga. It defines the different states a saga can be in and the events that cause transitions between these states.
 
-##### **2. Saga State**: The state of a saga is persisted to ensure that the saga can recover from failures and continue processing from where it left off.
-&nbsp;  
+**2. Saga State**: The state of a saga is persisted to ensure that the saga can recover from failures and continue processing from where it left off.
 
-##### **3. Events**: Events trigger transitions between states. They are typically messages that indicate something significant has happened in the system.
-&nbsp;  
+**3. Events**: Events trigger transitions between states. They are typically messages that indicate something significant has happened in the system.
 
-##### **4. Commands**: Commands are actions that the saga instructs other services to perform as part of the process.
-&nbsp;  
+**4. Commands**: Commands are actions that the saga instructs other services to perform as part of the process.
 
-#### State Machine:
+### State Machine:
 
 ```csharp
 
@@ -198,10 +166,9 @@ public class BookingSaga : MassTransitStateMachine<BookingSagaData>
 }
 
 ```
-&nbsp;  
-#### Commands and Events:
+### Commands and Events:
 
-##### **Commands** are messages that represent instructions or actions that need to be performed. They are typically sent by one service to another, directing the receiving service to perform a specific task. Commands are imperative, meaning they tell the recipient exactly what to do.
+**Commands** are messages that represent instructions or actions that need to be performed. They are typically sent by one service to another, directing the receiving service to perform a specific task. Commands are imperative, meaning they tell the recipient exactly what to do.
 
 ```csharp
 
@@ -211,9 +178,8 @@ public record BookFlight(Guid TravelerId, string Email, string FlightCode, strin
 
 public record RentCar(Guid TravelerId, string Email, string CarPlateNumber);
 ```
-&nbsp;  
 
-##### **Events** are messages that represent something that has happened within the system. They are declarative, meaning they simply announce that a certain condition or state change has occurred. Events are used to signal other parts of the system that something significant has happened.
+**Events** are messages that represent something that has happened within the system. They are declarative, meaning they simply announce that a certain condition or state change has occurred. Events are used to signal other parts of the system that something significant has happened.
 
 ```csharp
 
@@ -247,24 +213,19 @@ public class BookingCompleted
     public string Email { get; set; } = string.Empty;
 }
 ```
-&nbsp;  
 
-#### Commands Handlers:
-&nbsp;  
+### Commands Handlers:
 
-##### Command Handlers are components that are responsible for handling commands. They contain the logic required to perform the action specified by the command. When a command is sent to a service, the Command Handler processes it, performs the necessary operations, and often triggers subsequent actions or events.
-&nbsp;  
+Command Handlers are components that are responsible for handling commands. They contain the logic required to perform the action specified by the command. When a command is sent to a service, the Command Handler processes it, performs the necessary operations, and often triggers subsequent actions or events.
 
-##### There are 4 command handlers:
-&nbsp;  
+There are 4 command handlers:
 
-##### **1. BookHotelHandler**
-##### **2. BookFlightHandler**
-##### **3. RentCarHandler**
-##### **4. BookingCompletedHandler**
-&nbsp;  
+1. BookHotelHandler
+2. BookFlightHandler
+3. RentCarHandler
+4. BookingCompletedHandler
 
-##### Here I will show you handler for hotel booking:
+Here I will show you handler for hotel booking:
 ```csharp
 
 public class BookHotelHandler(BookingDbContext _dbContext) : IConsumer<BookHotel>
@@ -294,21 +255,16 @@ public class BookHotelHandler(BookingDbContext _dbContext) : IConsumer<BookHotel
     }
 }
 ```
-&nbsp;  
 
-#### MassTransit and RabbitMq Configurations
-&nbsp;  
+### MassTransit and [RabbitMq](https://thecodeman.net/posts/rabbitmq-in-dotnet-from-scratch) Configurations
 
-##### This configuration sets up MassTransit with RabbitMQ as the transport mechanism and uses Entity Framework for saga state persistence.
-&nbsp;  
+This configuration sets up MassTransit with RabbitMQ as the transport mechanism and uses Entity Framework for saga state persistence.
 
-##### It registers all consumers from the specified assembly, configures the saga state machine with MSSQL as the database, and sets up RabbitMQ with specific credentials.
-&nbsp;  
+It registers all consumers from the specified assembly, configures the saga state machine with MSSQL as the database, and sets up RabbitMQ with specific credentials.
 
-##### Endpoint names are formatted in kebab-case for consistency, and an in-memory outbox is used to ensure message consistency and reliability.
-&nbsp;  
+Endpoint names are formatted in kebab-case for consistency, and an in-memory outbox is used to ensure message consistency and reliability.
 
-##### The overall setup ensures a robust and consistent messaging and saga orchestration infrastructure, enabling reliable handling of complex workflows and state management in a distributed system.
+The overall setup ensures a robust and consistent messaging and saga orchestration infrastructure, enabling reliable handling of complex workflows and state management in a distributed system.
 ```csharp
 
 public class BookHotelHandler(BookingDbContext _dbContext) : IConsumer<BookHotel>
@@ -338,13 +294,9 @@ public class BookHotelHandler(BookingDbContext _dbContext) : IConsumer<BookHotel
     }
 }
 ```
-&nbsp;  
-&nbsp;  
-### Triggering Saga
-&nbsp;  
-&nbsp;  
+## Triggering Saga
 
-##### The first step in the transaction queue is to create a hotel reservation. In order to do this, it is necessary to publish the BookHotel command on the MassTransit bus, which will trigger the Handler and the Saga State machine.
+The first step in the transaction queue is to create a hotel reservation. In order to do this, it is necessary to publish the BookHotel command on the MassTransit bus, which will trigger the Handler and the Saga State machine.
 ```csharp
 
 [HttpPost("bookTrip")]
@@ -355,37 +307,26 @@ public IActionResult BookTrip(BookingDetails bookingDetails)
     return Accepted();
 }
 ```
-&nbsp;  
-&nbsp;  
-### Wrapping up
-&nbsp;  
-&nbsp;  
+## Wrapping up
 
-##### Here, on a simple and realistic example, we have shown the application of the Saga pattern for resolving transactions with microservices.
-&nbsp;  
+Here, on a simple and realistic example, we have shown the application of the Saga pattern for resolving transactions with microservices.
 
-##### The Saga State Machine (orchestrator) is implemented, which manages transactions with the help of the RabbitMq queue.
-&nbsp;  
+The Saga State Machine (orchestrator) is implemented, which manages transactions with the help of the RabbitMq queue.
 
-##### All state changes are remembered in the database, which enables these transactions to be executed for a long time.
-&nbsp;  
+All state changes are remembered in the database, which enables these transactions to be executed for a long time.
 
-##### In the case of distributed transactions with microservice architecture, some of the actions may cause an error.
-&nbsp;  
+In the case of distributed transactions with microservice architecture, some of the actions may cause an error.
 
-##### Let's say the hotel and flight are booked, but the service that rents the car threw an error, in that case it is necessary to rollback the previous 2 actions.
-&nbsp;  
+Let's say the hotel and flight are booked, but the service that rents the car threw an error, in that case it is necessary to rollback the previous 2 actions.
 
-##### For this problem, compensatory transactions are implemented that will cancel the booked hotel and flight.
-&nbsp;  
+For this problem, compensatory transactions are implemented that will cancel the booked hotel and flight.
 
-##### That's one of the things you should look at next.
-&nbsp;  
+That's one of the things you should look at next.
 
-##### The complete code written in .NET 8 can be found in the [following repository](https://github.com/StefanTheCode/SagaPatternDemo/tree/main).
+The complete code written in .NET 8 can be found in the [following repository](https://github.com/StefanTheCode/SagaPatternDemo/tree/main).
 
-&nbsp;  
-
-##### That's all from me today.
+That's all from me today.
 
 <!--END-->
+
+

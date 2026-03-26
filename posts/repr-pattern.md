@@ -3,100 +3,75 @@ title: "REPR Pattern - For C# developers"
 subtitle: "The Request, Endpoint, Response (REPR) pattern is a modern architectural approach often used in web development to design robust, scalable, and maintainable APIs..."
 date: "September 2 2024"
 category: "APIs"
+readTime: "Read Time: 6 minutes"
+meta_description: "The Request, Endpoint, Response (REPR) pattern is a modern architectural approach often used in web development to design robust, scalable, and maintainable ..."
 ---
 
-&nbsp;  
-##### **Many thanks to the sponsors who make it possible for this newsletter to be free for readers.**
-&nbsp;  
-##### •  Thanks to the VS Code extension by Postman, you can now test your API directly within your code editor.
-
-Explore it [here](https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode).
-&nbsp;  
-&nbsp;  
-
 <!--START-->
-&nbsp;  
-&nbsp;  
-### Background
-&nbsp;  
-&nbsp;  
 
-##### Controllers in .NET projects have never been the best solution for exposing the endpoints of your API.
-&nbsp;  
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-##### Why?
-&nbsp;  
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">•  Thanks to the VS Code extension by Postman, you can now test your API directly within your code editor.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Explore it <a href="https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
-##### Controllers become bloated very quickly.
-&nbsp;  
+<p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+</p>
+</div>
 
-##### The reason for this is that you end up with many controllers that have disparate methods that are not cohesive.
-&nbsp;  
 
-##### Today I will explain to you a great solution to this, in the form of the **REPR design pattern**.
-&nbsp;  
+## Background
 
-##### We will go through:
-&nbsp;  
+Controllers in .NET projects have never been the best solution for exposing the endpoints of your API.
 
-##### [1. What is the REPR design pattern](#what-is-the-repr-design-pattern)
-##### [2. Replacement of the controller with REPR pattern](#replacement-of-the-controller-with-repr-pattern)
-##### [3. REPR pattern with FastEndpoints](#repr-pattern-with-fastendpoints)
-##### [4. Cons](#cons-of-using-repr-pattern)
-##### [5. Where to use it?](#where-to-use-it)
-##### [6. Conclusion](#conclusion)
-&nbsp;  
+Why?
 
-##### But did you know that there is something better that is also easier to implement?
-&nbsp;  
+Controllers become bloated very quickly.
 
-##### Have you heard of Refit?
-&nbsp;  
+The reason for this is that you end up with many controllers that have disparate methods that are not cohesive.
 
-##### Let's see what it's all about.
+Today I will explain to you a great solution to this, in the form of the **REPR design pattern**.
 
-&nbsp;  
-&nbsp;  
-### What is the REPR design pattern? 
-&nbsp;  
-&nbsp;  
+We will go through:
 
-##### The Request, Endpoint, Response (REPR) pattern is a modern architectural approach often used in web development to design robust, scalable, and maintainable APIs.
-&nbsp;  
+[1. What is the REPR design pattern](#what-is-the-repr-design-pattern)
+[2. Replacement of the controller with REPR pattern](#replacement-of-the-controller-with-repr-pattern)
+[3. REPR pattern with FastEndpoints](#repr-pattern-with-fastendpoints)
+[4. Cons](#cons-of-using-repr-pattern)
+[5. Where to use it?](#where-to-use-it)
+[6. Conclusion](#conclusion)
 
-##### This pattern emphasizes **the clear separation of concerns between handling requests**, defining endpoints, and structuring responses.
-&nbsp;  
+But did you know that there is something better that is also easier to implement?
 
-##### In .NET 8, implementing the REPR pattern allows developers to create cleaner codebases, enhance API performance, and improve user experience.
-&nbsp;  
+Have you heard of [Refit](https://thecodeman.net/posts/refit-the-dotnet-rest-api-you-should-know-about)?
 
-##### What is the REPR Pattern in practice?
-&nbsp;  
+Let's see what it's all about.
 
-##### The REPR pattern breaks down API interaction into three distinct parts:
-&nbsp;  
+## What is the REPR design pattern? 
 
-##### **1. Request:** The client's input data or action that initiates a process.
-&nbsp;  
+The Request, Endpoint, Response (REPR) pattern is a modern architectural approach often used in web development to design robust, scalable, and maintainable APIs.
 
-##### **2. Endpoint:** The server-side function or method that processes the request.
-&nbsp;  
+This pattern emphasizes **the clear separation of concerns between handling requests**, defining endpoints, and structuring responses.
 
-##### **3. Response:** The output or result returned to the client after processing the request.
-&nbsp;  
+In .NET 8, implementing the REPR pattern allows developers to create cleaner codebases, enhance API performance, and improve user experience.
 
-##### By structuring APIs this way, each component is specialized and can be modified independently, making the system easier to maintain and evolve.
-&nbsp;  
+What is the REPR Pattern in practice?
 
-&nbsp;  
-&nbsp;  
-### Replacement of the controller with REPR pattern
-&nbsp;  
-&nbsp;  
+The REPR pattern breaks down API interaction into three distinct parts:
 
-##### Let's see a simple example with a User controller that has one method/endpoint to create a new user.
-&nbsp;  
-##### If you were to use controllers, it would look like this:
+**1. Request:** The client's input data or action that initiates a process.
+
+**2. Endpoint:** The server-side function or method that processes the request.
+
+**3. Response:** The output or result returned to the client after processing the request.
+
+By structuring APIs this way, each component is specialized and can be modified independently, making the system easier to maintain and evolve.
+
+## Replacement of the controller with REPR pattern
+
+Let's see a simple example with a User controller that has one method/endpoint to create a new user.
+If you were to use controllers, it would look like this:
 
 ```csharp
 
@@ -127,19 +102,15 @@ public class UsersController : ControllerBase
 
 ```
 
-##### This controller structure is typical in many .NET applications and serves as a standard for managing RESTful API endpoints.
-&nbsp;  
+This controller structure is typical in many .NET applications and serves as a standard for managing RESTful API endpoints.
 
-##### However, as I pointed out earlier, adopting patterns like REPR can further enhance the organization, scalability, and maintainability of your application.
-&nbsp;  
+However, as I pointed out earlier, adopting patterns like REPR can further enhance the organization, scalability, and maintainability of your application.
 
-##### Let’s explore how to implement the REPR pattern in a .NET 8 application step-by-step.
-&nbsp;  
+Let’s explore how to implement the REPR pattern in a .NET 8 application step-by-step.
 
-##### ** 1. Define the Request**
-&nbsp;  
+1. Define the Request
 
-##### The request object represents the data sent from the client to the server. It typically contains all the necessary information for the server to process the request, such as parameters, headers, and body content.
+The request object represents the data sent from the client to the server. It typically contains all the necessary information for the server to process the request, such as parameters, headers, and body content.
 
 ```csharp
 
@@ -151,15 +122,12 @@ public class CreateUserRequest
 }
 
 ```
-&nbsp;  
 
-##### Here, the CreateUserRequest class encapsulates the data required to create a new user.
-&nbsp;  
+Here, the CreateUserRequest class encapsulates the data required to create a new user.
 
-##### **2. Create the Endpoint**
-&nbsp;  
+2. Create the Endpoint
 
-##### The endpoint is a server-side method or function that handles the incoming request. It contains the logic to process the request data, interact with services or databases, and prepare the response.
+The endpoint is a server-side method or function that handles the incoming request. It contains the logic to process the request data, interact with services or databases, and prepare the response.
 
 ```csharp
 
@@ -180,10 +148,9 @@ public class CreateUserController : ControllerBase
 
 ```
 
-##### **3. Design the Response**
-&nbsp;  
+3. Design the Response
 
-##### The response object defines the structure of the data sent back to the client after the request has been processed. It provides feedback on the action, such as success or failure, along with any relevant data or error messages.
+The response object defines the structure of the data sent back to the client after the request has been processed. It provides feedback on the action, such as success or failure, along with any relevant data or error messages.
 
 ```csharp
 
@@ -198,15 +165,12 @@ public class ApiResponse<T>
 }
 
 ```
-&nbsp;  
 
-##### This ApiResponse<T> class is a generic response object that can handle various data types (T) and provide standardized success and error messages.
-&nbsp;  
+This ApiResponse<T> class is a generic response object that can handle various data types (T) and provide standardized success and error messages.
 
-##### **4. Integrate the REPR Components**
-&nbsp;  
+4. Integrate the REPR Components
 
-##### Combining these components ensures a seamless flow from request to response. The endpoint processes the request, and based on the logic, it generates a response using the defined response object.
+Combining these components ensures a seamless flow from request to response. The endpoint processes the request, and based on the logic, it generates a response using the defined response object.
 
 ```csharp
 
@@ -234,28 +198,19 @@ public class CreateUserController : ControllerBase
 
 ```
 
-&nbsp;  
+This complete endpoint demonstrates how the REPR pattern is fully implemented:
 
-##### This complete endpoint demonstrates how the REPR pattern is fully implemented:
-&nbsp;  
+- It receives a CreateUserRequest.
+- Validates the request data.
+- Uses a service to process the creation.
+- Returns a standardized response using the ApiResponse class.
 
-##### - It receives a CreateUserRequest.
-##### - Validates the request data.
-##### - Uses a service to process the creation.
-##### - Returns a standardized response using the ApiResponse class.
+## REPR pattern with FastEndpoints
+[FastEndpoints](https://fast-endpoints.com/) is a library for .NET that facilitates the use of the REPR pattern by providing a framework to define APIs in a more streamlined way compared to traditional ASP.NET Core controllers.
 
-&nbsp;  
-&nbsp;  
-### REPR pattern with FastEndpoints
-&nbsp;  
-&nbsp;  
-##### [FastEndpoints](https://fast-endpoints.com/) is a library for .NET that facilitates the use of the REPR pattern by providing a framework to define APIs in a more streamlined way compared to traditional ASP.NET Core controllers.
-&nbsp;  
+It promotes a minimalistic approach to defining endpoints and handling requests and responses.
 
-##### It promotes a minimalistic approach to defining endpoints and handling requests and responses.
-&nbsp;  
-
-##### It fits perfectly for the implementation of the REPR pattern, and we will see that now:
+It fits perfectly for the implementation of the REPR pattern, and we will see that now:
 
 ```csharp
 
@@ -297,49 +252,35 @@ public class CreateUserEndpoint : Endpoint<CreateUserRequest, CreateUserResponse
 }
 
 ```
-&nbsp;  
-##### Explanation:
-&nbsp;  
+Explanation:
 
-##### **Endpoint Configuration:**
-&nbsp;  
+Endpoint Configuration:
 
-##### ***- Routes("/api/users/create"):*** Defines the endpoint's route.
-##### ***- AllowAnonymous():*** Allows the endpoint to be accessed without authentication, suitable for user registration or creation scenarios.
-&nbsp;  
+***- Routes("/api/users/create"):*** Defines the endpoint's route.
+***- AllowAnonymous():*** Allows the endpoint to be accessed without authentication, suitable for user registration or creation scenarios.
 
-##### **Request Handling:**
-&nbsp;  
+Request Handling:
 
-##### The HandleAsync method processes the incoming CreateUserRequest.
-##### It includes basic validation to ensure that all required fields are provided. If validation fails, it returns a response indicating the error.
-&nbsp;  
+The HandleAsync method processes the incoming CreateUserRequest.
+It includes basic validation to ensure that all required fields are provided. If validation fails, it returns a response indicating the error.
 
-##### **Benefits of Using FastEndpoints with the REPR Pattern**
-&nbsp;  
+Benefits of Using FastEndpoints with the REPR Pattern
 
-##### **1. Reduced Boilerplate:** FastEndpoints minimizes the amount of boilerplate code compared to traditional controllers, focusing more on the core business logic.
-&nbsp;  
+**1. Reduced Boilerplate:** FastEndpoints minimizes the amount of boilerplate code compared to traditional controllers, focusing more on the core business logic.
 
-##### **2. Clear Separation of Concerns:** By following the REPR pattern, each part of the process (request handling, endpoint logic, response generation) is distinct, making the code more maintainable and easier to understand.
-&nbsp;  
+**2. Clear Separation of Concerns:** By following the REPR pattern, each part of the process (request handling, endpoint logic, response generation) is distinct, making the code more maintainable and easier to understand.
 
-##### **3. Scalability:** This modular approach makes it easier to scale your application. New endpoints can be added without affecting existing ones, and changes to business logic are isolated to specific endpoints.
-&nbsp;  
+**3. Scalability:** This modular approach makes it easier to scale your application. New endpoints can be added without affecting existing ones, and changes to business logic are isolated to specific endpoints.
 
-##### **4. Testability:** With a clear separation of concerns, each component of the REPR pattern (Request, Endpoint, Response) can be individually tested, ensuring a more reliable and maintainable codebase.
+**4. Testability:** With a clear separation of concerns, each component of the REPR pattern (Request, Endpoint, Response) can be individually tested, ensuring a more reliable and maintainable codebase.
 
-&nbsp;  
-&nbsp;  
-### Cons of using REPR Pattern
-&nbsp;  
-&nbsp;  
+## Cons of using REPR Pattern
 
-##### Nothing in this world is perfect, and neither is REPR.
+Nothing in this world is perfect, and neither is REPR.
 
-##### I personally encountered 2 problems, for which of course there is a solution:
+I personally encountered 2 problems, for which of course there is a solution:
 
-##### **1. Swagger problem**
+1. [Swagger](https://thecodeman.net/posts/3-tips-to-elevate-swagger-ui) problem
 
 Every Endpoint, and consequently each Controller, will be displayed individually in the Swagger documentation. Thankfully, there's a way to manage this. By utilizing Tags in the SwaggerOperation attribute, we can organize them into groups. Below is a code snippet demonstrating how to do this:
 
@@ -351,47 +292,31 @@ Every Endpoint, and consequently each Controller, will be displayed individually
 
 ```
 
-&nbsp;  
+This will group all the endpoints with same tag together in Swagger document. 
 
-##### This will group all the endpoints with same tag together in Swagger document. 
-&nbsp;  
+2. Developers can add aditional ActionMethod
 
-##### 2. Developers can add aditional ActionMethod
-&nbsp;  
+Solution: Write [Architecture tests](https://thecodeman.net/posts/use-architecture-tests-in-your-projects).
+## Where to use it?
 
-##### Solution: Write [Architecture tests](https://thecodeman.net/posts/use-architecture-tests-in-your-projects).
-&nbsp;  
-&nbsp;
-### Where to use it?
-&nbsp;  
-&nbsp;  
+The REPR pattern is commonly applied in scenarios like **[CQRS](https://thecodeman.net/posts/how-to-implement-cqrs-without-mediatr)**, where distinct endpoints are designated for commands and queries, ensuring clear separation of responsibilities.
+Another example is the **vertical slice architecture**, where the application is organized into distinct segments or slices, each tailored to specific functionality and use cases, promoting modularity and focus within the codebase.
+## Wrapping Up
 
-##### The REPR pattern is commonly applied in scenarios like **CQRS**, where distinct endpoints are designated for commands and queries, ensuring clear separation of responsibilities.
-&nbsp;  
-##### Another example is the **vertical slice architecture**, where the application is organized into distinct segments or slices, each tailored to specific functionality and use cases, promoting modularity and focus within the codebase.
-&nbsp;  
-&nbsp;  
-### Conclusion
-&nbsp;  
-&nbsp;  
+The Request, Endpoint, Response (REPR) pattern is a powerful approach for building APIs that emphasizes modularity, maintainability, and clarity.
 
-##### The Request, Endpoint, Response (REPR) pattern is a powerful approach for building APIs that emphasizes modularity, maintainability, and clarity.
-&nbsp;  
+By separating each part of the request-handling process into distinct components: request, endpoint, and response - the REPR pattern makes it easier to develop, test, and maintain complex applications.
 
-##### By separating each part of the request-handling process into distinct components: request, endpoint, and response - the REPR pattern makes it easier to develop, test, and maintain complex applications.
-&nbsp;  
+It's easy to replace controllers with the REPR pattern.
 
-##### It's easy to replace controllers with the REPR pattern.
-&nbsp;  
+From my experience, the advice is to use **FastEndpoints** considering the performance it offers compared to all other solutions.
 
-##### From my experience, the advice is to use **FastEndpoints** considering the performance it offers compared to all other solutions.
-&nbsp;  
+The problems you may encounter listed above can be easily solved.
 
-##### The problems you may encounter listed above can be easily solved.
-&nbsp;  
+Use pattern in Vertical Slice Architecture but also in all other architectures, if you use CQRS for example.
 
-##### Use pattern in Vertical Slice Architecture but also in all other architectures, if you use CQRS for example.
-&nbsp;  
-
-##### That's all from me for today. Make a coffee and try REPR.
+That's all from me for today. Make a coffee and try REPR.
 <!--END-->
+
+
+
