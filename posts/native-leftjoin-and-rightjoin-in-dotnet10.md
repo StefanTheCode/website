@@ -34,7 +34,6 @@ In this article:
 Let’s remind ourselves what EF Core used to require for a left join:
 
 ```csharp
-
 var query =
     from a in A
     join b in B on a.Id equals b.AId into g
@@ -53,7 +52,6 @@ This syntax works, but:
 
 You now have:
 ```csharp
-
 LeftJoin()
 RightJoin()
 ```
@@ -73,7 +71,6 @@ This is a real scenario from e-commerce, logistics, and supply-chain systems.
 Entities:
 
 ```csharp
-
 public class Order
 {
     public Guid Id          { get; set; }
@@ -92,7 +89,6 @@ EF Core 10 LeftJoin Query
 We first compute a “latest shipment per order”:  
 
 ```csharp
-
 var latestShipments = db.Shipments
     .GroupBy(s => s.OrderId)
     .Select(g => new
@@ -105,7 +101,6 @@ var latestShipments = db.Shipments
 Then we join orders with (optional) shipment info:
  
 ```csharp
-
 var query = db.Orders
     .LeftJoin(
         latestShipments,
@@ -141,7 +136,6 @@ This is extremely common in:
 Entities:
 
 ```csharp
-
 public class Workstation
 {
     public int Id          { get; set; }
@@ -159,7 +153,6 @@ public class Employee
 EF Core 10 RightJoin Query
 
 ```csharp
-
 var query = db.Employees
     .RightJoin(
         db.Workstations,
@@ -186,7 +179,6 @@ Why this example matters
 If you’re hoping for a new C# keyword like:
 
 ```csharp
-
 from p in Products
 left join r in Reviews on p.Id equals r.ProductId
 select ...
@@ -199,7 +191,6 @@ So you effectively have two options:
 This is the “happy path” for EF Core 10 and the one the team clearly optimized for:
 
 ```csharp
-
 var query = db.Orders
     .LeftJoin(
         db.Shipments,
@@ -215,7 +206,6 @@ This gives you a clear intention and first-class translation to SQL LEFT JOIN / 
 You can technically wrap a method-based join inside a query expression:
 
 ```csharp
-
 var query =
     from x in db.Orders.LeftJoin(
         db.Shipments,
@@ -244,7 +234,6 @@ By definition:
 • RightJoin → the left side is nullable.
 Make that explicit in your projections and avoid accidental NullReferenceExceptions:
 ```csharp
-
 var result = db.Orders
     .LeftJoin(
         latestShipments,
@@ -271,7 +260,6 @@ Prefer projecting **exactly what you need**:
 • Faster queries and less memory pressure
 
 ```csharp
-
 select new OrderSummaryDto
 {
     Id           = o.Id,

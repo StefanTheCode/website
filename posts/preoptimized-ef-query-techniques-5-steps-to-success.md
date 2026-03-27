@@ -25,7 +25,6 @@ Let's dive in...
 It is about optimizing data retrieval by selecting only the specific fields required for a particular operation, rather than fetching entire entity objects. This approach can significantly improve the performance of your application.
 Let's see the example:
 ```csharp
-
 var employeeList = context.Employees
         .Select(e => new EmployeeDto
         {
@@ -50,7 +49,6 @@ It is a common performance issue in database operations, particularly with Objec
 It occurs when your application makes one query to retrieve a set of objects, and then additional queries for each object to retrieve related data. This can lead to a significant performance bottleneck, especially when dealing with a large number of objects.
 Let' take a look on the example:
 ```csharp
-
 // Retrieve all blogs - 1 query
 var blogs = context.Blogs.ToList();
 
@@ -68,7 +66,6 @@ foreach (var blog in blogs)
 
 Let' see how to fix this:
 ```csharp
-
 // Retrieve all blogs and their posts in a single query using eager loading
 var blogs = context.Blogs.Include(b => b.Posts).ToList();
 
@@ -96,7 +93,6 @@ The code is more straightforward and easier to maintain as it explicitly states 
 Using AsNoTracking in Entity Framework Core is a performance optimization technique particularly useful in scenarios where you are **only reading data from the database and do not intend to update or delete it**. This approach can significantly enhance the performance of your queries, especially in large-scale or read-heavy applications.
 Let's see the example:
 ```csharp
-
 var products = context.Products.AsNoTracking().ToList();
 // Use products for read-only purposes
 ```
@@ -117,7 +113,6 @@ Ideal for scenarios like API requests where each request is independent, and you
 A cartesian explosion refers to a situation where a query unintentionally produces a disproportionately large number of records due to the way joins are handled, significantly impacting the performance and efficiency of the query.
 Suppose we want to list all books along with their authors, but we mistakenly create a query that leads to a cartesian explosion:
 ```csharp
-
 // Incorrect query leading to cartesian explosion
 var query = from a in context.Authors
             from b in context.Books
@@ -129,7 +124,6 @@ var results = query.ToList(); // This will produce a cartesian product
 In this query, we're incorrectly combining every author with every book, regardless of whether the book was written by that author.
 The corrected version involves properly joining the Authors and Books tables based on the AuthorId:
 ```csharp
-
 // Correct query using a proper join
 var query = from a in context.Authors
             join b in context.Books on a.AuthorId equals b.AuthorId
@@ -153,7 +147,6 @@ By default, EF Core tries to retrieve all related data in a single SQL query usi
 Consider an example where you have Author and Book entities, and you want to retrieve authors with their books.
 A typical query without using AsSplitQuery():
 ```csharp
-
 var authors = context.Authors
                 .Include(a => a.Books)
                 .ToList();
@@ -162,7 +155,6 @@ var authors = context.Authors
 This query retrieves all authors and their books in a single SQL query.
 Using AsSplitQuery() to optimize the above query:
 ```csharp
-
 var authors = context.Authors
                 .Include(a => a.Books)
                 .AsSplitQuery()

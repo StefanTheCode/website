@@ -61,7 +61,6 @@ It provides a way to define the behavior of a system as a state machine, and it 
 I use EF DbContext with SQL Server in the background (any other provider can be used).
 
 ```csharp
-
 public class BookingDbContext(DbContextOptions<BookingDbContext> options) : DbContext(options)
 {
     public DbSet<Traveler> Travelers { get; set; }
@@ -77,7 +76,6 @@ public class BookingDbContext(DbContextOptions<BookingDbContext> options) : DbCo
 Where Traveler is an entity repesenting a person who are booking the trip:
 
 ```csharp
-
 public class Traveler
 {
     public Guid Id { get; set; }
@@ -106,7 +104,6 @@ Key Concepts of Saga State Machine
 ### State Machine:
 
 ```csharp
-
 public class BookingSaga : MassTransitStateMachine<BookingSagaData>
 {
     public State HotelBooking { get; set; }
@@ -164,14 +161,12 @@ public class BookingSaga : MassTransitStateMachine<BookingSagaData>
             .Finalize());
     }
 }
-
 ```
 ### Commands and Events:
 
 **Commands** are messages that represent instructions or actions that need to be performed. They are typically sent by one service to another, directing the receiving service to perform a specific task. Commands are imperative, meaning they tell the recipient exactly what to do.
 
 ```csharp
-
 public record BookHotel(string Email, string HotelName, string FlightCode, string CarPlateNumber);
 
 public record BookFlight(Guid TravelerId, string Email, string FlightCode, string CarPlateNumber);
@@ -182,7 +177,6 @@ public record RentCar(Guid TravelerId, string Email, string CarPlateNumber);
 **Events** are messages that represent something that has happened within the system. They are declarative, meaning they simply announce that a certain condition or state change has occurred. Events are used to signal other parts of the system that something significant has happened.
 
 ```csharp
-
 public class HotelBooked
 {
     public Guid TravelerId { get; set; }
@@ -227,7 +221,6 @@ There are 4 command handlers:
 
 Here I will show you handler for hotel booking:
 ```csharp
-
 public class BookHotelHandler(BookingDbContext _dbContext) : IConsumer<BookHotel>
 {
     public async Task Consume(ConsumeContext<BookHotel> context)
@@ -266,7 +259,6 @@ Endpoint names are formatted in kebab-case for consistency, and an in-memory out
 
 The overall setup ensures a robust and consistent messaging and saga orchestration infrastructure, enabling reliable handling of complex workflows and state management in a distributed system.
 ```csharp
-
 public class BookHotelHandler(BookingDbContext _dbContext) : IConsumer<BookHotel>
 {
     public async Task Consume(ConsumeContext<BookHotel> context)
@@ -298,7 +290,6 @@ public class BookHotelHandler(BookingDbContext _dbContext) : IConsumer<BookHotel
 
 The first step in the transaction queue is to create a hotel reservation. In order to do this, it is necessary to publish the BookHotel command on the MassTransit bus, which will trigger the Handler and the Saga State machine.
 ```csharp
-
 [HttpPost("bookTrip")]
 public IActionResult BookTrip(BookingDetails bookingDetails)
 {

@@ -31,7 +31,6 @@ Let's take a look deeply!
 ## Simple implementation
 This example shows a simple way to use Parallel LINQ (PLINQ) for queries where the order of the results doesn't matter:
 ```csharp
-
 // Create a large array of numbers
 int[] numbers = Enumerable.Range(1, 1000000).ToArray();
 
@@ -58,7 +57,6 @@ For example, you can limit a PLINQ query to use just two processors.
 Also, if your PLINQ query does a lot of work that's not just about computing (like reading and writing files), it might actually work better if you let it use more processors than your computer has. This can speed things up even more.
 For instance, the code below restricts the query to just two processors.
 ```csharp
-
 var longNames = names.AsParallel()
     .WithDegreeOfParallelism(2)
     .Where(name =&gt; name.Length &gt; 5)
@@ -72,7 +70,6 @@ If you need to keep your results in a specific order or if you're handling them 
 But if you don't care about the order of results and can process them in parallel, use the **ForAll method** . This method is faster because it skips the step of merging everything into one thread at the end.
 For example, if you're adding items to a collection in a PLINQ query, **System.Collections.Concurrent.ConcurrentBag<T&gt;** is a good choice because it's designed for multiple threads to add items at the same time without removing any. This makes it well-suited for parallel processing scenarios.
 ```csharp
-
 // Example data source: an array of file paths
 string[] filePaths = { /* file paths go here */ };
 

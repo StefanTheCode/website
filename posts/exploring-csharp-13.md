@@ -36,7 +36,6 @@ With C# 13, params can now be applied to any collection type, such as List<T>, S
 Example in C# 13:
 
 ```csharp
-
 public void PrintNumbers(params List<int> numbers)
 {
     foreach (var number in numbers)
@@ -47,11 +46,9 @@ public void PrintNumbers(params List<int> numbers)
 
 // Usage
 PrintNumbers(new List<int> { 1, 2, 3 });
-
 ```
 How It Was Done in [C# 12](https://thecodeman.net/posts/5-new-cool-features-in-csharp):
 ```csharp
-
 public void PrintNumbers(params int[] numbers)
 {
     foreach (var number in numbers)
@@ -62,7 +59,6 @@ public void PrintNumbers(params int[] numbers)
 
 // Usage
 PrintNumbers(1, 2, 3); // Could only use arrays directly.
-
 ```
 Why It’s Useful:
 The flexibility of params collections allows developers to use more versatile and modern collection types, avoiding unnecessary array conversions and simplifying APIs.
@@ -76,18 +72,15 @@ C# 13 introduces the **System.Threading.Lock** type, a streamlined way to synchr
 Example in C# 13:
 
 ```csharp
-
 Lock myLock = new Lock();
 using (myLock.EnterScope())
 {
     // Critical section
     Console.WriteLine("Thread-safe code here.");
 }
-
 ```
 How It Was Done in C# 12:
 ```csharp
-
 private static readonly object _lock = new object();
 
 void ThreadSafeMethod()
@@ -98,7 +91,6 @@ void ThreadSafeMethod()
         Console.WriteLine("Thread-safe code here.");
     }
 }
-
 ```
 Why It’s Useful:
 The new Lock type reduces boilerplate code and minimizes the risk of forgetting to release the lock, preventing deadlocks and improving code clarity.
@@ -112,16 +104,12 @@ C# 13 introduces the escape sequence \e to represent the ESCAPE character. This 
 Example in C# 13:
 
 ```csharp
-
 Console.WriteLine("\e[1mThis is bold text\e[0m");
-
 ```
 How It Was Done in C# 12:
 In previous versions, developers had to use hardcoded values or char codes:
 ```csharp
-
 Console.WriteLine("\x1b[1mThis is bold text\x1b[0m");
-
 ```
 Why It’s Useful:
 The \e escape sequence improves readability and reduces errors when working with ANSI codes, making terminal-based development more accessible.
@@ -135,18 +123,14 @@ C# 13 enhances object initializers by allowing implicit **"from the end" index o
 Example in C# 13:
 
 ```csharp
-
 var numbers = new int[5] { 1, 2, 3, 4, 5 };
 var initializer = new List<int> { [^1] = 10 }; // Sets the last element to 10
-
 ```
 How It Was Done in C# 12:
 ```csharp
-
 var numbers = new int[5] { 1, 2, 3, 4, 5 };
 var initializer = new List<int> { 1, 2, 3, 4, 5 };
 initializer[initializer.Count - 1] = 10; // Manually set the last element.
-
 ```
 Why It’s Useful:
 Implicit indexing makes code cleaner and less error-prone, reducing the likelihood of off-by-one mistakes in array and list manipulation.
@@ -160,18 +144,15 @@ C# 13 allows ref locals and unsafe code in async methods and iterators. Previous
 Example in C# 13:
 
 ```csharp
-
 public async Task ProcessDataAsync()
 {
     Span<byte> buffer = stackalloc byte[1024]; // Unsafe context
     await Task.Delay(1000);
 }
-
 ```
 How It Was Done in C# 12:
 This was not supported directly. Developers had to split logic into separate synchronous methods:
 ```csharp
-
 void ProcessData()
 {
     Span<byte> buffer = stackalloc byte[1024]; // Unsafe context
@@ -182,7 +163,6 @@ public async Task ProcessDataAsync()
 {
     await Task.Run(() => ProcessData());
 }
-
 ```
 Why It’s Useful:
 This feature streamlines asynchronous programming by allowing low-level memory manipulation and unsafe code directly in async methods, improving performance and reducing code fragmentation.

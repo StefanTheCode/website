@@ -40,7 +40,6 @@ If you don’t validate input properly, your API becomes vulnerable to bugs, cra
 Bad Example (Before - Trusting Input):
 
 ```csharp
-
 app.MapPost("/users", async (UserDto user) =>
 {
     // Assuming user.Name and user.Email are always provided...
@@ -62,7 +61,6 @@ Problem:
 Better Example (After - Defensive API Design):
 
 ```csharp
-
 app.MapPost("/users", async (UserDto user) =>
 {
     if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Email))
@@ -100,12 +98,10 @@ And when you do, you’ll regret not planning for versions.
 Bad Example (Before - No Versioning):
 
 ```csharp
-
 app.MapGet("/products", () =>
 {
     // returns products
 });
-
 ```
 
 Problem:
@@ -115,7 +111,6 @@ When your response structure changes, older clients break immediately.
 Better Example (After - Versioned API):
 
 ```csharp
-
 app.MapGroup("/api/v1")
     .MapGet("/products", () =>
     {
@@ -149,7 +144,6 @@ HTTP status codes exist for a reason: communication.
 Bad Example (Before - Everything is OK):
 
 ```csharp
-
 return Results.Ok("User not found.");
 ```
 Problem:
@@ -158,7 +152,6 @@ Client sees 200. But the user doesn’t exist. Confusing! Now they have to parse
 
 Better Example (After - Correct Status Codes):
 ```csharp
-
 var user = await dbContext.Users.FindAsync(id);
 if (user is null)
     return Results.NotFound($"User with id {id} not found.");
@@ -191,7 +184,6 @@ Clients usually need a small slice of data, not your entire database schema.
 Bad Example (Before - Entity Dumping):
 
 ```csharp
-
 app.MapGet("/orders", async (DbContext db) =>
 {
     var orders = await db.Orders.ToListAsync();
@@ -206,7 +198,6 @@ Problem:
 Better Example (After - DTO Mapping):
 
 ```csharp
-
 app.MapGet("/orders", async (DbContext db) =>
 {
     var orders = await db.Orders
@@ -241,7 +232,6 @@ You need **one single plac**e to handle unexpected errors cleanly.
 Bad Example (Before - Scattered Try-Catch):
 
 ```csharp
-
 try
 {
     var user = await dbContext.Users.FindAsync(id);
@@ -261,7 +251,6 @@ Problem:
 Better Example (After - Global Exception Handling Middleware):
 
 ```csharp
-
 app.UseExceptionHandler(errorApp =>
 {
     errorApp.Run(async context =>
@@ -299,7 +288,6 @@ That said, if your project (or your team) already uses exceptions, the next best
 If you’re curious, here’s a super simple Result-style error handling:
 
 ```csharp
-
 public record Result<T>(bool IsSuccess, T? Value, string? ErrorMessage);
 
 app.MapGet("/users/{id}", async (Guid id, DbContext db) =>

@@ -38,7 +38,6 @@ Let's start...
 ## Configuring Response Compression
 The configuration of Response Compression is quite simple, it boils down to registering the middleware in DI:
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddResponseCompression();
@@ -50,12 +49,10 @@ app.UseResponseCompression();
 By default, this only works with the HTTP protocol.
 If you want to enable HTTPS, it is necessary to add a setting:
 ```csharp
-
 builder.Services.AddResponseCompression(options =>
 {
     options.EnableForHttps = true;
 });
-
 ```
 Note:
 
@@ -73,7 +70,6 @@ It's crucial to remember that adding a specific compression provider means **oth
 For example, if you specifically add only the Gzip compression provider, the system won't automatically include any other providers.
 Here's a scenario demonstrating the activation of response compression for HTTPS requests with both Brotli and Gzip compression providers:
 ```csharp
-
 builder.Services.AddResponseCompression(options =>
 {
     options.EnableForHttps = true;
@@ -90,16 +86,13 @@ The response compression middleware leverages this detail to select the appropri
 In the example application, requests featuring the **Accept-Encoding: mycustomcompression** header receive responses labeled with a Content-Encoding: mycustomcompression header.
 For such custom compression implementations to function effectively, the client should be capable of decompressing this unique encoding.
 ```csharp
-
 builder.Services.AddResponseCompression(options =>
 {
     options.Providers.Add<MyCompressionProvider>();
 });
-
 ```
 MyCompressionProvider implementation:
 ```csharp
-
 public class MyCompressionProvider : ICompressionProvider
 {
     public string EncodingName => "mufljuzcompression";
@@ -125,12 +118,10 @@ You can setup a 4 possible values:
 Example of setting the compression level:
 
 ```csharp
-
 builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 {
     options.Level = CompressionLevel.Fastest;
 })
-
 ```
 ## What we got?
 I tested on the default API project in .NET with the WeatherForecast minimal API on .NET 8.

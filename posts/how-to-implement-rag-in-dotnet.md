@@ -81,7 +81,6 @@ This embedding generator is essential for applications that require **text simil
 When integrated with **pgvector (PostgreSQL)** or other vector databases, it allows for efficient **semantic retrieval of relevant data** based on meaning rather than exact words. 
 
 ```csharp
-
 public class OllamaEmbeddingGenerator(Uri ollamaUrl, string modelId = "mistral") : IEmbeddingGenerator
 {
     private readonly HttpClient _httpClient = new();
@@ -116,28 +115,23 @@ public class OllamaEmbeddingGenerator(Uri ollamaUrl, string modelId = "mistral")
         return embeddingResponse.Embedding;
     }
 }
-
 ```
 IEmbeddingGenerator interface:
 
 ```csharp
-
 public interface IEmbeddingGenerator
 {
     Task<float[]> GenerateEmbeddingAsync(string text);
 }
-
 ```
 OllamaEmbeddingResponse:
 
 ```csharp
-
 public class OllamaEmbeddingResponse
 {
     [JsonPropertyName("embedding")]
     public float[] Embedding { get; set; } = [];
 }
-
 ```
 
 ## Create Vector Database with Neon
@@ -153,7 +147,6 @@ When retrieving data, it converts the query into an embedding and finds the top 
 This setup allows fast and scalable AI-powered search, leveraging Neon’s serverless PostgreSQL, which was set up in less than 30 seconds, ensuring high availability and automatic scaling without database management overhead. 
 
 ```csharp
-
 public class TextRepository(string connectionString, IEmbeddingGenerator embeddingGenerator)
 {
     private readonly string _connectionString = connectionString;
@@ -190,13 +183,11 @@ public class TextRepository(string connectionString, IEmbeddingGenerator embeddi
         return results.Any() ? results : new List<string> { "No relevant context found." };
     }
 }
-
 ```
 
 TextContext class:
 
 ```csharp
-
 public class TextContext
 {
     public int Id { get; set; }
@@ -220,7 +211,6 @@ When a user asks a question, RagService:
 5. Returns a structured response, including both the retrieved context and the AI-generated answer.
 
 ```csharp
-
 public class RagService(TextRepository retriever, Uri ollamaUrl, string modelId = "mistral")
 {
     private readonly TextRepository _textRepository = retriever;
@@ -285,7 +275,6 @@ public class RagService(TextRepository retriever, Uri ollamaUrl, string modelId 
         };
     }
 }
-
 ```
 ## Setup and Endpoints
 
@@ -296,7 +285,6 @@ It sets up **dependency injection**, configuring an IEmbeddingGenerator to gener
 The API provides two endpoints: **POST /add-text**, which generates embeddings and stores text for retrieval, and **GET /ask**, which retrieves the most relevant stored contexts, sends them to Ollama, and returns an AI-generated response only if relevant data is found. 
 
 ```csharp
-
 public class Program
 {
     public static void Main(string[] args)

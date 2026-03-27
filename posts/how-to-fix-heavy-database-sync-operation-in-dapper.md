@@ -60,7 +60,6 @@ Let’s dive into the structure.
 Here’s the table definition we use to model the orders and their related items. This structure is a common one found in many systems.
 
 ```sql
-
 CREATE TABLE Orders (
 Id INT PRIMARY KEY,
 Customer NVARCHAR(100),
@@ -85,7 +84,6 @@ Dapper Plus requires a primary key for operations like BulkUpdate, BulkMerge, an
 These are our strongly typed C# models for orders and order items.
 
 ```csharp
-
 public class Order
 {
     public int Id { get; set; }
@@ -111,7 +109,6 @@ public class OrderItem
 To simulate a real sync, we generate 500 orders with 20 items each (total 10,000 rows).
 
 ```csharp
-
 List<Order> GenerateOrders(int count)
 {
     var rng = new Random();
@@ -153,7 +150,6 @@ This creates the data we'll use for both [benchmarking](https://thecodeman.net/p
 Let’s look at what a naive Dapper implementation might look like:
 
 ```csharp
-
 public async Task SyncOrdersWithClassicDapperAsync(List<Order> orders)
 {
     foreach (var order in orders)
@@ -210,7 +206,6 @@ Time: ~20s
 ## The Dapper Plus Solution
 
 ```csharp
-
 public async Task SyncOrdersWithDapperPlusAsync(List<Order> orders)
 {
     DapperPlusManager.Entity<Order>().Table("Orders");
@@ -276,7 +271,6 @@ Dapper Plus is not just a faster Dapper - it’s a higher-level abstraction that
 Sometimes you don’t want to update the entire row - just one or two fields (like status flags or timestamps). Instead of updating all columns, you can tell Dapper Plus exactly which ones to include, reducing locking and improving write efficiency.
 
 ```csharp
-
 await connection.BulkUpdateAsync(orders, opts =>
     opts.ColumnInputExpression = x => new { x.Status });
 ```
@@ -286,7 +280,6 @@ await connection.BulkUpdateAsync(orders, opts =>
 When inserting or updating large numbers of rows, you may want to limit how many records are sent per round-trip to the database. This avoids timeouts or memory pressure in constrained environments.
 
 ```csharp
-
 await connection.BulkInsertAsync(orders, opts => opts.BatchSize = 500);
 ```
 
@@ -295,7 +288,6 @@ await connection.BulkInsertAsync(orders, opts => opts.BatchSize = 500);
 Need to track which entities are being processed? Dapper Plus gives you hooks like BeforeBulkAction and AfterBulkAction, so you can log or modify behavior dynamically.
 
 ```csharp
-
 DapperPlusManager.Entity<Order>().BeforeBulkAction = (e, t) =>
     Console.WriteLine($"{t} - {((Order)e).Id}");
 ```
@@ -305,7 +297,6 @@ DapperPlusManager.Entity<Order>().BeforeBulkAction = (e, t) =>
 If your table doesn’t use a single primary key but rather a combination of fields (e.g., TenantId + Code), Dapper Plus lets you configure composite keys so it knows how to identify rows during merge and delete operations.
 
 ```csharp
-
 DapperPlusManager.Entity<YourType>().Key(x => new { x.TenantId, x.Code });
 ```
 

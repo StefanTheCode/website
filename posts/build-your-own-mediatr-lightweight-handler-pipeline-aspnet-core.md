@@ -55,6 +55,7 @@ Start with tiny interfaces.
 
 ```csharp
 public delegate Task<TResponse> RequestHandlerDelegate<TResponse>();
+
 public interface IHandlerMiddleware<TRequest, TResponse>
 {
     Task<TResponse> Handle(
@@ -62,6 +63,7 @@ public interface IHandlerMiddleware<TRequest, TResponse>
         CancellationToken cancellationToken,
         RequestHandlerDelegate<TResponse> next);
 }
+
 public interface IHandlerPipeline<TRequest, TResponse>
 {
     IHandlerPipeline<TRequest, TResponse> UseMiddleware<TMiddleware>()
@@ -83,23 +85,28 @@ public sealed class HandlerPipeline<TRequest, TResponse> : IHandlerPipeline<TReq
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly List<Type> _middlewares = new();
+    
     private Func<TRequest, CancellationToken, Task<TResponse>>? _handler;
+
     public HandlerPipeline(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
     }
+    
     public IHandlerPipeline<TRequest, TResponse> UseMiddleware<TMiddleware>()
         where TMiddleware : IHandlerMiddleware<TRequest, TResponse>
     {
         _middlewares.Add(typeof(TMiddleware));
         return this;
     }
+    
     public IHandlerPipeline<TRequest, TResponse> Run(
         Func<TRequest, CancellationToken, Task<TResponse>> handler)
     {
         _handler = handler;
         return this;
     }
+    
     public Func<TRequest, CancellationToken, Task<TResponse>> Build()
     {
         if (_handler is null)
@@ -122,7 +129,6 @@ public sealed class HandlerPipeline<TRequest, TResponse> : IHandlerPipeline<TReq
     }
 }
 ```
-
 Why reverse order?
 
 Because middleware composition is like nested wrappers:
@@ -143,7 +149,6 @@ public interface IRequestValidator<in TRequest>
     Task<IReadOnlyCollection<string>> ValidateAsync(TRequest request, CancellationToken cancellationToken);
 }
 ```
-
 Then implement middleware that runs all validators for the current request type.
 
 ```csharp
@@ -151,10 +156,12 @@ public sealed class ValidatorMiddleware<TRequest, TResponse>
     : IHandlerMiddleware<TRequest, TResponse>
 {
     private readonly IEnumerable<IRequestValidator<TRequest>> _validators;
+    
     public ValidatorMiddleware(IEnumerable<IRequestValidator<TRequest>> validators)
     {
         _validators = validators;
     }
+    
     public async Task<TResponse> Handle(
         TRequest request,
         CancellationToken cancellationToken,
@@ -173,9 +180,11 @@ public sealed class ValidatorMiddleware<TRequest, TResponse>
                 throw new ValidationException(failures);
             }
         }
+
         return await next();
     }
 }
+
 public sealed class ValidationException : Exception
 {
     public ValidationException(IReadOnlyCollection<string> errors)
@@ -183,10 +192,10 @@ public sealed class ValidationException : Exception
     {
         Errors = errors;
     }
+
     public IReadOnlyCollection<string> Errors { get; }
 }
 ```
-
 This gives us behavior very close to MediatR pipeline validation, but fully under our control.
 
 ## Step 4: Add Another Middleware (Logging)
@@ -198,23 +207,27 @@ public sealed class LoggingMiddleware<TRequest, TResponse>
     : IHandlerMiddleware<TRequest, TResponse>
 {
     private readonly ILogger<LoggingMiddleware<TRequest, TResponse>> _logger;
+
     public LoggingMiddleware(ILogger<LoggingMiddleware<TRequest, TResponse>> logger)
     {
         _logger = logger;
     }
+
     public async Task<TResponse> Handle(
         TRequest request,
         CancellationToken cancellationToken,
         RequestHandlerDelegate<TResponse> next)
     {
         _logger.LogInformation("Handling {RequestType}", typeof(TRequest).Name);
+
         var response = await next();
+
         _logger.LogInformation("Handled {ResponseType}", typeof(TResponse).Name);
+
         return response;
     }
 }
 ```
-
 Now any request can share logging, validation, performance timers, retry logic, etc.
 
 ## Step 5: Wire It Up in DI
@@ -227,19 +240,19 @@ public static class DependencyInjectionExtensions
     public static IServiceCollection AddHandlerPipeline(this IServiceCollection services)
     {
         services.AddScoped(typeof(IHandlerPipeline<,>), typeof(HandlerPipeline<,>));
+
         services.AddScoped(typeof(ValidatorMiddleware<,>));
         services.AddScoped(typeof(LoggingMiddleware<,>));
+
         return services;
     }
 }
 ```
-
 In `Program.cs`:
 
 ```csharp
 builder.Services.AddHandlerPipeline();
 ```
-
 Simple and explicit.
 
 ## Step 6: Use It in a Real Handler Flow
@@ -248,6 +261,7 @@ Let us say we have a command + handler:
 
 ```csharp
 public sealed record CreateOrderCommand(Guid CustomerId, decimal Amount);
+
 public sealed class CreateOrderHandler
 {
     public Task<Guid> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
@@ -257,7 +271,6 @@ public sealed class CreateOrderHandler
     }
 }
 ```
-
 A validator:
 
 ```csharp
@@ -272,15 +285,16 @@ public sealed class CreateOrderValidator : IRequestValidator<CreateOrderCommand>
         {
             errors.Add("CustomerId is required.");
         }
+
         if (request.Amount <= 0)
         {
             errors.Add("Amount must be greater than 0.");
         }
+
         return Task.FromResult((IReadOnlyCollection<string>)errors);
     }
 }
 ```
-
 And call the pipeline:
 
 ```csharp
@@ -288,6 +302,7 @@ public sealed class OrderApplicationService
 {
     private readonly IHandlerPipeline<CreateOrderCommand, Guid> _pipeline;
     private readonly CreateOrderHandler _handler;
+
     public OrderApplicationService(
         IHandlerPipeline<CreateOrderCommand, Guid> pipeline,
         CreateOrderHandler handler)
@@ -295,6 +310,7 @@ public sealed class OrderApplicationService
         _pipeline = pipeline;
         _handler = handler;
     }
+
     public Task<Guid> Execute(CreateOrderCommand command, CancellationToken cancellationToken)
     {
         return _pipeline
@@ -306,7 +322,6 @@ public sealed class OrderApplicationService
     }
 }
 ```
-
 That is the full pattern:
 
 `UseMiddleware<T>() -> Run(handler) -> Build()`

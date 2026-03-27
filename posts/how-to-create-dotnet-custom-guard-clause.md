@@ -29,7 +29,6 @@ Let's take a look deeply!
 ## Without Custom Guard Clause
 Under normal circumstances, this would be a common piece of code you would see in an application.
 ```csharp
-
 public class Person
 {
     public string Name { get; private set; }
@@ -57,7 +56,6 @@ We will create a static class **Ensure**. I like to call it that, so that one ca
 Within it, we will add the first method that the class will check.
 This code will actually read in English:.
 ```csharp
-
 public static class Ensure
 {
     public static void NotNullOrEmpty(string? value,
@@ -76,7 +74,6 @@ If this is the case, the job and responsibility of throwing the exception is tak
 In this way, we have a clean and legibly written method.
 We can see that below:
 ```csharp
-
 public Person(string name)
 {
     Ensure.NotNullOrEmpty(name);
@@ -92,7 +89,6 @@ At runtime, this value will be read and assigned to the paramName attribute.
 This can be very useful in many situations, and we avoid hardcoding the parameter names and the potential error of writing the wrong parameter.
 Take a look here:
 ```csharp
-
 public static class Ensure
 {
     public static void NotNullOrEmpty(string? value, 

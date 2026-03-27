@@ -33,7 +33,6 @@ Let's see how to implement it properly.
 
 Under normal circumstances, this would be a common piece of code you would see in an application.
 ```csharp
-
 public sealed class Singleton
 {
     private static Singleton instance = null;
@@ -70,7 +69,6 @@ This also makes sure **that only one thread can create the instance**, because w
 By the time a second thread gets there, the first one will have already created the instance, so the check will fail.
 
 ```csharp
-
 public sealed class Singleton
 {
     private static Singleton instance = null;
@@ -108,7 +106,6 @@ Locking: If the instance is null, a lock is obtained.
 Second Check: Once inside the lock, a second check on the instance is performed. This is because another thread might have initialized the instance between the first check and obtaining the lock. If the instance is still null after this second check, it is created.
 
 ```csharp
-
 public sealed class Singleton
 {
     private static Singleton instance = null;
@@ -153,7 +150,6 @@ Here's how you can implement a Singleton pattern using Lazy<T>:
 You can implemented in this way:
 
 ```csharp
-
 public class Singleton
 {
     private static readonly Lazy<Singleton> instance = new Lazy<Singleton>(() => new Singleton());

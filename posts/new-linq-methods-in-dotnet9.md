@@ -33,7 +33,6 @@ The **CountBy** method simplifies counting occurrences of elements based on a ke
 **Example**: Let’s count the occurrences of first names in a list of people.
 
 ```csharp
-
 var people = new List<Person>
 {
     new Person("Steve", "Jobs"),
@@ -51,7 +50,6 @@ foreach (var entry in countByFirstName)
 // Output:
 // There are 2 people with the name Steve
 // There are 1 people with the name Elon
-
 ```
 
 Why It’s Useful:
@@ -64,7 +62,6 @@ Why It’s Useful:
 
 **Example**: Aggregate salaries by job title to compute the total salary for each role.
 ```csharp
-
 var employees = new List<Employee>
 {
     new Employee("Alice", "Developer", 70000),
@@ -87,7 +84,6 @@ foreach (var entry in salaryByRole)
 // Output:
 // Total salary for Developer: 150000
 // Total salary for Manager: 185000
-
 ```
 Why It’s Useful:
 1. Reduces intermediate groupings and simplifies aggregation logic.
@@ -98,7 +94,6 @@ Why It’s Useful:
 The **Index** method returns elements along with their indices, making it easier to iterate through collections when you need both the element and its position.
 **Example**: Iterate over a list of people, displaying their index and name.
 ```csharp
-
 var people = new List<Person>
 {
     new Person("Steve", "Jobs"),
@@ -115,7 +110,6 @@ foreach ((var index, var person) in people.Index())
 // Entry 0: Steve Jobs
 // Entry 1: Steve Carell
 // Entry 2: Elon Musk
-
 ```
 Why It’s Useful:
 1. Provides a more intuitive alternative to Select((element, index) => ...).

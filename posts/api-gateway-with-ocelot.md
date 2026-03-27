@@ -65,7 +65,6 @@ There are 2 different .NET Web Api projects that represent microservices: **Prod
 Let's create controllers in each of the microservices with some default endpoints.
 Products Microservice - I will create a **ProductsController** with only one endpoint that returns a list of products - in this case, it will be a hardcoded list of 3 products:
 ```csharp
-
 [ApiController]
 [Route("/api/[controller]")]
 public class ProductsController : ControllerBase
@@ -90,12 +89,10 @@ public class ProductsController : ControllerBase
         return Products;
     }
 }
-
 ```
 UserMicroservice - In a similar way, I will create the **UsersController**:
 
 ```csharp
-
 [ApiController]
 [Route("/api/[controller]")]
 public class UsersController : ControllerBase
@@ -125,7 +122,6 @@ We have microservices ready, we can focus on creating the Gateway.
 Before everything, we need to install an Ocelot package from NuGet Package Manager in Gateway project.
 The first thing to do to set up the Ocelot API Gateway in .NET is to create an **ocelot.json configuration file**. 
 ```csharp
-
 {
     "GlobalConfiguration": {},
     "Routes": [
@@ -140,7 +136,6 @@ This file serves as the **setup instructions for the API Gateway**, consisting o
 In this file, we will define the routes of our microservices.
 
 ```csharp
-
 {
     "Routes": [
         {
@@ -191,7 +186,6 @@ This is the base URL where the Ocelot API Gateway is hosted. All incoming reques
 What next?
 Let's register Ocelot in DI and tell it to use the ocelot.json file we created.
 ```csharp
-
 builder.Configuration.AddJsonFile("ocelot.json",
                           optional: false,
                           reloadOnChange: true);

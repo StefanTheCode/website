@@ -129,7 +129,6 @@ We’ll build:
 First, install the official .NET client:
 
 ```csharp
-
 dotnet add package NATS.Client.Core
 ```
 
@@ -143,7 +142,6 @@ What’s happening here?
 You generally want **one connection per service**, reused everywhere (like HttpClient)
 
 ```csharp
-
 public static class NatsConnectionFactory
 {
   public static NatsConnection Create()
@@ -175,7 +173,6 @@ Let’s define simple message types for:
 • irrigation commands.
 
 ```csharp
-
 public record SoilMoistureReading(
   string SensorId,
   string FieldId,
@@ -202,7 +199,6 @@ Explanation
 Now, let’s simulate a sensor sending readings every 500ms.
 
 ```csharp
-
 public sealed class SoilSensorSimulator
 {
   private NatsConnection _connection;
@@ -252,7 +248,6 @@ Explanation
 Now let’s build a consumer that listens to all soil moisture sensors and logs them.
 
 ```csharp
-
 using Microsoft.Extensions.Hosting;
 using NATS.Client.Core;
 public sealed class SoilAnalyticsWorker : BackgroundService
@@ -301,7 +296,6 @@ We want **only one instance** to handle each reading and decide on irrigation, n
 That’s exactly what NATS **queue groups** do.
 
 ```csharp
-
 public sealed class IrrigationControllerWorker : BackgroundService
 {
   private NatsConnection _connection;
@@ -357,7 +351,6 @@ Explanation
 Now we simulate a device that receives irrigation commands and acts on them.
 
 ```csharp
-
 public sealed class IrrigationDeviceWorker : BackgroundService
 {
   private NatsConnection _connection;
@@ -409,7 +402,6 @@ NATS supports this pattern natively with **request–reply**.
 8.1. Define request/response models and cache
 
 ```csharp
-
 public record FieldStatusRequest(string FieldId);
 
 public record FieldStatusResponse(
@@ -429,7 +421,6 @@ Explanation
 8.2. The responder (service answering status requests)
 
 ```csharp
-
 public sealed class FieldStatusResponder : BackgroundService
 {
   private NatsConnection _connection;
@@ -473,7 +464,6 @@ Explanation
 8.3. The client (e.g., your ASP.NET Core endpoint)
 
 ```csharp
-
 public sealed class FieldStatusClient
 {
   private NatsConnection _connection;
@@ -508,7 +498,6 @@ Explanation
 You could easily expose this in ASP.NET Core:
 
 ```csharp
-
 app.MapGet("/fields/{fieldId}/status", async (string fieldId, FieldStatusClient client, CancellationToken ct) =>
 {
   var status = await client.GetStatusAsync(fieldId, ct);

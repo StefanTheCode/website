@@ -51,7 +51,6 @@ This happens because for each iteration of the loop, a new query is sent to the 
 Also, multiple database connections or resources can be consumed due to repeated queries, putting unnecessary load on the database.
 
 ```csharp
-
 public void QueryInsideLoop()
 {
     using var context = new MyDbContext();
@@ -61,7 +60,6 @@ public void QueryInsideLoop()
         var entity = context.MyEntities.FirstOrDefault(e => e.Id == i);
     }
 }
-
 ```
 
 To avoid performing query operations in a loop, **you can cache the query results in memory** and then operate on the data in memory, which can improve performance.
@@ -69,7 +67,6 @@ To avoid performing query operations in a loop, **you can cache the query result
 This method is suitable for collecting data with a small amount of data, otherwise the advantages outweigh the disadvantages.
 
 ```csharp
-
 public void QueryOutsideLoop()
 {
     using var context = new MyDbContext();
@@ -83,7 +80,6 @@ public void QueryOutsideLoop()
         var id = entity.Id; // Simulating loop logic
     }
 }
-
 ```
 ### Benchmarks:
 
@@ -98,14 +94,12 @@ That's right, it's not necessary.
 Moreover, it is not recommended either because of performance or because of memory usage.
 
 ```csharp
-
 public void SelectAllColumns()
 {
     using var context = new MyDbContext();
 
     var results = context.MyEntities.ToList();
 }
-
 ```
 
 To select only important columns and avoid loading unnecessary data, you can use projections with LINQ to select specific properties.
@@ -117,14 +111,12 @@ You only load the columns you need, reducing memory and bandwidth usage.
 With fewer columns retrieved, the database query will be faster, especially with large datasets.
 
 ```csharp
-
 public void SelectImportantColumns()
 {
     using var context = new MyDbContext();
 
     var results = context.MyEntities.Select(e => new { e.Id, e.Name }).ToList();
 }
-
 ```
 ### Benchmarks:
 
@@ -137,28 +129,24 @@ By default, Entity Framework tracks changes to the retrieved entities.
 Tracking is useful when updating and deleting entity objects, but it incurs additional overhead when you only need to read the data.
 
 ```csharp
-
 public void SelectWithTracking()
 {
     using var context = new MyDbContext();
 
     var results = context.MyEntities.ToList();
 }
-
 ```
 
 Use the NoTracking method to disable tracking, thereby improving performance.
 When AsNoTracking is used, Entity Framework doesn’t track changes to the retrieved entities, which reduces overhead and increases performance, especially for read-only data.
 
 ```csharp
-
 public void SelectWithNoTracking()
 {
     using var context = new MyDbContext();
 
     var results = context.MyEntities.AsNoTracking().ToList();
 }
-
 ```
 ### Benchmarks:
 
@@ -174,7 +162,6 @@ It helps to avoid [caretsian explosion](https://learn.microsoft.com/en-us/ef/cor
 Let's look at an example: 
 
 ```csharp
-
 public void DefaultSingleQuery()
 {
     using var context = new MyDbContext();
@@ -183,7 +170,6 @@ public void DefaultSingleQuery()
         .Include(e => e.RelatedEntities)
         .ToList();
 }
-
 ```
 
 The SplitQuery option allows EF to execute separate queries for the main entity and its related entities, reducing the impact of large joins.
@@ -193,7 +179,6 @@ Using AsSplitQuery can increase performance and reduce complexity in such scenar
 However, it also means multiple queries will be executed, so be sure to monitor the impact on database load.
 
 ```csharp
-
 public void UsingSplitQuery()
 {
     using var context = new MyDbContext();
@@ -203,7 +188,6 @@ public void UsingSplitQuery()
         .AsSplitQuery()
         .ToList();
 }
-
 ```
 ### Benchmarks:
 

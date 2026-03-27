@@ -71,7 +71,6 @@ Your core utility that:
 ## .graphql files
 
 ```json
-
 {
   user(id: "$userId") {
     id
@@ -97,7 +96,6 @@ By keeping the query in a separate file and using placeholders, you make your co
 ## GraphQLQueryBuilder.cs
 
 ```csharp
-
 using GraphQL;
 using System.Reflection;
 
@@ -133,7 +131,6 @@ This approach keeps your C# code clean, your queries versionable, and makes it e
 ## UserService.cs
 
 ```csharp
-
 using GraphQL;
 using GraphQL.Client.Abstractions;
 using Newtonsoft.Json;
@@ -175,7 +172,6 @@ By isolating this logic in a service class, you make your code modular, testable
 ## Program.cs - DI and Minimal API
 
 ```csharp
-
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using GraphQLDemo.Services;
@@ -232,7 +228,6 @@ Imagine you're building a dashboard for a commerce platform. You want to retriev
 ### Queries/GetOrders.graphql
 
 ```csharp
-
 {
   orders(
     filter: {
@@ -270,7 +265,6 @@ What’s different here?
 ### Updated GraphQLQueryBuilder.cs (same as before)
 
 ```csharp
-
 var request = await GraphQLQueryBuilder.BuildQuery("GetOrders.graphql", new()
 {
     { "status", "SHIPPED" },
@@ -281,7 +275,6 @@ var request = await GraphQLQueryBuilder.BuildQuery("GetOrders.graphql", new()
 ### OrderService.cs changes:
 
 ```csharp
-
 public async Task<string> GetOrdersAsync(string status, string dateFrom, string dateTo)
 {
     var request = await GraphQLQueryBuilder.BuildQuery("GetOrders.graphql", new()
@@ -299,7 +292,6 @@ public async Task<string> GetOrdersAsync(string status, string dateFrom, string 
 ### Adding a new Minimal API endpoint:
 
 ```csharp
-
 app.MapGet("/orders", async (
   string status,
   string dateFrom,

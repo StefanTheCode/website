@@ -43,7 +43,6 @@ When a new user registers, the system needs to:
 1. Define the Notification Event
 When a user registers, we trigger an event using INotification:
 ```csharp
-
 using MediatR;
 
 public class UserRegisteredNotification : INotification
@@ -62,7 +61,6 @@ public class UserRegisteredNotification : INotification
 Each service subscribes to this event independently.
 *Handler 1: Sending Welcome Email*
 ```csharp
-
 public class SendWelcomeEmailHandler : INotificationHandler<UserRegisteredNotification>
 {
     private readonly ILogger<SendWelcomeEmailHandler> _logger;
@@ -82,7 +80,6 @@ public class SendWelcomeEmailHandler : INotificationHandler<UserRegisteredNotifi
 ```
 *Handler 2: Logging the Event*
 ```csharp
-
 public class LogUserRegistrationHandler : INotificationHandler<UserRegisteredNotification>
 {
     private readonly ILogger<LogUserRegistrationHandler> _logger;
@@ -101,7 +98,6 @@ public class LogUserRegistrationHandler : INotificationHandler<UserRegisteredNot
 ```
 *Handler 3: Notify Analytics Service*
 ```csharp
-
 public class AnalyticsServiceHandler : INotificationHandler<UserRegisteredNotification>
 {
     private readonly ILogger<AnalyticsServiceHandler> _logger;
@@ -122,7 +118,6 @@ public class AnalyticsServiceHandler : INotificationHandler<UserRegisteredNotifi
 When a user registers, we publish the notification:
 
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Register MediatR

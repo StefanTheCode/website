@@ -137,7 +137,6 @@ All services will run locally using Docker Compose, exactly like a real environm
 
 Add required NuGet packages:
 ```csharp
-
 dotnet add OrderManagement.Api package AspNetCore.HealthChecks.NpgSql
 dotnet add OrderManagement.Api package prometheus-net.AspNetCore
 ```
@@ -146,7 +145,6 @@ Explanation
 • `prometheus-net.AspNetCore` exposes `/metrics` and HTTP request metrics.
 Health check configuration (Program.cs):
 ```csharp
-
 var postgres = builder.Configuration.GetConnectionString("Postgres")
     ?? "Host=localhost;Port=5432;Database=orders;Username=postgres;Password=postgres";
 
@@ -163,7 +161,6 @@ builder.Services.AddHealthChecks()
 
 Health endpoints:
 ```csharp
-
 var app = builder.Build();
 
 app.UseHttpMetrics();
@@ -279,7 +276,6 @@ Here’s the correct, production-style approach: **multi-stage Dockerfiles**.
 OrderManagement.Api/Dockerfile:
 
 ```csharp
-
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 EXPOSE 8080
@@ -306,7 +302,6 @@ ENTRYPOINT ["dotnet", "OrderManagement.Api.dll"]
 Billing.Worker/Dockerfile:
 
 ```csharp
-
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 
@@ -407,7 +402,6 @@ Explanation
 Create `ops/prometheus/prometheus.yml` in your root folder of the solution:
 
 ```csharp
-
 global:
   scrape_interval: 5s
 
@@ -435,7 +429,6 @@ Explanation
 `ops/grafana/provisioning/datasources/datasource.yml`
 
 ```csharp
-
 apiVersion: 1
 
 datasources:
@@ -455,7 +448,6 @@ Explanation
 Start the stack:
 
 ```csharp
-
 docker compose up --build
 ```
 
@@ -525,7 +517,6 @@ Write the PromQL query
 In the **Query section**, enter:
 
 ```csharp
-
 rate(http_requests_received_total{job="orders-api"}[1m])
 ```
 You should get something like this:

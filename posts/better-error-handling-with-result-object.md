@@ -43,7 +43,6 @@ Let's consider a common business logic scenario: validating user input for a reg
 Initially, let's see how this might be done using exceptions:
 
 ```csharp
-
 public class UserRegistration
 {
     public void RegisterUser(string username, string password)
@@ -70,7 +69,6 @@ For regular and predictable events like input validation, standard control flow 
 By using Result, you're ensuring that your code is handling expected scenarios (like invalid user input) in a more predictable and maintainable way, improving the overall quality and readability of your codebase.
 Let's see the same example with Result&lt;T&gt; object:
 ```csharp
-
 public class UserRegistration
 {
     public Result RegisterUser(string username, string password)
@@ -95,7 +93,6 @@ Here the flow is quite normal, we return values in relation to the code being ex
 Result&lt;T&gt; does not come with any library (there are various libraries that already implement the Result object, like FluentResults) which means that I created it myself.
 Let me show you how:
 ```csharp
-
 public class Result
 {
     public bool IsSuccess { get; private set; }
@@ -124,7 +121,6 @@ In this case, I don't like the fact that the magic string is used for errors.
 Here we can create a class (or record) that will display the error as a combination of error type and error description.
 Let' take a look how to represent it:
 ```csharp
-
 public record Error(string Type, string Description)
 {
     public static readonly Error None = new(string.Empty, string.Empty);
@@ -133,7 +129,6 @@ public record Error(string Type, string Description)
 
 And now for each of the failed validations we can create a separate Error object that will represent a unique error for that type of validation:
 ```csharp
-
 public static class RegistrationErrors
 {
     public static readonly Error UsernameAndPasswordRequired = new Error(
@@ -146,7 +141,6 @@ public static class RegistrationErrors
 
 So, instead of an ordinary string, we can return a more structured value (this means that Error in the Result&lt;T&gt; object should be an Error type, and no longer a string):
 ```csharp
-
 return Result.Failure(RegistrationErrors.PasswordTooShort);
 ```
 

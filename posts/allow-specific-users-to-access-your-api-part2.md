@@ -78,7 +78,6 @@ First, you should define the list of allowed IP addresses.
 Typically, this list would be stored in your application's configuration, such as ** [appsettings](https://thecodeman.net/posts/live-loading-appsettings-configuration-file).json**, to allow for easy updates without needing to recompile your application.
 
 ```csharp
-
 {
   "AllowedIPs": [
     "192.168.1.1",
@@ -86,14 +85,12 @@ Typically, this list would be stored in your application's configuration, such a
     // Add more IPs as needed
   ]
 }
-
 ```
 
 Step 2: Create the IP Whitelisting Middleware
 Next, you will create a middleware component that reads the list of allowed IPs from the configuration, checks the IP address of each incoming request, and either allows the request to proceed or blocks it.
 
 ```csharp
-
 public class IPWhitelistMiddleware
 {
     private readonly RequestDelegate _next;
@@ -126,7 +123,6 @@ Step 3: Register the Middleware
 After defining the middleware, you need to register it in the application's request pipeline. This is done in the Program.cs file, where you can also configure services and application behavior.
 
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -142,7 +138,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
 ```
 
 How it works:

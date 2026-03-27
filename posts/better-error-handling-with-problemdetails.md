@@ -23,7 +23,6 @@ Not helpful.
 
 Now imagine getting this instead:
 ```json
-
 {
     "title": "Something went wrong",
     "status": 500,
@@ -38,7 +37,6 @@ Now that’s helpful and clean. And that’s exactly what ProblemDetails gives u
 It’s a **standard way** of returning error responses in APIs, defined in [RFC 7807](https://datatracker.ietf.org/doc/html/rfc7807). Instead of random text or inconsistent JSON, you return structured errors like this:
 
 ```json
-
 {
     "title": "Product not found",
     "status": 404,
@@ -62,7 +60,6 @@ All using Minimal API style.
 Let’s fake a product lookup that throws an error if the ID is invalid or not found.
 
 ```csharp
-
 public record Product(int Id, string Name);
 ```
 
@@ -70,7 +67,6 @@ public record Product(int Id, string Name);
 We’ll catch all unhandled exceptions and return a structured ProblemDetails response.
 
 ```csharp
-
 public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate _next;
@@ -114,7 +110,6 @@ public class ExceptionHandlingMiddleware
 This is where Minimal API really shines - everything in one file:
 
 ```csharp
-
 using Microsoft.AspNetCore.Mvc;
 using ProblemDetailsMinimalApi;
 
@@ -174,7 +169,6 @@ Then try:
 You can extend ProblemDetails with your own data:
 
 ```csharp
-
 public class CustomProblemDetails : ProblemDetails
 {
     public string ErrorCode { get; set; } = default!;

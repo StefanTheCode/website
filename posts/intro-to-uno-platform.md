@@ -28,7 +28,6 @@ You’ll learn:
 First, set up your toolchain with [uno-check](https://platform.uno/docs/articles/external/uno.check/doc/using-uno-check.html?tabs=windows&utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article). Open Windows Terminal/PowerShell and install the tool, then run it:
 
 ```csharp
-
 dotnet tool install -g uno.check
 ```
 
@@ -36,7 +35,6 @@ Think of **uno-check** as a doctor for your **.NET + Android + iOS + WebAssembly
 
 Run it on first install, whenever you upgrade .NET/Visual Studio, or when switching machines.
 ```csharp
-
 uno.check
 ```
 
@@ -107,7 +105,6 @@ Instead of this application, we will create a simple application for displaying 
 For testing purposes, I created a demo API that returns data for the passed city. Here's the endpoint I'm using there (I won't show the full API code).
 
 ```csharp
-
 app.MapGet("/weather", (string city) =>
 {
   var forecast = Enumerable.Range(1, 5).Select(index =>
@@ -148,7 +145,6 @@ MainPage.xaml defines the UI for the app’s main screen in WinUI/Uno Platform. 
 In short, it’s the view that binds to the MainModel and displays whatever the ViewModel provides.
 
 ```csharp
-
 <Page
     x:Class="TheWeather.Presentation.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -231,7 +227,6 @@ MainPage.xaml defines the UI for the app’s main screen in WinUI/Uno Platform. 
 In short, it’s the view that binds to the MainModel and displays whatever the ViewModel provides.
 
 ```csharp
-
 public sealed class WeatherResponse
 {
   [JsonPropertyName("name")] public string? City { get; set; }
@@ -256,7 +251,6 @@ public sealed class WeatherInfo
 
 We use this service to connect to an external API and provide weather data for a specific city.
 ```csharp
-
 public sealed class WeatherService(HttpClient http) : IWeatherService
 {
   private static readonly JsonSerializerOptions JsonOpts = new(JsonSerializerDefaults.Web);
@@ -282,7 +276,6 @@ MainModel is the ViewModel for MainPage: it exposes bindable properties (City, I
 It handles the async flow (sets IsBusy, catches errors), maps the API response into UI-friendly strings (e.g., "23.4°C", "overcast"), and builds the icon URL, raising property change notifications so the page updates automatically.
 
 ```csharp
-
 public partial class MainModel : ObservableObject
 {
   private readonly IWeatherService _service;
@@ -341,7 +334,6 @@ public partial class MainModel : ObservableObject
 
 And the last piece here would be registering necessary services in App.xaml.cs file, which is like Program.cs file in your API projects. 
 ```csharp
-
 .ConfigureServices((context, services) =>
  {
     var baseUri = new Uri("https://localhost:7121");

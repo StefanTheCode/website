@@ -54,14 +54,12 @@ Each operation will be implemented using a command or query object and handled b
 ## Step 1: Define the User Model
 
 ```csharp
-
 public record User(Guid Id, string Name, string Email);
 ```
 
 And to simulate persistence:
 
 ```csharp
-
 public static class InMemoryUsers
 {
     public static readonly List<User> Users = new();
@@ -73,7 +71,6 @@ public static class InMemoryUsers
 Each action gets its own request model:
 
 ```csharp
-
 public record CreateUser(string Name, string Email);
 public record GetUser(Guid Id);
 public record UpdateUser(Guid Id, string Name, string Email);
@@ -85,7 +82,6 @@ Wolverine automatically discovers your handler classes and routes messages based
 CreateUserHandler:
 
 ```csharp
-
 public class CreateUserHandler
 {
     public User Handle(CreateUser command)
@@ -99,7 +95,6 @@ public class CreateUserHandler
 
 GetUserHandler:
 ```csharp
-
 public class GetUserHandler
 {
     public User? Handle(GetUser query)
@@ -110,7 +105,6 @@ public class GetUserHandler
 ```
 UpdateUserHandler:
 ```csharp
-
 public class UpdateUserHandler
 {
     public User? Handle(UpdateUser command)
@@ -128,7 +122,6 @@ public class UpdateUserHandler
 DeleteUserHandler:
 
 ```csharp
-
 public class DeleteUserHandler
 {
     public bool Handle(DeleteUser command)
@@ -161,7 +154,6 @@ Wolverine hooks into the app pipeline and optionally enables:
 Wolverine spins up an internal messaging engine to manage local + external message routing (e.g. [RabbitMQ](https://thecodeman.net/posts/rabbitmq-in-dotnet-from-scratch), Kafka) if configured.
 
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthorization();

@@ -41,7 +41,6 @@ Every user has:
 Now consider how the system interacts with this user profile.
 
 ```csharp
-
 var query =
     from a in A
     join b in B on a.Id equals b.AId into g
@@ -70,7 +69,6 @@ But internal systems behave differently…
 Billing, notifications, analytics, and audit logs - they all identify users by:
 
 ```csharp
-
 UserId
 ```
 They never know the email. They only know the internal GUID.
@@ -132,14 +130,12 @@ Instead of storing the user JSON twice:
 Store full user profile ONCE:
 
 ```csharp
-
 user : data : {userId} → JSON
 ```
 
 Store an index from Email → UserId:
 
 ```csharp
-
 user : data : {userId} → JSON
 ```
 
@@ -157,7 +153,6 @@ Now let’s build it in .NET.
 Step 1: DTO + Redis key helpers
 
 ```csharp
-
 public class UserProfileDto
 {
     public Guid UserId { get; set; }
@@ -178,7 +173,6 @@ public static class UserKeys
 Step 2: Caching the user (atomic write)
 
 ```csharp
-
 public async Task CacheUserAsync(UserProfileDto user)
 {
     var dataKey = UserKeys.DataKey(user.UserId);
@@ -201,7 +195,6 @@ public async Task CacheUserAsync(UserProfileDto user)
 Step 3: Lookup by UserId
 
 ```csharp
-
 public async Task<UserProfileDto?> GetByIdAsync(Guid userId)
 {
     var json = await _db.StringGetAsync(UserKeys.DataKey(userId));
@@ -215,7 +208,6 @@ public async Task<UserProfileDto?> GetByIdAsync(Guid userId)
 Step 4: Lookup by Email (inverse lookup)
 
 ```csharp
-
 public async Task<UserProfileDto?> GetByEmailAsync(string email)
 {
     var idValue = await _db.StringGetAsync(UserKeys.EmailIndex(email));
@@ -231,7 +223,6 @@ public async Task<UserProfileDto?> GetByEmailAsync(string email)
 This is where dual-key caching shines.
 When a user updates their email:
 ```csharp
-
 public async Task UpdateEmailAsync(Guid userId, string oldEmail, string newEmail)
 {
     var oldKey = UserKeys.EmailIndex(oldEmail);

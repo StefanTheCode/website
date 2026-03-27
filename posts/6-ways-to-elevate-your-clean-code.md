@@ -42,7 +42,6 @@ The problem with pyramids is that they make it hard to follow the logic of the c
 This can make it difficult to debug and maintain the code in the future.
 
 ```csharp
-
 public int DontDoThis(int x, bool y)
 {
     if (x > 0)
@@ -59,7 +58,6 @@ public int DontDoThis(int x, bool y)
     }
     return 3;
 }
-
 ```
 
 So, what's the solution?
@@ -67,7 +65,6 @@ So, what's the solution?
 One approach is to use [guard clauses](https://thecodeman.net/posts/how-to-create-dotnet-custom-guard-clause), which are essentially early return statements that check for a condition and exit the method or function if it's not met.
 
 ```csharp
-
 public int DoThis(int x, bool y)
 {
     if (x <= 0) return 3;
@@ -78,7 +75,6 @@ public int DoThis(int x, bool y)
 
     return 2;
 }
-
 ```
 
 ## 2#: Avoid magic (numbers, strings)
@@ -90,7 +86,6 @@ For example, imagine a scenario where the number "100" is used multiple times th
 Here is an example:
 
 ```csharp
-
 public void DontDoThis(int numberOfUsers)
 {
     //100 is called a "Magic number"
@@ -99,14 +94,12 @@ public void DontDoThis(int numberOfUsers)
         //Do something
     }
 }
-
 ```
 
 Solution?
 The key is to use constants or enums to represent these values instead of hard-coding them. This makes it clear what the values represent, and also allows you to change them in a single place if needed, rather than having to update every instance throughout the codebase.
 
 ```csharp
-
 //It doesn't have to be all capital letters
 public const int MAXIMUM_NUMBER_OF_USERS = 100;
 
@@ -117,7 +110,6 @@ public void DoThis(int numberOfUsers)
         //Do something
     }
 }
-
 ```
 
 ## 3#: Avoid Return null collection
@@ -129,24 +121,20 @@ Why you should not do this:
 • Slow Performance (checking for null, throwing/catching an exception, etc.)
 
 ```csharp
-
 //Edge case: Only if you need explicitly to return null
 public IEnumerable<string> DontDoThis()
 {
     return null;
 }
-
 ```
 
 Instead, just return an empty collection.
 
 ```csharp
-
 public IEnumerable<string> DoThis()
 {
     return Enumerable.Empty<string>();
 }
-
 ```
 
 ## 4#: Avoid Too Many Method Parameters
@@ -156,19 +144,16 @@ Let's say we have a class that's working with Addresses. We are calling a method
 Example:
 
 ```csharp
-
 //Don't do this
 public void AddAddress(string streetName, string streetNumber, string postalCode, string country, string city, string region)
 {
     //Do something
 }
-
 ```
 
 To avoid too many method parameters, you can use a few different techniques. One approach is to group related parameters into a single object or struct.
 
 ```csharp
-
 //Do this
 public void AddAddress(Address address)
 {
@@ -184,7 +169,6 @@ public class Address
     public string City { get; set; } = string.Empty;
     public string Region { get; set; } = string.Empty;
 }
-
 ```
 
 ## 5#: Be Strongly Typed
@@ -197,7 +181,6 @@ Whenever you check the type through "magic strings", it can be disastrous on mul
 Don't do this ever:
 
 ```csharp
-
 public void DontDoThis(string employeeType)
 {
     if (employeeType == "administrator")
@@ -205,13 +188,11 @@ public void DontDoThis(string employeeType)
         //Do something
     }
 }
-
 ```
 
 Just create an enum that will represent the type:
 
 ```csharp
-
 public void DoThis(Employee employee)
 {
     if (employee.Type == Type.Administrator)
@@ -231,7 +212,6 @@ public enum Type
     Manager = 1,
     Administrator = 2
 }
-
 ```
 
 ## 6#: Your method should do one thing only
@@ -239,7 +219,6 @@ public enum Type
 When you're writing code, it can be tempting to include multiple functions within a single method to make it more efficient. However, this can actually make your code more difficult to read, and maintain over time."Bad" example:
 
 ```csharp
-
 public void DontDoThis()
 {
     List<User> users = new List<User>()
@@ -254,7 +233,6 @@ public void DontDoThis()
         Console.WriteLine($"User: {user.FirstName} - {user.LastName}");
     }
 }
-
 ```
 
 Way to resolve?
@@ -264,7 +242,6 @@ Way to resolve?
 Just separate concerns:
 
 ```csharp
-
 public void DoThis()
 {
     List<User> users = SetupUsers();
@@ -290,7 +267,6 @@ private void PrintUsers(List<User> users)
         Console.WriteLine($"User: {user.FirstName} - {user.LastName}");
     }
 }
-
 ```
 
 ## Bonus: Summary of Clean Code book rules

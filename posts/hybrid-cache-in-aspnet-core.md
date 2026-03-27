@@ -68,14 +68,11 @@ To integrate HybridCache into an ASP.NET Core application:
 1. Install the NuGet Package:
 
 ```csharp
-
 dotnet add package Microsoft.Extensions.Caching.Hybrid --version "9.0.0-preview.7.24406.2"
-
 ```
 2. Register the Service:
 
 ```csharp
-
 builder.Services.AddHybridCache(options =>
 {
     options.MaximumPayloadBytes = 1024 * 1024; // 1 MB
@@ -86,7 +83,6 @@ builder.Services.AddHybridCache(options =>
         LocalCacheExpiration = TimeSpan.FromMinutes(30)
     };
 });
-
 ```
 The following properties of **HybridCacheOptions** let you configure limits that apply to all cache entries:
 
@@ -97,12 +93,10 @@ The following properties of **HybridCacheOptions** let you configure limits that
 **3. Configure Distributed Cache (Optional):** To utilize a distributed cache like Redis:
 
 ```csharp
-
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = "connectionString";
 });
-
 ```
 This is optional considering that HybridCache can function only as InMemory Cache.
 And now you are able to use it.
@@ -117,7 +111,6 @@ We have an API that provides product information. Frequently accessed data will 
 **2. L2 (Redis):** To ensure data consistency across distributed instances.
 
 ```csharp
-
 public class ProductService(HybridCache cache)
 {
     public async Task<List<Product>> GetProductsByCategoryAsync(string category, CancellationToken cancellationToken = default)
@@ -137,7 +130,6 @@ public class ProductService(HybridCache cache)
         );
     }
 }
-
 ```
 
 ### How It Works
@@ -164,7 +156,6 @@ To remove items from the **HybridCache**, you can use the ***RemoveAsync*** meth
 Here's how you can do it:
 
 ```csharp
-
 public async Task RemoveProductsByCategoryFromCacheAsync(string category, CancellationToken cancellationToken = default)
 {
     string cacheKey = $"products:category:{category}";
@@ -172,7 +163,6 @@ public async Task RemoveProductsByCategoryFromCacheAsync(string category, Cancel
     // Remove the cache entry from both L1 and L2
     await cache.RemoveAsync(cacheKey, cancellationToken);
 }
-
 ```
 **Effect:** The entry is removed from both L1 and L2 caches. If the key doesn't exist, the operation has no effect.
 
@@ -183,7 +173,6 @@ When storing entries in the cache, you can assign tags to group them logically.
 For example, you can assign the same tag **("category:electronics")** to all product entries in the "Electronics" category.
 
 ```csharp
-
 public async Task AddProductsToCacheAsync(List<Product> products, string category, CancellationToken cancellationToken = default)
 {
     string cacheKey = $"products:category:{category}";
@@ -200,7 +189,6 @@ public async Task AddProductsToCacheAsync(List<Product> products, string categor
         cancellationToken
     );
 }
-
 ```
 
 ### Removing Entries by Tag
@@ -210,13 +198,11 @@ To remove all cache entries associated with a specific tag (e.g., "category:elec
 Here, categoryTag could be "category:electronics". This will remove all cache entries tagged with "category:electronics".
 
 ```csharp
-
 public async Task InvalidateCacheByTagAsync(string categoryTag, CancellationToken cancellationToken = default)
 {
     // Use the tag to remove all associated cache entries
     await _cache.RemoveByTagAsync(categoryTag, cancellationToken);
 }
-
 ```
 Limitations
 
@@ -229,7 +215,6 @@ Limitations
 To create caching including InMemory caching and Distributed caching from the example above, you would need to write the following code in .NET 8:
 
 ```csharp
-
 public async Task<List<Product>> GetProductsByCategoryAsync(string category)
 {
     string cacheKey = $"products:category:{category}";
@@ -263,7 +248,6 @@ public async Task<List<Product>> GetProductsByCategoryAsync(string category)
 
     return products;
 }
-
 ```
 
 Conclusion

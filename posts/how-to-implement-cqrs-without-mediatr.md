@@ -81,7 +81,6 @@ All 4 interfaces are located in the Common folder:
 **- IQueryHandler** - This interface is responsible for handling query operations. It has a single Handle method that takes a query object of type *TQuery* and a cancellation token, and returns a *Task<TQueryResult>* representing the result of the query operation.
 
 ```csharp
-
 public interface IQueryHandler<in TQuery, TQueryResult>
 {
     Task<TQueryResult> Handle(TQuery query, CancellationToken cancellation);
@@ -91,7 +90,6 @@ public interface IQueryHandler<in TQuery, TQueryResult>
 **- ICommandHandler** - This interface is responsible for handling command operations. 
 
 ```csharp
-
 public interface ICommandHandler<in TCommand, TCommandResult>
 {
     Task<TCommandResult> Handle(TCommand command, CancellationToken cancellation);
@@ -101,7 +99,6 @@ public interface ICommandHandler<in TCommand, TCommandResult>
 **- IQueryDispatcher** - This interface is responsible for dispatching queries to their respective query handlers. It has a generic Dispatch method that takes a query object and a cancellation token, and returns a Task<TQueryResult> representing the result of the dispatched query.
 
 ```csharp
-
 public interface IQueryDispatcher
 {
     Task<TQueryResult> Dispatch<TQuery, TQueryResult>(TQuery query, CancellationToken cancellation);
@@ -111,7 +108,6 @@ public interface IQueryDispatcher
 **- ICommandDispatcher** - This interface is responsible for dispatching commands to their respective command handlers.
 
 ```csharp
-
 public interface ICommandDispatcher
 {
     Task<TCommandResult> Dispatch<TCommand, TCommandResult>(TCommand command, CancellationToken cancellation);
@@ -125,7 +121,6 @@ That is why we will make implementations of both dispatchers. Place them in the 
 **QueryDispatcher** implementation:
 
 ```csharp
-
 public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatcher
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
@@ -141,7 +136,6 @@ public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatche
 **CommandDispatcher** implementation:
 
 ```csharp
-
 public class CommandDispatcher(IServiceProvider serviceProvider) : ICommandDispatcher
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
@@ -169,7 +163,6 @@ Let's say we have a **UsersController** that represents an endpoint in the API a
 The first thing that needs to be done is to inject the **QueryDispatcher** (this is how we also inject IMediatR) through DI.
 
 ```csharp
-
 [Route("api/[controller]")]
 [ApiController]
 public class UsersController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher) : ControllerBase
@@ -208,7 +201,6 @@ For the same Query, there is also a **QueryHandler** that will be called when th
 The QueryHandler looks like this:
 
 ```csharp
-
 public class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, User>
 {
     public GetUserByIdQueryHandler() { }

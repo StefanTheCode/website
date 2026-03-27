@@ -19,7 +19,6 @@ Let's take a look...
 To utilize the LoggerMessageAttribute, both the **consuming class and the associated method must be declared as partial** . During compilation, the code generator is activated and produces an implementation for the partial method.
 Let's see an example:
 ```csharp
-
 public static partial class Log
 {
    [LoggerMessage(
@@ -34,7 +33,6 @@ public static partial class Log
 In the example provided earlier, the logging method is static, and the log level is set within the attribute definition. If you intend to use the attribute in a static context, you have two options: either include the ILogger instance as a parameter, or adjust the method's definition by using the 'this' keyword to convert it into an extension method.
 Alternatively, you have the flexibility to employ the attribute within a non-static context. Take the following example, where the logging method is defined as an instance method. In this scenario, the method obtains the logger by accessing an ILogger field within the enclosing class:
 ```csharp
-
 public partial class InstanceLoggingExample
 {
    private readonly ILogger _logger;
@@ -55,7 +53,6 @@ public partial class InstanceLoggingExample
 ## Dynamic Log Level
 At times, you might want the log level **to be flexible and not hardcoded** into your code. To achieve this, you can leave out the log level in the attribute and, instead, make it something you need to provide as a parameter when using the logging method:
 ```csharp
-
 public static partial class Log
 {
    [LoggerMessage(

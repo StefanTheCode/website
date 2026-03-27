@@ -66,7 +66,6 @@ This works the same in .NET 9 as in previous modern SDK versions—the big diffe
 Imagine you’re working on a real solution that looks like this:
 
 ```csharp
-
 src/
     Api/
         Api.csproj
@@ -89,7 +88,6 @@ Typical problems:
 • Every project repeats:
 
 ```csharp
-
 <TargetFramework>net9.0</TargetFramework>
 <Nullable>enable</Nullable>
 <ImplicitUsings>enable</ImplicitUsings>
@@ -98,7 +96,6 @@ Typical problems:
 • Every project copies:
 
 ```csharp
-
 <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 <AnalysisLevel>latest</AnalysisLevel>
 ```
@@ -113,7 +110,6 @@ Let’s fix that with Directory.Build.props.
 At the solution root, create a file named Directory.Build.props:
 
 ```csharp
-
 <Project>
   <!-- Shared configuration for all .NET 9 projects in the repo -->
   <PropertyGroup>
@@ -158,7 +154,6 @@ At the solution root, create a file named Directory.Build.props:
 Your individual .csproj files can now be tiny:
 
 ```csharp
-
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <AssemblyName>MyCompany.Api</AssemblyName>
@@ -174,7 +169,6 @@ Now let’s treat tests differently: they often need extra packages and slightly
 Create tests/Directory.Build.props: 
 
 ```csharp
-
 <Project>
   <!-- This file is imported AFTER the root Directory.Build.props for test projects -->
 
@@ -225,7 +219,6 @@ Another powerful use case is **central assembly versioning**. Instead of repeati
 Extend the root Directory.Build.props:   
 
 ```csharp
-
 <Project>
   <PropertyGroup>
 
@@ -252,7 +245,6 @@ Extend the root Directory.Build.props:
 In CI (GitHub Actions / Azure DevOps / GitLab), you pass BuildNumber:  
 
 ```csharp
-
 dotnet build MySolution.sln /p:BuildNumber=123
 ```
 Result:
@@ -266,7 +258,6 @@ You’re already using .editorconfig (I know you are 😄). But analyzers and bu
 Directory.Build.props is a perfect place to wire that up:
 
 ```csharp
-
 <Project>
   <PropertyGroup>
 
@@ -303,7 +294,6 @@ Now:
 If a particular project truly needs to relax something, you can still override locally:
 
 ```csharp
-
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 
@@ -324,7 +314,6 @@ Common patterns:
 • tools/Directory.Build.props: for small CLI tools that don’t need analyzers or warnings-as-errors
 Example structure:
 ```csharp
-
 Directory.Build.props         // global defaults
 src/Directory.Build.props     // overrides for production code
 tests/Directory.Build.props   // overrides for test code
@@ -333,7 +322,6 @@ tools/Directory.Build.props   // overrides for tiny internal utilities
 A src/Directory.Build.props might look like:
 
 ```csharp
-
 <Project>
   <PropertyGroup>
 
@@ -350,7 +338,6 @@ A src/Directory.Build.props might look like:
 And if you really need a project not to inherit any root-level props, you can create a dummy local Directory.Build.props in that project folder:
 
 ```csharp
-
 <Project>
   <!-- intentionally empty to stop inheritance from parent props -->
 </Project>

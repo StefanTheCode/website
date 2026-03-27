@@ -63,16 +63,12 @@ Step 1: Setting Up the Project
 Create a new .NET Standard library project:
 
 ```csharp
-
 dotnet new classlib -n MySourceGenerator
-
 ```
 
 Next, add the necessary NuGet packages for working with source generators:
 ```csharp
-
 dotnet add package Microsoft.CodeAnalysis.CSharp
-
 ```
 
 Step 2: Implementing the Source Generator
@@ -80,7 +76,6 @@ Step 2: Implementing the Source Generator
 To implement a source generator, you need to create a class that implements the ISourceGenerator interface. Here’s a basic example:
 
 ```csharp
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System.Text;
@@ -102,7 +97,6 @@ public class HelloWorldGenerator : ISourceGenerator
         context.AddSource("HelloWorldGenerated", SourceText.From(sourceCode, Encoding.UTF8));
     }
 }
-
 ```
 
 This simple generator adds a HelloWorld class with a SayHello method to your project. The generated code will be compiled with the rest of your project, allowing you to call HelloWorldGenerated.HelloWorld.SayHello() from your code.
@@ -112,9 +106,7 @@ Step 3: Integrating with a Project
 To use the source generator, reference the generator project from another project:
 
 ```csharp
-
 dotnet add reference ../MySourceGenerator/MySourceGenerator.csproj
-
 ```
 
 After referencing the generator, the generated HelloWorld class will be available for use in the consuming project.
@@ -124,7 +116,6 @@ Step 4: Building and Running
 Build the solution and run the project. You should see the output from the generated HelloWorld.SayHello() method in the console.
 
 ```csharp
-
 // Program.cs
 using HelloWorldGenerated;
 
@@ -136,7 +127,6 @@ class Program
         HelloWorld.SayHello();
     }
 }
-
 ```
 
 ## Advanced Use Cases for Source Generators
@@ -148,7 +138,6 @@ Source generators can analyze your classes and automatically generate the necess
 This reduces boilerplate code and ensures that all dependencies are correctly registered.
 
 ```csharp
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -189,7 +178,6 @@ public class DIRegistrationGenerator : ISourceGenerator
         context.AddSource("DIRegistrationExtensions", SourceText.From(sourceCode.ToString(), Encoding.UTF8));
     }
 }
-
 ```
 
 2. Compile-Time Validation:
@@ -197,7 +185,6 @@ public class DIRegistrationGenerator : ISourceGenerator
 Use source generators to enforce compile-time validation rules, such as ensuring certain attributes are applied to methods or classes. This can catch potential errors early in the development process.
 
 ```csharp
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -237,7 +224,6 @@ public class CompileTimeValidationGenerator : ISourceGenerator
         }
     }
 }
-
 ```
 
 3. Custom Serialization:
@@ -245,7 +231,6 @@ public class CompileTimeValidationGenerator : ISourceGenerator
 Generate custom serialization logic for your classes based on attributes or interfaces. This can optimize serialization performance by generating code tailored specifically to your class structure.
 
 ```csharp
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -285,7 +270,6 @@ public class CustomSerializationGenerator : ISourceGenerator
         }
     }
 }
-
 ```
 
 4. API Client Generation:
@@ -293,7 +277,6 @@ public class CustomSerializationGenerator : ISourceGenerator
 Source generators can automatically generate API client code based on OpenAPI/Swagger specifications. This ensures that your client code is always in sync with the API definition and reduces the need for manual code updates.
 
 ```csharp
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System.Text;
@@ -341,7 +324,6 @@ public class ApiClientGenerator : ISourceGenerator
         context.AddSource("ValuesApiClient", SourceText.From(sb.ToString(), Encoding.UTF8));
     }
 }
-
 ```
 ## FileBasedGenerator (Reading code from file)
 
@@ -353,7 +335,6 @@ Here's a step-by-step guide:
 Let's assume you have a C# file named MyClass.cs with the following content:
 
 ```csharp
-
 // MyClass.cs
 namespace MyNamespace
 {
@@ -365,7 +346,6 @@ namespace MyNamespace
         }
     }
 }
-
 ```
 
 2. Create the Source Generator
@@ -373,7 +353,6 @@ namespace MyNamespace
 In your source generator project, you can read the content of this file and generate additional code based on it.
 
 ```csharp
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System.Text;
@@ -404,7 +383,6 @@ public class FileBasedGenerator : ISourceGenerator
     }
 }
 }
-
 ```
 
 3. Set Up the Consuming Project
@@ -412,7 +390,6 @@ public class FileBasedGenerator : ISourceGenerator
 In the project that consumes this generator, ensure that MyClass.cs is included in the project and add the generator project as a reference.
 
 ```xml
-
 <!-- ConsumingProject.csproj -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
@@ -429,7 +406,6 @@ In the project that consumes this generator, ensure that MyClass.cs is included 
         <ProjectReference Include="..\MySourceGenerator\MySourceGenerator.csproj" />
     </ItemGroup>
 </Project>
-
 ```
 
 4. Use the Generated Code
@@ -437,7 +413,6 @@ In the project that consumes this generator, ensure that MyClass.cs is included 
 Now, in your consuming project:
 
 ```csharp
-
 // Program.cs
 using MyNamespace;
 using MyNamespace.Generated;
@@ -453,7 +428,6 @@ class Program
         myClass.PrintInfo();
     }
 }
-
 ```
 
 ## Best Practices for Using Source Generators

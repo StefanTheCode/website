@@ -57,7 +57,6 @@ Let’s build:
 You can extend [ProblemDetails](https://thecodeman.net/posts/better-error-handling-with-problemdetails) with your own data:
 
 ```csharp
-
 dotnet new console -n OrderPublisher
 cd OrderPublisher
 dotnet add package StackExchange.Redis
@@ -70,7 +69,6 @@ dotnet add package StackExchange.Redis
 Also, make sure Redis is running locally with [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik):
 
 ```csharp
-
 docker run -p 6379:6379 redis
 ```
 
@@ -80,7 +78,6 @@ This app simulates a simple order entry system where a user can type an order ID
 It's useful for simulating events coming from an order placement service in a microservice environment.
 
 ```csharp
-
 using StackExchange.Redis;
 
 var redis = await ConnectionMultiplexer.ConnectAsync("localhost:6379");
@@ -111,7 +108,6 @@ This app simulates a downstream service - like an email notifier or a dashboard 
 It subscribes to the same orders.new channel and reacts as messages arrive.
 
 ```csharp
-
 using StackExchange.Redis;
 
 var redis = await ConnectionMultiplexer.ConnectAsync("localhost:6379");
@@ -165,7 +161,6 @@ Instead of subscribing to each one manually, pattern matching with "orders.*" le
 Wildcard matching has a small performance cost in Redis if overused. Use it wisely in high-volume systems, and prefer literal channels where possible.
 
 ```csharp
-
 await sub.SubscribeAsync("orders.*", (channel, message) =>
 {
     Console.WriteLine($"Wildcard message on {channel}: {message}");
@@ -184,7 +179,6 @@ Real-world example:
 This pattern brings safe separation while using the same Redis instance.
 
 ```csharp
-
 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "dev";
 await pub.PublishAsync($"{env}.orders.new", orderId);
 ```
@@ -194,7 +188,6 @@ await pub.PublishAsync($"{env}.orders.new", orderId);
 Plain strings like "123" are limiting. If you want to include more details (amount, timestamp, customer), JSON gives you the flexibility to evolve your messages without changing the channel name or breaking consumers.
 
 ```csharp
-
 var orderJson = JsonSerializer.Serialize(new { OrderId = "123", Total = 99.9 });
 await pub.PublishAsync("orders.new", orderJson);
 ```

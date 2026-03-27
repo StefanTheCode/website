@@ -74,7 +74,6 @@ We’ll walk through the whole thing step by step.
 We’re importing products, so let’s start with a Product class:
 
 ```csharp
-
 public class Product
 {
     public int ProductId { get; set; }
@@ -93,7 +92,6 @@ We need two libraries:
 • CsvHelper – to easily read CSV files
 
 ```csharp
-
 Install-Package Z.Dapper.Plus
 Install-Package CsvHelper
 ```
@@ -105,7 +103,6 @@ Dapper Plus needs to know how to map your class to the database table.
 You do this once at app startup:
 
 ```csharp
-
 DapperPlusManager.Entity<Product>()
     .Table("Products") // Table name in SQL Server
     .Map(p => p.ProductId)
@@ -121,7 +118,6 @@ Now Dapper Plus knows: *“Hey, when I see a Product, I’ll map it to the Produ
 Let’s load the CSV and convert it to a list of products.
 
 ```csharp
-
 using CsvHelper;
 using System.Globalization;
 
@@ -139,7 +135,6 @@ Make sure your CSV headers match the property names (case-insensitive).
 Let’s bring it all together.
 
 ```csharp
-
 public void ImportProducts(string csvFilePath, IDbConnection dbConnection)
 {
     var products = ParseCsv(csvFilePath);
@@ -162,7 +157,6 @@ This is already **much faster** than looping through inserts. But let’s improv
 If you're using background jobs, APIs, or UI buttons - async support matters.
 
 ```csharp
-
 public async Task ImportProductsAsync(
     string csvFilePath,
     IDbConnection dbConnection,
@@ -194,7 +188,6 @@ If someone clicks “Cancel” in your UI, or your job times out - it’ll stop 
 Don’t blindly insert rows - check them first!
 
 ```csharp
-
 products = products
     .Where(p => !string.IsNullOrWhiteSpace(p.Name) && p.Price >= 0)
     .ToList();
@@ -202,7 +195,6 @@ products = products
 
 For advanced scenarios, you could group errors and return them to the user:
 ```csharp
-
 var invalidProducts = products.Where(p => p.Price < 0).ToList();
 if (invalidProducts.Any())
 {
@@ -215,7 +207,6 @@ In order to make testing as easy and simple as possible, I will not use csv, but
 Here is the ProductService, which is used to generate product i and which has 2 important methods for us: **InsertWithDapperAsync** and **InsertWithDapperPlusAsync**.
 
 ```csharp
-
 public class ProductService
 {
     private readonly IDbConnection _connection;
@@ -264,7 +255,6 @@ public class ProductService
 We will use SQL Lite for the database. Here's what the setup looks like in Program.cs:
 
 ```csharp
-
 DapperPlusManager.Entity<Product>()
     .Table("Products")
     .Map(p => p.Name)
@@ -284,7 +274,6 @@ builder.Services.AddSingleton<IDbConnection>(_ =>
 And we will use 2 endpoints for testing:
 
 ```csharp
-
 app.MapPost("/seed/dapper", async (int count, ProductService service) =>
 {
     var products = service.GenerateProducts(count);

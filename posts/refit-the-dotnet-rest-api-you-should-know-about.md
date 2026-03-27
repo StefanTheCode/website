@@ -37,9 +37,7 @@ Let's create a simple client that fetches user information from GitHub.
 Step 1: Add nuget package Refit.HttpClientFactory:
 
 ```csharp
-
 dotnet add package Refit.HttpClientFactory
-
 ```
 
 Step 2: Define the GitHub API Interface
@@ -51,7 +49,6 @@ For this example, we'll fetch user details from the GitHub API.
 Create a new file **IGitHubApi.cs** in your project:
 
 ```csharp
-
 using Refit;
 using System.Threading.Tasks;
 
@@ -60,7 +57,6 @@ public interface IGitHubApi
     [Get("/users/{username}")]
     Task<GitHubUser> GetUserAsync(string username);
 }
-
 ```
 Here, we use the **[Get]** attribute to specify that GetUserAsync will perform an HTTP GET request to the */users/{username}* endpoint.
 
@@ -69,7 +65,6 @@ Step 3: Define the GitHub User Model
 Next, create a model that represents the JSON response returned by the GitHub API. Create a new file *GitHubUser.cs*:
 
 ```csharp
-
 public class GitHubUser
 {
     public string Login { get; set; };
@@ -79,7 +74,6 @@ public class GitHubUser
     public int Following { get; set; };
     public string AvatarUrl { get; set; };
 }
-
 ```
 This class defines the properties we want to extract from the GitHub API response.
 
@@ -90,7 +84,6 @@ Now, let's configure Dependency Injection (DI) for Refit in the Program.cs file:
 Open Program.cs and modify it as follows:
 
 ```csharp
-
 builder.Services.AddRefitClient<IGitHubApi>()
     .ConfigureHttpClient((sp, client) =>
     {
@@ -100,7 +93,6 @@ builder.Services.AddRefitClient<IGitHubApi>()
         client.DefaultRequestHeaders.Add("Authorization", settings.AccessToken);
         client.DefaultRequestHeaders.Add("User-Agent", settings.UserAgent);
     });
-
 ```
 
 builder.Services.AddRefitClient<IGitHubApi>() registers the Refit client with DI.
@@ -112,16 +104,13 @@ GitHubSettings represents the settings presented via the IOptions pattern, whose
 And that's it, it is necessary to call the method on the API endpoint where you need it.
 
 ```csharp
-
 var user = await gitHubService.GetUserAsync("StefanTheCode");
-
 ```
 ## What benefit do you actually get from this?
 If you were to implement this using HttpClient, it would be necessary to create a class that implements IGitHubApi and that somehow uses HttpClient in the GetUserAsync method to call the API and get the data.
 It would roughly look like this:
 
 ```csharp
-
 public class GitHubApiClient : IGitHubApi
 {
     private readonly HttpClient _httpClient;
@@ -143,7 +132,6 @@ public class GitHubApiClient : IGitHubApi
         return user;
     }
 }
-
 ```
 Here we see the advantages of Refit.
 

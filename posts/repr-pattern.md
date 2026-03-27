@@ -74,7 +74,6 @@ Let's see a simple example with a User controller that has one method/endpoint t
 If you were to use controllers, it would look like this:
 
 ```csharp
-
 [ApiController]
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
@@ -99,7 +98,6 @@ public class UsersController : ControllerBase
         return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
     }
 }
-
 ```
 
 This controller structure is typical in many .NET applications and serves as a standard for managing RESTful API endpoints.
@@ -113,14 +111,12 @@ Let’s explore how to implement the REPR pattern in a .NET 8 application step-b
 The request object represents the data sent from the client to the server. It typically contains all the necessary information for the server to process the request, such as parameters, headers, and body content.
 
 ```csharp
-
 public class CreateUserRequest
 {
     public string Username { get; set; };
     public string Email { get; set; };
     public string Password { get; set; };
 }
-
 ```
 
 Here, the CreateUserRequest class encapsulates the data required to create a new user.
@@ -130,7 +126,6 @@ Here, the CreateUserRequest class encapsulates the data required to create a new
 The endpoint is a server-side method or function that handles the incoming request. It contains the logic to process the request data, interact with services or databases, and prepare the response.
 
 ```csharp
-
 [Produces(MediaTypeNames.Application.Json)]
 [Consumes(MediaTypeNames.Application.Json)]
 [Route("api/[controller]")]
@@ -145,7 +140,6 @@ public class CreateUserController : ControllerBase
         return result.Success ? Ok(result.Data) : BadRequest(result.ErrorMessage);
     }
 }
-
 ```
 
 3. Design the Response
@@ -153,7 +147,6 @@ public class CreateUserController : ControllerBase
 The response object defines the structure of the data sent back to the client after the request has been processed. It provides feedback on the action, such as success or failure, along with any relevant data or error messages.
 
 ```csharp
-
 public class ApiResponse<T>
 {
     public bool Success { get; set; };
@@ -163,7 +156,6 @@ public class ApiResponse<T>
     public static ApiResponse<T> SuccessResponse(T data) => new ApiResponse<T> { Success = true, Data = data };
     public static ApiResponse<T> ErrorResponse(string errorMessage) => new ApiResponse<T> { Success = false, ErrorMessage = errorMessage };
 }
-
 ```
 
 This ApiResponse<T> class is a generic response object that can handle various data types (T) and provide standardized success and error messages.
@@ -173,7 +165,6 @@ This ApiResponse<T> class is a generic response object that can handle various d
 Combining these components ensures a seamless flow from request to response. The endpoint processes the request, and based on the logic, it generates a response using the defined response object.
 
 ```csharp
-
 [Produces(MediaTypeNames.Application.Json)]
 [Consumes(MediaTypeNames.Application.Json)]
 [Route("api/[controller]")]
@@ -195,7 +186,6 @@ public class CreateUserController : ControllerBase
         }
     }
 }
-
 ```
 
 This complete endpoint demonstrates how the REPR pattern is fully implemented:
@@ -213,7 +203,6 @@ It promotes a minimalistic approach to defining endpoints and handling requests 
 It fits perfectly for the implementation of the REPR pattern, and we will see that now:
 
 ```csharp
-
 using FastEndpoints;
 
 public class CreateUserEndpoint : Endpoint<CreateUserRequest, CreateUserResponse>
@@ -250,7 +239,6 @@ public class CreateUserEndpoint : Endpoint<CreateUserRequest, CreateUserResponse
         });
     }
 }
-
 ```
 Explanation:
 
@@ -285,11 +273,9 @@ I personally encountered 2 problems, for which of course there is a solution:
 Every Endpoint, and consequently each Controller, will be displayed individually in the Swagger documentation. Thankfully, there's a way to manage this. By utilizing Tags in the SwaggerOperation attribute, we can organize them into groups. Below is a code snippet demonstrating how to do this:
 
 ```csharp
-
 [SwaggerOperation(
     Tags = new[] { "UserEndpoints" }
 )]
-
 ```
 
 This will group all the endpoints with same tag together in Swagger document. 

@@ -27,7 +27,6 @@ We already know how to use it.
 In the appsettings.json file, I added a new value which I need in my application - **NewsletterSettings -> URL:**
 
 ```json
-
 {
     "Logging": {
         "LogLevel": {
@@ -40,31 +39,25 @@ In the appsettings.json file, I added a new value which I need in my application
         "URL": "testUrl"
     }
 }
-
 ```
 
 Also, I created a configuration class to represent my settings. This class will contain properties for each setting you want to configure:
 
 ```csharp
-
 public class NewsletterSettings
 {
     public string Url { get; set; }
 }
-
 ```
 And lastly, I created a binding between those two, in the Program.cs class:
 
 ```csharp
-
 builder.Services.Configure<NewsletterSettings>(
     builder.Configuration.GetSection(nameof(NewsletterSettings)));
-
 ```
 I created a simple controller to show the using of the NewsletterSettings within IOptions pattern:
 
 ```csharp
-
 [ApiController]
 [Route("[controller]")]
 public class NewsletterController : ControllerBase
@@ -82,7 +75,6 @@ public class NewsletterController : ControllerBase
         return _newsletterSettings.Value.Url;
     }
 }
-
 ```
 Perfect, but...
 
@@ -106,7 +98,6 @@ While IOptions provides a read-only snapshot of the configuration settings durin
 You just need to add it through dependency injection:
 
 ```csharp
-
 [ApiController]
 [Route("[controller]")]
 public class NewsletterController : ControllerBase
@@ -125,13 +116,11 @@ public class NewsletterController : ControllerBase
         return ioptionsMonitor;
     }
 }
-
 ```
 
 But, as I said, it is possible to register a callback to react to changes in the configuration:
 
 ```csharp
-
 public NewsletterController(IOptionsMonitor<NewsletterSettings> newsletterMonitor)
 {
     _newsletterMonitor = newsletterMonitor;
@@ -141,7 +130,6 @@ public NewsletterController(IOptionsMonitor<NewsletterSettings> newsletterMonito
         Console.WriteLine($"Settings changed: {settings.Url}");
     });
 }
-
 ```
 ## What is the difference?
 

@@ -170,7 +170,6 @@ You can even enforce naming rules.
 Example:
 *All services must end with "Service".*
 ```csharp
-
 [Fact]
 public void Services_Should_End_With_Service()
 {

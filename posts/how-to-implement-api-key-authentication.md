@@ -38,7 +38,6 @@ Why you need this?
 The **ApiKeyAttribute** class derives from **ServiceFilterAttribute** and is used **to decorate the controllers or actions** where you want this specific authorization to take place.
 For example, you want to decorate this endpoint:
 ```csharp
-
 [ApiKey]
 [HttpGet(Name = "GetAllUsers")]
 public List<string> GetAll()
@@ -48,7 +47,6 @@ public List<string> GetAll()
 ```
 In order to achieve this, you need to do following:
 ```csharp
-
 public class ApiKeyAttribute : ServiceFilterAttribute
 {
     public ApiKeyAttribute() : base(typeof(ApiKeyAuthorizationFilter))
@@ -61,7 +59,6 @@ So, we need ApiKeyAuthorizationFilter with OnAuthorization method - let's create
 ## Step #2: Implement ApiKey Authorization Filter
 The ApiKeyAuthorizationFilter class implements **IAuthorizationFilter** , which means it contains logic to execute when a request requires authorization. This filter checks if an API key is present and if it's valid.
 ```csharp
-
 public class ApiKeyAuthorizationFilter : IAuthorizationFilter
 {
     private const string ApiKeyHeaderName = "x-api-key";
@@ -86,9 +83,7 @@ public class ApiKeyAuthorizationFilter : IAuthorizationFilter
 OnAuthorization Method:
 - This method is called when the request is being authorized. It extracts the API key from the request header:
 ```csharp
-
 var apiKey = context.HttpContext.Request.Headers[ApiKeyHeaderName];
-
 ```
 Then it uses the _apiKeyValidator.IsValid(apiKey) method to check if the API key is valid.
 If the API key is not valid, context.Result = new UnauthorizedResult(); sets the response to unauthorized, effectively rejecting the request.
@@ -97,7 +92,6 @@ No problem. Let's implement it.
 ## Step #3: Implement ApiKeyValidator
 Your ApiKeyAuthorizationFilter class relies on an instance of a class that implements IApiKeyValidator to validate API keys. The **IsValid** method of this instance will be called to check if an API key is valid or not. Currently, since IsValid returns false, all requests would be considered unauthorized.
 ```csharp
-
 public class ApiKeyValidator : IApiKeyValidator
 {
     public bool IsValid(string apiKey)
@@ -114,7 +108,6 @@ public interface IApiKeyValidator
 ```
 Of course, none of this would work without Dependency Injection, so let's register the necessary services.
 ```csharp
-
 builder.Services.AddSingleton<ApiKeyAuthorizationFilter>();
 builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
 ```
@@ -126,7 +119,6 @@ And that's it. You have implemented Api Key Authentication.
 You can achieve absolutely the same effect by using Middleware.
 Here's how you can do it:
 ```csharp
-
 public class ApiKeyMiddleware
 {
     private readonly RequestDelegate _next;

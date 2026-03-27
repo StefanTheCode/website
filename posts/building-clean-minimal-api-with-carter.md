@@ -40,7 +40,6 @@ Carter helps you modularize your endpoints into clean, testable components -  wi
 
 Start by installing the NuGet package:
 ```csharp
-
 dotnet add package Carter
 ```
 
@@ -55,7 +54,6 @@ Let’s create a simple Products API where you can:
 ## Project Structure
 
 ```csharp
-
 MyApi/
 ├── Program.cs
 ├── Endpoints/
@@ -70,7 +68,6 @@ MyApi/
 ### Product.cs
 
 ```csharp
-
 namespace MyApi.Models;
 
 public class Product
@@ -84,7 +81,6 @@ public class Product
 ### ProductDto.cs
 
 ```csharp
-
 namespace MyApi.Models;
 
 public record CreateProductDto(string Name, decimal Price);
@@ -92,7 +88,6 @@ public record CreateProductDto(string Name, decimal Price);
 ### CreateProductDtoValidator.cs
 
 ```csharp
-
 using FluentValidation;
 using MyApi.Models;
 
@@ -119,7 +114,6 @@ You keep everything related to “Product” inside one file/module.
 It all compiles down to regular minimal API endpoints under the hood - just better organized!
 
 ```csharp
-
 using Carter;
 using FluentValidation;
 using Mapster;
@@ -163,7 +157,6 @@ public class ProductModule : ICarterModule
 That’s it! You now have a clean API with validation and mapping - and all routes are organized into modules.
 
 ```csharp
-
 using Carter;
 using FluentValidation;
 using MyApi.Models;

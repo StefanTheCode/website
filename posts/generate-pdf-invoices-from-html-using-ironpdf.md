@@ -52,14 +52,12 @@ If you’ve ever fought with low-fidelity PDF libraries that mess up your styles
 The first thing we are going to do is to add nuget package:
 
 ```csharp
-
 Install-Package IronPdf
 ```
 
 Let’s define a C# class to represent an invoice:
 
 ```csharp
-
 public class Invoice
 {
     public string InvoiceNumber { get; set; }
@@ -78,7 +76,6 @@ This lets me dynamically create invoices for any client, with any line items (e.
 I created a basic HTML template and saved it in localhost as invoice.html file. You can use Razor view here, or even webpage from the url.
 
 ```html
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,7 +111,6 @@ Here is the quick view on html page that's created with placeholders.
 Now in the code, I'm using the real data (already prepared from another API call) and I'm populating placeholders. 
 
 ```csharp
-
 var invoice = new Invoice
 {
     InvoiceNumber = "INV-2024-003",
@@ -147,7 +143,6 @@ string filledHtml = htmlTemplate
 Finally I use IronPDF **ChromePdfRenderer** to convert the HTML to a PDF document.
 
 ```csharp
-
 // Render to PDF
 var renderer = new ChromePdfRenderer();
 var pdf = renderer.RenderHtmlAsPdf(filledHtml);
@@ -171,7 +166,6 @@ And now, I use Automation tool to send the email with this attachment.
 Let’s load the CSV and convert it to a list of products.
 
 ```csharp
-
 var renderer = new ChromePdfRenderer();
 var pdf = renderer.RenderHtmlAsPdf(filledHtml);
 
@@ -216,7 +210,6 @@ You just load both files using PdfDocument.FromFile(...) and merge them with Pdf
 This is especially useful when you're sending an invoice along with official paperwork - the client gets everything bundled neatly in one file, and you don’t need to mess with external tools or manual merging.
 
 ```csharp
-
 public void MergePdfs()
 {
     var pdf1 = PdfDocument.FromFile("doc1.pdf");

@@ -68,27 +68,19 @@ Let's take a look on the implementation.
 
 The first NuGet package we need to install is  OpenTelemetry.Extensions.Hosting. 
 ```csharp
-
 dotnet add package OpenTelemetry.Extensions.Hosting
-
 ```
 Another we need is OpenTelemetry.Exporter.OpenTelemetryProtocol
 ```csharp
-
 dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
-
 ```
 For ASP. NET support, I'm going to add OpenTelemetry.Instrumentation.AspNetCore.
 ```csharp
-
 dotnet add package OpenTelemetry.Instrumentation.AspNetCore
-
 ```
 We also need an instrumentation for Http Client, so I'm going to add one more package: OpenTelemetry.Instrumentation.Http.
 ```csharp
-
 dotnet add package OpenTelemetry.Instrumentation.Http
-
 ```
 
 ## Configuration
@@ -100,7 +92,6 @@ The code below configures OpenTelemetry for:
 The configuration uses an **OTLP (OpenTelemetry Protocol) Exporter** to send the collected telemetry data to a backend (e.g., Jaeger, Prometheus, or any OpenTelemetry-compatible system).
 
 ```csharp
-
 builder.Services.AddOpenTelemetry()
     .ConfigureResource(resource => resource.AddService("NewsletterApi"))
     .WithMetrics(metric =>
@@ -119,7 +110,6 @@ builder.Services.AddOpenTelemetry()
     });
 
 builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExporter());
-
 ```
 ### Code Breakdown
 1. builder.Services.AddOpenTelemetry()
@@ -209,12 +199,10 @@ You can run AppHost and get a beautiful dashboard with various details.
 Now we need to setup that our Otlp Exporter is a new created Aspire Dashborad - where we will see all the necessary details. 
 We need to add an endpoint to .AddOtlpExported method that points to the Aspire Dashboard:
 ```csharp
-
 .AddOtlpExporter(options =>
 {
     options.Endpoint = new Uri("https://localhost:17049");
 });
-
 ```
 
 Let's start the application (AppHost starts). The Aspire Dashboard will open as shown above, but we will have details for our resource - NewsletterApi.

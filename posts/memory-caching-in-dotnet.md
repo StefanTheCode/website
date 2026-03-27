@@ -76,37 +76,30 @@ Nice. Now when we know the basics about IMemoryCache, let me show how to impleme
 The first thing we need to do is to add nuget package, of course:
 
 ```csharp
-
 dotnet add package Microsoft.Extensions.Caching.Memory
-
 ```
 
 To successfully use the library, we need to add it through Dependency Injection in Program.cs class:
 
 ```csharp
-
 builder.Services.AddMemoryCache();
-
 ```
 
 And you can use it with practically no configuration. 
 I will inject it directly into the controller that .NET created for me by default.
 
 ```csharp
-
 private readonly IMemoryCache _cacheService;
 
 public WeatherForecastController(IMemoryCache cacheService)
 {
     _cacheService = cacheService;
 }
-
 ```
 
 And now in the GET method where we capture the weather forecast from various weather stations, we will include cached ones. We understand that the weather will not change every minute, so we can cache the weather forecast values for a while.
 
 ```csharp
-
 [HttpGet(Name = "GetWeatherForecast")]
 public List<WeatherForecast> Get()
 {
@@ -126,7 +119,6 @@ public List<WeatherForecast> Get()
 
     return weathersFromCache;
 }
-
 ```
 
 Explanation:
@@ -168,14 +160,12 @@ Setting Absolute Expiration
 Here's how you can modify the code to set an absolute expiration of, for example, 30 minutes:
 
 ```csharp
-
 var cacheEntryOptions = new MemoryCacheEntryOptions
 {
     AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30) // Cache for 30 minutes
 };
 
 _cacheService.Set<List<WeatherForecast>>("MyCacheKey", weathers, cacheEntryOptions);
-
 ```
 
 When to use?
@@ -188,14 +178,12 @@ Setting Sliding Expiration
 And here's how you can set a sliding expiration of 30 minutes:
 
 ```csharp
-
 var cacheEntryOptions = new MemoryCacheEntryOptions
 {
     SlidingExpiration = TimeSpan.FromMinutes(30) // Cache for 30 minutes
 };
 
 _cacheService.Set<List<WeatherForecast>>("MyCacheKey", weathers, cacheEntryOptions);
-
 ```
 When to use?
 
@@ -207,7 +195,6 @@ Combining Both
 You can also combine both absolute and sliding expirations for more complex caching scenarios:
 
 ```csharp
-
 var cacheEntryOptions = new MemoryCacheEntryOptions
 {
     AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1), // Absolute expiration of 1 hour
@@ -215,7 +202,6 @@ var cacheEntryOptions = new MemoryCacheEntryOptions
 };
 
 _cacheService.Set<List<WeatherForecast>>("MyCacheKey", weathers, cacheEntryOptions);
-
 ```
 
 In this combined scenario, the cache entry will expire if it's not accessed for 30 minutes, but it will also expire unconditionally after 1 hour from when it was added to the cache.
@@ -251,7 +237,6 @@ Specifies the size of the cache entry, which is considered when the cache size l
 **Example usage**:
 
 ```csharp
-
 var cacheEntryOptions = new MemoryCacheEntryOptions()
 {
     AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60), // Expires in 60 minutes
@@ -268,7 +253,6 @@ cacheEntryOptions.RegisterPostEvictionCallback(
 );
 
 _memoryCache.Set("MyCacheKey", myObject, cacheEntryOptions);
-
 ```
 
 ## What next?

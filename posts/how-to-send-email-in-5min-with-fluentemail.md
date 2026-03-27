@@ -33,7 +33,6 @@ Let's dive in.
 ## Quick Configuration
 The first thing that is necessary is to add a new package from the NuGet package manager.
 ```csharp
-
 dotnet add package FluentEmail.Core
 dotnet add package FluentEmail.Smtp
 ```
@@ -42,7 +41,6 @@ How?
 ## Basic Usage
 To construct and send an email you just keep building up the fluent methods on the **IEmail class** (comes from FluentEmail). When you are ready to send, call **SendAsync** ().
 ```csharp
-
 var email = await Email
     .From("stefan@gmail.com")
     .To("milan@gmail.com", "Milan")
@@ -64,7 +62,6 @@ There are the most common methods available on the email object:
 The best way to use FluentEmail is to configure your sender and template choices with dependency injection.
 Let's configure it in **Program.cs class**:
 ```csharp
-
 builder.Services.
        .AddFluentEmail("from@gmail.com")
        .AddRazorRenderer()
@@ -76,7 +73,6 @@ What I did here?
 • **AddRazorRenderer** () - sets the RazorRenderer provider - templating support (ITemplateRenderer interface).
 Using dependency injection will make a couple of interfaces available to your code. See the example below for sending email with the configured services:
 ```csharp
-
 public class EmailService : IEmailService
 {
     private readonly IFluentEmail _fluentEmail;
@@ -95,19 +91,16 @@ public class EmailService : IEmailService
                 .SendAsync();
     }
 }
-
 ```
 ## Razor Email Templates
 We want the emails we send to have the same template and style. Especially if we send a newsletter, like this one for example :D
 One of the most popular options for template rendering is using the **Razor template renderer** . To use this renderer, it is necessary to add the **FluentEmail.Razor** package from NuGet.
 ```csharp
-
 dotnet add package FluentEmail.Razor
 ```
 The RazorRenderer supports **any valid Razor code** .
 Let's see the example:
 ```csharp
-
 //configure the Razor Renderer
 builder.Services
        .AddFluentEmail("from@gmail.com")
@@ -141,12 +134,10 @@ The following senders are available as core libraries:
 Let's see how it's easy to configure it with **SendGrid** for example.
 First, you need to add another package from the NuGet:
 ```csharp
-
 dotnet add package FluentEmail.SendGrid
 ```
 And lastly, you just need to configure it in Program.cs:
 ```csharp
-
 builder.Services
        .AddFluentEmail("from@gmail.com")
        .AddSendGridSender("apikey");

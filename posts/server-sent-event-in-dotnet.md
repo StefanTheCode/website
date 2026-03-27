@@ -153,7 +153,6 @@ This makes real-time streaming in ASP.NET Core significantly cleaner and less er
 
 To demonstrate real-time updates, we can simulate asynchronous order processing.
 ```csharp
-
 app.MapPost("/orders/{orderId:guid}/simulate", async (
     Guid orderId,
     OrderStreamService streamService) =>

@@ -46,30 +46,10 @@ const highlighterPromise = createHighlighter({
 });
 
 export default async function ShikiCode({ className, code }: Props) {
-  // --- NORMALIZE INPUT ---
   const raw = typeof code === "string" ? code : String(code ?? "");
-  const normalized = raw.replace(/\r\n/g, "\n");
-
-  // --- TRIM TRAILING "EMPTY" LINES (unicode-safe) ---
-  const lines = normalized.split("\n");
-
-  const isEmptyLine = (s: string) => {
-  const cleaned = s
-    .replace(/\u00A0/g, " ")   // NBSP
-    .replace(/\u200B/g, "")    // zero-width space
-    .replace(/\u200C/g, "")
-    .replace(/\u200D/g, "")
-    .replace(/\uFEFF/g, "")
-    .trim();
-
-  return cleaned.length === 0;
-};
-
-  while (lines.length > 0 && isEmptyLine(lines[lines.length - 1])) {
-    lines.pop();
-  }
-
-  const cleaned = lines.join("\n");
+  const cleaned = raw
+    .replace(/\r\n/g, "\n")
+    .replace(/(?:\n[\t \u00A0\u200B\u200C\u200D\uFEFF]*)+$/, "");
 
   // --- LANGUAGE ---
   const langRaw = detectLang(className);
@@ -91,6 +71,17 @@ export default async function ShikiCode({ className, code }: Props) {
 
   const tokens = result.tokens;
 
+  // --- REMOVE TRAILING EMPTY LINES ---
+  while (tokens.length > 0) {
+    const lastLine = tokens[tokens.length - 1];
+    const isEmptyLine = !lastLine.some((t) => t.content.trim().length > 0);
+    if (isEmptyLine) {
+      tokens.pop();
+    } else {
+      break;
+    }
+  }
+
   // --- RENDER ---
   return (
     <CodeFrame language={label(safeLang)} code={cleaned}>
@@ -107,12 +98,15 @@ export default async function ShikiCode({ className, code }: Props) {
           <code className="tcm-code__code">
             {tokens.map((line, i) => (
               <span className="tcm-code__line" key={i}>
-                {line.map((t, j) => (
-                  <span key={j} style={{ color: t.color }}>
-                    {t.content}
-                  </span>
-                ))}
-                {"\n"}
+                {line.some((t) => t.content.length > 0) ? (
+                  line.map((t, j) => (
+                    <span key={j} style={{ color: t.color }}>
+                      {t.content}
+                    </span>
+                  ))
+                ) : (
+                  "\u00A0"
+                )}
               </span>
             ))}
           </code>

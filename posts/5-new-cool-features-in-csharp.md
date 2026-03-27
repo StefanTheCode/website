@@ -40,7 +40,6 @@ The introduction of collection expressions eliminates the need for the 'new' ope
 Even better, the new spread operator ".." makes combining collections seamless, enhancing code readability and reducing clutter.
 
 ```csharp
-
 //Before
 var integers = new int[] { 1,2,3,4,5 };
 var list = new List<int>() { 1,2,3,4,5 };
@@ -65,7 +64,6 @@ This new feature **allows constructors to be declared directly within the type's
 It’s particularly effective for initializing fields or properties directly with constructor parameters, thereby facilitating a more straightforward dependency injection.
 
 ```csharp
-
 public class User(string firstName, string lastName, int age, List<Role> roles)
  {
      public string FirstName => firstName;
@@ -98,9 +96,7 @@ C# 12 introduces inline arrays, a feature that enhances array usage by allowing 
 This means arrays can now be allocated on the stack, boosting performance by reducing heap allocations and copying.
 
 Inline arrays can be initialized directly within expressions, making code more concise and memory-efficient.
-
 ```csharp
-
 using System.Runtime.CompilerServices;
 
 [InlineArray(5)]
@@ -112,7 +108,6 @@ public struct FixedArray
     for (int i = 0; i < 5; i++) buffer[i] = i;
 }
 ```
-
 This leads to:
 
 • Memory Efficiency:
@@ -136,9 +131,7 @@ C# 12 introduces an enhancement to type aliasing, expanding its capabilities bey
 Now, it's possible to alias any type, including tuples, arrays, and generics.
 
 This development simplifies code by reducing verbosity, thereby improving both readability and maintainability.
-
 ```csharp
-
 // possible only with C# 12
 using Point = (int x, int y);
 
@@ -146,27 +139,21 @@ Point origin = (0, 0);
 
 Console.WriteLine(origin);
 ```
-
 By broadening the scope of the using directive to encompass complex types, C# 12 makes it easier to work with intricate data structures while keeping the codebase clean and understandable.
 
 ## Num 5: Default Lambda Parameters
 
 Prior to C# 12, incorporating default parameters into your code was restricted to traditional functions.
-
 ```csharp
-
 public static void WelcomeUser(string username = "Guest") {
     Console.WriteLine($"Welcome, {username}!");
 }
 
 WelcomeUser(); 
 ```
-
 However, the advent of C# 12 revolutionizes this by extending the capability to lambda expressions.
 This new feature, known as Default Lambda Parameters, introduces the ability to specify default values for lambda parameters, thereby enhancing flexibility and streamlining execution.
-
 ```csharp
-
 var WelcomeUser = (string username = "Guest") => Console.WriteLine($"Welcome, {username}!");
 
 WelcomeUser();

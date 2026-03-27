@@ -40,7 +40,6 @@ It's really interesting implementation, so let's dive in!
 We have a .NET 9 Api project that works with Blog Posts.
 
 ```csharp
-
 public class BlogPost
 {
     public int Id { get; set; }
@@ -52,20 +51,17 @@ public class BlogPost
 I also created a simple DbContext with the only DbSet I had already defined.
 
 ```csharp
-
 public class BlogDbContext : DbContext
 {
     public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options) { }
 
     public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
 }
-
 ```
 
 Also, I created Minimal APIs with basic CRUD operations on Blog posts.
 
 ```csharp
-
 app.MapGet("/api/blog", async (BlogService blogService) =>
     await blogService.GetAllPostsAsync());
 
@@ -85,7 +81,6 @@ app.MapDelete("/api/blog/{id:int}", async (int id, BlogService blogService) =>
 {
     return await blogService.DeletePostAsync(id) ? Results.NoContent() : Results.NotFound();
 });
-
 ```
 
 As for databases, I mentioned that I will use PostgreSQL since it is currently one of the most used databases.
@@ -177,7 +172,6 @@ In order to add Aspire Orchestrator to your existing project, you just need to a
 Given that we have 3 different environments: Production, Development and Test, we will add 3 connectionStrings in the Aspire project [appsettings](https://thecodeman.net/posts/live-loading-appsettings-configuration-file).json file (Blog.AppHost):
 
 ```json
-
 "ConnectionStrings": {
     "Development": "COPY_YOUR_DEVELOPMENT_CONNECTION_STRING",
     "Test": "COPY_YOUR_TEST_CONNECTION_STRING",
@@ -188,7 +182,6 @@ Given that we have 3 different environments: Production, Development and Test, w
 After that, we will set that in relation to the current environment (which we can change in the launchsettings.json file), a certain connectionString is taken from the configuration file and sent to the API, which we also register within Aspire.
 
 ```csharp
-
 var builder = DistributedApplication.CreateBuilder(args);
 
 var environment = builder.Environment.EnvironmentName;
@@ -209,7 +202,6 @@ Summary:
 This enabled Aspire to extract the necessary connectionString and pass it to the API based on the current environment. In order for APi to know how to process this, it is necessary to configure Program.cs.
 
 ```csharp
-
 var env = builder.Environment.EnvironmentName;
 
 var connectionString = builder.Configuration.GetConnectionString(env);
@@ -218,7 +210,6 @@ builder.Services.AddDbContext<BlogDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<BlogService>();
-
 ```
 
 ## Testing

@@ -59,7 +59,6 @@ For the simplicity of the example, I will not use the complete content of each a
 First, it is necessary to extract the data, ie. blog post titles. We'll put that in a list of strings. 
 
 ```csharp
-
 var blogPostTitles = new[]
 {
     "Debug and Test Multi-Environment Postgres Db in .NET with Aspire + Neon",
@@ -116,7 +115,6 @@ An embedding generator is like a translator that converts words or sentences int
 This way, computers can compare texts by looking at their numerical representations and easily figure out which texts are similar or related.
 
 ```csharp
-
 IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator =
     new OllamaEmbeddingGenerator(new Uri("http://127.0.0.1:11434"), modelId: "all-minilm");
 ```
@@ -132,7 +130,6 @@ Note: You need to download [Ollama](https://ollama.com/) as well as ["all-minilm
 ## 4. Generating Embeddings for Blog Posts
 
 ```csharp
-
 Console.WriteLine("Generating embeddings for blog post titles...");
 var candidateEmbeddings = await embeddingGenerator.GenerateAndZipAsync(blogPostTitles);
 Console.WriteLine("Embeddings generated successfully.");
@@ -144,7 +141,6 @@ Console.WriteLine("Embeddings generated successfully.");
 ## Interactive Query Processing - Semantic Search
 
 ```csharp
-
 while (true)
 {
     Console.WriteLine("\nEnter your query (or press Enter to exit):");
@@ -165,7 +161,6 @@ while (true)
 ## Computing Similarity and Retrieving Top Matches
 
 ```csharp
-
   // Compute cosine similarities and get the top three matches.
     var topMatches = candidateEmbeddings
         .Select(candidate => new

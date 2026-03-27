@@ -31,15 +31,12 @@ It takes care of all the best practices related to benchmarking, like:
 To start using BenchmarkDotNet, you should install it via NuGet:
 
 ```csharp
-
 Install-Package BenchmarkDotNet
-
 ```
 ### 2. Create Benchmarks
 Write the code you want to benchmark in a method and annotate it with the **[Benchmark]** attribute.
 
 ```csharp
-
 using BenchmarkDotNet.Atrributes;
 
 public class MyBenchmarks
@@ -55,7 +52,6 @@ public class MyBenchmarks
 
 To run the benchmarks, you create a new instance of the **BenchmarkRunner** class and call the Run method.
 ```csharp
-
 using BenchmarkDotNet.Running;
 
 class Program
@@ -84,7 +80,6 @@ BenchmarkDotNet has a wealth of advanced features, including:
 You can run benchmarks with different parameters to see how they affect performance.
 
 ```csharp
-
 using BenchmarkDotNet.Attributes;
 
 public class ParameterizedBenchmarks
@@ -103,7 +98,6 @@ public class ParameterizedBenchmarks
         return sum;
     }
 }
-
 ```
 ### • Multiple Runtimes
 To run benchmarks against different .NET runtimes, you can use the **[CoreJob, ClrJob, MonoJob]** attributes. You'll also need to adjust your project file to target multiple frameworks.
@@ -112,7 +106,6 @@ First, adjust your .csproj:
 Then, in your benchmark class:
 
 ```csharp
-
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
@@ -125,13 +118,11 @@ public class MultiRuntimeBenchmarks
         //Your code here...
     }
 }
-
 ```
 ### • Custom Configurations
 You can create a custom configuration that controls the benchmarking process.
 
 ```csharp
-
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Attributes;
@@ -159,7 +150,6 @@ To capture diagnostics like memory traffic or GC collections, you'll use the **[
 For more detailed diagnostics, you might consider other diagnosers available in BenchmarkDotNet, like **[DisassemblyDiagnoser]**.
 
 ```csharp
-
 using BenchmarkDotNet.Attributes;
 
 [MemoryDiagnoser]
@@ -171,7 +161,6 @@ public class MemoryDiagnosticsBenchmarks
         return new List<int> { 1, 2, 3, 4, 5 };
     }
 }
-
 ```
 ## Wrapping up
 BenchmarkDotNet is an open-source, efficient .NET library that turns your methods into benchmarks, monitors them, and offers insights into the collected performance data.

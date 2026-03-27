@@ -38,7 +38,6 @@ This mode doesn't execute the query when it's initially defined. Instead, the ex
 Here’s how it works:
 
 ```csharp
-
 var fruits = new List<string> { "apple", "banana", "cherry", "date", "elderberry" };
 
 var longFruits = fruits.Where(fruit => fruit.Length > 5); // No execution here
@@ -46,18 +45,15 @@ foreach (var fruit in longFruits) // Execution happens here
 {
     Console.WriteLine(fruit);
 }
-
 ```
 ### Immediate Execution
 In this mode, the query is executed as soon as it's created. Methods such as ToList(), ToArray(), Count(), and First() trigger immediate execution in LINQ.
 Here’s how it works:
 
 ```csharp
-
 var fruits = new List<string> { "apple", "banana", "cherry", "date", "elderberry" };
 
 var firstFruit = fruits.Where(fruit => fruit.Length > 5).First(); // Execution happens here
-
 ```
 
 ## Common Performance Mistakes in LINQ
@@ -69,25 +65,21 @@ Using LINQ methods incorrectly can lead to slow performance, especially when che
 You might think of using the Count() method to do this, but that's not efficient because it counts all elements in the sequence, which can take a long time if the sequence is large.
 
 ```csharp
-
 var numbers = new List<int> { 1, 2, 3, 4, 5 };
 if (numbers.Count() > 0)
 {
     // Do something
 }
-
 ```
 
 Instead, you should use the Any() method. Any() is faster because it stops looking as soon as it finds the first element.
 
 ```csharp
-
 var numbers = new List<int> { 1, 2, 3, 4, 5 };
 if (numbers.Any())
 {
     // do something
 }
-
 ```
 The examples shown are collections of type List<T>. If a materialized list is used, there is an option to use the .Count property as well.
 
@@ -99,23 +91,19 @@ This can cause a significant overhead, especially if the data source is large or
 For example, instead of writing:
 
 ```csharp
-
 var customers = db.Customers.Where(c => c.Age > 30);
 var count = customers.Count();
 var first = customers.First();
 var last = customers.Last();
-
 ```
 
 You can write:
 
 ```csharp
-
 var customers = db.Customers.Where(c => c.Age > 30).ToList();
 var count = customers.Count;
 var first = customers[0];
 var last = customers[^1];
-
 ```
 
 This way, you only query the database once, and then access the cached results in memory.
@@ -124,17 +112,13 @@ This way, you only query the database once, and then access the cached results i
 
 Select is the most frequently used method in LINQ. And what I often see people doing is extracting the complete list of fields, more precisely the entire object even though they only need 2.3 fields.
 ```csharp
-
 var validUsers = users.Where(x => x.IsValid).Select(x => x);
-
 ```
 
 Instead, it is necessary to design only the fields that are necessary:
 
 ```csharp
-
 var validUsers = users.Where(x => x.IsValid).Select(x => new { x.Id, x.Name });
-
 ```
 
 ### 4. Ignoring IQueryable vs IEnumerable
@@ -145,10 +129,8 @@ Confusing IQueryable and IEnumerable can lead to inefficient queries.
 **IEnumerable** is used for querying in-memory collections. Using IEnumerable when IQueryable is appropriate can pull more data into memory than necessary.
 
 ```csharp
-
 // Make sure to use IQueryable for database queries to leverage SQL optimizations
 IQueryable<Product> query = dbContext.Products.Where(p => p.Price > 100);
-
 ```
 
 ### 5. Not using [compiled queries](https://thecodeman.net/posts/improve-ef-core-performance-with-compiled-queries)
@@ -161,10 +143,8 @@ To use compiled queries, you need to use the CompiledQuery class and its static 
 For example, if you have a query that returns a list of customers by their age, you can write:
 
 ```csharp
-
 var query = CompiledQuery.Compile((DataContext db, int age) => db.Customers.Where(c => c.Age == age));
 var customers = query(db, 30);
-
 ```
 
 This way, you compile the query once, and then execute it with different parameters, without recompiling it every time.

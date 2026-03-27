@@ -38,7 +38,6 @@ The discount rules are as follows:
 Initially, we can handle this logic using a series of If statements:
 
 ```csharp
-
 public decimal CalculateDiscount(Customer customer, decimal orderTotal)
 {
     if (customer.IsVIP)
@@ -58,7 +57,6 @@ public decimal CalculateDiscount(Customer customer, decimal orderTotal)
         return orderTotal; // no discount
     }
 }
-
 ```
 
 ## Chain of Responsibility
@@ -68,7 +66,6 @@ Let's refactor the code to use this pattern.
 ** Step #1**: Create an **abstract handler class, DiscountHandler**, that defines a common interface for all discount handlers:
 
 ```csharp
-
 public abstract class DiscountHandler
 {
     protected DiscountHandler _nextHandler;
@@ -80,14 +77,12 @@ public abstract class DiscountHandler
 
     public abstract decimal CalculateDiscount(Customer customer, decimal orderTotal);
 }
-
 ```
 
 **Step #2**: Implement **concrete discount handlers** by deriving from DiscountHandler. Each handler will handle a specific rule and decide whether to apply a discount or pass the request to the next handler.
 VIPDiscountHandler:
 
 ```csharp
-
 public class VIPDiscountHandler : DiscountHandler
 {
     public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
@@ -100,13 +95,11 @@ public class VIPDiscountHandler : DiscountHandler
         return _nextHandler?.CalculateDiscount(customer, orderTotal) ?? orderTotal;
     }
 }
-
 ```
 
 RegularDiscountHandler:
 
 ```csharp
-
 public class RegularDiscountHandler : DiscountHandler
 {
     public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
@@ -119,13 +112,11 @@ public class RegularDiscountHandler : DiscountHandler
         return _nextHandler?.CalculateDiscount(customer, orderTotal) ?? orderTotal;
     }
 }
-
 ```
 
 NewCustomerDiscountHandler:
 
 ```csharp
-
 public class NewCustomerDiscountHandler : DiscountHandler
 {
     public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
@@ -138,13 +129,11 @@ public class NewCustomerDiscountHandler : DiscountHandler
         return _nextHandler?.CalculateDiscount(customer, orderTotal) ?? orderTotal;
     }
 }
-
 ```
 
 NoDiscountHandler:
 
 ```csharp
-
 public class NoDiscountHandler : DiscountHandler
 {
     public override decimal CalculateDiscount(Customer customer, decimal orderTotal)
@@ -152,25 +141,21 @@ public class NoDiscountHandler : DiscountHandler
         return orderTotal; // no discount
     }
 }
-
 ```
 
 **Step #3:** With the concrete handlers in place, we can create the chain by linking them together:
 
 ```csharp
-
 var vipHandler = new VIPDiscountHandler();
 
 vipHandler.SetNextHandler(new RegularDiscountHandler())
           .SetNextHandler(new NewCustomerDiscountHandler())
           .SetNextHandler(new NoDiscountHandler());
-
 ```
 
 Finally, we can invoke the chain by calling the **CalculateDiscount method** on the first handler in the chain:
 
 ```csharp
-
 decimal discountAmount = vipHandler.CalculateDiscount(customer, orderTotal);
 ```
 

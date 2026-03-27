@@ -27,7 +27,6 @@ This post shows how to wire it correctly, when to choose each registration, and 
 ### 1. AddDbContext (Scoped - default, per request)
 
 ```csharp
-
 // Program.cs
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
@@ -39,14 +38,12 @@ options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 ### 2. AddDbContextFactory<TContext> (Transient factory for on-demand contexts)
 
 ```csharp
-
 builder.Services.AddDbContextFactory<AppDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 ```
 
 How to use it:
 ```csharp
-
 public sealed class ReportService(IDbContextFactory<AppDbContext> factory)
 {
     public async Task<IReadOnlyList<OrderDto>> GetAsync(CancellationToken ct)
@@ -71,7 +68,6 @@ When to use:
 ### 3. AddDbContextPool<TContext> (Scoped with pooling)
 
 ```csharp
-
 builder.Services.AddDbContextPool<AppDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 ```
@@ -86,7 +82,6 @@ options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 ### Controller / Minimal API (Scoped is perfect)
 
 ```csharp
-
 app.MapGet("/orders/{id:int}", async (int id, AppDbContext db, CancellationToken ct) =>
 {
     var order = await db.Orders.FindAsync([id], ct);
@@ -98,7 +93,6 @@ app.MapGet("/orders/{id:int}", async (int id, AppDbContext db, CancellationToken
 ### [BackgroundService](https://thecodeman.net/posts/background-tasks-in-dotnet8) with IServiceScopeFactory (or use the factory directly)
 
 ```csharp
-
 public sealed class CleanupService(IServiceScopeFactory scopes, ILogger<CleanupService> log) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -122,7 +116,6 @@ public sealed class CleanupService(IServiceScopeFactory scopes, ILogger<CleanupS
 Alternative (my go-to):
 
 ```csharp
-
 public sealed class CleanupService(IDbContextFactory<AppDbContext> factory, ILogger<CleanupService> log) 
 : BackgroundService
 {
@@ -141,7 +134,6 @@ public sealed class CleanupService(IDbContextFactory<AppDbContext> factory, ILog
 ### Singleton service that needs the database
 
 ```csharp
-
 public sealed class PricingCache(IDbContextFactory<AppDbContext> factory, IMemoryCache cache)
 {
     public async Task<decimal> GetPriceAsync(int productId, CancellationToken ct)
@@ -164,7 +156,6 @@ public sealed class PricingCache(IDbContextFactory<AppDbContext> factory, IMemor
 ### High-throughput APIs (pooling)
 
 ```csharp
-
 builder.Services.AddDbContextPool<AppDbContext>(o =>
 {
     o.UseNpgsql(builder.Configuration.GetConnectionString("Default"));

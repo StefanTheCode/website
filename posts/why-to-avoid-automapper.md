@@ -49,7 +49,6 @@ Depending on the complexity of the project and what I want to achieve, I choose 
 If I don't have many properties to map, all property names that I need to map in both objects are identical, and performance is not the most important thing for me at the moment (although this is certainly faster than Automapper), I use simple reflection to map all properties.
 
 ```csharp
-
 public class Mapper<TSource, TDestination>
 {
     public TDestination Map(TSource source)
@@ -74,15 +73,12 @@ public class Mapper<TSource, TDestination>
         return sourceList.Select(source => Map(source)).ToList();
     }
 }
-
 ```
 Usage:
 
 ```csharp
-
 var mapper = new Mapper<User, UserModel>();
 List<UserModel> userModels = mapper.Map(users);
-
 ```
 
 Potential problem:
@@ -94,7 +90,6 @@ Potential problem:
 This is the most common way I implement mapping. For a certain entity/DTO, I'm creating a service class that I put in DI. Inside the service class, I implement both mappings. This way I have complete control over the mapping with tremendous ease in debugging and testing the code.
 
 ```csharp
-
 public class UserMapperService
 {
     public User MapToUser(UserModel userModel)
@@ -129,15 +124,12 @@ public class UserMapperService
         };
     }
 }
-
 ```
 
 Usage:
 
 ```csharp
-
 UserModel userModel = _userMapperService.MapToUserModel(user);
-
 ```
 
 Potential problem:
@@ -149,7 +141,6 @@ I have a solution for you: ** Mapping Generator (Visual Studio plugin)** which i
 I use the .Select() method from EntityFramework mainly when I directly map entities from the domain/database to the DTO without any changes. In an ideal world, I believe there is nothing better than this mapping.
 
 ```csharp
-
 List<User> users = _userRepository.GetUsers();
 
 List<UserModel> userModels = users.Select(x => new UserModel
@@ -164,7 +155,6 @@ List<UserModel> userModels = users.Select(x => new UserModel
         PostalCode = x.PostalCode,
         Region = x.Region
     }).ToList();
-
 ```
 ## Wrapping up
 

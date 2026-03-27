@@ -35,7 +35,6 @@ We’ll solve this with two interceptors.
 Step 1 - Define a tiny audit/soft-delete contract
 
 ```csharp
-
 public interface IAuditableEntity
 {
   DateTimeOffset CreatedAt { get; set; }
@@ -58,7 +57,6 @@ Interceptors work best when you can apply logic by capability (interfaces), inst
 ### Step 2 - Example entity
 
 ```csharp
-
 public sealed class Invoice : IAuditableEntity, ISoftDelete
 {
   Guid Id { get; set; }
@@ -80,7 +78,6 @@ Billing data often requires immutability/auditability, and soft deletes are a ve
 ### Step 3 - “Current user” abstraction (works for APIs + background jobs)
 
 ```csharp
-
 public interface ICurrentActor
 {
     string? UserId { get; }
@@ -113,7 +110,6 @@ Interceptors are cross-cutting. You need one place to define “who is doing the
 ### Step 4 - The interceptor itself
 
 ```csharp
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -199,7 +195,6 @@ This is one of my favorite “production maturity” uses of interceptors:
 ### Step 1 - The interceptor
 
 ```csharp
-
 using System.Data.Common;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -321,7 +316,6 @@ Why this is powerful:
 ## 3) Wire it up in .NET 9 (DI + AddInterceptors)
 
 ```csharp
-
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

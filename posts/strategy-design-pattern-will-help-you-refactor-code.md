@@ -37,7 +37,6 @@ This means you can easily add a new mode of transport, like a taxi or motorcycle
 Let's see how it looks with a classic switch statement:
 
 ```csharp
-
 using System;
 
 public class TravelTimeCalculator
@@ -75,7 +74,6 @@ public class Client
         calculator.CalculateTravelTime("Walking", 120);
     }
 }
-
 ```
 
 Imagine that this switch has another 5,6 conditions, it would be difficult to follow them all.
@@ -92,12 +90,10 @@ Now, let's refactor the above code to use the Strategy pattern.
 Defines a common interface for all travel strategies.
 
 ```csharp
-
 public interface ITravelStrategy
 {
     void CalculateTravelTime(double distance);
 }
-
 ```
 
 **2. Concrete Strategies**:
@@ -105,7 +101,6 @@ public interface ITravelStrategy
 Implement the travel time calculation for each travel mode (*CarTravelStrategy, BusTravelStrategy, BikeTravelStrategy, WalkingTravelStrategy*).
 
 ```csharp
-
 public class CarTravelStrategy : ITravelStrategy
 {
     public void CalculateTravelTime(double distance)
@@ -137,7 +132,6 @@ public class WalkingTravelStrategy : ITravelStrategy
         Console.WriteLine($"Travel time by Walking: {distance / 5} hours.");
     }
 }
-
 ```
 
 **3. Context Class**:
@@ -145,7 +139,6 @@ public class WalkingTravelStrategy : ITravelStrategy
 Uses a strategy object to perform the travel time calculation, allowing the strategy to be set dynamically.
 
 ```csharp
-
 public class TravelContext
 {
     private ITravelStrategy _travelStrategy;
@@ -160,14 +153,12 @@ public class TravelContext
         _travelStrategy?.CalculateTravelTime(distance);
     }
 }
-
 ```
 
 **4. Context Class**:
 
 Uses a strategy object to perform the travel time calculation, allowing the strategy to be set dynamically.
 ```csharp
-
 public class Client
 {
     public static void Main(string[] args)
@@ -191,7 +182,6 @@ public class Client
         travelContext.CalculateTravelTime(120);
     }
 }
-
 ```
 
 ## Benefits?
@@ -217,7 +207,6 @@ Then, we will add a new travel mode, **Train**, to show how it can be done witho
 To add a new travel mode (Train), we simply create a **new concrete strategy class without modifying any of the existing classes**.
 
 ```csharp
-
 public class TrainStrategy : ITravelStrategy
 {
     public void Travel(string destination)
@@ -225,7 +214,6 @@ public class TrainStrategy : ITravelStrategy
         Console.WriteLine("Traveling to " + destination + " by train.");
     }
 }
-
 ```
 
 The client code simply sets the new strategy (TrainStrategy) and calls the Travel method without any changes to the existing code.

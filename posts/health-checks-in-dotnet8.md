@@ -39,7 +39,6 @@ There are three HealthStatus values:
 You can use the HealthStatus to indicate the different states of your application.
 To do all this, you need to write some code in your app's Program.cs file:
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHealthChecks();
@@ -60,7 +59,6 @@ Additionally, you can include optional details in the form of key-value pairs.
 The process for configuring these settings is outlined in the section on Health Check options.
 For example, a simple health check for database health:
 ```csharp
-
 public class SqlHealthCheck : IHealthCheck
 {
     private readonly string _connString;
@@ -110,13 +108,11 @@ To get around this, you can use a ResponseWriter.
 This tool provides more detailed information about each service's health.
 There's already one available in the ' **AspNetCore.HealthChecks.UI.Client** ' library, which you can use to easily see the status of each individual service in your app:
 ```csharp
-
 Install-Package AspNetCore.HealthChecks.UI.Client
 ```
 
 Now you need to update MapHealthChecks to use the ResponseWriter:
 ```csharp
-
 app.MapHealthChecks("/healthz", new HealthCheckOptions
   {
       ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
@@ -127,7 +123,6 @@ app.MapHealthChecks("/healthz", new HealthCheckOptions
 Let's say you want to customize output in JSON format. You can achieve this by using ResponseWriter:
 *code is taken from [official Microsoft documentation](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-8.0)
 ```csharp
-
 private static Task WriteResponse(HttpContext context, HealthReport healthReport)
 {
     context.Response.ContentType = "application/json; charset=utf-8";

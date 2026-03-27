@@ -34,7 +34,6 @@ For example, if a hosted service executed a lengthy process in its StartAsync me
 It is advisable to minimize the workload in the StartAsync method, but the potential for a slow service to hinder the overall application startup remained a concern prior to the introduction of .NET 8.
 Let's see the example of how the background service was implemented before .NET 8:
 ```csharp
-
 public class SomeService : IHostedService
 {
     public async Task StartAsync(CancellationToken cancellationToken)
@@ -52,7 +51,6 @@ public class SomeService : IHostedService
 
 DI registration:
 ```csharp
-
 builder.Services.AddHostedService&lt;SomeService&gt;();
 ```
 
@@ -67,7 +65,6 @@ This can be a problem. But there is a solution.
 In .NET 8, you now have the option to start or stop your services at the same time, instead of one after the other. This is done by changing the settings in **HostOptions** . If you want all your services to start together, turn on the **ServicesStartConcurrently** option. And if you want them to stop at the same time, there's a setting for that too, called **ServicesStopConcurrently** .
 Let' take a look on the example:
 ```csharp
-
 builder.Services.Configure&lt;HostOptions&gt;(options =>
 {
     options.ServicesStartConcurrently = true;
@@ -88,7 +85,6 @@ This interface abstracts 4 more new methods:
 • StoppingAsync
 • StoppedAsync
 ```csharp
-
 public class SomeService : IHostedLifecycleService
 {
     public async Task StartAsync(CancellationToken cancellationToken)

@@ -63,7 +63,6 @@ Behind the scenes, they leverage techniques like SqlBulkCopy, optimized SQL gene
 Let’s say you’re importing a CSV file with 100,000 new customers. If you use EF Core:
 
 ```csharp
-
 foreach (var customer in customers)
 {
     context.Customers.Add(customer);
@@ -76,7 +75,6 @@ You’ll likely wait several minutes for the operation to complete. The database
 Now compare that to EF Extensions [(Try this example online)](https://dotnetfiddle.net/rohWxy):
 
 ```csharp
-
 // 100+ options to customize your saves
 
 // Insert only customers that don't exist with a custom key
@@ -106,7 +104,6 @@ Want to deactivate 50,000 customers who haven’t logged in for a year?
 No need to fetch them first or loop through them:
 
 ```csharp
-
 await context.BulkUpdate(inactiveCustomers);
 ```
 Check the [benchmarks online](https://dotnetfiddle.net/ope4nq).
@@ -117,7 +114,6 @@ Synchronizing data from an external API?
 EF Extensions can merge existing records and insert new ones in a single call:
 
 ```csharp
-
 await context.BulkMerge(products);
 ```
 
@@ -128,7 +124,6 @@ No need to write complicated logic to check if each record exists — EF Extensi
 Cleaning up logs or expired sessions?
 
 ```csharp
-
 await context.BulkDelete(expiredLogs);
 ```
 

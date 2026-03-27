@@ -83,10 +83,8 @@ Configure .NET 8 Application
 Run the following commands to add Azure App Configuration and feature management dependencies:
 
 ```csharp
-
 dotnet add package Microsoft.FeatureManagement.AspNetCore
 dotnet add package Microsoft.Azure.AppConfiguration.AspNetCore
-
 ```
 
 2. Modify Program.cs
@@ -94,7 +92,6 @@ dotnet add package Microsoft.Azure.AppConfiguration.AspNetCore
 Add Azure App Configuration to your application configuration:
 
 ```csharp
-
 using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -126,7 +123,6 @@ app.MapGet("/", async context =>
 });
 
 app.Run();
-
 ```
 
 3. Run and Test
@@ -142,7 +138,6 @@ Let’s implement a Dark Mode toggle:
 - Use IFeatureManager in your Razor page to check the feature:
 
 ```csharp
-
 @inject IFeatureManager FeatureManager
 
 @if (await FeatureManager.IsEnabledAsync("DarkMode"))
@@ -153,26 +148,22 @@ else
 {
     <link href="light-theme.css" rel="stylesheet" />
 }
-
 ```
 - Toggle DarkMode from Azure and verify the styling updates dynamically.
 ## Best Practices - Refactored code
 Define a service to encapsulate the feature management logic. This allows you to reuse it across multiple parts of your application.
 
 ```csharp
-
 using System.Threading.Tasks;
 
 public interface IFeatureToggleService
 {
     Task<bool> IsFeatureEnabledAsync(string featureName);
 }
-
 ```
 Implementation:
 
 ```csharp
-
 using Microsoft.FeatureManagement;
 
 public class FeatureToggleService : IFeatureToggleService
@@ -189,20 +180,16 @@ public class FeatureToggleService : IFeatureToggleService
         return await _featureManager.IsEnabledAsync(featureName);
     }
 }
-
 ```
 Modify the Program.cs to register the service with the dependency injection container.
 
 ```csharp
-
 builder.Services.AddSingleton<IFeatureToggleService, FeatureToggleService>();
-
 ```
 
 ## Simple use case - Using in service
 
 ```csharp
-
 public class MyBusinessService
 {
     private readonly IFeatureToggleService _featureToggleService;
@@ -225,7 +212,6 @@ public class MyBusinessService
         }
     }
 }
-
 ```
 
 ## Benefits of This Approach
@@ -246,7 +232,6 @@ Readability:
 ## Unit Testing Example
 
 ```csharp
-
 using Moq;
 using Xunit;
 
@@ -268,7 +253,6 @@ public class FeatureToggleServiceTests
         Assert.True(result);
     }
 }
-
 ```
 
 ## Wrapping Up

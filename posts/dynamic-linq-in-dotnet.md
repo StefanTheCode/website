@@ -41,14 +41,12 @@ You can write either:
 • Body-only form:
 
 ```csharp
-
  x => x.Status == 0 && x.LastLogon >= DateTime.Now.AddMonths(-1)"
 ```
 
 **• Full-lambda form:** 
 
 ```csharp
-
 x => x.Status == 0 && x.LastLogon >= DateTime.Now.AddMonths(-1) 
 ```
 
@@ -70,7 +68,6 @@ I’ll show before → after where it helps, plus tips that keep the code clean.
 **Before:** branch explosion
 
 ```csharp
-
 var q = context.Customers.AsQueryable();
 
 if (onlyActive)
@@ -88,7 +85,6 @@ var list = await q.OrderBy(x => x.Name).ToListAsync();
 **After:** a single dynamic predicate  
 
 ```csharp
-
 // using System.Linq;
 // using Z.Expressions;
 
@@ -116,7 +112,6 @@ var list = await context.Customers
 You don’t have to inject literal values into the string. Pass a context object (anonymous type/dictionary/expando/class) and reference its members by name inside the expression:
 
 ```csharp
-
 var env = new {
     IsActive = CustomerStatus.IsActive,
     LastMonth = DateTime.Now.AddMonths(-1)
@@ -168,7 +163,6 @@ The catalog lists SelectDynamic as a first-class operator; EF still handles tran
 
 Perfect for “open this result” or validation checks based on runtime criteria: 
 ```csharp
-
 var one = await context.Customers
     .FirstOrDefaultDynamic("x => x.Email == \\\"stefan@thecodeman.net\\\" && x.Status == 0");
 ```
@@ -179,7 +173,6 @@ This method is documented alongside the rest of the Dynamic operators and called
 
 If you truly need to run several LINQ steps in a single dynamic string (filter → order → select → ToList), there’s an Execute<T> API:  
 ```csharp
-
 var env = new { IsActive = CustomerStatus.IsActive, LastMonth = DateTime.Now.AddMonths(-1) };
 
 var result = context.Customers.Execute<IEnumerable>(

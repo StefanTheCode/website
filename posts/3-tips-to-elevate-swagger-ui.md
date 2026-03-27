@@ -27,7 +27,6 @@ We know [Swagger](https://swagger.io/) is a set of tools for developing, documen
 By default, when an API project is created, code is generated in Program.cs that will create the Swagger support, along with the Swagger UI.
 
 ```csharp
-
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -37,7 +36,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 ```
 
 This UI is quite "clean" and it is possible to enrich it with many things. 
@@ -65,7 +63,6 @@ Firstly, if we tag some endpoint as obsolete, this will not hide it from Swagger
 To be able to delete it, I will create RemoveObsoleteOperationsFilter implementation of IDocumentFilter abstraction.
 
 ```csharp
-
 public class RemoveObsoleteOperationsFilter : IDocumentFilter {
     public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context) {
         var obsoletePaths = swaggerDoc.Paths
@@ -78,17 +75,14 @@ public class RemoveObsoleteOperationsFilter : IDocumentFilter {
             swaggerDoc.Paths.Remove(obsoletePath);
         }
 }
-
 ```
 I need to add a support for this DocumentFilter. It's really to add it, just update the .AddSwaggerGen() method call in Program.cs:
 
 ```csharp
-
 builder.Services.AddSwaggerGen(c =>
 {
     c.DocumentFilter<RemoveObsoleteOperationsFilter>();
 });
-
 ```
 And now, the endpoint is removed from the Swagger UI.
 
@@ -103,7 +97,6 @@ This can be particularly useful for ensuring that every operation has a baseline
 By implementing and registering a custom document filter, you can automate these modifications, making your API documentation more uniform and easier to manage.
 
 ```csharp
-
 public class AddGlobalMetadataDocumentFilter : IDocumentFilter
 {
     public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
@@ -122,7 +115,6 @@ public class AddGlobalMetadataDocumentFilter : IDocumentFilter
         }
     }
 }
-
 ```
 Result:
 ![Swagger UI Global Metadata](/images/blog/posts/3-tips-to-elevate-swagger-ui/global-metadata.png)
@@ -136,7 +128,6 @@ By implementing and registering a custom document filter, you can automate the i
 This approach is particularly useful for enforcing standard headers for purposes such as [rate limiting](https://thecodeman.net/posts/how-to-implement-rate-limiter-in-csharp), request tracking, or any other cross-cutting concerns.
 
 ```csharp
-
 public class AddCustomHeaderToResponsesDocumentFilter : IDocumentFilter
 {
     public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
@@ -161,7 +152,6 @@ public class AddCustomHeaderToResponsesDocumentFilter : IDocumentFilter
         }
     }
 }
-
 ```
 
 Result:

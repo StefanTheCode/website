@@ -42,7 +42,6 @@ There are multiple approaches to API versioning in .NET (&gt; .NET 5):
 • This method is the most straightforward and easy to understand.
 • However, it can lead to URL duplication and requires clients to change URLs to access different versions.
 ```csharp
-
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/products")]
     public class ProductsV1Controller : ApiController
@@ -68,7 +67,6 @@ There are multiple approaches to API versioning in .NET (&gt; .NET 5):
 • This method allows for an easy transition to new versions.
 • It may not be as clean as path versioning and can be overlooked by users.
 ```csharp
-
     public class QueryStringVersionController : ApiController
     {
             const string DefaultApiVersion = "1.0";
@@ -97,7 +95,6 @@ There are multiple approaches to API versioning in .NET (&gt; .NET 5):
 • It keeps the URL unchanged for different versions, which can be beneficial for SEO and caching.
 • However, it's less discoverable and can be harder for testing as it requires setting HTTP headers.
 ```csharp
-
     public class HeaderVersionController : ApiController
     {
             private const string HeaderName = "X-API-Version";
@@ -126,7 +123,6 @@ There are multiple approaches to API versioning in .NET (&gt; .NET 5):
 • This method follows the HTTP specification closely.
 • It is more complex and can be difficult to handle for some API clients.
 ```csharp
-
     [Produces("application/json")]
     public class MediaTypeVersionController : ApiController
     {
@@ -167,7 +163,6 @@ There are multiple approaches to API versioning in .NET (&gt; .NET 5):
 • It requires more infrastructure setup and can complicate SSL certificate management.
 Note: Hostname versioning might be done through routing or with URL rewriting, depending on your setup. This isn't usually handled directly in the controller but rather in the IIS setup or with a [reverse proxy](https://thecodeman.net/posts/dotnet-docker-and-traefik) configuration. However, you can simulate it with routing:
 ```csharp
-
   // This would be set up in your routing configuration or Web API configuration.
   config.Routes.MapHttpRoute(
         name: "Version1",

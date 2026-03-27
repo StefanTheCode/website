@@ -75,7 +75,6 @@ Step 1: Create the API Key Middleware:
 First, we define a middleware component that intercepts incoming HTTP requests to check for a valid API key.
 
 ```csharp
-
 public class ApiKeyMiddleware
 {
     private const string API_KEY_HEADER_NAME = "X-Api-Key";
@@ -105,16 +104,13 @@ public class ApiKeyMiddleware
 Step 2: Register the Middleware:
 
 ```csharp
-
 app.UseMiddleware<ApiKeyMiddleware>();
-
 ```
 
 Step 3: Configure the API Key:
 The valid API key should be stored securely and retrieved from the application's configuration. This could be in an [appsettings](https://thecodeman.net/posts/live-loading-appsettings-configuration-file).json file, environment variable, or a secure secret storage.
 
 ```json
-
 {
     "ApiKey": "your-secret-api-key"
 }
@@ -127,7 +123,6 @@ Below is a basic example using JavaScript with fetch to make a request to the AP
 This example assumes you have a front-end application that needs to communicate with a back-end API protected by an API key.
 
 ```javascript
-
 const apiKey = 'your-api-key-here'; // This should be securely stored and retrieved
 const apiUrl = 'https://yourapi.com/data';
 

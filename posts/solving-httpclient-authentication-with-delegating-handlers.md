@@ -37,7 +37,6 @@ Today I'm going to show how to implement it with authentication.
 ## Configuring HttpClient in Program.cs
 
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient<NewsletterService>(httpClient =>
@@ -48,7 +47,6 @@ builder.Services.AddHttpClient<NewsletterService>(httpClient =>
 var app = builder.Build();
 
 app.Run();
-
 ```
 
 What did we do here?
@@ -63,7 +61,6 @@ The NewsletterService is a class that will have 2 methods:
 - Getting Open rate value for issue with passed ID
 
 ```csharp
-
 public class NewsletterService(HttpClient client)
 {
     public async Task<NewsletterUser?> GeEmailByIdAsync(string id)
@@ -80,7 +77,6 @@ public class NewsletterService(HttpClient client)
         return await client.GetFromJsonAsync<double>(endpoint);
     }
 }
-
 ```
 All set.
 
@@ -99,7 +95,6 @@ No no. Today we will show a better way.
 That's right, using a DelegatingHandler.
 
 ```csharp
-
 public class AuthenticationDelegatingHandler : DelegatingHandler
 {
     protected override Task<HttpResponseMessage> SendAsync(
@@ -113,7 +108,6 @@ public class AuthenticationDelegatingHandler : DelegatingHandler
         return base.SendAsync(request, cancellationToken);
     }
 }
-
 ```
 
 What have we achieved with this?
@@ -131,14 +125,12 @@ So let's not forget to tell HttpClient to use the Handler we created.
 We will do it in the following way:
 
 ```csharp 
-
 builder.Services.AddTransient<AuthenticationDelegatingHandler>();
 
 builder.Services.AddHttpClient<NewsletterService>(httpClient =>
 {
     httpClient.BaseAddress = new Uri("https://api.newsletter.com");
 })
-
 ```
 ## Wrapping up
 

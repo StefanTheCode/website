@@ -61,7 +61,6 @@ This happens far less frequently than string immutability would force, making St
 Let's see an example:
 
 ```csharp
-
 // Using string concatenation
 string result = "";
 for (int i = 0; i < 1000; i++)
@@ -102,7 +101,6 @@ There's no need to apply cultural rules, which can vary widely and involve compl
 Let's see a practical example:
 
 ```csharp
-
 string string1 = "hello world";
 string string2 = "Hello World";
 
@@ -135,9 +133,7 @@ Span<T> can be used with any type of contiguous memory, not just arrays or strin
 Let's compare it with a basic Substring mehod: 
 
 This opens the JSON configuration where you can define your [Rate Limiting](https://thecodeman.net/posts/how-to-implement-rate-limiter-in-csharp) Policy in detail.
-
 ```csharp
-
 public class SpanVsSubstring
 {
     private const string testString = "This is a longer test string for demonstration.";

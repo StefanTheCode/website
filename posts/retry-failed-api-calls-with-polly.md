@@ -44,7 +44,6 @@ If the id is greater or equal to the random number, it **simulates a server** er
 In a real-world scenario, instead of randomly determining the success or failure, you'd typically interact with some business logic or data access layer, and the result could depend on various factors.
 
 ```csharp
-
 [Route("api/[controller]")]
 [ApiController]
 public class UserController : ControllerBase
@@ -67,7 +66,6 @@ public class UserController : ControllerBase
         return StatusCode(StatusCodes.Status500InternalServerError);
     }
 }
-
 ```
 
 ## Retry Policies
@@ -87,7 +85,6 @@ Example below:
 The first retry will happen after 2 seconds, the second retry after 4 seconds, the third after 8 seconds, and so on.
 
 ```csharp
-
 public class ClientRetryPolicy
 {
     public AsyncRetryPolicy<HttpResponseMessage> JustHttpRetry { get; set; }
@@ -110,7 +107,6 @@ public class ClientRetryPolicy
                 attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)));
     }
 }
-
 ```
 
 ## Using Policy with HttpClient
@@ -119,7 +115,6 @@ As I mentioned, within the Web project we call the API endpoint to get the neces
 We call endpoint with the help of HTTP Client, with the fact that we will use the Retry Policy by calling that call.
 
 ```csharp
-
 [HttpGet]
 [Route("returnUser/{id}")]
 public async Task<ActionResult> ReturnUser(int id)
@@ -142,7 +137,6 @@ public async Task<ActionResult> ReturnUser(int id)
         return StatusCode(StatusCodes.Status500InternalServerError);
     }
 }
-
 ```
 In this example I used the "Fixed Interval Retry" policy. Which would practically mean that if the API returns an error, it will be called **3 times with an interval of 5 seconds between** each or less times if it returns a successful result.
 Let's see that.

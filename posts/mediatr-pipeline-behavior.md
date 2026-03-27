@@ -31,7 +31,6 @@ Let's take a look deeply!
 This interface represents a pipeline behavior that will be applied to every request and its corresponding response.
 MediatR provides an interface called **IPipelineBehavior<TRequest, TResponse>** that you can implement.
 ```csharp
-
 public interface IPipelineBehavior<TRequest, TResponse>
 {
     Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next);
@@ -43,7 +42,6 @@ You create a class that implements the **IPipelineBehavior<TRequest, TResponse> 
 This class will contain the logic that you want to apply to requests.
 For example, a simple logging behavior:
 ```csharp
-
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 {
     private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
@@ -74,7 +72,6 @@ After the request is handled, it logs the type of response generated, providing 
 ## Register the Pipeline Behavior
 In the startup configuration of your application, register your pipeline behavior so that MediatR knows to apply it to requests.
 ```csharp
-
 services.AddTransient(typeof(IPipelineBehavior<, ), typeof(LoggingBehavior<, )));
 ```
 
@@ -83,7 +80,6 @@ This allows you to add additional processing like logging, validation, or even e
 ## How and when is it used?
 Let's say we have a basic MediatR request defined:
 ```csharp
-
 public class MyRequest : IRequest<MyResponse>
 {
     // Request properties

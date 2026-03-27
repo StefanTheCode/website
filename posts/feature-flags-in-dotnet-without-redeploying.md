@@ -50,7 +50,6 @@ If changing a feature flag requires you to click **'Deploy'**, then you haven’
 Yes, you can define feature flags in appsettings.json.
 
 ```csharp
-
 {
   "FeatureManagement": {
     "BetaFeature": true
@@ -96,7 +95,6 @@ These give us:
 • runtime refresh support
 
 ```csharp
-
 dotnet add package Microsoft.FeatureManagement.AspNetCore
 dotnet add package Microsoft.Azure.AppConfiguration.AspNetCore
 ```
@@ -116,7 +114,6 @@ Read [the full tutorial about Feature Manager Azure App Configuration](https://t
 In appsettings.json:
 
 ```csharp
-
 {
   "AzureAppConfig": {
     "ConnectionString": "<YOUR_CONNECTION_STRING>"
@@ -130,7 +127,6 @@ In real projects, this belongs in Key Vault or environment variables.
 This is the part most examples skip or oversimplify.
 
 ```csharp
-
 using Microsoft.FeatureManagement;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 

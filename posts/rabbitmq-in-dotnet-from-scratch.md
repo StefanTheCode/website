@@ -35,7 +35,6 @@ Key Components:
 You can install RabbitMQ using [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik):
 
 ```csharp
-
 docker run -d --hostname rabbitmq
     --name rabbitmq \
     -p 5672:5672 -p 15672:15672 rabbitmq:3-management
@@ -56,14 +55,12 @@ Through this example I'm going to explain how it works.
 Firstly, you need to add RabbitMQ library to your project:
 
 ```csharp
-
 Install-Package RabbitMQ.Client
 ```
 
 Let’s define a C# class to represent an email message:
 
 ```csharp
-
 public class EmailMessage
 {
     public string To { get; set; } = default!;
@@ -87,7 +84,6 @@ Real-World Analogy:
 Think of it like dropping a letter into a mailbox. You’re not handling the delivery - just making sure it gets into the system.
 
 ```csharp
-
 public class EmailMessagePublisher
 {
     private const string EmailQueue = "email-queue";
@@ -141,7 +137,6 @@ Real-World Analogy:
 Think of it like a mailroom clerk who monitors the inbox and acts whenever a new letter shows up.
 
 ```csharp
-
 public class EmailMessageConsumer : BackgroundService
 {
     private const string EmailQueue = "email-queue";
@@ -205,7 +200,6 @@ You want to send emails only to a queue responsible for “welcome” emails.
 .NET Setup:
 
 ```csharp
-
 channel.ExchangeDeclare("direct-exchange", ExchangeType.Direct);
 channel.QueueBind("email-welcome-queue", "direct-exchange", "welcome");
 ```
@@ -222,7 +216,6 @@ You want to send a system-wide notification to all services (email, SMS, push).
 .NET Setup:
 
 ```csharp
-
 channel.ExchangeDeclare("fanout-exchange", ExchangeType.Fanout);
 channel.QueueBind("email-queue", "fanout-exchange", "");
 channel.QueueBind("sms-queue", "fanout-exchange", "");
@@ -244,7 +237,6 @@ Route logs based on severity and system.
 .NET Setup:
 
 ```csharp
-
 channel.ExchangeDeclare("topic-exchange", ExchangeType.Topic);
 channel.QueueBind("error-queue", "topic-exchange", "log.error.#");
 channel.QueueBind("auth-queue", "topic-exchange", "log.*.auth");
@@ -264,7 +256,6 @@ Route messages with complex conditions (e.g., "x-type": "invoice" and "region": 
 .NET Setup:
 
 ```csharp
-
 channel.ExchangeDeclare("headers-exchange", ExchangeType.Headers);
 
 var args = new Dictionary<string, object>

@@ -140,7 +140,6 @@ If you're using Visual Studio integration, the generated files are added directl
 Let's see how part of the **BlogDbContext.cs** file looks like:
 
 ```csharp
-
 public partial class BlogDbContext : DbContext
 {
     public BlogDbContext(DbContextOptions<BlogDbContext> options) :
@@ -188,7 +187,6 @@ public partial class BlogDbContext : DbContext
 And here is the Blog Entity:
 
 ```csharp
-
 public partial class Blog
 {
     public Blog()

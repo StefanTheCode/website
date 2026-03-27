@@ -42,7 +42,6 @@ One solution is to use **Hashids (Hash ID Values)** …Hashids are an effective 
 converting numbers like 347 into an opaque strings identifier such as "ir8".
 Let's expand on the example from above. We need to access the data of users with ID 12, but we do not want to display the sequential ID through the API, to minimize security risks...
 ```csharp
-
 [HttpGet]
 public IActionResult Get([FromRoute] string id)
 {
@@ -56,20 +55,17 @@ public IActionResult Get([FromRoute] string id)
 
     return Ok(user);
 }
-
 ```
 The API method above accepts an argument ID of type string. The Hashids library provides a ready-to-use implementation with a Decode function that converts a string identifier back to its original sequential ID/number, derived from the Encode function.
 We can now efficiently retrieve the record from our data warehouse where the data is still stored using its' original sequential identifier.
 Suppose our dataset is a list of users from the database, represented by the following list structure in C#:
 ```csharp
-
 private List<User> Users = new List<User>
 {
   new User { Id = 1, FullName = "Stefan Djokic" },
   new User { Id = 2, FullName = "Ricky Sellers"},
   new User { Id = 3, FullName = "Tasnim Shaffer"}
 };
-
 ```
 If we call the example API above in Postman with a hashid (string ID) of **"W8ZwkZY"** (derived from Id:1 in this case), the result is the user with ID = 1.
 To recap, this is because the Hashid derives from, and can be converted back to, its original sequential identifier.

@@ -39,7 +39,6 @@ Imagine you have a **Base Class Vehicle** and two derived classes: Car and Bike.
 Step 1: Define the Entities
 
 ```csharp
-
 public class Vehicle
 {
     public int Id { get; set; }
@@ -61,7 +60,6 @@ Step 2: Configure EF Core in DbContext
 EF Core automatically adds a Discriminator column when you use **TPH inheritance**.
 
 ```csharp
-
 public class AppDbContext : DbContext
 {
     public DbSet<Vehicle> Vehicles { get; set; }
@@ -79,7 +77,6 @@ Step 3: Migration and Database Table
 Run the following commands:
 
 ```csharp
-
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
@@ -97,7 +94,6 @@ Example: Custom Discriminator Name and Values
 Modify OnModelCreating in AppDbContext:
 
 ```csharp
-
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Vehicle>()
@@ -116,7 +112,6 @@ EF Core **automatically filters** data based on the discriminator.
 Query All Vehicles
 
 ```csharp
-
 var vehicles = context.Vehicles.ToList();
 ```
 
@@ -124,23 +119,19 @@ Returns **all** records (both Cars and Bikes).
 
 Query Only Cars
 ```csharp
-
 var cars = context.Cars.ToList();
 ```
 
 EF Core translates this into:
 ```csharp
-
 SELECT * FROM Vehicles WHERE VehicleType = 'CarType';
 ```
 Query Only Bikes
 ```csharp
-
 var bikes = context.Bikes.ToList();
 ```
 EF Core translates this into:
 ```csharp
-
 SELECT * FROM Vehicles WHERE VehicleType = 'BikeType';
 ```
 
@@ -149,7 +140,6 @@ SELECT * FROM Vehicles WHERE VehicleType = 'BikeType';
 Sometimes, you may want to **change** the discriminator dynamically.
 Example: Convert a Bike to a Car
 ```csharp
-
 var bike = context.Bikes.FirstOrDefault(b => b.Id == 2);
 if (bike != null)
 {
@@ -173,7 +163,6 @@ EF Core 8 and 9 support enums as discriminator values.
 Step 1: Define an Enum
 
 ```csharp
-
 public enum VehicleType
 {
     Unknown = 0,
@@ -207,7 +196,6 @@ Disadvantages of TPH:
 Alternative: Table Per Type (TPT)
 Instead of using a discriminator, you can use TPT where each entity has its own table.
 ```csharp
-
 modelBuilder.Entity<Car>().ToTable("Cars");
 modelBuilder.Entity<Bike>().ToTable("Bikes");
 ```

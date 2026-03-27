@@ -31,7 +31,6 @@ Let's see how we can implement it in .NET (very easly)...
 1. Create your ASP.NET Web API project
 2. Add some packages for GraphQL:
 ```csharp
-
 dotnet add package HotChocolate.AspNetCore
 dotnet add package HotChocolate.AspNetCore.Playground
 ```
@@ -39,7 +38,6 @@ dotnet add package HotChocolate.AspNetCore.Playground
 ## Let's create some simple entity model
 Part of almost every system in our applications is a user. Let's take the entity User as an example for demonstration purposes. We will create a **User entity** with the appropriate properties:
 ```csharp
-
 public class User
 {
     public int Id { get; set; }
@@ -52,7 +50,6 @@ public class User
 With a REST approach, you would now create some controller with a route or a minimal api endpoint to get the data.
 Let's say that we want to return a list of users, in GraphQL we will create a Query class for this purpose that will return the required values:
 ```csharp
-
 public class UserQuery
 {
     private static List&lt;User&gt; users = new List&lt;User&gt;()
@@ -68,7 +65,6 @@ public class UserQuery
 ## Her Highness - Program.cs class
 Of course we have to register everything in DI:
 ```csharp
-
 services
     .AddRouting()
     .AddGraphQLServer()
@@ -77,7 +73,6 @@ services
 
 And let's say the app what services to use:
 ```csharp
-
 app.UseRouting();
 app.MapGraphQL();
 app.UsePlayground();
@@ -91,14 +86,12 @@ You can run your query in 3 possible ways:
 Write your first query something like:
 
 ```csharp
-
 {  
     users {    
         id    
         firstName  
     }
 }
-
 ```
 With this query you'll get all the users but only with id and firstName fields. **There is no any other field which will remain empty.**
 ![Banaca Cake Pop dashboard](/images/blog/posts/get-started-with-grapql-in-dotnet/banana-cake-pop-dashboard.png)

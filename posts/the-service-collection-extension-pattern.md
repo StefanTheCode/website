@@ -42,7 +42,6 @@ The benefit of this approach is the ability to organize related services into lo
 Let's see an example:
 
 ```csharp
-
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCustomServices(
@@ -56,15 +55,12 @@ public static class ServiceCollectionExtensions
         return services;
     }
 }
-
 ```
 
 And then in your Program.cs file, you can leverage these extensions like this:
 
 ```csharp
-
 builder.Services.AddCustomServices();
-
 ```
 ## The Real-world Example
 
@@ -77,7 +73,6 @@ Here's how you might apply the ServiceCollection Extension Pattern in such a sce
 Database:
 
 ```csharp
-
 public static IServiceCollection AddDatabase(
     this IServiceCollection services,
     string connectionString)
@@ -86,13 +81,11 @@ public static IServiceCollection AddDatabase(
 
     return services;
 }
-
 ```
 
 Identity:
 
 ```csharp
-
 public static IServiceCollection AddIdentityServices(
     this IServiceCollection services)
 {
@@ -102,13 +95,11 @@ public static IServiceCollection AddIdentityServices(
 
     return services;
 }
-
 ```
 
 JWT Authentication:
 
 ```csharp
-
 public static IServiceCollection AddJwtAuthentication(
     this IServiceCollection services, IConfiguration configuration)
 {
@@ -135,13 +126,11 @@ public static IServiceCollection AddJwtAuthentication(
 
     return services;
 }
-
 ```
 
 Cors Policy:
 
 ```csharp
-
 public static IServiceCollection AddCorsPolicy(
     this IServiceCollection services,
     string policyName,
@@ -158,20 +147,17 @@ public static IServiceCollection AddCorsPolicy(
 
     return services;
 }
-
 ```
 
 And then in your Program.cs file, you can leverage these extensions like this:
 
 ```csharp
-
 builder.Services.AddDatabase(Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddIdentityServices();
 builder.Services.AddJwtAuthentication(Configuration);
 builder.Services.AddCorsPolicy("MyPolicy", new[] { "http://example.com" });
 
 // ... other configurations
-
 ```
 
 ## Why should we consider using it?

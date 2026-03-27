@@ -71,7 +71,6 @@ All APIs are internal and reachable only through Traefik.
 ## Traefik & Docker Compose
 docker-compose.yml:
 ```csharp
-
 services:
   traefik:
     image: traefik:v3.6
@@ -134,7 +133,6 @@ Why does this work?
 This API represents a typical read-only service.
 Program.cs
 ```csharp
-
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -207,7 +205,6 @@ This is **mandatory** behind any reverse proxy.
 
 Dockerfile
 ```yml
-
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY . .
@@ -223,7 +220,6 @@ ENTRYPOINT ["dotnet", "CatalogApi.dll"]
 This API represents a write-heavy, business-oriented service.
 Program.cs
 ```csharp
-
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -278,7 +274,6 @@ public record InvoiceItem(
 ```
 Dockerfile
 ```csharp
-
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY . .
@@ -294,7 +289,6 @@ ENTRYPOINT ["dotnet", "BillingApi.dll"]
 Running everything:
 
 ```csharp
-
 docker compose up --build
 ```
 

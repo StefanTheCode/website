@@ -30,7 +30,6 @@ In this guide, we'll walk through moving secrets from appconfig.json to Azure Ke
 
 Let's say we have an API with a configuration file [appsettings](https://thecodeman.net/posts/live-loading-appsettings-configuration-file).json with the following content:
 ```json
-
 {
     "Config": {
         "Database": "mssqlConnectionString",
@@ -38,12 +37,10 @@ Let's say we have an API with a configuration file [appsettings](https://thecode
         "RedisPassword": "someDummyPassword"
     }
 }
-
 ```
 In your Program.cs, you can load these configurations as follows:
 
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Load configuration from appsettings.json
@@ -56,7 +53,6 @@ builder.Services.AddControllers();
 string databaseConnectionString = builder.Configuration["Config:Database"];
 string redisConnectionString = builder.Configuration["Config:Redis"];
 string redisPassword = builder.Configuration["Config:RedisPassword"];
-
 ```
 ## Why Keeping Secrets in appsettings.json is a Problem?
 
@@ -113,7 +109,6 @@ In .NET 8, integrating Azure Key Vault is straightforward with the Azure.Extensi
 **3. Add Key Vault Configuration in Program.cs:** Update your Program.cs to include Key Vault configuration::
 
 ```csharp
-
 string environment = Environment.GetEnvironmentVariable("ENVIRONMENT");
 string jsonFile = $"appsettings.{environment}.json";
 
@@ -125,7 +120,6 @@ string? keyVaultUrl = builder.Configuration["KeyVault"];
 
 var credentials = new DefaultAzureCredential ();
 builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), credentials);
-
 ```
 ### Code Explanation:
 
@@ -170,7 +164,6 @@ This line adds Azure Key Vault as a configuration source. Using the keyVaultUrl 
 After setting up Key Vault, any secrets defined in the vault are automatically loaded into the application’s IConfiguration. You can access them in your code as if they were still in appconfig.json.
 
 ```csharp
-
 public class MyService
 {
     private readonly string _database;
@@ -185,7 +178,6 @@ public class MyService
 
     // Use the secrets in your application logic
 }
-
 ```
 This way, you compile the query once, and then execute it with different parameters, without recompiling it every time.
 ## Wrapping Up

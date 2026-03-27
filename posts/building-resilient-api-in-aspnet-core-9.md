@@ -39,7 +39,6 @@ You get full integration with HttpClientFactory, DI, logging, and even [OpenTele
 Add required packages:
 
 ```csharp
-
 dotnet add package Microsoft.Extensions.Http.Resilience
 dotnet add package Microsoft.Extensions.Resilience
 ```
@@ -50,7 +49,6 @@ To apply resilience, you need to build a pipeline made up of different resilienc
 You begin by creating a **ResiliencePipelineBuilder**, which 
 
 ```csharp
-
 ResiliencePipeline pipeline = new()
     .AddRetry(new RetryStrategyOptions
     {
@@ -83,7 +81,6 @@ Why?
 • Retry gives the system time to recover.
 Example:
 ```csharp
-
 builder.Services.AddResiliencePipeline("retry-pipeline", builder =>
 {
     builder.AddRetry(new RetryStrategyOptions
@@ -107,7 +104,6 @@ Why?
 • It’s better to fail fast and free resources.
 Example:
 ```csharp
-
 builder.Services.AddResiliencePipeline("timeout-pipeline", builder =>
 {
     builder.AddTimeout(TimeSpan.FromSeconds(2));
@@ -125,7 +121,6 @@ Why?
 • Let things cool off.
 Example:
 ```csharp
-
 builder.Services.AddResiliencePipeline("cb-pipeline", builder =>
 {
     builder.AddCircuitBreaker(new CircuitBreakerStrategyOptions
@@ -149,7 +144,6 @@ Why?
 • Improve success rate by racing multiple attempts.
 Example:
 ```csharp
-
 builder.Services.AddResiliencePipeline<string, string>("gh-hedging", builder =>
 {
     builder.AddHedging(new HedgingStrategyOptions<string>
@@ -182,7 +176,6 @@ Why?
 • Stay graceful under pressure.
 Example:
 ```csharp
-
 builder.Services.AddResiliencePipeline<string, string?>("gh-fallback", builder =>
 {
     builder.AddFallback(new FallbackStrategyOptions<string?>
@@ -203,7 +196,6 @@ Why?
 • Ensure fair usage and system stability.
 Example:
 ```csharp
-
 builder.Services.AddResiliencePipeline("ratelimiter-pipeline", builder =>
 {
     builder.AddRateLimiter(new SlidingWindowRateLimiter(
@@ -227,7 +219,6 @@ Here's how it works:
 • You define your pipeline (e.g., with a fallback or retry strategy)  and register it using a key like "gh-fallback".
 • Then, inside your route or handler, you request that pipeline using GetPipeline<T>(), where T is the expected result type.
 ```csharp
-
 app.MapGet("/subscribers", async (
     HttpClient httpClient,
     ResiliencePipelineProvider<string> pipelineProvider,

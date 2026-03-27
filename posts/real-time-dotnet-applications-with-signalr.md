@@ -35,13 +35,11 @@ We need 4-5 steps to fully introduce SignalR in our code, so let's dive in.
 In order to use SignalR, first you need to install it as a library from NuGet.
 You need to install the following package:
 ```csharp
-
 Install-Package Microsoft.AspNetCore.SignalR.Client
 ```
 The first thing to configure is the SignalR Hub. The hub is the high-level pipeline able to call the client code, sending messages containing the name and parameters of the requested method.
 You need to create a class which will inherit the **base "Hub" class** from SignalR package:
 ```csharp
-
 public class NotificationsHub : Hub
 {
     public async Task SendNotification(string message)
@@ -49,13 +47,11 @@ public class NotificationsHub : Hub
         await Clients.All.SendAsync("ReceiveNotificaiton", message);
     }
 }
-
 ```
 And as the last part, like everything else, it is necessary to register SignalR through Dependency Injection in the Program.cs class.
 It's quite straightforward - add the SignalR service and map the Hub used:
 
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSignalR();
@@ -75,7 +71,6 @@ First I will create the most common HTML components:
 3. List of sent/received messages
 
 ```html
-
 <input type="text" id="messageBox" placeholder="Your message" />
 <button id="sendButton">Send</button>
 
@@ -83,15 +78,12 @@ First I will create the most common HTML components:
 ```
 I will also upload the .js script for Signalr so that I can use it on the client:
 ```html
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-
 ```
 When the page is loaded, the first thing that needs to happen is to **establish a connection to the SignalR Hub**.
 For that I will use the **signalR.HubConnectionBuilder()** call with the Hub URL we created on the .NET side.
 **Note**: *"notification-hub" must match on both sides - in javascript and in .NET configuration (Program.cs)*.
 ```javascript
-
 <script>
     $(function() {
         const connection = new signalR.HubConnectionBuilder()
@@ -117,7 +109,6 @@ For that I will use the **signalR.HubConnectionBuilder()** call with the Hub URL
         start();
     });
 </script>
-
 ```
 After that, when the connection exists, I will start the connection. I will put everything in the try/catch block if there are any errors. Now we have a complete connection connected.
 
@@ -129,19 +120,16 @@ To achieve this, on the click event of the button, I grab the message from the i
 - the first parameter is the name of the method in NotificationHub,
 - the message is the parameter, actually, the message I'm sending.
 ```javascript
-
   $("#sendButton").on('click', function() {
             var message = $("#messageBox").val();
             connection.invoke("SendNotification", message);
         });
-
 ```
 Let's send message from Hub to Client in real-time:
 One client sent a message to the Hub, we process that message in the Hub and in Real-Time we send a notification about the message we received to all connected clients.
 ![Notifications Hub Debugging](/images/blog/posts/real-time-dotnet-applications-with-signalr/notifications-hub-debugging.png)
 **"ReceiveNotification"** is an event on the client side that will accept the notification and process the data we send (it will put them in a list).
 ```javascript
-
   connection.on("ReceiveNotification", (message) => {
             const li = document.createElement("li");
             li.textContent = `${message}`;

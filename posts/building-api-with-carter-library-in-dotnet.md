@@ -54,7 +54,6 @@ Each feature gets its own module, model, validator, and service. It’s simple a
 1. Install the NuGet packages:
 
 ```csharp
-
 dotnet add package Carter
 dotnet add package FluentValidation
 dotnet add package FluentValidation.DependencyInjectionExtensions
@@ -62,7 +61,6 @@ dotnet add package FluentValidation.DependencyInjectionExtensions
 2. Configure Carter in Program.cs
 
 ```csharp
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCarter();
@@ -81,7 +79,6 @@ app.Run();
 Create the User Model and the DTO for incoming data
 
 ```csharp
-
 public class User
 {
     public int Id { get; set; }
@@ -94,7 +91,6 @@ public record CreateUserRequest(string Name, string Email);
 Add Validation with FluentValidation
 
 ```csharp
-
 // Validators/CreateUserValidator.cs
 using FluentValidation;
 
@@ -114,7 +110,6 @@ This keeps your logic out of the route definitions.
 Interface:
 
 ```csharp
-
 public interface IUserService
 {
     IEnumerable<User> GetAllUsers();
@@ -125,7 +120,6 @@ public interface IUserService
 Implementation:
 
 ```csharp
-
 public class UserService : IUserService
 {
     private readonly List<User> _users =
@@ -165,7 +159,6 @@ public class UserService : IUserService
 Here’s where the routing magic happens.
 
 ```csharp
-
 public class UserModule : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
@@ -216,7 +209,6 @@ This makes your code:
 • **More powerful** — You can apply filters (auth, validation, etc.) to the whole group later.
 
 ```csharp
-
 var group = app.MapGroup("/users");
 
 group.MapGet("/", (IUserService service) =>
@@ -237,7 +229,6 @@ Once you've set up your Carter-based API and it's working like a charm, you migh
 Carter has you covered with its advanced configuration capabilities - especially when using the CarterModule base class.
 
 ```csharp
-
 public UserModule()
     : base("/api") // All endpoints will be prefixed with /api
 {

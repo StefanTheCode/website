@@ -39,7 +39,6 @@ You can run jobs like cleaning logs, syncing files, or [sending emails](https://
 Create job:
 
 ```csharp
-
 public class SendDailyReportsEmailJob : IInvocable
 {
     public Task Invoke()
@@ -52,14 +51,12 @@ public class SendDailyReportsEmailJob : IInvocable
 
 Register it:
 ```csharp
-
 builder.Services.AddScheduler();
 builder.Services.AddTransient<SendDailyReportsEmailJob>();
 ```
 Schedule it:
 
 ```csharp
-
 app.Services.UseScheduler(scheduler =>
 {
     scheduler
@@ -79,7 +76,6 @@ You can also use:
 You can avoid blocking the main thread for tasks like sending emails or processing files.
 Create an Invocable Job:
 ```csharp
-
 public class ProcessWebhook : IInvocable
 {
     public Task Invoke()
@@ -91,7 +87,6 @@ public class ProcessWebhook : IInvocable
 ```
 Queue it:
 ```csharp
-
 var dispatcher = app.Services.GetService<IDispatcher>();
 await dispatcher.EnqueueAsync<ProcessWebhook>();
 ```
@@ -102,12 +97,10 @@ In-memory only: jobs are lost if the app restarts. Ideal for non-critical tasks.
 Coravel's event system enables decoupled communication between services in the same app.
 Define an Event:
 ```csharp
-
 public record OrderPlacedEvent(int OrderId);
 ```
 Create a Listener:
 ```csharp
-
 public class SendThankYouEmail : IListener<OrderPlacedEvent>
 {
     public Task HandleAsync(OrderPlacedEvent e)
@@ -120,7 +113,6 @@ public class SendThankYouEmail : IListener<OrderPlacedEvent>
 
 Use it:
 ```csharp
-
 await eventDispatcher.BroadcastAsync(new OrderPlacedEvent(123));
 ```
 
@@ -129,7 +121,6 @@ await eventDispatcher.BroadcastAsync(new OrderPlacedEvent(123));
 Send beautiful, templated emails using Razor views.
 Define a Mailable:
 ```csharp
-
 public class WelcomeMailable : Mailable<User>
 {
     public override void Build()
@@ -142,7 +133,6 @@ public class WelcomeMailable : Mailable<User>
 ```
 Send it:
 ```csharp
-
 await mailer.SendAsync(new WelcomeMailable(user));
 ```
 
@@ -153,7 +143,6 @@ Supports view rendering from Razor Class Libraries or .cshtml files.
 Send beautiful, templated emails using Razor views.
 Define a Mailable:
 ```csharp
-
 public class WelcomeMailable : Mailable<User>
 {
     public override void Build()
@@ -166,7 +155,6 @@ public class WelcomeMailable : Mailable<User>
 ```
 Send it:
 ```csharp
-
 await mailer.SendAsync(new WelcomeMailable(user));
 ```
 
@@ -177,7 +165,6 @@ Supports view rendering from Razor Class Libraries or .cshtml files.
 Built-in memory caching to store frequently used data.
 Store and Retrieve from Cache:
 ```csharp
-
 var data = cache.GetOrAdd("top-products", () =>
 {
     return FetchTopProducts();
@@ -197,7 +184,6 @@ Imagine an internal admin dashboard for a SaaS platform. You want to:
 With Coravel:
 Store and Retrieve from Cache:
 ```csharp
-
 public class GenerateAndSendReportJob : IInvocable
 {
     private readonly ICache _cache;
@@ -219,7 +205,6 @@ public class GenerateAndSendReportJob : IInvocable
 Schedule it:
 
 ```csharp
-
 scheduler.Schedule<GenerateAndSendReportJob>()
     .DailyAtHour(8);
 ```

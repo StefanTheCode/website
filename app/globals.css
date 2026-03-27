@@ -15474,13 +15474,15 @@ textarea.form-control {
 
 .tcm-code__line {
   display: block;
+  line-height: calc(14px * 1.55);
+  min-height: calc(14px * 1.55);
 }
 
 .tcm-code__ln {
   display: block;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 12px;
-  line-height: 1.55;
+  line-height: calc(14px * 1.55);
 }
 
 /* Fix: prevent code blocks from stretching vertically */

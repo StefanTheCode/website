@@ -34,7 +34,6 @@ That’s exactly what we’ll build here - a simple GitHub repo that *fails a pu
 Let’s start from scratch:
 
 ```csharp
-
 mkdir dotnet-ci-hardening-demo
 cd dotnet-ci-hardening-demo
 git init
@@ -53,7 +52,6 @@ Think of it as your global .editorconfig for MSBuild.
 Directory.Build.props:
 
 ```csharp
-
 <!-- Directory.Build.props -->
 <Project>
   <PropertyGroup>
@@ -104,7 +102,6 @@ Every developer (and the CI) will follow it exactly.
 .editorconfig:
 
 ```csharp
-
 root = true
 
 [*.cs]
@@ -165,7 +162,6 @@ Let’s create a class that violates multiple rules.
 Acme.Calculator/Calculator.cs
 
 ```csharp
-
 // Client picks columns: "CustomerID,Name,Country"
 using System; // unused
 using System.Threading.Tasks; // unused
@@ -181,7 +177,6 @@ namespace Acme.Calculator
 If you run:
 
 ```csharp
-
 dotnet build -c Release /warnaserror
 ```
 You’ll probably get warnings turned into errors. 
@@ -191,7 +186,6 @@ You’ll probably get warnings turned into errors.
 And if you run:
 
 ```csharp
-
 dotnet format --verify-no-changes
 ```
 You’ll get: **Formatting differences were found. Run 'dotnet format' to fix them.**
@@ -208,7 +202,6 @@ This workflow will fail your PR if analyzers or formatting are off.
  
 .github/workflows/ci.yml:
 ```csharp
-
 name: CI
 on:
   push:
@@ -254,7 +247,6 @@ Now every pull request runs these checks automatically.
 
 Push your branch with the bad code:
 ```csharp
-
 git checkout -b feature/failing-pr
 git add .
 git commit -m "add intentionally bad formatting"
@@ -263,7 +255,6 @@ git push -u origin feature/failing-pr
 Open a pull request on GitHub. You’ll see red ❌ status checks.
 GitHub will annotate your PR inline with messages like:
 ```csharp
-
 IDE0005: Using directive is unnecessary.
 SA1200: Using directives must be placed outside the namespace.
 ```
@@ -280,7 +271,6 @@ And if you check the details:
 Now fix the class:
 Calculator.cs:
 ```csharp
-
 namespace Acme.Calculator
 {
     public static class Calculator
@@ -294,7 +284,6 @@ namespace Acme.Calculator
 ```
 Commit and push again:
 ```csharp
-
 git add .
 git commit -m "fix: clean code formatting and remove unused usings"
 git push
@@ -309,7 +298,6 @@ That’s your happy path: style, analyzers, and format all clean.
 A quick test project helps validate the whole pipeline:
 
 ```csharp
-
 dotnet new xunit -n Acme.Calculator.Tests
 dotnet sln add Acme.Calculator.Tests/Acme.Calculator.Tests.csproj
 dotnet add Acme.Calculator.Tests reference Acme.Calculator
@@ -317,7 +305,6 @@ dotnet add Acme.Calculator.Tests reference Acme.Calculator
 
 Acme.Calculator.Tests/CalculatorTests.cs:
 ```csharp
-
 namespace Acme.Calculator.Tests
 {
     /// <summary>
@@ -340,7 +327,6 @@ namespace Acme.Calculator.Tests
 Add a new step to CI before formatting:
 
 ```csharp
-
    - name: Test
      run: dotnet test --no-build -c Release
 ```

@@ -39,39 +39,31 @@ Hangfire has the ability to use a SQL Server database by default for storing job
 It is essential to have a database definition, regardless of whether you use a local or remote database. Hangfire is capable of creating the necessary tables for job storage, but it cannot create a database. Therefore, you must provide a database.
 Once you have set up our local database, you must update the [appsettings](https://thecodeman.net/posts/live-loading-appsettings-configuration-file).json file:
 ```json
-
 "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=Hangfire;Trusted_Connection=True"
 }
-
 ```
 
 ### Program.cs setup:
 You need to add Hangfire to Services collection.
 You need to provide the connection string that you specified inside the appsettings.json file.
 ```csharp
-
 builder.Services.AddHangfire(x =>
 {
     x.UseSqlServerStorage(builder.Configuration
                           .GetConnectionString("DefaultConnection"));
 })
-
 ```
 You also add the Hangfire server with the AddHangfireServer() method.
 ```csharp
-
 builder.Services.AddHangfireServer();
-
 ```
 Lastly, you can add Hangfire Dashboard for easily [monitoring](https://thecodeman.net/posts/how-to-monitor-dotnet-applications-in-production) servers and jobs.By calling the UseHangfireDashboard() method you are adding it to popeline.
 ```csharp
-
 app.UseHangfireDashboard();
 ```
 DI registration:
 ```csharp
-
 builder.Services.AddHostedService&lt;SomeService&gt;();
 ```
 ## Running the application
@@ -106,7 +98,6 @@ These are jobs that are grouped together and executed as a single unit. You can 
 
 Let' take a look on the example:
 ```csharp
-
 public interface IJobsService
 {
     void FireAndForgetJob();
@@ -123,7 +114,6 @@ We need to inject IBackgroundJobClient in order do call the job with Enqueue.
 Enqueueing a job means that you are adding it to a queue of jobs that are waiting to be processed. When a job is enqueued, it is not executed immediately but instead is stored in a persistent storage (usually a database) until a worker process is available to process it.
 In order to test, you can create an endpoint:
 ```csharp
-
 [HttpGet("FireAndForgetJob")]
 public ActionResult CreateFireAndForgetJob()
 {
@@ -131,7 +121,6 @@ public ActionResult CreateFireAndForgetJob()
 
     return Ok();
 }
-
 ``` 
 
 ### Delayed jobs
@@ -139,7 +128,6 @@ The Schedule method in the IBackgroundJobClient interface of the Hangfire librar
 When you schedule a job using the Schedule method, you are specifying a delay or a specific date and time for the job to run. The job is added to a persistent storage (usually a database) and is executed automatically when the specified time is reached.
 Let's create another endpoint:
 ```csharp
-
 [HttpGet("DelayedJob")]
 public ActionResult CreateDelayedJob()
 {
@@ -148,7 +136,6 @@ public ActionResult CreateDelayedJob()
 
     return Ok();
 }
-
 ``` 
 
 ### Continuation jobs
@@ -156,7 +143,6 @@ In other words, when you create a continuation job, you're saying **"once this o
 To create a continuation job in Hangfire, you first need to create the parent job using one of the library's scheduling methods, such as Enqueue or Schedule. Then, you can use the Continuations API to create the dependent job that will run after the parent job is finished.
 Let's create another endpoint:
 ```csharp
-
 [HttpGet("ContinuationJob")]
 public ActionResult CreateContinuationJob()
 {
@@ -166,7 +152,6 @@ public ActionResult CreateContinuationJob()
 
     return Ok();
 }
-
 ``` 
 
 ### Reccuring jobs
@@ -176,7 +161,6 @@ Using Hangfire's AddOrUpdate method, you can define the schedule for a recurring
 Here's how the AddOrUpdate method works: you first need to specify a unique identifier for the job, which will be used to identify it later. Then, you provide a lambda expression that defines the method to be executed as the job. Finally, you specify the cron expression that defines the job's schedule.
 Let's create another endpoint:
 ```csharp
-
 [HttpGet("ReccuringJob")]
 public ActionResult CreateReccuringJob()
 {
@@ -185,13 +169,11 @@ public ActionResult CreateReccuringJob()
 
     return Ok();
 }
-
 ``` 
 
 ### Batch jobs (pro only)
 Batches allow you to create a bunch of background jobs atomically. This means that if there was an exception during the creation of background jobs, none of them will be processed.
 ```csharp
-
 var batchId = BatchJob.StartNew(x =>
 {
     x.Enqueue(() => Console.WriteLine("Job 1"));

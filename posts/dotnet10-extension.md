@@ -41,7 +41,6 @@ These blocks allow:
 Syntax:
 
 ```csharp
-
 public static class MyExtensions
 {
     extension(TargetType instance)
@@ -70,7 +69,6 @@ The old way? You’d create scattered static methods.
 The new way? One structured block with everything grouped and cached.
 
 ```csharp
-
 public static class MultiTenantHttpContextExtensions
 {
     extension(HttpContext ctx)
@@ -119,7 +117,6 @@ This approach brings:
 Let’s say you’re working with a third-party DTO:
 
 ```csharp
-
 public class OrderDto
 {
     public List<OrderItemDto> Items { get; set; }
@@ -128,7 +125,6 @@ public class OrderDto
 ```
 With new extensions, you can wrap domain logic around it without modifying the class:
 ```csharp
-
 public static class OrderExtensions
 {
     extension(OrderDto order)
@@ -147,7 +143,6 @@ public static class OrderExtensions
 Usage becomes clean and expressive:
 
 ```csharp
-
 if (order.TotalAmount > 1000 && order.IsComplete)
 {
     // Do something
