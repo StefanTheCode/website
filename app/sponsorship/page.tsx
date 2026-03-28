@@ -26,114 +26,100 @@ export const metadata: Metadata = {
 };
 
 const sponsors = [
-  '/images/sponsors/postman.png',
-  '/images/sponsors/jetbrains.png',
-  '/images/sponsors/neon.png',
-  '/images/sponsors/abp.png'
+  { src: '/images/sponsors/postman.png', alt: 'Postman' },
+  { src: '/images/sponsors/jetbrains.png', alt: 'JetBrains' },
+  { src: '/images/sponsors/neon.png', alt: 'Neon' },
+  { src: '/images/sponsors/abp.png', alt: 'ABP Framework' },
 ];
 
 const Sponsorship = () => {
   return (
     <section className="sponsorship-page">
       <div className="container">
-        {/* HERO */}
-        <div className="hero-card">
-          <span className="eyebrow">Sponsor TheCodeMan</span>
+        {/* Hero */}
+        <div className="sp-hero">
+          <span className="sp-eyebrow">Sponsor TheCodeMan</span>
 
-          <h1 className="hero-title">
+          <h1 className="sp-hero__title">
             Reach .NET Developers Who
             <span className="text-yellow d-block">Actually Build Real Products</span>
           </h1>
 
-          <p className="hero-description">
+          <p className="sp-hero__desc">
             Promote your product to a highly engaged audience of .NET developers,
             backend engineers, software architects, and technical decision-makers
             through a trusted weekly newsletter built around real-world .NET content.
           </p>
 
-          <div className="hero-meta">
-            <span className="hero-badge">Growing by 1,000+ subscribers every month</span>
-            <span className="hero-badge">Only 2 sponsor spots per issue</span>
+          <div className="sp-hero__badges">
+            <span className="sp-badge">Growing by 1,000+ subscribers every month</span>
+            <span className="sp-badge">Only 2 sponsor spots per issue</span>
           </div>
 
-          <div className="hero-cta">
-            <a className="btn btn-primary border-radius-5px" href="#reserveSpotForm">
+          <div className="sp-hero__cta">
+            <a className="sp-btn" href="#reserveSpotForm">
               Book a Sponsorship
             </a>
           </div>
         </div>
 
-        {/* STATS */}
-        <div className="stats-grid section-spacing-sm">
-          <div className="stat-card">
-            <div className="stat-value">{config.NewsletterSubCount}</div>
-            <div className="stat-label">Newsletter subscribers</div>
-          </div>
-
-          <div className="stat-card">
-            <div className="stat-value">1,000+</div>
-            <div className="stat-label">New subscribers every month</div>
-          </div>
-
-          <div className="stat-card">
-            <div className="stat-value">{config.OpenRate}</div>
-            <div className="stat-label">Average open rate</div>
-          </div>
-
-          <div className="stat-card">
-            <div className="stat-value">100–400</div>
-            <div className="stat-label">Typical sponsor clicks</div>
+        {/* Metrics */}
+        <div className="sp-metrics">
+          <div className="sp-metrics__grid">
+            <div className="sp-metric">
+              <span className="sp-metric__value">{config.NewsletterSubCount}</span>
+              <span className="sp-metric__label">Newsletter subscribers</span>
+            </div>
+            <div className="sp-metric">
+              <span className="sp-metric__value">1,000+</span>
+              <span className="sp-metric__label">New subscribers every month</span>
+            </div>
+            <div className="sp-metric">
+              <span className="sp-metric__value">{config.OpenRate}</span>
+              <span className="sp-metric__label">Average open rate</span>
+            </div>
+            <div className="sp-metric">
+              <span className="sp-metric__value">100–400</span>
+              <span className="sp-metric__label">Typical sponsor clicks</span>
+            </div>
           </div>
         </div>
 
-        {/* EXTRA REACH */}
-        <div className="content-card section-spacing-sm">
-          <div className="section-header">
-            <h2>Newsletter-first, backed by a strong developer brand</h2>
-          </div>
-
-          <p className="mb-2">
+        {/* Reach */}
+        <div className="sp-section">
+          <h2 className="sp-heading">Newsletter-first, backed by a strong developer brand</h2>
+          <p className="sp-text">
             The main focus here is newsletter sponsorship, but the audience extends beyond email.
           </p>
-
-          <p className="mb-0">
+          <p className="sp-text">
             TheCodeMan also reaches developers across <b className="text-yellow">100k+ on LinkedIn</b>,{' '}
             <b className="text-yellow">9k+ on X</b>, and{' '}
             <b className="text-yellow">3.5k+ on YouTube</b> — all built around practical .NET education and real-world software engineering content.
           </p>
         </div>
 
-        {/* WHY + WHY BRANDS */}
-        <div className="two-column-grid section-spacing">
-          <div className="content-card">
-            <div className="section-header">
-              <h2>Why sponsor TheCodeMan?</h2>
-            </div>
-
-            <p>
+        {/* Why sponsor + Why brands */}
+        <div className="sp-section sp-cols">
+          <div>
+            <h2 className="sp-heading">Why sponsor TheCodeMan?</h2>
+            <p className="sp-text">
               Most developer ads fail because they feel generic, interruptive,
               and disconnected from the actual work developers do every day.
             </p>
-
-            <p>
+            <p className="sp-text">
               My audience follows me because I create practical, real-world
               .NET content focused on architecture, performance, APIs,
               production lessons, tools, and modern development workflows.
             </p>
-
-            <p className="mb-0">
+            <p className="sp-text">
               That means your sponsorship appears inside a trusted environment
               where developers are already looking for better tools, better
               workflows, and better ways to build software.
             </p>
           </div>
-
-          <div className="content-card">
-            <div className="section-header">
-              <h2>Why brands work with TheCodeMan</h2>
-            </div>
-
-            <ul className="clean-list">
+          <div className="sp-aside">
+            <h3 className="sp-heading--sm">Why brands work with TheCodeMan</h3>
+            <ul className="sp-list">
               <li>Trusted personal brand in the .NET ecosystem</li>
               <li>Highly engaged developer-first audience</li>
               <li>Native ad placement inside valuable content</li>
@@ -142,97 +128,77 @@ const Sponsorship = () => {
           </div>
         </div>
 
-        {/* WHO THIS IS FOR */}
-        <div className="section-spacing">
-          <div className="section-header">
-            <h2>Best fit for sponsors like</h2>
-          </div>
-
-          <div className="feature-grid">
-            <div className="feature-card">Developer tools</div>
-            <div className="feature-card">Cloud platforms</div>
-            <div className="feature-card">Databases & infrastructure products</div>
-            <div className="feature-card">Testing & observability tools</div>
-            <div className="feature-card">AI tools for developers</div>
-            <div className="feature-card">Technical education products</div>
-            <div className="feature-card">Hiring campaigns</div>
-            <div className="feature-card">Products built for software teams</div>
+        {/* Best fit */}
+        <div className="sp-section">
+          <h2 className="sp-heading">Best fit for sponsors like</h2>
+          <div className="sp-tags">
+            <span className="sp-tag">Developer tools</span>
+            <span className="sp-tag">Cloud platforms</span>
+            <span className="sp-tag">Databases & infrastructure products</span>
+            <span className="sp-tag">Testing & observability tools</span>
+            <span className="sp-tag">AI tools for developers</span>
+            <span className="sp-tag">Technical education products</span>
+            <span className="sp-tag">Hiring campaigns</span>
+            <span className="sp-tag">Products built for software teams</span>
           </div>
         </div>
 
-        {/* TRUSTED BY */}
-        <div className="section-spacing">
-          <div className="section-header text-center">
-            <h2>Trusted by sponsors</h2>
-            <p>Companies use TheCodeMan to reach developers building real-world applications.</p>
-          </div>
-
-          <div className="logo-strip">
-            {sponsors.map((src) => (
-              <div className="logo-card" key={src}>
-                <Image
-                  src={src}
-                  alt="Sponsor logo"
-                  width={220}
-                  height={80}
-                  className="logo-image"
-                />
-              </div>
+        {/* Trusted by */}
+        <div className="sp-trusted">
+          <p className="sp-trusted__label">Trusted by leading developer brands</p>
+          <div className="sp-logos">
+            {sponsors.map(({ src, alt }) => (
+              <Image
+                key={src}
+                src={src}
+                alt={alt}
+                width={160}
+                height={40}
+                className="sp-logo"
+              />
             ))}
           </div>
         </div>
 
-        {/* HOW IT WORKS */}
-        <div className="section-spacing">
-          <div className="section-header">
-            <h2>How it works</h2>
-          </div>
-
-          <div className="steps-grid">
-            <div className="step-card">
-              <span className="step-number">01</span>
+        {/* How it works */}
+        <div className="sp-section">
+          <h2 className="sp-heading">How it works</h2>
+          <div className="sp-steps">
+            <div className="sp-step">
+              <span className="sp-step__num">01</span>
               <h3>Book your spot</h3>
-              <p className="mb-0">
+              <p>
                 Reserve your sponsorship date using the form below so your placement is secured.
               </p>
             </div>
-
-            <div className="step-card">
-              <span className="step-number">02</span>
+            <div className="sp-step">
+              <span className="sp-step__num">02</span>
               <h3>Send your copy</h3>
-              <p className="mb-0">
+              <p>
                 Share your message, links, and key positioning. I can also help refine the copy.
               </p>
             </div>
-
-            <div className="step-card">
-              <span className="step-number">03</span>
+            <div className="sp-step">
+              <span className="sp-step__num">03</span>
               <h3>Go live</h3>
-              <p className="mb-0">
+              <p>
                 Your sponsorship appears in the newsletter and stays published on the website archive.
               </p>
             </div>
           </div>
         </div>
 
-        {/* TESTIMONIALS */}
-        <div className="section-spacing">
-          <div className="section-header">
-            <h2>What sponsors say</h2>
-          </div>
-          <div className="content-card">
-            <SponsorsNewsletter />
-          </div>
+        {/* Testimonials */}
+        <div className="sp-section sp-testimonials">
+          <h2 className="sp-heading">What sponsors say</h2>
+          <SponsorsNewsletter />
         </div>
 
-        {/* WHAT YOU GET + CREATIVE */}
-        <div className="two-column-grid section-spacing">
-          <div className="content-card">
-            <div className="section-header">
-              <h2>What you get</h2>
-            </div>
-
-            <ul className="clean-list">
+        {/* What you get + Ad creative */}
+        <div className="sp-section sp-cols sp-cols--even">
+          <div>
+            <h2 className="sp-heading">What you get</h2>
+            <ul className="sp-list">
               <li>Featured in one weekly issue</li>
               <li>Maximum 2 sponsors per issue</li>
               <li>Up to 2 links maximum</li>
@@ -241,13 +207,9 @@ const Sponsorship = () => {
               <li>Optional copy refinement for better fit</li>
             </ul>
           </div>
-
-          <div className="content-card">
-            <div className="section-header">
-              <h2>Ad creative requirements</h2>
-            </div>
-
-            <ul className="clean-list">
+          <div>
+            <h2 className="sp-heading">Ad creative requirements</h2>
+            <ul className="sp-list">
               <li>1–2 strong sentences</li>
               <li>Up to 2 links</li>
               <li>Clear product value</li>
@@ -258,92 +220,83 @@ const Sponsorship = () => {
           </div>
         </div>
 
-        {/* PRICING */}
-        <div className="section-spacing">
-          <div className="pricing-card">
-            <div className="pricing-content">
-              <span className="pricing-eyebrow">Newsletter Sponsorship</span>
-              <h2>{config.SharedPrice}</h2>
+        {/* Pricing */}
+        <div className="sp-pricing-band">
+          <div className="sp-pricing">
+            <div className="sp-pricing__content">
+              <span className="sp-eyebrow">Newsletter Sponsorship</span>
+              <div className="sp-pricing__price">{config.SharedPrice}</div>
               <p>
                 A premium placement inside one weekly issue, with permanent website visibility
                 and a targeted .NET developer audience.
               </p>
-
-              <div className="pricing-points">
+              <div className="sp-pricing__points">
                 <span>1 weekly issue</span>
                 <span>Only 2 sponsors max</span>
                 <span>100–400 typical clicks</span>
                 <span>Permanent listing</span>
               </div>
             </div>
-
-            <div className="pricing-action">
-              <a className="btn btn-primary border-radius-5px" href="#reserveSpotForm">
+            <div className="sp-pricing__action">
+              <a className="sp-btn" href="#reserveSpotForm">
                 Reserve your spot
               </a>
             </div>
           </div>
         </div>
 
-        {/* EXAMPLE */}
-        <div className="two-column-grid section-spacing">
-          <div className="content-card">
-            <div className="section-header">
-              <h2>Example sponsorship</h2>
-            </div>
-
-            <p className="mb-2">
+        {/* Examples */}
+        <div className="sp-section sp-cols sp-cols--even">
+          <div>
+            <h2 className="sp-heading">Example sponsorship</h2>
+            <p className="sp-text">
               <a
                 href="https://eomail4.com/web-version?p=a57fbf8c-8545-11ef-ae7d-85df232e2a82&pt=campaign&t=1728379993&s=784b945bc08f7b01ba1243c91db3cc19b19e59426863f51d69a39e55bbd61185"
                 target="_blank"
                 rel="noreferrer"
               >
-                View newsletter example
+                View newsletter example ↗
               </a>
             </p>
-
-            <p className="mb-0">
+            <p className="sp-text">
               <a
                 href="https://thecodeman.net/posts/how-to-use-singleton-in-multithreading?utm_source=sponsorship"
                 target="_blank"
                 rel="noreferrer"
               >
-                View website example
+                View website example ↗
               </a>
             </p>
           </div>
-
-          <div className="content-card">
-            <div className="section-header">
-              <h2>Long-term visibility matters</h2>
-            </div>
-
-            <p className="mb-0">
+          <div>
+            <h2 className="sp-heading">Long-term visibility matters</h2>
+            <p className="sp-text">
               Each sponsored issue stays published on the site, giving your placement
               ongoing visibility long after the email goes out.
             </p>
           </div>
         </div>
 
-        {/* FORM */}
-        <div className="form-shell section-spacing" id="reserveSpotForm">
-          <div className="form-copy">
-            <span className="eyebrow">Book your sponsorship</span>
-            <h2>Let’s talk about your next placement</h2>
-            <p>
-              Use the form to reserve your spot, ask for availability, or check whether
-              your product is the right fit for this audience.
-            </p>
-          </div>
-
-          <div
-            className="form-embed"
-            dangerouslySetInnerHTML={{
-              __html: `
+        {/* Form */}
+        <div className="sp-section" id="reserveSpotForm">
+          <div className="sp-form">
+            <div className="sp-form__copy">
+              <span className="sp-eyebrow">Book your sponsorship</span>
+              <h2>Let's talk about your next placement</h2>
+              <p>
+                Use the form to reserve your spot, ask for availability, or check whether
+                your product is the right fit for this audience.
+              </p>
+            </div>
+            <div
+              className="sp-form__embed"
+              dangerouslySetInnerHTML={{
+                __html: `
                 <script async src="https://eomail4.com/form/9ade17e6-9c87-11ef-86b3-890d9e639bbe.js" data-form="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></script>
               `
-            }}
-          />
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
