@@ -182,5 +182,10 @@ If you haven’t started exploring C# 13 yet, now is the perfect time to dive in
 That's all from me today. 
 
 See ya on the next Monday coffee. 
+
+---
+
+Want to enforce clean code automatically? My [Pragmatic .NET Code Rules](/pragmatic-dotnet-code-rules) course shows you how to set up analyzers, CI quality gates, and architecture tests - a production-ready system that keeps your codebase clean without manual reviews. Or grab the [free Starter Kit](/dotnet-code-rules-starter-kit) to try it out.
+
 <!--END-->
 

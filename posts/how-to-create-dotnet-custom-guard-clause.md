@@ -119,5 +119,10 @@ I explained what the CallerArgumentExpression attribute is and how to use it.
 And finally, if you wouldn't do it, I gave you an example of 3 existing libraries that do it in an excellent way.
 That's all from me today.
 
+
+---
+
+Want to enforce clean code automatically? My [Pragmatic .NET Code Rules](/pragmatic-dotnet-code-rules) course shows you how to set up analyzers, CI quality gates, and architecture tests - a production-ready system that keeps your codebase clean without manual reviews. Or grab the [free Starter Kit](/dotnet-code-rules-starter-kit) to try it out.
+
 <!--END-->
 

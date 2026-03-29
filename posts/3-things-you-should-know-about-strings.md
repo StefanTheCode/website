@@ -168,6 +168,11 @@ Check what are 5 new cool features in C# 12 here: [Link](https://thecodeman.net/
 
 That's all from me today.
 
+
+---
+
+Preparing for a .NET interview? My free [Pass Your .NET Interview](/pass-your-interview) kit has 250 questions with answers, clean C# code, and full complexity analysis - updated to .NET 10.
+
 <!--END-->
 
 

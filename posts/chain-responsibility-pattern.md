@@ -187,6 +187,11 @@ For more design patterns, check out the [Strategy Pattern in .NET](https://theco
 
 ## Wrapping Up
 
+
+---
+
+Want more design patterns with real-world examples? My ebook [Design Patterns that Deliver](/design-patterns-that-deliver-ebook) covers 5 essential patterns (Builder, Decorator, Strategy, Adapter, Mediator) with hands-on C# code you can use right away. Or try a [free chapter on the Builder Pattern](/builder-pattern-free-stuff) first.
+
 <!--END-->
 
 ## dream BIG!

@@ -2,8 +2,9 @@
 title: "Retry Failed API calls with Polly"
 subtitle: "Polly is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner."
 date: "June 03 2024"
+category: ".NET"
 readTime: "Read Time: 5 minutes"
-meta_description: "Polly is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead ..."
+meta_description: "Learn how to retry failed HTTP API calls in .NET using Polly. Step-by-step guide covering retry policies, exponential backoff, circuit breaker, and integration with HttpClientFactory."
 ---
 
 <!--START-->

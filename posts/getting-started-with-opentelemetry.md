@@ -3,7 +3,7 @@ title: "Getting Started with OpenTelemetry in .NET"
 subtitle: "OpenTelemetry is an open-source framework for observability that provides tools, APIs, and SDKs to help developers generate, collect, and export telemetry data such as traces, metrics, and logs. "
 date: "Jan 21 2025"
 category: ".NET"
-readTime: "Read Time: 7minutes"
+readTime: "Read Time: 7 minutes"
 meta_description: "OpenTelemetry is an open-source framework for observability that provides tools, APIs, and SDKs to help developers generate, collect, and export telemetry data such as traces, metrics, and logs. "
 ---
 

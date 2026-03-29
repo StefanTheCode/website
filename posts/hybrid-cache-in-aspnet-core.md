@@ -2,8 +2,9 @@
 title: "HybridCache in ASP.NET Core - .NET 9"
 subtitle: "Caching is a mechanism to store frequently used data in a temporary storage layer so that future requests for the same data can be served faster, reducing the need for repetitive data fetching or computation. "
 date: "Dec 08 2024"
+category: ".NET"
 readTime: "Read Time: 6 minutes"
-meta_description: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
+meta_description: "Learn how to use HybridCache in ASP.NET Core .NET 9 to combine in-memory and distributed caching in a single API. Covers setup, configuration, stampede protection, and practical C# examples."
 ---
 
 <!--START-->
@@ -301,6 +302,26 @@ The **.NET 9 Hybrid Cache** is a significant leap forward in simplifying and opt
 By seamlessly combining the speed of in-memory caching (L1) with the scalability and consistency of distributed caching (L2), Hybrid Cache provides developers with a powerful and flexible tool to enhance application performance while maintaining data consistency across distributed systems.
 
 Although currently in preview, features like **tag-based invalidation** will further streamline cache management. As the ecosystem evolves, Hybrid Cache is poised to become the default caching solution for performance-focused, scalable .NET applications.
+
+For foundational caching concepts, see [Memory Caching in .NET](https://thecodeman.net/posts/memory-caching-in-dotnet). If you need advanced distributed caching with Redis, check out [Dual-Key Redis Caching in .NET](https://thecodeman.net/posts/dual-key-redis-caching-in-dotnet).
+
+## Frequently Asked Questions
+
+### What is HybridCache in .NET 9?
+
+HybridCache is a new caching API in ASP.NET Core (.NET 9) that combines in-memory (L1) and distributed (L2) caching into a single, unified interface. It automatically synchronizes between the two layers, handles serialization, and provides stampede protection out of the box. You configure it with `AddHybridCache()` in your DI setup.
+
+### How is HybridCache different from IMemoryCache and IDistributedCache?
+
+With the traditional approach, you manage `IMemoryCache` (L1) and `IDistributedCache` (L2) separately — writing manual synchronization logic, handling serialization yourself, and duplicating expiration policies. HybridCache wraps both layers into one API: `GetOrCreateAsync` checks L1 first, falls back to L2, and if both miss, calls your factory method and populates both caches automatically.
+
+### Does HybridCache support Redis?
+
+Yes. HybridCache uses `IDistributedCache` as its L2 backend. You can plug in any distributed cache provider, including Redis, SQL Server, or NCache. Just register your Redis distributed cache (`AddStackExchangeRedisCache`) alongside `AddHybridCache()`, and HybridCache will use it as the L2 layer.
+
+### What is stampede protection in HybridCache?
+
+Stampede protection prevents multiple concurrent requests from hitting your database when a cache entry expires. Without it, if 100 requests arrive simultaneously for the same expired key, all 100 would query the database. HybridCache ensures only one request fetches the data while the others wait for the result.
 
 That's all from me for today.
 

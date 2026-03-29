@@ -126,6 +126,23 @@ This usually didn't cause problems, but sometimes a slow service could delay the
 In .NET 8, two new features let us start or stop services simultaneously, instead of one after another. You can turn this on by changing the settings in **HostOptions** for any services you're using.
 In addition, now you can have a full control over Hosted Services by implementing a new interface **IHostedLifecycleService** which comes with 4 new methods for controlling the service (StartedAsync, StartingAsync, StoppedAsync, StoppingAsync).
 Install .NET 8 SDK and test, I'm sure you will see the benefits of this.
+
+For more on background processing, see [Background tasks and how to use them](https://thecodeman.net/posts/background-tasks-how-to-use-them). If you need scheduled recurring jobs, check out [Job Scheduling with Coravel](https://thecodeman.net/posts/job-scheduling-with-coravel) or [Jobs in .NET with Hangfire](https://thecodeman.net/posts/jobs-in-dotnet-with-hangfire).
+
+## Frequently Asked Questions
+
+### What changed with hosted services in .NET 8?
+
+In .NET 8, you can start and stop hosted services concurrently instead of sequentially. Set `ServicesStartConcurrently = true` and `ServicesStopConcurrently = true` in `HostOptions`. This eliminates the startup bottleneck where a slow `StartAsync` would block all other services from starting.
+
+### What is IHostedLifecycleService in .NET 8?
+
+`IHostedLifecycleService` is a new interface that extends `IHostedService` with four additional lifecycle methods: `StartingAsync`, `StartedAsync`, `StoppingAsync`, and `StoppedAsync`. These give you fine-grained control over what happens before, during, and after a hosted service starts or stops.
+
+### Should I use BackgroundService or IHostedService?
+
+Use `BackgroundService` (which implements `IHostedService`) when you need a long-running background loop. Use `IHostedService` directly when you need custom startup/shutdown logic without a continuous loop. In .NET 8+, consider `IHostedLifecycleService` when you need precise lifecycle hooks.
+
 That's all from me today.
 
 <!--END-->

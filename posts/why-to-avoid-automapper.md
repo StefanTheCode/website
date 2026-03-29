@@ -167,4 +167,9 @@ I used Automapper myself, but as the project got bigger and bigger, I realized t
 These are some of the methods I use. Try it yourself.
 Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/3%23%20-%20Mappers)**.
 
+
+---
+
+Want to enforce clean code automatically? My [Pragmatic .NET Code Rules](/pragmatic-dotnet-code-rules) course shows you how to set up analyzers, CI quality gates, and architecture tests - a production-ready system that keeps your codebase clean without manual reviews. Or grab the [free Starter Kit](/dotnet-code-rules-starter-kit) to try it out.
+
 <!--END-->

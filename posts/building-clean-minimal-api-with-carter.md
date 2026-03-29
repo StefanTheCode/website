@@ -235,6 +235,11 @@ That's all from me today.
 
  
 P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+
+---
+
+Building APIs like this? Grab my free [Vertical Slice Architecture template](/vertical-slices-architecture) - a clean .NET 10 project with 10 endpoints and zero unnecessary abstractions.
+
 <!--END-->
 
 

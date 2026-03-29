@@ -463,5 +463,10 @@ By leveraging these new features, developers can create more efficient, maintain
 Whether you're automating repetitive tasks, enforcing code standards, or optimizing your application’s performance, source generators in C# 12 offer a wealth of possibilities to explore.
 
 That's all from me today. 
+
+---
+
+Want to enforce clean code automatically? My [Pragmatic .NET Code Rules](/pragmatic-dotnet-code-rules) course shows you how to set up analyzers, CI quality gates, and architecture tests - a production-ready system that keeps your codebase clean without manual reviews. Or grab the [free Starter Kit](/dotnet-code-rules-starter-kit) to try it out.
+
 <!--END-->
 

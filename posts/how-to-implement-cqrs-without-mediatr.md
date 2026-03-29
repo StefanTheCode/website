@@ -214,10 +214,28 @@ public class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, User>
 ```
 For every other command or query, you would create the same class structure.
 
-What is missing here is validation, which can be represented as the GetUserByIdQueryValidation class and which will validate the input.
+What is missing here is validation, which can be represented as the GetUserByIdQueryValidation class and which will validate the input. If you want a clean approach to building custom validation pipelines, check out [Build Your Own MediatR: A Lightweight Handler Pipeline](https://thecodeman.net/posts/build-your-own-mediatr-lightweight-handler-pipeline-aspnet-core).
 
 
 Also check out [MediatR Pipeline Behaviors](https://thecodeman.net/posts/mediatr-pipeline-behavior) and [Wolverine as a MediatR Alternative](https://thecodeman.net/posts/mediatr-alternative-wolverine).
+
+## Frequently Asked Questions
+
+### What is CQRS in .NET?
+
+CQRS (Command Query Responsibility Segregation) is a design pattern that separates read operations (queries) from write operations (commands) in your application. In .NET, you implement it using separate handler interfaces for commands and queries, each resolved through dependency injection. This separation improves maintainability, testability, and allows independent scaling of reads and writes.
+
+### Do I need MediatR to implement CQRS?
+
+No. MediatR is a convenient library that provides a mediator abstraction, but CQRS only requires separate command and query handlers. You can implement CQRS with four simple interfaces (`IQueryHandler`, `ICommandHandler`, `IQueryDispatcher`, `ICommandDispatcher`) and use the built-in .NET dependency injection container to resolve them. No external library is needed.
+
+### What is the difference between CQRS and CQS?
+
+CQS (Command Query Separation) is a principle that states every method should either be a command that performs an action or a query that returns data, but not both. CQRS takes this further by separating the command and query models at the architectural level, often using different data stores, different DTOs, and different handlers for reads and writes.
+
+### When should I use CQRS?
+
+Use CQRS when your application has complex business logic, a high read/write ratio, or needs to scale reads and writes independently. It is especially useful in microservices architectures, event-sourced systems, and applications where the read model differs significantly from the write model. For simple CRUD applications, CQRS may add unnecessary complexity.
 
 ## Wrapping Up
 
@@ -230,5 +248,10 @@ Using MediatR in CQRS implementation is not wrong. Considering the increasing us
 I have certainly shown here that the purpose of MediatR is not to be used to implement CQRS, and that it is absolutely possible to implement this pattern without any libraries in a very simple way.
 
 It's Monday, make a coffee and check the whole project implementation on [GitHub repository](https://github.com/StefanTheCode/CleanCQRS).
+
+---
+
+Want more design patterns with real-world examples? My ebook [Design Patterns that Deliver](/design-patterns-that-deliver-ebook) covers 5 essential patterns (Builder, Decorator, Strategy, Adapter, Mediator) with hands-on C# code you can use right away. Or try a [free chapter on the Builder Pattern](/builder-pattern-free-stuff) first.
+
 <!--END-->
 

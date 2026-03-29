@@ -5,20 +5,23 @@ import { Suspense } from "react";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net/blog'),
-  title: "Blog",
-  description: "Explore TheCodeMan.NET blog for expert articles on .NET development, C# tutorials, and software engineering trends. Stay ahead in the tech world with in-depth insights.",
+  title: ".NET Blog - C# Tutorials, Architecture & Best Practices",
+  alternates: {
+    canonical: 'https://thecodeman.net/blog',
+  },
+  description: "Practical .NET tutorials, C# tips, architecture patterns, and software engineering best practices by Microsoft MVP Stefan Djokic. New articles every week.",
   openGraph: {
-    title: "Blog",
+    title: ".NET Blog - C# Tutorials, Architecture & Best Practices",
     type: "website",
     url: "https://thecodeman.net/blog",
-    description: "Explore TheCodeMan.NET blog for expert articles on .NET development, C# tutorials, and software engineering trends. Stay ahead in the tech world with in-depth insights."
+    description: "Practical .NET tutorials, C# tips, architecture patterns, and software engineering best practices by Microsoft MVP Stefan Djokic. New articles every week."
   },
   twitter: {
-    title: "Blog",
+    title: ".NET Blog - C# Tutorials, Architecture & Best Practices",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Explore TheCodeMan.NET blog for expert articles on .NET development, C# tutorials, and software engineering trends. Stay ahead in the tech world with in-depth insights."
+    description: "Practical .NET tutorials, C# tips, architecture patterns, and software engineering best practices by Microsoft MVP Stefan Djokic."
   }
 };
 

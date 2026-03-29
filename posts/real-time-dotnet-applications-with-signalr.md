@@ -152,6 +152,9 @@ In addition to accessing the client list, SignalR Hub also supports access to:
 - Context - accessing information about the hub caller connection
 I encourage you to look at the complete source code that I leave here and write to me if you have any questions.
 Here is the source code on [GitHub](https://github.com/StefanTheCode/SignalRDemo).
+
+For high-throughput scenarios where you need to batch thousands of data points before broadcasting, check out [High-Throughput Real-Time Data with BoundedChannel and SignalR](https://thecodeman.net/posts/high-throughput-real-time-data-bounded-channel-signalr). For event-driven messaging with NATS, see [A Friendly Introduction to NATS](https://thecodeman.net/posts/introduction-to-nats-real-time-messaging).
+
 That's all from me today.
 
 <!--END-->

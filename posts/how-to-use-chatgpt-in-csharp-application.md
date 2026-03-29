@@ -65,5 +65,10 @@ Make a coffee and check out source code directly on my ** [GitHub repository](ht
 
 ## Wrapping Up
 
+
+---
+
+Want to build AI features in .NET? Download the complete [RAG System in .NET](/rag-system-dotnet) source code - ready to run with Ollama Mistral and Neon Serverless DB.
+
 <!--END-->
 

@@ -302,6 +302,11 @@ The problems you may encounter listed above can be easily solved.
 Use pattern in Vertical Slice Architecture but also in all other architectures, if you use CQRS for example.
 
 That's all from me for today. Make a coffee and try REPR.
+
+---
+
+Building APIs like this? Grab my free [Vertical Slice Architecture template](/vertical-slices-architecture) - a clean .NET 10 project with 10 endpoints and zero unnecessary abstractions.
+
 <!--END-->
 
 

@@ -8,12 +8,12 @@ import Subscribe from "@/app/subscribe";
 import Help from "@/app/help";
 import config from "@/config.json";
 import { notFound } from "next/navigation";
-import MetadataHead from "./MetadataHead";
 import CodeBlock from "@/components/CodeBlock";
 import CodeFrame from "@/components/CodeFrame";
 import ShikiCode from "@/components/ShikiCode";
 import { highlightFencedCode } from "@/components/highlightMarkdown";
 import Author from "@/app/author";
+import { Metadata } from "next";
 
 const postsDir = path.join(process.cwd(), "posts");
 
@@ -48,6 +48,50 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const filePath = path.join(postsDir, `${slug}.md`);
+
+  if (!fs.existsSync(filePath)) {
+    return {};
+  }
+
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  const { data } = matter(fileContent);
+
+  const title = data.title || "TheCodeMan Blog";
+  const description = data.meta_description || data.subtitle || "Practical .NET knowledge by Stefan Djokic.";
+  const image = `https://thecodeman.net/images/blog/${slug}.png`;
+  const url = `https://thecodeman.net/posts/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      images: [{ url: image }],
+      publishedTime: data.date ? new Date(data.date).toISOString() : undefined,
+      authors: ["Stefan Djokic"],
+    },
+    twitter: {
+      title,
+      description,
+      card: "summary_large_image",
+      site: "@TheCodeMan__",
+      creator: "@TheCodeMan__",
+      images: [image],
+    },
+  };
+}
+
 export default async function PostPage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
@@ -69,9 +113,66 @@ export default async function PostPage(
     date: post.data.date,
   };
 
+  const published = post.data.date ? new Date(post.data.date).toISOString() : undefined;
+
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: meta.title,
+    description: meta.description,
+    image: [meta.image],
+    author: {
+      "@type": "Person",
+      "@id": "https://thecodeman.net/#/schema/person/stefan-djokic",
+      name: "Stefan Djokic",
+      url: "https://thecodeman.net"
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://thecodeman.net/#/schema/org",
+      name: "TheCodeMan.net",
+      url: "https://thecodeman.net",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://thecodeman.net/og-image.png"
+      }
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": meta.url
+    },
+    datePublished: published,
+    dateModified: published
+  };
+
+  const faq = Array.isArray(post.data.faq) ? post.data.faq : [];
+  const faqLd = faq.length
+    ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map((item: any) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    }
+    : null;
+
   return (
     <>
-      <MetadataHead slug={slug} folder="posts" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
 
       <section className="img ftco-section">
         <div className="container">
@@ -79,7 +180,7 @@ export default async function PostPage(
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section border-right">
               <div className="row justify-content-center pb-5">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center">
-                  <h2 className="blog-header2">{meta.title}</h2>
+                  <h1 className="blog-header2">{meta.title}</h1>
                   <p className="text-slate-400 mt-2">{meta.date}</p>
                 </div>
               </div>

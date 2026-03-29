@@ -7,10 +7,10 @@ export default function Subscribe() {
         <div className="container">
           <div className="row justify-content-center ">
             <div className="col-md-12 heading-section text-center " id="footer-news-web">
-              <p className="header-text">Master .NET Technologies</p>
+              <p className="header-text">1 Practical .NET Tip Every Monday</p>
             </div>
             <div className='col-md-12'>
-              <p>Join <span className='text-yellow'> {config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
+              <p>Join <span className='text-yellow'> {config.NewsletterSubCount}</span> who mass-improve their .NET skills with actionable tips on C#, Architecture & Best Practices.</p>
             </div>
           </div>
           <div className='container'>

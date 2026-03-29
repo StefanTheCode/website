@@ -63,4 +63,9 @@ If you haven't, make a coffee and check out these examples directly on my [GitHu
 
 ## Wrapping Up
 
+
+---
+
+Want to enforce clean code automatically? My [Pragmatic .NET Code Rules](/pragmatic-dotnet-code-rules) course shows you how to set up analyzers, CI quality gates, and architecture tests - a production-ready system that keeps your codebase clean without manual reviews. Or grab the [free Starter Kit](/dotnet-code-rules-starter-kit) to try it out.
+
 <!--END-->

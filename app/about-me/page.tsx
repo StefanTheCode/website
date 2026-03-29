@@ -3,21 +3,24 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thecodeman.net/about-me"),
-  title: "About Me",
-  description: "Hi Im Stefan.",
+  title: "About Stefan Djokic - Microsoft MVP & Senior .NET Engineer",
+  alternates: {
+    canonical: "https://thecodeman.net/about-me",
+  },
+  description: "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 20,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses on C#, .NET architecture, and design patterns.",
   openGraph: {
-    title: "About Me",
+    title: "About Stefan Djokic - Microsoft MVP & Senior .NET Engineer",
     type: "website",
     url: "https://thecodeman.net/about-me",
-    description: "Hi Im Stefan.",
+    description: "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 20,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses on C#, .NET architecture, and design patterns.",
   },
   twitter: {
-    title: "About Me",
+    title: "About Stefan Djokic - Microsoft MVP & Senior .NET Engineer",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
     description:
-      "Hi Im Stefan.",
+      "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 20,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses.",
   },
 };
 
@@ -62,7 +65,7 @@ export default function Page() {
             <div className="col-12 col-md-6 text-center">
               <Image
                 src="/images/stefan-djokic.png"
-                alt="Erci profile image"
+                alt="Stefan Djokic - Microsoft MVP and Senior .NET Engineer"
                 width={380}
                 height={380}
                 className="img-fluid rounded"

@@ -41,7 +41,7 @@ export default function Home() {
         <div className="row d-md-flex no-gutters">
           <div className="col-xl-12 mt-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center slider-text padding-top-10per" >
             <div className="text" >
-              <p className="header-text-feature-b  mtbottom20">Become a Better <span className='text-yellow'>.NET</span> Engineer</p>
+              <h1 className="header-text-feature-b  mtbottom20">Become a Better <span className='text-yellow'>.NET</span> Engineer</h1>
               <p className="header-text-feature-b mtbottom20">One Tip Weekly</p>
               <div className='container mt-5'>
                 <div className='row text-center'>

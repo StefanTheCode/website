@@ -544,6 +544,9 @@ It just gives you:
 If your next project involves devices, sensors, real-time updates, automation, or anything where speed and simplicity matter more than heavy enterprise features, give NATS a try.
  
 It might surprise you how far you can go with something this small and this fast.
+
+For a production-ready example of consuming NATS at high speed and broadcasting via SignalR with batch flushing, see [High-Throughput Real-Time Data with BoundedChannel and SignalR](https://thecodeman.net/posts/high-throughput-real-time-data-bounded-channel-signalr). For other messaging approaches, check out [RabbitMQ in .NET from Scratch](https://thecodeman.net/posts/rabbitmq-in-dotnet-from-scratch) and [Messaging in .NET with Redis](https://thecodeman.net/posts/messaging-in-dotnet-with-redis).
+
 That's all from me for today. 
 <!--END-->
 

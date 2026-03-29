@@ -141,6 +141,30 @@ export default function RootLayout({
             }),
           }}
         />
+
+        <Script
+          id="ld-json-website"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://thecodeman.net/#website",
+              name: "TheCodeMan.NET",
+              url: "https://thecodeman.net",
+              description: "Practical .NET tutorials, C# tips, architecture patterns, and software engineering best practices by Microsoft MVP Stefan Djokic.",
+              publisher: {
+                "@id": "https://thecodeman.net/#/schema/org"
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://thecodeman.net/blog?category={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }),
+          }}
+        />
       </head>
       <body>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBBCS5FT"

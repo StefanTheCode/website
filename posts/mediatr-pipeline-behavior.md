@@ -2,6 +2,7 @@
 title: "MediatR Pipeline Behavior"
 subtitle: "MediatR is a popular library in .NET used for implementing the Mediator pattern. It helps in reducing coupling between components..."
 date: "Jan 1 2024"
+category: ".NET"
 readTime: "Read Time: 3 minutes"
 meta_description: "Explore the concept of MediatR Pipeline Behavior in .NET in this insightful blog post. Learn how to implement cross-cutting concerns like logging and validation in your MediatR requests. Understand the creation of pipeline behaviors, their registration, and practical applications. This guide is perfect for .NET developers looking to enhance application monitoring and debugging while adhering to best coding practices."
 ---
@@ -100,9 +101,31 @@ This allows you to add common logic, like logging, validation, or error handling
 ## Wrapping up
 The LoggingBehavior<TRequest, TResponse> in MediatR for .NET enhances application [monitoring](https://thecodeman.net/posts/how-to-monitor-dotnet-applications-in-production) and debugging by consistently logging all request and response types.
 This approach promotes cleaner code through separation of concerns, adheres to best practices like the Single Responsibility Principle, and offers ease of integration and reusability across the application.
+
+If you want to implement CQRS with or without MediatR, check out [How to implement CQRS without MediatR](https://thecodeman.net/posts/how-to-implement-cqrs-without-mediatr). For a fully custom pipeline without any external dependencies, see [Build Your Own MediatR: A Lightweight Handler Pipeline](https://thecodeman.net/posts/build-your-own-mediatr-lightweight-handler-pipeline-aspnet-core).
+
+## Frequently Asked Questions
+
+### What is MediatR Pipeline Behavior?
+
+MediatR Pipeline Behavior is a feature that lets you add cross-cutting concerns (logging, validation, caching, error handling) to your request pipeline without modifying individual handlers. You implement `IPipelineBehavior<TRequest, TResponse>` and register it in DI. Every request that passes through MediatR will execute your behavior before and after the handler.
+
+### How do I register a Pipeline Behavior in .NET?
+
+Register your pipeline behavior as an open generic in your DI container: `services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))`. MediatR will automatically discover and execute it for every request/response pair. You can register multiple behaviors — they execute in the order they are registered.
+
+### Can I have multiple Pipeline Behaviors?
+
+Yes. You can chain multiple behaviors like logging, validation, and caching. Each behavior calls `next()` to pass execution to the next behavior or the final handler. The execution order matches the registration order in your DI container.
+
 That's all from me today - first day of the year.
 See ya on the next Monday coffee.
 P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+
+
+---
+
+Want more design patterns with real-world examples? My ebook [Design Patterns that Deliver](/design-patterns-that-deliver-ebook) covers 5 essential patterns (Builder, Decorator, Strategy, Adapter, Mediator) with hands-on C# code you can use right away. Or try a [free chapter on the Builder Pattern](/builder-pattern-free-stuff) first.
 
 <!--END-->
 

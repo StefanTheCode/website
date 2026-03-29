@@ -368,10 +368,37 @@ Pair it with NATS for ingestion and SignalR for broadcasting, and you have a pro
 
 The key takeaway: stop processing messages one at a time. Channels let you absorb bursts, batch intelligently, and push to consumers efficiently.
 
+## Frequently Asked Questions
+
+### What is BoundedChannel in .NET?
+
+`BoundedChannel<T>` is a thread-safe, high-performance in-process producer-consumer queue from `System.Threading.Channels`. Unlike `ConcurrentQueue`, it has a fixed capacity and provides backpressure — when the buffer is full, writers wait until consumers drain space. It supports `SingleReader` and `SingleWriter` optimizations that remove internal lock overhead. It ships with .NET and requires no external packages.
+
+### When should I use BoundedChannel vs. UnboundedChannel?
+
+Use `BoundedChannel` when your producer is faster than your consumer and you need memory safety. The fixed capacity prevents unbounded memory growth during traffic spikes. Use `UnboundedChannel` only when you are certain the consumer can always keep up, or when message loss is acceptable and you prefer never blocking the producer.
+
+### How does time-and-count batch flushing work?
+
+The flush loop reads from the channel into a buffer. It stops when either the batch reaches a count threshold (e.g., 1,000 items) or a time interval expires (e.g., 50ms), whichever comes first. This is implemented using a linked `CancellationTokenSource` with `CancelAfter`. The result is efficient batching under high load and low-latency delivery under light load.
+
+### Can I use BoundedChannel with SignalR for real-time dashboards?
+
+Yes. The pattern in this post is designed exactly for that. NATS (or any fast producer) writes into the channel, a [BackgroundService](https://thecodeman.net/posts/background-tasks-in-dotnet8) reads in batches, and `IHubContext<THub>` broadcasts each batch to all connected SignalR clients. This reduces thousands of individual `SendAsync` calls to a few dozen batch broadcasts per second.
+
+### What is backpressure in System.Threading.Channels?
+
+Backpressure is a flow control mechanism where the producer slows down when the consumer cannot keep up. In `BoundedChannel`, when the buffer reaches capacity, `WriteAsync` awaits until space is available. This prevents memory exhaustion and keeps your service responsive. The `FullMode` option controls the behavior: `Wait` (block the writer), `DropNewest`, `DropOldest`, or `DropWrite`.
+
 For related topics, check out [Real-Time applications with SignalR](https://thecodeman.net/posts/real-time-dotnet-applications-with-signalr) and [A Friendly Introduction to NATS: Real-Time Messaging for .NET Developers](https://thecodeman.net/posts/introduction-to-nats-real-time-messaging).
 
 That's all from me today.
 
 P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
+
+
+---
+
+Building APIs like this? Grab my free [Vertical Slice Architecture template](/vertical-slices-architecture) - a clean .NET 10 project with 10 endpoints and zero unnecessary abstractions.
 
 <!--END-->

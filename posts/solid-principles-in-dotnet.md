@@ -2,6 +2,7 @@
 title: "SOLID Principles in .NET"
 subtitle: "SOLID is an acronym for a set of 5 design principles that help improve the maintainability, scalability, and stability of software systems..."
 date: "Apr 24 2023"
+category: ".NET"
 readTime: "Read Time: 4 minutes"
 meta_description: "Gain insights into SOLID principles in .NET: Discover how to apply these core design principles for more maintainable and scalable software. Essential for .NET developers."
 ---
@@ -307,6 +308,11 @@ Make a coffee and check the whole project on [GitHub repository](https://github.
 For practical code improvements, check out [Clean Code Best Practices](https://thecodeman.net/posts/clean-code-best-practices) and [Architecture Tests in .NET](https://thecodeman.net/posts/architecture-tests-dotnet-clean-architecture).
 
 ## Wrapping Up
+
+
+---
+
+Want to enforce clean code automatically? My [Pragmatic .NET Code Rules](/pragmatic-dotnet-code-rules) course shows you how to set up analyzers, CI quality gates, and architecture tests - a production-ready system that keeps your codebase clean without manual reviews. Or grab the [free Starter Kit](/dotnet-code-rules-starter-kit) to try it out.
 
 <!--END-->
 
