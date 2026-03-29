@@ -26,10 +26,16 @@ export const metadata: Metadata = {
 };
 
 const sponsors = [
-  { src: '/images/sponsors/postman.png', alt: 'Postman' },
+  { src: '/images/sponsors/microsoft.svg', alt: 'Microsoft' },
   { src: '/images/sponsors/jetbrains.png', alt: 'JetBrains' },
-  { src: '/images/sponsors/neon.png', alt: 'Neon' },
-  { src: '/images/sponsors/abp.png', alt: 'ABP Framework' },
+  { src: '/images/sponsors/mongodb.svg', alt: 'MongoDB' },
+  { src: '/images/sponsors/sentry.svg', alt: 'Sentry' },
+  { src: '/images/sponsors/heroku.svg', alt: 'Heroku' },
+  { src: '/images/sponsors/brilliant.svg', alt: 'Brilliant' },
+  { src: '/images/sponsors/iron-software.svg', alt: 'Iron Software' },
+  { src: '/images/sponsors/zzz-projects.svg', alt: 'ZZZ Projects' },
+  { src: '/images/sponsors/uno-platform.svg', alt: 'Uno Platform' },
+  { src: '/images/sponsors/coderabbit.svg', alt: 'CodeRabbit' },
 ];
 
 const Sponsorship = () => {
@@ -147,16 +153,25 @@ const Sponsorship = () => {
         <div className="sp-trusted">
           <p className="sp-trusted__label">Trusted by leading developer brands</p>
           <div className="sp-logos">
-            {sponsors.map(({ src, alt }) => (
-              <Image
-                key={src}
-                src={src}
-                alt={alt}
-                width={160}
-                height={40}
-                className="sp-logo"
-              />
-            ))}
+            {sponsors.map(({ src, alt }) =>
+              src.endsWith('.svg') ? (
+                <img
+                  key={src}
+                  src={src}
+                  alt={alt}
+                  className="sp-logo"
+                />
+              ) : (
+                <Image
+                  key={src}
+                  src={src}
+                  alt={alt}
+                  width={160}
+                  height={40}
+                  className="sp-logo"
+                />
+              )
+            )}
           </div>
         </div>
 

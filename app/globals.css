@@ -16021,8 +16021,10 @@ textarea.form-control {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 48px;
+  gap: 40px 48px;
   flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .sp-logo {
