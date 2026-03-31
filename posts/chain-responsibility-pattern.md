@@ -1,10 +1,10 @@
 ---
-title: "Chain Responsibility Pattern"
+title: "Chain of Responsibility Pattern in .NET"
 subtitle: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
 date: "Nov 25 2024"
 category: "Design Patterns"
-readTime: "Read Time: 3 minutes"
-meta_description: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
+readTime: "Read Time: 7 minutes"
+meta_description: "Learn the Chain of Responsibility design pattern in .NET with a practical C# example. Build flexible, maintainable request pipelines using linked handlers instead of nested if-else chains."
 ---
 
 <!--START-->
@@ -25,7 +25,7 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 ## The background
 The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task.
 Each object in the chain has the ability to either handle the request or pass it on to the next object in the chain. This pattern promotes loose coupling and flexibility in handling requests.
-Let's explore how to implement the Chain of Responsibility pattern in .NET 6 using a practical example.
+Let's explore how to implement the Chain of Responsibility pattern in .NET using a practical example.
 
 ## Example Scenario
 
@@ -70,9 +70,10 @@ public abstract class DiscountHandler
 {
     protected DiscountHandler _nextHandler;
 
-    public void SetNextHandler(DiscountHandler nextHandler)
+    public DiscountHandler SetNextHandler(DiscountHandler nextHandler)
     {
         _nextHandler = nextHandler;
+        return nextHandler;
     }
 
     public abstract decimal CalculateDiscount(Customer customer, decimal orderTotal);
@@ -162,36 +163,193 @@ decimal discountAmount = vipHandler.CalculateDiscount(customer, orderTotal);
 ## Pros and Cons? 
 
 What are the benefits from this?
-1. Flexibility
+
+**1. Flexibility**
+
 The Chain of Responsibility pattern allows you to dynamically modify or extend the chain without affecting other parts of the code. You can add or remove handlers as needed.
 
-2. Loose coupling
+**2. Loose coupling**
+
 The pattern promotes loose coupling between the sender of a request and its receivers. Each handler only needs to know about its immediate successor, minimizing dependencies.
 
-3. Single Responsibility Principle
-You can decouple classes that invoke operations from classes that perform operations.
-### Okay,what about Drawbacks?
+**3. Single Responsibility Principle**
 
-1. Request may go unhandled
-If none of the handlers in the chain can handle the request, it may go unhandled, leading to unexpected behavior. It's important to have a default handler or a way to handle such scenarios.
+You can decouple classes that invoke operations from classes that perform operations. Each handler does one thing and does it well.
 
-2. Potential performance impact
-If the chain becomes very long, it may result in performance overhead due to the traversal of multiple handlers.
+**4. Open/Closed Principle**
 
-Remember, it's essential to strike a balance between the number of handlers and performance considerations when applying this pattern to real-world scenarios.
+You can introduce new handlers without changing existing ones. The chain grows without modifying the code that uses it.
 
-That's all from me for today.
+### What about Drawbacks?
 
+**1. Request may go unhandled**
+
+If none of the handlers in the chain can handle the request, it may go unhandled, leading to unexpected behavior. Always include a default handler at the end of the chain (like `NoDiscountHandler` above).
+
+**2. Potential performance impact**
+
+If the chain becomes very long, it may result in performance overhead due to the traversal of multiple handlers. In practice, this is rarely a problem unless you have dozens of handlers.
+
+**3. Debugging complexity**
+
+When something goes wrong, tracing which handler processed (or skipped) a request can be harder than reading a simple if-else block. Good logging inside each handler solves this.
+
+## When to Use the Chain of Responsibility Pattern
+
+This pattern shines when:
+
+• **You have multiple objects that can handle a request**, and the handler is not known in advance. The chain figures it out at runtime.
+• **The set of handlers changes dynamically.** You need to add, remove, or reorder processing steps without touching existing code.
+• **You want to avoid a fat class** with dozens of if-else branches that all live in one method.
+• **Request processing must happen in a specific order.** Each handler validates or transforms the request before passing it along.
+
+Real-world examples in .NET:
+
+• **ASP.NET Core Middleware** - every middleware component in the pipeline is a handler. It either processes the request or calls `next()`. This is the Chain of Responsibility pattern in action.
+• **Validation pipelines** - validate input through a series of rules (e.g., check format, check business rules, check permissions) where each rule is a handler.
+• **Logging and enrichment** - pass a log entry through handlers that enrich it with context, redact sensitive data, or route it to different sinks.
+• **Approval workflows** - a purchase request goes through manager, director, and VP approval handlers based on the amount.
+
+## A More Realistic Example: Request Validation Pipeline
+
+The discount example is great for learning, but let me show you something closer to production code.
+
+Imagine you have an API endpoint that creates orders. Before processing, you need to validate the request through multiple steps:
+
+```csharp
+public abstract class OrderValidationHandler
+{
+    protected OrderValidationHandler _next;
+
+    public OrderValidationHandler SetNext(OrderValidationHandler next)
+    {
+        _next = next;
+        return next;
+    }
+
+    public abstract Result Validate(CreateOrderRequest request);
+
+    protected Result CallNext(CreateOrderRequest request)
+    {
+        return _next?.Validate(request) ?? Result.Success();
+    }
+}
+```
+
+Each handler checks one thing:
+
+```csharp
+public class StockAvailabilityHandler : OrderValidationHandler
+{
+    private readonly IInventoryService _inventory;
+
+    public StockAvailabilityHandler(IInventoryService inventory)
+    {
+        _inventory = inventory;
+    }
+
+    public override Result Validate(CreateOrderRequest request)
+    {
+        foreach (var item in request.Items)
+        {
+            if (!_inventory.IsInStock(item.ProductId, item.Quantity))
+            {
+                return Result.Failure($"Product {item.ProductId} is out of stock.");
+            }
+        }
+
+        return CallNext(request);
+    }
+}
+
+public class PaymentValidationHandler : OrderValidationHandler
+{
+    public override Result Validate(CreateOrderRequest request)
+    {
+        if (string.IsNullOrWhiteSpace(request.PaymentMethodId))
+        {
+            return Result.Failure("Payment method is required.");
+        }
+
+        return CallNext(request);
+    }
+}
+
+public class FraudCheckHandler : OrderValidationHandler
+{
+    private readonly IFraudService _fraudService;
+
+    public FraudCheckHandler(IFraudService fraudService)
+    {
+        _fraudService = fraudService;
+    }
+
+    public override Result Validate(CreateOrderRequest request)
+    {
+        if (_fraudService.IsSuspicious(request))
+        {
+            return Result.Failure("Order flagged for review.");
+        }
+
+        return CallNext(request);
+    }
+}
+```
+
+Wire it up:
+
+```csharp
+var stockHandler = new StockAvailabilityHandler(inventoryService);
+
+stockHandler
+    .SetNext(new PaymentValidationHandler())
+    .SetNext(new FraudCheckHandler(fraudService));
+
+Result result = stockHandler.Validate(orderRequest);
+```
+
+Each handler has a single responsibility. Adding a new validation step (like address verification) means creating one new class and linking it into the chain. Zero changes to existing handlers.
+
+Compare this to a single method with 5 nested if statements and multiple service dependencies. The chain is easier to test, easier to extend, and easier to read.
+
+## Frequently Asked Questions
+
+### What is the Chain of Responsibility pattern?
+
+The Chain of Responsibility is a behavioral design pattern where a request is passed along a chain of handlers. Each handler decides whether to process the request or forward it to the next handler. This decouples the sender from the receiver and allows multiple objects to handle the request without the sender knowing which one will.
+
+### How is Chain of Responsibility used in ASP.NET Core?
+
+ASP.NET Core middleware is a direct implementation of this pattern. Each middleware component in the HTTP pipeline receives a request, optionally processes it, and calls `next()` to pass it to the next middleware. Authentication, CORS, routing, and exception handling all work this way.
+
+### When should I use Chain of Responsibility instead of if-else?
+
+Use Chain of Responsibility when you have more than 3-4 conditions that are likely to grow over time, when each condition has complex logic that deserves its own class, or when you need to add, remove, or reorder rules without modifying existing code. For simple, stable conditions, if-else is perfectly fine.
+
+### Can I use Chain of Responsibility with dependency injection in .NET?
+
+Yes. Register each handler in the DI container and resolve them in your composition root. You can also use a factory that builds the chain based on configuration. This lets handlers have their own dependencies (like services or repositories) injected through the constructor.
+
+### What is the difference between Chain of Responsibility and Strategy pattern?
+
+The Strategy pattern selects one algorithm from a set and executes it. The Chain of Responsibility passes a request through multiple handlers sequentially, where each handler can process, modify, or skip the request. Strategy is "pick one", Chain of Responsibility is "try each in order".
 
 For more design patterns, check out the [Strategy Pattern in .NET](https://thecodeman.net/posts/strategy-design-pattern-will-help-you-refactor-code) and the [Adapter Pattern in .NET](https://thecodeman.net/posts/simplifying-integration-with-adapter-pattern).
 
 ## Wrapping Up
 
+The Chain of Responsibility pattern turns tangled if-else logic into a clean, extensible pipeline of handlers.
+
+Each handler does one thing. You can add, remove, or reorder steps without touching existing code. And if you have ever used ASP.NET Core middleware, you have already been using this pattern.
+
+Start simple: identify a method with multiple branching conditions, extract each branch into a handler, and link them into a chain. The code becomes easier to test, easier to maintain, and easier to explain.
+
+That's all from me today.
+
+P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
 
 ---
 
 Want more design patterns with real-world examples? My ebook [Design Patterns that Deliver](/design-patterns-that-deliver-ebook) covers 5 essential patterns (Builder, Decorator, Strategy, Adapter, Mediator) with hands-on C# code you can use right away. Or try a [free chapter on the Builder Pattern](/builder-pattern-free-stuff) first.
 
 <!--END-->
-
-## dream BIG!

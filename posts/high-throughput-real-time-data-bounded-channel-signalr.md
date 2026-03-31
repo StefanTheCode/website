@@ -322,9 +322,7 @@ That is the complete setup. Configuration comes from `appsettings.json`, the cha
 
 Here is the full flow:
 
-```
-NATS → SubscribeAsync → Channel.Writer → [BoundedChannel 10K] → Channel.Reader → Batch (1000/50ms) → SignalR Hub → Clients
-```
+![BoundedChannel Pipeline: NATS to SignalR](/images/blog/posts/high-throughput-real-time-data-bounded-channel-signalr/bounded-channel-pipeline.png)
 
 • NATS pushes at full speed  
 • The channel absorbs bursts up to 10,000 items  

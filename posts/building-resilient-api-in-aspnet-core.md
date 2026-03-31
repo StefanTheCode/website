@@ -1,10 +1,10 @@
 ---
-title: "Building a Resilient API in ASP.NET Core 9"
-subtitle: "What if your app could handle those hiccups gracefully without crashing or stressing out your users?"
+title: "Building Resilient APIs in ASP.NET Core"
+subtitle: "What if your app could handle those hiccups gracefully without crashing or stressing out your users?"
 date: "May 19 2025"
 category: ".NET"
 readTime: "Read Time: 5 minutes"
-meta_description: "Microsoft.Extensions.Resilience is a set of libraries that help you: Retry failed operations, Set timeouts, Break circuits on repeated failures, Control request rates, Send backup (hedged) requests"
+meta_description: "Learn how to build resilient APIs in ASP.NET Core using Microsoft.Extensions.Resilience. Covers retry, timeout, circuit breaker, hedging, fallback, and rate limiting strategies with full code examples."
 ---
 
 <!--START-->
@@ -18,7 +18,7 @@ In today’s cloud-connected world, we’re constantly making HTTP calls to exte
 
 What if your app could handle those hiccups **gracefully** without crashing or stressing out your users?
 
-Great news! .NET 8 and 9 introduced a **first-party library** for building resilient apps: Microsoft.Extensions.Resilience. 
+Great news! .NET ships with a **first-party library** for building resilient apps: Microsoft.Extensions.Resilience. 
 
 Think of it like [Polly](https://thecodeman.net/posts/retry-failed-api-calls-with-polly), but built into .NET, fully supported by Microsoft, and super easy to plug into your existing setup.
 
@@ -46,10 +46,10 @@ dotnet add package Microsoft.Extensions.Resilience
 ## Resilience Pipelines
 
 To apply resilience, you need to build a pipeline made up of different resilience strategies. These strategies run in the exact order you define them -so the order really matters.
-You begin by creating a **ResiliencePipelineBuilder**, which 
+You begin by creating a **ResiliencePipelineBuilder**, adding strategies to it, and then calling `Build()` to get the final pipeline.
 
 ```csharp
-ResiliencePipeline pipeline = new()
+ResiliencePipeline pipeline = new ResiliencePipelineBuilder()
     .AddRetry(new RetryStrategyOptions
     {
         ShouldHandle = new PredicateBuilder().Handle<ConflictException>(),
@@ -132,7 +132,7 @@ builder.Services.AddResiliencePipeline("cb-pipeline", builder =>
     });
 });
 ```
-If 2 out of 4 calls fail within 10 seconds, the breaker "trips" and all further calls fail fast for 20 seconds.
+If 50% of calls fail (with a minimum of 10 calls) within 30 seconds, the breaker "trips" and all further calls fail fast for 15 seconds.
 
 ## Hedging Strategy
 
@@ -233,9 +233,31 @@ app.MapGet("/subscribers", async (
 });
 ```
 
+## Frequently Asked Questions
+
+### What is Microsoft.Extensions.Resilience?
+
+Microsoft.Extensions.Resilience is a first-party .NET library for adding resilience to your applications. It provides composable strategies like retry, timeout, circuit breaker, hedging, fallback, and rate limiting. It integrates natively with HttpClientFactory, dependency injection, logging, and OpenTelemetry. It is built on top of Polly v8 and is fully supported by Microsoft.
+
+### What is the difference between Polly and Microsoft.Extensions.Resilience?
+
+Polly is the open-source resilience library that Microsoft.Extensions.Resilience builds on. The Microsoft package adds first-class integration with the .NET hosting model: named pipelines via DI, `HttpClientFactory` support, configuration binding, and telemetry. If you are starting a new project, use `Microsoft.Extensions.Http.Resilience` for HTTP calls and `Microsoft.Extensions.Resilience` for non-HTTP operations.
+
+### How do I add retry logic to an ASP.NET Core API?
+
+Install the `Microsoft.Extensions.Resilience` package, then register a named pipeline with `AddResiliencePipeline` in `Program.cs`. Add a `RetryStrategyOptions` with your desired `MaxRetryAttempts`, `Delay`, and `BackoffType`. Inject `ResiliencePipelineProvider` into your endpoint and call `ExecuteAsync` to run your operation through the pipeline.
+
+### What is the circuit breaker pattern in .NET?
+
+The circuit breaker pattern temporarily stops calls to a failing dependency. When the failure ratio exceeds a threshold within a sampling window, the circuit "opens" and all subsequent calls fail immediately without hitting the downstream service. After a configured break duration, the circuit moves to "half-open" and allows a test call through. If it succeeds, the circuit closes and normal traffic resumes.
+
+### Can I combine multiple resilience strategies in one pipeline?
+
+Yes. You chain strategies using `ResiliencePipelineBuilder`. The strategies execute in the order you add them. A common combination is retry wrapping a timeout wrapping a circuit breaker. The outer strategy (added first) wraps the inner ones, so if a timeout fires, the retry strategy can attempt the call again.
+
 ## Wrapping Up
 
-Microsoft’s new Microsoft.Extensions.Resilience stack makes it easier than ever to apply production-grade resilience across your entire .NET application.
+Microsoft's Microsoft.Extensions.Resilience stack makes it easier than ever to apply production-grade resilience across your entire .NET application.
 
 You don’t need to reinvent the wheel with Polly yourself - use the official pipeline abstraction, build named strategies, and compose reusable policies that apply to your internal services or third-party APIs.
 
