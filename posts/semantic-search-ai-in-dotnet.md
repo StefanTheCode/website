@@ -1,11 +1,10 @@
 ---
 title: "Semantic Search in 50 Lines of Code - AI in .NET"
-subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here’s how it works:"
+subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how to implement it in .NET with Microsoft.Extensions.AI:"
 date: "Feb 24 2025"
 category: "AI"
 readTime: "Read Time: 4 minutes"
-meta_description: "In the context of AI, semantic search has been widely used for tasks like document retrieval, recommendation systems, and conversational search applications."
-photoUrl: "/images/blog/newsletter21.png"
+meta_description: "Learn how to implement semantic search in .NET using Microsoft.Extensions.AI and embeddings. Build AI-powered search with cosine similarity in just 50 lines of C# code."
 ---
 
 <!--START-->
@@ -25,7 +24,7 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 ## What Is Semantic Search in AI?
   
 Semantic search goes beyond traditional keyword matching. 
-Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here’s how it works:
+Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how it works:
 **• Embeddings:** Text is converted into high-dimensional numerical vectors (embeddings) that capture the semantic essence of words, sentences, or documents.
 **• Similarity Metrics:** Using measures like cosine similarity, these vectors are compared. The closer two vectors are, the more semantically similar the texts are.
 **• Improved Relevance: ** This method allows for finding results that match the intent and context of the query, even if the exact keywords aren’t present.
@@ -192,7 +191,7 @@ To go further with AI, see [RAG in .NET](https://thecodeman.net/posts/how-to-imp
 ## Wrapping Up
 
 This code snippet is a practical example of how semantic search can be implemented in a .NET application using Microsoft.Extensions.AI. 
-By converting both the candidate texts and user queries into embeddings and comparing them via cosine similarity, the system can deliver search results that truly match the user’s intent.
+By converting both the candidate texts and user queries into embeddings and comparing them via cosine similarity, the system can deliver search results that truly match the user's intent.
 
 Feel free to use and adapt this explanation and code breakdown for your blog post to help readers understand the power of semantic search and how to leverage AI within the .NET ecosystem.
 

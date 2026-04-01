@@ -66,7 +66,7 @@ Here I expect to get an answer like *"I don't have such information"*  if I ask 
 
 Let's implement it. 
 
-If you want to start with AI Basics in .NET, you can read [How to implement Semantic Search in .NET 9](https://thecodeman.net/posts/semantic-search-ai-in-dotnet9?utm_source=Website).
+If you want to start with AI Basics in .NET, you can read [How to implement Semantic Search in .NET](https://thecodeman.net/posts/semantic-search-ai-in-dotnet?utm_source=Website).
 
 ## Create Embedding Generator
 
@@ -363,7 +363,7 @@ public class Program
 }
 ```
 
-For AI basics, also check out [Semantic Search in .NET](https://thecodeman.net/posts/semantic-search-ai-in-dotnet9) and [ChatGPT API in C#](https://thecodeman.net/posts/how-to-use-chatgpt-in-csharp-application).
+For AI basics, also check out [Semantic Search in .NET](https://thecodeman.net/posts/semantic-search-ai-in-dotnet) and [ChatGPT API in C#](https://thecodeman.net/posts/how-to-use-chatgpt-in-csharp-application).
 
 ## Wrapping Up
 
