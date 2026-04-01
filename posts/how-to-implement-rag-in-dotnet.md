@@ -196,6 +196,42 @@ public class TextContext
 }
 ```
 
+## Alternative: Using pgvector with Standard PostgreSQL (Without Neon)
+
+You don't need Neon to run this setup. The **TextRepository** above works with **any PostgreSQL instance** that has the **pgvector extension** enabled. If you already have a local or self-hosted PostgreSQL database, you can use it directly.
+
+Here's how to set it up:
+
+**1. Install the pgvector extension:**
+
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
+```
+
+**2. Create the table with a vector column:**
+
+```sql
+CREATE TABLE text_contexts (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    embedding vector(4096)
+);
+```
+
+**3. Update your connection string** to point to your local/self-hosted PostgreSQL instance:
+
+```json
+{
+  "ConnectionStrings": {
+    "PostgreSQL": "Host=localhost;Port=5432;Database=rag_db;Username=postgres;Password=your_password"
+  }
+}
+```
+
+Everything else - the **TextRepository**, **RagService**, and **API endpoints** - stays exactly the same. The code uses standard **Npgsql** with pgvector, so it's fully compatible with any PostgreSQL provider.
+
+Neon gives you **serverless scaling, instant provisioning, and zero database management**, which is great for production workloads. But for **local development, testing, or self-hosted scenarios**, a standard PostgreSQL with pgvector works perfectly fine.
+
 ## Implement a RAG Service
 
 The RagService class is the core of the Retrieval-Augmented Generation (RAG) system, combining Neon’s serverless [PostgreSQL](https://thecodeman.net/posts/debug-and-test-multi-environment-postgres) for semantic search and Ollama’s AI model for response generation. 
