@@ -125,7 +125,7 @@ export default function Header() {
                   <a className="dropdown-item" href="/vertical-slices-architecture" onClick={closeMenu}>Vertical Slice Architecture</a>
                   <a className="dropdown-item" href="/pass-your-interview" onClick={closeMenu}>Pass Interview Prep Kit</a>
                   <a className="dropdown-item" href="/builder-pattern-free-stuff" onClick={closeMenu}>Builder Pattern Chapter</a>
-                  <a className="dropdown-item" href="/rag-system-dotnet" onClick={closeMenu}>RAG System in .NET</a>
+                  <a className="dropdown-item" href="/ai-in-dotnet-starter-kit" onClick={closeMenu}>AI in .NET Starter Kit</a>
                 </div>
               </li>
 

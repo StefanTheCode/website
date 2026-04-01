@@ -381,7 +381,7 @@ You can extend this system by automatically syncing Confluence documentation, No
 
 Whether you're building a developer assistant, a smart knowledge base, or an AI-powered search engine, this foundation sets you up for scalable and efficient AI-driven retrieval!
 
-Check out the [source code here](https://thecodeman.net/rag-system-dotnet).
+Check out the [AI in .NET Starter Kit](https://thecodeman.net/ai-in-dotnet-starter-kit) for the complete source code.
 
 That's all from me today.
  
