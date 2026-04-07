@@ -1,10 +1,10 @@
 ---
-title: "Aspire - Run Your Entire Distributed App With One Command"
+title: "Aspire for Beginners - Build and Run Distributed Applications"
 subtitle: "Stop juggling 5 terminals, Docker Compose files, and hardcoded connection strings. Aspire gives you one place to define, run, and observe your entire system."
 date: "Apr 07 2026"
 category: ".NET"
 readTime: "Read Time: 10 minutes"
-meta_description: "Learn how Aspire orchestrates distributed applications with one command. See how it replaces Docker Compose, manual wiring, and scattered terminals with a single AppHost and built-in observability."
+meta_description: "A beginner's guide to Aspire for distributed applications. Learn how it replaces Docker Compose, manual wiring, and scattered terminals with a single AppHost and built-in observability."
 ---
 
 <!--START-->
@@ -81,7 +81,7 @@ And yes, Docker Compose can start containers. But let me describe what a typical
 
 That's **5 terminals, 3 config files with connection strings, manual startup order, and zero unified logging**.
 
-![Without Aspire vs With Aspire - Startup Comparison](/images/blog/posts/aspire-distributed-apps-one-command/without-vs-with-aspire.png)
+![Without Aspire vs With Aspire - Startup Comparison](/images/blog/posts/aspire-for-beginners-distributed-applications/without-vs-with-aspire.png)
 
 Now here's what it looks like **with** Aspire:
 
@@ -113,7 +113,7 @@ To show what Aspire actually does, I built OrderCanvas - a small order and fulfi
 
 Six components. Three languages. One AppHost.
 
-![OrderCanvas Architecture Overview](/images/blog/posts/aspire-distributed-apps-one-command/architecture-overview.png)
+![OrderCanvas Architecture Overview](/images/blog/posts/aspire-for-beginners-distributed-applications/architecture-overview.png)
 
 Let me explain how this all fits together.
 
@@ -189,25 +189,25 @@ The Aspire Dashboard is where the magic becomes visible.
 
 You get a **Resources** tab that shows every component with live health status:
 
-![Aspire Dashboard Resources](/images/blog/posts/aspire-distributed-apps-one-command/aspire-resources.png)
+![Aspire Dashboard Resources](/images/blog/posts/aspire-for-beginners-distributed-applications/aspire-resources.png)
 
 In addition you can see the graph of dependendies between services, for better understanding of the system topology:
 
-![Aspire Dashboard Graph](/images/blog/posts/aspire-distributed-apps-one-command/aspire-graph.png)
+![Aspire Dashboard Graph](/images/blog/posts/aspire-for-beginners-distributed-applications/aspire-graph.png)
 
 But the dashboard gives you much more:
 
 - **Structured Logs** - logs from ALL services in one view, filterable by service
-![Aspire Dashboard Structured Logs](/images/blog/posts/aspire-distributed-apps-one-command/structured-logs.png)
+![Aspire Dashboard Structured Logs](/images/blog/posts/aspire-for-beginners-distributed-applications/structured-logs.png)
 
 - **Traces** - distributed traces across service boundaries (Browser → API → Database)
-![Aspire Dashboard Traces](/images/blog/posts/aspire-distributed-apps-one-command/traces.png)
+![Aspire Dashboard Traces](/images/blog/posts/aspire-for-beginners-distributed-applications/traces.png)
 
 - **Metrics/Health Checks** - automatic monitoring for all services
-![Aspire Dashboard Metrics](/images/blog/posts/aspire-distributed-apps-one-command/metrics.png)
+![Aspire Dashboard Metrics](/images/blog/posts/aspire-for-beginners-distributed-applications/metrics.png)
 
 - **Console Logs** - see the Python worker's output in real-time
-![Aspire Dashboard Console Logs](/images/blog/posts/aspire-distributed-apps-one-command/console-logs.png)
+![Aspire Dashboard Console Logs](/images/blog/posts/aspire-for-beginners-distributed-applications/console-logs.png)
 
 No Jaeger. No Zipkin. No Grafana setup. It's all built in.
 
@@ -217,7 +217,7 @@ Let me walk through real request flows - because this is where you see why unifi
 
 ### Browsing Products (Cache Miss vs. Cache Hit)
 
-![Product Browse Request Flow](/images/blog/posts/aspire-distributed-apps-one-command/browse-flow.png)
+![Product Browse Request Flow](/images/blog/posts/aspire-for-beginners-distributed-applications/browse-flow.png)
 
 **First request (cache MISS):**
 
@@ -242,7 +242,7 @@ In the Aspire Dashboard you'll see the full trace: `web → catalog-api → Redi
 
 This is where the multi-language orchestration really shines.
 
-![Order Fulfillment Flow](/images/blog/posts/aspire-distributed-apps-one-command/order-fulfillment-flow.png)
+![Order Fulfillment Flow](/images/blog/posts/aspire-for-beginners-distributed-applications/order-fulfillment-flow.png)
 
 **Step 1 - User places an order:**
 
@@ -340,7 +340,7 @@ Let me show you what OrderCanvas actually looks like when you run it.
 
 When you open the Web Frontend, you land on the **Product Catalog** page - a clean grid of products pulled from the Catalog API. Each product card shows the name, price, category, and an "Add to Cart" button.
 
-![OrderCanvas Product Catalog](/images/blog/posts/aspire-distributed-apps-one-command/ordercanvas-catalog.png)
+![OrderCanvas Product Catalog](/images/blog/posts/aspire-for-beginners-distributed-applications/ordercanvas-catalog.png)
 
 You add a few items to the cart, enter your name and email, and click "Place Order". The order is saved as "Pending" and within seconds the Python fulfillment worker picks it up, processes it, and marks it as "Fulfilled". You can watch this happen in real time on the **Orders** page - the status badge flips from purple "Pending" to green "Fulfilled" without you doing anything.
 
