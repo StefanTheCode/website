@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
   alternates: {
     canonical: 'https://thecodeman.net',
+    types: {
+      'application/rss+xml': 'https://thecodeman.net/feed.xml',
+    },
   },
   openGraph: {
     title: {
@@ -61,6 +64,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="alternate" type="application/rss+xml" title="TheCodeMan.NET RSS Feed" href="https://thecodeman.net/feed.xml" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-2MN7C3CEX2"></script>
         <script

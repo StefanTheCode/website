@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 const MediaKit = () => {
   // TODO: kasnije ovo možeš da vučeš iz config.json ili CMS-a
   const stats = [
-    { label: "LinkedIn followers", value: "~106,000" },
+    { label: "LinkedIn followers", value: "~102,000+" },
     { label: "Avg LinkedIn reach", value: "~40,000" },
-    { label: "Newsletter subscribers", value: "~19,000" },
+    { label: "Newsletter subscribers", value: "20,000+" },
     { label: "Newsletter open rate", value: "50–52%" },
     { label: "X followers", value: "~8,000" },
     { label: "Avg YouTube views", value: "~2,000" },
@@ -153,13 +153,12 @@ const MediaKit = () => {
                     <div className="mk-donut-legend">
                       <div className="mk-legend-row">
                         <span className="mk-dot mk-dot-1" />
-                        Male <b className="ml-2">23%</b>
+                        Male <b className="ml-2">77%</b>
                       </div>
                       <div className="mk-legend-row">
                         <span className="mk-dot mk-dot-2" />
-                        Female <b className="ml-2">77%</b>
+                        Female <b className="ml-2">23%</b>
                       </div>
-                      <div className="mk-muted mt-2">(Replace with your actual demographics)</div>
                     </div>
                   </div>
                 </div>
@@ -194,9 +193,7 @@ const MediaKit = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="mk-muted mt-2">
-                    Tip: možeš da dodaš i “Seniority” (Junior/Mid/Senior) ako imaš podatke.
-                  </div>
+
                 </div>
               </div>
             </div>

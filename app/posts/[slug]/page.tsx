@@ -14,6 +14,14 @@ import ShikiCode from "@/components/ShikiCode";
 import { highlightFencedCode } from "@/components/highlightMarkdown";
 import Author from "@/app/author";
 import { Metadata } from "next";
+import ReadingProgress from "@/components/ReadingProgress";
+import ShareButtons from "@/components/ShareButtons";
+import TableOfContents from "@/components/TableOfContents";
+import RelatedPosts from "@/components/RelatedPosts";
+import PostNavigation from "@/components/PostNavigation";
+import HeadingAnchors from "@/components/HeadingAnchors";
+import Link from "next/link";
+import Image from "next/image";
 
 const postsDir = path.join(process.cwd(), "posts");
 
@@ -80,6 +88,7 @@ export async function generateMetadata(
       images: [{ url: image }],
       publishedTime: data.date ? new Date(data.date).toISOString() : undefined,
       authors: ["Stefan Djokic"],
+      tags: data.category ? [data.category] : undefined,
     },
     twitter: {
       title,
@@ -161,8 +170,11 @@ export default async function PostPage(
     }
     : null;
 
+  const allPosts = getPostMetadata();
+
   return (
     <>
+      <ReadingProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
@@ -178,12 +190,45 @@ export default async function PostPage(
         <div className="container">
           <div className="row justify-content-center pb-5 pt-10">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section border-right">
+
+              {/* Breadcrumb */}
+              <nav className="breadcrumb-nav">
+                <Link href="/">Home</Link>
+                <span className="breadcrumb-sep">/</span>
+                <Link href="/blog">Blog</Link>
+                {post.data.category && (
+                  <>
+                    <span className="breadcrumb-sep">/</span>
+                    <Link href={`/blog?category=${encodeURIComponent(post.data.category)}`}>{post.data.category}</Link>
+                  </>
+                )}
+                <span className="breadcrumb-sep">/</span>
+                <span className="breadcrumb-current">{meta.title}</span>
+              </nav>
+
               <div className="row justify-content-center pb-5">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center">
                   <h1 className="blog-header2">{meta.title}</h1>
-                  <p className="text-slate-400 mt-2">{meta.date}</p>
+                  <div className="post-meta-bar">
+                    <span>{meta.date}</span>
+                    {post.data.readTime && (
+                      <>
+                        <span className="meta-sep" />
+                        <span> - {post.data.readTime}</span>
+                      </>
+                    )}
+                    {post.data.category && (
+                      <>
+                        <span className="meta-sep" />
+                        <Link href={`/blog?category=${encodeURIComponent(post.data.category)}`}> - {post.data.category}</Link>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
+
+              {/* Table of Contents */}
+              <TableOfContents />
 
               {post.content ? (
                 <Markdown
@@ -208,7 +253,24 @@ export default async function PostPage(
                 <p>Post content missing.</p>
               )}
 
+              {/* Heading Anchor Links */}
+              <HeadingAnchors />
+
+              {/* Share Buttons */}
+              <ShareButtons url={meta.url} title={meta.title} image={meta.image} />
+
               <Author />
+
+              {/* Previous / Next Navigation */}
+              <PostNavigation currentSlug={slug} allPosts={allPosts} />
+
+              {/* Related Posts */}
+              <RelatedPosts
+                currentSlug={slug}
+                currentCategory={post.data.category || ""}
+                allPosts={allPosts}
+              />
+
               <Help />
               <Subscribe />
             </div>
@@ -233,6 +295,30 @@ export default async function PostPage(
                       }}
                     />
                   </div>
+
+                  {/* Product Cards */}
+                  <div className="sidebar-products mt-4">
+                    <h5 className="text-yellow mb-3">Resources</h5>
+
+                    <Link href="/pragmatic-dotnet-code-rules?utm_source=sidebar" className="sidebar-product-card">
+                      <Image src="/images/course.png" alt="Pragmatic .NET Code Rules Course" width={300} height={160} className="sidebar-product-img" />
+                      <span className="sidebar-product-title">Pragmatic .NET Code Rules</span>
+                      <span className="sidebar-product-label">Course</span>
+                    </Link>
+
+                    <Link href="/design-patterns-that-deliver-ebook?utm_source=sidebar" className="sidebar-product-card">
+                      <Image src="/images/ebook.png" alt="Design Patterns that Deliver Ebook" width={300} height={160} className="sidebar-product-img" />
+                      <span className="sidebar-product-title">Design Patterns that Deliver</span>
+                      <span className="sidebar-product-label">Ebook</span>
+                    </Link>
+
+                    <Link href="/design-patterns-simplified?utm_source=sidebar" className="sidebar-product-card">
+                      <Image src="/images/ebook2.png" alt="Design Patterns Simplified Ebook" width={300} height={160} className="sidebar-product-img" />
+                      <span className="sidebar-product-title">Design Patterns Simplified</span>
+                      <span className="sidebar-product-label">Ebook — $9.95</span>
+                    </Link>
+                  </div>
+
                 </div>
               </div>
             </div>

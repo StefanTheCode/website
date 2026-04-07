@@ -4,6 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { PostMetadata } from "@/components/PostMetadata";
 import PostPreview from "@/components/PostPreview";
+import BlogSearch from "@/components/BlogSearch";
 import Subscribe from "../subscribe";
 import config from "@/config.json";
 import Image from 'next/image';
@@ -70,6 +71,9 @@ const BlogClient = ({ allPosts }: Props) => {
 
   const uniqueCategories = Array.from(new Set(allPosts.map(post => post.category))).filter(Boolean);
 
+  const getCategoryCount = (cat: string) =>
+    allPosts.filter(p => p.category?.toLowerCase() === cat.toLowerCase()).length;
+
   return (
     <>
       {/* Hero Header */}
@@ -106,13 +110,16 @@ const BlogClient = ({ allPosts }: Props) => {
             <h2>previous issues </h2>
           </div>
 
+          {/* Search */}
+          <BlogSearch posts={allPosts} />
+
           {/* Category Filter */}
           <div className="row justify-content-center mt-4">
           <button
   className={`btn btn-sm m-2 border-radius-5px ${!selectedCategory ? 'btn-warning' : 'btn-outline-yellow'}`}
   onClick={() => selectCategory(null)}
 >
-  All
+  All <span className="category-count">({allPosts.length})</span>
 </button>
             {uniqueCategories.map((cat) => {
               const isActive = selectedCategory?.toLowerCase() === cat?.toLowerCase();
@@ -122,7 +129,7 @@ const BlogClient = ({ allPosts }: Props) => {
                   className={`btn btn-sm m-2 border-radius-5px ${isActive ? 'btn-warning' : 'btn-outline-yellow'}`}
                   onClick={() => selectCategory(cat)}
                 >
-                  {cat}
+                  {cat} <span className="category-count">({getCategoryCount(cat)})</span>
                 </button>
               );
             })}

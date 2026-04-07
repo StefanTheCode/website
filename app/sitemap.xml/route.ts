@@ -21,7 +21,7 @@ const getSlugsFromFolder = (folder: string) => {
 };
 
 export async function GET() {
-  const staticRoutes = ["", "blog", "about-me", "sponsorship", "media-kit", "pass-your-interview", "design-patterns-simplified", "design-patterns-that-deliver-ebook", "builder-pattern-free-stuff", "ai-in-dotnet-starter-kit", "vertical-slices-architecture", "pragmatic-dotnet-code-rules", "dotnet-code-rules-starter-kit"]; // add any static routes here
+  const staticRoutes = ["", "blog", "about-me", "sponsorship", "media-kit", "pass-your-interview", "design-patterns-simplified", "design-patterns-that-deliver-ebook", "builder-pattern-free-stuff", "ai-in-dotnet-starter-kit", "vertical-slices-architecture", "pragmatic-dotnet-code-rules", "dotnet-code-rules-starter-kit", "newsletter-archive"]; // add any static routes here
 
   const posts = getSlugsFromFolder("posts");
 
