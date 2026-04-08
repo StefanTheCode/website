@@ -155,7 +155,7 @@ That's all from me for today.
 Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/PollyRetryPolicy)**.
 
 
-For more resilience patterns, check out [Building Resilient APIs in ASP.NET Core](https://thecodeman.net/posts/building-resilient-api-in-aspnet-core-9).
+For more resilience patterns, check out [Building Resilient APIs in ASP.NET Core](https://thecodeman.net/posts/building-resilient-api-in-aspnet-core).
 
 ## Wrapping Up
 
