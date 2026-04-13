@@ -1,4 +1,4 @@
----
+﻿---
 title: "Intro to Uno Platform - Cross-Platform C# Development"
 subtitle: "Uno Platform lets you write C# + XAML once and run it everywhere."
 date: "September 08 2025"
@@ -16,13 +16,13 @@ If you’re a .NET dev, you already have the skills: XAML for UI, C# for logic, 
 In this guide, we’ll go from zero to a working **Weather App** that fetches data from an API, shows current conditions, and is structured for growth.
 
 You’ll learn:
-• How to scaffold an Uno Platform solution
-• How to create a cross-platform application
-• Project structure & where to put shared code
-• DI + HttpClient with a typed service
-• Building a responsive XAML UI that works on all targets
-• WebAssembly caveats (CORS, base addresses) and how to handle them
-✅ Result: one solution, one shared UI and logic, multiple platforms.
+- How to scaffold an Uno Platform solution
+- How to create a cross-platform application
+- Project structure & where to put shared code
+- DI + HttpClient with a typed service
+- Building a responsive XAML UI that works on all targets
+- WebAssembly caveats (CORS, base addresses) and how to handle them
+- ✅ Result: one solution, one shared UI and logic, multiple platforms.
 ## Installing Uno Platform
 
 First, set up your toolchain with [uno-check](https://platform.uno/docs/articles/external/uno.check/doc/using-uno-check.html?tabs=windows&utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article). Open Windows Terminal/PowerShell and install the tool, then run it:
@@ -374,11 +374,11 @@ In this beginner tutorial, you shipped a working **Weather App** that runs on **
 
 From here, try:
 
-• **MVVM Navigation** (add a Favorites page)
-• **Geolocation** to auto-detect the city on mobile
-• **Local storage** for recent searches
-• **Forecast view** (list + chart)
-• **Polished theming** and responsive layout
+- **MVVM Navigation** (add a Favorites page)
+- **Geolocation** to auto-detect the city on mobile
+- **Local storage** for recent searches
+- **Forecast view** (list + chart)
+- **Polished theming** and responsive layout
 
 That's all from me for today. 
 

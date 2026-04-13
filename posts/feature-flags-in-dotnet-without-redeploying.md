@@ -1,4 +1,4 @@
----
+﻿---
 title: "Feature Flags without redeploying: what people usually get wrong in .NET"
 subtitle: "If changing a feature flag requires a redeploy, you’re not really doing feature flags."
 date: "December 23 2025"
@@ -37,11 +37,11 @@ Let’s be very explicit.
  
 **“Without redeploying”** means: 
 
-❌ no build
-❌ no release pipeline
-❌ no app restart
-❌ no new container image
-✅ behavior changes while the app is running 
+- ❌ no build
+- ❌ no release pipeline
+- ❌ no app restart
+- ❌ no new container image
+- ✅ behavior changes while the app is running 
  
 If changing a feature flag requires you to click **'Deploy'**, then you haven’t decoupled deployment from release - you've just moved the toggle.
   
@@ -61,38 +61,38 @@ But here’s the problem:
 1. appsettings.json is read **at startup**
 2. each instance has its **own copy**
 3. any change requires:
-• file change
-• restart
-• redeploy
+- file change
+- restart
+- redeploy
 So this works for:
-• local development
-• demos
-• small experiments
+- local development
+- demos
+- small experiments
 
 But it **does not work** for:
-• multiple instances
-• Kubernetes
-• Azure App Service
-• real production traffic 
+- multiple instances
+- Kubernetes
+- Azure App Service
+- real production traffic 
 
 To truly avoid redeployment, **feature flags must live outside the application.**
 
 ## The Correct Architecture  
 
 Feature Flags must be:
-• centrally stored
-• shared across instances
-• read at runtime
-• refreshable without a restart
+- centrally stored
+- shared across instances
+- read at runtime
+- refreshable without a restart
 In .NET, this is exactly what **Azure App Configuration + Feature Management** gives us.
 Let’s build this properly.
 
 ## Step 1: Install Required Packages
 
 These give us:
-• Feature Flags API
-• Azure App Configuration integration
-• runtime refresh support
+- Feature Flags API
+- Azure App Configuration integration
+- runtime refresh support
 
 ```csharp
 dotnet add package Microsoft.FeatureManagement.AspNetCore
@@ -104,8 +104,8 @@ In **Azure Portal**:
 1. Create **Azure App Configuration**
 2. Go to **Feature Manager**
 3. Create a feature flag:
-• Name: BetaFeature
-• Enabled: false
+- Name: BetaFeature
+- Enabled: false
 You now have a central switch.
 Read [the full tutorial about Feature Manager Azure App Configuration](https://thecodeman.net/posts/feature-flags-in-dotnet-with-azure-feature-management). 
 
@@ -190,13 +190,13 @@ app.Run();
 In Azure App Configuration:
  
 Create a **key-value** pair:
-• Key: FeatureFlags:Sentinel
-• Value: any string (e.g. timestamp)
+- Key: FeatureFlags:Sentinel
+- Value: any string (e.g. timestamp)
 
 Whenever you update this value:
-• **all feature flags refresh**
-• no restart
-• no redeploy
+- **all feature flags refresh**
+- no restart
+- no redeploy
 
 ## Step 6: See It in Action 
 
@@ -212,13 +212,13 @@ No redeploy. No restart. No pipeline.
 Azure App Configuration **does cache values**.
 
 If you don’t configure refresh:
-• changes may take minutes
-• developers think “it doesn’t work”
+- changes may take minutes
+- developers think “it doesn’t work”
 
 That’s why:
-• CacheExpirationInterval
-• sentinel keys
-• refresh middleware 
+- CacheExpirationInterval
+- sentinel keys
+- refresh middleware 
 
 **matter a lot**.
  
@@ -227,14 +227,14 @@ This is where most “Feature Flags don’t work” stories come from.
 ## What About Multiple Instances? 
 
 This setup works perfectly with:
-• multiple app instances
-• load balancers
-• Kubernetes
-• App Service scaling
+- multiple app instances
+- load balancers
+- Kubernetes
+- App Service scaling
 Because:
-• flags are centralized
-• decision logic is deterministic
-• instances are stateless 
+- flags are centralized
+- decision logic is deterministic
+- instances are stateless 
 The feature decision **does not depend on the instance**.
 
 ## 3rd-Party Feature Flag Providers
@@ -242,22 +242,22 @@ The feature decision **does not depend on the instance**.
 Azure App Configuration is great if you’re already on Azure.
  
 Other solid options:
-• **LaunchDarkly** - enterprise-grade
-• **Unleash** - open-source & self-hosted
-• **Flagsmith** - SaaS or self-hosted 
+- **LaunchDarkly** - enterprise-grade
+- **Unleash** - open-source & self-hosted
+- **Flagsmith** - SaaS or self-hosted 
 
 The provider matters less than the **runtime architecture**.
 
 ## When Feature Flags Become a Problem 
 
 Feature Flags are powerful - but dangerous if abused:
-• flags that live for years
-• nested if statements everywhere
-• “temporary” flags that never die
+- flags that live for years
+- nested if statements everywhere
+- “temporary” flags that never die
 Best practice:
-• flags should have an owner
-• flags should have a removal date
-• flags should not replace versioning
+- flags should have an owner
+- flags should have a removal date
+- flags should not replace versioning
 
 ## Wrapping Up 
 

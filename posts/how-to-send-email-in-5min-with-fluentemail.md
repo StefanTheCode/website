@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to send email in 5min with FluentEmail?"
 subtitle: "FluentEmail is a popular open-source library for sending emails from .NET applications..."
 date: "Mar 17 2025"
@@ -12,8 +12,8 @@ meta_description: "Effortlessly integrate email functionality in .NET: Learn abo
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• I'm preapring **Enforcing Code Style course** in my **<a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">TheCodeMan Community</a>**. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 **<a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">Join now</a>** and grab my first ebook for free.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• The best **<a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Pragmatic RESTful APIs in .NET course</a>** is finally live! It's created by Milan Jovanovic. This is not a paid ad - it's just my recommendation. I didn't watch the better material than this. You have a discount through my affiliate link. <a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Check it out now</a>.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- I'm preapring **Enforcing Code Style course** in my **<a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">TheCodeMan Community</a>**. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 **<a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">Join now</a>** and grab my first ebook for free.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- The best **<a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Pragmatic RESTful APIs in .NET course</a>** is finally live! It's created by Milan Jovanovic. This is not a paid ad - it's just my recommendation. I didn't watch the better material than this. You have a discount through my affiliate link. <a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Check it out now</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -49,14 +49,14 @@ var email = await Email
     .SendAsync();
 ```
 There are the most common methods available on the email object:
-• **.To** (string emailAddress) - add recipients
-• **.SetFrom** (string emailAddress) - change the sender address.
-• **.CC/BCC** (string emailAddress) - add CC or BCC
-• **.Subject** (string subject) - set the subject
-• **.Body** (string body) - set the message body (without templating)
-• **.Attach** (Attachment attachment) - add attachments
-• **.UsingTemplate** (string template, T model, bool isHtml = true) - set a template, keep reading for more templating information
-• **.SendAsync** () - send the email using the configured sender
+- **.To** (string emailAddress) - add recipients
+- **.SetFrom** (string emailAddress) - change the sender address.
+- **.CC/BCC** (string emailAddress) - add CC or BCC
+- **.Subject** (string subject) - set the subject
+- **.Body** (string body) - set the message body (without templating)
+- **.Attach** (Attachment attachment) - add attachments
+- **.UsingTemplate** (string template, T model, bool isHtml = true) - set a template, keep reading for more templating information
+- **.SendAsync** () - send the email using the configured sender
 ## Better way?
 ## Dependency Injection
 The best way to use FluentEmail is to configure your sender and template choices with dependency injection.
@@ -68,9 +68,9 @@ builder.Services.
        .AddSmtpSender("localhost", 25);
 ```
 What I did here?
-• **.AddFluentEmail** () - sets up FluentEmail with a default SendFrom address.
-• **AddSmtpSender** () - configures the SmtpSender provider (ISender interface).
-• **AddRazorRenderer** () - sets the RazorRenderer provider - templating support (ITemplateRenderer interface).
+- **.AddFluentEmail** () - sets up FluentEmail with a default SendFrom address.
+- **AddSmtpSender** () - configures the SmtpSender provider (ISender interface).
+- **AddRazorRenderer** () - sets the RazorRenderer provider - templating support (ITemplateRenderer interface).
 Using dependency injection will make a couple of interfaces available to your code. See the example below for sending email with the configured services:
 ```csharp
 public class EmailService : IEmailService

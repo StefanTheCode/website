@@ -1,4 +1,4 @@
----
+﻿---
 title: "Get Started with GraphQL in .NET"
 subtitle: "The GraphQL is a query language for our API that allows us to define the data structure we need, and the server will return only the requested data."
 date: "Dec 18 2023"
@@ -12,7 +12,7 @@ meta_description: "Explore the world of GraphQL in .NET with Stefan's Newsletter
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** <a href="https://blog.postman.com/testing-grpc-apis-with-postman/" style="color: #a5b4fc; text-decoration: underline;">writing tests for your gRPC requests in Postman</a> ** For more info about gRPC, they created a great beginner article ** <a href="https://blog.postman.com/what-is-grpc/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** <a href="https://blog.postman.com/testing-grpc-apis-with-postman/" style="color: #a5b4fc; text-decoration: underline;">writing tests for your gRPC requests in Postman</a> ** For more info about gRPC, they created a great beginner article ** <a href="https://blog.postman.com/what-is-grpc/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.

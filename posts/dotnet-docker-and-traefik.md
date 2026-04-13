@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to Run .NET 10 with Docker and Traefik (Real-World Setup)"
 subtitle: "Stop fighting ports -> Add Traefik to your solution"
 date: "Jan 26 2026"
@@ -24,10 +24,10 @@ Then a webhook endpoint.
 Then a background worker.
  
 And suddenly your local environment looks like this: 
-• **localhost:5001**
-• **localhost:5173**
-• **localhost:6012**
-• “Wait… which service was on which port?”
+- **localhost:5001**
+- **localhost:5173**
+- **localhost:6012**
+- “Wait… which service was on which port?”
 Ports collide.
 [CORS](https://thecodeman.net/posts/using-cors-in-your-application) starts breaking.
 Auth redirects fail.
@@ -40,24 +40,24 @@ That’s exactly where **Traefik** fits in.
  
   
 In this newsletter, we’ll build a **complete .NET 10 + Docker + Traefik setup**, including:
-• Two real .NET APIs
-• Correct reverse-proxy handling
-• Clean local URLs
-• A setup you can **extend without rewriting everything**  
+- Two real .NET APIs
+- Correct reverse-proxy handling
+- Clean local URLs
+- A setup you can **extend without rewriting everything**  
 
 ## What we’re building
 
 A simple but realistic setup:
-• **Traefik** as a reverse proxy (Docker provider)
-• Two .NET 10 Minimal APIs
+- **Traefik** as a reverse proxy (Docker provider)
+- Two .NET 10 Minimal APIs
 1) Catalog API
 2) Billing API
 
-• Clean, human-readable URLs:
+- Clean, human-readable URLs:
 1) http://catalog.localhost
 2) http://billing.localhost
-• Correct reverse-proxy handling in ASP. NET
-• Everything runs with **one docker compose up**
+- Correct reverse-proxy handling in ASP. NET
+- Everything runs with **one docker compose up**
 This is not a toy example.
 This is a **pattern you can keep using**.
 
@@ -124,10 +124,10 @@ services:
 ```
 
 Why does this work?
-• Traefik **watches Docker** and reads container labels
-• Services declare **how they are exposed**
-• No ports are exposed per service
-• Routing is declarative and local to the service
+- Traefik **watches Docker** and reads container labels
+- Services declare **how they are exposed**
+- No ports are exposed per service
+- Routing is declarative and local to the service
 
 ## Catalog API (.NET 10)
 This API represents a typical read-only service.
@@ -197,10 +197,10 @@ app.Run();
 Why forwarded headers matter
  
 Without UseForwardedHeaders():
-• ASP .NET thinks every request is http
-• Redirects break
-• Auth callbacks break
-• Absolute URLs are wrong
+- ASP .NET thinks every request is http
+- Redirects break
+- Auth callbacks break
+- Absolute URLs are wrong
 This is **mandatory** behind any reverse proxy.
 
 Dockerfile
@@ -293,20 +293,20 @@ docker compose up --build
 ```
 
 Open:
-• http://catalog.localhost:8080
-• http://catalog.localhost:8080/api/products
-• http://billing.localhost:8080/api/invoices/calculate
-• http://traefik.localhost:8080
+- http://catalog.localhost:8080
+- http://catalog.localhost:8080/api/products
+- http://billing.localhost:8080/api/invoices/calculate
+- http://traefik.localhost:8080
 
 ## Why this setup is actually good
-✅ Clean URLs
-• No ports per service.
-✅ Scales naturally
-• Adding a new service = copy labels.
-✅ Matches production architecture
-• Reverse proxy first, services internal.
-✅ No proxy config hell
-• Routing lives with the service.
+- ✅ Clean URLs
+- No ports per service.
+- ✅ Scales naturally
+- Adding a new service = copy labels.
+- ✅ Matches production architecture
+- Reverse proxy first, services internal.
+- ✅ No proxy config hell
+- Routing lives with the service.
 ## How to extend this setup
 
 **HTTPS** - Add a websecure entrypoint + cert resolver.
@@ -321,9 +321,9 @@ Open:
 Traefik is more than just a reverse proxy - it’s what makes **Docker + .NET feel clean and predictable**.
  
 Instead of fighting ports and proxy configs, you get:
-• clear routing rules
-• production-like local environments
-• services that stay focused on business logic 
+- clear routing rules
+- production-like local environments
+- services that stay focused on business logic 
 Once this setup is in place, adding new services becomes trivial, local development becomes boring (in a good way), and your architecture starts scaling naturally.
  
 If you’re already running .NET in Docker, Traefik is the missing piece that makes everything click.

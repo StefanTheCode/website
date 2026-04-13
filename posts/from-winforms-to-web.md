@@ -16,23 +16,23 @@ You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code
 ## Introduction: Why Migrating WinForms Applications Is So Hard
 If you’ve worked with **WinForms applications** in real enterprise environments, you already know the reality.
 These applications are:
-• business-critical
-• stable and mature
-• deeply integrated into company workflows
+- business-critical
+- stable and mature
+- deeply integrated into company workflows
 But they are also:
-• tied to desktop deployment
-• difficult to scale remotely
-• increasingly hard to maintain in modern infrastructure
+- tied to desktop deployment
+- difficult to scale remotely
+- increasingly hard to maintain in modern infrastructure
 When organizations decide to **modernize a WinForms application**, the conversation usually goes in one of two directions:
 1. “Let’s rewrite everything as a web application.”
 2. “Let’s keep it as it is and hope it survives.”
 Both options are risky.
  
 Rewriting a large WinForms application for the web often means:
-• rebuilding hundreds of forms
-• rewriting UI logic for a new paradigm
-• introducing JavaScript frameworks and front-end complexity
-• years of development before any real value is delivered
+- rebuilding hundreds of forms
+- rewriting UI logic for a new paradigm
+- introducing JavaScript frameworks and front-end complexity
+- years of development before any real value is delivered
 That’s why **WinForms to web migration** is considered one of the hardest problems in .NET modernization.
  
 The real challenge isn’t whether it’s possible - it’s whether it can be done **without rewriting the entire application**.
@@ -40,18 +40,18 @@ The real challenge isn’t whether it’s possible - it’s whether it can be do
 ## Why WinForms Modernization Is a Real Enterprise Problem
 Despite what many blog posts suggest, **WinForms applications are not “dead”**.
 In enterprise environments, they are everywhere:
-• ERP systems
-• internal tools
-• financial and manufacturing software
-• long-running line-of-business applications
+- ERP systems
+- internal tools
+- financial and manufacturing software
+- long-running line-of-business applications
 These systems often:
-• contain years of business logic
-• work reliably
-• cannot be replaced overnight
+- contain years of business logic
+- work reliably
+- cannot be replaced overnight
 That’s why **desktop-to-web migration** must be:
-• incremental
-• low-risk
-• compatible with existing code
+- incremental
+- low-risk
+- compatible with existing code
 
 This is also why very few solutions can realistically handle **large WinForms applications**. 
 
@@ -63,9 +63,9 @@ This is also why very few solutions can realistically handle **large WinForms ap
 
 Unlike traditional web frameworks that force you into:
 
-• stateless request/response models  
-• client-heavy JavaScript architectures  
-• complete UI rewrites  
+- stateless request/response models  
+- client-heavy JavaScript architectures  
+- complete UI rewrites  
 
 Wisej.NET preserves the **desktop application programming model** while rendering the UI as a **modern HTML5 web application**.
 
@@ -73,22 +73,22 @@ Wisej.NET preserves the **desktop application programming model** while renderin
 
 From a technical perspective, Wisej.NET offers several properties that make it uniquely suitable for migrating WinForms applications:
 
-• **Event-driven UI model -** Just like WinForms, user interactions are handled through server-side events.
+- **Event-driven UI model -** Just like WinForms, user interactions are handled through server-side events.
 
-• **C#-first development -** Business logic, UI logic, and event handling remain in .NET with no mandatory JavaScript rewrite.
+- **C#-first development -** Business logic, UI logic, and event handling remain in .NET with no mandatory JavaScript rewrite.
 
-• **Form-based UI paradigm -** Concepts like Form, Button, Label, dialogs, and layouts translate naturally to the web.
+- **Form-based UI paradigm -** Concepts like Form, Button, Label, dialogs, and layouts translate naturally to the web.
 
-• **Server-managed UI state -** Wisej manages UI state on the server, removing the need for client-side state synchronization.
+- **Server-managed UI state -** Wisej manages UI state on the server, removing the need for client-side state synchronization.
 
-• **Web-native output -** The result is a responsive, browser-based application built on standard web technologies.
+- **Web-native output -** The result is a responsive, browser-based application built on standard web technologies.
 
 ### This is what fundamentally differentiates Wisej.NET from:
 
-• ASP.NET MVC  
-• Razor Pages  
-• Blazor  
-• SPA frameworks  
+- ASP.NET MVC  
+- Razor Pages  
+- Blazor  
+- SPA frameworks  
 
 Those tools are excellent, but they are **not designed to migrate WinForms applications**.
 
@@ -99,15 +99,15 @@ Instead of starting with a massive system, we’ll demonstrate the core idea usi
 The goal is clarity.
  
 We’ll take:
-• a basic WinForms app
-• a single form
-• one button
-• a MessageBox
+- a basic WinForms app
+- a single form
+- one button
+- a MessageBox
 
 And we’ll:
-• convert it into a **web application**
-• keep the same **event-driven logic**
-• avoid a UI rewrite 
+- convert it into a **web application**
+- keep the same **event-driven logic**
+- avoid a UI rewrite 
 
 Once this works, the same approach scales to much larger applications.
 
@@ -116,22 +116,22 @@ Once this works, the same approach scales to much larger applications.
 Before migrating anything, we need the tooling that supports WinForms web migration.
  
 Development Setup
-• Visual Studio
-• Wisej.NET Visual Studio extension
-• .NET Framework and/or modern .NET 
+- Visual Studio
+- Wisej.NET Visual Studio extension
+- .NET Framework and/or modern .NET 
 
 After installation, Visual Studio provides new templates designed specifically for:
-• web-based desktop applications
-• WinForms-style UI running in the browser
-• cloud-ready deployment
+- web-based desktop applications
+- WinForms-style UI running in the browser
+- cloud-ready deployment
 
 ![Wisej.NET Templates](/images/blog/posts/from-winforms-to-web/wisej-templates.png)
 
 ### Licensing
 Wisej.NET requires a license, but:
-• free licenses are available
-• [community licenses exist](https://wisej.com/developer-licenses/)
-• activation happens directly inside Visual Studio
+- free licenses are available
+- [community licenses exist](https://wisej.com/developer-licenses/)
+- activation happens directly inside Visual Studio
 Once activated, you can start building and running applications immediately.
 
 ## Step 1: The Original WinForms Application
@@ -139,9 +139,9 @@ Once activated, you can start building and running applications immediately.
 Our starting point is a classic **WinForms desktop application**.
  
 It contains: 
-• one Form
-• one Button
-• a simple click handler
+- one Form
+- one Button
+- a simple click handler
 
 ![Basic WinForms desktop Application](/images/blog/posts/from-winforms-to-web/winforms-application.gif)
 
@@ -172,15 +172,15 @@ Next, we create a **Wisej.NET 4 Web Desktop Application project** using the Wise
 ![Wisej.NET Web Application](/images/blog/posts/from-winforms-to-web/wisej-web-application.png)
 
 During project creation, we can:
-• choose target frameworks
-• enable [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik) support
-• prepare the app for cloud deployment
+- choose target frameworks
+- enable [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik) support
+- prepare the app for cloud deployment
 ![New Project Setup](/images/blog/posts/from-winforms-to-web/new-project-setup.png)
 
 At this point, we already have:
-• a browser-based runtime
-• a web host
-• a deployment-ready structure
+- a browser-based runtime
+- a web host
+- a deployment-ready structure
 
 ## Step 3: Migrating the WinForms Form
 
@@ -239,13 +239,13 @@ Once the application starts:
 ![Wisej.NET Web Application](/images/blog/posts/from-winforms-to-web/wisej-application.gif)
 
 You get:
-• the same form
-• the same logic
-• the same interaction model
+- the same form
+- the same logic
+- the same interaction model
 But now:
-• it runs in a browser
-• it can be deployed to the cloud
-• it supports modern infrastructure
+- it runs in a browser
+- it can be deployed to the cloud
+- it supports modern infrastructure
 No JavaScript.
 No SPA rewrite.
 No loss of existing code.
@@ -255,22 +255,22 @@ No loss of existing code.
 This is not just about a Hello World example.
  
 This migration approach supports:
-• form-by-form migration
-• hybrid desktop/web solutions
-• gradual modernization strategies
+- form-by-form migration
+- hybrid desktop/web solutions
+- gradual modernization strategies
 Which makes it suitable for:
-• enterprise WinForms applications
-• legacy .NET systems
-• long-term modernization projects
+- enterprise WinForms applications
+- legacy .NET systems
+- long-term modernization projects
 
 ## Wrapping Up: A Practical Path to WinForms Modernization
 
 Migrating a WinForms application to the web has traditionally meant **starting from scratch**.
  
 What this approach demonstrates is a **third option**:
-• modernize gradually
-• reuse existing UI logic
-• move desktop applications closer to the cloud
+- modernize gradually
+- reuse existing UI logic
+- move desktop applications closer to the cloud
 
 If you’re responsible for maintaining or modernizing a **legacy WinForms application**, this is one of the most practical migration paths available today.
 

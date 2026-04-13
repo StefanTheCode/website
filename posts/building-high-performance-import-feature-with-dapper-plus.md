@@ -15,8 +15,8 @@ A brand-new course is launching soon inside [The CodeMan Community](https://www.
 Join now to lock in early access when it drops - plus get everything else already inside the group.
  
 Founding Member Offer:
-• First 100 members get in for just $4/month - 80 spots already taken!
-• Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
+- First 100 members get in for just $4/month - 80 spots already taken!
+- Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
  
 Get ahead of the game - and make clean, consistent code your superpower.
 [Join here](https://www.skool.com/thecodeman)
@@ -31,12 +31,12 @@ That’s where [Dapper Plus](https://dapper-plus.net/?utm_source=stefandjokic&ut
 In this post, I’ll show you how to create a **fast, reliable CSV import** using Dapper Plus. 
 
 We'll:
-• Read data from a CSV file
-• Map it to a C# entity
-• Use Dapper Plus to bulk insert everything into SQL Server
-• Handle validation and errors
-• Support async operations and cancellation tokens
-• Testing performance
+- Read data from a CSV file
+- Map it to a C# entity
+- Use Dapper Plus to bulk insert everything into SQL Server
+- Handle validation and errors
+- Support async operations and cancellation tokens
+- Testing performance
 
 Let’s jump in.
 
@@ -49,10 +49,10 @@ Why use it instead of regular Dapper?
 Every insert is a round trip to the database.
 
 **Dapper Plus** solves that with [bulk operations](https://thecodeman.net/posts/speed-up-your-efapps-with-entity-framework-extensions) like:
-• BulkInsert
-• BulkUpdate
-• BulkMerge
-• BulkDelete
+- BulkInsert
+- BulkUpdate
+- BulkMerge
+- BulkDelete
 
 It reduces database round-trips and can import 100,000+ rows in just a few seconds.
 
@@ -63,9 +63,9 @@ Here’s the big picture:
 2. Map each line to a Product class
 3. Use BulkInsert to push it into SQL Lite - **fast**
 4. Handle things like:
-• Validation
-• Async/cancel support
-• Error handling
+- Validation
+- Async/cancel support
+- Error handling
 
 We’ll walk through the whole thing step by step.
 
@@ -88,8 +88,8 @@ This will match the CSV column headers and your database table schema.
 ## Step 2: Install the NuGet Packages
 
 We need two libraries:
-• Z.Dapper.Plus – for the bulk insert magic
-• CsvHelper – to easily read CSV files
+- Z.Dapper.Plus – for the bulk insert magic
+- CsvHelper – to easily read CSV files
 
 ```csharp
 Install-Package Z.Dapper.Plus

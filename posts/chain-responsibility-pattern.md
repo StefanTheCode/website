@@ -1,4 +1,4 @@
----
+﻿---
 title: "Chain of Responsibility Pattern in .NET"
 subtitle: "The Chain of Responsibility pattern is a behavioral design pattern that allows you to build a chain of objects to handle a request or perform a task."
 date: "Nov 25 2024"
@@ -12,9 +12,9 @@ meta_description: "Learn the Chain of Responsibility design pattern in .NET with
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• <a href="https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter" style="color: #a5b4fc; text-decoration: underline;">JetBrains Rider</a> is **now FREE for non-commercial development**, making it more accessible for hobbyists, students, content creators, and open source contributors.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- <a href="https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter" style="color: #a5b4fc; text-decoration: underline;">JetBrains Rider</a> is **now FREE for non-commercial development**, making it more accessible for hobbyists, students, content creators, and open source contributors.</p>
 <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;"><a href="https://www.jetbrains.com/rider/?utm_campaign=rider_free&utm_content=site&utm_medium=cpc&utm_source=thecodeman_newsletter" style="color: #a5b4fc; text-decoration: underline;">Download and start today!</a></p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Tired of outdated API documentation holding your team back? Postman simplifies your life by <a href="https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">automatically syncing documentation with your API updates</a> - no more static docs, no more guesswork! <a href="https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Read more</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Tired of outdated API documentation holding your team back? Postman simplifies your life by <a href="https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">automatically syncing documentation with your API updates</a> - no more static docs, no more guesswork! <a href="https://community.postman.com/t/the-postman-drop-november-edition/71372?utm_source=influencer&utm_medium=Social&utm_campaign=nov24_global_growth_pmdropnl&utm_term=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Read more</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -31,10 +31,10 @@ Let's explore how to implement the Chain of Responsibility pattern in .NET using
 
 Let's consider a scenario where we have a series of discount rules for an e-commerce application. Depending on the customer's profile, we want to apply different discount percentages to their orders.
 The discount rules are as follows:
-• If the customer is a VIP, apply a 20% discount.
-• If the customer is a regular customer, apply a 10% discount.
-• If the customer is a new customer, apply a 5% discount.
-• If none of the above rules match, apply no discount.
+- If the customer is a VIP, apply a 20% discount.
+- If the customer is a regular customer, apply a 10% discount.
+- If the customer is a new customer, apply a 5% discount.
+- If none of the above rules match, apply no discount.
 Initially, we can handle this logic using a series of If statements:
 
 ```csharp
@@ -198,17 +198,17 @@ When something goes wrong, tracing which handler processed (or skipped) a reques
 
 This pattern shines when:
 
-• **You have multiple objects that can handle a request**, and the handler is not known in advance. The chain figures it out at runtime.
-• **The set of handlers changes dynamically.** You need to add, remove, or reorder processing steps without touching existing code.
-• **You want to avoid a fat class** with dozens of if-else branches that all live in one method.
-• **Request processing must happen in a specific order.** Each handler validates or transforms the request before passing it along.
+- **You have multiple objects that can handle a request**, and the handler is not known in advance. The chain figures it out at runtime.
+- **The set of handlers changes dynamically.** You need to add, remove, or reorder processing steps without touching existing code.
+- **You want to avoid a fat class** with dozens of if-else branches that all live in one method.
+- **Request processing must happen in a specific order.** Each handler validates or transforms the request before passing it along.
 
 Real-world examples in .NET:
 
-• **ASP.NET Core Middleware** - every middleware component in the pipeline is a handler. It either processes the request or calls `next()`. This is the Chain of Responsibility pattern in action.
-• **Validation pipelines** - validate input through a series of rules (e.g., check format, check business rules, check permissions) where each rule is a handler.
-• **Logging and enrichment** - pass a log entry through handlers that enrich it with context, redact sensitive data, or route it to different sinks.
-• **Approval workflows** - a purchase request goes through manager, director, and VP approval handlers based on the amount.
+- **ASP.NET Core Middleware** - every middleware component in the pipeline is a handler. It either processes the request or calls `next()`. This is the Chain of Responsibility pattern in action.
+- **Validation pipelines** - validate input through a series of rules (e.g., check format, check business rules, check permissions) where each rule is a handler.
+- **Logging and enrichment** - pass a log entry through handlers that enrich it with context, redact sensitive data, or route it to different sinks.
+- **Approval workflows** - a purchase request goes through manager, director, and VP approval handlers based on the amount.
 
 ## A More Realistic Example: Request Validation Pipeline
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How do I implement a workflow using a .NET workflow engine?"
 subtitle: "A project workflow is like a roadmap that guides you from the very beginning of a project all the way to its successful..."
 date: "Nov 13 2023"
@@ -12,7 +12,7 @@ meta_description: "Master the art of implementing effective workflows in .NET ap
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">**• <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">Treblle Api Insights</a> ** Treblle has come out with a revolutionary new tool - API Insights. If until now you couldn't tell on the scale how good your API is, now you will be able to. It's a free tool, you only need to upload your .json of the API you're building and you'll get insights on how good your API is in 3 categories: Design, Performance, Security. Check your API <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">**- <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">Treblle Api Insights</a> ** Treblle has come out with a revolutionary new tool - API Insights. If until now you couldn't tell on the scale how good your API is, now you will be able to. It's a free tool, you only need to upload your .json of the API you're building and you'll get insights on how good your API is in 3 categories: Design, Performance, Security. Check your API <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -40,8 +40,8 @@ Check out [demo](https://demo.workflowengine.io/Designer).
 Let's see how to integrate it in your .NET application.
 ## .NET Web Application Integration
 Before you continue reading:
-• you can watch here video of full integration with .Net.
-• you can check the project repository [here](https://github.com/StefanTheCode/WorkflowEngineDemo).
+- you can watch here video of full integration with .Net.
+- you can check the project repository [here](https://github.com/StefanTheCode/WorkflowEngineDemo).
 ### Steps: 
 1. Setting up the database
 2. Initializing WorkflowRuntime
@@ -57,8 +57,8 @@ It looks like this:
 WorkflowRuntime is a project that actually represents the communication between our application and WorkflowEngine.
 1. Create a Class Library project
 2. Add the following NuGet packages into your project
-• **WorkflowEngine.NETCore-Core**
-• **WorkflowEngine.NETCore-ProviderForMSSQL** 
+- **WorkflowEngine.NETCore-Core**
+- **WorkflowEngine.NETCore-ProviderForMSSQL** 
 3. Create a WorkflowInit.cs file and copy all the code from [here](https://github.com/StefanTheCode/WorkflowEngineDemo/blob/main/WorkflowLib/WorkflowInit.cs).
 4. Build the project to make sure there are no errors.
 WorkflowRuntime is ready. Now it is necessary to combine it with the designer that you will create yourself - I will show you how in the next step.

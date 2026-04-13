@@ -1,4 +1,4 @@
----
+﻿---
 title: "Bullet-Proof .NET CI on GitHub"
 subtitle: "Bullet-Proof .NET CI on GitHub – Enforce Build Rules, dotnet format, and Roslyn Analyzers"
 date: "November 10 2025"
@@ -22,10 +22,10 @@ We can fix all of that **by making our CI pipeline the single source of truth** 
 
 Our CI should *not only build and test code*, but also ensure:
  
-✅ Every line follows the same style rules
-✅ Code passes all Roslyn analyzer checks
-✅ No formatting differences sneak in
-✅ Developers see consistent results locally and in CI
+- ✅ Every line follows the same style rules
+- ✅ Code passes all Roslyn analyzer checks
+- ✅ No formatting differences sneak in
+- ✅ Developers see consistent results locally and in CI
  
 That’s exactly what we’ll build here - a simple GitHub repo that *fails a pull request* if any of those rules are broken.
 
@@ -83,11 +83,11 @@ Directory.Build.props:
 ```
 What’s happening here?  
 
-• **EnableNETAnalyzers** - turns on Microsoft’s built-in analyzer set (performance, naming, etc.) 
-• **AnalysisLevel=latest** - uses the latest rules for your .NET SDK version
-• **EnforceCodeStyleInBuild** - actually respects your .editorconfig during the build
-• **TreatWarningsAsErrors** - no more “I’ll fix that later” excuses
-•** Extra analyzer packages** - StyleCop and Roslynator add hundreds of best-practice rules
+- **EnableNETAnalyzers** - turns on Microsoft’s built-in analyzer set (performance, naming, etc.) 
+- **AnalysisLevel=latest** - uses the latest rules for your .NET SDK version
+- **EnforceCodeStyleInBuild** - actually respects your .editorconfig during the build
+- **TreatWarningsAsErrors** - no more “I’ll fix that later” excuses
+- ** Extra analyzer packages** - StyleCop and Roslynator add hundreds of best-practice rules
 From this point, every build will fail if a warning is raised.
 Let’s make sure those warnings are defined clearly next.
 
@@ -237,10 +237,10 @@ jobs:
 ```
 
 Explanation 
-• **dotnet build /warnaserror** - fails if any analyzer or code-style warning occurs
-• **dotnet format --verify-no-changes** - fails if code isn’t properly formatted
-• **actions/cache** - speeds up builds by caching your NuGet packages
-• **actions/setup-dotnet** - installs the SDK version you specify 
+- **dotnet build /warnaserror** - fails if any analyzer or code-style warning occurs
+- **dotnet format --verify-no-changes** - fails if code isn’t properly formatted
+- **actions/cache** - speeds up builds by caching your NuGet packages
+- **actions/setup-dotnet** - installs the SDK version you specify 
 Now every pull request runs these checks automatically.  
 
 ## Step 6 - Open a PR and watch it fail  
@@ -341,8 +341,8 @@ Go to your GitHub repo settings → Branches → Branch protection rules.
 
 Add a rule for main:
  
-✅ Require status checks to pass before merging
-✅ Select the workflow named CI
+- ✅ Require status checks to pass before merging
+- ✅ Select the workflow named CI
 This ensures that no code can be merged unless it’s clean, tested, and formatted.
 
 ## Wrapping Up 
@@ -351,11 +351,11 @@ You’ve just built a **bullet-proof CI pipeline** for your .NET projects - one 
 
 By the end of this walkthrough, you’ll have seen how to:
  
-• ✅ Use Directory.Build.props to centralize analyzer and build rules
-• ✅ Define a consistent style with .editorconfig
-• ✅ Automate checks with dotnet format --verify-no-changes
-• ✅ Catch real issues early using Roslyn and StyleCop analyzers
-• ✅ Keep GitHub Actions as your single source of truth for code quality
+- ✅ Use Directory.Build.props to centralize analyzer and build rules
+- ✅ Define a consistent style with .editorconfig
+- ✅ Automate checks with dotnet format --verify-no-changes
+- ✅ Catch real issues early using Roslyn and StyleCop analyzers
+- ✅ Keep GitHub Actions as your single source of truth for code quality
 
 Most importantly, you’ve learned how to **tune these rules to your team’s needs** - turning off noisy documentation analyzers and keeping only what truly matters: readable, maintainable, and consistent code.
  
@@ -367,7 +367,7 @@ Your CI does the hard work - and your team ships cleaner code with confidence.
  
 So the next time you push a branch, remember:
  
-✅ If it builds clean and formats perfectly on CI, it’s ready for main.
+- ✅ If it builds clean and formats perfectly on CI, it’s ready for main.
 
 Check the [source code here](https://github.com/StefanTheCode/Dotnet-CI).
 

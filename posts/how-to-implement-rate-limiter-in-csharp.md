@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to implement a Rate Limiter in C#"
 subtitle: "A rate limiter is a software mechanism that controls the amount of traffic or requests that can be sent to a server or API within a given time period..."
 date: "March 27 2023"
@@ -25,10 +25,10 @@ Rate Limiting is coming from ** Microsoft.AspNetCore.RateLimiting ** middleware 
 ## 2#: Rate Limiter Algorithms
 
 The RateLimiterOptionsExtensions class provides the following extension methods for rate limiting:
-• Fixed Window
-• Sliding Window
-• Token Bucket
-• Concurency
+- Fixed Window
+- Sliding Window
+- Token Bucket
+- Concurency
 We will talk about Fixed Window in this issue. 
 
 ## Add RateLimiter Service
@@ -37,11 +37,11 @@ We need to add a RateLimiter Service to the service collection. This should be d
 Here is an example:
 
 ![Adding Rate Limiter to Service Collection](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/adding-rate-limiter-to-service-collection.png)
-** • AddFixedWindowLimiter ** - the method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
-**• PermitLimit ** - A maximum of 10 requests
-**• Window ** - per 5 seconds window.
-** • QueueProcessingOrder ** - behaviour when not enough resources can be leased (Process oldest requests first).
-** • QueueLimit ** - Maximum cumulative permit count of queued acquisition requests.
+** - AddFixedWindowLimiter ** - the method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
+**- PermitLimit ** - A maximum of 10 requests
+**- Window ** - per 5 seconds window.
+** - QueueProcessingOrder ** - behaviour when not enough resources can be leased (Process oldest requests first).
+** - QueueLimit ** - Maximum cumulative permit count of queued acquisition requests.
 
 ## Enable using RateLimiter middleware
 

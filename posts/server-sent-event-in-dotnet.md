@@ -137,12 +137,12 @@ app.MapGet("/orders/{orderId:guid}/stream", (
 ```
 This is the key difference in .NET 10.
 `Results.ServerSentEvents` automatically: 
-• Sets the `Content-Type` to text/event-stream
-• Serializes each item to JSON
-• Formats SSE messages correctly
-• Flushes responses properly
-• Handles cancellation tokens
-• Manages the HTTP streaming lifecycle
+- Sets the `Content-Type` to text/event-stream
+- Serializes each item to JSON
+- Formats SSE messages correctly
+- Flushes responses properly
+- Handles cancellation tokens
+- Manages the HTTP streaming lifecycle
 In earlier versions of ASP.NET Core, developers had to manually write headers, format strings with data: prefixes, and call `FlushAsync`. 
 
 In .NET 10, this is now built into the framework.
@@ -180,15 +180,15 @@ Each status update is published to the channel. The SSE endpoint streams updates
 When building real-time streaming features with **Server-Sent Events (SSE) in .NET 10**, testing becomes slightly different compared to traditional REST endpoints.
  
 Unlike a typical GET request that returns a JSON response and closes the connection, an SSE endpoint:
-• Keeps the HTTP connection open
-• Streams data continuously
-• Sends events over time
-• Does not complete immediately
+- Keeps the HTTP connection open
+- Streams data continuously
+- Sends events over time
+- Does not complete immediately
 This means we must test it differently, and **Postman supports this perfectly**, as long as you configure it correctly.
  
 In this chapter, we’ll test both:
-• The POST endpoint that simulates order processing
-• The GET SSE endpoint that streams real-time updates
+- The POST endpoint that simulates order processing
+- The GET SSE endpoint that streams real-time updates
 
 ### Testing the POST Simulation Endpoint in Postman
 
@@ -197,9 +197,9 @@ First, we need to trigger the backend processing.
 This endpoint simulates order status transitions and publishes events into our streaming pipeline.
 
 Step 1 - Create a New Request in Postman
-• Method: POST
-• URL: `https://localhost:7060/orders/{orderId}/simulate`
-• Replace {orderId} with a real GUID.
+- Method: POST
+- URL: `https://localhost:7060/orders/{orderId}/simulate`
+- Replace {orderId} with a real GUID.
 
 You don’t need a request body for this example.
 Step 2 - Send the Request
@@ -210,9 +210,9 @@ You should receive: *"Order simulation completed."*
 ![Postman post](/images/blog/posts/server-sent-event-in-dotnet/postman-post.png)
 
 But here’s what actually happens in the background:
-• The endpoint starts publishing events
-• Every 2 seconds a new OrderStatusUpdate is emitted
-• These events will be streamed through the SSE endpoint
+- The endpoint starts publishing events
+- Every 2 seconds a new OrderStatusUpdate is emitted
+- These events will be streamed through the SSE endpoint
 At this moment, no client is connected yet, so nothing is visible.
  
 Now we test the real-time part.
@@ -222,13 +222,13 @@ Now we test the real-time part.
 Testing Server-Sent Events in Postman is slightly different from normal APIs.
  
 Because the connection remains open, you must:
-• Use GET
-• Do not expect the request to complete
-• Observe streaming output in real time
+- Use GET
+- Do not expect the request to complete
+- Observe streaming output in real time
 
 Step 1 - Create a New GET Request
-• Method: GET
-• URL: `https://localhost:7060/orders/{orderId}/stream`
+- Method: GET
+- URL: `https://localhost:7060/orders/{orderId}/stream`
 
 Step 2 - Send the Request
  

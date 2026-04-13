@@ -14,8 +14,8 @@ A brand-new course is launching soon inside [The CodeMan Community](https://www.
 Join now to lock in early access when it drops - plus get everything else already inside the group.
 
 Founding Member Offer:
-• First 100 members get in for **just $4/month** - *70 spots already taken*!
-• Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
+- First 100 members get in for **just $4/month** - *70 spots already taken*!
+- Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
 Get ahead of the game -  and make clean, consistent code your superpower.
 [Join here](https://www.skool.com/thecodeman)
 
@@ -54,9 +54,9 @@ app.MapPost("/users", async (UserDto user) =>
 
 Problem:
 
-• No checks for null/empty fields.
-• No format validation (like for Email).
-• No business rules applied (like min/max lengths).
+- No checks for null/empty fields.
+- No format validation (like for Email).
+- No business rules applied (like min/max lengths).
 
 Better Example (After - Defensive API Design):
 
@@ -80,9 +80,9 @@ Or even better? Use FluentValidation or a custom ValidatorService to avoid clutt
 
 Why It’s Important:
 
-• Protects your database integrity.
-• Makes client-side debugging easier ("BadRequest" vs "500 error").
-• Saves your backend from mysterious errors later.
+- Protects your database integrity.
+- Makes client-side debugging easier ("BadRequest" vs "500 error").
+- Saves your backend from mysterious errors later.
 
 ## 2. Not Versioning Your APIs
 
@@ -128,8 +128,8 @@ Or using .RequireHost() for different subdomains if you want real-world producti
 
 Why It’s Important:
 
-• You can deploy improvements without breaking existing apps.
-• Gives your team breathing room to phase out old clients cleanly.
+- You can deploy improvements without breaking existing apps.
+- Gives your team breathing room to phase out old clients cleanly.
 
 ## 3. Confusing or Incorrect Status Codes
 
@@ -161,16 +161,16 @@ return Results.Ok(user);
 
 Use:
 
-• 400 BadRequest → Bad input
-• 401 Unauthorized → Not logged in
-• 403 Forbidden → No access
-• 404 Not Found → No such resource
-• 500 Internal Server Error → Something broke on server
+- 400 BadRequest → Bad input
+- 401 Unauthorized → Not logged in
+- 403 Forbidden → No access
+- 404 Not Found → No such resource
+- 500 Internal Server Error → Something broke on server
 
 Why It’s Important:
 
-• Clients can react programmatically (retry, redirect, show error, etc).
-• Your API behaves like a good citizen on the internet.
+- Clients can react programmatically (retry, redirect, show error, etc).
+- Your API behaves like a good citizen on the internet.
 ## 4. Overcomplicating the Response Models
 
 The Mistake:
@@ -191,9 +191,9 @@ app.MapGet("/orders", async (DbContext db) =>
 });
 ```
 Problem:
-• Leaks internal database structure.
-• Might expose sensitive fields accidentally.
-• Causes huge payloads = slow APIs.
+- Leaks internal database structure.
+- Might expose sensitive fields accidentally.
+- Causes huge payloads = slow APIs.
 
 Better Example (After - DTO Mapping):
 
@@ -215,9 +215,9 @@ app.MapGet("/orders", async (DbContext db) =>
 ```
 Why It’s Important:
 
-• You control exactly what data leaves your server.
-• Smaller, faster responses = happier users and better SEO.
-• Less security risk if your model changes later.
+- You control exactly what data leaves your server.
+- Smaller, faster responses = happier users and better SEO.
+- Less security risk if your model changes later.
 
 ## 5. No Centralized Error Handling
 
@@ -244,9 +244,9 @@ catch (Exception ex)
 ```
 
 Problem:
-• Code duplication.
-• Inconsistent error responses.
-• Hard to log properly.
+- Code duplication.
+- Inconsistent error responses.
+- Hard to log properly.
 
 Better Example (After - Global Exception Handling Middleware):
 
@@ -269,9 +269,9 @@ Or even better?
 Use **[ProblemDetails](https://thecodeman.net/posts/better-error-handling-with-problemdetails) (application/problem+json)** in .NET 9 automatically via Problem() responses.
 
 Why It’s Important:
-• Cleaner code.
-• Standard error messages for all clients.
-• Easier to plug in logging (Serilog, [OpenTelemetry](https://thecodeman.net/posts/getting-started-with-opentelemetry), etc).
+- Cleaner code.
+- Standard error messages for all clients.
+- Easier to plug in logging (Serilog, [OpenTelemetry](https://thecodeman.net/posts/getting-started-with-opentelemetry), etc).
 
 But here's the thing:
 

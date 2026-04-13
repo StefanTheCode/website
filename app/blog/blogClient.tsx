@@ -1,13 +1,14 @@
 'use client';
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { PostMetadata } from "@/components/PostMetadata";
 import PostPreview from "@/components/PostPreview";
 import BlogSearch from "@/components/BlogSearch";
 import Subscribe from "../subscribe";
 import config from "@/config.json";
 import Image from 'next/image';
+import Fuse from "fuse.js";
 
 const POSTS_PER_PAGE = 10;
 
@@ -20,24 +21,41 @@ const BlogClient = ({ allPosts }: Props) => {
   const router = useRouter();
   const page = parseInt(searchParams.get("page") ?? "1");
   const selectedCategory = searchParams.get("category");
-
-  const [currentPosts, setCurrentPosts] = useState<PostMetadata[]>([]);
+  const searchQuery = searchParams.get("q") ?? "";
 
   const headingRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  const filteredPosts = useMemo(() => {
     let posts = [...allPosts];
 
     if (selectedCategory) {
       posts = posts.filter(post => post.category != null && post.category.toLowerCase() === selectedCategory.toLowerCase());
     }
 
-    posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const normalizedSearch = searchQuery.trim();
 
+    if (normalizedSearch) {
+      const fuse = new Fuse(posts, {
+        keys: [
+          { name: 'title', weight: 0.4 },
+          { name: 'subtitle', weight: 0.3 },
+          { name: 'category', weight: 0.2 },
+          { name: 'newsletterTitle', weight: 0.1 },
+        ],
+        threshold: 0.4,
+      });
+
+      return fuse.search(normalizedSearch).map((result) => result.item);
+    }
+
+    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }, [allPosts, selectedCategory, searchQuery]);
+
+  const currentPosts = useMemo(() => {
     const startIndex = (page - 1) * POSTS_PER_PAGE;
     const endIndex = startIndex + POSTS_PER_PAGE;
-    setCurrentPosts(posts.slice(startIndex, endIndex));
-  }, [page, selectedCategory]);
+    return filteredPosts.slice(startIndex, endIndex);
+  }, [filteredPosts, page]);
 
   // Scroll to heading after filter/page change
   useEffect(() => {
@@ -46,9 +64,7 @@ const BlogClient = ({ allPosts }: Props) => {
     }
   }, [page, selectedCategory]);
 
-  const totalPosts = selectedCategory
-    ? allPosts.filter(post => post.category != null && post.category.toLowerCase() === selectedCategory.toLowerCase()).length
-    : allPosts.length;
+  const totalPosts = filteredPosts.length;
 
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
 
@@ -67,6 +83,20 @@ const BlogClient = ({ allPosts }: Props) => {
     }
     params.set("page", "1");
     router.push(`/blog?${params.toString()}`, {  scroll: false });
+  };
+
+  const setSearchQuery = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    const hasMeaningfulQuery = value.trim().length > 0;
+
+    if (hasMeaningfulQuery) {
+      params.set("q", value);
+    } else {
+      params.delete("q");
+    }
+
+    params.set("page", "1");
+    router.replace(`/blog?${params.toString()}`, { scroll: false });
   };
 
   const uniqueCategories = Array.from(new Set(allPosts.map(post => post.category))).filter(Boolean);
@@ -111,7 +141,7 @@ const BlogClient = ({ allPosts }: Props) => {
           </div>
 
           {/* Search */}
-          <BlogSearch posts={allPosts} />
+          <BlogSearch query={searchQuery} onQueryChange={setSearchQuery} />
 
           {/* Category Filter */}
           <div className="row justify-content-center mt-4">

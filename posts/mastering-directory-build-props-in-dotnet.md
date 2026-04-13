@@ -18,10 +18,10 @@ It’s the all-in-one toolbox for serious .NET developers.
 
 Every .NET developer eventually hits the same wall:
 
-• 20+ projects in a solution
-• 20+ copies of the same TargetFramework, Nullable, and LangVersion
-• 20+ places to flip TreatWarningsAsErrors
-• 20+ csproj files full of repeated PackageReference and build settings
+- 20+ projects in a solution
+- 20+ copies of the same TargetFramework, Nullable, and LangVersion
+- 20+ places to flip TreatWarningsAsErrors
+- 20+ csproj files full of repeated PackageReference and build settings
 
 You tweak one setting…and then spend the next 15 minutes hunting it down across the solution.
  
@@ -29,10 +29,10 @@ In .NET 9 (and any modern SDK-style project), there’s a better way: **Director
  
 With a single file, you can:
 
-• Define **global build rules** for all projects in a folder tree
-• Keep each .csproj small and focused
-• Standardize code style, analyzers, and warnings
-• Control versioning and metadata for all assemblies from one place
+- Define **global build rules** for all projects in a folder tree
+- Keep each .csproj small and focused
+- Standardize code style, analyzers, and warnings
+- Control versioning and metadata for all assemblies from one place
 
 In this article, we’ll walk through:
 
@@ -55,9 +55,9 @@ The import process works like this:
 
 That means:
 
-• Put Directory.Build.props at the **solution root** → every project below will inherit it.
-• Put another Directory.Build.props in tests/ → test projects can have **extra** settings on top of the root ones.
-• If you put a **dummy Directory.Build.props** next to an individual project, MSBuild will stop there and won’t keep searching upwards - effectively shielding that project from the upper-level props.
+- Put Directory.Build.props at the **solution root** → every project below will inherit it.
+- Put another Directory.Build.props in tests/ → test projects can have **extra** settings on top of the root ones.
+- If you put a **dummy Directory.Build.props** next to an individual project, MSBuild will stop there and won’t keep searching upwards - effectively shielding that project from the upper-level props.
 
 This works the same in .NET 9 as in previous modern SDK versions—the big difference is that .NET 9 projects typically lean even more on analyzers, nullable, and modern build features, which makes centralization even more valuable.
 
@@ -85,7 +85,7 @@ tests/Directory.Build.props
 ```
 
 Typical problems:
-• Every project repeats:
+- Every project repeats:
 
 ```csharp
 <TargetFramework>net9.0</TargetFramework>
@@ -93,15 +93,15 @@ Typical problems:
 <ImplicitUsings>enable</ImplicitUsings>
 ```
  
-• Every project copies:
+- Every project copies:
 
 ```csharp
 <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 <AnalysisLevel>latest</AnalysisLevel>
 ```
 
-• All projects share the same company metadata & repository URL.
-• Test projects repeatedly reference xunit, FluentAssertions, and coverlet.collector.
+- All projects share the same company metadata & repository URL.
+- Test projects repeatedly reference xunit, FluentAssertions, and coverlet.collector.
 If you change TargetFramework from net8.0 to net9.0 or decide to tighten analyzers, you have to change every .csproj manually.
 Let’s fix that with Directory.Build.props.
 
@@ -147,10 +147,10 @@ At the solution root, create a file named Directory.Build.props:
 </Project>
 ```
 ### What this does
-• **Every project now targets net9.0**, uses [nullable reference](https://thecodeman.net/posts/4-methods-to-handle-nullable-reference) types, implicit usings, and the latest language features.
-• Code quality is enforced everywhere via TreatWarningsAsErrors and AnalysisLevel.
-• All binaries end up under artifacts\bin\ and artifacts\obj\ instead of being spread across bin/Debug folders.
-• Common PackageReferences are no longer duplicated in each project.
+- **Every project now targets net9.0**, uses [nullable reference](https://thecodeman.net/posts/4-methods-to-handle-nullable-reference) types, implicit usings, and the latest language features.
+- Code quality is enforced everywhere via TreatWarningsAsErrors and AnalysisLevel.
+- All binaries end up under artifacts\bin\ and artifacts\obj\ instead of being spread across bin/Debug folders.
+- Common PackageReferences are no longer duplicated in each project.
 Your individual .csproj files can now be tiny:
 
 ```csharp
@@ -209,9 +209,9 @@ Create tests/Directory.Build.props:
 ```
 
 Now:
-• Any project under tests/ automatically gets test packages.
-• You can slightly relax test projects (e.g., no warnings-as-errors) without affecting production code.
-• New test projects become trivial to create - almost no build configuration is needed inside the .csproj
+- Any project under tests/ automatically gets test packages.
+- You can slightly relax test projects (e.g., no warnings-as-errors) without affecting production code.
+- New test projects become trivial to create - almost no build configuration is needed inside the .csproj
 
 ## Step 3: Centralized Versioning with Directory.Build.props 
 
@@ -248,9 +248,9 @@ In CI (GitHub Actions / Azure DevOps / GitLab), you pass BuildNumber:
 dotnet build MySolution.sln /p:BuildNumber=123
 ```
 Result:
-• All projects share consistent versioning.
-• Changing VersionPrefix once upgrades the whole solution.
-• You can differentiate between internal Release builds and Deploy builds by controlling the properties passed from CI.
+- All projects share consistent versioning.
+- Changing VersionPrefix once upgrades the whole solution.
+- You can differentiate between internal Release builds and Deploy builds by controlling the properties passed from CI.
 
 ## Step 4: Enforcing Code Style and Analyzers Centrally
 
@@ -288,9 +288,9 @@ Directory.Build.props is a perfect place to wire that up:
 </Project>
 ```
 Now:
-• Every project uses the same **analyzer level** and code-style enforcement.
-• You don’t have to remember to add analyzer packages in each .csproj.
-• Build breaks if someone violates rules, regardless of their IDE settings - perfect for CI and team consistency.
+- Every project uses the same **analyzer level** and code-style enforcement.
+- You don’t have to remember to add analyzer packages in each .csproj.
+- Build breaks if someone violates rules, regardless of their IDE settings - perfect for CI and team consistency.
 If a particular project truly needs to relax something, you can still override locally:
 
 ```csharp
@@ -308,10 +308,10 @@ If a particular project truly needs to relax something, you can still override l
 
 You’re not limited to just one props file. MSBuild lets you create a **hierarchy** of Directory.Build.props files, and it will pick the first one it finds while walking up directories from the project location. 
 Common patterns:
-• **Solution root**: core settings for all projects
-• src/Directory.Build.props: production-only settings and packages
-• tests/Directory.Build.props: test-only packages and relaxed rules
-• tools/Directory.Build.props: for small CLI tools that don’t need analyzers or warnings-as-errors
+- **Solution root**: core settings for all projects
+- src/Directory.Build.props: production-only settings and packages
+- tests/Directory.Build.props: test-only packages and relaxed rules
+- tools/Directory.Build.props: for small CLI tools that don’t need analyzers or warnings-as-errors
 Example structure:
 ```csharp
 Directory.Build.props         // global defaults
@@ -348,17 +348,17 @@ This works because MSBuild stops at the first Directory.Build.props it finds whe
 ## Directory.Build.props vs Directory.Build.targets
 
 Another file you’ll see mentioned in the docs is Directory.Build.targets. The short version:
-• **Directory.Build.props** - for properties and items, imported early in the build. Great for configuration and metadata.
-• **Directory.Build.targets** - for targets and custom build actions, imported late in the build. Great for custom build steps (e.g., running a tool after build, generating artifacts, etc.). 
+- **Directory.Build.props** - for properties and items, imported early in the build. Great for configuration and metadata.
+- **Directory.Build.targets** - for targets and custom build actions, imported late in the build. Great for custom build steps (e.g., running a tool after build, generating artifacts, etc.). 
 For this article, we’re focusing on props, but it’s good to keep Directory.Build.targets in mind when you want to centralize “do this after build” logic.
 
 ## Wrapping Up 
 
 Directory.Build.props is one of those features that quietly solves a lot of pain:
-• It keeps your .csproj files short, readable, and focused
-• It lets you enforce consistent rules across your .NET 9 solution
-• It centralizes versioning and metadata
-• It gives you a clean way to differentiate between src/, tests/, and other areas 
+- It keeps your .csproj files short, readable, and focused
+- It lets you enforce consistent rules across your .NET 9 solution
+- It centralizes versioning and metadata
+- It gives you a clean way to differentiate between src/, tests/, and other areas 
 
 Once you adopt it, adding a new project becomes almost trivial - no more copying settings from some “template” project or forgetting to turn on nullable or analyzers.
  

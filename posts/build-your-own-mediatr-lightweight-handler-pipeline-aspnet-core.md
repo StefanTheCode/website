@@ -19,18 +19,18 @@ MediatR is great. It gives us a clean request/response model, pipeline behaviors
 
 But sometimes you want:
 
-• Full control over the pipeline internals  
-• Zero external dependencies  
-• Very explicit behavior wiring  
-• A tiny abstraction you can debug in 5 minutes
+- Full control over the pipeline internals  
+- Zero external dependencies  
+- Very explicit behavior wiring  
+- A tiny abstraction you can debug in 5 minutes
 
 In this post, we will build a minimal pipeline that feels familiar to MediatR users, but is fully custom.
 
 You will implement:
 
-• `HandlerPipeline<TRequest, TResponse>`  
-• `ValidatorMiddleware<TRequest, TResponse>`  
-• Fluent registration with `UseMiddleware<T>().Run(handler).Build()`
+- `HandlerPipeline<TRequest, TResponse>`  
+- `ValidatorMiddleware<TRequest, TResponse>`  
+- Fluent registration with `UseMiddleware<T>().Run(handler).Build()`
 
 By the end, you will have composable middleware and clean handlers, without bringing in MediatR.
 
@@ -330,16 +330,16 @@ That is the full pattern:
 
 When teams debate MediatR, they usually debate trade-offs:
 
-• One more dependency vs. writing your own abstraction  
-• Convention-driven behavior vs. explicit wiring  
-• Library features vs. custom control
+- One more dependency vs. writing your own abstraction  
+- Convention-driven behavior vs. explicit wiring  
+- Library features vs. custom control
 
 This lightweight pipeline gives you:
 
-• MediatR-like composition  
-• Strongly typed middleware chains  
-• Easy debugging (you own every line)  
-• Zero framework lock-in
+- MediatR-like composition  
+- Strongly typed middleware chains  
+- Easy debugging (you own every line)  
+- Zero framework lock-in
 
 And if later you decide to move to MediatR, your handlers and middleware concepts stay almost identical.
 
@@ -351,9 +351,9 @@ If you need advanced ecosystem integrations, mature community behaviors, notific
 
 Custom pipelines shine when:
 
-• You want minimal dependencies  
-• Your use cases are straightforward  
-• You value explicit, inspectable internals
+- You want minimal dependencies  
+- Your use cases are straightforward  
+- You value explicit, inspectable internals
 
 ## Wrapping Up
 

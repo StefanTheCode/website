@@ -1,0 +1,146 @@
+====================================
+POST 1 — The Pain Point (Week 1)
+====================================
+
+5 terminals.
+3 config files.
+Hardcoded connection strings.
+A prayer that you started everything in the right order.
+
+That's what running a distributed app locally looks like.
+
+I got tired of it.
+
+So I explored Aspire — and built a demo called OrderCanvas to prove it works:
+
+• .NET APIs
+• React frontend
+• Python worker
+• PostgreSQL + Redis
+
+All started with ONE command: dotnet run
+
+No Docker Compose. No manual wiring. No 20-step README for new developers.
+
+I wrote a beginner-friendly walkthrough explaining exactly how it works:
+
+https://thecodeman.net/posts/aspire-for-beginners-distributed-applications
+
+If you've ever spent 30 minutes just getting your local environment running — this is for you.
+
+
+====================================
+POST 2 — It's Not Just .NET (Week 3)
+====================================
+
+"Aspire is only for .NET apps."
+
+I keep hearing this. It's wrong.
+
+I built a demo with:
+→ 2 .NET APIs
+→ 1 React + TypeScript frontend
+→ 1 Python background worker
+→ PostgreSQL and Redis
+
+All orchestrated from a single Aspire AppHost.
+
+The AppHost happens to be written in .NET, but it orchestrates ANY language. The Python worker gets its environment variables injected automatically. The React app gets npm install and npm run dev handled for it.
+
+All services appear in the same dashboard. Same logs. Same traces. Same health checks.
+
+3 languages. 1 command. 1 dashboard.
+
+I wrote a full beginner guide with diagrams and code:
+
+https://thecodeman.net/posts/aspire-for-beginners-distributed-applications
+
+
+====================================
+POST 3 — Developer Onboarding (Week 5)
+====================================
+
+A new developer joins your team.
+
+Without Aspire:
+1. Read the 40-line README
+2. Install Docker, run docker-compose
+3. Open Terminal 2, dotnet run the first API
+4. Open Terminal 3, dotnet run the second API
+5. Open Terminal 4, npm install, npm run dev
+6. Open Terminal 5, create a Python venv, pip install, run the worker
+7. Something doesn't connect. Check the connection string. It's wrong.
+8. Fix it. Restart. Repeat.
+
+With Aspire:
+1. dotnet run --project src/OrderCanvas.AppHost
+2. Done.
+
+That's not a simplification. That's literally it.
+
+Connection strings? Injected automatically.
+Startup order? Handled by WaitFor().
+Logs from all services? One dashboard.
+
+I wrote a step-by-step beginner guide showing how this works in practice — with a real multi-language demo app:
+
+https://thecodeman.net/posts/aspire-for-beginners-distributed-applications
+
+
+====================================
+POST 4 — Observability (Week 7)
+====================================
+
+Setting up observability for a distributed app used to mean:
+
+→ Install OpenTelemetry packages in every service
+→ Configure exporters (Jaeger? Zipkin? OTLP?)
+→ Run a collector container
+→ Run a UI container (Grafana? Jaeger UI?)
+→ Configure Python separately
+→ Hope everything sends data to the same place
+
+With Aspire, each .NET service adds one line:
+
+builder.AddServiceDefaults();
+
+That gives you:
+• Structured logging
+• Distributed tracing
+• Metrics
+• Health checks
+
+All automatically exported to the built-in Aspire Dashboard.
+
+The Python worker? Aspire injects OTEL_EXPORTER_OTLP_ENDPOINT as an environment variable. No Python-side configuration.
+
+I built a demo called OrderCanvas where you can see a distributed trace flow from React → .NET → Python → PostgreSQL — all in one view.
+
+Full beginner walkthrough here:
+
+https://thecodeman.net/posts/aspire-for-beginners-distributed-applications
+
+
+====================================
+POST 5 — Before/After Comparison (Week 9)
+====================================
+
+I made a table comparing distributed app development with and without Aspire.
+
+It's honestly a bit unfair:
+
+Starting the system    → 5 terminals, manual order → 1 command
+Connection strings     → Copy-paste into each config → Declared once
+Service URLs           → Hardcoded localhost:PORT → Auto-injected
+Database creation      → Manual SQL scripts → AddDatabase() handles it
+All logs in one place  → Tab between 5 windows → Unified dashboard
+Distributed traces     → Install Jaeger + configure → Built-in, zero config
+Onboard new developer  → Long README, multiple steps → dotnet run
+
+Every row is a real problem I've hit on real projects.
+
+The connection string one alone has cost me hours of debugging across multiple teams.
+
+I wrote a full beginner guide with a real demo app (OrderCanvas) that uses .NET, React, Python, PostgreSQL, and Redis — all orchestrated by Aspire:
+
+https://thecodeman.net/posts/aspire-for-beginners-distributed-applications

@@ -1,4 +1,4 @@
----
+﻿---
 title: "6 ways to eleveate your 'clean' code"
 subtitle: "I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is...."
 date: "August 22 2024"
@@ -12,7 +12,7 @@ meta_description: "Im not sure if I know any programmer, engineer, architect, or
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Complete 2024 State of the #API survey by Postman for a chance to win prizes including a Apple Vision Pro, a Sony PlayStation 5, gift certificates for Postman swag and more! Complete it <a href="https://www.surveymonkey.com/r/2024-state-of-api-survey" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Complete 2024 State of the #API survey by Postman for a chance to win prizes including a Apple Vision Pro, a Sony PlayStation 5, gift certificates for Postman swag and more! Complete it <a href="https://www.surveymonkey.com/r/2024-state-of-api-survey" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -116,9 +116,9 @@ public void DoThis(int numberOfUsers)
 
 Why you should not do this:
 
-• Possible NullReferenceException
-• We always need to check for null   
-• Slow Performance (checking for null, throwing/catching an exception, etc.)
+- Possible NullReferenceException
+- We always need to check for null   
+- Slow Performance (checking for null, throwing/catching an exception, etc.)
 
 ```csharp
 //Edge case: Only if you need explicitly to return null
@@ -273,77 +273,77 @@ private void PrintUsers(List<User> users)
 
 General rules:
 
-• Follow standard conventions
-• Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.
-• Boy scout rule. Leave the campground cleaner than you found it. 
-• Always find root cause. Always look for the root cause of a problem.
+- Follow standard conventions
+- Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.
+- Boy scout rule. Leave the campground cleaner than you found it. 
+- Always find root cause. Always look for the root cause of a problem.
 
 Design rules:
-• Keep configurable data at high levels.
-• Prefer polymorphism to if/else or switch/case.
-• Separate multi-threading code.
-• Prevent over-configurability.
-• Use dependency injection.
-• Follow Law of Demeter. A class should know only its direct dependencies.
+- Keep configurable data at high levels.
+- Prefer polymorphism to if/else or switch/case.
+- Separate multi-threading code.
+- Prevent over-configurability.
+- Use dependency injection.
+- Follow Law of Demeter. A class should know only its direct dependencies.
 Understandability tips:
-• Be consistent. If you do something a certain way, do all similar things in the same way.
-• Use explanatory variables.
-• Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.
-• Prefer dedicated value objects to primitive type.
-• Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.
-• Avoid negative conditionals.
+- Be consistent. If you do something a certain way, do all similar things in the same way.
+- Use explanatory variables.
+- Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.
+- Prefer dedicated value objects to primitive type.
+- Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.
+- Avoid negative conditionals.
 Names rules:
-• Choose descriptive and unambiguous names.
-• Make meaningful distinction.
-• Use pronounceable names.
-• Use searchable names.
-• Replace magic numbers with named constants.
-• Avoid encodings.
-• Don't append prefixes or type information.
+- Choose descriptive and unambiguous names.
+- Make meaningful distinction.
+- Use pronounceable names.
+- Use searchable names.
+- Replace magic numbers with named constants.
+- Avoid encodings.
+- Don't append prefixes or type information.
 Comments rules:
-• Always try to explain yourself in code.
-• Don't be redundant.
-• Don't add obvious noise.
-• Don't use closing brace comments.
-• Don't comment out code.
-• Just remove.
-• Use as explanation of intent.
-• Use as clarification of code.
-• Use as warning of consequences.
+- Always try to explain yourself in code.
+- Don't be redundant.
+- Don't add obvious noise.
+- Don't use closing brace comments.
+- Don't comment out code.
+- Just remove.
+- Use as explanation of intent.
+- Use as clarification of code.
+- Use as warning of consequences.
 Source code structure:
-• Separate concepts vertically.
-• Related code should appear vertically dense.
-• Declare variables close to their usage.
-• Dependent functions should be close.
-• Similar functions should be close.
-• Place functions in the downward direction.
-• Keep lines short.
-• Don't use horizontal alignment.
-• Use white space to associate related things and disassociate weakly related.
-• Don't break indentation.
+- Separate concepts vertically.
+- Related code should appear vertically dense.
+- Declare variables close to their usage.
+- Dependent functions should be close.
+- Similar functions should be close.
+- Place functions in the downward direction.
+- Keep lines short.
+- Don't use horizontal alignment.
+- Use white space to associate related things and disassociate weakly related.
+- Don't break indentation.
 Objects and data structures:
-• Hide internal structure.
-• Prefer data structures.
-• Avoid hybrids structures (half object and half data).
-• Should be small.
-• Do one thing.
-• Small number of instance variables.
-• Base class should know nothing about their derivatives.
-• Better to have many functions than to pass some code into a function to select a behavior.
-• Prefer non-static methods to static methods.
+- Hide internal structure.
+- Prefer data structures.
+- Avoid hybrids structures (half object and half data).
+- Should be small.
+- Do one thing.
+- Small number of instance variables.
+- Base class should know nothing about their derivatives.
+- Better to have many functions than to pass some code into a function to select a behavior.
+- Prefer non-static methods to static methods.
 Tests:
-• One assert per test.
-• Readable.
-• Fast.
-• Independent.
-• Repeatable.
+- One assert per test.
+- Readable.
+- Fast.
+- Independent.
+- Repeatable.
 Code smells:
-• Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.
-• Fragility. The software breaks in many places due to a single change.
-• Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.
-• Needless Complexity.
-• Needless Repetition.
-• Opacity. The code is hard to understand.
+- Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.
+- Fragility. The software breaks in many places due to a single change.
+- Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.
+- Needless Complexity.
+- Needless Repetition.
+- Opacity. The code is hard to understand.
 That's all from me for today. Make a coffee and clean up your code.
 
 

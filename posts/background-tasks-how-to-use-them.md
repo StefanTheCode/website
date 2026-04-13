@@ -37,20 +37,20 @@ Here's an example of how to create and execute a background task in a console ap
 
 ## Real-world use cases in applications
 ### 1. Email Notifications:
-• **Why**: Sending email notifications can be time-consuming and subject to network delays. You don't want the main application thread to wait for email deliveries to complete.
-• **How**: Use a background task to send email notifications asynchronously, allowing the main application to continue processing user requests without delays.
+- **Why**: Sending email notifications can be time-consuming and subject to network delays. You don't want the main application thread to wait for email deliveries to complete.
+- **How**: Use a background task to send email notifications asynchronously, allowing the main application to continue processing user requests without delays.
 ### 2. Image and File Processing:
-• **Why**: Tasks like image resizing, file uploads, or video transcoding can be resource-intensive and time-consuming.
-• **How**: Offload these tasks to background threads or processes, allowing the main thread to serve user requests promptly without experiencing delays. 
+- **Why**: Tasks like image resizing, file uploads, or video transcoding can be resource-intensive and time-consuming.
+- **How**: Offload these tasks to background threads or processes, allowing the main thread to serve user requests promptly without experiencing delays. 
 
 ### 3. Database Cleanup and Maintenance:
-• **Why**: In applications with databases, routine maintenance tasks like archiving, purging old data, or reindexing can be crucial but time-consuming.
-• **How**: Implement background tasks to perform database maintenance activities during non-peak hours, preventing these tasks from affecting the application's responsiveness during regular usage.
+- **Why**: In applications with databases, routine maintenance tasks like archiving, purging old data, or reindexing can be crucial but time-consuming.
+- **How**: Implement background tasks to perform database maintenance activities during non-peak hours, preventing these tasks from affecting the application's responsiveness during regular usage.
 
 ### 4. Cache Maintenance
-• **Why**: Caches can accumulate stale data over time, leading to inefficiency and increased memory usage.
-• **How**: Use background tasks to periodically clean up expired or unnecessary cache items, ensuring that the cache remains efficient and doesn't impact application performance.
-• Let's take this example and implement a background task on it.
+- **Why**: Caches can accumulate stale data over time, leading to inefficiency and increased memory usage.
+- **How**: Use background tasks to periodically clean up expired or unnecessary cache items, ensuring that the cache remains efficient and doesn't impact application performance.
+- Let's take this example and implement a background task on it.
 
 ![Create Simple Cache Manager with Background Task](/images/blog/posts/background-tasks-how-to-use-them/create-simple-cache-manager-with-background-task.png)
 In this example, the CacheManager class manages the cache and has a background task (StartCacheCleanupTask) that periodically removes stale cache items based on their expiration timestamps. This ensures that the cache remains up-to-date and doesn't grow indefinitely.

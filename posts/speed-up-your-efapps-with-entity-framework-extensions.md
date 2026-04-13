@@ -1,4 +1,4 @@
----
+﻿---
 title: "Speed Up Your EF Core Apps with Entity Framework Extensions - preview"
 subtitle: "If you're using Entity Framework Core (EF Core), you've probably hit some performance walls when trying to insert or update a large number of records."
 date: "May 12 2025"
@@ -32,9 +32,9 @@ To understand why EF Extensions is such a game-changer, we first need to look at
 EF Core is fantastic for writing readable, maintainable data access code. 
 
 However, when you start pushing it with large datasets, it quickly reveals some limitations:
-**• EF6: SaveChanges() isn’t built for speed.** It sends one SQL command per entity. If you're inserting 10,000 records, that's 10,000 round-trips. Alotugh, this has been changed in EF Core.
-**• Change tracking adds overhead.** EF Core tries to track every entity you insert, which consumes memory and slows down performance.
-**• Bulk insert, update, and delete support is limited.** Until EF Core 8, there was no built-in way to update or delete records in bulk - and even now, it's still fairly basic.
+**- EF6: SaveChanges() isn’t built for speed.** It sends one SQL command per entity. If you're inserting 10,000 records, that's 10,000 round-trips. Alotugh, this has been changed in EF Core.
+**- Change tracking adds overhead.** EF Core tries to track every entity you insert, which consumes memory and slows down performance.
+**- Bulk insert, update, and delete support is limited.** Until EF Core 8, there was no built-in way to update or delete records in bulk - and even now, it's still fairly basic.
 
 So, if you're dealing with anything more than a few hundred records, you’re either writing raw SQL (which can get messy) or looking for alternatives.
 
@@ -48,11 +48,11 @@ It integrates directly into your existing DbContext, so you don’t need to over
 
 With EF Extensions, you get methods like:
 
-• BulkInsert
-• BulkUpdate
-• BulkDelete
-• BulkMerge (a.k.a. UPSERT)
-• BulkSaveChanges
+- BulkInsert
+- BulkUpdate
+- BulkDelete
+- BulkMerge (a.k.a. UPSERT)
+- BulkSaveChanges
 
 These aren’t just slightly faster alternatives - they are **orders of magnitude faster** than EF Core's native operations. 
 
@@ -132,9 +132,9 @@ Check the [benchmarks online](https://dotnetfiddle.net/zzMQgZ).
 
 I have tested it in my test API, these are result: 
 
-• Insert operations are up to 13x faster, cutting execution time by 91%
-• Update operations see a 5x speed boost, with 80% less time spent
-• Delete operations perform 3x faster, reducing processing time by 67%
+- Insert operations are up to 13x faster, cutting execution time by 91%
+- Update operations see a 5x speed boost, with 80% less time spent
+- Delete operations perform 3x faster, reducing processing time by 67%
 You can check their [online benchmarks](https://dotnetfiddle.net/Authors/63783/ZZZ%20Projects).
 Whether you're working with large datasets or optimizing API response times, bulk extensions can make a huge difference.
 
@@ -142,10 +142,10 @@ Whether you're working with large datasets or optimizing API response times, bul
 
 Thousands of companies use EF Extensions in real systems every day. Here are a few real-world examples:
 
-• E-commerce platforms use it to import thousands of new products each night.
-• CRM systems use BulkUpdate to tag customer segments in campaigns.
-• Financial apps use BulkMerge to sync daily transaction feeds.
-• Analytics dashboards use it to insert millions of rows from event data streams.
+- E-commerce platforms use it to import thousands of new products each night.
+- CRM systems use BulkUpdate to tag customer segments in campaigns.
+- Financial apps use BulkMerge to sync daily transaction feeds.
+- Analytics dashboards use it to insert millions of rows from event data streams.
 
 If your application touches large amounts of data regularly, EF Extensions can save you hours of development and runtime.
 
@@ -170,10 +170,10 @@ This makes it ideal for financial systems, audit trails, and other mission-criti
 
 ## Best Practices and Tips
 
-• Use bulk operations in **batches** of 1,000–10,000 records depending on your DB capacity
-• Disable AutoMapOutputDirection if you don’t need EF to map generated IDs back
-• Use IncludeGraph for inserting related entities like orders and line items
-• Don’t mix SaveChanges() and bulk operations in the same transaction unless you understand the implications
+- Use bulk operations in **batches** of 1,000–10,000 records depending on your DB capacity
+- Disable AutoMapOutputDirection if you don’t need EF to map generated IDs back
+- Use IncludeGraph for inserting related entities like orders and line items
+- Don’t mix SaveChanges() and bulk operations in the same transaction unless you understand the implications
 
 And most importantly, test with your actual datasets - you’ll likely be blown away by the performance gain.
 ## Wrapping Up

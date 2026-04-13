@@ -33,9 +33,9 @@ In simpler terms, setting up health checks in your app involves two main steps.
 First, you add health check services in your app's configuration. This doesn't automatically check specific parts of your app, like databases or other systems.
 Your app is considered **'healthy' if it can simply respond to a special URL that checks its health** . When someone visits this URL, they get a simple text message saying whether your app is healthy, somewhat healthy ('degraded'), or unhealthy.
 There are three HealthStatus values:
-• HealthStatus.Healthy
-• HealthStatus.Degraded
-• HealthStatus.Unhealthy
+- HealthStatus.Healthy
+- HealthStatus.Degraded
+- HealthStatus.Unhealthy
 You can use the HealthStatus to indicate the different states of your application.
 To do all this, you need to write some code in your app's Program.cs file:
 ```csharp

@@ -23,10 +23,10 @@ In .NET, `System.Threading.Channels` gives us exactly that. No external dependen
 
 In this post, we will build a `DataPointService` that:
 
-• Consumes data points from NATS at high speed  
-• Writes them into a `BoundedChannel<DataPointValue>` (capacity 10,000, single-reader)  
-• Flushes in batches (1,000 items or every 50ms, whichever comes first)  
-• Broadcasts each batch to connected dashboards through a SignalR `DataPointHub`
+- Consumes data points from NATS at high speed  
+- Writes them into a `BoundedChannel<DataPointValue>` (capacity 10,000, single-reader)  
+- Flushes in batches (1,000 items or every 50ms, whichever comes first)  
+- Broadcasts each batch to connected dashboards through a SignalR `DataPointHub`
 
 By the end, you will have a production-ready pattern for bridging any fast producer with a slower consumer.
 
@@ -34,16 +34,16 @@ By the end, you will have a production-ready pattern for bridging any fast produ
 
 `System.Threading.Channels` ships with .NET and comes in two flavors:
 
-• `Channel.CreateUnbounded<T>()` - no capacity limit, can eat all your memory  
-• `Channel.CreateBounded<T>(capacity)` - fixed capacity with backpressure
+- `Channel.CreateUnbounded<T>()` - no capacity limit, can eat all your memory  
+- `Channel.CreateBounded<T>(capacity)` - fixed capacity with backpressure
 
 For high-throughput ingestion, always pick bounded.
 
 Here is why:
 
-• **Backpressure** - when the channel is full, the producer waits (or drops), so your service does not run out of memory  
-• **Single-reader optimization** - the runtime skips internal locks when it knows only one consumer exists  
-• **Predictable memory footprint** - you decide the maximum buffered items upfront
+- **Backpressure** - when the channel is full, the producer waits (or drops), so your service does not run out of memory  
+- **Single-reader optimization** - the runtime skips internal locks when it knows only one consumer exists  
+- **Predictable memory footprint** - you decide the maximum buffered items upfront
 
 Think of it as a pipe with a known diameter. You control how much water flows through it.
 
@@ -264,9 +264,9 @@ The trick is the **linked CancellationTokenSource**.
 
 We create a token that expires after 50ms. The inner loop reads as fast as it can until either:
 
-• It collects 1,000 items (batch full)  
-• The 50ms timer fires (time flush)  
-• The service shuts down (graceful stop)
+- It collects 1,000 items (batch full)  
+- The 50ms timer fires (time flush)  
+- The service shuts down (graceful stop)
 
 In every case, whatever we collected gets flushed.
 
@@ -324,10 +324,10 @@ Here is the full flow:
 
 ![BoundedChannel Pipeline: NATS to SignalR](/images/blog/posts/high-throughput-real-time-data-bounded-channel-signalr/bounded-channel-pipeline.png)
 
-• NATS pushes at full speed  
-• The channel absorbs bursts up to 10,000 items  
-• The flush loop collects batches efficiently  
-• SignalR delivers one batch per flush to all dashboards
+- NATS pushes at full speed  
+- The channel absorbs bursts up to 10,000 items  
+- The flush loop collects batches efficiently  
+- SignalR delivers one batch per flush to all dashboards
 
 No message is processed one at a time. No `Task.Delay` polling. No manual thread management.
 
@@ -337,11 +337,11 @@ Channel-based batching is the modern .NET approach for bridging fast producers w
 
 Here is what you get:
 
-• **Backpressure** - the producer slows down when the consumer cannot keep up, so memory stays predictable  
-• **Throughput** - batching reduces the number of SignalR calls from thousands per second to a few dozen  
-• **Latency** - the 50ms time trigger ensures clients see updates within 50ms even during low traffic  
-• **Graceful shutdown** - remaining items are drained before the service stops  
-• **Configurability** - batch size, channel capacity, and flush interval are all in `appsettings.json`
+- **Backpressure** - the producer slows down when the consumer cannot keep up, so memory stays predictable  
+- **Throughput** - batching reduces the number of SignalR calls from thousands per second to a few dozen  
+- **Latency** - the 50ms time trigger ensures clients see updates within 50ms even during low traffic  
+- **Graceful shutdown** - remaining items are drained before the service stops  
+- **Configurability** - batch size, channel capacity, and flush interval are all in `appsettings.json`
 
 Compare this to the naive approach of calling `SendAsync` for every single data point. At 5,000 messages per second, that is 5,000 SignalR broadcasts. With batching, it drops to roughly 5 flushes of 1,000 items each, or about 100 flushes of 50ms-worth of data during lighter loads.
 
@@ -349,10 +349,10 @@ Compare this to the naive approach of calling `SendAsync` for every single data 
 
 The defaults (10,000 capacity / 1,000 batch / 50ms flush) work well for most real-time dashboard scenarios. But you may need to adjust:
 
-• **High burst, low steady-state** - increase `ChannelCapacity` so bursts do not trigger backpressure  
-• **Ultra-low latency** - decrease `FlushIntervalMs` to 10-20ms at the cost of more frequent, smaller batches  
-• **Heavy payloads** - decrease `BatchSize` so each SignalR message stays within a reasonable size  
-• **Multiple consumers** - set `SingleReader: false` if you add a second reader (e.g., a database writer alongside SignalR)
+- **High burst, low steady-state** - increase `ChannelCapacity` so bursts do not trigger backpressure  
+- **Ultra-low latency** - decrease `FlushIntervalMs` to 10-20ms at the cost of more frequent, smaller batches  
+- **Heavy payloads** - decrease `BatchSize` so each SignalR message stays within a reasonable size  
+- **Multiple consumers** - set `SingleReader: false` if you add a second reader (e.g., a database writer alongside SignalR)
 
 Always benchmark with realistic load. Channel performance is excellent, but your bottleneck is usually the downstream consumer.
 

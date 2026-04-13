@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to put localhost online in Visual Studio?"
 subtitle: "Imagine creating a .NET API project that you call in a front-end web or mobile application..."
 date: "Apr 3 2023"
@@ -21,9 +21,9 @@ Let's see how to use it.
 ## Enable Dev Tunnels
 
 Prerequisite:
-• Required version Visual Studio is 17.5
-• You must sign into Visual Studio
-• Dev Tunnels is not available for Visual Studio on Mac  
+- Required version Visual Studio is 17.5
+- You must sign into Visual Studio
+- Dev Tunnels is not available for Visual Studio on Mac  
 To use this feature, first you need to enable Dev Tunnel feature from: **Tools -> Options -> Environment -> Preview Features** (or just search for dev keyword). Then search for keyword dev. Check the <span style="color: #ffbd39"> **Enable dev tunnels for Web Applications** checkbox.
 ![Enable Dev Tunnels](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/enable-dev-tunnels.png)
 ## Create a Tunnel
@@ -35,12 +35,12 @@ You can do this in 2 ways:
 You should see a following window:
 ![Create Dev Tunnel from Debug Menu](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/account-to-create-dev-tunnel.png)
 Details:
-**• Account**: Like I said, you should be logged in
-**• Name**: Give a name for a tunnel
-**• Type**:
+**- Account**: Like I said, you should be logged in
+**- Name**: Give a name for a tunnel
+**- Type**:
 - Temporary -  a new URL each time Visual Studio is started
 - Permanent - the same URL each time Visual Studio is started. 
-**• Access**:
+**- Access**:
 - Private - accessible only to the account that created it
 - Organization - The tunnel is accessible to accounts in the same organization as the one that created it. If this option is selected for a personal Microsoft account (MSA), the effect is the same as selecting Private. Organization support for GitHub accounts isn't supported. 
 - Public - No authentication required. 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "MediatR Alternative - Wolverine"
 subtitle: "MediatR will soon require a commercial license for some usage. This has sparked interest in alternatives - and one name stands out: Wolverine..."
 date: "Apr 08 2025"
@@ -14,8 +14,8 @@ A brand-new course is launching soon inside [The CodeMan Community](https://www.
 Join now to lock in early access when it drops - plus get everything else already inside the group.
 
 Founding Member Offer:
-• First 100 members get in for **just $4/month** - *70 spots already taken*!
-• Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
+- First 100 members get in for **just $4/month** - *70 spots already taken*!
+- Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
 Get ahead of the game -  and make clean, consistent code your superpower.
 [Join here](https://www.skool.com/thecodeman)
 
@@ -32,11 +32,11 @@ Wolverine is a high-performance .NET library for CQRS, messaging, and background
 
 Wolverine is more than just a drop-in replacement for MediatR. It offers:
 
-• Faster performance via source generators
-• Built-in message bus for local or distributed messaging
-• Scheduling, retries, and durable outbox support
-• Native saga/workflow orchestration
-• Seamless integration with minimal APIs
+- Faster performance via source generators
+- Built-in message bus for local or distributed messaging
+- Scheduling, retries, and durable outbox support
+- Native saga/workflow orchestration
+- Seamless integration with minimal APIs
 In this article, we'll build a complete User CRUD API using Wolverine to show how clean and scalable your app architecture can be. 
 
 Let's start!
@@ -44,10 +44,10 @@ Let's start!
 ## What We’re Building
 We’ll build a minimal API to:
 
-• Create a new user
-• Read a user by ID
-• Update an existing user
-• Delete a user
+- Create a new user
+- Read a user by ID
+- Update an existing user
+- Delete a user
 
 Each operation will be implemented using a command or query object and handled by Wolverine, keeping everything decoupled, testable, and clean.
 
@@ -137,20 +137,20 @@ public class DeleteUserHandler
 
 ## Step 4: Configure Minimal API with Wolverine
 
-• Registers message handlers automatically
+- Registers message handlers automatically
 Wolverine scans your assembly for any class with Handle or HandleAsync methods that match a message type (like CreateUser, UpdateUser, etc.), and registers them.
 
-• Adds IMessageBus to DI
+- Adds IMessageBus to DI
 This makes IMessageBus available throughout your app — including in minimal API endpoints, services, background workers, etc.
 
-• Enables Wolverine middleware & extensions
+- Enables Wolverine middleware & extensions
 Wolverine hooks into the app pipeline and optionally enables:
 - Retry policies
 -Message scheduling
 -Outbox/durable messaging
 -Background jobs
 
-• Starts the internal runtime engine
+- Starts the internal runtime engine
 Wolverine spins up an internal messaging engine to manage local + external message routing (e.g. [RabbitMQ](https://thecodeman.net/posts/rabbitmq-in-dotnet-from-scratch), Kafka) if configured.
 
 ```csharp
@@ -200,8 +200,8 @@ app.Run();
 *await bus.InvokeAsync<User>(request);*
 
 What’s happening:
-• request is a command (e.g. CreateUser)
-• InvokeAsync<TResponse>(...) means: "Send this command to Wolverine and give me back a result of type TResponse — in this case, a User"
+- request is a command (e.g. CreateUser)
+- InvokeAsync<TResponse>(...) means: "Send this command to Wolverine and give me back a result of type TResponse — in this case, a User"
 
 Behind the scenes:
 1. Wolverine receives the CreateUser command.
@@ -217,8 +217,8 @@ Here’s what Wolverine gives you beyond MediatR:
 
 - Built-in Messaging System
 Supports:
-• In-memory messaging (like MediatR)
-• Distributed messaging with RabbitMQ, Azure Service Bus, Kafka, and more
+- In-memory messaging (like MediatR)
+- Distributed messaging with RabbitMQ, Azure Service Bus, Kafka, and more
 
 - Background Jobs & Scheduling
 You can schedule messages to run later.
@@ -233,22 +233,22 @@ Easily orchestrate multi-step, long-running workflows with built-in Saga support
 
 If you're building clean APIs, CQRS-based services, or microservices, **Wolverine offers a powerful alternative to MediatR**. It keeps your code lean and testable while unlocking features like:
 
-• Distributed messaging
-• Scheduling and retries
-• [Saga orchestration](https://thecodeman.net/posts/saga-orchestration-pattern)
-• Source-generated performance
+- Distributed messaging
+- Scheduling and retries
+- [Saga orchestration](https://thecodeman.net/posts/saga-orchestration-pattern)
+- Source-generated performance
 
 Now that MediatR is transitioning to a commercial model, Wolverine becomes an even more compelling choice for greenfield projects and modern architecture.
 
 🙌 Why I Still Respect MediatR’s New Direction
 
 While this article showcases Wolverine, I want to take a moment to acknowledge and support the decision behind MediatR’s upcoming commercial licensing.
-• Both maintainers - especially [Jimmy Bogard](https://www.jimmybogard.com/) — have contributed over a decade of free value to the .NET community.
-• This change didn’t come hastily - it was clearly communicated and thoughtfully planned.
-• Most importantly:
-✅ Existing versions remain open source
-✅ Security patches will still be delivered
-✅ Paid licenses help ensure sustainability
+- Both maintainers - especially [Jimmy Bogard](https://www.jimmybogard.com/) — have contributed over a decade of free value to the .NET community.
+- This change didn’t come hastily - it was clearly communicated and thoughtfully planned.
+- Most importantly:
+- ✅ Existing versions remain open source
+- ✅ Security patches will still be delivered
+- ✅ Paid licenses help ensure sustainability
 
 Let’s be honest here: **writing and maintaining libraries like MediatR from scratch would cost your team far more than the license fees.** 
 

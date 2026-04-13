@@ -1,4 +1,4 @@
----
+﻿---
 title: "Better Error Handling with Result<T> object"
 subtitle: "Exceptions are designed to handle unexpected and rare events..."
 date: "Dec 11 2023"
@@ -12,8 +12,8 @@ meta_description: "Explore the latest methods to handle Nullable References in .
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** <a href="https://blog.postman.com/testing-grpc-apis-with-postman/" style="color: #a5b4fc; text-decoration: underline;">writing tests for your gRPC requests in Postman</a> ** For more info about gRPC, they created a great beginner article ** <a href="https://blog.postman.com/what-is-grpc/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• <a href="https://workflowengine.io/" style="color: #a5b4fc; text-decoration: underline;">**Workflow Engine**</a> is the perfect solution if you are dealing with business entities life cycle management in a project. Using embedded drag&amp;drop designer you can create processes in your system and manage your workflows via a simple API. Check it out ** <a href="https://workflowengine.io/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** <a href="https://blog.postman.com/testing-grpc-apis-with-postman/" style="color: #a5b4fc; text-decoration: underline;">writing tests for your gRPC requests in Postman</a> ** For more info about gRPC, they created a great beginner article ** <a href="https://blog.postman.com/what-is-grpc/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- <a href="https://workflowengine.io/" style="color: #a5b4fc; text-decoration: underline;">**Workflow Engine**</a> is the perfect solution if you are dealing with business entities life cycle management in a project. Using embedded drag&amp;drop designer you can create processes in your system and manage your workflows via a simple API. Check it out ** <a href="https://workflowengine.io/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -31,9 +31,9 @@ Also...
 Improperly handled exceptions can lead to resource leaks.
 Exceptions are designed to **handle unexpected and rare events** . Using them for regular control flow, like handling business logic or validations, is generally considered a bad practice because it misrepresents the intention of the exception mechanism.
 Even Microsoft has a recommendation:
-• Do not use throwing or catching exceptions as a means of normal program flow, especially in hot code paths.
-• Do include logic in the app to detect and handle conditions that would cause an exception.
-• Do throw or catch exceptions for unusual or unexpected conditions.
+- Do not use throwing or catching exceptions as a means of normal program flow, especially in hot code paths.
+- Do include logic in the app to detect and handle conditions that would cause an exception.
+- Do throw or catch exceptions for unusual or unexpected conditions.
 So what to do?
 Minimize them. Try something else.
 In today's article, I'll explain how you can minimize using exceptions, and change them for the **Result&lt;T&gt;** object in the normal flow of the application.
@@ -110,10 +110,10 @@ public class Result
 }
 ```
 
-• **Success/Failure Indicator** : At its core, a Result object contains a flag indicating whether the operation was successful. This is usually a boolean value.
-• **Return Value** : In the case of success, the Result object can hold the resulting value of the operation. For instance, if the operation was to process a file, the Result might contain the processed data.
-• **Error Message or Error Object:** In case of failure, the Result can hold an error message or an entire error object that provides more details about why the operation failed. This is more informative than a simple false or null return value.
-• **Additional Metadata:** Depending on the implementation, a Result object can also contain additional metadata about the operation, like error codes, timestamps, or diagnostic information.
+- **Success/Failure Indicator** : At its core, a Result object contains a flag indicating whether the operation was successful. This is usually a boolean value.
+- **Return Value** : In the case of success, the Result object can hold the resulting value of the operation. For instance, if the operation was to process a file, the Result might contain the processed data.
+- **Error Message or Error Object:** In case of failure, the Result can hold an error message or an entire error object that provides more details about why the operation failed. This is more informative than a simple false or null return value.
+- **Additional Metadata:** Depending on the implementation, a Result object can also contain additional metadata about the operation, like error codes, timestamps, or diagnostic information.
 Really nice, right?
 What can we improve here?
 ## A better way to express the error
@@ -161,9 +161,9 @@ Let's distill the essence of this week's discussion: reserve exceptions for trul
 They are best suited for situations where the error is beyond your immediate handling capabilities.
 For everything else, the clarity and structure offered by the Result pattern are far more beneficial.
 Embracing the Result class in your code allows you to:
-• Clearly indicate that a method might not always succeed.
-• Neatly wrap up an error occurring within your application.
-• Offer a streamlined, functional approach to managing errors.
+- Clearly indicate that a method might not always succeed.
+- Neatly wrap up an error occurring within your application.
+- Offer a streamlined, functional approach to managing errors.
 What's more, you can systematically catalog all the errors in your application using the Error class. This is incredibly useful, providing a clear guide on which errors to anticipate and handle.
 I highly recommend giving the Result pattern a try in your projects. It could significantly elevate the quality of your code.
 That's all from me today.

@@ -39,9 +39,9 @@ The key is to use constants or enums to represent these values instead of hard-c
 ## 3#: Avoid Return null collection
 
 Why you should not do this:
-• Possible NullReferenceException
-• We always need to check for null   
-• Slow Performance (checking for null, throwing/catching an exception, etc.)
+- Possible NullReferenceException
+- We always need to check for null   
+- Slow Performance (checking for null, throwing/catching an exception, etc.)
 
 ![Do not return null collection](/images/blog/posts/clean-code-best-practices/do-not-return-null-collection.png)
 Instead, just return an empty collection.

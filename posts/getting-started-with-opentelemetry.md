@@ -1,4 +1,4 @@
----
+﻿---
 title: "Getting Started with OpenTelemetry in .NET"
 subtitle: "OpenTelemetry is an open-source framework for observability that provides tools, APIs, and SDKs to help developers generate, collect, and export telemetry data such as traces, metrics, and logs. "
 date: "Jan 21 2025"
@@ -12,8 +12,8 @@ meta_description: "OpenTelemetry is an open-source framework for observability t
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• 🚀 Neon serverless Postgres is built for .NET Developers on Azure. Connect Neon to your apps using Npgsql or Entity Framework. Enable database branching, autoscaling, vector storage, and automate deployments with GitHub Actions. Start building now with Neon’s free plan. <a href="https://neon.tech/?ref=snn" style="color: #a5b4fc; text-decoration: underline;">Start here!</a></p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Level up your projects with FREE Clean Architecture template created by Milan Jovanovic, trusted by over 10,000 developers. Packed with features like CQRS, JWT authentication, Domain Events, and Docker support, it’s everything you need to start strong - <a href="https://www.milanjovanovic.tech/templates/clean-architecture?utm_source=stefan&utm_medium=website&utm_campaign=20.01.2024" style="color: #a5b4fc; text-decoration: underline;">download it now</a>.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- 🚀 Neon serverless Postgres is built for .NET Developers on Azure. Connect Neon to your apps using Npgsql or Entity Framework. Enable database branching, autoscaling, vector storage, and automate deployments with GitHub Actions. Start building now with Neon’s free plan. <a href="https://neon.tech/?ref=snn" style="color: #a5b4fc; text-decoration: underline;">Start here!</a></p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Level up your projects with FREE Clean Architecture template created by Milan Jovanovic, trusted by over 10,000 developers. Packed with features like CQRS, JWT authentication, Domain Events, and Docker support, it’s everything you need to start strong - <a href="https://www.milanjovanovic.tech/templates/clean-architecture?utm_source=stefan&utm_medium=website&utm_campaign=20.01.2024" style="color: #a5b4fc; text-decoration: underline;">download it now</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -39,9 +39,9 @@ It helps you see what's happening under the hood of your software - how requests
 
 When you're building an app, especially one made up of many pieces (like microservices or cloud-based systems), it can be hard to figure out:
 
-• Where things are slowing down.
-• What's causing errors.
-• How all the different parts of your app are working together.
+- Where things are slowing down.
+- What's causing errors.
+- How all the different parts of your app are working together.
 
 OpenTelemetry provides tools to capture this information - **traces, metrics, and logs** - so you can better understand and optimize your application.
 ### Real-World Example: A Pizza Delivery System
@@ -115,45 +115,45 @@ builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExporter());
 1. builder.Services.AddOpenTelemetry()
 This initializes OpenTelemetry in the application and allows configuration for resource, metrics, and tracing.
 2. Configure Resource
-**• What it does:** Configures the resource metadata that describes the application being monitored.
-**• AddService("NewsletterApi"):** Specifies the name of the service being monitored, in this case, "NewsletterApi." This name will appear in your telemetry backend, helping you identify which service the telemetry data belongs to.
+**- What it does:** Configures the resource metadata that describes the application being monitored.
+**- AddService("NewsletterApi"):** Specifies the name of the service being monitored, in this case, "NewsletterApi." This name will appear in your telemetry backend, helping you identify which service the telemetry data belongs to.
 3. Metrics Configuration
-**• Purpose:** Configures the collection and export of metrics.
-• Components:
+**- Purpose:** Configures the collection and export of metrics.
+- Components:
 - AddAspNetCoreInstrumentation(): Automatically collects metrics related to ASP.NET Core requests, such as request durations, response codes, and incoming request counts.
 - AddHttpClientInstrumentation(): Tracks metrics for outgoing HTTP calls made using HttpClient, like the number of requests and their response times.
 - AddOtlpExporter(): Exports metrics data using the OpenTelemetry Protocol (OTLP) to a telemetry backend.
 4. Tracing Configuration
-**• Purpose:** Configures the collection and export of traces.
-• Components:
+**- Purpose:** Configures the collection and export of traces.
+- Components:
 - AddAspNetCoreInstrumentation(): Automatically captures traces for incoming requests in the ASP.NET Core pipeline. This includes details like request paths, response codes, and request durations.
 - AddHttpClientInstrumentation(): Captures traces for outgoing HTTP requests made using HttpClient, including the target URL and response status.
 - AddOtlpExporter(): Exports traces data to a backend using OTLP.
 5. Logging Configuration
-**• What it does:** Configures OpenTelemetry for [structured logging](https://thecodeman.net/posts/structured-logging-with-serilog).
-• Components:
+**- What it does:** Configures OpenTelemetry for [structured logging](https://thecodeman.net/posts/structured-logging-with-serilog).
+- Components:
 - AddOtlpExporter(): Exports logs to an OTLP-compatible backend. The logs will include metadata like severity levels, timestamps, and any structured fields you add.
 
 How It All Works Together
 
 1. Resource: Identifies the service generating the telemetry data.
-• Example: The service is called NewsletterApi.
+- Example: The service is called NewsletterApi.
 2. Metrics:
-• Collects data like how many requests your API is handling, how long they take, and the performance of outgoing HTTP calls.
-• Sends this data to a telemetry backend (e.g., Prometheus, Azure Monitor).
+- Collects data like how many requests your API is handling, how long they take, and the performance of outgoing HTTP calls.
+- Sends this data to a telemetry backend (e.g., Prometheus, Azure Monitor).
 3. Tracing:
-• Captures the flow of each user request through the application and outgoing dependencies.
-• Helps identify bottlenecks or errors in distributed systems.
-• Sends the trace data to a backend (e.g., Jaeger, Zipkin).
+- Captures the flow of each user request through the application and outgoing dependencies.
+- Helps identify bottlenecks or errors in distributed systems.
+- Sends the trace data to a backend (e.g., Jaeger, Zipkin).
 4. Logging:
-• Sends application logs to a telemetry backend, integrating them with traces and metrics for a complete observability story.
+- Sends application logs to a telemetry backend, integrating them with traces and metrics for a complete observability story.
 
 ## Example Workflow
 
 A user makes a request to your NewsletterApi.
-**• Tracing ** captures the flow of the request (e.g., API received the request → validated input → called an external email service).
-**• Metrics** record how long the request took and how many requests the API has handled so far.
-**• Logs** capture structured messages about what happened during the request (e.g., "User subscribed to newsletter").
+**- Tracing ** captures the flow of the request (e.g., API received the request → validated input → called an external email service).
+**- Metrics** record how long the request took and how many requests the API has handled so far.
+**- Logs** capture structured messages about what happened during the request (e.g., "User subscribed to newsletter").
 All this data is sent to a telemetry backend (via OTLP), where you can view, analyze, and troubleshoot.
 
 ## How to consume Telemetry Data? 
@@ -165,19 +165,19 @@ We need to choose a Telemetry Backend.
 Telemetry backends are tools that aggregate, store, and analyze telemetry data. Some popular options:
 
 Traces:
-• Jaeger
-• Zipkin
-• Honeycomb
+- Jaeger
+- Zipkin
+- Honeycomb
 
 Metrics:
-• Prometheus
-• Azure Monitor
-• AWS CloudWatch
+- Prometheus
+- Azure Monitor
+- AWS CloudWatch
 
 Logs:
-• Elastic Stack (ELK)
-• Splunk
-• Fluentd
+- Elastic Stack (ELK)
+- Splunk
+- Fluentd
 
 However, here I'm going to show you why Aspire Dashboard can be useful. 
 **The Aspire Dashboard** is a web-based tool for [monitoring](https://thecodeman.net/posts/how-to-monitor-dotnet-applications-in-production) and managing distributed applications, particularly in the .NET ecosystem. 

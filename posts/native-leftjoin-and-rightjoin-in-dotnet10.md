@@ -24,10 +24,10 @@ These operators read like SQL, translate to proper LEFT JOIN / RIGHT JOIN, and r
  
 In this article:
  
-• Why were LeftJoin and RightJoin added
-• How they map to EF Core queries and SQL
-• Real-world examples you’ll actually use in production 
-• Subtle details & limitations you should know before migrating
+- Why were LeftJoin and RightJoin added
+- How they map to EF Core queries and SQL
+- Real-world examples you’ll actually use in production 
+- Subtle details & limitations you should know before migrating
 
 ## Before EF Core 10: Left joins were always a ceremony 
 
@@ -43,10 +43,10 @@ var query =
 
 Or the even uglier method-syntax variant.
 This syntax works, but:
-• It’s noisy
-• It’s easy to break
-• juniors constantly forget DefaultIfEmpty()
-• It doesn't resemble SQL at all 
+- It’s noisy
+- It’s easy to break
+- juniors constantly forget DefaultIfEmpty()
+- It doesn't resemble SQL at all 
 
 ## What EF Core 10 adds
 
@@ -56,8 +56,8 @@ LeftJoin()
 RightJoin()
 ```
 Supported by LINQ-to-Entities, meaning EF Core properly translates them to:
-• LEFT JOIN 
-• RIGHT JOIN
+- LEFT JOIN 
+- RIGHT JOIN
 …with clean, readable, intention-revealing syntax.
 
 ## Real-World Example #1 (LeftJoin)    
@@ -118,9 +118,9 @@ var query = db.Orders
 ```
 
 Why this example matters
-• It’s a real-world ecommerce/logistics use case.
-• It shows a typical “latest entry per group” pattern.
-• It leverages grouping + left join in a clean, readable way
+- It’s a real-world ecommerce/logistics use case.
+- It shows a typical “latest entry per group” pattern.
+- It leverages grouping + left join in a clean, readable way
 
 ## Real-World Example #2 (RightJoin)  
 
@@ -128,10 +128,10 @@ Employee Directory + Optional Workstation Assignment
 *“Show all workstations and who is assigned to them, including empty workstations.”*
 This is extremely common in:
  
-• office management
-• manufacturing floors
-• call centers
-• corporate IT asset management
+- office management
+- manufacturing floors
+- call centers
+- corporate IT asset management
 
 Entities:
 
@@ -170,9 +170,9 @@ var query = db.Employees
 
 Why this example matters
  
-• RightJoin makes sense here because the right table (workstations) is the primary dataset.
-• It reflects real organizational data flows.
-• It shows how to handle optional assignments cleanly.
+- RightJoin makes sense here because the right table (workstations) is the primary dataset.
+- It reflects real organizational data flows.
+- It shows how to handle optional assignments cleanly.
 
 ## What about LINQ query syntax?
 
@@ -219,8 +219,8 @@ But this is really just query syntax “around” the method chain. You’re not
 
 In practice, most teams that adopt LeftJoin / RightJoin will:
 
-• Keep query syntax for simple from / where / select queries.
-• Use method syntax (with the new join operators) whenever an outer join is involved.
+- Keep query syntax for simple from / where / select queries.
+- Use method syntax (with the new join operators) whenever an outer join is involved.
 
 That’s also the most readable compromise in code reviews.
 
@@ -230,8 +230,8 @@ LeftJoin and RightJoin look simple, but there are a few things worth keeping in 
 
 ### 1. Always treat one side as nullable
 By definition:
-• LeftJoin → the right side is nullable.
-• RightJoin → the left side is nullable.
+- LeftJoin → the right side is nullable.
+- RightJoin → the left side is nullable.
 Make that explicit in your projections and avoid accidental NullReferenceExceptions:
 ```csharp
 var result = db.Orders
@@ -255,9 +255,9 @@ This pattern makes intent obvious and avoids the temptation to treat the joined 
 Just because you can return entire entities on both sides doesn’t mean you should.
  
 Prefer projecting **exactly what you need**:
-• Smaller SQL result sets
-• Less data materialization
-• Faster queries and less memory pressure
+- Smaller SQL result sets
+- Less data materialization
+- Faster queries and less memory pressure
 
 ```csharp
 select new OrderSummaryDto
@@ -274,8 +274,8 @@ This is especially important when you join large tables (orders, events, logs, t
 LeftJoin/RightJoin don’t magically optimize the database - they still compile to regular SQL joins. The usual relational rule still applies:
 Join keys must be indexed if you care about performance.
 Typical examples:
-• FK columns: Shipments.OrderId, Reviews.ProductId, JobExecution.JobId
-• Business keys used in joins: ClientId, ExternalId, BankReference
+- FK columns: Shipments.OrderId, Reviews.ProductId, JobExecution.JobId
+- Business keys used in joins: ClientId, ExternalId, BankReference
 Without indexes, large outer joins will happily turn into table scans.
 
 ## Wrapping Up 
@@ -284,14 +284,14 @@ Without indexes, large outer joins will happily turn into table scans.
 
 But for everyday data access, **LeftJoin and RightJoin quietly fix one of the most annoying gaps in LINQ:**
  
-• No more GroupJoin + SelectMany + DefaultIfEmpty rituals
-• Queries that **look like** LEFT JOIN / RIGHT JOIN
-• Cleaner, more maintainable EF Core code that you can safely hand to juniors
+- No more GroupJoin + SelectMany + DefaultIfEmpty rituals
+- Queries that **look like** LEFT JOIN / RIGHT JOIN
+- Cleaner, more maintainable EF Core code that you can safely hand to juniors
 If you have codebases full of hand-rolled left joins:
  
-• Start by refactoring the ugliest ones into LeftJoin
-• Wire them into real features - dashboards, reports, export pipelines
-• Use this as a teaching moment for your team: *“This is how we express joins in EF Core 10 from now on.”*
+- Start by refactoring the ugliest ones into LeftJoin
+- Wire them into real features - dashboards, reports, export pipelines
+- Use this as a teaching moment for your team: *“This is how we express joins in EF Core 10 from now on.”*
  
 And because this is an LTS release, you can confidently adopt these operators in production and enjoy them for years.
 

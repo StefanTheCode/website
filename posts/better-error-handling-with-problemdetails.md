@@ -1,4 +1,4 @@
----
+﻿---
 title: "Better Error Handling in .NET using ProblemDetails"
 subtitle: "Let’s be honest - error handling is usually the last thing we think about when building APIs. But it should be one of the first."
 date: "June 23 2025"
@@ -49,9 +49,9 @@ ASP.NET has built-in support for this - and it works great with Minimal APIs too
 ## Let’s Build It with Minimal API
 
 We’ll create a simple Web API where you can:
-• Get a product by ID
-• Return errors using ProblemDetails
-• Handle exceptions globally
+- Get a product by ID
+- Return errors using ProblemDetails
+- Handle exceptions globally
 
 All using Minimal API style.
 
@@ -160,9 +160,9 @@ app.Run();
 ```
 
 Then try:
-• ✅ GET /products/1 - returns product
-• ❌ GET /products/0 - throws exception → returns 500 ProblemDetails
-• ❌ GET /products/999 - returns 404 ProblemDetails
+- ✅ GET /products/1 - returns product
+- ❌ GET /products/0 - throws exception → returns 500 ProblemDetails
+- ❌ GET /products/999 - returns 404 ProblemDetails
 
 ## Optional: Add Custom Fields
 
@@ -178,10 +178,10 @@ Then return it with Results.Problem(...) and pass additional metadata.
 
 ## Benefits of This Approach
 
-• Clean error responses
-• Easy to understand for frontend devs
-• Standards-based (RFC 7807)
-• Built into .NET 
+- Clean error responses
+- Easy to understand for frontend devs
+- Standards-based (RFC 7807)
+- Built into .NET 
 
 
 Also check out the [Result Object Pattern](https://thecodeman.net/posts/better-error-handling-with-result-object) for a complementary error handling approach.
@@ -190,8 +190,8 @@ Also check out the [Result Object Pattern](https://thecodeman.net/posts/better-e
 
 Never return ex.ToString() to the user - it may leak sensitive info.
 
-✅Log full exception
-❌Show minimal, generic details in the API response
+- ✅Log full exception
+- ❌Show minimal, generic details in the API response
 
 With just a few lines of code, you now have a Minimal API that returns beautif
 

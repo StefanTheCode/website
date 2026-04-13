@@ -1,4 +1,4 @@
----
+﻿---
 title: "Securing Secrets in .NET 8 with Azure Key Vault"
 subtitle: "While convenient, this approach can pose security risks if not handled properly. Azure Key Vault offers a secure, managed solution for secret storage, allowing us to keep sensitive data out of local files and within a secure cloud environment."
 date: "Nov 04 2024"
@@ -12,7 +12,7 @@ meta_description: "Learn how to securely manage and access secrets in .NET 8 app
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Unlock <a href="https://community.postman.com/t/the-postman-drop-october-edition/70044?utm_medium=social_sharing&utm_source=newsletter&utm_content=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Postman's latest features</a> for seamless API management! Now with a centralized variable experience and secure secret storage via Postman Vault, your team can streamline workflows and safeguard sensitive data effortlessly. <a href="https://community.postman.com/t/the-postman-drop-october-edition/70044?utm_medium=social_sharing&utm_source=newsletter&utm_content=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Learn more</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Unlock <a href="https://community.postman.com/t/the-postman-drop-october-edition/70044?utm_medium=social_sharing&utm_source=newsletter&utm_content=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Postman's latest features</a> for seamless API management! Now with a centralized variable experience and secure secret storage via Postman Vault, your team can streamline workflows and safeguard sensitive data effortlessly. <a href="https://community.postman.com/t/the-postman-drop-october-edition/70044?utm_medium=social_sharing&utm_source=newsletter&utm_content=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Learn more</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -125,33 +125,33 @@ builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), credentials);
 
 1. Determine the Environment:
 
-• Environment.GetEnvironmentVariable("ENVIRONMENT"):
+- Environment.GetEnvironmentVariable("ENVIRONMENT"):
 
 This line retrieves the ENVIRONMENT environment variable from the operating system, which tells the application which environment it’s running in (e.g., Development, Staging, or Production).
 
-**• string jsonFile = $"appsettings.{environment}.json";:** 
+**- string jsonFile = $"appsettings.{environment}.json";:** 
 Using the environment value, this line builds the name of an environment-specific configuration file, like appsettings.Development.json or appsettings.Production.json.
 
 2. Load Configuration Files:
 
-**• .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true):** 
+**- .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true):** 
 This line tells the application to load the main configuration file, appsettings.json. The optional: false parameter means this file must be present. reloadOnChange: true enables automatic reloading if the file changes, so the application will pick up updates without restarting.
 
-**• .AddJsonFile(jsonFile, optional: true):** 
+**- .AddJsonFile(jsonFile, optional: true):** 
 
 Here, it loads the environment-specific configuration file (e.g., appsettings.Development.json). Setting optional: true means this file is not required; if it’s not found, the application will continue running without it. This setup allows you to override settings in appsettings.json with environment-specific values if needed.
 
 3. Retrieve Key Vault URL:
 
-**• string? keyVaultUrl = builder.Configuration["KeyVault"];:** 
+**- string? keyVaultUrl = builder.Configuration["KeyVault"];:** 
 After loading the configuration files, this line accesses the KeyVault entry from the local configuration. This entry should contain the URL of the Azure Key Vault, such as https://mykeyvault.vault.azure.net/. This is necessary to connect to Key Vault to retrieve secrets.
 *Note: Each of the files for individual environments will have its own link for KeyVault if each of the environments has a separate Azure service created - Dev has its own Azure, Test has its own, and so on.*
 4. Add Azure Key Vault to Configuration:
-• var credentials = new DefaultAzureCredential();:
+- var credentials = new DefaultAzureCredential();:
 
 This line initializes the DefaultAzureCredential, which is a class from the Azure Identity library. DefaultAzureCredential tries various methods to authenticate with Azure, like using Azure CLI, environment variables, managed identity (when running in Azure), and more. It simplifies the authentication process by automatically picking the most appropriate authentication method based on the environment.
 
-**• builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), credentials);:** 
+**- builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), credentials);:** 
 This line adds Azure Key Vault as a configuration source. Using the keyVaultUrl and the credentials, it connects to Key Vault, loading all available secrets into the application’s configuration. This allows the application to access secrets from Key Vault just like any other configuration setting.
 
 ### How the Configuration Works Together
@@ -187,11 +187,11 @@ Azure Key Vault provides a secure and centralized solution, allowing .NET 8 appl
 
 By following this guide, you’ve learned:
 
-• How to set up Key Vault 
-• integrate it with .NET
-• and configure your app to use appsettings.json and environment-specific settings. 
-• Additionally, using DefaultAzureCredential simplifies authentication
-• making the setup adaptable to both local and cloud environments.
+- How to set up Key Vault 
+- integrate it with .NET
+- and configure your app to use appsettings.json and environment-specific settings. 
+- Additionally, using DefaultAzureCredential simplifies authentication
+- making the setup adaptable to both local and cloud environments.
 By implementing these practices, your .NET 8 application will be more secure, maintainable, and compliant with industry standards. 
 Using Azure Key Vault not only helps protect sensitive information but also brings flexibility to your configuration management across different environments. 
 Keep these techniques in mind as you continue to build secure, scalable applications with .NET and Azure services.

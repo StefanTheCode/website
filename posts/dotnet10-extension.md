@@ -24,19 +24,19 @@ With .NET 10 extension feature now you can define **extension block**s for any t
 If you thought extension methods were powerful before, this takes things to a whole new level.
 
 In this article, I’ll break down:
-• What the new extension feature does
-• Why it matters
-• Real-world use cases you couldn’t solve cleanly before
-• And how it changes the way we organize logic around existing types
+- What the new extension feature does
+- Why it matters
+- Real-world use cases you couldn’t solve cleanly before
+- And how it changes the way we organize logic around existing types
 
 ##  Wait, what’s wrong with Extension Methods?
 With the new syntax, you can define extension blocks for any type. 
 These blocks allow:
 
-• Extension **properties**
-• Private **backing fields** inside the extension scope
-• Grouped logic in a clean and local context
-• Even **static extension blocks** for related helpers
+- Extension **properties**
+- Private **backing fields** inside the extension scope
+- Grouped logic in a clean and local context
+- Even **static extension blocks** for related helpers
 
 Syntax:
 
@@ -59,11 +59,11 @@ public static class MyExtensions
 
 Let’s say you’re building a multi-tenant SaaS product. You need to:
 
-• Extract the TenantId from claims
-• Parse and validate the UserId
-• Check if the user is a tenant admin
-• Read custom headers
-• Expose defaults and validation logic
+- Extract the TenantId from claims
+- Parse and validate the UserId
+- Check if the user is a tenant admin
+- Read custom headers
+- Expose defaults and validation logic
 
 The old way? You’d create scattered static methods.
 The new way? One structured block with everything grouped and cached.
@@ -108,9 +108,9 @@ public static class MultiTenantHttpContextExtensions
 ```
 
 This approach brings:
-• Readable, organized logic
-• Lazy caching via private fields (_tenantId, _userId)
-• Cohesive domain logic scoped to the right context
+- Readable, organized logic
+- Lazy caching via private fields (_tenantId, _userId)
+- Cohesive domain logic scoped to the right context
 
 ## Another Example: Extending External Models
 
@@ -156,17 +156,17 @@ This isn't just a cosmetic change - it's a paradigm shift in how we organize log
 
 ## My Gotchas & Notes
 
-• This is currently available in **.NET 10 Preview 3** with C# 14
-• Still being refined, so expect updates in syntax and tooling support
-• All your existing extension methods continue to work - this is purely additive
+- This is currently available in **.NET 10 Preview 3** with C# 14
+- Still being refined, so expect updates in syntax and tooling support
+- All your existing extension methods continue to work - this is purely additive
 ## My Advice
 
 Use this **when you’re extending a type with multiple behaviors** that feel like they belong together:
 
-• DTO transformations
-• HTTP context and claims logic
-• Computed values on external models
-• Domain-specific enhancements (e.g., IsActive, TotalAmount, NeedsSync, etc.)
+- DTO transformations
+- HTTP context and claims logic
+- Computed values on external models
+- Domain-specific enhancements (e.g., IsActive, TotalAmount, NeedsSync, etc.)
 
 It keeps your logic close, clean, and cache-friendly - and once you start using it, you won’t want to go back.
 
@@ -178,9 +178,9 @@ It gives us the power we didn’t even know we were missing in C# - and it’s j
 
 Let me know if you'd like to see how I plan to use this in:
 
-• [CQRS](https://thecodeman.net/posts/how-to-implement-cqrs-without-mediatr) helpers
-• ViewModel builders
-• ASP.NET Core service pipelines
+- [CQRS](https://thecodeman.net/posts/how-to-implement-cqrs-without-mediatr) helpers
+- ViewModel builders
+- ASP.NET Core service pipelines
 Because I already note what I can refactor for some of my older projects.
 
 That's all from me today. 

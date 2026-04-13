@@ -1,4 +1,4 @@
----
+﻿---
 title: "REPR Pattern - For C# developers"
 subtitle: "The Request, Endpoint, Response (REPR) pattern is a modern architectural approach often used in web development to design robust, scalable, and maintainable APIs..."
 date: "September 2 2024"
@@ -12,7 +12,7 @@ meta_description: "The Request, Endpoint, Response (REPR) pattern is a modern ar
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">•  Thanks to the VS Code extension by Postman, you can now test your API directly within your code editor.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Thanks to the VS Code extension by Postman, you can now test your API directly within your code editor.</p>
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Explore it <a href="https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">

@@ -1,4 +1,4 @@
----
+﻿---
 title: "5 cool features in C# 12"
 subtitle: "In November 2023, C# 12 arrived with a bang, bundled with .NET 8, bringing with it a bunch of cool new features that have made developers sit up and take notice..."
 date: "Mar 18 2024"
@@ -12,7 +12,7 @@ meta_description: "In November 2023, C# 12 arrived with a bang, bundled with .NE
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -75,15 +75,15 @@ public class User(string firstName, string lastName, int age, List<Role> roles)
 
 Here's what makes primary constructors stand out:
 
-• Conciseness:
+- Conciseness:
 
 By integrating constructors into the type declaration, C# 12 eliminates the need for separate, often repetitive, constructor definitions. This not only simplifies the code but also enhances its readability.
 
-• Accessibility:
+- Accessibility:
 
 Having the constructor logic within the class or struct definition itself makes it easier to understand and maintain the code, as it centralizes the logic for object creation and initialization.
 
-• Readability:
+- Readability:
 
 The code more clearly communicates the structure of an object and its initialization needs, making it easier for developers to grasp the essentials at a glance.
 
@@ -110,15 +110,15 @@ public struct FixedArray
 ```
 This leads to:
 
-• Memory Efficiency:
+- Memory Efficiency:
 
 Reduces overhead by avoiding unnecessary allocations.
 
-• Conciseness:
+- Conciseness:
 
 Allows for direct array initialization in expressions, streamlining code.
 
-• Readability:
+- Readability:
 
 Improves clarity by cutting out temporary variables.
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to use MediatR Notifications"
 subtitle: "MediatR is a popular open-source library for implementing the Mediator pattern in .NET applications... "
 date: "Feb 10 2025"
@@ -12,7 +12,7 @@ meta_description: "Discover the intricacies of MediatR Notifications in .NET in 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Level up your projects with FREE Clean Architecture template created by Milan Jovanovic, trusted by over 10,000 developers. Packed with features like CQRS, JWT authentication, Domain Events, and Docker support, it’s everything you need to start strong. <a href="https://www.milanjovanovic.tech/templates/clean-architecture?utm_source=stefan&utm_medium=website" style="color: #a5b4fc; text-decoration: underline;">Download Now</a></p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Level up your projects with FREE Clean Architecture template created by Milan Jovanovic, trusted by over 10,000 developers. Packed with features like CQRS, JWT authentication, Domain Events, and Docker support, it’s everything you need to start strong. <a href="https://www.milanjovanovic.tech/templates/clean-architecture?utm_source=stefan&utm_medium=website" style="color: #a5b4fc; text-decoration: underline;">Download Now</a></p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -147,9 +147,9 @@ We have implemented Notification System with MediatR.
 ## Wrapping up
 Why is MediatR useful here?
 
-✅ **Decoupled Components** → Email, Logging, and Analytics Services are independent.
-✅ **Scalability** → New handlers (e.g., SMS notifications) can be added easily.
-✅ **Testability** → Each handler can be tested in isolation.
+- ✅ **Decoupled Components** → Email, Logging, and Analytics Services are independent.
+- ✅ **Scalability** → New handlers (e.g., SMS notifications) can be added easily.
+- ✅ **Testability** → Each handler can be tested in isolation.
 
 This approach ensures that each service only cares about its job without affecting others. By using MediatR notifications, you build a flexible, scalable, and maintainable architecture for handling events in .NET applications.
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Dual-Key Redis Caching in .NET"
 subtitle: "Dual-Key Redis Caching in .NET: Why You Need It and How to Build It Right"
 date: "December 01 2025"
@@ -21,11 +21,11 @@ That’s when things get tricky, and if you’re not careful, your application c
  
 In this article, we’ll explore:
  
-• Why dual-key caching is necessary
-• A real-world example that absolutely requires it
-• The correct architecture for dual-key caching
-• A robust .NET implementation
-• Common pitfalls and how to avoid them
+- Why dual-key caching is necessary
+- A real-world example that absolutely requires it
+- The correct architecture for dual-key caching
+- A robust .NET implementation
+- Common pitfalls and how to avoid them
 
 ## A Real-World Scenario Where Dual-Key Redis Is Not Optional  
 
@@ -35,8 +35,8 @@ Imagine you’re building a typical SaaS platform.
  
 Every user has:
  
-• **UserId** (GUID, internal, immutable)
-• **Email** (used for login, external, mutable)
+- **UserId** (GUID, internal, immutable)
+- **Email** (used for login, external, mutable)
 
 Now consider how the system interacts with this user profile.
 
@@ -105,19 +105,19 @@ A naïve developer might say:
 This works until reality hits:
  
 **✔ Users change their email** 
-• old email cache isn't deleted
-• new email points to stale data
-• login and internal systems return different versions of the same object
+- old email cache isn't deleted
+- new email points to stale data
+- login and internal systems return different versions of the same object
 
-✔ Cache invalidation becomes error-prone
+- ✔ Cache invalidation becomes error-prone
  
 You must delete two keys every time user data changes.
  
-✔ Partial writes cause an inconsistent state
+- ✔ Partial writes cause an inconsistent state
  
 Network hiccups between two StringSetAsync calls = corrupted cache.
  
-✔ You waste memory storing duplicate JSON objects
+- ✔ You waste memory storing duplicate JSON objects
  
 Unnecessary for large objects.
  
@@ -141,11 +141,11 @@ user : data : {userId} → JSON
 
 This gives you:
  
-• No duplicate JSON
-• No inconsistency between primary and secondary keys
-• Safe email updates
-• Simple invalidation
-• Perfect lookup performance from both directions
+- No duplicate JSON
+- No inconsistency between primary and secondary keys
+- Safe email updates
+- Simple invalidation
+- Perfect lookup performance from both directions
 Now let’s build it in .NET.
 
 ## Implementing Dual-Key Redis Caching in .NET
@@ -189,9 +189,9 @@ public async Task CacheUserAsync(UserProfileDto user)
 }
 ```
 
-✔ Both keys update together 
-✔ No risk of partial writes
-✔ JSON stored only once
+- ✔ Both keys update together 
+- ✔ No risk of partial writes
+- ✔ JSON stored only once
 Step 3: Lookup by UserId
 
 ```csharp
@@ -236,21 +236,21 @@ public async Task UpdateEmailAsync(Guid userId, string oldEmail, string newEmail
     await tran.ExecuteAsync();
 }
 ```
-✔ Old index removed 
-✔ New index added
-✔ Data key untouched
-✔ No duplicate JSON
-✔ No inconsistent cache state
+- ✔ Old index removed 
+- ✔ New index added
+- ✔ Data key untouched
+- ✔ No duplicate JSON
+- ✔ No inconsistent cache state
 
 ## What Happens If You Don’t Do Dual-Key Caching?
 
 You eventually end up with…
  
-❌ Stale user data 
-❌ Broken login (email changed, but cache didn’t)
-❌ Internal microservices returning outdated values
-❌ “Phantom users” in your audit logs
-❌ Hard-to-debug production inconsistencies
+- ❌ Stale user data
+- ❌ Broken login (email changed, but cache didn’t)
+- ❌ Internal microservices returning outdated values
+- ❌ “Phantom users” in your audit logs
+- ❌ Hard-to-debug production inconsistencies
  
 Most of these bugs will never occur in development - only in production under real load.
  
@@ -260,25 +260,25 @@ Dual-key caching solves all of them.
 
 This pattern is universal across modern systems:
  
-✔ E-commerce
-• ProductId → data
-• SKU → ProductId
+- ✔ E-commerce
+- ProductId → data
+- SKU → ProductId
 
-✔ CMS
-• ContentId → data
-• Slug → ContentId
+- ✔ CMS
+- ContentId → data
+- Slug → ContentId
 
-✔ Payments
-• InternalTransactionId
-• ExternalProviderId
+- ✔ Payments
+- InternalTransactionId
+- ExternalProviderId
 
-✔ Identity Systems
-• UserId
-• Email / Username / Phone / External OAuth ID
+- ✔ Identity Systems
+- UserId
+- Email / Username / Phone / External OAuth ID
 
-✔ IoT
-• DeviceId
-• MAC Address / Serial Number
+- ✔ IoT
+- DeviceId
+- MAC Address / Serial Number
 
 When one key is **immutable**, and the other is **mutable**, dual-key caching is required.
 
@@ -291,19 +291,19 @@ Dual-key Redis caching is not an optimization - it’s a **foundational architec
  
 You should use it when:
  
-• An entity has **multiple identifiers**
-• One or more of those identifiers are **mutable**
-• You need **fast lookups** from different contexts
-• You want to avoid **duplicated JSON** in Redis
-• You care about **cache consistency under load**
+- An entity has **multiple identifiers**
+- One or more of those identifiers are **mutable**
+- You need **fast lookups** from different contexts
+- You want to avoid **duplicated JSON** in Redis
+- You care about **cache consistency under load**
 
 The correct pattern is:
  
-✔ One canonical data key
-✔ Multiple lightweight index keys
-✔ Atomic updates for consistency
-✔ Clean inverse lookups
-✔ Simple invalidation
+- ✔ One canonical data key
+- ✔ Multiple lightweight index keys
+- ✔ Atomic updates for consistency
+- ✔ Clean inverse lookups
+- ✔ Simple invalidation
  
 If you build it this way, you avoid almost all cache inconsistency issues before they ever appear.
 

@@ -27,10 +27,10 @@ Inspired by Laravel (PHP), Coravel brings elegant syntax and powerful background
 It's the perfect tool for developers who want simplicity without sacrificing power.
 
 ## Key Benefits:
-• No database or message broker required
-• Perfect for small to medium apps
-• Fully integrates with ASP.NET Core dependency injection
-• Clean and readable syntax
+- No database or message broker required
+- Perfect for small to medium apps
+- Fully integrates with ASP.NET Core dependency injection
+- Clean and readable syntax
 Let's see what you can do with Coravel.
 
 ## Task Scheduling
@@ -66,10 +66,10 @@ app.Services.UseScheduler(scheduler =>
 ```
 
 You can also use:
-• .Hourly()
-• .EveryMinute()
-• .Weekly()
-• .Cron("*/5 * * * *") for advanced control
+- .Hourly()
+- .EveryMinute()
+- .Weekly()
+- .Cron("*/5 * * * *") for advanced control
 
 ## Queued Background Jobs
 
@@ -176,10 +176,10 @@ No extra configuration or Redis needed.
 
 Imagine an internal admin dashboard for a SaaS platform. You want to:
 
-• Send a daily email with usage reports to the admin
-• Cache report data for 30 minutes
-• Queue email sending in background
-• Use events when reports are generated
+- Send a daily email with usage reports to the admin
+- Cache report data for 30 minutes
+- Queue email sending in background
+- Use events when reports are generated
 
 With Coravel:
 Store and Retrieve from Cache:

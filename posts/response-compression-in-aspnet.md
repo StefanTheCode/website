@@ -1,4 +1,4 @@
----
+﻿---
 title: "Response Compression in ASP.NET"
 subtitle: "Since there's a limited amount of network bandwidth available..."
 date: "Mar 24 2025"
@@ -12,7 +12,7 @@ meta_description: "Optimize your .NET APIs with Response Compression: A deep div
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Big news for .NET developers!</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Big news for .NET developers!</p>
 <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">You asked, and Heroku from Salesforce delivered. Their official .NET support is here. Developers have been using community buildpacks to run .NET apps on Heroku for a while. But now, Heroku is bringing native support into the mix.</p>
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">That means you get all the capabilities of .NET, paired with <a href="(https://fnf.dev/4kH4x81" style="color: #a5b4fc; text-decoration: underline;">Heroku’s streamlined platform</a>). No hacks, no workarounds - just a seamless way to build and scale .NET apps on a platform you already love. <a href="https://fnf.dev/4kH4x81" style="color: #a5b4fc; text-decoration: underline;">Check it out here</a></p>
 
@@ -111,10 +111,10 @@ These levels are particularly relevant in data storage and transmission, where t
 
 You can setup a 4 possible values:
 
-• **Optimal** - balance response size and compression speed
-• **Fastest** - sacrifices optimal compression for improved speed (Default value)
-• **NoCompression** - there is no compression at all
-• **SmallestSize** - sacrifices compression speed to improve compression - to create a smaller response.
+- **Optimal** - balance response size and compression speed
+- **Fastest** - sacrifices optimal compression for improved speed (Default value)
+- **NoCompression** - there is no compression at all
+- **SmallestSize** - sacrifices compression speed to improve compression - to create a smaller response.
 Example of setting the compression level:
 
 ```csharp

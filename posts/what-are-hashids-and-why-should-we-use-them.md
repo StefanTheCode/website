@@ -21,9 +21,9 @@ By exposing these primary keys, we give users the ability to estimate the number
 Suppose authorization isn't implemented effectively in our code, or APIs aren't protected. In that case, the users could input the next number in the sequence (for example, number 13) to access information they otherwise shouldn't have.
 ## What about GUID identifiers?
 There are some positive aspects of GUID values:
-• They are globally unique, across every table, every database, and every server.
-• They enable the easy merging of records from different databases.
-• GUID IDs can be Generated anywhere instead of having to roundtrip to the database.
+- They are globally unique, across every table, every database, and every server.
+- They enable the easy merging of records from different databases.
+- GUID IDs can be Generated anywhere instead of having to roundtrip to the database.
 However, there are many non-intuitive but critical downsides to the use of GUID values for primary keys in a database. The main reason is performance as well as unnecessarily excessive use of server resources within the database:
 **"A GUID as the clustering key isn't optimal, since due to its randomness, it will lead to massive page and index fragmentation and to generally bad performance."** - Kimberly Tripp - the Queen of Indexing
 A GUID is more than 4 times larger than the traditional 4-byte index value; this can have severe performance and storage implications if we aren't careful.

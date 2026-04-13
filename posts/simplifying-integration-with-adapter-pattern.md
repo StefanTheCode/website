@@ -1,4 +1,4 @@
----
+﻿---
 
 title: "Adapter Pattern in .NET: How to Simplify Third-Party Integrations (Real-World Example)"
 subtitle: "Struggling with messy integrations? Learn how the Adapter Pattern helps you cleanly integrate third-party APIs in .NET."
@@ -35,7 +35,7 @@ The Adapter Pattern is a **structural design pattern** that allows incompatible 
 
 It acts as a bridge between your application and an external system by converting one interface into another that your application expects.
 
-👉 In simple terms:
+- 👉 In simple terms:
 The Adapter Pattern wraps a third-party service and exposes a clean, consistent interface to your application.
 
 ### Why is this important?
@@ -110,7 +110,7 @@ This adapter:
 * converts decimal → string
 * delegates the call to the legacy system
 
-👉 Result: your app stays clean and unaware of the legacy implementation.
+- 👉 Result: your app stays clean and unaware of the legacy implementation.
 
 ## Step 2: Use the Adapter
 
@@ -134,7 +134,7 @@ internal class Program
 * The adapter handles all translation
 * The legacy system is fully isolated
 
-👉 This is exactly what [clean architecture](https://thecodeman.net/posts/architecture-tests-dotnet-clean-architecture) looks like in practice.
+- 👉 This is exactly what [clean architecture](https://thecodeman.net/posts/architecture-tests-dotnet-clean-architecture) looks like in practice.
 
 ## Definition (Formal)
 
@@ -175,7 +175,7 @@ Imagine building a system that supports multiple cloud providers:
 Each provider has completely different SDKs and APIs.
 
 Without an adapter:
-👉 your entire codebase becomes tightly coupled.
+- 👉 your entire codebase becomes tightly coupled.
 
 ## Step 1: Define a Common Interface
 
@@ -195,7 +195,7 @@ This interface represents:
 * your system’s contract
 * a stable abstraction
 
-👉 Your app should depend only on this.
+- 👉 Your app should depend only on this.
 
 ## Step 2: Implement Adapter (Google Cloud Example)
 
@@ -291,7 +291,7 @@ It helps you:
 
 Instead of letting external services dictate your architecture, you take control.
 
-👉 If you're working with APIs, cloud providers, or legacy systems — this pattern is essential.
+- 👉 If you're working with APIs, cloud providers, or legacy systems — this pattern is essential.
 
 ---
 

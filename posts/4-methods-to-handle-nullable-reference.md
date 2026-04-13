@@ -27,8 +27,8 @@ In .Net we will get a warning for underlined properties:
 ## Method #1
 
 Steps
-• Open .csproj project file
-• Inside the PropertyGroup change Nullable to disable
+- Open .csproj project file
+- Inside the PropertyGroup change Nullable to disable
 
 ![Property group project options](/images/blog/posts/4-methods-to-handle-nullable-reference/property-group-project-options.png)
 
@@ -38,7 +38,7 @@ Steps
 ## Method #2
 
 Steps
-• Make properties nullable reference type ** by using "?" **.
+- Make properties nullable reference type ** by using "?" **.
 
 ![Properties nullable references](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-nullable-reference.png)
 
@@ -46,7 +46,7 @@ Steps
 ## Method #3
 
 Steps
-• Assign a **default value** to properties.
+- Assign a **default value** to properties.
 
 ![Properties with default value](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-with-default-value.png)
 
@@ -54,7 +54,7 @@ Steps
 ## Method #4
 
 Steps
-• Write a compiler directive  <b style="color: white"> `#nullable to disable (or enable)` ** feature.
+- Write a compiler directive  <b style="color: white"> `#nullable to disable (or enable)` ** feature.
 
 ![Properties with compiler directive](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-with-compiler-directive.png)
 

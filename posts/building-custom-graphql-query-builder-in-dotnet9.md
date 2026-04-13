@@ -1,4 +1,4 @@
----
+﻿---
 title: "Building a Custom GraphQL Query Builder in .NET 9"
 subtitle: "Modern APIs are all about flexibility—and that’s where GraphQL shines. But..."
 date: "Mar 31 2025"
@@ -15,8 +15,8 @@ A brand-new course is launching soon inside [The CodeMan Community](https://www.
 Join now to lock in early access when it drops - plus get everything else already inside the group.
 
 Founding Member Offer:
-• First 100 members get in for **just $4/month** - *70 spots already taken*!
-• Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
+- First 100 members get in for **just $4/month** - *70 spots already taken*!
+- Or subscribe for **3 months ($12) or annually ($40)** to unlock full access when the course goes live.
 Get ahead of the game -  and make clean, consistent code your superpower.
 [Join here](https://www.skool.com/thecodeman)
 
@@ -32,41 +32,41 @@ Let’s dive in.
 
 ## The Idea
 We’ll:
-• Create .graphql query templates with placeholders like $userId.
-• Load and inject values dynamically.
-• Make it reusable using a **GraphQLQueryBuilder**.
-• Use Minimal APIs to expose the functionality.
+- Create .graphql query templates with placeholders like $userId.
+- Load and inject values dynamically.
+- Make it reusable using a **GraphQLQueryBuilder**.
+- Use Minimal APIs to expose the functionality.
 
 ## 📁 Directory Structure
 
 ![GraphQL Directory Structure](/images/blog/posts/building-custom-graphql-query-builder-in-dotnet9/graphql-directory.png)
-### • Root: /GraphQLBuilderDemo/
+### - Root: /GraphQLBuilderDemo/
 This is your main project directory. It includes all source code and configuration files. The Program.cs file lives here because it's a Minimal API app and doesn’t use Controllers or Startup classes.
-### • /Queries/
+### - /Queries/
 Holds raw .graphql files. These are:
 
-• Static query templates
-• Contain placeholders like $userId or $status
-• Used by the builder to generate final queries with real values
+- Static query templates
+- Contain placeholders like $userId or $status
+- Used by the builder to generate final queries with real values
 
 Example files:
-• GetUser.graphql: Gets user details and posts
-• GetOrders.graphql: Fetches orders, customers, line items
+- GetUser.graphql: Gets user details and posts
+- GetOrders.graphql: Fetches orders, customers, line items
 
 Benefits:
-• Keeps queries clean and versionable
-• Easy to tweak without recompiling code
+- Keeps queries clean and versionable
+- Easy to tweak without recompiling code
 
-### • /GraphQL
+### - /GraphQL
 
 Holds shared GraphQL utility code.
 
 GraphQLQueryBuilder.cs
 
 Your core utility that:
-• Reads .graphql templates from the /Queries folder
-• Replaces placeholder variables dynamically
-• Returns a GraphQLRequest ready to be executed
+- Reads .graphql templates from the /Queries folder
+- Replaces placeholder variables dynamically
+- Returns a GraphQLRequest ready to be executed
 
 ## .graphql files
 
@@ -220,10 +220,10 @@ Or, you can use Fake Server online: [GraphQLZero](https://graphqlzero.almansi.me
 ## Fetching Orders with Line Items and Customer Info
 
 Imagine you're building a dashboard for a commerce platform. You want to retrieve:
-• A list of orders
-• Each order's line items (products, quantity, price)
-• The associated customer’s name and email
-• With filters like status and date range
+- A list of orders
+- Each order's line items (products, quantity, price)
+- The associated customer’s name and email
+- With filters like status and date range
 
 ### Queries/GetOrders.graphql
 
@@ -259,9 +259,9 @@ Imagine you're building a dashboard for a commerce platform. You want to retriev
 ```
 
 What’s different here?
-• Variables for both simple ($status) and nested values ($dateFrom, $dateTo)
-• Traversing multiple object levels (orders -> lineItems -> product)
-• Shows how to handle filter blocks with multiple parameters
+- Variables for both simple ($status) and nested values ($dateFrom, $dateTo)
+- Traversing multiple object levels (orders -> lineItems -> product)
+- Shows how to handle filter blocks with multiple parameters
 ### Updated GraphQLQueryBuilder.cs (same as before)
 
 ```csharp

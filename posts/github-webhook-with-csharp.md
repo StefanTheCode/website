@@ -1,4 +1,4 @@
----
+﻿---
 title: "GitHub Webhook with C#"
 subtitle: "A Webhook is a mechanism that allows a web application to send real-time notifications or data to another web application..."
 date: "March 06 2023"
@@ -21,14 +21,14 @@ An example of a simple implementation of a C# Webhook receiver for Github will b
 
 A webhook receiver for an event that happened on Github or any other service can be represented in the simplest way as an **HttpPost API endpoint** in a C# controller.
 
-• Create an action in C# Controller
+- Create an action in C# Controller
 You need to create C # API Controller with GitHubWebhookController name. This is a controller to serve for all Events that happen within Github repository.
 After that, you need to add an endpoint Pushed for the "push" event on github, which will practically serve as a callback event. 
 
 ![GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/github-webhook-api-endpoint.png)
 This method must be HttpPost. 
 Since I currently don't know what the GitHub payload looks like, ie. object/JSON that GitHub sends during a specific event, I will state that the object that the method receives as a parameter is type dynamic.
-​• Run the application
+​- Run the application
 When you start the API project, through [Swagger](https://thecodeman.net/posts/3-tips-to-elevate-swagger-ui) you can see Endpoint there is and that everything is fine for now.
 ![Swagger GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/swagger-github-webhook-endpoint.png)
 
@@ -47,9 +47,9 @@ But for testing and debugging, [ngrok](https://thecodeman.net/posts/how-to-put-l
 What is ngrok?
 Ngrok is a software tool that creates a secure tunnel between a local machine and the public internet, allowing developers to expose a web server running on their local machine to the internet.
 Ngrok setup
-• Download from: [Ngrok]( https://ngrok.com/)
-• Install it and run it
-• Execute the following command: **ngrok http port**
+- Download from: [Ngrok]( https://ngrok.com/)
+- Install it and run it
+- Execute the following command: **ngrok http port**
 *Port should be your port which you can see when you start the application
 *You should **disable https protocol** for the application by replacing https urls with http in **launchSettings.json**.
 Now you will see in CMD the url that is online and to which the localhost url is mapped. 

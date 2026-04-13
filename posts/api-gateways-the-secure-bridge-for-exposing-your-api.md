@@ -1,4 +1,4 @@
----
+﻿---
 title: "Api Gateways - The secure bridge for exposing your api"
 subtitle: "An API Gateway acts as a gatekeeper for your APIs, managing requests from clients (such as web or mobile apps) to your backend services..."
 date: "Mar 25 2024"
@@ -12,7 +12,7 @@ meta_description: "Unveil the power of API Gateways for scalable and secure API 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -102,29 +102,29 @@ Zuplo’s rate-limiting solution is highly flexible, and precise in globally dis
 Embracing API Gateways brings numerous advantages, from bolstering security to simplifying management.
 Here's how gateways can transform your API ecosystem.
 
-• Enhanced Security
+- Enhanced Security
 Security is a top priority, and API Gateways provide multiple layers of defense, including SSL terminations, OAuth support, and API keys.
 This comprehensive security model ensures that only authorized users can access your APIs..
 
-• Simplified API Management
+- Simplified API Management
 Managing a plethora of APIs can be daunting. Gateways offer a unified platform for monitoring, analytics, and version control, streamlining the management process and reducing complexity.
 
-• Improved Scalability
+- Improved Scalability
 API Gateways facilitate scalability by enabling load balancing, caching, and other optimizations. This allows your infrastructure to adapt to changing demands without compromising performance.
 
 ## Best Practices for API Gateway Deployment
 
 Deploying an API Gateway is just the beginning.
 To maximize its benefits, follow these best practices for a secure, reliable, and efficient API ecosystem.
-• Ensuring High Availability
+- Ensuring High Availability
 
 High availability is critical for maintaining uninterrupted access to your APIs. Implement redundancy, failover mechanisms, and geographic distribution to mitigate downtime risks.
 
-• Secure Configuration
+- Secure Configuration
 
 Adopt a security-first approach when configuring your API Gateway. This includes setting strict access controls, using HTTPS for all communications, and regularly updating your security policies.
 
-• Continuous Monitoring and Testing
+- Continuous Monitoring and Testing
 
 Regularly monitor your API Gateway and backend services for any issues. Implement automated testing and performance [benchmarking](https://thecodeman.net/posts/benchmarking-in-dotnet-step-by-step) to proactively identify and address potential problems.
 You can also check out these [useful resources](https://zuplo.com/blog/2023/04/24/useful-resources-for-api-builders?utm_source=linkedin&utm_medium=link&utm_campaign=stefan-gateway) for API developers.

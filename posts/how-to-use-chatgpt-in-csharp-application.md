@@ -27,9 +27,9 @@ To integrate ChatGPT, the initial step involves installing the OpenAI C# SDK. Th
 
 In order to be able to call and authenticate to the OpenAI API, it is necessary to generate a unique API key.
 To do this:
-• Visit: https://platform.openai.com/account/api-keys
-• Log in
-• Create your API Key by clicking on "Create new secret key" button.
+- Visit: https://platform.openai.com/account/api-keys
+- Log in
+- Create your API Key by clicking on "Create new secret key" button.
 
 ![Customer class](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/chatgpt-api-secret-key.png)
 

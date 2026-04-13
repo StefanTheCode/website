@@ -21,11 +21,11 @@ While technologies like [RabbitMQ](https://thecodeman.net/posts/rabbitmq-in-dotn
 Enter: **Redis Pub/Sub.**
 
 In this guide, you'll learn how to:
-• Understand what Redis Pub/Sub is
-• Implement it with clean .NET code
-• Use background services for subscribers
-• Apply it to a real-world use case
-• Extend with advanced tips
+- Understand what Redis Pub/Sub is
+- Implement it with clean .NET code
+- Use background services for subscribers
+- Apply it to a real-world use case
+- Extend with advanced tips
 
 Let's dive in!
 
@@ -33,24 +33,24 @@ Let's dive in!
 
 [Redis Pub/Sub (Publish/Subscribe)](https://redis.io/docs/latest/develop/pubsub/) is a built-in feature of Redis that lets services send and receive messages through named channels.
 
-• **Publishers** send messages to a channels
-• **Subscribers** listen to that channel and handle messages as they arrive
+- **Publishers** send messages to a channels
+- **Subscribers** listen to that channel and handle messages as they arrive
 
 It's fast, lightweight, and doesn't require message persistence. It's great for real-time use cases where losing a message here or there isn't the end of the world.
 
 When to use it:
-• Real-time UI updates (e.g., dashboards)
-• Cache invalidation across services
-• Lightweight event signaling between apps
+- Real-time UI updates (e.g., dashboards)
+- Cache invalidation across services
+- Lightweight event signaling between apps
 
 ## Real-World Example: Order Notifications System
 
 Imagine you have an e-commerce platform. When an order is placed:
-• The order API should notify other systems (e.g., email service, warehouse dashboard)
-• These services listen for new orders and take action
+- The order API should notify other systems (e.g., email service, warehouse dashboard)
+- These services listen for new orders and take action
 Let’s build:
-• A Publisher app (sends "new order" messages)
-• A Subscriber app (receives and logs them)
+- A Publisher app (sends "new order" messages)
+- A Subscriber app (receives and logs them)
 
 ## Setup: Create Two Console Apps - Testing
 
@@ -97,10 +97,10 @@ while (true)
 ```
 
 Details:
-• The app connects to a Redis instance running on localhost:6379
-• It opens an input loop so you can type order IDs in real time
-• Each input is sent as a message to the orders.new channel
-• You can use this app as a simulation of your order API broadcasting new order events
+- The app connects to a Redis instance running on localhost:6379
+- It opens an input loop so you can type order IDs in real time
+- Each input is sent as a message to the orders.new channel
+- You can use this app as a simulation of your order API broadcasting new order events
 
 ## OrderSubscriber: Listen for New Orders
 
@@ -125,10 +125,10 @@ await Task.Delay(Timeout.Infinite);
 ```
 
 Details:
-• The subscriber also connects to Redis at localhost:6379
-• It explicitly subscribes to the orders.new channel using RedisChannel.Literal() to avoid deprecated implicit casting
-• When a message is published, it logs the message and timestamp
-• The Task.Delay(Timeout.Infinite) call keeps the app running so it can continue receiving messages
+- The subscriber also connects to Redis at localhost:6379
+- It explicitly subscribes to the orders.new channel using RedisChannel.Literal() to avoid deprecated implicit casting
+- When a message is published, it logs the message and timestamp
+- The Task.Delay(Timeout.Infinite) call keeps the app running so it can continue receiving messages
 
 This kind of app is perfect for services that need to respond immediately when an event occurs, without polling or tight coupling to the publisher.
 ### Result
@@ -138,9 +138,9 @@ This kind of app is perfect for services that need to respond immediately when a
 So, why this Pattern works:
 
 This pattern is great when you want:
-• **Loose coupling:** Publishers don’t need to know who’s listening
-• **Real-time response:** Events are delivered instantly
-• **No setup headaches:** No queues, brokers, or durable message stores
+- **Loose coupling:** Publishers don’t need to know who’s listening
+- **Real-time response:** Events are delivered instantly
+- **No setup headaches:** No queues, brokers, or durable message stores
 
 ## Some ideas
 
@@ -151,10 +151,10 @@ Pattern subscriptions are like subscribing to multiple related topics without ha
 For example:
 
 You're running a logistics backend. You might have these channels:
-• orders.new
-• orders.updated
-• orders.shipped
-• orders.cancelled
+- orders.new
+- orders.updated
+- orders.shipped
+- orders.cancelled
 
 Instead of subscribing to each one manually, pattern matching with "orders.*" lets you dynamically catch all of them. You can even log them generically, route them to specific handlers, or store them in an audit trail. 
 
@@ -172,9 +172,9 @@ await sub.SubscribeAsync("orders.*", (channel, message) =>
 When running apps in different environments (Dev, QA, Prod), you don’t want a test in Dev to accidentally trigger a workflow in Prod. Using the environment as a channel prefix prevents cross-talk.
 
 Real-world example:
-• Your staging system sends test orders to staging.orders.new
-• Production services only subscribe to production.orders.new
-• Your logging dashboard can subscribe to both, but label them differently
+- Your staging system sends test orders to staging.orders.new
+- Production services only subscribe to production.orders.new
+- Your logging dashboard can subscribe to both, but label them differently
 
 This pattern brings safe separation while using the same Redis instance.
 
@@ -198,9 +198,9 @@ For more advanced messaging, see [RabbitMQ in .NET](https://thecodeman.net/posts
 ## Wrapping Up
 
 Redis Pub/Sub gives you real-time messaging in .NET without all the overhead of heavier brokers. It’s:
-• Fast
-• Easy to implement
-• Great for real-time eventing
+- Fast
+- Easy to implement
+- Great for real-time eventing
 
 We used a clean and realistic example (order notifications) with a publisher and subscriber app to show how it works in the real world. And we included extra tips to make it production-ready.
 

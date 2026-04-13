@@ -1,4 +1,4 @@
----
+﻿---
 title: "Memory Caching in .NET"
 subtitle: ".NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources."
 date: "August 10 2024"
@@ -12,7 +12,7 @@ meta_description: ".NET memory caching is a feature used to store objects in mem
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of API management and enhance your productivity <a href="https://www.postman.com/product/flows/" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of API management and enhance your productivity <a href="https://www.postman.com/product/flows/" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -43,9 +43,9 @@ Caching Key components
 
 .NET provides various ways to implement caching, but the most common are:
 
-**• MemoryCache Class (System.Runtime.Caching)**: Used for in-memory caching. It's part of the .NET Framework and .NET Core.
+**- MemoryCache Class (System.Runtime.Caching)**: Used for in-memory caching. It's part of the .NET Framework and .NET Core.
 
-**• IMemoryCache (Microsoft.Extensions.Caching.Memory)**: Introduced in .NET Core, it offers more features and better performance compared to MemoryCache.
+**- IMemoryCache (Microsoft.Extensions.Caching.Memory)**: Introduced in .NET Core, it offers more features and better performance compared to MemoryCache.
 
 In this issue I'll talk about IMemoryCache.
 
@@ -123,19 +123,19 @@ public List<WeatherForecast> Get()
 
 Explanation:
 
-**• Cache Check _casheService.TryGetValue...**:
+**- Cache Check _casheService.TryGetValue...**:
 
 - It attempts to retrieve a cached value associated with the key "MyCacheKey" (Don't hardcode this).
 - If the value is found in the cache, it is output into weathersFromCache.
 - The method TryGetValue returns true if the key was found in the cache, and false otherwise.
 
-**• Cache Miss Handling**:
+**- Cache Miss Handling**:
 
 - If the cache does not contain the key (i.e., TryGetValue returned false), the code block inside the if statement is executed.
 - A new list of WeatherForecast objects is created by generating 300 forecasts.
 - This newly created list is then stored in the cache with the key "MyCacheKey".
 
-**• Returning the Result**:
+**- Returning the Result**:
 
 If the data was retrieved from the cache, it is returned directly.If the data was not in the cache (cache miss), the newly generated list is returned.
 
@@ -149,9 +149,9 @@ This involves using **MemoryCacheEntryOptions** to specify the desired expiratio
 
 There are two common ways to set expiration:
 
-**• Absolute Expiration**: The cache entry will expire after a specified duration regardless of whether it is accessed or not.
+**- Absolute Expiration**: The cache entry will expire after a specified duration regardless of whether it is accessed or not.
 
-**• Sliding Expiration**: The cache entry will expire after a specified duration if it is not accessed within that timeframe. Each access to the cache entry resets the expiration timer.
+**- Sliding Expiration**: The cache entry will expire after a specified duration if it is not accessed within that timeframe. Each access to the cache entry resets the expiration timer.
 
 Let's see both in action.
 
@@ -224,11 +224,11 @@ Specifies the size of the cache entry, which is considered when the cache size l
 
 3. Callbacks and Tokens
 
-**• PostEvictionCallbacks**: A list of callbacks that will be executed after the cache entry is removed. This is useful for performing actions like logging or cleanup operations.
+**- PostEvictionCallbacks**: A list of callbacks that will be executed after the cache entry is removed. This is useful for performing actions like logging or cleanup operations.
 
-**• RegisterPostEvictionCallback**: A method to add a post-eviction callback directly to the cache entry options.
+**- RegisterPostEvictionCallback**: A method to add a post-eviction callback directly to the cache entry options.
 
-**• ExpirationTokens**: These allow the cache entry to be dependent on external triggers. For example, you can link a cache entry to a file using a FileChangeToken, and the cache entry will be evicted if the file changes.
+**- ExpirationTokens**: These allow the cache entry to be dependent on external triggers. For example, you can link a cache entry to a file using a FileChangeToken, and the cache entry will be evicted if the file changes.
 
 4. Change Tokens
 

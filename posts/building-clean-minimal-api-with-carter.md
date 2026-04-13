@@ -20,19 +20,19 @@ That’s where [Carter](https://github.com/CarterCommunity/Carter) comes in.
 [Carter](https://thecodeman.net/posts/building-api-with-carter-library-in-dotnet) gives you a clean, modular, and testable way to define your API endpoints - all while still using minimal APIs under the hood. It’s lightweight, composable, and plays nicely with your existing .NET stack.
 
 In this article, we’ll walk through:
-• Why Carter is useful
-• How to set it up in a .NET 8+ project
-• Real-world example with validation and mapping
-• Pros & cons of using Carter
-• Final thoughts
+- Why Carter is useful
+- How to set it up in a .NET 8+ project
+- Real-world example with validation and mapping
+- Pros & cons of using Carter
+- Final thoughts
 ##  Why Carter?
 
 Minimal APIs are great for small projects - but as your project grows:
 
-• Routes scatter across multiple files.
-• Dependency injection logic is repeated.
-• Validation and mapping logic clutters route definitions.
-• Testing individual endpoints becomes tricky.
+- Routes scatter across multiple files.
+- Dependency injection logic is repeated.
+- Validation and mapping logic clutters route definitions.
+- Testing individual endpoints becomes tricky.
 
 Carter helps you modularize your endpoints into clean, testable components -  without falling back to full MVC-style controllers.
 
@@ -46,10 +46,10 @@ dotnet add package Carter
 ## Creating a Real-World Carter API
 
 Let’s create a simple Products API where you can:
-• Create a product
-• Get a list of products
-• Use FluentValidation for validation
-• Use Custom Mapper for DTO -> Entity mapping
+- Create a product
+- Get a list of products
+- Use FluentValidation for validation
+- Use Custom Mapper for DTO -> Entity mapping
 
 ## Project Structure
 
@@ -176,45 +176,45 @@ app.Run();
 
 ## Why Developers Love Carter
 
-• Keeps things clean and organized
+- Keeps things clean and organized
 Instead of cluttering your Program.cs with dozens of routes, Carter lets you group related endpoints in neat modules. It just feels better.
 
-• Grows well with your project
+- Grows well with your project
 What starts as a small API can get messy fast. Carter gives your project structure, even as it grows.
 
-• You can inject anything you need
+- You can inject anything you need
 Need a service? A validator? A logger? Just inject it directly into your route - no extra setup, no controller boilerplate.
 
-• Works great with modern patterns
+- Works great with modern patterns
 If you're into vertical slice architecture, [CQRS](https://thecodeman.net/posts/how-to-implement-cqrs-without-mediatr), or minimal APIs - Carter plays really well with those styles.
 
-• Cleaner startup
+- Cleaner startup
 Your Program.cs stays short and sweet. Just call app.MapCarter() and all your modules are wired up.
 
-• Fast and lightweight
+- Fast and lightweight
 There’s no controller or attribute overhead. It’s just minimal APIs - but more organized.
 
-• Easy to test
+- Easy to test
 Because modules are simple classes, they’re super easy to write tests for - no magic or reflection behind the scenes.
 
-• Flexible and plug-and-play
+- Flexible and plug-and-play
 Use whatever tools you like - FluentValidation, Mapster, MediatR, [Dapper](https://thecodeman.net/posts/how-to-fix-heavy-database-sync-operation-in-dapper), EF Core… Carter doesn’t get in your way.
 
 ## Things to Keep in Mind
 
-• Smaller community, less documentation
+- Smaller community, less documentation
 Carter is awesome, but it’s not as mainstream as .NET MVC. You might not find answers on Stack Overflow as quickly.
 
-• You define routes manually
+- You define routes manually
 There’s no [HttpGet], [Route], or attribute-based routing here - just regular method calls like MapGet. Some people miss the attributes.
 
-• No fancy model binding attributes
+- No fancy model binding attributes
 You won’t see [FromBody] or [FromQuery]. Binding works like in minimal APIs - clean, but different if you're used to MVC.
 
-• You have to decide how to structure things
+- You have to decide how to structure things
 Carter gives you flexibility, but with that comes responsibility. You’ll need to create your own structure for modules, validators, etc.
 
-• No built-in filters or attributes
+- No built-in filters or attributes
 If you're used to using [Authorize], [ValidateModel], or action filters, you’ll have to wire up that behavior yourself.
 
 ## Wrapping Up

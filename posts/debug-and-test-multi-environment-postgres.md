@@ -1,4 +1,4 @@
----
+﻿---
 title: "Debug and Test Multi-Environment Postgres Db in .NET with Aspire + Neon"
 subtitle: "Imagine a growing .NET team working on a cloud-native application. They need to test their microservices across multiple environments - development, test, and production. "
 date: "Feb 03 2025"
@@ -12,8 +12,8 @@ meta_description: "Neon is a serverless Postgres database designed for modern cl
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• 📚 Learn to design and build efficient web applications with ASP.NET Core MVC, creating well-structured, maintainable code that follows industry best practices with Real-World Web Development with .NET 9 by Mark Price. <a href="https://packt.link/EC4Mj" style="color: #a5b4fc; text-decoration: underline;">Start here!</a></p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• I launched my YouTube channel and built The CodeMan Community - your hub for .NET content, mini-courses, and expert advice! **The first 100 members get in for just $4/month!** 🚀 Join now and grab my first ebook for free:  - <a href="https://www.skool.com/thecodeman/about" style="color: #a5b4fc; text-decoration: underline;">Join now</a></p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- 📚 Learn to design and build efficient web applications with ASP.NET Core MVC, creating well-structured, maintainable code that follows industry best practices with Real-World Web Development with .NET 9 by Mark Price. <a href="https://packt.link/EC4Mj" style="color: #a5b4fc; text-decoration: underline;">Start here!</a></p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- I launched my YouTube channel and built The CodeMan Community - your hub for .NET content, mini-courses, and expert advice! **The first 100 members get in for just $4/month!** 🚀 Join now and grab my first ebook for free:  - <a href="https://www.skool.com/thecodeman/about" style="color: #a5b4fc; text-decoration: underline;">Join now</a></p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -27,10 +27,10 @@ Imagine a growing .NET team working on a cloud-native application. They need to 
 But here’s the problem: Database creation takes time, even in cloud-native solutions. Setting up, tearing down, and managing multiple databases slows down iteration speed, especially when dealing with integration tests. 
 What if you could have an instant, isolated database for each environment without the overhead?
 The Problem with Traditional Approaches:
-• Spinning up multiple Postgres instances is slow and inefficient.
-• Running full migrations per environment adds unnecessary complexity.
-• Cleaning up databases between test runs can be a bottleneck.
-• Managing connection strings and [secrets](https://thecodeman.net/posts/securing-secrets-in-dotnet-with-azure-key-vault) across environments is error-prone.
+- Spinning up multiple Postgres instances is slow and inefficient.
+- Running full migrations per environment adds unnecessary complexity.
+- Cleaning up databases between test runs can be a bottleneck.
+- Managing connection strings and [secrets](https://thecodeman.net/posts/securing-secrets-in-dotnet-with-azure-key-vault) across environments is error-prone.
 
 So what I found useful here is Neon serverless Postgres in combination with Aspire.
 It's really interesting implementation, so let's dive in!

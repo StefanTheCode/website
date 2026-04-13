@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to implement RAG system - AI in .NET"
 subtitle: "RAG (Retrieval-Augmented Generation) is an AI framework that enhances generative large language models (LLMs) by integrating traditional information retrieval methods, such as search engines and databases."
 date: "Mar 10 2025"
@@ -12,8 +12,8 @@ meta_description: "RAG (Retrieval-Augmented Generation) is an AI framework that 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Boost your C# / .NET development with the best combination of <a href="https://www.devart.com/entitydeveloper/?utm_source=thecodeman&utm_medium=referral&utm_campaign=Q1" style="color: #a5b4fc; text-decoration: underline;">visual ORM builder</a> and <a href="http://ado.net/" style="color: #a5b4fc; text-decoration: underline;">ADO.NET data providers</a>. Download a 30-day free trial today and enjoy reliable updates, expert developer support, and full compatibility with leading ORMs. Get **15% OFF** with promo code **DOKIC15**. <a href="https://www.devart.com/entitydeveloper/?utm_source=thecodeman&utm_medium=referral&utm_campaign=Q1" style="color: #a5b4fc; text-decoration: underline;">Check it now</a></p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• I'm preapring Enforcing Code Style course in my <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">TheCodeMan Community</a>. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">Join now</a> and grab my first ebook for free.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Boost your C# / .NET development with the best combination of <a href="https://www.devart.com/entitydeveloper/?utm_source=thecodeman&utm_medium=referral&utm_campaign=Q1" style="color: #a5b4fc; text-decoration: underline;">visual ORM builder</a> and <a href="http://ado.net/" style="color: #a5b4fc; text-decoration: underline;">ADO.NET data providers</a>. Download a 30-day free trial today and enjoy reliable updates, expert developer support, and full compatibility with leading ORMs. Get **15% OFF** with promo code **DOKIC15**. <a href="https://www.devart.com/entitydeveloper/?utm_source=thecodeman&utm_medium=referral&utm_campaign=Q1" style="color: #a5b4fc; text-decoration: underline;">Check it now</a></p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- I'm preapring Enforcing Code Style course in my <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">TheCodeMan Community</a>. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">Join now</a> and grab my first ebook for free.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -50,9 +50,9 @@ How It Works:
 
 By using **RAG**, the chatbot ensures its responses are: 
 
-• Accurate (based on the latest return policy)
-• Up-to-date (fetches real-time order details)
-• Relevant (answers specific to the customer’s situation) 
+- Accurate (based on the latest return policy)
+- Up-to-date (fetches real-time order details)
+- Relevant (answers specific to the customer’s situation) 
 
 ## How to implement it in .NET?
  

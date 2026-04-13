@@ -1,4 +1,4 @@
----
+﻿---
 title: "Background Tasks in .NET 8"
 subtitle: "A Background Task in .NET typically refers to any operation that runs in the background..."
 date: "Dec 04 2023"
@@ -12,7 +12,7 @@ meta_description: "Explore innovative error handling strategies for .NET develop
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** <a href="https://blog.postman.com/testing-grpc-apis-with-postman/" style="color: #a5b4fc; text-decoration: underline;">writing tests for your gRPC requests in Postman</a> ** For more info about gRPC, they created a great beginner article ** <a href="https://blog.postman.com/what-is-grpc/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for ** <a href="https://blog.postman.com/testing-grpc-apis-with-postman/" style="color: #a5b4fc; text-decoration: underline;">writing tests for your gRPC requests in Postman</a> ** For more info about gRPC, they created a great beginner article ** <a href="https://blog.postman.com/what-is-grpc/" style="color: #a5b4fc; text-decoration: underline;">here</a> **.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -80,10 +80,10 @@ The result of this - other services started without any delay.
 More control over hosted services
 .NET 8 introduced a new interface for hosted services - **IHostedLifeCycleService** . The reason for this is that we don't have much control over the services within the StartAsync() and StopAsync() methods.
 This interface abstracts 4 more new methods:
-• StartingAsync
-• StartedAsync
-• StoppingAsync
-• StoppedAsync
+- StartingAsync
+- StartedAsync
+- StoppingAsync
+- StoppedAsync
 ```csharp
 public class SomeService : IHostedLifecycleService
 {

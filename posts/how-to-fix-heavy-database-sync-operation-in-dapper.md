@@ -1,4 +1,4 @@
----
+﻿---
 title: "How I fixed a heavy database sync operation with Dapper Plus"
 subtitle: "Dapper Plus is not just a faster Dapper - it’s a higher-level abstraction that makes bulk workflows simpler to write, easier to read and hugely more efficient"
 date: "August 06 2025"
@@ -11,9 +11,9 @@ meta_description: "Dapper Plus is not just a faster Dapper - it’s a higher-lev
 ## Background
 When I had to sync thousands of complex orders with nested items from an external ERP system, my classic Dapper solution hit a wall.
 
-• Insert/update 500+ orders
-•  Replace 10,000+ associated items
-• Run every hour via background job
+- Insert/update 500+ orders
+-  Replace 10,000+ associated items
+- Run every hour via background job
 
 The result? 40+ seconds of runtime and massive CPU load.
 
@@ -25,27 +25,27 @@ This article gives you everything: a real problem, working .NET 9 code, full sch
 
 Dapper excels at micro-ORM read operations. But when you need to perform thousands of inserts, updates, or deletes, the number of round-trips to the database becomes a major bottleneck.
 
-❌ The Classic Pain:
-• One INSERT per row = 10,000+ DB calls
-• No batching by default
-• Requires manual upsert logic
-• Complicated transactions when mixing operations
+- ❌ The Classic Pain:
+- One INSERT per row = 10,000+ DB calls
+- No batching by default
+- Requires manual upsert logic
+- Complicated transactions when mixing operations
 
 The bigger your data, the worse the performance.
 
-✅ The Dapper Plus Fix:
-• Uses SqlBulkCopy under the hood
-• Handles INSERT, UPDATE, DELETE, MERGE in bulk
-• Supports entity mappings, partial updates, conditions
-• Works with SQL Server, [PostgreSQL](https://thecodeman.net/posts/debug-and-test-multi-environment-postgres), MySQL, Oracle, SQLite
+- ✅ The Dapper Plus Fix:
+- Uses SqlBulkCopy under the hood
+- Handles INSERT, UPDATE, DELETE, MERGE in bulk
+- Supports entity mappings, partial updates, conditions
+- Works with SQL Server, [PostgreSQL](https://thecodeman.net/posts/debug-and-test-multi-environment-postgres), MySQL, Oracle, SQLite
 
 ##  My Real Scenario: Order Sync with Items
 
 We get a CSV export or ERP API payload every hour with updated order data. Each order has:
 
-•  Customer info
-• Status (Pending, Processed, Shipped...)
-• A collection of order items
+-  Customer info
+- Status (Pending, Processed, Shipped...)
+- A collection of order items
 
 We want to:
 
@@ -196,10 +196,10 @@ VALUES (@Id, @OrderId, @Product, @Quantity, @Price)", item);
 ```
 
 Why It’s Slow:
-• 500 Orders = 500 UPSERTs
-• 10,000 Items = 10,000 INSERTs + 500 DELETEs
-• That’s 11,000+ round-trips
-• SQL Server can't batch or pipeline those
+- 500 Orders = 500 UPSERTs
+- 10,000 Items = 10,000 INSERTs + 500 DELETEs
+- That’s 11,000+ round-trips
+- SQL Server can't batch or pipeline those
 
 Time: ~20s
 
@@ -243,27 +243,27 @@ public async Task SyncOrdersWithDapperPlusAsync(List<Order> orders)
 
 Why It’s Better:
 
-• Only 3 round-trips to DB
-• Uses SqlBulkCopy under the hood
-• Merge is smarter and faster than manual update/insert
-• Fully transactional
-• Much easier to read
+- Only 3 round-trips to DB
+- Uses SqlBulkCopy under the hood
+- Merge is smarter and faster than manual update/insert
+- Fully transactional
+- Much easier to read
 
 Time: ~1.5s
 
 Dapper Plus leverages:
 
-• **SqlBulkCopy** for inserts (fastest possible way to insert thousands of rows into SQL Server)
-• **MERGE/UPDATE/INSERT batching** for updates
-• **Compiled expression trees** for mappings
-• **Smart column matching** and **key detection** via config or reflection
+- **SqlBulkCopy** for inserts (fastest possible way to insert thousands of rows into SQL Server)
+- **MERGE/UPDATE/INSERT batching** for updates
+- **Compiled expression trees** for mappings
+- **Smart column matching** and **key detection** via config or reflection
 It reduces network I/O, CPU overhead, and ADO.NET complexity behind the scenes.
 
 Dapper Plus is not just a faster Dapper - it’s a higher-level abstraction that makes bulk workflows:
 
-• Simpler to write
-• Easier to read
-• Hugely more efficient
+- Simpler to write
+- Easier to read
+- Hugely more efficient
 ## Extra Dapper Plus Features You’ll Love
 
 ### Column Filtering
@@ -313,13 +313,13 @@ While Dapper gives you raw performance and control, it quickly becomes inefficie
 
 That’s where [Dapper Plus](https://dapper-plus.net/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday) shines. It keeps everything familiar and low-friction for Dapper users, but gives you:
 
-• Enterprise-grade performance with [bulk operations](https://thecodeman.net/posts/speed-up-your-efapps-with-entity-framework-extensions)
-• Clean and maintainable code
-• Built-in support for transactions, batching, selective updates, and much more
+- Enterprise-grade performance with [bulk operations](https://thecodeman.net/posts/speed-up-your-efapps-with-entity-framework-extensions)
+- Clean and maintainable code
+- Built-in support for transactions, batching, selective updates, and much more
 
 If your application handles thousands of inserts, updates, or deletes - Dapper Plus will save you time, headaches, and infrastructure costs.
 
-👉 Whether you're syncing ERP data, importing CSVs, or cleaning stale records, Dapper Plus is the upgrade you didn’t know you needed.
+- 👉 Whether you're syncing ERP data, importing CSVs, or cleaning stale records, Dapper Plus is the upgrade you didn’t know you needed.
 
 [Check online examples here](https://dapper-plus.net/online-examples?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday).
 

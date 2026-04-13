@@ -18,17 +18,17 @@ RabbitMQ is a **message broker**. Think of it like a reliable postal service for
 
 Instead of one system directly calling another (which creates tight coupling), RabbitMQ acts as the **middleman**:
 
-• One part of your app **sends** a message.
-• Another part **receives** and processes it **when it's ready**.
+- One part of your app **sends** a message.
+- Another part **receives** and processes it **when it's ready**.
 
 This is called **asynchronous communication**, and it’s great for performance, reliability, and scalability.
 
 Key Components:
-• **Producer**: The one who sends the messages.
-• **Consumer**: The one who receives the messages.
-• **Queue**: Where the messages wait until they are processed.
-• **Exchange**: The "dispatcher" that directs the messages to the appropriate queues.
-• **Binding**: The rules that connect exchanges with queues. 
+- **Producer**: The one who sends the messages.
+- **Consumer**: The one who receives the messages.
+- **Queue**: Where the messages wait until they are processed.
+- **Exchange**: The "dispatcher" that directs the messages to the appropriate queues.
+- **Binding**: The rules that connect exchanges with queues. 
 
 ## Setup RabbitMQ (Local with Docker)
 
@@ -40,15 +40,15 @@ docker run -d --hostname rabbitmq
     -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
 
-• Visit the dashboard at http://localhost:15672
-• Default login: guest / guest
+- Visit the dashboard at http://localhost:15672
+- Default login: guest / guest
 
 ## Implementing in .NET 
 
 Let’s build a simple project:
 
-• The **API** sends an "email message" to RabbitMQ.
-• A **[BackgroundService](https://thecodeman.net/posts/background-tasks-in-dotnet8)** listens and "processes" the message.
+- The **API** sends an "email message" to RabbitMQ.
+- A **[BackgroundService](https://thecodeman.net/posts/background-tasks-in-dotnet8)** listens and "processes" the message.
 
 Through this example I'm going to explain how it works.
 
@@ -74,10 +74,10 @@ Publisher
 The Publisher is the part of your app that **sends messages** to RabbitMQ.
 
 Its Job:
-• Connect to RabbitMQ
-• Create (or ensure) a queue exists
-• Serialize the message (e.g., to JSON)
-• Send the message into the queue
+- Connect to RabbitMQ
+- Create (or ensure) a queue exists
+- Serialize the message (e.g., to JSON)
+- Send the message into the queue
 
 Real-World Analogy:
 
@@ -127,10 +127,10 @@ Receiver
 The **Receiver** listens to the queue and processes messages as they arrive.
 
 Its Job:
-• Connect to RabbitMQ
-• Subscribe to the queue
-• Wait for messages
-• Deserialize and process the messages
+- Connect to RabbitMQ
+- Subscribe to the queue
+- Wait for messages
+- Deserialize and process the messages
 
 Real-World Analogy:
 
@@ -191,8 +191,8 @@ Here are the 4 main types:
 
 1. Direct Exchange (One-to-One Routing)
 
-• A message is routed to queues with the exact same routing key.
-• Think of this as sending mail to a specific recipient.
+- A message is routed to queues with the exact same routing key.
+- Think of this as sending mail to a specific recipient.
 
 Example Use Case:
 You want to send emails only to a queue responsible for “welcome” emails.
@@ -207,8 +207,8 @@ If you publish with routingKey = "welcome", it will go to email-welcome-queue.
 
 2. Fanout Exchange (Broadcast to All)
 
-• Messages go to **all queues bound to the exchange**, ignoring routing keys.
-• It’s a **broadcast**—like shouting in a room and everyone hears it.
+- Messages go to **all queues bound to the exchange**, ignoring routing keys.
+- It’s a **broadcast**—like shouting in a room and everyone hears it.
 
 Example Use Case:
 You want to send a system-wide notification to all services (email, SMS, push).
@@ -225,11 +225,11 @@ Any message sent to "fanout-exchange" goes to both queues.
 
 3. Topic Exchange (Wildcard Routing)
 
-• Uses **wildcards** in the routing key to allow flexible, pattern-based routing.
+- Uses **wildcards** in the routing key to allow flexible, pattern-based routing.
 
 Wildcards
-• * matches exactly one word
-• # matches zero or more words
+- * matches exactly one word
+- # matches zero or more words
 
 Example Use Case:
 Route logs based on severity and system.
@@ -248,7 +248,7 @@ channel.QueueBind("auth-queue", "topic-exchange", "log.*.auth");
 
 4. Headers Exchange (Route by Metadata)
 
-• Instead of routing keys, it uses **message headers** for routing.
+- Instead of routing keys, it uses **message headers** for routing.
 
 Example Use Case:
 Route messages with complex conditions (e.g., "x-type": "invoice" and "region": "EU")

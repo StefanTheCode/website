@@ -67,12 +67,12 @@ public static partial class Log
 ```
 ## Log method constraints
 When using the LoggerMessageAttribute on logging methods, some constraints must be followed:
-• Logging methods must be **partial** and return **void** .
-• Logging method names must **not start** with an underscore.
-• Parameter names of logging methods must **not start** with an underscore.
-• Logging methods **may not** be defined in a nested type.
-• Logging methods **cannot** be generic.
-• If a logging method is **static** , the **ILogger** instance is required as a parameter.
+- Logging methods must be **partial** and return **void** .
+- Logging method names must **not start** with an underscore.
+- Parameter names of logging methods must **not start** with an underscore.
+- Logging methods **may not** be defined in a nested type.
+- Logging methods **cannot** be generic.
+- If a logging method is **static** , the **ILogger** instance is required as a parameter.
 ## Conslusion
 In summary, the **LoggerMessageAttribute** in .NET 6 simplifies and accelerates the process of creating high-performance logging code. By automatically generating **LoggerMessage.Define** calls and optimizing the generated code for performance, it helps developers produce efficient and reliable logging solutions with minimal effort. This attribute is a valuable addition to the .NET logging ecosystem, contributing to better logging practices in modern .NET applications.
 That's all from me today.

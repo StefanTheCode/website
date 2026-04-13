@@ -37,17 +37,17 @@ Before we write any code, let me explain what this library actually gives you.
 
 Here's what you can do with it:
 <br/>
-• **Retry** failed operations with exponential backoff
+- **Retry** failed operations with exponential backoff
 <br/>
-• **Set timeouts** so you never hang forever
+- **Set timeouts** so you never hang forever
 <br/>
-• **Break circuits** on repeated failures to stop hammering broken services
+- **Break circuits** on repeated failures to stop hammering broken services
 <br/>
-• **Hedge requests** by sending backup calls in parallel
+- **Hedge requests** by sending backup calls in parallel
 <br/>
-• **Fall back** to default responses when everything fails
+- **Fall back** to default responses when everything fails
 <br/>
-• **Rate limit** outgoing calls to protect downstream services
+- **Rate limit** outgoing calls to protect downstream services
 
 All of these are composable. You mix and match them in a single pipeline, and they execute in the order you define them.
 
@@ -158,15 +158,15 @@ builder.Services.AddResiliencePipeline("cb-pipeline", builder =>
 
 Here's what this does:
 <br/>
-• Monitors calls over a 30-second window
+- Monitors calls over a 30-second window
 <br/>
-• If at least 10 calls are made and 50% or more fail, the circuit **opens**
+- If at least 10 calls are made and 50% or more fail, the circuit **opens**
 <br/>
-• All calls fail immediately for 15 seconds (no network call)
+- All calls fail immediately for 15 seconds (no network call)
 <br/>
-• After 15 seconds, it moves to **half-open** and allows one test call through
+- After 15 seconds, it moves to **half-open** and allows one test call through
 <br/>
-• If that call succeeds, the circuit **closes** and traffic resumes normally
+- If that call succeeds, the circuit **closes** and traffic resumes normally
 
 This is essential for any service that talks to external APIs.
 
@@ -196,13 +196,13 @@ builder.Services.AddResiliencePipeline<string, string>("gh-hedging", builder =>
 
 With this configuration:
 <br/>
-• Up to 4 total executions (1 primary + 3 hedged attempts)
+- Up to 4 total executions (1 primary + 3 hedged attempts)
 <br/>
-• The first two run in **parallel** (`TimeSpan.Zero` delay)
+- The first two run in **parallel** (`TimeSpan.Zero` delay)
 <br/>
-• The remaining run in **fallback mode** (`TimeSpan.FromSeconds(-1)`)
+- The remaining run in **fallback mode** (`TimeSpan.FromSeconds(-1)`)
 <br/>
-• Whichever completes first wins - the rest are cancelled
+- Whichever completes first wins - the rest are cancelled
 
 This is particularly useful when you have multiple replicas of a service and can route hedged requests to different instances.
 
@@ -372,11 +372,11 @@ Let’s break it all down in a **friendly, real-world way** - with full code, st
 
 ## What is Microsoft.Extensions.Resilience?
 It's a set of libraries that help you:
-• Retry failed operations
-• Set timeouts
-• Break circuits on repeated failures
-• Control request rates
-• Send backup (hedged) requests
+- Retry failed operations
+- Set timeouts
+- Break circuits on repeated failures
+- Control request rates
+- Send backup (hedged) requests
 All of these are called **resilience strategies**, and you can mix and match them using a composable pipeline.
 You get full integration with HttpClientFactory, DI, logging, and even [OpenTelemetry](https://thecodeman.net/posts/getting-started-with-opentelemetry).
 
@@ -423,8 +423,8 @@ Now let’s break down each strategy...
 A retry strategy lets you retry an operation that failed due to transient issues (like a timeout or HTTP 500).
 
 Why?
-• Temporary failures are common in distributed systems.
-• Retry gives the system time to recover.
+- Temporary failures are common in distributed systems.
+- Retry gives the system time to recover.
 Example:
 ```csharp
 builder.Services.AddResiliencePipeline("retry-pipeline", builder =>
@@ -446,8 +446,8 @@ This retries 3 times, with exponentially increasing delay: 300ms, 600ms, 1200ms.
 The timeout strategy sets a max duration for how long an operation can run. If it’s too slow - it’s out.
 
 Why?
-• You don’t want threads hanging forever.
-• It’s better to fail fast and free resources.
+- You don’t want threads hanging forever.
+- It’s better to fail fast and free resources.
 Example:
 ```csharp
 builder.Services.AddResiliencePipeline("timeout-pipeline", builder =>
@@ -463,8 +463,8 @@ If your external service doesn’t respond in 2 seconds, it fails and triggers t
 The circuit breaker temporarily blocks calls to a failing system, preventing overload and giving it time to recover.
 
 Why?
-• Avoid hammering a broken service.
-• Let things cool off.
+- Avoid hammering a broken service.
+- Let things cool off.
 Example:
 ```csharp
 builder.Services.AddResiliencePipeline("cb-pipeline", builder =>
@@ -486,8 +486,8 @@ If 50% of calls fail (with a minimum of 10 calls) within 30 seconds, the breaker
 The hedging strategy sends secondary requests after a delay if the primary one is too slow or might fail. It’s like having a plan B running in parallel.
 
 Why?
-• Reduce latency spikes.
-• Improve success rate by racing multiple attempts.
+- Reduce latency spikes.
+- Improve success rate by racing multiple attempts.
 Example:
 ```csharp
 builder.Services.AddResiliencePipeline<string, string>("gh-hedging", builder =>
@@ -518,8 +518,8 @@ With this configuration, the hedging strategy:
 The fallback strategy provides an alternative response when a primary operation fails, helping your app stay functional even when things go wrong.
 
 Why?
-• Avoid crashing the user experience.
-• Stay graceful under pressure.
+- Avoid crashing the user experience.
+- Stay graceful under pressure.
 Example:
 ```csharp
 builder.Services.AddResiliencePipeline<string, string?>("gh-fallback", builder =>
@@ -538,8 +538,8 @@ builder.Services.AddResiliencePipeline<string, string?>("gh-fallback", builder =
 The rate limiter strategy controls how many calls your system can make within a time window - protecting resources and avoiding service throttling.
 
 Why?
-• Prevent overwhelming dependencies.
-• Ensure fair usage and system stability.
+- Prevent overwhelming dependencies.
+- Ensure fair usage and system stability.
 Example:
 ```csharp
 builder.Services.AddResiliencePipeline("ratelimiter-pipeline", builder =>
@@ -562,8 +562,8 @@ When you're working with resilience in .NET and using **Dependency Injection**, 
 Instead, you can ask the ResiliencePipelineProvider to fetch a configured pipeline by its key.
 
 Here's how it works:
-• You define your pipeline (e.g., with a fallback or retry strategy)  and register it using a key like "gh-fallback".
-• Then, inside your route or handler, you request that pipeline using GetPipeline<T>(), where T is the expected result type.
+- You define your pipeline (e.g., with a fallback or retry strategy)  and register it using a key like "gh-fallback".
+- Then, inside your route or handler, you request that pipeline using GetPipeline<T>(), where T is the expected result type.
 ```csharp
 app.MapGet("/subscribers", async (
     HttpClient httpClient,

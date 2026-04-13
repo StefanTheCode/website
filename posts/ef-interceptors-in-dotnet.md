@@ -25,9 +25,9 @@ The usual outcome: your DbContext.SaveChanges override becomes a junk drawer, or
 ## The domain: “SaaS Billing” with audit + compliance needs
 
 Imagine a billing system where: 
-• Every row must be attributable to a user and tenant.
-• Deletes must be soft (regulators + “oops” recovery).
-• When a payment job spikes DB load, you want slow query logs tied to the request/job ID.
+- Every row must be attributable to a user and tenant.
+- Deletes must be soft (regulators + “oops” recovery).
+- When a payment job spikes DB load, you want slow query logs tied to the request/job ID.
 We’ll solve this with two interceptors.
   
 ## 1) Auditing + soft delete with SaveChangesInterceptor
@@ -183,15 +183,15 @@ public sealed class AuditAndSoftDeleteInterceptor : SaveChangesInterceptor
 ```
 
 What this gives you:
-• Nobody can “forget” audit fields anymore.
-• Nobody can accidentally hard-delete rows (unless they bypass EF, which you can also detect via DB perms).
-• Your DbContext stays clean.
+- Nobody can “forget” audit fields anymore.
+- Nobody can accidentally hard-delete rows (unless they bypass EF, which you can also detect via DB perms).
+- Your DbContext stays clean.
 
 ## 2) SQL observability with DbCommandInterceptor (tagging + slow query logging)
 
 This is one of my favorite “production maturity” uses of interceptors: 
-• Attach a correlation ID and tenant ID to SQL as a comment.
-• Log slow queries with that same metadata. 
+- Attach a correlation ID and tenant ID to SQL as a comment.
+- Log slow queries with that same metadata. 
 ### Step 1 - The interceptor
 
 ```csharp
@@ -309,8 +309,8 @@ public sealed class ObservabilityCommandInterceptor : DbCommandInterceptor
 ```
 
 Why this is powerful:
-• When production slows down, you’ll see which request/job caused the expensive SQL.
-• Your DBA/observability stack can correlate SQL traces back to app traces.
+- When production slows down, you’ll see which request/job caused the expensive SQL.
+- Your DBA/observability stack can correlate SQL traces back to app traces.
 **Also important:** Microsoft explicitly positions interceptors as more than logging—they can modify operations. 
 
 ## 3) Wire it up in .NET 9 (DI + AddInterceptors)
@@ -359,9 +359,9 @@ EF Core can run interceptors coming from DI (“injected”) and those added dir
 ## Wrapping up 
 
 Interceptors are one of those EF Core features that quietly upgrade your codebase maturity:
-• Your DbContext stays focused on modeling and mapping. 
-• Auditing/soft-delete becomes consistent and automatic.
-• SQL observability stops being “best effort” and becomes built-in. 
+- Your DbContext stays focused on modeling and mapping. 
+- Auditing/soft-delete becomes consistent and automatic.
+- SQL observability stops being “best effort” and becomes built-in. 
 If you want to go even further, the next “adult” use case is an **Outbox pattern** using SaveChangesInterceptor (capture domain events, persist them, publish reliably) - Milan has a [great article](https://www.milanjovanovic.tech/blog/how-to-use-ef-core-interceptors#store-outbox-messages-with-ef-interceptors) about it.
 
 That's all for today.

@@ -45,23 +45,23 @@ Aspire solves this by giving you a single place to describe your entire system: 
 
 The AppHost is a small project that defines:
 <br/>
-• What infrastructure you need (PostgreSQL, Redis, RabbitMQ, etc.)
+- What infrastructure you need (PostgreSQL, Redis, RabbitMQ, etc.)
 <br/>
-• What services exist (APIs, frontends, workers - in any language)
+- What services exist (APIs, frontends, workers - in any language)
 <br/>
-• How they connect to each other
+- How they connect to each other
 <br/>
-• What should start before what
+- What should start before what
 
 When you run the AppHost, Aspire:
 
-• **Starts everything** with one command - containers, APIs, frontends, workers
+- **Starts everything** with one command - containers, APIs, frontends, workers
 <br/>
-• **Wires connections** automatically - database URLs, cache connections, service endpoints are injected as environment variables
+- **Wires connections** automatically - database URLs, cache connections, service endpoints are injected as environment variables
 <br/>
-• **Provides a unified dashboard** with logs, traces, metrics, and health for all services
+- **Provides a unified dashboard** with logs, traces, metrics, and health for all services
 <br/>
-• **Manages the full lifecycle** - from pulling Docker images to creating Python virtual environments to running `npm install`
+- **Manages the full lifecycle** - from pulling Docker images to creating Python virtual environments to running `npm install`
 
 But here's the thing: **the AppHost's language is independent of the services' languages**. You can orchestrate .NET, TypeScript, Python - or anything else - from a single AppHost.
 

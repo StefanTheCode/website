@@ -38,15 +38,15 @@ app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder().AddDefaultSecurePo
 ```
 ## Security Headers list:
 
-• X-Frame-Options
-• X-Xss-Protection
-• X-Content-Type-Options
-• Strict-Transport-Security
-• Referrer-Policy
-• Content-Security-Policy
-• Permissions-Policy
-• Server
-• X-Permitted-Cross-Domain-Policies
+- X-Frame-Options
+- X-Xss-Protection
+- X-Content-Type-Options
+- Strict-Transport-Security
+- Referrer-Policy
+- Content-Security-Policy
+- Permissions-Policy
+- Server
+- X-Permitted-Cross-Domain-Policies
 
 ## Let's start!
 
@@ -68,9 +68,9 @@ X-XSS-Protection is a security header that helps to protect web applications aga
 context.Response.Headers.Add("X-Xss-Protection", "1; mode=block");
 ```
 But...
-• Chrome has removed their XSS Auditor
-• Firefox has not, and will not implement X-XSS-Protection
-• Edge has retired their XSS filter
+- Chrome has removed their XSS Auditor
+- Firefox has not, and will not implement X-XSS-Protection
+- Edge has retired their XSS filter
 This means that if you do not need to support legacy browsers, it is recommended that you use [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) without allowing **unsafe-inline** scripts instead.
 
 ### X-Content-Type-Options
@@ -106,12 +106,12 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 ### Referrer-Policy
 The Referrer-Policy header allows you to control how much information is included in the Referer header, giving you more control over the privacy and security of your website.
 The possible values for the header include:
-• **"no-referrer"**: The Referer header will not be sent in any circumstances.
-•  **"no-referrer-when-downgrade"**: The Referer header will not be sent when navigating from HTTPS to HTTP, but will be sent in all other cases.
-• **"same-origin"**: The Referer header will only be sent if the destination URL has the same origin as the referring URL.
-• **"strict-origin"**: The Referer header will only be sent if the destination URL has the same origin as the referring URL, and will only include the scheme, host, and port (but not the path).
-• **"strict-origin-when-cross-origin"**: The Referer header will be sent when navigating from HTTPS to HTTP, but will only include the scheme, host, and port (but not the path).
-• **"unsafe-url"**: The Referer header will be sent in all cases, including when navigating from HTTPS to HTTP.
+- **"no-referrer"**: The Referer header will not be sent in any circumstances.
+-  **"no-referrer-when-downgrade"**: The Referer header will not be sent when navigating from HTTPS to HTTP, but will be sent in all other cases.
+- **"same-origin"**: The Referer header will only be sent if the destination URL has the same origin as the referring URL.
+- **"strict-origin"**: The Referer header will only be sent if the destination URL has the same origin as the referring URL, and will only include the scheme, host, and port (but not the path).
+- **"strict-origin-when-cross-origin"**: The Referer header will be sent when navigating from HTTPS to HTTP, but will only include the scheme, host, and port (but not the path).
+- **"unsafe-url"**: The Referer header will be sent in all cases, including when navigating from HTTPS to HTTP.
 
 ```csharp
 context.Response.Headers.Add("Referrer-Policy", "no-referrer");
@@ -144,13 +144,13 @@ Other possible directives and their meanings include:
 ### Permissions-Policy
 Permissions-Policy is a security header that allows web developers to control and limit the permissions of various browser features and APIs. This header provides a way to specify which features are allowed to be used on a web page and which are not, allowing developers to improve the security of their web applications.
 The Permissions-Policy header allows you to control access to a variety of browser features and APIs, including:
-• Geolocation
-• Camera and microphone access
-• Fullscreen mode
-• Payment processing APIs
-• Clipboard access
-• Navigation APIs
-• Sensors
+- Geolocation
+- Camera and microphone access
+- Fullscreen mode
+- Payment processing APIs
+- Clipboard access
+- Navigation APIs
+- Sensors
 By using the Permissions-Policy header, you can limit access to these features and APIs to only those that are necessary for your web application to function properly. This can help to prevent attackers from using these features to gain unauthorized access to user data or perform other malicious actions.
 ```csharp
 context.Response.Headers.Add("Permissions-Policy", "accelerator=(), camera=(), 

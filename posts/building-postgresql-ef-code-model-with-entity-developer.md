@@ -73,12 +73,12 @@ This will create a new entity - give it a name like Blog, Post, or Comment. Once
 1. **Double-click the class** (or right-click and choose **Properties**) to open the property editor.
 
 2. Use the **“Add Property”** button to start defining fields:
-• For Blog, you might add: Id (UUID), Title (Text), Description (Text), Tags (Text[]), CreatedAt (TimestampTZ)
+- For Blog, you might add: Id (UUID), Title (Text), Description (Text), Tags (Text[]), CreatedAt (TimestampTZ)
 
 3. Set each property’s:
-• **Name** (e.g., Title)
-• **Type** (e.g., Text, UUID, JSONB, TimestampTZ)
-• Whether it's a **Primary Key, Nullable, Default**, etc.
+- **Name** (e.g., Title)
+- **Type** (e.g., Text, UUID, JSONB, TimestampTZ)
+- Whether it's a **Primary Key, Nullable, Default**, etc.
 
 Entity Developer makes this super visual - no need to write attributes or annotations. You just configure everything through the UI.
 
@@ -98,15 +98,15 @@ On the design surface, click on the small arrow or anchor point on the edge of t
 
 2. A dialog will pop up to define the **association**:
 - Choose the relationship type:
-• **One-to-Many:** One Blog has many Posts
-• **One-to-Many:** One Post has many Comments
+- **One-to-Many:** One Blog has many Posts
+- **One-to-Many:** One Post has many Comments
 - Set navigation properties (e.g., Blog.Posts, Post.Comments)
 - Entity Developer will automatically create the foreign key property (like BlogId in Post) and wire everything up
 
 3. You can customize the association further:
-• Rename navigation properties
-• Make the relationship required or optional
-• Configure cascade delete if needed
+- Rename navigation properties
+- Make the relationship required or optional
+- Configure cascade delete if needed
 
 No need to manually type **[ForeignKey]** attributes or worry about EF conventions - Entity Developer handles the details behind the scenes.
 
@@ -127,9 +127,9 @@ Once your model is complete, you can generate the EF Core classes by using the t
 2. Click **Generate Code**...
 
 Entity Developer will generate:
-• Your DbContext class with DbSet<TEntity> properties
-• All your entity classes (Blog, Post, Comment, etc.)
-• Any extras you enabled in the T4 templates
+- Your DbContext class with DbSet<TEntity> properties
+- All your entity classes (Blog, Post, Comment, etc.)
+- Any extras you enabled in the T4 templates
 
 *You can even customize the T4 templates if you want to adapt the code style to match your team’s conventions.*
 
@@ -214,12 +214,12 @@ public partial class Blog
 Generate PostgreSQL DDL Scripts
 
 Next, let’s turn your model into an actual PostgreSQL schema.
-• Go to the **Model menu** and choose **Generate Database Script**.
-• Entity Developer will generate fully PostgreSQL-compatible SQL, including:
+- Go to the **Model menu** and choose **Generate Database Script**.
+- Entity Developer will generate fully PostgreSQL-compatible SQL, including:
 - Table creation (CREATE TABLE)
 - Primary and foreign keys
 - Enums, default values, arrays, and JSONB columns
-• You can review and tweak the SQL script before executing it - or export it for use in [CI/CD](https://thecodeman.net/posts/bullet-Proof-dotnet-ci-on-github) pipelines.
+- You can review and tweak the SQL script before executing it - or export it for use in [CI/CD](https://thecodeman.net/posts/bullet-Proof-dotnet-ci-on-github) pipelines.
 
 ![Generate Database Script](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/generate-database-script.png)
 
@@ -233,11 +233,11 @@ Entity Developer brings a lot of value to EF Core and PostgreSQL development, es
 
 Here’s why it stands out:
 
-• **Visual model design** makes it easy to map out your data structure quickly, helping you avoid mistakes and spot relationships at a glance. No more trial-and-error with fluent API or annotations.
-• It has **full support for PostgreSQL-specific types**, including UUID, JSONB, arrays, and custom enums - letting you take full advantage of PostgreSQL's capabilities without hacks or workarounds.
-• The **robust code generation engine** ensures that your EF Core classes and DbContext are clean, consistent, and maintainable - whether you're building a new project or refactoring an old one.
-• **Seamless synchronization tools** help you keep your model, code, and database aligned - even after the initial deployment. You can safely push or pull schema changes without worrying about data loss.
-• And with **IDE integration**, you get design-time validation, query building, and refactoring tools right inside Visual Studio or in the standalone app - helping you stay productive from start to finish.
+- **Visual model design** makes it easy to map out your data structure quickly, helping you avoid mistakes and spot relationships at a glance. No more trial-and-error with fluent API or annotations.
+- It has **full support for PostgreSQL-specific types**, including UUID, JSONB, arrays, and custom enums - letting you take full advantage of PostgreSQL's capabilities without hacks or workarounds.
+- The **robust code generation engine** ensures that your EF Core classes and DbContext are clean, consistent, and maintainable - whether you're building a new project or refactoring an old one.
+- **Seamless synchronization tools** help you keep your model, code, and database aligned - even after the initial deployment. You can safely push or pull schema changes without worrying about data loss.
+- And with **IDE integration**, you get design-time validation, query building, and refactoring tools right inside Visual Studio or in the standalone app - helping you stay productive from start to finish.
 
 ## Wrapping Up
 

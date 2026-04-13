@@ -15,8 +15,8 @@ A brand-new course is launching soon inside [The CodeMan Community](https://www.
 Join now to lock in early access when it drops - plus get everything else already inside the group.
  
 Founding Member Offer:
-• First 100 members get in for just $4/month - 80 spots already taken!
-• Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
+- First 100 members get in for just $4/month - 80 spots already taken!
+- Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
  
 Get ahead of the game - and make clean, consistent code your superpower.
 [Join here](https://www.skool.com/thecodeman)
@@ -38,10 +38,10 @@ Let me walk you through how to build a complete Carter-based API with proper val
 Carter is basically **Minimal APIs on steroids**.
 It lets you organize routes by feature using small modular classes. Instead of one giant Program.cs, each feature lives in its own file - and Carter wires it all up for you.
 What you get:
-• Minimal APIs with clean structure
-• Built-in support for FluentValidation
-• Native dependency injection
-• Works perfectly with Swagger and unit tests
+- Minimal APIs with clean structure
+- Built-in support for FluentValidation
+- Native dependency injection
+- Works perfectly with Swagger and unit tests
 
 ## Project Structure
 
@@ -204,9 +204,9 @@ The Carter framework will **automatically discover and register** all modules at
 
 MapGroup("/users") creates a **route group** — a way to group multiple endpoints under a common URL prefix (in this case /users).
 This makes your code:
-• **Cleaner** — You don’t repeat the /users prefix for every route.
-• **Organized** — Groups related endpoints logically.
-• **More powerful** — You can apply filters (auth, validation, etc.) to the whole group later.
+- **Cleaner** — You don’t repeat the /users prefix for every route.
+- **Organized** — Groups related endpoints logically.
+- **More powerful** — You can apply filters (auth, validation, etc.) to the whole group later.
 
 ```csharp
 var group = app.MapGroup("/users");
@@ -250,9 +250,9 @@ It's a simple upgrade that brings a ton of polish to your API.
 Whether you're building a small internal tool or a large public-facing API, these small touches go a long way in keeping your code clean, your docs clear, and your life easier.
 
 So the next time you’re setting up a new Carter module, remember:
-• Use base("/api") to avoid repeating yourself
-• Group routes with WithTags()
-• Let Swagger handle the docs with IncludeInOpenApi()
+- Use base("/api") to avoid repeating yourself
+- Group routes with WithTags()
+- Let Swagger handle the docs with IncludeInOpenApi()
 
 It's minimal effort for maximum structure. 
 

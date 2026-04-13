@@ -1,4 +1,4 @@
----
+﻿---
 title: "Allow specific users to access your API - Part 1"
 subtitle: "Just as a bouncer checks your pass before letting you into a club, an API uses an API key to decide who gets access to its data and services."
 date: "Mar 04 2024"
@@ -12,8 +12,8 @@ meta_description: "Just as a bouncer checks your pass before letting you into a 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Get instant insights about your API quality from VS Code with <a href="https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code" style="color: #a5b4fc; text-decoration: underline;">Treblle's latest extension</a> for VS Code. API Insights will score your API on Design, Performance, and Security. Get it <a href="https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Get instant insights about your API quality from VS Code with <a href="https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code" style="color: #a5b4fc; text-decoration: underline;">Treblle's latest extension</a> for VS Code. API Insights will score your API on Design, Performance, and Security. Get it <a href="https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.

@@ -11,10 +11,10 @@ meta_description: "Enhance your .NET applications with Stefan Đokić's expert g
 
 ## The Background
 Imagine we are visiting a foreign country. We want to send a package to someone in another country. However, the customs officers at the border won't allow us to send the package unless we have the proper documentation and the destination country has agreed to accept it.
-• A web page served from one domain (e.g., example.com) is like a person in one country.
-• A server at a different domain (e.g., another-example.com) is like a person in another country.
-• Like how customs officers at the border check for proper documentation and ensure that the destination country will accept the package, CORS checks for the appropriate headers in HTTP requests and responses to ensure that the web page is allowed to make requests to the other domain.
-• If the server at another-example.com wants to allow requests from example.com, it can set the ** Access-Control-Allow-Origin header in its responses** to example.com. The browser will then allow the web page from the example.com to make requests to another example.com, just like how the customs officers at the border will allow the package to be sent if the documentation is in order and the destination country has agreed to accept it.
+- A web page served from one domain (e.g., example.com) is like a person in one country.
+- A server at a different domain (e.g., another-example.com) is like a person in another country.
+- Like how customs officers at the border check for proper documentation and ensure that the destination country will accept the package, CORS checks for the appropriate headers in HTTP requests and responses to ensure that the web page is allowed to make requests to the other domain.
+- If the server at another-example.com wants to allow requests from example.com, it can set the ** Access-Control-Allow-Origin header in its responses** to example.com. The browser will then allow the web page from the example.com to make requests to another example.com, just like how the customs officers at the border will allow the package to be sent if the documentation is in order and the destination country has agreed to accept it.
 **Cross-Origin Resource Sharing (CORS)** is a security feature implemented by web browsers that controls how web pages in one domain can request resources, like APIs, from another domain.
 By default, web pages are not allowed to make requests to a different domain than the one that served the web page. This is a security measure to prevent a malicious website from making unwanted requests to a legitimate one.
 In the context of .NET, if you're building an API using ASP.NET Core, you might want to enable CORS to allow web pages from certain domains to access your API.
@@ -42,19 +42,19 @@ Let's see how to do that...
 ```
 ## Adjusting the CORS Policy
 The policy we created is rather strict. You can adjust it as per your requirements. Some of the things you can configure are:
-• Allowing multiple specific origins:
+- Allowing multiple specific origins:
 ```csharp
   policy.WithOrigins("https://myapp.com", "https://anotherapp.com");
 ```
-• Allowing all origins:
+- Allowing all origins:
 ```csharp
  policy.AllowAnyOrigin();
 ```
-• Allowing specific headers:
+- Allowing specific headers:
 ```csharp
  policy.WithHeaders("header1", "header2");
 ```
-• Allowing specific HTTP methods:
+- Allowing specific HTTP methods:
 ```csharp
  policy.WithMethods("GET", "POST");
 ```
@@ -65,12 +65,12 @@ For instance, if your client sends a request with a custom header or uses an HTT
 In our previous .NET Core CORS setup, pre-flight requests are automatically handled by the middleware because we used .AllowAnyHeader() and .AllowAnyMethod().
 ## Tightening Security
 While it might be tempting to use .AllowAnyOrigin() and .AllowAnyMethod() for simplicity, it's more secure to only enable what's needed:
-• **Specify allowed methods:** If your API endpoint only needs to handle GET and POST, then only allow those:
+- **Specify allowed methods:** If your API endpoint only needs to handle GET and POST, then only allow those:
 ```csharp
  policy.WithOrigins("https://myapp.com")
        .WithMethods("GET", "POST");
 ```
-• **Specify allowed headers** : If your application requires specific headers, specify them:
+- **Specify allowed headers** : If your application requires specific headers, specify them:
 ```csharp
  policy.WithOrigins("https://myapp.com")
        .WithHeaders("X-Custom-Header", "Authorization");

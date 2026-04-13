@@ -1,4 +1,4 @@
----
+﻿---
 title: "Semantic Search in 50 Lines of Code - AI in .NET"
 subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how to implement it in .NET with Microsoft.Extensions.AI:"
 date: "Feb 24 2025"
@@ -12,8 +12,8 @@ meta_description: "Learn how to implement semantic search in .NET using Microsof
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• The best <a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Pragmatic RESTful APIs in .NET course</a> is finally live! It's created by Milan Jovanovic. This is not a paid ad - it's just my recommendation. I didn't watch the better material than this. You have a discount through my affiliate link. <a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Check it out now</a>.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• I'm preapring Enforcing Code Style course in my <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">TheCodeMan Community</a>. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">Join now</a> and grab my first ebook for free.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- The best <a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Pragmatic RESTful APIs in .NET course</a> is finally live! It's created by Milan Jovanovic. This is not a paid ad - it's just my recommendation. I didn't watch the better material than this. You have a discount through my affiliate link. <a href="https://www.courses.milanjovanovic.tech/a/aff_9044l6t3/external?affcode=1486372_ocagegla" style="color: #a5b4fc; text-decoration: underline;">Check it out now</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- I'm preapring Enforcing Code Style course in my <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">TheCodeMan Community</a>. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">Join now</a> and grab my first ebook for free.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -25,9 +25,9 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
   
 Semantic search goes beyond traditional keyword matching. 
 Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how it works:
-**• Embeddings:** Text is converted into high-dimensional numerical vectors (embeddings) that capture the semantic essence of words, sentences, or documents.
-**• Similarity Metrics:** Using measures like cosine similarity, these vectors are compared. The closer two vectors are, the more semantically similar the texts are.
-**• Improved Relevance: ** This method allows for finding results that match the intent and context of the query, even if the exact keywords aren’t present.
+**- Embeddings:** Text is converted into high-dimensional numerical vectors (embeddings) that capture the semantic essence of words, sentences, or documents.
+**- Similarity Metrics:** Using measures like cosine similarity, these vectors are compared. The closer two vectors are, the more semantically similar the texts are.
+**- Improved Relevance: ** This method allows for finding results that match the intent and context of the query, even if the exact keywords aren’t present.
 
 In the context of AI, semantic search has been widely used for tasks like document retrieval, recommendation systems, and conversational search applications.
 
@@ -118,11 +118,11 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator =
     new OllamaEmbeddingGenerator(new Uri("http://127.0.0.1:11434"), modelId: "all-minilm");
 ```
 
-• IEmbeddingGenerator Interface: Defines the contract for generating embeddings from a string input.
+- IEmbeddingGenerator Interface: Defines the contract for generating embeddings from a string input.
 
-• OllamaEmbeddingGenerator: A concrete implementation that connects to an AI endpoint (in this case, running locally at http://127.0.0.1:11434) and uses a specific model (all-minilm) to generate embeddings.
+- OllamaEmbeddingGenerator: A concrete implementation that connects to an AI endpoint (in this case, running locally at http://127.0.0.1:11434) and uses a specific model (all-minilm) to generate embeddings.
 
-• Purpose: This generator transforms any input text into a numerical vector that captures its semantic meaning.
+- Purpose: This generator transforms any input text into a numerical vector that captures its semantic meaning.
 
 Note: You need to download [Ollama](https://ollama.com/) as well as ["all-minilm" language model](https://ollama.com/library/all-minilm). 
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to implement CQRS without MediatR"
 subtitle: "CQRS (Command Query Responsibility Segregation) is a design pattern that separates the read (query) and write (command) operations of an application, leading to better maintainability, scalability, and flexibility. "
 date: "September 24 2024"
@@ -12,7 +12,7 @@ meta_description: "CQRS (Command Query Responsibility Segregation) is a design p
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -27,25 +27,25 @@ It's particularly suitable for applications with complex business logic, high re
 
 How it works:
 
-**• Commands:** Operations that change the state of the system. Commands usually don't return data, only the status of the operation.
+**- Commands:** Operations that change the state of the system. Commands usually don't return data, only the status of the operation.
 
-**• Queries:** Operations that retrieve data from the system. Queries only read data and don't modify the system state.
+**- Queries:** Operations that retrieve data from the system. Queries only read data and don't modify the system state.
 
 ## CQRS in Microservices and Separate Databases
 
 When using CQRS in a microservices architecture, you can separate read and write operations within individual services or across multiple services, providing several benefits:
 
-**• Event Sourcing:** Combine CQRS with Event Sourcing for better auditability, data versioning, and troubleshooting.
+**- Event Sourcing:** Combine CQRS with Event Sourcing for better auditability, data versioning, and troubleshooting.
 
-**• Separate Data Stores:** Maintain separate data stores for read and write sides, optimizing performance and ensuring data consistency.
+**- Separate Data Stores:** Maintain separate data stores for read and write sides, optimizing performance and ensuring data consistency.
 
-**• Independent Scaling:** Scale the read and write sides of your microservices independently for optimal resource usage.Using separate databases for reading and writing can offer several advantages:
+**- Independent Scaling:** Scale the read and write sides of your microservices independently for optimal resource usage.Using separate databases for reading and writing can offer several advantages:
 
-**• Optimized Performance:** Tailor each database to the specific requirements of your read and write operations.
+**- Optimized Performance:** Tailor each database to the specific requirements of your read and write operations.
 
-**• Independent Scaling:** Scale the read and write databases independently based on your application's needs.
+**- Independent Scaling:** Scale the read and write databases independently based on your application's needs.
 
-** • Flexibility:** Choose the most suitable database technology for each side of your application.
+** - Flexibility:** Choose the most suitable database technology for each side of your application.
 
 ## CQRS + MediatR?
 

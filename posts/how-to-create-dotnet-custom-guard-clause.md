@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to create .NET Custom Guard Clause"
 subtitle: "Guard clauses in .NET are a programming practice used for improving the readability and reliability of code... "
 date: "September 30 2024"
@@ -12,7 +12,7 @@ meta_description: "Explore innovative error handling strategies for .NET develop
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -107,9 +107,9 @@ public static class Ensure
 Today I did not invent electricity like Nikola Tesla.
 Many developers have already created quality libraries for the same purpose.
 You can see some of them on the following links:
-• [Ardalis](https://www.nuget.org/packages/Ardalis.GuardClauses/)
-• [Dawn](https://www.nuget.org/packages/Dawn.Guard)
-• [Throw](https://www.nuget.org/packages/Throw)[](https://www.nuget.org/packages/Throw)
+- [Ardalis](https://www.nuget.org/packages/Ardalis.GuardClauses/)
+- [Dawn](https://www.nuget.org/packages/Dawn.Guard)
+- [Throw](https://www.nuget.org/packages/Throw)[](https://www.nuget.org/packages/Throw)
 Whichever you choose, you won't have any problems. And if you want more control, you can always create your own custom, as I showed.
 ## Wrapping up
 In today's issue, I showed you how to improve readability and shift the responsibility of throwing exceptions (if necessary) to another class that should handle it.

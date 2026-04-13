@@ -15,8 +15,8 @@ A brand-new course is launching soon inside [The CodeMan Community](https://www.
 Join now to lock in early access when it drops - plus get everything else already inside the group.
  
 Founding Member Offer:
-• First 100 members get in for just $4/month - 80 spots already taken!
-• Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
+- First 100 members get in for just $4/month - 80 spots already taken!
+- Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
  
 Get ahead of the game - and make clean, consistent code your superpower.
 [Join here](https://www.skool.com/thecodeman)
@@ -40,11 +40,11 @@ That’s where **IronPDF** came in - and honestly, it made the whole thing feel 
 
 Here’s what makes it different:
 
-• You write HTML/CSS like normal - no need to learn a PDF-specific syntax
-• It runs locally (no browser required)
-• Outputs exactly what you'd see in Chrome
-• Works in airgapped and secure environments (banks love it)
-• Friendly API with minimal boilerplate
+- You write HTML/CSS like normal - no need to learn a PDF-specific syntax
+- It runs locally (no browser required)
+- Outputs exactly what you'd see in Chrome
+- Works in airgapped and secure environments (banks love it)
+- Friendly API with minimal boilerplate
 If you’ve ever fought with low-fidelity PDF libraries that mess up your styles - IronPDF feels like a breath of fresh air.
 
 ## HTML to PDF Conversion With IronPDF

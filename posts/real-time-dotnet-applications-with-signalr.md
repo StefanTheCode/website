@@ -1,4 +1,4 @@
----
+﻿---
 title: "Real-Time applications with SignalR"
 subtitle: "SignalR is like that cool tech wizard in the .NET, making real-time communication feel like a piece of cake..."
 date: "Aug 21 2023"
@@ -13,7 +13,7 @@ meta_description: "Learn to create real-time applications with SignalR in .NET: 
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
 <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Today's issue is sponsored by <a href="https://www.milanjovanovic.tech/pragmatic-clean-architecture" style="color: #a5b4fc; text-decoration: underline;">Milan Jovanovic</a>.</p>
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• <a href="https://www.milanjovanovic.tech/pragmatic-clean-architecture?utm_source=stefan" style="color: #a5b4fc; text-decoration: underline;">Pragmatic Clean Architecture</a>: Learn how to confidently ship well-architected production-ready apps using Clean Architecture. Milan used exact principles to build large-scale systems in the past 6 years. <a href="https://www.milanjovanovic.tech/pragmatic-clean-architecture?utm_source=stefan" style="color: #a5b4fc; text-decoration: underline;">Join 700+ students here</a>.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- <a href="https://www.milanjovanovic.tech/pragmatic-clean-architecture?utm_source=stefan" style="color: #a5b4fc; text-decoration: underline;">Pragmatic Clean Architecture</a>: Learn how to confidently ship well-architected production-ready apps using Clean Architecture. Milan used exact principles to build large-scale systems in the past 6 years. <a href="https://www.milanjovanovic.tech/pragmatic-clean-architecture?utm_source=stefan" style="color: #a5b4fc; text-decoration: underline;">Join 700+ students here</a>.</p>
 <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Use this promo code to get a 20% discount: PCAMW20</p>
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">The first 20 people will get this discount, hurry up.</p>
 

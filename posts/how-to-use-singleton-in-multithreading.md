@@ -1,4 +1,4 @@
----
+﻿---
 title: "Using Singleton in Multithreading in .NET"
 subtitle: "The core idea of a Singleton is that it is a class designed to only create one instance of itself, and it typically provides an easy way to access that instance."
 date: "Oct 08 2024"
@@ -12,8 +12,8 @@ meta_description: "Unlock Singleton pattern in multithreading with .NET: Expert 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">• Learn effective testing strategies, explore powerful new features, and automate your API workflows effortlessly. Avoid common pitfalls and elevate your API development with <a href="https://bit.ly/4eJtsEb" style="color: #a5b4fc; text-decoration: underline;">API Testing and Development with Postman by Dave Westerveld</a>.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Learn effective testing strategies, explore powerful new features, and automate your API workflows effortlessly. Avoid common pitfalls and elevate your API development with <a href="https://bit.ly/4eJtsEb" style="color: #a5b4fc; text-decoration: underline;">API Testing and Development with Postman by Dave Westerveld</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
@@ -144,9 +144,9 @@ Let's take a look.
 
 Here's how you can implement a Singleton pattern using Lazy<T>:
 
-**• Lazy Initialization:** The Lazy<T> class automatically handles the lazy initialization of the Singleton instance. The instance isn't created until it's actually needed.
-**• Thread-Safety:** Lazy<T> ensures that the instance is created in a thread-safe way, so you don't need to use locks or double-check locking.
-**• Simplicity and Maintainability:** The code is simpler and more maintainable because the complexity of thread synchronization is encapsulated within the Lazy<T> class.
+**- Lazy Initialization:** The Lazy<T> class automatically handles the lazy initialization of the Singleton instance. The instance isn't created until it's actually needed.
+**- Thread-Safety:** Lazy<T> ensures that the instance is created in a thread-safe way, so you don't need to use locks or double-check locking.
+**- Simplicity and Maintainability:** The code is simpler and more maintainable because the complexity of thread synchronization is encapsulated within the Lazy<T> class.
 You can implemented in this way:
 
 ```csharp
@@ -162,9 +162,9 @@ public class Singleton
 }
 ```
 The key benefits of using Lazy<T> for Singleton implementation are:
-**• Thread Safety:** Lazy<T> handles all the complexities of thread safety, reducing the risk of errors.
-**• Performance:** It's generally more efficient, as it doesn't require explicit locking (which can be expensive).
-**• Simplicity:** The code is much cleaner and easier to understand, enhancing maintainability.
+**- Thread Safety:** Lazy<T> handles all the complexities of thread safety, reducing the risk of errors.
+**- Performance:** It's generally more efficient, as it doesn't require explicit locking (which can be expensive).
+**- Simplicity:** The code is much cleaner and easier to understand, enhancing maintainability.
 
 This approach is recommended in modern C# development over manually implementing double-check locking, as it leverages the capabilities of the .NET Framework for handling lazy initialization in a thread-safe manner.
 

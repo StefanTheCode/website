@@ -1,4 +1,4 @@
----
+﻿---
 title: "Architecture Tests in .NET: Enforce Clean Architecture with NetArchTest"
 subtitle: "Learn how to enforce Clean Architecture in .NET using architecture tests. Step-by-step guide with NetArchTest examples to prevent architectural violations in C# projects..."
 date: "February 17 2026"
@@ -34,10 +34,10 @@ And suddenly, your **"Clean Architecture"** is just a folder structure.
 
 If you are working in:
 
-• ASP.NET Core APIs
-• Microservices
-• Modular Monoliths
-• Enterprise .NET applications
+- ASP.NET Core APIs
+- Microservices
+- Modular Monoliths
+- Enterprise .NET applications
 
 You need a way to automatically enforce architecture rules.
 
@@ -48,17 +48,17 @@ That’s where Architecture Tests in .NET come in.
 **Architecture tests** in .NET are automated tests that validate architectural rules such as layer boundaries and assembly dependencies.
 Architecture tests are automated tests that validate:
 
-• Layer dependencies
-• Namespace boundaries
-• Naming conventions
-• Assembly references
-• Clean Architecture rules
+- Layer dependencies
+- Namespace boundaries
+- Naming conventions
+- Assembly references
+- Clean Architecture rules
 
 Instead of relying on code reviews to catch architectural violations, you let tests fail when someone breaks your design.
 
 In the .NET ecosystem, one of the most powerful tools for this is:
 
-👉 NetArchTest
+- 👉 NetArchTest
 
 ## Why You Should Use Architecture Tests?
 
@@ -66,10 +66,10 @@ Let’s talk real-world scenario.
 
 Imagine this structure:
 
-• MyApp.Domain
-• MyApp.Application
-• MyApp.Infrastructure
-• MyApp.API
+- MyApp.Domain
+- MyApp.Application
+- MyApp.Infrastructure
+- MyApp.API
 
 Clean Architecture rule:
 
@@ -132,10 +132,10 @@ public class ArchitectureTests
 ### Explanation of the Code
 Let’s break this down:
 
-• `Types.InAssembly(...)` - Loads all types from the Domain assembly.
-• `.ShouldNot().HaveDependencyOn(...)` - Defines the architectural rule.
-• `.GetResult()` - Executes the rule validation.
-• `Assert.True(result.IsSuccessful)` - Fails the test if any violation is found.
+- `Types.InAssembly(...)` - Loads all types from the Domain assembly.
+- `.ShouldNot().HaveDependencyOn(...)` - Defines the architectural rule.
+- `.GetResult()` - Executes the rule validation.
+- `Assert.True(result.IsSuccessful)` - Fails the test if any violation is found.
 
 Now your architecture is enforced automatically.
 
@@ -161,9 +161,9 @@ public void Application_Should_Not_Depend_On_API()
 
 This ensures:
 
-• No accidental circular dependencies
-• No UI leakage into core logic
-• Proper separation of concerns
+- No accidental circular dependencies
+- No UI leakage into core logic
+- Proper separation of concerns
 
 ## Advanced Architecture Testing: Naming Conventions
 You can even enforce naming rules.
@@ -189,24 +189,24 @@ public void Services_Should_End_With_Service()
 This helps keep your project consistent and predictable.
 ### Real-World Example: Enterprise .NET Project
 In large enterprise systems:
-• 10+ projects
-• Multiple teams
-• Microservices
-• Shared libraries
+- 10+ projects
+- Multiple teams
+- Microservices
+- Shared libraries
 
 Architecture drift happens constantly.
 
 When I worked on enterprise systems, we had situations where:
-• Infrastructure leaked into Domain
-• DTOs were referenced in Core
-• Controllers called EF Core directly
+- Infrastructure leaked into Domain
+- DTOs were referenced in Core
+- Controllers called EF Core directly
 
 After introducing architecture tests:
 
-• Violations were caught immediately
-• Code reviews became easier
-• Refactoring was safer
-• New developers onboarded faster
+- Violations were caught immediately
+- Code reviews became easier
+- Refactoring was safer
+- New developers onboarded faster
 
 Architecture tests became part of CI.
 
@@ -216,14 +216,14 @@ That’s when architecture stopped being documentation and became enforcement.
 
 The real power comes when you run architecture tests in:
 
-• GitHub Actions
-• Azure DevOps
-• GitLab CI
-• Any .NET CI pipeline
+- GitHub Actions
+- Azure DevOps
+- GitLab CI
+- Any .NET CI pipeline
 
 If someone breaks architecture:
 
-❌ The pipeline fails.
+- ❌ The pipeline fails.
 
 Now architecture is not optional.
 
@@ -242,12 +242,12 @@ Architecture tests should be part of your default template.
 
 Use them if you:
 
-• Follow Clean Architecture
-• Use Onion Architecture
-• Build Modular Monoliths
-• Maintain Microservices
-• Work in large teams
-• Want to prevent architectural erosion
+- Follow Clean Architecture
+- Use Onion Architecture
+- Build Modular Monoliths
+- Maintain Microservices
+- Work in large teams
+- Want to prevent architectural erosion
 If your project has more than 2 layers, you should consider them mandatory.
 
 ## Wrapping Up: Architecture Is a Discipline - Not a Folder Structure
@@ -265,11 +265,11 @@ Architecture tests stop that.
 
 They give you:
 
-• Automated architecture validation
-• Safer refactoring
-• Long-term maintainability
-• Stronger CI enforcement
-• Predictable, scalable codebases
+- Automated architecture validation
+- Safer refactoring
+- Long-term maintainability
+- Stronger CI enforcement
+- Predictable, scalable codebases
 
 If you're serious about building production-grade .NET systems, architecture rules must be executable - not optional.
 In short
@@ -282,13 +282,13 @@ Architecture tests are just one part of a larger discipline: **automated code qu
 
 In my [course Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website=&utm_campaign=architecturetests), I go deeper into:
 
-• Enforcing Clean Architecture rules
-• CI/CD code quality automation
-• .editorconfig strategies
-• Analyzer configuration
-• Warnings-as-errors setup
-• Building self-cleaning .NET solutions
-• Preventing architectural drift in real production systems
+- Enforcing Clean Architecture rules
+- CI/CD code quality automation
+- .editorconfig strategies
+- Analyzer configuration
+- Warnings-as-errors setup
+- Building self-cleaning .NET solutions
+- Preventing architectural drift in real production systems
 
 The goal isn’t just [clean code](https://thecodeman.net/posts/clean-code-best-practices).
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Dynamic LINQ that still executes as real LINQ"
 subtitle: "Stop redeploying for every new filter - Dynamic LINQ that still executes as real LINQ..."
 date: "October 18 2025"
@@ -38,13 +38,13 @@ With [C# Eval Expression](https://eval-expression.net/?utm_source=stefandjokic&u
 
 Under the hood, it parses to an expression tree and invokes the actual LINQ operator. It works for IEnumerable<T> and IQueryable<T> (including EF Core).  
 You can write either:
-• Body-only form:
+- Body-only form:
 
 ```csharp
  x => x.Status == 0 && x.LastLogon >= DateTime.Now.AddMonths(-1)"
 ```
 
-**• Full-lambda form:** 
+**- Full-lambda form:** 
 
 ```csharp
 x => x.Status == 0 && x.LastLogon >= DateTime.Now.AddMonths(-1) 
@@ -54,10 +54,10 @@ x => x.Status == 0 && x.LastLogon >= DateTime.Now.AddMonths(-1)
 
 We’ll stay focused on the handful you’ll reach for daily:
 
-• WhereDynamic - dynamic filtering
-• OrderByDynamic / ThenByDynamic - dynamic sorting
-• SelectDynamic - dynamic projection
-• FirstOrDefaultDynamic - dynamic singular retrieval
+- WhereDynamic - dynamic filtering
+- OrderByDynamic / ThenByDynamic - dynamic sorting
+- SelectDynamic - dynamic projection
+- FirstOrDefaultDynamic - dynamic singular retrieval
 
 I’ll show before → after where it helps, plus tips that keep the code clean.
 
@@ -185,19 +185,19 @@ This is the “escape hatch” - powerful, but I prefer *Dynamic methods for rea
 ## Real-world patterns you can ship this week
 
 1. Admin "Query Builder"
-• UI emits: field + operator + value
-• Backend maps allowed fields/ops → builds WhereDynamic (and optional OrderByDynamic)
-**• Outcome:** one query pipeline, virtually endless combinations, no branch explosion
+- UI emits: field + operator + value
+- Backend maps allowed fields/ops → builds WhereDynamic (and optional OrderByDynamic)
+**- Outcome:** one query pipeline, virtually endless combinations, no branch explosion
 
 2. Marketing "Segment Builder"
-• Segments saved as readable expressions (e.g., “Active, DACH, (last 90 days OR ≥ €500), opted-in, not test accounts”)
-• App loads rule → WhereDynamic → persists results
-**• Outcome:** rules evolve without touching code or redeploying
+- Segments saved as readable expressions (e.g., “Active, DACH, (last 90 days OR ≥ €500), opted-in, not test accounts”)
+- App loads rule → WhereDynamic → persists results
+**- Outcome:** rules evolve without touching code or redeploying
 
 3. Multi-tenant rules
-• Each tenant stores a few predicates (or basic allow/deny filters)
-• Compose them at request time and apply dynamically
-**• Outcome:** fewer forks/flags, cleaner release model
+- Each tenant stores a few predicates (or basic allow/deny filters)
+- Compose them at request time and apply dynamically
+**- Outcome:** fewer forks/flags, cleaner release model
 
 ## Read this
 
@@ -236,8 +236,8 @@ If the thought “I’m shipping features, not rewriting queries” resonates, t
 
 Deep dive and runnable examples:
 
-• [My First LINQ Dynamic](https://eval-expression.net/my-first-linq-dynamic?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)
-• [C# Eval Expression](https://eval-expression.net/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)
+- [My First LINQ Dynamic](https://eval-expression.net/my-first-linq-dynamic?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)
+- [C# Eval Expression](https://eval-expression.net/?utm_source=stefandjokic&utm_medium=newsletter&utm_campaign=birthday)
 
 That's all from me for today. 
 <!--END-->
