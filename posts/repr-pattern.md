@@ -282,7 +282,7 @@ This will group all the endpoints with same tag together in Swagger document.
 
 2. Developers can add aditional ActionMethod
 
-Solution: Write [Architecture tests](https://thecodeman.net/posts/use-architecture-tests-in-your-projects).
+Solution: Write [Architecture tests](https://thecodeman.net/posts/architecture-tests-dotnet-clean-architecture).
 ## Where to use it?
 
 The REPR pattern is commonly applied in scenarios like **[CQRS](https://thecodeman.net/posts/how-to-implement-cqrs-without-mediatr)**, where distinct endpoints are designated for commands and queries, ensuring clear separation of responsibilities.
