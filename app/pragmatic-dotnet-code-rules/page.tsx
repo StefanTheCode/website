@@ -6,7 +6,7 @@ import FreePreviewButton from '@/components/FreePreviewButton';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/pragmatic-dotnet-code-rules'),
+  metadataBase: new URL('https://thecodeman.net'),
   title: "Pragmatic .NET Code Rules — EditorConfig, Roslyn Analyzers & CI Quality Gates",
   alternates: {
     canonical: 'https://thecodeman.net/pragmatic-dotnet-code-rules',

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import config from '@/config.json'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/black-friday'),
+  metadataBase: new URL('https://thecodeman.net'),
   title: "Black Friday Sponsorship Opportunities - TheCodeMan.NET",
   alternates: {
     canonical: 'https://thecodeman.net/black-friday',

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/ai-in-dotnet-starter-kit'),
+  metadataBase: new URL('https://thecodeman.net'),
   title: "AI in .NET Starter Kit - Semantic Search & RAG System",
   description: "Get started with AI in .NET 10. Download free source code for Semantic Search and RAG System using Microsoft.Extensions.AI, Ollama, and Neon Serverless Db.",
   openGraph: {

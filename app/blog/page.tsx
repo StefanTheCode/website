@@ -4,7 +4,7 @@ import BlogClient from "./blogClient";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/blog'),
+  metadataBase: new URL('https://thecodeman.net'),
   title: ".NET Blog - C# Tutorials, Architecture & Best Practices",
   alternates: {
     canonical: 'https://thecodeman.net/blog',

@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 
 const BASE_URL = "https://thecodeman.net";
 
 export async function GET() {
-  const folder = "posts/";
+  const folder = path.join(process.cwd(), "posts");
   const files = fs.readdirSync(folder);
   const markdownFiles = files.filter((file) => file.endsWith(".md"));
 
   const posts = markdownFiles
     .map((fileName) => {
-      const fileContents = fs.readFileSync(`${folder}/${fileName}`, "utf8");
+      const fileContents = fs.readFileSync(path.join(folder, fileName), "utf8");
       const { data } = matter(fileContents);
       return {
         title: data.title || fileName.replace(".md", ""),

@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/design-patterns-that-deliver-ebook'),
+  metadataBase: new URL('https://thecodeman.net'),
   title: "Design Patterns that Deliver — Builder, Decorator, Strategy, Adapter & Mediator in C#",
   alternates: {
     canonical: 'https://thecodeman.net/design-patterns-that-deliver-ebook',

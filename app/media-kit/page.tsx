@@ -3,7 +3,7 @@ import SponsorsNewsletter from "@/components/sponsorsTestimonials";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thecodeman.net/media-kit"),
+  metadataBase: new URL("https://thecodeman.net"),
   title: "Media Kit",
   description:
     "TheCodeMan Media Kit — sponsorship packages across Newsletter, LinkedIn, X, and YouTube. Clean rates, audience insights, and deliverables for developer tool brands.",

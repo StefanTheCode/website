@@ -1,16 +1,18 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 
 const BASE_URL = "https://thecodeman.net";
 
 // Generic utility to get all slugs from a folder
-const getSlugsFromFolder = (folder: string) => {
+const getSlugsFromFolder = (folderName: string) => {
+  const folder = path.join(process.cwd(), folderName);
   const files = fs.readdirSync(folder);
   const markdownFiles = files.filter((file) => file.endsWith(".md"));
 
   return markdownFiles.map((fileName) => {
-    const fileContents = fs.readFileSync(`${folder}/${fileName}`, "utf8");
+    const fileContents = fs.readFileSync(path.join(folder, fileName), "utf8");
     const matterResult = matter(fileContents);
     return {
       slug: fileName.replace(".md", ""),
@@ -21,7 +23,7 @@ const getSlugsFromFolder = (folder: string) => {
 };
 
 export async function GET() {
-  const staticRoutes = ["", "blog", "about-me", "sponsorship", "media-kit", "pass-your-interview", "design-patterns-simplified", "design-patterns-that-deliver-ebook", "builder-pattern-free-stuff", "ai-in-dotnet-starter-kit", "vertical-slices-architecture", "pragmatic-dotnet-code-rules", "dotnet-code-rules-starter-kit", "newsletter-archive"]; // add any static routes here
+  const staticRoutes = ["", "blog", "about-me", "sponsorship", "media-kit", "pass-your-interview", "design-patterns-simplified", "design-patterns-that-deliver-ebook", "builder-pattern-free-stuff", "ai-in-dotnet-starter-kit", "vertical-slices-architecture", "pragmatic-dotnet-code-rules", "dotnet-code-rules-starter-kit", "newsletter-archive", "black-friday", "dotnet-roadmap-2026"]; // add any static routes here
 
   const posts = getSlugsFromFolder("posts");
 

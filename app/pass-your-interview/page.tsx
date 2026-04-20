@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ogImage from '../pass-your-interview.png'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/pass-your-interview'),
+  metadataBase: new URL('https://thecodeman.net'),
   alternates: {
     canonical: 'https://thecodeman.net/pass-your-interview',
   },

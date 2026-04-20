@@ -9,7 +9,7 @@ import Image from 'next/image'
 // import ogImage from '/og-ebookimage.png'
 
 export const metadata:Metadata = {
-  metadataBase: new URL('https://thecodeman.net/design-patterns-simplified'),
+  metadataBase: new URL('https://thecodeman.net'),
   title: "Design Patterns Simplified ebook",
   alternates: {
     canonical: 'https://thecodeman.net/design-patterns-simplified',

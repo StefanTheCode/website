@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net/builder-pattern-free-stuff'),
+  metadataBase: new URL('https://thecodeman.net'),
   title: "Builder Pattern Free Stuff",
   description: "TheCodeMan's FREE Builder Pattern Chapter from Design Patterns that Deliver ebook.",
   openGraph: {

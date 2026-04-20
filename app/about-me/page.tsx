@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thecodeman.net/about-me"),
+  metadataBase: new URL("https://thecodeman.net"),
   title: "About Stefan Djokic - Microsoft MVP & Senior .NET Engineer",
   alternates: {
     canonical: "https://thecodeman.net/about-me",
