@@ -1,13 +1,19 @@
 ---
 title: "Interpreter Pattern in .NET"
 subtitle: "Build mini-languages and expression evaluators with a clean grammar-to-code mapping. The Interpreter pattern turns structured expressions into executable logic."
-date: "April 21 2026"
+date: "April 22 2026"
 category: "Design Patterns"
 readTime: "Read Time: 7 minutes"
 meta_description: "Learn the Interpreter design pattern in .NET with real-world C# examples. Build rule engines, expression evaluators, and simple DSLs using composable expression trees."
 ---
 
 <!--START-->
+
+"Free tier" usually means: works until it matters.
+
+Aiven's OpenSearch free tier gives you 4GB RAM, enough for real semantic search and AI experiments. This one doesn't fall apart in 10 minutes.
+
+👉 [Check it out](https://fandf.co/41x3zmI)
 
 ## Your Business Rules Are Buried in If-Else Chains
 
