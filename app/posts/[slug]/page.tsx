@@ -47,8 +47,6 @@ function getPostContent(slug: string) {
 export async function generateStaticParams() {
   const posts = getPostMetadata();
 
-  console.log("generateStaticParams slugs:", posts.map(p => p.slug));
-
   return posts
     .filter((p) => !!p.slug)
     .map((post) => ({

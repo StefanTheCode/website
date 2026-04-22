@@ -7,7 +7,7 @@ function isLocalHost(host: string) {
   return host.startsWith("localhost") || host.startsWith("127.0.0.1");
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const forwardedHost = request.headers.get("x-forwarded-host");
   const host = (forwardedHost ?? request.headers.get("host") ?? "").toLowerCase();
 
