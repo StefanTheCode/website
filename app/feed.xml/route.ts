@@ -5,6 +5,8 @@ import matter from "gray-matter";
 
 const BASE_URL = "https://thecodeman.net";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const folder = path.join(process.cwd(), "posts");
   const files = fs.readdirSync(folder);
