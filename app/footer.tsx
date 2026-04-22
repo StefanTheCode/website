@@ -33,7 +33,6 @@ export default function Footer() {
               <li><a href="/pass-your-interview">Interview Prep Kit (Free)</a></li>
               <li><a href="/about-me">About Stefan Djokic</a></li>
               <li><a href="/sponsorship">Sponsor TheCodeMan</a></li>
-              <li><a href="/feed.xml" className="footer-rss">RSS Feed</a></li>
             </ul>
           </div>
         </div>
