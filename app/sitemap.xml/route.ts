@@ -5,6 +5,8 @@ import matter from "gray-matter";
 
 const BASE_URL = "https://thecodeman.net";
 
+export const dynamic = "force-static";
+
 // Generic utility to get all slugs from a folder
 const getSlugsFromFolder = (folderName: string) => {
   const folder = path.join(process.cwd(), folderName);
