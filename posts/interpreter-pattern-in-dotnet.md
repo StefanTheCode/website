@@ -13,7 +13,7 @@ meta_description: "Learn the Interpreter design pattern in .NET with real-world 
 
 Aiven's OpenSearch free tier gives you 4GB RAM, enough for real semantic search and AI experiments. This one doesn't fall apart in 10 minutes.
 
-👉 [Check it out](https://fandf.co/41x3zmI)
+👉 [Check it out now](https://fandf.co/41x3zmI)
 
 ## Your Business Rules Are Buried in If-Else Chains
 
