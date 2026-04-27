@@ -4,7 +4,7 @@ subtitle: "The Outbox Pattern is the most reliable way to publish messages from 
 date: "April 27 2026"
 category: ".NET"
 readTime: "Read Time: 6 minutes"
-meta_description: "Learn how to implement the Outbox Pattern in .NET 9 with EF Core, PostgreSQL and a background worker. Ensure reliable, exactly-once message delivery between microservices, prevent dual-write failures, and avoid lost domain events with practical C# examples."
+meta_description: "Learn how to implement the Outbox Pattern in .NET 10 with EF Core, PostgreSQL and a background worker. Ensure reliable, exactly-once message delivery between microservices, prevent dual-write failures, and avoid lost domain events with practical C# examples."
 ---
 
 <!--START-->
@@ -31,7 +31,7 @@ Welcome to the **dual-write problem** - the silent killer of "eventually consist
 
 The **Outbox Pattern** is the standard, battle-tested fix. Instead of writing to the database **and** publishing to the broker, you only write to the database - including the message itself - in a single ACID transaction. A separate worker reads the saved messages and publishes them later, with retries, until the broker confirms.
 
-In this issue I'll show you a clean, production-grade outbox in **.NET 9** with **EF Core** and **PostgreSQL**, no MassTransit, no NServiceBus - just enough code to understand exactly what's happening and own it in your codebase.
+In this issue I'll show you a clean, production-grade outbox in **.NET 10** with **EF Core** and **PostgreSQL**, no MassTransit, no NServiceBus - just enough code to understand exactly what's happening and own it in your codebase.
 
 ## What is the Outbox Pattern?
 
