@@ -25,17 +25,17 @@ export const metadata: Metadata = {
   }
 };
 
-const sponsors = [
-  { src: '/images/sponsors/microsoft.svg', alt: 'Microsoft' },
+const sponsors: { src: string; alt: string; size?: 'lg' | 'xl' }[] = [
+  { src: '/images/sponsors/microsoft.png', alt: 'Microsoft' },
   { src: '/images/sponsors/jetbrains.png', alt: 'JetBrains' },
-  { src: '/images/sponsors/mongodb.svg', alt: 'MongoDB' },
-  { src: '/images/sponsors/sentry.svg', alt: 'Sentry' },
-  { src: '/images/sponsors/heroku.svg', alt: 'Heroku' },
-  { src: '/images/sponsors/brilliant.svg', alt: 'Brilliant' },
-  { src: '/images/sponsors/iron-software.svg', alt: 'Iron Software' },
-  { src: '/images/sponsors/zzz-projects.svg', alt: 'ZZZ Projects' },
-  { src: '/images/sponsors/uno-platform.svg', alt: 'Uno Platform' },
-  { src: '/images/sponsors/coderabbit.svg', alt: 'CodeRabbit' },
+  { src: '/images/sponsors/mongodb.png', alt: 'MongoDB' },
+  { src: '/images/sponsors/sentry.png', alt: 'Sentry' },
+  { src: '/images/sponsors/heroku.png', alt: 'Heroku' },
+  { src: '/images/sponsors/brilliant.png', alt: 'Brilliant' },
+  { src: '/images/sponsors/iron.png', alt: 'Iron Software' },
+  { src: '/images/sponsors/zzz-projects.png', alt: 'ZZZ Projects' },
+  { src: '/images/sponsors/uno-platform.png', alt: 'Uno Platform', size: 'xl' },
+  { src: '/images/sponsors/coderabbit.png', alt: 'CodeRabbit', size: 'lg' },
 ];
 
 const Sponsorship = () => {
@@ -100,7 +100,7 @@ const Sponsorship = () => {
           <p className="sp-text">
             TheCodeMan also reaches developers across <b className="text-yellow">100k+ on LinkedIn</b>,{' '}
             <b className="text-yellow">9k+ on X</b>, and{' '}
-            <b className="text-yellow">3.5k+ on YouTube</b> — all built around practical .NET education and real-world software engineering content.
+            <b className="text-yellow">3.5k+ on YouTube</b> - all built around practical .NET education and real-world software engineering content.
           </p>
         </div>
 
@@ -153,13 +153,14 @@ const Sponsorship = () => {
         <div className="sp-trusted">
           <p className="sp-trusted__label">Trusted by leading developer brands</p>
           <div className="sp-logos">
-            {sponsors.map(({ src, alt }) =>
-              src.endsWith('.svg') ? (
+            {sponsors.map(({ src, alt, size }) => {
+              const sizeClass = size ? ` sp-logo--${size}` : '';
+              return src.endsWith('.svg') ? (
                 <img
                   key={src}
                   src={src}
                   alt={alt}
-                  className="sp-logo"
+                  className={`sp-logo${sizeClass}`}
                 />
               ) : (
                 <Image
@@ -168,10 +169,10 @@ const Sponsorship = () => {
                   alt={alt}
                   width={160}
                   height={40}
-                  className="sp-logo"
+                  className={`sp-logo${sizeClass}`}
                 />
-              )
-            )}
+              );
+            })}
           </div>
         </div>
 

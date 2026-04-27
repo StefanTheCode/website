@@ -16036,6 +16036,16 @@ textarea.form-control {
   transition: opacity 0.2s ease;
 }
 
+.sp-logo--lg {
+  height: 52px;
+  max-width: 180px;
+}
+
+.sp-logo--xl {
+  height: 64px;
+  max-width: 200px;
+}
+
 .sp-logo:hover {
   opacity: 0.85;
 }
@@ -16268,6 +16278,14 @@ textarea.form-control {
 
   .sp-logo {
     height: 26px;
+  }
+
+  .sp-logo--lg {
+    height: 38px;
+  }
+
+  .sp-logo--xl {
+    height: 46px;
   }
 
   .sp-trusted {
