@@ -16157,6 +16157,20 @@ textarea.form-control {
   text-decoration: none !important;
 }
 
+.sp-hero__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+.sp-btn--ghost {
+  background: transparent;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+}
+.sp-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff !important;
+  box-shadow: none;
+}
+
 /* Metrics band */
 .sp-metrics {
   margin-top: 64px;

@@ -66,6 +66,9 @@ const Sponsorship = () => {
             <a className="sp-btn" href="#reserveSpotForm">
               Book a Sponsorship
             </a>
+            <a className="sp-btn sp-btn--ghost" href="/media-kit">
+              View Media Kit
+            </a>
           </div>
         </div>
 
