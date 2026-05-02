@@ -15258,8 +15258,74 @@ textarea.form-control {
 }
 
 .fixed-position {
-  position: fixed;
-  width: 25%; 
+  position: -webkit-sticky;
+  position: sticky;
+  top: 90px;
+  align-self: flex-start;
+}
+
+/* ============================
+   Blog sidebar: product promo cards
+   ============================ */
+.sidebar-products {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.sidebar-products-header {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.2px;
+}
+
+.sidebar-product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 18px 16px 20px;
+  background: linear-gradient(160deg, #1a2030 0%, #0f1623 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-product-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.55);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  text-decoration: none !important;
+}
+
+.sidebar-product-img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 14px;
+}
+
+.sidebar-product-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+.sidebar-product-label {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #a5b4fc;
 }
 
 .black-friday-link {
@@ -16693,8 +16759,11 @@ textarea.form-control {
    ============================================================ */
 
 /* --- Global overflow protection --- */
+/* NOTE: use `overflow-x: clip` instead of `hidden` so it does NOT
+   create a scroll container that would break `position: sticky`
+   for the blog post sidebar. */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -16957,6 +17026,7 @@ img, video, iframe, svg {
   .fixed-position {
     position: static !important;
     width: 100% !important;
+    top: auto !important;
   }
 
   /* --- Blog post: ensure Markdown images don't overflow --- */
@@ -17028,6 +17098,7 @@ img, video, iframe, svg {
   .fixed-position {
     position: static !important;
     width: 100% !important;
+    top: auto !important;
   }
 }
 

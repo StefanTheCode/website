@@ -276,27 +276,9 @@ export default async function PostPage(
             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
               <div className="row justify-content-center pb-5 fixed-position">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h4>
-                    Subscribe to <br />
-                    TheCodeMan.net
-                  </h4>
-                  <p className="text-slate-400 mt-2">
-                    Subscribe to the TheCodeMan.net and be among the{" "}
-                    <span className="text-yellow">{config.NewsletterSubCount}</span> gaining
-                    practical tips and resources to enhance your .NET expertise.
-                  </p>
-                  <div className="row">
-                    <div
-                      className="col-md-12 padding-left0 padding-right0"
-                      dangerouslySetInnerHTML={{
-                        __html: `<script async src="https://eomail4.com/form/03cc8224-cde8-11ef-b5d5-4bdfe653a4b5.js" data-form="03cc8224-cde8-11ef-b5d5-4bdfe653a4b5"></script>`,
-                      }}
-                    />
-                  </div>
-
                   {/* Product Cards */}
-                  <div className="sidebar-products mt-4">
-                    <h5 className="text-yellow mb-3">Resources</h5>
+                  <div className="sidebar-products">
+                    <h4 className="sidebar-products-header">Recommended for .NET Engineers</h4>
 
                     <Link href="/pragmatic-dotnet-code-rules?utm_source=sidebar" className="sidebar-product-card">
                       <Image src="/images/course.png" alt="Pragmatic .NET Code Rules Course" width={300} height={160} className="sidebar-product-img" />
