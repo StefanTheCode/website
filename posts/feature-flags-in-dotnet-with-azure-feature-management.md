@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Feature Flags in .NET 8 with Azure Feature Management"
 subtitle: "Feature Flags are one of the most powerful techniques to achieve this, enabling developers to toggle features on or off without deploying new code."
 date: "Nov 18 2024"
@@ -16,7 +16,7 @@ meta_description: "Learn how to deal with Feature Flags in .NET using Azure Feat
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Unlock <a href="https://community.postman.com/t/the-postman-drop-october-edition/70044?utm_medium=social_sharing&utm_source=newsletter&utm_content=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Postman's latest features</a> for seamless API management! Now with a centralized variable experience and secure secret storage via Postman Vault, your team can streamline workflows and safeguard sensitive data effortlessly. <a href="https://community.postman.com/t/the-postman-drop-october-edition/70044?utm_medium=social_sharing&utm_source=newsletter&utm_content=Stefan_Djokic" style="color: #a5b4fc; text-decoration: underline;">Learn more</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

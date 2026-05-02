@@ -1,4 +1,4 @@
-﻿---
+---
 title: "3 Tips to Elevate your Swagger UI"
 subtitle: "Swashbuckle is an open-source project that integrates Swagger with .NET applications. It provides seamless support for generating Swagger documents and exposing them via a web interface in ASP.NET Core applications."
 date: "August 10 2024"
@@ -17,7 +17,7 @@ photoUrl: "/images/blog/newsletter21.png"
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Create a production-ready Blazor application from start to finish with the latest edition of Web Development with Blazor by Jimmy Engstrom. You can learn more <a href="https://amzn.to/3KNEATs" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 We know [Swagger](https://swagger.io/) is a set of tools for developing, documenting, and consuming RESTful APIs. It helps developers design, build, document, and consume APIs more efficient. 

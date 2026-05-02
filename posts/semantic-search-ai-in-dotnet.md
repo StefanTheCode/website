@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Semantic Search in 50 Lines of Code - AI in .NET"
 subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how to implement it in .NET with Microsoft.Extensions.AI:"
 date: "Feb 24 2025"
@@ -16,7 +16,7 @@ meta_description: "Learn how to implement semantic search in .NET using Microsof
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- I'm preapring Enforcing Code Style course in my <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">TheCodeMan Community</a>. For 3 consecutive subscriptions ($12) or annual ($40) you get this course, plus everything else in the group.🚀 <a href="https://www.skool.com/thecodeman" style="color: #a5b4fc; text-decoration: underline;">Join now</a> and grab my first ebook for free.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

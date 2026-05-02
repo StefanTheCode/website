@@ -1,4 +1,4 @@
-﻿---
+---
 title: "How to create .NET Custom Guard Clause"
 subtitle: "Guard clauses in .NET are a programming practice used for improving the readability and reliability of code... "
 date: "September 30 2024"
@@ -15,7 +15,7 @@ meta_description: "Explore innovative error handling strategies for .NET develop
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Join Postman CTO, Ankit Sobti, and Head of Customer Experience and Success, Kristine Chin, at <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">this webinar</a> which delivers the information you need to maximize the success of your API products, reduce friction to collaboration, and to provide a world-class experience for your developers, partners, and customers. Join <a href="https://app.zuddl.com/p/a/event/8e8f96c1-99d5-4392-96a1-c68b8c8b9d2d" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

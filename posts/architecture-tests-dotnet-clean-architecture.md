@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Architecture Tests in .NET: Enforce Clean Architecture with NetArchTest"
 subtitle: "Learn how to enforce Clean Architecture in .NET using architecture tests. Step-by-step guide with NetArchTest examples to prevent architectural violations in C# projects..."
 date: "February 17 2026"
@@ -15,7 +15,7 @@ meta_description: "Learn how to enforce Clean Architecture in .NET using archite
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Today's issue is sponsored by <a href="https://www.packtpub.com/" style="color: #a5b4fc; text-decoration: underline;">Packt</a>. Working with React doesn't have to be complex. **"React 18 Design Patterns and Best Practices"** empowers you to harness React's potential, making your applications flexible, easy to manage, and high-performing. Discover and unravel the dynamic features of React 18 and Node 19. This updated fourth edition equips you with insights into the cutting-edge tools that will elevate your projects. <a href="https://packt.link/IxSPS" style="color: #a5b4fc; text-decoration: underline;">Book Link</a></p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

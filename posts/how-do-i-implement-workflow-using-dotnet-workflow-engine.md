@@ -1,4 +1,4 @@
-﻿---
+---
 title: "How do I implement a workflow using a .NET workflow engine?"
 subtitle: "A project workflow is like a roadmap that guides you from the very beginning of a project all the way to its successful..."
 date: "Nov 13 2023"
@@ -15,7 +15,7 @@ meta_description: "Master the art of implementing effective workflows in .NET ap
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">**- <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">Treblle Api Insights</a> ** Treblle has come out with a revolutionary new tool - API Insights. If until now you couldn't tell on the scale how good your API is, now you will be able to. It's a free tool, you only need to upload your .json of the API you're building and you'll get insights on how good your API is in 3 categories: Design, Performance, Security. Check your API <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

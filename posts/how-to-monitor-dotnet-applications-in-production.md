@@ -1,4 +1,4 @@
-﻿---
+---
 title: "How to Monitor .NET Applications in Production with Health Checks, Prometheus, and Grafana"
 subtitle: "Learn a complete, production-ready monitoring setup for .NET: liveness and readiness health checks, PostgreSQL dependency checks, Prometheus scraping via /metrics, Grafana dashboards, Docker Compose wiring, and custom metrics you can extend."
 date: "Feb 11 2026"
@@ -8,6 +8,14 @@ meta_description: "Learn a complete, production-ready monitoring setup for .NET:
 ---
 
 <!--START-->
+
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">A quick word from me</p>
+
+<p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored - I write these deep dives in my free time and keep them free for everyone. If your company sells AI tools, dev tools, courses, or services that .NET developers would actually use, sponsoring an issue is the most direct way to reach them.</p>
+
+<a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+</div>
 This issue is **self-sponsored**.
 By supporting my work and purchasing my products, you directly help me keep this newsletter free and continue creating high-quality, practical .NET content for the community. 
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Discriminator Column in EF Core: A Quick Guide"
 subtitle: "In Entity Framework (EF) Core, a discriminator is a special column used in Table Per Hierarchy (TPH) inheritance to differentiate between multiple entity types stored in a single table."
 date: "Feb 17 2025"
@@ -16,7 +16,7 @@ meta_description: "In Entity Framework (EF) Core, a discriminator is a special c
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- With Postman’s AI Agent Builder making waves, I can’t wait to see what’s in store at <a href="https://www.postman.com/postcon/?utm_campaign=fy26_global_postcon_25&utm_medium=influencer_pd&utm_source=stefan-djokic&utm_content=save-the-date-influencers" style="color: #a5b4fc; text-decoration: underline;">POST/CON</a> this year. Last year was phenomenal - you remember I attended it in SF. Sign up for updates now! Save the date and join the mailing list <a href="https://www.postman.com/postcon/?utm_campaign=fy26_global_postcon_25&utm_medium=influencer_pd&utm_source=stefan-djokic&utm_content=save-the-date-influencers" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

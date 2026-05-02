@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Solving HttpClient Authentication with Delegating Handlers"
 subtitle: "In C#/.NET, a DelegatingHandler is a special type of message handler that is part of the HTTP client pipeline used to process HTTP requests and responses."
 date: "August 10 2024"
@@ -15,7 +15,7 @@ meta_description: "In C#/.NET, a DelegatingHandler is a special type of message 
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of API management and enhance your productivity <a href="https://www.postman.com/product/flows/" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

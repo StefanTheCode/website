@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Live loading appsettings.json configuration file"
 subtitle: "The IOptions pattern is part of the Microsoft.Extensions.Options namespace and provides a way to define a configuration class and bind settings from various sources such as appsettings.json files, environment variables, or command-line arguments."
 date: "June 10 2024"
@@ -15,7 +15,7 @@ meta_description: "The IOptions pattern is part of the Microsoft.Extensions.Opti
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Discover the principles and best practices of API design with Postman's comprehensive guide. Learn how to create adaptable, testable, and well-documented APIs that support your business objectives. Dive into the full process and enhance your API design capabilities at <a href="https://www.postman.com/api-platform/api-design/" style="color: #a5b4fc; text-decoration: underline;">Postman API Design</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

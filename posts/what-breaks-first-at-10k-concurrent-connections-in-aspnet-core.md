@@ -1,13 +1,25 @@
 ---
 title: "What Breaks First at 10k Concurrent Connections in ASP.NET Core"
 subtitle: "A hands-on .NET 10 lab that turns a 2.27 s p95 into a 217 ms p95 and a 73 RPS endpoint into a 24,562 RPS endpoint - by fixing the 3 things that always break first under load."
-date: "April 27 2026"
+date: "May 04 2026"
 category: "Architecture"
 readTime: "Read Time: 18 minutes"
 meta_description: "Measured on .NET 10 + k6: thread pool fix gives 10.5x lower p95, IHttpClientFactory fix gives 336x throughput, and a rate limiter turns 38,991 connection-refused errors into zero. Full lab repo included."
 ---
 
 <!--START-->
+
+<div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
+
+<p style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700; color: #ffffff;">Windows Server Summit 2026</p>
+
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Most devs still use Windows Server like it's 2016. But with Server 2025 + Azure Arc, hybrid is becoming the default. If you're building APIs or distributed systems, this shift matters. Join us for <a href="https://fandf.co/3Qq5vec" target="_blank" rel="noopener noreferrer" style="color: #a5b4fc; text-decoration: underline;">Windows Server Summit 2026</a>.<br/>📅 May 11–13 · Online &nbsp;·&nbsp; <a href="https://fandf.co/3Qq5vec" target="_blank" rel="noopener noreferrer" style="color: #a5b4fc; text-decoration: underline;"><strong>Save the date</strong></a>.</p>
+
+<p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+</p>
+</div>
 
 ## Background
 

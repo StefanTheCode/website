@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Response Compression in ASP.NET"
 subtitle: "Since there's a limited amount of network bandwidth available..."
 date: "Mar 24 2025"
@@ -17,7 +17,7 @@ meta_description: "Optimize your .NET APIs with Response Compression: A deep div
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">That means you get all the capabilities of .NET, paired with <a href="(https://fnf.dev/4kH4x81" style="color: #a5b4fc; text-decoration: underline;">Heroku’s streamlined platform</a>). No hacks, no workarounds - just a seamless way to build and scale .NET apps on a platform you already love. <a href="https://fnf.dev/4kH4x81" style="color: #a5b4fc; text-decoration: underline;">Check it out here</a></p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

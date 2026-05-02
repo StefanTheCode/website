@@ -15,7 +15,7 @@ meta_description: "Master Health Checks in .NET 8: Essential Guide for ASP.NET C
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">If you have ever used **Postman** to debug and write tests for your REST APIs, guess what, those are the same concepts you need to know for <a href="https://blog.postman.com/testing-grpc-apis-with-postman/" style="color: #a5b4fc; text-decoration: underline;">writing tests for your gRPC requests in Postman</a>. For more info about gRPC, they created a great beginner article <a href="https://blog.postman.com/what-is-grpc/" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

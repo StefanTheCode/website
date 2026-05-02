@@ -1,4 +1,4 @@
-﻿---
+---
 title: "The ServiceCollection Extension Pattern"
 subtitle: "The IServiceCollection interface represents a contract for a collection of service descriptors, providing an abstraction to add, remove, and retrieve services..."
 date: "Apr 08 2024"
@@ -16,7 +16,7 @@ meta_description: "The IServiceCollection interface represents a contract for a 
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Backend design like you've never seen it before - a guide to building SOLID ASP.NET Core web apps that stand the test of time. Featuring more Minimal APIs, more testing, a new e-commerce project, and the modular monolith! Explore the contents in depth <a href="https://amzn.to/3THdL7u" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

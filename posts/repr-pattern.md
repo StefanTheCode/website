@@ -1,4 +1,4 @@
-﻿---
+---
 title: "REPR Pattern - For C# developers"
 subtitle: "The Request, Endpoint, Response (REPR) pattern is a modern architectural approach often used in web development to design robust, scalable, and maintainable APIs..."
 date: "September 2 2024"
@@ -16,7 +16,7 @@ meta_description: "The Request, Endpoint, Response (REPR) pattern is a modern ar
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Explore it <a href="https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

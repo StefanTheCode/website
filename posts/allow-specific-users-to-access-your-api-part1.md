@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Allow specific users to access your API - Part 1"
 subtitle: "Just as a bouncer checks your pass before letting you into a club, an API uses an API key to decide who gets access to its data and services."
 date: "Mar 04 2024"
@@ -16,7 +16,7 @@ meta_description: "Just as a bouncer checks your pass before letting you into a 
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Get instant insights about your API quality from VS Code with <a href="https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code" style="color: #a5b4fc; text-decoration: underline;">Treblle's latest extension</a> for VS Code. API Insights will score your API on Design, Performance, and Security. Get it <a href="https://apiinsights.io/?utm_source=newsletter&utm_medium=stefan-email&utm_campaign=vs_code" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

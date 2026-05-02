@@ -1,4 +1,4 @@
-﻿---
+---
 title: "5 cool features in C# 12"
 subtitle: "In November 2023, C# 12 arrived with a bang, bundled with .NET 8, bringing with it a bunch of cool new features that have made developers sit up and take notice..."
 date: "Mar 18 2024"
@@ -15,7 +15,7 @@ meta_description: "In November 2023, C# 12 arrived with a bang, bundled with .NE
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

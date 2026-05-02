@@ -1,4 +1,4 @@
-﻿---
+---
 title: "6 ways to eleveate your 'clean' code"
 subtitle: "I'm not sure if I know any programmer, engineer, architect, or even HR who doesn't know who Uncle Bob is and what the Clean Code book is...."
 date: "August 22 2024"
@@ -15,7 +15,7 @@ meta_description: "Im not sure if I know any programmer, engineer, architect, or
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Complete 2024 State of the #API survey by Postman for a chance to win prizes including a Apple Vision Pro, a Sony PlayStation 5, gift certificates for Postman swag and more! Complete it <a href="https://www.surveymonkey.com/r/2024-state-of-api-survey" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers. <a href="https://thecodeman.net/sponsorship" style="color: #a5b4fc; text-decoration: underline;">Become a sponsor</a>.
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 
