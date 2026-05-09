@@ -24,6 +24,24 @@ import Link from "next/link";
 import Image from "next/image";
 
 const postsDir = path.join(process.cwd(), "posts");
+const blogImagesDir = path.join(process.cwd(), "public", "images", "blog");
+const DEFAULT_OG_IMAGE = "https://thecodeman.net/og-image.png";
+
+// Resolve a post's image URL at build time. If the per-post cover image
+// (public/images/blog/<slug>.png) does not exist on disk, fall back to the
+// default OG image so og:image and JSON-LD `image` never point to a 404.
+// Broken image URLs invalidate Article rich results in Google.
+function getPostImageUrl(slug: string): string {
+  try {
+    const localPath = path.join(blogImagesDir, `${slug}.png`);
+    if (fs.existsSync(localPath)) {
+      return `https://thecodeman.net/images/blog/${slug}.png`;
+    }
+  } catch {
+    // ignore — fall through to default
+  }
+  return DEFAULT_OG_IMAGE;
+}
 
 function getPostContent(slug: string) {
   const filePath = path.join(postsDir, `${slug}.md`);
@@ -69,7 +87,7 @@ export async function generateMetadata(
 
   const title = data.title || "TheCodeMan Blog";
   const description = data.meta_description || data.subtitle || "Practical .NET knowledge by Stefan Djokic.";
-  const image = `https://thecodeman.net/images/blog/${slug}.png`;
+  const image = getPostImageUrl(slug);
   const url = `https://thecodeman.net/posts/${slug}`;
 
   return {
@@ -115,7 +133,7 @@ export default async function PostPage(
   const meta = {
     title: post.data.title,
     description: post.data.meta_description || "",
-    image: `https://thecodeman.net/images/blog/${slug}.png`,
+    image: getPostImageUrl(slug),
     url: `https://thecodeman.net/posts/${slug}`,
     date: post.data.date,
   };

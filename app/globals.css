@@ -14548,6 +14548,8 @@ textarea.form-control {
 
 .blog-header2 {
   color: #ffbd39;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
 }
 
 .blog-content {
