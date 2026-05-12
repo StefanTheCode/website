@@ -1,7 +1,7 @@
 ---
 title: "Monolith to Modular Monolith to Microservices at 100k Users: A Pragmatic .NET Architecture Evolution"
 subtitle: "How real .NET teams scale from a single ASP.NET Core app to a modular monolith to selective microservices - based on measurable pain, not hype."
-date: "April 27 2026"
+date: "May 11 2026"
 category: "Architecture"
 readTime: "Read Time: 18 minutes"
 meta_description: "A senior engineer's guide to evolving .NET architecture from monolith to modular monolith to microservices at 100k users. Real production patterns, code, and tradeoffs."
