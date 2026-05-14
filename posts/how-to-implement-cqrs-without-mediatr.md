@@ -20,6 +20,13 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 </div>
 
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://www.youtube.com/watch?v=46DQDu0TJJU&pp=0gcJCQQLAYcqIYzv" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/46DQDu0TJJU/hqdefault.jpg" alt="Watch CQRS without MediatR on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://www.youtube.com/watch?v=46DQDu0TJJU&pp=0gcJCQQLAYcqIYzv" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch CQRS without MediatR on YouTube</a></p>
+
 ## Introduction
 
 **CQRS (Command Query Responsibility Segregation)** is a design pattern that separates the read (query) and write (command) operations of an application, leading to better maintainability, scalability, and flexibility.

@@ -17,6 +17,13 @@ meta_description: "Enhance your .NET applications with Stefan Đokić's expert g
 <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </div>
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://www.youtube.com/watch?v=OOhRCiqpHXA" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/OOhRCiqpHXA/hqdefault.jpg" alt="Watch CORS policy on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://www.youtube.com/watch?v=OOhRCiqpHXA" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch CORS policy on YouTube</a></p>
+
 ## The Background
 Imagine we are visiting a foreign country. We want to send a package to someone in another country. However, the customs officers at the border won't allow us to send the package unless we have the proper documentation and the destination country has agreed to accept it.
 - A web page served from one domain (e.g., example.com) is like a person in one country.

@@ -26,6 +26,13 @@ P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://
 The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
 You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226).
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://youtu.be/7cBYsqvxHq4?si=5aaAHC7SizTQJWqN" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/7cBYsqvxHq4/hqdefault.jpg" alt="Watch Server-Sent Events on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://youtu.be/7cBYsqvxHq4?si=5aaAHC7SizTQJWqN" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Server-Sent Events on YouTube</a></p>
+
 ## Introduction: Real-Time in Modern ASP.NET Core Applications  
 Real-time features are no longer a luxury in modern web applications. Users expect live updates when they place an order, monitor a background job, or track delivery progress. As .NET developers, we often reach for WebSockets or [SignalR](https://thecodeman.net/posts/real-time-dotnet-applications-with-signalr) the moment someone says “real-time.”
 But here’s the architectural truth: if your system only needs server-to-client streaming, WebSockets might be unnecessary complexity.

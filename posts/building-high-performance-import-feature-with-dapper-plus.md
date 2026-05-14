@@ -29,6 +29,13 @@ Founding Member Offer:
 Get ahead of the game - and make clean, consistent code your superpower.
 [Join here](https://www.skool.com/thecodeman)
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://www.youtube.com/watch?v=tSCxjKTEhao&t=1s" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/tSCxjKTEhao/hqdefault.jpg" alt="Watch Bulk Operations with Dapper Plus on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://www.youtube.com/watch?v=tSCxjKTEhao&t=1s" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Bulk Operations with Dapper Plus on YouTube</a></p>
+
 ## Background
 Every developer hits this moment: you need to import a **big batch of data** - maybe from a CSV file - into SQL Server. 
 

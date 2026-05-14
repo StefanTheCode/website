@@ -19,6 +19,13 @@ meta_description: "EF Extensions is a commercial library developed by ZZZ Proje
 Startups can’t afford to lose users over broken features. With TestSprite’s fully autonomous AI testing, you can catch issues early with less effort from your QA team—and greater accuracy. Ship faster, smarter, and with confidence. Try it now at [testsprite.com](testsprite.com).
 [Join here](testsprite.com)
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://www.youtube.com/watch?v=_C0Sz5rB_TU" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/_C0Sz5rB_TU/hqdefault.jpg" alt="Watch Bulk Performance in EF on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://www.youtube.com/watch?v=_C0Sz5rB_TU" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Bulk Performance in EF on YouTube</a></p>
+
 ## Background
 In the world of modern .NET applications, performance matters more than ever. Whether you're working on a SaaS product, a data processing pipeline, or a high-traffic web app, how quickly and efficiently your application interacts with the database can be a game-changer. 
 

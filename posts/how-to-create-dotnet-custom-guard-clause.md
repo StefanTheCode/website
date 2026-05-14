@@ -20,6 +20,13 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 </div>
 
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://www.youtube.com/watch?v=jQxK02IdI4A&t=2s&pp=0gcJCQQLAYcqIYzv" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/jQxK02IdI4A/hqdefault.jpg" alt="Watch Guard Clauses on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://www.youtube.com/watch?v=jQxK02IdI4A&t=2s&pp=0gcJCQQLAYcqIYzv" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Guard Clauses on YouTube</a></p>
+
 ## The Background
 **Guard clauses** in .NET are a programming practice used for improving the readability and reliability of code. They are simple checks at the beginning of a function or a method that validate inputs or conditions before proceeding with the rest of the code.
 Guard clauses in .NET effectively address several common programming problems: they reduce complexity and increase readability by preventing deeply nested code structures; enhance code safety and reliability by validating inputs or conditions at the outset, thus averting potential runtime errors or unexpected behavior; and they clarify the code's intent by explicitly stating the preconditions needed for subsequent code to execute correctly.

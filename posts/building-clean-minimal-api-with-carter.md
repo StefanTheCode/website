@@ -20,6 +20,13 @@ Replace the slow compile-debug cycle with [Uno Platform's live UI editing](https
 Give your cross-platform .NET apps the productive workflow they deserve with an open-source, single-codebase solution that goes far beyond basic Hot Reload.
 [Try it now](https://platform.uno/?utm_source=stefan&utm_medium=newsletter&utm_campaign=uno-ad)
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://youtu.be/eHmWvtHWNZ8?si=qpOfoWe7n0uXpyts" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/eHmWvtHWNZ8/hqdefault.jpg" alt="Watch Carter on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://youtu.be/eHmWvtHWNZ8?si=qpOfoWe7n0uXpyts" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Carter on YouTube</a></p>
+
 ## Background
 In modern .NET development, there's been a trend toward minimal APIs - getting rid of controller bloat and focusing on just what matters. But as your app grows, even minimal APIs can become messy and hard to organize.
 

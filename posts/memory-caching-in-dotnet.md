@@ -20,6 +20,13 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 </div>
 
 
+<p style="margin: 28px 0 14px 0; text-align: center;">
+<a href="https://www.youtube.com/watch?v=PpKEcbTrR4w" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+<img src="https://img.youtube.com/vi/PpKEcbTrR4w/hqdefault.jpg" alt="Watch Caching in .NET on YouTube" style="display: block; width: 100%; max-width: 560px; border-radius: 14px; border: 1px solid rgba(15,23,42,0.12);" />
+</a>
+</p>
+<p style="margin: 0 0 28px 0; text-align: center;"><a href="https://www.youtube.com/watch?v=PpKEcbTrR4w" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Caching in .NET on YouTube</a></p>
+
 ## What is .NET Caching?
 .NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources.
 
@@ -35,9 +42,6 @@ Caching Key components
 **- Cache Value**: The data stored in the cache. This can be of any object type.
 **- Expiration Policy**: Determines how long an item stays in the cache. Can be absolute (fixed duration) or sliding (reset on access).
 **- Priority**: Determines the order in which items are removed from the cache under memory pressure.
-
-## [4 Important types of caching - Watch YouTube video here](https://youtu.be/PpKEcbTrR4w?si=lkSRdS604rzhAJwa)
-![Watch YouTube video](/images/blog/posts/memory-caching-in-dotnet/youtube.png)
 
 ## Memory Cache Implementation in .NET
 
