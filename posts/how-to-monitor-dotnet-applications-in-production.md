@@ -466,12 +466,12 @@ Now verify in this order:
 - Orders API readiness: `http://localhost:8082/health/ready`
 - Worker readiness: `http://localhost:8081/health/ready`
 
-![HealthCheck endpoints](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/health-check-endpoints.png)
+![HealthCheck endpoints](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/health-check-endpoints.webp)
 
 ### 2) Check /metrics
 - Orders API metrics: `http://localhost:8082/metrics`
 - Worker metrics: `http://localhost:8081/metrics`
-![Metrics](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/metrics.png)
+![Metrics](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/metrics.webp)
 
 Look for:
 - `http_requests_received_total`
@@ -481,7 +481,7 @@ Look for:
 - Prometheus UI: `http://localhost:9090`
 - Go to **Status → Targets**
 - Both targets should be **UP**
-![Prometheus](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/prometheus.png)
+![Prometheus](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/prometheus.webp)
 
 ###  4) Check the Grafana dashboard
 - Grafana: `http://localhost:3000` (default login `admin`/`admin`)
@@ -514,7 +514,7 @@ Grafana will now ask you to choose a **data source**.
 5. Select **Prometheus**
 
 At this point, you are inside the panel editor.
-![Grafana Dashboard](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/grafana-dashboard.png)
+![Grafana Dashboard](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/grafana-dashboard.webp)
 
 ### 5) Create Your First Panel (HTTP Requests per Second)
  
@@ -528,7 +528,7 @@ In the **Query section**, enter:
 rate(http_requests_received_total{job="orders-api"}[1m])
 ```
 You should get something like this:
-![Http Requests Grafana](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/http-request-grafana.png)
+![Http Requests Grafana](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/http-request-grafana.webp)
 
 Give it a name and save Dashboard. 
 
@@ -542,7 +542,7 @@ rate(billing_jobs_processed_total[1m]) * 60
 What this shows
 - approximate **jobs per minute**
 - easier for non-technical stakeholders to understand
-![First Grafana Dashboard](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/first-grafana-dashboard.png)
+![First Grafana Dashboard](/images/blog/posts/how-to-monitor-dotnet-applications-in-production/first-grafana-dashboard.webp)
 
 
 For more observability tools, check out [OpenTelemetry in .NET](https://thecodeman.net/posts/getting-started-with-opentelemetry), [Structured Logging with Serilog](https://thecodeman.net/posts/structured-logging-with-serilog), and [Health Checks](https://thecodeman.net/posts/health-checks-in-dotnet8).

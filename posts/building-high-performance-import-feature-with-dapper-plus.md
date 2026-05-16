@@ -314,7 +314,7 @@ app.MapPost("/seed/dapperplus", async (int count, ProductService service) =>
 With the help of Postman, I tested 3 cases, for 1000, 10,000 and 100,000 records for inserting into the database. 
 Here are the results:
 
-![Performance](/images/blog/posts/building-high-performance-import-feature-with-dapper-plus/performance.png)
+![Performance](/images/blog/posts/building-high-performance-import-feature-with-dapper-plus/performance.webp)
 
 ## Wrapping Up
 

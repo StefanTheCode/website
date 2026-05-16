@@ -94,12 +94,12 @@ Write your first query something like:
 }
 ```
 With this query you'll get all the users but only with id and firstName fields. **There is no any other field which will remain empty.**
-![Banaca Cake Pop dashboard](/images/blog/posts/get-started-with-grapql-in-dotnet/banana-cake-pop-dashboard.png)
+![Banaca Cake Pop dashboard](/images/blog/posts/get-started-with-grapql-in-dotnet/banana-cake-pop-dashboard.webp)
 
 That's it. You can start the application and run your first query.
 2. Open *localhost:7075/playground/* (use your own port). Here you'll access **Hot Chocolate Playground**. The process is really similiar.
 3. Run your queries via Postman. This is my favourite way to go:
-![Running GraphQL Queries in Postman](/images/blog/posts/get-started-with-grapql-in-dotnet/running-graphql-queries-in-postman.png)
+![Running GraphQL Queries in Postman](/images/blog/posts/get-started-with-grapql-in-dotnet/running-graphql-queries-in-postman.webp)
 
 ## Wrapping up
 And there you have it!

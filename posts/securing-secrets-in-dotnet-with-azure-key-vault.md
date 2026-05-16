@@ -74,7 +74,7 @@ Let's see how to do that.
 - **Region:** Select the region closest to your application.
 - **Pricing Tier:** You can choose free tier.
 
-![Azure Portal](/images/blog/posts/securing-secrets-in-dotnet-with-azure-key-vault/azure-portal.png)
+![Azure Portal](/images/blog/posts/securing-secrets-in-dotnet-with-azure-key-vault/azure-portal.webp)
 
 2. Access Policies (optional):
 - Go to **Access policies** in the Key Vault settings.
@@ -87,13 +87,13 @@ Let's see how to do that.
 - Name your secret (e.g., DatabaseConnectionString) and add the secret value (e.g., the connection string for your database).
 - Save the secret.
 
-![Azure Add Secrets](/images/blog/posts/securing-secrets-in-dotnet-with-azure-key-vault/add-secrets.png)
+![Azure Add Secrets](/images/blog/posts/securing-secrets-in-dotnet-with-azure-key-vault/add-secrets.webp)
 
 In this example I add **Config--Database** secret.
 Why "--"? 
 In Azure Key Vault, the -- (double hyphen) syntax is used to represent **nested configuration structures** when integrating Key Vault secrets with .NET applications.
 
-![Azure Create Secret](/images/blog/posts/securing-secrets-in-dotnet-with-azure-key-vault/create-secret.png)
+![Azure Create Secret](/images/blog/posts/securing-secrets-in-dotnet-with-azure-key-vault/create-secret.webp)
 
 With this Azure setup we are ready to move to the Visual Studio and write some code.
 

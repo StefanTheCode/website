@@ -73,7 +73,7 @@ class Program
 
 This will run the benchmark and print the results in the console. The summary object also contains the results, which can be used programmatically if needed.
 What do the results look like?
-![Benchmarking Results](/images/blog/posts/benchmarking-in-dotnet-step-by-step/benchmarking-results.png)
+![Benchmarking Results](/images/blog/posts/benchmarking-in-dotnet-step-by-step/benchmarking-results.webp)
 ### 4. Interpret Result
 BenchmarkDotNet provides a detailed summary including:
 - Mean execution time

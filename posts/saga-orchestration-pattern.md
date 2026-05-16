@@ -41,7 +41,7 @@ In our case, the SAGA template could be applied as follows:
 
 **3. Compensation transactions**: If there is a problem at any stage (eg the hotel is full), SAGA initiates compensation transactions. This means that previously made reservations (such as an airline ticket) will be canceled or modified, in order to maintain the integrity of the entire reservation. (not part of this newsletter issue)
 
-![Saga Orchestration Diagram](/images/blog/posts/saga-orchestration-pattern/saga-orchestration.png)
+![Saga Orchestration Diagram](/images/blog/posts/saga-orchestration-pattern/saga-orchestration.webp)
 
 This represents the Saga orchestration process.
 

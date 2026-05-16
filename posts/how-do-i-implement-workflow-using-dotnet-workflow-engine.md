@@ -30,7 +30,7 @@ Today I will show you how I create a workflow in my .NET application.
 I will show everything on a simple example of my newsletter, so that it is easier to understand. Let me first explain the workflow newsletter process.
 Here's an example of a newsletter workflow from the point a user subscribes to my newsletter to the point I send out a newsletter issue:
 
-![Workflow Newsletter Example](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/workflow-example-newsletter.png)
+![Workflow Newsletter Example](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/workflow-example-newsletter.webp)
 
 ## How do I implement this in .NET?
 Have you heard of [Workflow Engine](https://workflowengine.io/)?
@@ -67,30 +67,30 @@ What is WorkflowDesigner?
 It is actually a web application identical to the demo project I showed above, in which you can create your own workflow.
 WorkflowEngine helps you a lot here, because it gives you all the code you need to add to have a finished designer - in other words, you don't have to write anything yourself in this step.
 On the localhost we create, the designer looks like this:
-![Workflow Designer on Web Application](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/workflowdesigner-on-web-application.png)
+![Workflow Designer on Web Application](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/workflowdesigner-on-web-application.webp)
 
 So that you don't waste time on these steps, and that the reading doesn't become boring, I have prepared it for you.
 It's on the GitHub repository I posted above. Of course, if you want to get into the depth of this implementation, you can look at the [official documentation](https://workflowengine.io/documentation/how-to-integrate)[](https://workflowengine.io/documentation/how-to-integrate).
 ## Okay, let's design our Newsletter Workflow!
 For the simplicity of the blog and explanation, I will create a simple workflow with a few activities and commands.
 Let's create 2 **commands** : **next** and **back** . Commands serve to move from one activity (state) to another. Let's say when the user subscribes to the newsletter, the next activity would be to send a confirmation email.
-![Designer create commands](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-create-commands.png)
+![Designer create commands](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-create-commands.webp)
 Now create a couple of **activities** that happen in your process. I created a total of 5, where I have an **initial** (green color) and a **final** (red color), so I have 3 intermediate activities (blue color).
-![Designer create activies](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-create-activities.png)
+![Designer create activies](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-create-activities.webp)
 Perfect!
 In order to enable the transition from one activity to another by executing additional commands, it is necessary to do this through transitions. I created a transition for each transition from one state to another state.
-![Designer create transitions](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-create-transitions.png)
+![Designer create transitions](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-create-transitions.webp)
 When creating transitions, you have the option to choose the type of transition ( **direct and reverse** ) that actually represents the direction in which the flow moves. What is important for us here is the **Trigger** , which will actually be the command I created - next. For reverses I have the back command. This is good if, for example, the user has not successfully verified the subscription, in that case we have to go back to the previous activity.
 The complete workflow looks like this:
-![Designer completed workflow](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-completed-workflow.png)
+![Designer completed workflow](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-completed-workflow.webp)
 Now we are given the option to record the session - which will actually record it in the database. After restarting the application, the seed will still be there because the runtime will fetch it from the database. We can also download in several formats.
-![Designer save scheme](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-save-scheme.png)
+![Designer save scheme](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/designer-save-scheme.webp)
 
 ## Creating a process and calling commands
 The goal of all this is to be able to create a custom application in which we will create through workflow activities and perform various actions on the occasion of them.
 For this purpose, it is possible to create a console or web application. You can see an example of the application [here](https://workflowengine.io/documentation/how-to-integrate#commands).
 Console application example from the url:
-![Console application to test workflow](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/console-application-to-test-workflow.png)
+![Console application to test workflow](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/console-application-to-test-workflow.webp)
 ## Conslusion
 By using designer, I can make changes on the fly—like when I decide to change the look of the newsletter or how people receive it. It's like having a remote control for the newsletter process, so I can adjust things without getting my hands dirty with the complicated code. Plus, I won't have to spend time checking and rechecking the code for errors, because I won't be touching it. This makes updating things a whole lot simpler and less stressful.
 Optimajet Workflow Engine is one of the easiest workflow engines for document approval when integrating is required. We recommend it to companies that develop information systems with workflow functionality.

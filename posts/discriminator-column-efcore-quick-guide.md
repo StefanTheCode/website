@@ -82,7 +82,7 @@ dotnet ef database update
 ```
 Generated Table (Single Table for All Entities)
 
-![Generated Table](/images/blog/posts/discriminator-column-efcore-quick-guide/generated-table.png)
+![Generated Table](/images/blog/posts/discriminator-column-efcore-quick-guide/generated-table.webp)
 Discriminator: Determines if the row is for Car or Bike.
 NULL values exist for columns that are **not applicable** to that entity.
 
@@ -104,7 +104,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 ```
 
 Effect on Database Table
-![Generated Table with types](/images/blog/posts/discriminator-column-efcore-quick-guide/generated-table-with-types.png)
+![Generated Table with types](/images/blog/posts/discriminator-column-efcore-quick-guide/generated-table-with-types.webp)
 
 ## Querying Entities with Discriminator
  
@@ -183,7 +183,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 Effect on Database Table:
-![Generated Table enum](/images/blog/posts/discriminator-column-efcore-quick-guide/generated-table-with-enum.png)
+![Generated Table enum](/images/blog/posts/discriminator-column-efcore-quick-guide/generated-table-with-enum.webp)
 
 ## Performance Considerations of Discriminators
 

@@ -55,7 +55,7 @@ const BuilderPatternFreeStuff = () => {
               </div>
             </div>
             <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center">
-              <Image src={'/images/builder-pattern-free.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
+              <Image src={'/images/builder-pattern-free.webp'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
             </div>
           </div>
          

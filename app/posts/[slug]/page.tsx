@@ -25,7 +25,7 @@ import Image from "next/image";
 
 const postsDir = path.join(process.cwd(), "posts");
 const blogImagesDir = path.join(process.cwd(), "public", "images", "blog");
-const DEFAULT_OG_IMAGE = "https://thecodeman.net/og-image.png";
+const DEFAULT_OG_IMAGE = "https://thecodeman.net/og-image.webp";
 
 // Resolve a post's image URL at build time. If the per-post cover image
 // (public/images/blog/<slug>.png) does not exist on disk, fall back to the
@@ -159,7 +159,7 @@ export default async function PostPage(
       url: "https://thecodeman.net",
       logo: {
         "@type": "ImageObject",
-        url: "https://thecodeman.net/og-image.png"
+        url: "https://thecodeman.net/og-image.webp"
       }
     },
     mainEntityOfPage: {
@@ -299,19 +299,19 @@ export default async function PostPage(
                     <h4 className="sidebar-products-header">Recommended for .NET Engineers</h4>
 
                     <Link href="/pragmatic-dotnet-code-rules?utm_source=sidebar" className="sidebar-product-card">
-                      <Image src="/images/course.png" alt="Pragmatic .NET Code Rules Course" width={300} height={160} className="sidebar-product-img" />
+                      <Image src="/images/course.webp" alt="Pragmatic .NET Code Rules Course" width={300} height={160} className="sidebar-product-img" />
                       <span className="sidebar-product-title">Pragmatic .NET Code Rules</span>
                       <span className="sidebar-product-label">Course</span>
                     </Link>
 
                     <Link href="/design-patterns-that-deliver-ebook?utm_source=sidebar" className="sidebar-product-card">
-                      <Image src="/images/ebook.png" alt="Design Patterns that Deliver Ebook" width={300} height={160} className="sidebar-product-img" />
+                      <Image src="/images/ebook.webp" alt="Design Patterns that Deliver Ebook" width={300} height={160} className="sidebar-product-img" />
                       <span className="sidebar-product-title">Design Patterns that Deliver</span>
                       <span className="sidebar-product-label">Ebook</span>
                     </Link>
 
                     <Link href="/design-patterns-simplified?utm_source=sidebar" className="sidebar-product-card">
-                      <Image src="/images/ebook2.png" alt="Design Patterns Simplified Ebook" width={300} height={160} className="sidebar-product-img" />
+                      <Image src="/images/ebook2.webp" alt="Design Patterns Simplified Ebook" width={300} height={160} className="sidebar-product-img" />
                       <span className="sidebar-product-title">Design Patterns Simplified</span>
                       <span className="sidebar-product-label">Ebook — $9.95</span>
                     </Link>

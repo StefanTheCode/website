@@ -26,7 +26,7 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 **RAG (Retrieval-Augmented Generation)** is an AI framework that enhances generative large language models (LLMs) by integrating traditional information retrieval methods, such as search engines and databases. 
 This approach allows LLMs to generate responses that are more accurate, current, and contextually relevant by leveraging both your data and broader world knowledge.
 
-![Rag System](/images/blog/posts/how-to-implement-rag-in-dotnet/rag.png)
+![Rag System](/images/blog/posts/how-to-implement-rag-in-dotnet/rag.webp)
 
 ## How does Retrieval-Augmented Generation work?
 

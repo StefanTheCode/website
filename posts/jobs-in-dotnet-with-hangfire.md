@@ -31,13 +31,13 @@ Hangfire provides a database to store all the information related to background 
 By default, it uses SQL Server, but any other supported option is also easy to configure.
 
 Here is the Hangfire workflow.
-![Hangfire flow](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-flow.png)
+![Hangfire flow](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-flow.webp)
 
 ## Setting up Hangfire
 
 ### NuGet Package:
 You need to install Hangfire package.
-![Install Hangfire package](/images/blog/posts/jobs-in-dotnet-with-hangfire/install-hangfire-package.jpg)
+![Install Hangfire package](/images/blog/posts/jobs-in-dotnet-with-hangfire/install-hangfire-package.webp)
 
 The last version is 1.7.34.
 Hangfire.SqlServer and Hangfire.Core are installed by default.
@@ -78,10 +78,10 @@ builder.Services.AddHostedService&lt;SomeService&gt;();
 
 ### Persistence:
 Hangfire will automatically check your storage for the necessary tables, and if they don’t exist, it will create them for you:
-![Hangfire Database](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-database.jpg)
+![Hangfire Database](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-database.webp)
 ### Hangfire Dashboard:
 This is a web-based UI that allows you to monitor the state of your background jobs. You can use the dashboard to view the status of jobs, retry failed jobs, and cancel running jobs if necessary. To check the dashboard you need to land on **/hangfire** page.
-![Hangfire Database](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-page.png)
+![Hangfire dashboard listing recurring and background jobs in an ASP.NET Core app](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-page.webp)
 
 ## Background jobs
 There are several types of background jobs that you can perform using Hangfire:

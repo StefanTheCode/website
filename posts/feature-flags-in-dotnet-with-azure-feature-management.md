@@ -71,12 +71,12 @@ Set Up Your Azure Feature Manager
 - Go to the Azure portal and search for "App Configuration."
 - Create a new resource and name it.
 
-![Azure Portal App Configuration](/images/blog/posts/feature-flags-in-dotnet-with-azure-feature-management/azure-portal-app-configuration.png)
+![Azure Portal App Configuration](/images/blog/posts/feature-flags-in-dotnet-with-azure-feature-management/azure-portal-app-configuration.webp)
 
 2. Enable Azure Feature Management:
 - In the resource settings, enable Feature Manager.
 - Add your desired feature flags, e.g., FeatureX.
-![Azure Portal Feature Management](/images/blog/posts/feature-flags-in-dotnet-with-azure-feature-management/azure-portal-feature-management.png)
+![Azure Portal Feature Management](/images/blog/posts/feature-flags-in-dotnet-with-azure-feature-management/azure-portal-feature-management.webp)
 
 Configure .NET 8 Application
 1. Install Required NuGet Packages

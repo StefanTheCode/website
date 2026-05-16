@@ -81,7 +81,7 @@ export default function Home() {
             </div>
           </div>
           {/* <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="profile-image">
-            <Image src={'/images/stefan-djokic.png'} priority={true} quality={100} alt={'Profile image of Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
+            <Image src={'/images/stefan-djokic.webp'} priority={true} quality={100} alt={'Profile image of Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
           </div> */}
         </div>
       </section>
@@ -134,7 +134,7 @@ export default function Home() {
                 <h5> Check out the last video:</h5>
                 <a href='https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-' target='_blank'  className='text-black'>
                 <h4>How to implement CQRS without MediatR in .NET?</h4>
-                <Image src={'/images/last-youtube.png'} className='social-icon' alt={'Last YouTube video'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/last-youtube.webp'} className='social-icon' alt={'Last YouTube video'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                 </a>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function Home() {
             <div className="col-md-4 ">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <Image src={'/images/sql-server.png'} className='skill-img' alt={'SQL Server Logo'} width={128} height={128} />
+                  <Image src={'/images/sql-server.webp'} className='skill-img' alt={'SQL Server Logo'} width={128} height={128} />
                 </div>
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function Home() {
             </div>
             <div className="col-md-2 d-flex">
               <a href="https://medium.com/@thecodeman" target="_blank" rel="noopener">
-                <Image src={'/images/icons/medium-icon.png'} className='social-icon' alt={'Medium'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/icons/medium-icon.webp'} className='social-icon' alt={'Medium'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
               </a>
             </div>
               </div>

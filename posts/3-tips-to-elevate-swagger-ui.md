@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
 ```
 
 This UI is quite "clean" and it is possible to enrich it with many things. 
-![Swagger UI Demo](/images/blog/posts/3-tips-to-elevate-swagger-ui/swagger-ui-demo.png)
+![Swagger UI Demo](/images/blog/posts/3-tips-to-elevate-swagger-ui/swagger-ui-demo.webp)
 
 I will show you 1 tip of what can be done with Swagger UI.
 
@@ -58,7 +58,7 @@ The Apply method provides access to the OpenApiDocument object, which represents
 For example, let's create a case where you need to remove an obsolete (deprecated) endpoint from Swagger UI and not delete it from the code.
 
 Firstly, if we tag some endpoint as obsolete, this will not hide it from Swagger UI. It will be just crossed and grayed out.
-![Swagger UI Obsolete Endpoint](/images/blog/posts/3-tips-to-elevate-swagger-ui/obsolete-endpoint.png)
+![Swagger UI Obsolete Endpoint](/images/blog/posts/3-tips-to-elevate-swagger-ui/obsolete-endpoint.webp)
 
 To be able to delete it, I will create RemoveObsoleteOperationsFilter implementation of IDocumentFilter abstraction.
 
@@ -117,7 +117,7 @@ public class AddGlobalMetadataDocumentFilter : IDocumentFilter
 }
 ```
 Result:
-![Swagger UI Global Metadata](/images/blog/posts/3-tips-to-elevate-swagger-ui/global-metadata.png)
+![Swagger UI Global Metadata](/images/blog/posts/3-tips-to-elevate-swagger-ui/global-metadata.webp)
 
 Adding a Custom Header to All Responses
 
@@ -155,7 +155,7 @@ public class AddCustomHeaderToResponsesDocumentFilter : IDocumentFilter
 ```
 
 Result:
-![Swagger UI Custom Header](/images/blog/posts/3-tips-to-elevate-swagger-ui/custom-header.png)
+![Swagger UI Custom Header](/images/blog/posts/3-tips-to-elevate-swagger-ui/custom-header.webp)
 
 In Program.cs you need to add those 2 DocumentFilters: a strategy object to perform the travel time calculation, allowing the strategy to be set dynamically.
 

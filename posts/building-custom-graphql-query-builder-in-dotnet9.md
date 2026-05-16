@@ -222,7 +222,7 @@ Note: You will need GraphQL Server to test it. You can create your own in .NET -
 
 Or, you can use Fake Server online: [GraphQLZero](https://graphqlzero.almansi.me/#example-top).
 
-![GraphQL Postman Testing](/images/blog/posts/building-custom-graphql-query-builder-in-dotnet9/graphql-testing.png)
+![GraphQL Postman Testing](/images/blog/posts/building-custom-graphql-query-builder-in-dotnet9/graphql-testing.webp)
 
 ## Advanced Example: 
 ## Fetching Orders with Line Items and Customer Info

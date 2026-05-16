@@ -47,7 +47,7 @@ It's a form of access control that acts like a doorkeeper, checking the IP addre
 
 If the IP address is on the list, access is granted; if not, access is denied.
 
-![IP Whitelisting Design](/images/blog/posts/allow-specific-users-to-access-your-api-part2/ip-whitelisting-design.png)
+![IP Whitelisting Design](/images/blog/posts/allow-specific-users-to-access-your-api-part2/ip-whitelisting-design.webp)
 ## How IP Whitelisting Works?
 
 1. Identification:

@@ -40,7 +40,7 @@ Let's see why is this interesting feature and how to implement it.
 
 ## What is HybridCache?
 
-![HybridCache](/images/blog/posts/hybrid-cache-in-aspnet-core/hybridcache.png)
+![HybridCache](/images/blog/posts/hybrid-cache-in-aspnet-core/hybridcache.webp)
 
 [The HybridCache API](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,8c0fe94693d1ac8d) bridges some gaps in the *IDistributedCache* and *IMemoryCache* APIs. 
 
@@ -281,13 +281,13 @@ This makes **.NET 9 Hybrid Cache** ideal for caching heavy, serialized data like
 
 Given that this feature is still in prerelease mode, and not complete, it probably doesn't make much sense to compare performance, but I did it purely out of curiosity.
 .NET 8 - Cache is not populated
-![.NET 8 Populated cache](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet8-not-populated.png)
+![.NET 8 Populated cache](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet8-not-populated.webp)
 .NET 8 - Returning values from the cache
-![.NET 8 Values from cache](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet8-cache.png)
+![.NET 8 Values from cache](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet8-cache.webp)
 .NET 9 - Cache is not populated
-![HybridCache](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet9-not-populated.png)
+![ASP.NET Core HybridCache miss on the first request — value retrieved from source](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet9-not-populated.webp)
 .NET 9 - Returning values from the cache
-![HybridCache](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet9-cached.png)
+![ASP.NET Core HybridCache hit on the second request — value served from cache](/images/blog/posts/hybrid-cache-in-aspnet-core/dotnet9-cached.webp)
 
 The difference I can notice here is that when adding values ​​(1000 products) to the cache for the first time, it is faster with .NET 8 by some 100ms.
 

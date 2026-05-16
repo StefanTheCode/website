@@ -164,7 +164,7 @@ const AiStarterKit = () => {
           <div className="row align-items-center pt-5 pb-5">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-5 text-center mb-4">
               <Image
-                src="/images/rag-system-cover.png"
+                src="/images/rag-system-cover.webp"
                 priority={true}
                 alt="AI in .NET Starter Kit cover"
                 width={0}

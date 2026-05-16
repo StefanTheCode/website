@@ -6,7 +6,7 @@ import EbookNewsletter from '@/components/ebookTestimonials';
 import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
 import Image from 'next/image'
-// import ogImage from '/og-ebookimage.png'
+// import ogImage from '/og-ebookimage.webp'
 
 export const metadata:Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
@@ -22,7 +22,7 @@ export const metadata:Metadata = {
     description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
     images: [
       {
-        url: 'https://thecodeman.net/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-ebookimage.webp',
         width: "1000px",
         height: "700px"
       }
@@ -36,7 +36,7 @@ export const metadata:Metadata = {
     description: "Master design patterns easily with this beginner-level ebook. Simplify complex concepts affordably - your essential guide to design patterns.",
     images: [
       {
-        url: 'https://thecodeman.net/og-ebookimage.png',
+        url: 'https://thecodeman.net/og-ebookimage.webp',
         width: "1000px",
         height: "700px"
       }
@@ -64,7 +64,7 @@ const Ebook = () => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
-          <Image src={'/images/ebook.png'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
+          <Image src={'/images/ebook.webp'} priority={true} alt={'Design Patterns Simplified ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
           </div>
         </div>
       </section>
@@ -168,14 +168,14 @@ const Ebook = () => {
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-          <Image src={'/images/ebook-devices.png'} alt={'Design Patterns Simplified ebook devices'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src={'/images/ebook-devices.webp'} alt={'Design Patterns Simplified ebook devices'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
 
           </div>
           <hr className='background-yellow'/>
           <div className="row text-center">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-          <Image src={'/images/real-world-example.png'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src={'/images/real-world-example.webp'} className='border-radius-20px' alt={'Design Patterns Simplified ebook - Real world example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
               <h2 className='text-yellow text-center pb-5'><b>Real-World Examples</b></h2>
@@ -219,7 +219,7 @@ const Ebook = () => {
             <div className="col-md-6">
               <div className="row">
                 <div className="col-md-6 ebook-profile-div">
-          <Image src={'/images/ebook-stefan.png'}  className='mb-5 border-radius-20px ebook-profile-img' alt={'Design Patterns Simplified ebook - Profile image of the author, Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <Image src={'/images/ebook-stefan.webp'}  className='mb-5 border-radius-20px ebook-profile-img' alt={'Design Patterns Simplified ebook - Profile image of the author, Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-md-6 ebook-about-div">
                   <p className='text-black text-font-2rem'><b>Hi friend, I'm Stefan</b></p>

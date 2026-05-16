@@ -127,7 +127,7 @@ To achieve this, on the click event of the button, I grab the message from the i
 ```
 Let's send message from Hub to Client in real-time:
 One client sent a message to the Hub, we process that message in the Hub and in Real-Time we send a notification about the message we received to all connected clients.
-![Notifications Hub Debugging](/images/blog/posts/real-time-dotnet-applications-with-signalr/notifications-hub-debugging.png)
+![Notifications Hub Debugging](/images/blog/posts/real-time-dotnet-applications-with-signalr/notifications-hub-debugging.webp)
 **"ReceiveNotification"** is an event on the client side that will accept the notification and process the data we send (it will put them in a list).
 ```javascript
   connection.on("ReceiveNotification", (message) => {

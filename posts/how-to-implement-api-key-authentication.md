@@ -113,7 +113,7 @@ builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
 ```
 ## Api Endpoint Testing
 Since I hardcoded that the validation always returns false for the validity of the Api Key, every request will be rejected, more precisely 401 will be returned because it is not authenticated, because the ApiKeyHeader is not present in the Request.
-![Api Endpoint Testing](/images/blog/posts/how-to-implement-api-key-authentication/api-endpoint-testing.png)
+![Api Endpoint Testing](/images/blog/posts/how-to-implement-api-key-authentication/api-endpoint-testing.webp)
 And that's it. You have implemented Api Key Authentication.
 ## Bonus: Use Middleware
 You can achieve absolutely the same effect by using Middleware.

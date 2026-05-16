@@ -76,17 +76,17 @@ const MediaKit = () => {
   ];
 
   const collaborations = [
-    { src: "/images/sponsors/postman.png", alt: "Postman" },
+    { src: "/images/sponsors/postman.webp", alt: "Postman" },
     { src: "/images/sponsors/jetbrains.png", alt: "JetBrains" },
     { src: "/images/sponsors/neon.png", alt: "Neon" },
-    { src: "/images/sponsors/mongodb.png", alt: "MongoDB" },
-    { src: "/images/sponsors/sentry.png", alt: "Sentry" },
-    { src: "/images/sponsors/coderabbit.png", alt: "CodeRabbit" },
-    { src: "/images/sponsors/abp.png", alt: "ABP" },
-    { src: "/images/sponsors/iron.png", alt: "Iron Software" },
-    { src: "/images/sponsors/uno-platform.png", alt: "Uno Platform" },
+    { src: "/images/sponsors/mongodb.webp", alt: "MongoDB" },
+    { src: "/images/sponsors/sentry.webp", alt: "Sentry" },
+    { src: "/images/sponsors/coderabbit.webp", alt: "CodeRabbit" },
+    { src: "/images/sponsors/abp.webp", alt: "ABP" },
+    { src: "/images/sponsors/iron.webp", alt: "Iron Software" },
+    { src: "/images/sponsors/uno-platform.webp", alt: "Uno Platform" },
     { src: "/images/sponsors/brilliant.png", alt: "Brilliant" },
-    { src: "/images/sponsors/heroku.png", alt: "Heroku" },
+    { src: "/images/sponsors/heroku.webp", alt: "Heroku" },
     { src: "/images/sponsors/zzz-projects.png", alt: "ZZZ Projects" },
   ];
 

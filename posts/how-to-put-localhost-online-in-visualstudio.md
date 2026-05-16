@@ -33,15 +33,15 @@ Prerequisite:
 - You must sign into Visual Studio
 - Dev Tunnels is not available for Visual Studio on Mac  
 To use this feature, first you need to enable Dev Tunnel feature from: **Tools -> Options -> Environment -> Preview Features** (or just search for dev keyword). Then search for keyword dev. Check the <span style="color: #ffbd39"> **Enable dev tunnels for Web Applications** checkbox.
-![Enable Dev Tunnels](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/enable-dev-tunnels.png)
+![Enable Dev Tunnels](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/enable-dev-tunnels.webp)
 ## Create a Tunnel
 
 To run with the Dev tunnel, it is necessary to create a tunnel from the private network (local) to the public (Internet network).
 You can do this in 2 ways:
 **Way #1**: From the Debug menu, select Dev Tunnels and then Create a Tunnel.
-![Create Dev Tunnel from Debug Menu](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/create-dev-tunnel-from-debug-menu.jpg)
+![Create Dev Tunnel from Debug Menu](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/create-dev-tunnel-from-debug-menu.webp)
 You should see a following window:
-![Create Dev Tunnel from Debug Menu](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/account-to-create-dev-tunnel.png)
+![Visual Studio sign-in prompt required to create a Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/account-to-create-dev-tunnel.png)
 Details:
 **- Account**: Like I said, you should be logged in
 **- Name**: Give a name for a tunnel
@@ -58,9 +58,9 @@ Details:
 
 Now you can run the application with Dev Tunnel and be able to expose a localhost to the internet.
 To do that, you just need to select a created tunnel.
-![Run application with Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/run-application-with-dev-tunnel.jpg)
+![Run application with Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/run-application-with-dev-tunnel.webp)
 When you run the application, you should see the following window:
-![Run application with Dev Tunnel](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/test-dev-tunnels.png)
+![Browser test of the public Dev Tunnel URL forwarding to a local ASP.NET Core app](/images/blog/posts/how-to-put-localhost-online-in-visualstudio/test-dev-tunnels.webp)
 And when you click on **Continue** button, you will see the full application like when you run it on localhost. But this one will have a public URL.
 
 ## What next?

@@ -33,17 +33,17 @@ A webhook receiver for an event that happened on Github or any other service can
 You need to create C # API Controller with GitHubWebhookController name. This is a controller to serve for all Events that happen within Github repository.
 After that, you need to add an endpoint Pushed for the "push" event on github, which will practically serve as a callback event. 
 
-![GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/github-webhook-api-endpoint.png)
+![GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/github-webhook-api-endpoint.webp)
 This method must be HttpPost. 
 Since I currently don't know what the GitHub payload looks like, ie. object/JSON that GitHub sends during a specific event, I will state that the object that the method receives as a parameter is type dynamic.
 ​- Run the application
 When you start the API project, through [Swagger](https://thecodeman.net/posts/3-tips-to-elevate-swagger-ui) you can see Endpoint there is and that everything is fine for now.
-![Swagger GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/swagger-github-webhook-endpoint.png)
+![Swagger GitHub Webhook Api Endpoint](/images/blog/posts/github-webhook-with-csharp/swagger-github-webhook-endpoint.webp)
 
 ## Create Webhook instance on GitHub
 
 Within the GitHub repository for which you want to receive events, you need to generate a Webhook instance. In the repository settings, you should select the Webhooks link from the left menu. And click on the Add webhook button. You should see the following form: 
-![GitHub Platform Adding Webhook](/images/blog/posts/github-webhook-with-csharp/github-platform-adding-webhook.png)
+![GitHub Platform Adding Webhook](/images/blog/posts/github-webhook-with-csharp/github-platform-adding-webhook.webp)
 The most important field to fill in is of course the **PayloadUrl**.
 This field represents the endpoint of our application that Github will call the moment a push event occurs on the selected repository.
 **Content type:** You can choose application/json
@@ -69,10 +69,10 @@ The next thing is to put that ngrok url together with the API endpoint in the Pa
 1. Run the application
 2. Put a breakpoint in the Pushed method
 3. Go to the repository and make some changes
-![GitHub Commit Changes](/images/blog/posts/github-webhook-with-csharp/github-commit-changes.png)
+![GitHub Commit Changes](/images/blog/posts/github-webhook-with-csharp/github-commit-changes.webp)
 3. Wait for a couple of seconds, and call should hit the debugger
 4. You can see parameter payload is full of data
-![Webhook Endpoint Payload](/images/blog/posts/github-webhook-with-csharp/webhook-endpoint-payload.png)
+![Webhook Endpoint Payload](/images/blog/posts/github-webhook-with-csharp/webhook-endpoint-payload.webp)
 
 ## What next?
 On this very simple example, I have shown how a webhook receiver for Github can be implemented.

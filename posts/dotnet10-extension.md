@@ -158,7 +158,7 @@ if (order.TotalAmount > 1000 && order.IsComplete)
 ```
 ## Why not just use methods from .NET 10?
 
-![Comparing with Extension Methods](/images/blog/posts/dotnet10-extension/comparing-with-extension-methods.png)
+![Comparing with Extension Methods](/images/blog/posts/dotnet10-extension/comparing-with-extension-methods.webp)
 
 This isn't just a cosmetic change - it's a paradigm shift in how we organize logic.
 

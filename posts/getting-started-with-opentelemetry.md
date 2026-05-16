@@ -61,7 +61,7 @@ If you had a system like OpenTelemetry:
 **Traces:** You could track the journey of the order, from the call center to the kitchen to delivery, and see where it slowed down.
 **Metrics: **You’d have data showing how long each step typically takes (e.g., baking a pizza takes 15 minutes on average).
 **Logs:** If the delivery driver’s car broke down, there would be a log entry saying so.
-![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/open-telemetry.png)
+![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/open-telemetry.webp)
 Let's take a look on the implementation.
 
 ## Add NuGet Packages
@@ -192,9 +192,9 @@ This will add 2 new projects to your Solution:
 
 1. OpenTelemetryDemo.AppHost
 2. OpenTelemetryDemo.ServiceDefaults
-![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/aspire-support.png)
+![.NET Aspire OpenTelemetry support: required NuGet packages and service registration](/images/blog/posts/getting-started-with-opentelemetry/aspire-support.webp)
 You can run AppHost and get a beautiful dashboard with various details.
-![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard.png)
+![.NET Aspire dashboard overview screen after starting the sample application](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard.webp)
 
 Now we need to setup that our Otlp Exporter is a new created Aspire Dashborad - where we will see all the necessary details. 
 We need to add an endpoint to .AddOtlpExported method that points to the Aspire Dashboard:
@@ -206,14 +206,14 @@ We need to add an endpoint to .AddOtlpExported method that points to the Aspire 
 ```
 
 Let's start the application (AppHost starts). The Aspire Dashboard will open as shown above, but we will have details for our resource - NewsletterApi.
-![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard-resources.png)
+![.NET Aspire dashboard Resources tab listing the running services and endpoints](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard-resources.webp)
 I will call the endpoint by default in MinimalAPIs to get the current weather forecast. Within this endpoint, I set it to log some details. 
-![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/calling-api.png)
+![Calling the sample weather API endpoint to generate OpenTelemetry data](/images/blog/posts/getting-started-with-opentelemetry/calling-api.webp)
 As we can see below in the image, AspireDashboard receives and reads logs from our application.
-![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard-logs.png)
+![.NET Aspire dashboard Structured Logs view filtered by the sample service](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard-logs.webp)
 We can also see Traces, where every request that happens in the application is tracked and contains a lot of information about the request itself.
 The situation is similar for metrics. 
-![OpenTelemetry](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard-traces.png)
+![.NET Aspire dashboard distributed Traces view with spans across services](/images/blog/posts/getting-started-with-opentelemetry/aspire-dashboard-traces.webp)
 
 
 For complementary observability practices, check out [Structured Logging with Serilog](https://thecodeman.net/posts/structured-logging-with-serilog) and [Health Checks in .NET 8](https://thecodeman.net/posts/health-checks-in-dotnet8).

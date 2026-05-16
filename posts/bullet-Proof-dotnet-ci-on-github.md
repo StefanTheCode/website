@@ -158,11 +158,11 @@ When you push to the main branch on GitHub, next to the name of the commit, the 
 
 Check [the main branch here](https://github.com/StefanTheCode/Dotnet-CI).
 
-![Main Branch](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/main-branch.png)
+![Main Branch](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/main-branch.webp)
 
 If we go into details, we will see all the processes that happened in that pipeline, where we can see more details for each one.
 
-![Pipeline Details](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/pipeline-details.png)
+![Pipeline Details](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/pipeline-details.webp)
 
 ## Step 5 - Add intentionally bad code(to prove it works)  
 
@@ -189,7 +189,7 @@ dotnet build -c Release /warnaserror
 ```
 You’ll probably get warnings turned into errors. 
 
-![Build errors](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/build-errors.png)
+![Build errors](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/build-errors.webp)
 
 And if you run:
 
@@ -269,10 +269,10 @@ SA1200: Using directives must be placed outside the namespace.
 This is CI doing code review for you.
 No more *“Please fix spacing”* comments from teammates.
 
-![Failing PR](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/failing-pr.png)
+![Failing PR](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/failing-pr.webp)
 
 And if you check the details:
-![Failing PR](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/failing-pr-details.png)
+![GitHub pull request page with the failing CI check expanded to show error details](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/failing-pr-details.webp)
 
 ## Step 7 - Fix and make it green  
 
@@ -299,7 +299,7 @@ git push
 Re-run CI → everything turns green ✅
 That’s your happy path: style, analyzers, and format all clean. 
 
-![Passed pipeline](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/passed-pipeline.png)
+![Passed pipeline](/images/blog/posts/bullet-Proof-dotnet-ci-on-github/passed-pipeline.webp)
 
 ## Bonus: Add a simple test (optional but realistic) 
 

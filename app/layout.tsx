@@ -3,7 +3,7 @@ import Footer from './footer'
 import './globals.css'
 import Head from './head'
 import Header from './header'
-import ogImage from './og-image.png'
+import ogImage from './og-image.webp'
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: "Stay updated with TheCodeMan.NET! Authored by Microsoft MVP Stefan Djokic, providing expert insights, tutorials, and news on .NET and C# technologies.",
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.webp',
         width: ogImage.width,
         height: ogImage.height
       }
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     description: "Stay updated with TheCodeMan.NET! Authored by Microsoft MVP Stefan Djokic, providing expert insights, tutorials, and news on .NET and C# technologies.",
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.webp',
         width: ogImage.width,
         height: ogImage.height
       }
@@ -132,7 +132,7 @@ export default function RootLayout({
               "@id": "https://thecodeman.net/#/schema/org",
               name: "TheCodeMan.net",
               url: "https://thecodeman.net",
-              logo: "https://thecodeman.net/og-image.png",
+              logo: "https://thecodeman.net/og-image.webp",
               sameAs: [
                 "https://www.linkedin.com/in/djokic-stefan",
                 "https://x.com/TheCodeMan__",

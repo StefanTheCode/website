@@ -64,7 +64,7 @@ export default function Page() {
             {/* RIGHT IMAGE */}
             <div className="col-12 col-md-6 text-center">
               <Image
-                src="/images/stefan-djokic.png"
+                src="/images/stefan-djokic.webp"
                 alt="Stefan Djokic - Microsoft MVP and Senior .NET Engineer"
                 width={380}
                 height={380}
@@ -124,7 +124,7 @@ export default function Page() {
                         </div>
                         <div className="col-md-2 d-flex">
                           <a href="https://medium.com/@thecodeman" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/medium-icon.png'} className='social-icon' alt={'Medium'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                            <Image src={'/images/icons/medium-icon.webp'} className='social-icon' alt={'Medium'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                           </a>
                         </div>
                           </div>

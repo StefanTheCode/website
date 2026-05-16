@@ -33,19 +33,19 @@ Full Demo project is on GitHub repo.
 ## Step 1#: Configure [RabbitMQ](https://thecodeman.net/posts/rabbitmq-in-dotnet-from-scratch)
 
 First, you need to install the RabbitMQ on your machine. You can do it through [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik) container with a following command:
-![RabbitMQ Installation on Docker](/images/blog/posts/saga-implementation-in-csharp/install-rabbitmq-on-docker.png)
+![RabbitMQ Installation on Docker](/images/blog/posts/saga-implementation-in-csharp/install-rabbitmq-on-docker.webp)
 
 Then, you need to install the RabbitMQ client library in your solution. You can use the NuGet Package Manager to install the RabbitMQ Client package. Then, you need to configure the queues in the [appsettings](https://thecodeman.net/posts/live-loading-appsettings-configuration-file).json file (In GitHub project repo, this is already configured).
 
 Here is an example:
-![RabbitMQ Configuration in appsettings.json](/images/blog/posts/saga-implementation-in-csharp/rabbitmq-configuration-in-appsettings.png)
+![RabbitMQ Configuration in appsettings.json](/images/blog/posts/saga-implementation-in-csharp/rabbitmq-configuration-in-appsettings.webp)
 
 ## Step 2#: Automatonymous State Machine
 
 Next, you need to define the state machine using Automatonymous. You can create a class that inherits from the AutomatonymousStateMachine base class and defines the states and transitions.
 
 Here is an example:
-![Booking State Machine Saga Pattern](/images/blog/posts/saga-implementation-in-csharp/booking-state-machine-saga-pattern.png)
+![Booking State Machine Saga Pattern](/images/blog/posts/saga-implementation-in-csharp/booking-state-machine-saga-pattern.webp)
 
 This state machine defines 4 states:
 - HotelBookingReceived
@@ -63,18 +63,18 @@ It also defines certain transitions from one state to another, as well as event 
 Next, you need to create the consumers for the events sent by the Hotel and Flight microservices. You can create a class that implements the IConsumer interface and handles the events. There is a 3 consumers.
 
 Here is an example for ReserveFlightConsumer:
-![Reserve Flight Consumer](/images/blog/posts/saga-implementation-in-csharp/reserve-flight-consumer.png)
+![Reserve Flight Consumer](/images/blog/posts/saga-implementation-in-csharp/reserve-flight-consumer.webp)
 
 ## Step 4#: Configure MassTransit bus
 In this step, you need to configure the MassTransit bus to handle the events and start the consumers. You can use the MassTransit extensions for .NET to configure the bus in the ConfigureServices method of the Startup class.
 Here is the configuration in my project:
-![Mass Transit Bus Configuration](/images/blog/posts/saga-implementation-in-csharp/mass-transit-bus-configuration.png)
+![Mass Transit Bus Configuration](/images/blog/posts/saga-implementation-in-csharp/mass-transit-bus-configuration.webp)
 This configuration registers the state machine and the consumers with the MassTransit bus, and sets up the RabbitMQ host and queues. You use the AddScoped method to register the OrderStateMachine as a scoped dependency, so that it can be used by the consumers.
 
 ## Step 5#: Publish events
 Finally, you need to publish the events from the Hotel and Flight microservices. You can use the **IBus interface** provided by MassTransit to publish the events to the appropriate queue.
 Here is an example how I'm publishing the first event on API call:
-![Publishing Event Saga Pattern](/images/blog/posts/saga-implementation-in-csharp/publishing-event-saga-pattern.png)
+![Publishing Event Saga Pattern](/images/blog/posts/saga-implementation-in-csharp/publishing-event-saga-pattern.webp)
 
 ## What next?
 These are the most necessary steps to implement the SAGA pattern via MassTransit in C#.

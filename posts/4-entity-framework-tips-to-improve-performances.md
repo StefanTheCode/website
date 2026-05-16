@@ -83,7 +83,7 @@ public void QueryOutsideLoop()
 ```
 ### Benchmarks:
 
-![Benchmark Avoid query operations in loops](/images/blog/posts/4-entity-framework-tips-to-improve-performances/avoid-query-operations-in-loops.png)
+![Benchmark Avoid query operations in loops](/images/blog/posts/4-entity-framework-tips-to-improve-performances/avoid-query-operations-in-loops.webp)
 
 ## 2. Select only important columns
 
@@ -120,7 +120,7 @@ public void SelectImportantColumns()
 ```
 ### Benchmarks:
 
-![Benchmark Select only important columns](/images/blog/posts/4-entity-framework-tips-to-improve-performances/select-only-important-columns.png)
+![Benchmark Select only important columns](/images/blog/posts/4-entity-framework-tips-to-improve-performances/select-only-important-columns.webp)
 
 ## 3. Use the NoTracking method
 
@@ -150,7 +150,7 @@ public void SelectWithNoTracking()
 ```
 ### Benchmarks:
 
-![Benchmark Use the NoTracking method](/images/blog/posts/4-entity-framework-tips-to-improve-performances/use-the-notracking-method.png)
+![Benchmark Use the NoTracking method](/images/blog/posts/4-entity-framework-tips-to-improve-performances/use-the-notracking-method.webp)
 
 ## 4. Use SplitQuery to separate queries
 
@@ -191,7 +191,7 @@ public void UsingSplitQuery()
 ```
 ### Benchmarks:
 
-![Benchmark Use SplitQuery to separate queries](/images/blog/posts/4-entity-framework-tips-to-improve-performances/use-splitquery-to-separate-queries.png)
+![Benchmark Use SplitQuery to separate queries](/images/blog/posts/4-entity-framework-tips-to-improve-performances/use-splitquery-to-separate-queries.webp)
 
 
 For more advanced EF Core optimizations, check out [EF Core Compiled Queries](https://thecodeman.net/posts/improve-ef-core-performance-with-compiled-queries) and [EF Core Interceptors](https://thecodeman.net/posts/ef-interceptors-in-dotnet).

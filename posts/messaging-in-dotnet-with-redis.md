@@ -141,7 +141,7 @@ Details:
 This kind of app is perfect for services that need to respond immediately when an event occurs, without polling or tight coupling to the publisher.
 ### Result
 
-![Testing](/images/blog/posts/messaging-in-dotnet-with-redis/testing.png)
+![Testing](/images/blog/posts/messaging-in-dotnet-with-redis/testing.webp)
 
 So, why this Pattern works:
 

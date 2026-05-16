@@ -252,7 +252,7 @@ const Ebook = () => {
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-              <Image src={'/images/real-world-examples.png'} className='border-radius-20px' alt={'C# design patterns real-world implementation example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+              <Image src={'/images/real-world-examples.webp'} className='border-radius-20px' alt={'C# design patterns real-world implementation example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
         </div>
@@ -588,7 +588,7 @@ const Ebook = () => {
             <div className="col-md-6">
               <div className="row">
                 <div className="col-md-6 ebook-profile-div">
-                  <Image src={'/images/ebook-stefan.png'} className='mb-5 border-radius-20px ebook-profile-img' alt={'Stefan Djokic - Microsoft MVP and author of Design Patterns that Deliver'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/ebook-stefan.webp'} className='mb-5 border-radius-20px ebook-profile-img' alt={'Stefan Djokic - Microsoft MVP and author of Design Patterns that Deliver'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-md-6 ebook-about-div">
                   <p className='text-black text-font-2rem'><b>Hi, I&apos;m Stefan</b></p>

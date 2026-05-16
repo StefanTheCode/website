@@ -39,13 +39,13 @@ To do this:
 - Log in
 - Create your API Key by clicking on "Create new secret key" button.
 
-![Customer class](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/chatgpt-api-secret-key.png)
+![OpenAI dashboard showing the generated ChatGPT API secret key](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/chatgpt-api-secret-key.webp)
 
 ## Step #3
 ## Instantiate OpenAI
 After successfully installing the OpenAI C# SDK, the next step is to initialize it by providing your OpenAI API key. To accomplish this, create an instance of the OpenAI class and pass your API key as a parameter.
 
-![Customer class](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/openai-csharp-sdk.png)
+![Installing the OpenAI C# SDK NuGet package in Visual Studio](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/openai-csharp-sdk.png)
 
 ## Step #4
 ## Call the API
@@ -60,12 +60,12 @@ An **optional integer parameter** that controls the maximum number of tokens (wo
 4. temperature
 An ** optional floating point parameter** - that controls the "creativity" or randomness of the generated completion. A higher temperature value will result in more diverse and unpredictable output, whereas a lower temperature value will result in more conservative and predictable output. In general, a temperature value between 0.5 and 1.0 tends to produce the most interesting and varied results, while a temperature value closer to 0 tends to be more predictable and safe.
 
-![Customer class](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/create-completitions-openai.png)
+![C# code calling the OpenAI CreateCompletion endpoint with a prompt](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/create-completitions-openai.webp)
 ## Step #5
 ## Read and display result
 Once the process of generating the completions has concluded, it is possible to exhibit them within your C# application.
 
-![Customer class](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/getting-answer-openai.png)
+![Console output showing the ChatGPT response returned by the C# client](/images/blog/posts/how-to-use-chatgpt-in-csharp-application/getting-answer-openai.webp)
 Congratulations! By following these straightforward steps, you now have the ability to seamlessly integrate ChatGPT into your C# code and generate text completions using the model. This was a light and short newsletter issue considering that I haven't commented on ChatGPT so far, so I wanted to do something practical.
 Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/Newsletter)**.
 

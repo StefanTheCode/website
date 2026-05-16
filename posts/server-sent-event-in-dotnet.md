@@ -222,7 +222,7 @@ Click **Send**.
  
 You should receive: *"Order simulation completed."*
 
-![Postman post](/images/blog/posts/server-sent-event-in-dotnet/postman-post.png)
+![Postman post](/images/blog/posts/server-sent-event-in-dotnet/postman-post.webp)
 
 But here’s what actually happens in the background:
 - The endpoint starts publishing events

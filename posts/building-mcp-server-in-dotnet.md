@@ -39,13 +39,13 @@ Here's what a real session looks like:
 
 One message. Two real load tests against a live server. A side-by-side comparison with percentage deltas.
 
-![GitHub Copilot chat showing the compare_endpoints output with throughput and latency numbers](/images/blog/posts/building-mcp-server-in-dotnet/compare-endpoints.png)
+![GitHub Copilot chat showing the compare_endpoints output with throughput and latency numbers](/images/blog/posts/building-mcp-server-in-dotnet/compare-endpoints.webp)
 
 The p95/p99 improvement tells the whole story. `Thread.Sleep` holds a ThreadPool thread for 500ms. Under 20 concurrent users, threads run out and requests queue up. Tail latency explodes. `Task.Delay` releases the thread while waiting - same delay, completely different behavior under load.
 
 Also, I built the fronted Blazor dashboard to visualize all the results and comparisons. It's a plain REST client that talks to the same data store as the MCP server. The AI is the operator, the dashboard is the viewer.
 
-![Blazor dashboard showing performance results](/images/blog/posts/building-mcp-server-in-dotnet/blazor.png)
+![Blazor dashboard showing performance results](/images/blog/posts/building-mcp-server-in-dotnet/blazor.webp)
 
 Let me show you how this is built.
 
@@ -365,7 +365,7 @@ The dashboard gives a visual overview of all stored test runs. It's a plain REST
 The Compare page puts two results side by side with percentage deltas.
 
 
-![Dashboard compare page showing Thread.Sleep vs Task.Delay with throughput and latency delta columns](/images/blog/posts/building-mcp-server-in-dotnet/compare-dashboard.png)
+![Dashboard compare page showing Thread.Sleep vs Task.Delay with throughput and latency delta columns](/images/blog/posts/building-mcp-server-in-dotnet/compare-dashboard.webp)
 
 Nothing in the dashboard knows about MCP. That's intentional. The dashboard is a viewer. The AI is the operator.
 

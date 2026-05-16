@@ -115,7 +115,7 @@ The first thing that is necessary is to go to [Neon](https://neon.tech/?ref=snn)
 
 When you do that, a Dashboard like this will be waiting for you:
 
-![Neon Dashboard](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard.png)
+![Neon Dashboard](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard.webp)
 On the dashboard, you can see how much and how the database is being used, you have complete [monitoring](https://thecodeman.net/posts/how-to-monitor-dotnet-applications-in-production) for each component ([Storage and CPU are separated with Neon](https://neon.tech/docs/introduction/serverless?ref=snn)), and on the right side you can see the branches that will be discussed. 
 I added these other 2, you won't see them at the beginning. And I will explain to you what it is for.
 
@@ -125,14 +125,14 @@ Let this serve as our "Production" database.
 And now we first need to debug our application with the production database.
 
 We have only one table with a couple of rows, we can see that by clicking on "**Tables**" from the menu on the left.
-![Neon Dashboard Tables](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard-tables.png)
+![Neon Dashboard Tables](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard-tables.webp)
 
 Neon allows us to do this in seconds. 
 
 Neon allows you to create a new branch from an existing one and thus copy the entire database to the new branch.
 
 Creating a branch looks like this:
-![Neon Dashboard Create new branch](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard-create-new-branch.png)
+![Neon Dashboard Create new branch](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard-create-new-branch.webp)
 
 We have a newly created branch with the same data (I changed the name of the book to Development to make it different). 
 
@@ -141,10 +141,10 @@ And this branch can be used as a completely separate instance of the database in
 Connection string, for various platforms, you can see when you go to **Overview** branch, then **Connect**. 
 
 We will use .NET for EntityFramework.
-![Neon Dashboard Connection strings](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard-connection-strings.png)
+![Neon Dashboard Connection strings](/images/blog/posts/debug-and-test-multi-environment-postgres/neon-dashboard-connection-strings.webp)
 
 BlogPosts table: 
-![BlogPosts table](/images/blog/posts/debug-and-test-multi-environment-postgres/blog-posts-table.png)
+![BlogPosts table](/images/blog/posts/debug-and-test-multi-environment-postgres/blog-posts-table.webp)
 
 Excellent! 
 
@@ -165,7 +165,7 @@ It provides an **opinionated, pre-configured stack** for handling service discov
 Today, Aspire will help us create a good basis for testing multiple environments with different settings, dynamically.
 
 In order to add Aspire Orchestrator to your existing project, you just need to add it from the right-click menu on the API project:
-![Aspire Orchestrator](/images/blog/posts/debug-and-test-multi-environment-postgres/add-aspire.png)
+![Aspire Orchestrator](/images/blog/posts/debug-and-test-multi-environment-postgres/add-aspire.webp)
 
 ## Setting up all environments
 
@@ -215,15 +215,15 @@ builder.Services.AddScoped<BlogService>();
 ## Testing
 
 By default, the environment is Development. We will launch the AppHost Aspire project.
-![Aspire Dashboard](/images/blog/posts/debug-and-test-multi-environment-postgres/aspire-dashboard.png)
+![Aspire Dashboard](/images/blog/posts/debug-and-test-multi-environment-postgres/aspire-dashboard.webp)
 
 Here we can see that **ASPNETCORE_ENVIRONMENT=Development**, and we can also see that the ConnectionString is for Development.
 The API runs on port 7229, so let's call the endpoint and see if we can get data from the branch we're targeting.
-![Testing API](/images/blog/posts/debug-and-test-multi-environment-postgres/testing-api.png)
+![Testing API](/images/blog/posts/debug-and-test-multi-environment-postgres/testing-api.webp)
 
 Awesome! And now if we would like to change the environment for which we run the application, it is necessary to change it in launchSettings.json, e.g. from Development, to Test. 
 When we do this, we get the result:
-![Test Environment](/images/blog/posts/debug-and-test-multi-environment-postgres/test-environment.png)
+![Test Environment](/images/blog/posts/debug-and-test-multi-environment-postgres/test-environment.webp)
 
 ## What's the point? 
 ## Wrapping Up

@@ -44,7 +44,7 @@ Different departments or teams within an organization often use distinct jargon 
 For instance, in a company that sells books, the way employees in a physical store discuss a book may differ significantly from how those in the warehouse or sales and purchasing teams discuss it.
 It is possible to have two distinct versions of a class named Book, each designed for a particular department or process with the required properties. Both versions would include an ISBN for possible system connectivity. If modifications were made to the Book class utilized by the sales department, they would not affect the software in the warehouse since it uses its own implementation of the Book class specific to its Bounded Context.
 
-![Single Responsibility Pattern](/images/blog/posts/solid-principles-in-dotnet/single-responsibility-pattern.jpg)
+![Single Responsibility Pattern](/images/blog/posts/solid-principles-in-dotnet/single-responsibility-pattern.webp)
 Check the GitHub repo for the code for free.
 
 ## Open-Closed Principle
@@ -149,7 +149,7 @@ By applying the Interface Segregation Principle, we now have more focused interf
 
 ### NuGet Package:
 You need to install Hangfire package.
-![Install Hangfire package](/images/blog/posts/jobs-in-dotnet-with-hangfire/install-hangfire-package.jpg)
+![Install Hangfire package](/images/blog/posts/jobs-in-dotnet-with-hangfire/install-hangfire-package.webp)
 
 The last version is 1.7.34.
 Hangfire.SqlServer and Hangfire.Core are installed by default.
@@ -190,10 +190,10 @@ builder.Services.AddHostedService&lt;SomeService&gt;();
 
 ### Persistence:
 Hangfire will automatically check your storage for the necessary tables, and if they don’t exist, it will create them for you:
-![Hangfire Database](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-database.jpg)
+![Hangfire Database](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-database.webp)
 ### Hangfire Dashboard:
 This is a web-based UI that allows you to monitor the state of your background jobs. You can use the dashboard to view the status of jobs, retry failed jobs, and cancel running jobs if necessary. To check the dashboard you need to land on **/hangfire** page.
-![Hangfire Database](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-page.png)
+![Hangfire dashboard used to illustrate the Open/Closed Principle in practice](/images/blog/posts/jobs-in-dotnet-with-hangfire/hangfire-page.webp)
 
 ## Background jobs
 There are several types of background jobs that you can perform using Hangfire:

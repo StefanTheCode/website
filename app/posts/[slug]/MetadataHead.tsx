@@ -40,7 +40,7 @@ export default function MetadataHead({ slug, folder }: Props) {
       url: "https://thecodeman.net",
       logo: {
         "@type": "ImageObject",
-        url: "https://thecodeman.net/og-image.png"
+        url: "https://thecodeman.net/og-image.webp"
       }
     },
     mainEntityOfPage: {

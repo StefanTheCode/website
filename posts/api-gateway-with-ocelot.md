@@ -49,7 +49,7 @@ An API Gateway can provide security features, such as authentication, authorizat
 - Monitoring:
 
 The API Gateway can collect and aggregate metrics and logs from the microservices and provide visibility into the health and performance of the system as a whole.
-![API Gateway Diagram](/images/blog/posts/api-gateway-with-ocelot/api-gateway-diagram.png)
+![API Gateway Diagram](/images/blog/posts/api-gateway-with-ocelot/api-gateway-diagram.webp)
 
 ## What is Ocelot?
 
@@ -60,7 +60,7 @@ Ocelot is widely used in the .NET community as it integrates well with other .NE
 
 To implement Ocelot API Gateway in .NET you should create at minimum 3 API Projects: Two microservices as use-case and the ApiGateway itself.
 Here's how I did it:
-![API Gateway Diagram](/images/blog/posts/api-gateway-with-ocelot/project-structure.png)
+![Ocelot API Gateway solution structure in Visual Studio with downstream services](/images/blog/posts/api-gateway-with-ocelot/project-structure.png)
 There are 2 different .NET Web Api projects that represent microservices: **Products** and **Users**. These services will be called by the third **Gateway** project depending on what kind of request is needed.
 Let's create controllers in each of the microservices with some default endpoints.
 Products Microservice - I will create a **ProductsController** with only one endpoint that returns a list of products - in this case, it will be a hardcoded list of 3 products:

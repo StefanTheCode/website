@@ -22,7 +22,7 @@ meta_description: "gRPC, which stands for Google Remote Procedure Call, is an op
 It was initially developed by Google and has gained widespread adoption in the software development community due to its versatility and performance advantages.
 
 In the context of .NET, gRPC is a powerful tool that allows developers to create cross-platform and language-agnostic APIs for building distributed applications.
-![gRPC Diagram](/images/blog/posts/unlock-the-power-of-high-performance-web-applications-with-grpc/grpc-diagram.png)
+![gRPC Diagram](/images/blog/posts/unlock-the-power-of-high-performance-web-applications-with-grpc/grpc-diagram.webp)
 
 ## Key benefits
 

@@ -47,7 +47,7 @@ It's akin to having a key to a locked door — without the key, you're not getti
 
 But with it, you unlock a world of possibilities, from fetching weather data to processing payments online.
 
-![Api Key Design](/images/blog/posts/allow-specific-users-to-access-your-api-part1/api-key-design.png)
+![Api Key Design](/images/blog/posts/allow-specific-users-to-access-your-api-part1/api-key-design.webp)
 ## Role and Purpose
 
 1. Identification and Access Control:

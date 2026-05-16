@@ -89,7 +89,7 @@ In addition, the alphabet is shuffled based on a unique salt value that can be s
 As far as performance is concerned, the general best practice is that these IDs should not be persisted anywhere but should be calculated every time. One of the main reasons for this is that it enables us to change/rotate the SALT key.
 Therefore, most uses of Hashids will require the calculation to be done two times for each request; one calculation is **encoding** (int is converted to string), and the other is **decoding** (string is converted back to int).
 The encoding and decoding execution times (for a 7 characters id) are shown in the following figure (using the venerable [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) project).
-![Benchmarks](/images/blog/posts/what-are-hashids-and-why-should-we-use-them/benchmarks.png)
+![Benchmarks](/images/blog/posts/what-are-hashids-and-why-should-we-use-them/benchmarks.webp)
 We can see that the encoding function takes approximately 850ns per execution, which is quite fast. The decoding time is a bit longer (not unexpected), taking approximately 1400ns (i.e., 0.0014ms).
 Note: Functions do not return a single value of a particular type, but return a string - encoding returns int []. There is a lot of room for optimization here if someone really needs it.
 Another note: Purely out of curiosity, I tested on 1 million values, although this is far from a realistic or practical use case, and the total duration of the process was slightly less than 900ms.

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import ogImage from '../pass-your-interview.png'
+import ogImage from '../pass-your-interview.webp'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: "Free .NET 10 interview preparation kit: 250 questions covering Arrays, Lists, Trees, and General .NET/C#/SQL - with clean C# implementations and full complexity analysis.",
     images: [
       {
-        url: '../pass-your-interview.png',
+        url: '../pass-your-interview.webp',
         width: ogImage.width,
         height: ogImage.height
       }
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: "Free .NET 10 interview preparation kit: 250 questions covering Arrays, Lists, Trees, and General .NET/C#/SQL - with clean C# implementations and full complexity analysis.",
     images: [
       {
-        url: '/images/pass-your-interview.png',
+        url: '/images/pass-your-interview.webp',
         width: ogImage.width,
         height: ogImage.height
       }

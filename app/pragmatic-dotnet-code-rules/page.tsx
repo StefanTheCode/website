@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description: "Master .editorconfig, Roslyn analyzers, Visual Studio Code Cleanup, dotnet format, and CI/CD quality gates for .NET. Enforce consistent C# code style across your team.",
     images: [
       {
-        url: 'https://thecodeman.net/og-course.png',
+        url: 'https://thecodeman.net/og-course.webp',
         width: "1000px",
         height: "700px"
       }
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description: "Master .editorconfig, Roslyn analyzers, Visual Studio Code Cleanup, dotnet format, and CI/CD quality gates for .NET. Enforce consistent C# code style across your team.",
     images: [
       {
-        url: 'https://thecodeman.net/og-course.png',
+        url: 'https://thecodeman.net/og-course.webp',
         width: "1000px",
         height: "700px"
       }
@@ -241,7 +241,7 @@ const CodeRules = () => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
-            <Image src={'/images/course.png'} priority={true} alt={'Pragmatic .NET Code Rules course cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            <Image src={'/images/course.webp'} priority={true} alt={'Pragmatic .NET Code Rules course cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
           </div>
         </div>
         <EbookNewsletter />
@@ -279,7 +279,7 @@ const CodeRules = () => {
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-              <Image src={'/images/course2.png'} alt={'Code inconsistency illustration'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+              <Image src={'/images/course2.webp'} alt={'Code inconsistency illustration'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
           <div className="row text-center">
@@ -363,7 +363,7 @@ const CodeRules = () => {
                   <h5>• Learn the mindset top engineering teams use to stay aligned</h5>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/mindset.png'} alt={'Code consistency mindset'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/mindset.webp'} alt={'Code consistency mindset'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
 
@@ -371,7 +371,7 @@ const CodeRules = () => {
 
               <div className="row text-center">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/editorconfig.png'} className='border-radius-20px' alt={'.editorconfig deep dive'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/editorconfig.webp'} className='border-radius-20px' alt={'.editorconfig deep dive'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
                   <h2 className='text-yellow text-center pb-5'><b>.editorconfig Deep Dive</b></h2>
@@ -391,7 +391,7 @@ const CodeRules = () => {
                   <h5 className='text-center'>• Remove 90% of manual cleanup from your workflow</h5>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/cleanup.png'} className='border-radius-20px' alt={'Visual Studio cleanup automation'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/cleanup.webp'} className='border-radius-20px' alt={'Visual Studio cleanup automation'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
               </div>
 
@@ -399,7 +399,7 @@ const CodeRules = () => {
 
               <div className="row text-center">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-                  <Image src={'/images/errors.png'} className='border-radius-20px' alt={'Analyzers and warnings as errors'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/errors.webp'} className='border-radius-20px' alt={'Analyzers and warnings as errors'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
                   <h2 className='text-yellow text-center pb-5'><b>Analyzers &amp; Warnings-As-Errors</b></h2>
@@ -428,7 +428,7 @@ const CodeRules = () => {
               <div className="row text-center">
                 <div className='col-xl-1 col-lg-1 col-md-1 col-sm-1'></div>
                 <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-5 text-center vertical-center">
-                  <Image src={'/images/slack.png'} className='border-radius-20px text-center' alt={'Team-wide adoption strategies'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/slack.webp'} className='border-radius-20px text-center' alt={'Team-wide adoption strategies'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
                   <h2 className='text-yellow text-center pb-5'><b>Team-Wide Adoption Strategies</b></h2>
@@ -615,7 +615,7 @@ const CodeRules = () => {
             <div className="col-md-8">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <Image src={'/images/ebook-stefan.png'} className='border-radius-20px course-profile-img' alt={'Stefan Djokic - Microsoft MVP'} width={0} height={0} sizes="20vw" style={{ width: '100%', height: 'auto' }} />
+                  <Image src={'/images/ebook-stefan.webp'} className='border-radius-20px course-profile-img' alt={'Stefan Djokic - Microsoft MVP'} width={0} height={0} sizes="20vw" style={{ width: '100%', height: 'auto' }} />
                 </div>
                 <div className="col-md-12 text-center">
                   <p className='text-black text-font-2rem'><b>Hi, I&apos;m Stefan Đokić</b></p>

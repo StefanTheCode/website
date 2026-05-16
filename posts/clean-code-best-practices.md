@@ -28,21 +28,21 @@ You may know some of these, but it's okay to remember some things because we all
 When we talk about pyramids or ladders in code, we're referring to ** multiple layers of if/else statements ** that can quickly become confusing and difficult to read. This can happen when we have a complex set of conditions that we need to check in order to execute a particular block of code.
 
 The problem with pyramids is that they make it hard to follow the logic of the code. It's easy to get lost in the maze of nested statements and lose sight of what's really happening. This can make it difficult to debug and maintain the code in the future.
-![Avoid Pyramids with multiple if statements](/images/blog/posts/clean-code-best-practices/avoid-pyramids-with-multiple-if-statements.png)
+![Avoid Pyramids with multiple if statements](/images/blog/posts/clean-code-best-practices/avoid-pyramids-with-multiple-if-statements.webp)
 
 So, what's the solution?
 One approach is to use [guard clauses](https://thecodeman.net/posts/how-to-create-dotnet-custom-guard-clause), which are essentially early return statements that check for a condition and exit the method or function if it's not met.
-![Using Guard Clauses](/images/blog/posts/clean-code-best-practices/using-guard-clauses.png)
+![Using Guard Clauses](/images/blog/posts/clean-code-best-practices/using-guard-clauses.webp)
 
 ## 2#: Avoid magic (numbers, strings)
 
 The problem here are hard-coded values that are used throughout the codebase without any clear explanation of what they mean.
 For example, imagine a scenario where the number "100" is used multiple times throughout the codebase without any indication of what it represents. This can make the code difficult to understand and maintain over time.
 Here is an example:
-![Avoid Magic Numbers](/images/blog/posts/clean-code-best-practices/avoid-magic-numbers.png)
+![Avoid Magic Numbers](/images/blog/posts/clean-code-best-practices/avoid-magic-numbers.webp)
 Solution?
 The key is to use constants or enums to represent these values instead of hard-coding them. This makes it clear what the values represent, and also allows you to change them in a single place if needed, rather than having to update every instance throughout the codebase.
-![Avoid Magic Numbers](/images/blog/posts/clean-code-best-practices/using-constants.png)
+![C# refactor that replaces magic numbers with named constants for readability](/images/blog/posts/clean-code-best-practices/using-constants.webp)
 
 ## 3#: Avoid Return null collection
 
@@ -51,19 +51,19 @@ Why you should not do this:
 - We always need to check for null   
 - Slow Performance (checking for null, throwing/catching an exception, etc.)
 
-![Do not return null collection](/images/blog/posts/clean-code-best-practices/do-not-return-null-collection.png)
+![Do not return null collection](/images/blog/posts/clean-code-best-practices/do-not-return-null-collection.webp)
 Instead, just return an empty collection.
-![Return Empty Collection](/images/blog/posts/clean-code-best-practices/return-empty-enumerable.png)
+![Return Empty Collection](/images/blog/posts/clean-code-best-practices/return-empty-enumerable.webp)
 
 ## 4#: Avoid Too Many Method Parameters
 
 Let's say we have a class that's working with Addresses. We are calling a method AddAddress to persistence details. The address can have StreetName, StreetNumber, PostalCode, Country, City, and Region properties. If all of these parameters are passed into the method separately, it can become difficult to read and understand the code.
 
 Example:
-![Avoid too many parameters](/images/blog/posts/clean-code-best-practices/avoid-too-many-parameters.png)
+![Avoid too many parameters](/images/blog/posts/clean-code-best-practices/avoid-too-many-parameters.webp)
 To avoid too many method parameters, you can use a few different techniques. One approach is to group related parameters into a single object or struct.
 
-![Group parameters to object](/images/blog/posts/clean-code-best-practices/group-parameters-to-object.png)
+![Group parameters to object](/images/blog/posts/clean-code-best-practices/group-parameters-to-object.webp)
 
 ## 5#: Be Strongly Typed
 
@@ -71,10 +71,10 @@ Don't be "Stringly" typed.
 Similar to "Avoid Magic" but on a higher level. Imagine you have an employee class/object with 10+ types in a company (manager, hr, CEO, etc.).
 Whenever you check the type through "magic strings", it can be disastrous on multiple levels.
 Don't do this ever:
-![Group parameters to object](/images/blog/posts/clean-code-best-practices/do-not-use-magic-strings.png)
+![C# example replacing magic strings with shared constants](/images/blog/posts/clean-code-best-practices/do-not-use-magic-strings.webp)
 
 Just create an enum that will represent the type:
-![Use enumeration](/images/blog/posts/clean-code-best-practices/use-enumeration.png)
+![Use enumeration](/images/blog/posts/clean-code-best-practices/use-enumeration.webp)
 
 ## 6#: Your method should do one thing only
 
@@ -82,11 +82,11 @@ Potential problem:
 When you're writing code, it can be tempting to include multiple functions within a single method to make it more efficient. However, this can actually make your code more difficult to read, and maintain over time.
 
 "Bad" example:
-![Single Responsibility Principle violation](/images/blog/posts/clean-code-best-practices/single-responsibility-principle-violation.png)
+![Single Responsibility Principle violation](/images/blog/posts/clean-code-best-practices/single-responsibility-principle-violation.webp)
 Way to resolve?
 Single Responsibility Principle (SRP). By following the SRP, you can create more modular and organized code that is easier to work with. 
 Just separate concerns:
-![Single Responsibility Principle violation](/images/blog/posts/clean-code-best-practices/separate-concerns-srp.png)
+![C# class split into smaller types to satisfy the Single Responsibility Principle](/images/blog/posts/clean-code-best-practices/separate-concerns-srp.webp)
 
 That's all from me for today.
 

@@ -33,7 +33,7 @@ Let's see how to implement this feature.
 There are various ways to implement background tasks in .NET, but one common approach is to use asynchronous programming with async and await.
 This allows you to run code in the background without blocking the main thread.
 Here's an example of how to create and execute a background task in a console application:
-![Create and Execute Background Task in Console Application](/images/blog/posts/background-tasks-how-to-use-them/create-and-execute-background-task-in-console-application.png)
+![Create and Execute Background Task in Console Application](/images/blog/posts/background-tasks-how-to-use-them/create-and-execute-background-task-in-console-application.webp)
 
 ## Real-world use cases in applications
 ### 1. Email Notifications:
@@ -52,13 +52,13 @@ Here's an example of how to create and execute a background task in a console ap
 - **How**: Use background tasks to periodically clean up expired or unnecessary cache items, ensuring that the cache remains efficient and doesn't impact application performance.
 - Let's take this example and implement a background task on it.
 
-![Create Simple Cache Manager with Background Task](/images/blog/posts/background-tasks-how-to-use-them/create-simple-cache-manager-with-background-task.png)
+![Create Simple Cache Manager with Background Task](/images/blog/posts/background-tasks-how-to-use-them/create-simple-cache-manager-with-background-task.webp)
 In this example, the CacheManager class manages the cache and has a background task (StartCacheCleanupTask) that periodically removes stale cache items based on their expiration timestamps. This ensures that the cache remains up-to-date and doesn't grow indefinitely.
 Let's see how it's implemented:
 
-![Cache Manager implementation](/images/blog/posts/background-tasks-how-to-use-them/cache-manager-implementation.png)
+![Cache Manager implementation](/images/blog/posts/background-tasks-how-to-use-them/cache-manager-implementation.webp)
 Where the CacheItem represents the item we are adding to cache:
-![Cache item implementation](/images/blog/posts/background-tasks-how-to-use-them/cache-item-implementation.png)
+![Cache item implementation](/images/blog/posts/background-tasks-how-to-use-them/cache-item-implementation.webp)
 Background tasks for cache cleanup help maintain application performance by keeping the cache efficient and avoiding the use of stale data. It's an essential technique for applications that heavily rely on caching to improve response times.
 
 

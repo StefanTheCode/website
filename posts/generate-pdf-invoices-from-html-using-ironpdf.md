@@ -114,7 +114,7 @@ I created a basic HTML template and saved it in localhost as invoice.html file. 
 ```
 Here is the quick view on html page that's created with placeholders.
 
-![Invoice Placeholder](/images/blog/posts/generate-pdf-invoices-from-html-using-ironpdf/invoice-placeholder.png)
+![Invoice Placeholder](/images/blog/posts/generate-pdf-invoices-from-html-using-ironpdf/invoice-placeholder.webp)
 
 Now in the code, I'm using the real data (already prepared from another API call) and I'm populating placeholders. 
 
@@ -161,7 +161,7 @@ Console.WriteLine("Invoice PDF generated!");
 And that's all. So simple.
 Here is the Pdf file as result:
 
-![Final Invoice](/images/blog/posts/generate-pdf-invoices-from-html-using-ironpdf/final-invoice.png)
+![Final Invoice](/images/blog/posts/generate-pdf-invoices-from-html-using-ironpdf/final-invoice.webp)
 
 Licensing
 

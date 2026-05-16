@@ -235,7 +235,7 @@ By refactoring to use the Strategy pattern, the code becomes cleaner, more maint
 **4. Clients Must Know About Strategies**: Clients must be aware of the different strategies and know when to use each one. This can complicate client code and reduce encapsulation, as clients need to manage the strategy selection logic.
 ## Bonus: UML Diagram
 
-![Bonus: UML Diagram](/images/blog/posts/strategy-design-pattern-will-help-you-refactor-code/uml-diagram.png)
+![Bonus: UML Diagram](/images/blog/posts/strategy-design-pattern-will-help-you-refactor-code/uml-diagram.webp)
 
 ## Wrapping up
 

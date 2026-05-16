@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: "Take advantage of Black Friday with high-impact sponsorship options across LinkedIn, newsletters, and social media to reach TheCodeMan.NET's dedicated followers.",
     images: [
       {
-        url: 'https://thecodeman.net/black-friday-og-image.png',
+        url: 'https://thecodeman.net/black-friday-og-image.webp',
         width: "1000px",
         height: "700px"
       }
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "Promote your brand this Black Friday with sponsorships reaching thousands through LinkedIn, newsletter ads, and social media posts.",
     images: [
       {
-        url: 'https://thecodeman.net/black-friday-og-image.png',
+        url: 'https://thecodeman.net/black-friday-og-image.webp',
         width: "1000px",
         height: "700px"
       }
@@ -50,7 +50,7 @@ const BlackFriday = () => {
               <h4 className='mt-5'>Take advantage of this exclusive offer available until <b>December 1, 2024!</b></h4>
               <div className="row">
                 <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
-                <img src="/images/discount_40.png" alt="Discount Tag" className="discount-image"/>
+                <img src="/images/discount_40.webp" alt="40% off Black Friday sponsorship discount tag" width={500} height={500} loading="lazy" decoding="async" className="discount-image"/>
                   <ul className="price">
                     <li className="header"><b>LinkedIn Post</b></li>
                     <li className="grey padding-5 text-success"><span className='old-price'>$750.00</span>$450.00</li>
@@ -74,7 +74,7 @@ const BlackFriday = () => {
                    </ul>
                 </div>
                 <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
-                <img src="/images/discount_25.png" alt="Discount Tag" className="discount-image"/>
+                <img src="/images/discount_25.webp" alt="25% off Black Friday sponsorship discount tag" width={500} height={500} loading="lazy" decoding="async" className="discount-image"/>
                   <ul className="price">
                     <li className="header"><b>Newsletter Ad</b></li>
                     <li className="grey padding-5 text-success"><span className='old-price'>$400.00</span>$300.00</li>
@@ -98,7 +98,7 @@ const BlackFriday = () => {
                     </ul>
                 </div>
                 <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
-                <img src="/images/discount_60.png" alt="Discount Tag" className="discount-image"/>
+                <img src="/images/discount_60.webp" alt="60% off Black Friday sponsorship discount tag" width={500} height={500} loading="lazy" decoding="async" className="discount-image"/>
                   <ul className="price">
                     <li className="header"><b>X Post</b></li>
                     <li className="grey padding-5 text-success"><span className='old-price'>$250.00</span>$100.00</li>

@@ -141,7 +141,7 @@ public async Task<ActionResult> ReturnUser(int id)
 ```
 In this example I used the "Fixed Interval Retry" policy. Which would practically mean that if the API returns an error, it will be called **3 times with an interval of 5 seconds between** each or less times if it returns a successful result.
 Let's see that.
-![Testing Retry Policy with Postman](/images/blog/posts/retry-failed-api-calls-with-polly/testing-retry-policy-with-postman.png)
+![Testing Retry Policy with Postman](/images/blog/posts/retry-failed-api-calls-with-polly/testing-retry-policy-with-postman.webp)
 
 With the help of Postman, we will call the WebApp project method from the UserManagement controller. The code inside this method calls the API endpoint with the Retry policy.
 This is what happened:

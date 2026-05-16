@@ -28,14 +28,14 @@ export const metadata: Metadata = {
 const sponsors: { src: string; alt: string; size?: 'lg' | 'xl' }[] = [
   { src: '/images/sponsors/microsoft.png', alt: 'Microsoft' },
   { src: '/images/sponsors/jetbrains.png', alt: 'JetBrains' },
-  { src: '/images/sponsors/mongodb.png', alt: 'MongoDB' },
-  { src: '/images/sponsors/sentry.png', alt: 'Sentry' },
-  { src: '/images/sponsors/heroku.png', alt: 'Heroku' },
+  { src: '/images/sponsors/mongodb.webp', alt: 'MongoDB' },
+  { src: '/images/sponsors/sentry.webp', alt: 'Sentry' },
+  { src: '/images/sponsors/heroku.webp', alt: 'Heroku' },
   { src: '/images/sponsors/brilliant.png', alt: 'Brilliant' },
-  { src: '/images/sponsors/iron.png', alt: 'Iron Software' },
+  { src: '/images/sponsors/iron.webp', alt: 'Iron Software' },
   { src: '/images/sponsors/zzz-projects.png', alt: 'ZZZ Projects' },
-  { src: '/images/sponsors/uno-platform.png', alt: 'Uno Platform', size: 'xl' },
-  { src: '/images/sponsors/coderabbit.png', alt: 'CodeRabbit', size: 'lg' },
+  { src: '/images/sponsors/uno-platform.webp', alt: 'Uno Platform', size: 'xl' },
+  { src: '/images/sponsors/coderabbit.webp', alt: 'CodeRabbit', size: 'lg' },
 ];
 
 const Sponsorship = () => {
@@ -163,6 +163,10 @@ const Sponsorship = () => {
                   key={src}
                   src={src}
                   alt={alt}
+                  width={160}
+                  height={40}
+                  loading="lazy"
+                  decoding="async"
                   className={`sp-logo${sizeClass}`}
                 />
               ) : (

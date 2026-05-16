@@ -94,7 +94,7 @@ Let's define our terms.
 
 A **monolith** in the .NET sense is a single deployable artifact - typically one ASP.NET Core process - that contains all the application's business logic, talking to one primary database.
 
-![Monolith Diagram](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/monolith.png)
+![Monolith Diagram](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/monolith.webp)
 
 This boring diagram has scaled Stack Overflow, Shopify (for years), Basecamp, GitHub (for most of its history), and a long list of companies you use every day.
 
@@ -120,7 +120,7 @@ A modular monolith is still one deployable. But internally, it is structured as 
 - its own public contract (a small, intentional surface)
 - communication with other modules **only** through that contract or through events
 
-![Modular Monolith Diagram](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/modular-monolith.png)
+![Modular Monolith Diagram](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/modular-monolith.webp)
 
 Why this is the underrated step:
 
@@ -319,7 +319,7 @@ internal sealed class OrderPlacedHandler : IIntegrationEventHandler<OrderPlaced>
 
 The Orders module knows nothing about Notifications. It publishes `OrderPlaced` and moves on. If Notifications is slow, broken, or temporarily disabled, Orders does not care.
 
-![Sequence Diagram](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/sequence-diagram.png)
+![Sequence Diagram](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/sequence-diagram.webp)
 
 ## Example 5 - The Outbox Pattern (Done Properly)
 
@@ -407,7 +407,7 @@ public sealed class OutboxPublisher : BackgroundService
 }
 ```
 
-![Outbox Pattern](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/outbox-pattern.png)
+![Outbox Pattern](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/outbox-pattern.webp)
 
 A few production lessons I have learned the hard way:
 
@@ -467,7 +467,7 @@ A module is a candidate for extraction when **at least two** of the following ar
 
 If only one of these is true, you are extracting too early.
 
-![Modular to Monolith](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/modular-to-monolith.png)
+![Modular to Monolith](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/modular-to-monolith.webp)
 
 The extraction itself, when the module is well-bounded, looks like this:
 
@@ -491,7 +491,7 @@ The day you extract your first service, your operational surface area roughly *d
 - **Deployment orchestration.** Versioned APIs, backwards-compatible contracts, expand/contract migrations. If service A v2 cannot talk to service B v1, you cannot do rolling deploys.
 - **On-call.** Who gets paged at 2 AM when the webhook service is failing? Service ownership must be explicit.
 
-![Operational Complexity](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/operational-complexity.png)
+![Operational Complexity](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/operational-complexity.webp)
 
 The honest framing: **you do not get to do microservices part-time.** You either invest in a platform team or you suffer.
 
@@ -499,7 +499,7 @@ The honest framing: **you do not get to do microservices part-time.** You either
 
 The single biggest predictor of microservices success is whether each service truly owns its data.
 
-![Data Ownership](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/data-ownership.png)
+![Data Ownership](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/data-ownership.webp)
 
 
 If two services share a database, they are one service wearing a costume. Any schema change requires coordination. Any performance issue is shared. Any outage is shared. You have all the cost of microservices and none of the benefits.
@@ -601,7 +601,7 @@ After enough architecture reviews, the same mistakes show up. Here are the worst
 
 A useful mental model is to compare deployment shape before and after.
 
-![Deployment](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/deployment.png)
+![Deployment](/images/blog/posts/monolith-to-modular-monolith-to-microservices-at-100k-users/deployment.webp)
 
 In a modular monolith, deployments are still simple: one artifact, one rollout. Module boundaries help the *codebase*, not the deployment. That is fine - that is exactly what most teams need.
 

@@ -127,7 +127,7 @@ const BlogClient = ({ allPosts }: Props) => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top-10per" id="profile-image">
-            <Image src={'/images/blog-header.png'} priority alt={'Blog header image'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+            <Image src={'/images/blog-header.webp'} priority alt={'Blog header image'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
           </div>
         </div>
       </section>

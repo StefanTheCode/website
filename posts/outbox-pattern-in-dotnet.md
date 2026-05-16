@@ -45,7 +45,7 @@ A background process (the *outbox publisher*) then:
 
 The result: **at-least-once** delivery, no lost events, and full crash recovery. Combined with idempotent consumers, it gives you **effectively exactly-once** semantics.
 
-![Outbox Pattern Flow](/images/blog/posts/outbox-pattern-in-dotnet/outbox-flow.png)
+![Outbox Pattern Flow](/images/blog/posts/outbox-pattern-in-dotnet/outbox-flow.webp)
 
 ## Why not just publish directly?
 

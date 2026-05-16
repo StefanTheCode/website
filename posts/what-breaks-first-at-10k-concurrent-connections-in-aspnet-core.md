@@ -522,7 +522,7 @@ app.Run("http://0.0.0.0:5080");
 
 ## What changed
 
-![What changed](/images/blog/posts/what-breaks-first-at-10k-concurrent-connections-in-aspnet-core/what-changed.png)
+![What changed](/images/blog/posts/what-breaks-first-at-10k-concurrent-connections-in-aspnet-core/what-changed.webp)
 
 ## Before / after summary
 

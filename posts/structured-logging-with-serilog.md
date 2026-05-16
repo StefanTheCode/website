@@ -86,7 +86,7 @@ The File Sink outputs log events to a text file. You can specify the path to the
 .WriteTo.File("logs/app.txt", rollingInterval: RollingInterval.Day);
 ```
 Example:
-![Serilog sink file](/images/blog/posts/structured-logging-with-serilog/serilog-sink-file.png)
+![Serilog sink file](/images/blog/posts/structured-logging-with-serilog/serilog-sink-file.webp)
 ### Database Sink
 Outputs log events to a database. There are several different database sinks available, depending on your database system.
 For example:
@@ -121,7 +121,7 @@ Then, you configure the Seq Sink in your Serilog configuration:
 When you install Seq, it will start a web server with the certain port (5341).
 In this example, Seq is running on the local machine. If you're running Seq in a different location, you would replace "http://localhost:5341" with the URL where Seq is running.
 You can access it via url:
-![Serilog sink file](/images/blog/posts/structured-logging-with-serilog/serilog-sink-seq.png)
+![Structured Serilog logs streaming into the Seq dashboard](/images/blog/posts/structured-logging-with-serilog/serilog-sink-seq.webp)
 ## Structured Logging
 Let's start with the example:
 ```csharp
@@ -167,10 +167,10 @@ public IEnumerable<WeatherForecast> Get()
 Let's say we have a default API project with a default WeatherController. Within the GetWeatherForecast method we will log 2 things, one informative log and one exception logging. We will use structured logging.
 We have logging set up in console, in file and in Seq. Let's take a look at the Seq tool.
 In the browser we will access the Seq platform (via url http://localhost:5341) where we can see all the logs from the application.
-![Serilog Seq Logs](/images/blog/posts/structured-logging-with-serilog/serilog-seq-logs.png)
+![Serilog Seq Logs](/images/blog/posts/structured-logging-with-serilog/serilog-seq-logs.webp)
 We can see both logos. As for Exception, it is clearly indicated by a red cross in front of the name that it is an Error logging.
 If we expand this log, we can see all the details that are logged including the error text of the exception, RequestPath, SourceContext, ActionName and other details.
-![Serilog Seq Logs Details](/images/blog/posts/structured-logging-with-serilog/serilog-seq-logs-details.png)
+![Serilog Seq Logs Details](/images/blog/posts/structured-logging-with-serilog/serilog-seq-logs-details.webp)
 This allows us to more easily understand and search the logs.
 
 ## What next?

@@ -44,7 +44,7 @@ We will talk about Fixed Window in this issue.
 We need to add a RateLimiter Service to the service collection. This should be done in Program.cs C# file. 
 Here is an example:
 
-![Adding Rate Limiter to Service Collection](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/adding-rate-limiter-to-service-collection.png)
+![Adding Rate Limiter to Service Collection](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/adding-rate-limiter-to-service-collection.webp)
 ** - AddFixedWindowLimiter ** - the method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
 **- PermitLimit ** - A maximum of 10 requests
 **- Window ** - per 5 seconds window.
@@ -64,7 +64,7 @@ For the Controllers, you need also to tell the middleware to require rate limiti
 ![Require Rate Limiter](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/require-rate-limiter.png)
 
 Or for each contoller and/or actions you can to specify an attribute:
-![Rate Limiting Controller Atrribute](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/rate-limiting-controller-attribute.png)
+![Rate Limiting Controller Atrribute](/images/blog/posts/how-to-implement-rate-limiter-in-csharp/rate-limiting-controller-attribute.webp)
 Note: Do not use "magic strings", instead put "fixed" and other values in the configuration file.
 
 ## How to test?

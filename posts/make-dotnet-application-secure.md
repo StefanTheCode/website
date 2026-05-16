@@ -32,7 +32,7 @@ For testing implemented headers you need 2 things:
 Note: One of the most famous sites for scanning security headers was not working properly at the moment so I avoided it. It's about: [Security Headers](https://securityheaders.com/).
 
 Current score:
-![Security Headers Test](/images/blog/posts/make-dotnet-application-secure/security-headers-test.jpg)
+![Security Headers Test](/images/blog/posts/make-dotnet-application-secure/security-headers-test.webp)
 
 ## How I implemented security headers?
 In .NET applications, security headers can be implemented using the following approaches:
@@ -188,7 +188,7 @@ context.Response.Headers.Add("Expect-CT", "max-age=2592000");
 ```
 
 ## Result
-![Security Headers Result](/images/blog/posts/make-dotnet-application-secure/security-headers-result.jpg)
+![Security Headers Result](/images/blog/posts/make-dotnet-application-secure/security-headers-result.webp)
 
 ## What's next?
 Security headers will not make your application completely secure, but they are certainly a starting point from which to start and which must be solved at the developer level.

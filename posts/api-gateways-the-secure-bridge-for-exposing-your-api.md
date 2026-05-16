@@ -34,7 +34,7 @@ An API Gateway acts as a gatekeeper for your APIs, managing requests from client
 It's a critical component in modern application architectures, offering a single entry point for all API interactions.
 Beyond simplifying the API landscape, gateways provide essential features like security, [rate limiting](https://thecodeman.net/posts/how-to-implement-rate-limiter-in-csharp), and analytics, making them indispensable for API management.
 
-![API Gateway Diagram](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/api-gateway-infrastructure-design.png)
+![API Gateway Diagram](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/api-gateway-infrastructure-design.webp)
 Today we will talk about the Core functionalities of API Gateway, where I will try to explain things in the simplest possible way.
 As an API Gateway I will take [Zuplo](https://zuplo.com/?utm_source=linkedin&utm_medium=link&utm_campaign=stefan-gateway).
 If you haven't heard of Zuplo - It is an **API Management platform** that is oriented around the API Developer Experience.
@@ -46,11 +46,11 @@ And yes, it's **completely free** to start!
 To get started, you need to register for free at the link above. This process takes less than 1 minute.
 
 After that, you will get a prompt on whether you want to create an empty project or an already finished "Todo List" project that we will choose for this situation.
-![Zuplo Creating project process](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-creating-project.png)
+![Zuplo Creating project process](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-creating-project.webp)
 
 A complete portal with many options will open.
 What we have seen here is that Zuplo is fast and easy to get started (and also free).
-![Zuplo Getting started](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-getting-started.png)
+![Zuplo Getting started](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-getting-started.webp)
 
 ## 3 Core Features of API Gateways
 
@@ -60,7 +60,7 @@ Let's delve into some of the core functionalities that make API Gateways a must-
 At its core, an API Gateway efficiently routes requests from clients to the appropriate backend service. This feature is crucial in microservices architectures where a single application might be split into dozens of smaller, interconnected services.
 The gateway acts as a ** central point of entry**, ensuring that requests are directed to the correct service based on the request path, method, and other headers.
 This not only simplifies the client-facing API surface but also enables services to be relocated, scaled, or modified without impacting the client.
-![Api Gateway Request Routing](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/api-gateway-request-routing.png)
+![Api Gateway Request Routing](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/api-gateway-request-routing.webp)
 
 This can be seen directly in Zuplo if you go to the routes.oas.json file that tells how certain routes are routed.
 
@@ -68,7 +68,7 @@ In the **Route Designer tab**, you can see all the routes available in the API. 
 
 Let's say in the example shown below the Get all todos endpoint with the URL *https: //copper-elephant-main-57e0097.d2.zuplo.dev/v1/todos* will be redirected to *https: //jsonplaceholder.typicode.com/todos*.
 Also, here you can add new routes.
-![Zuplo Adding Routes](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-adding-routes.png)
+![Zuplo Adding Routes](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-adding-routes.webp)
 ### Authentication and Authorization
 Security is paramount in API management, and API Gateways excel in providing robust mechanisms for authenticating and authorizing users.
 Authentication **verifies the identity of the user making the request**, often through API keys, OAuth tokens, JWTs (JSON Web Tokens), or other credentials.
@@ -92,9 +92,9 @@ In Zuplo you have an availability to add rate limiting policy.
 Let me show how to do that.
 Within the already-seen Route Designer tab, you have the option of adding Policies. For Request, we can click on the **Add Policy button**, after which we get a popup with a bunch of policies that we can select.
 We select Rate Limiting.
-![Zuplo Rate Limiting](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-rate-limiting.png)
+![Zuplo Rate Limiting](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-rate-limiting.webp)
 This opens the JSON configuration where you can define your Rate Limiting Policy in detail.
-![Zuplo Rate Limiting Policy](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-rate-limiting-policy.png)
+![Zuplo Rate Limiting Policy](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-rate-limiting-policy.webp)
 Zuplo’s rate-limiting solution is highly flexible, and precise in globally distributed systems. Additionally, the platform automatically surfaces analytics on rate-limited users to you. For more info check out this [link](https://zuplo.com/docs/articles/step-3-add-rate-limiting?utm_source=linkedin&utm_medium=link&utm_campaign=stefan-gateway).
 
 ## Benefits of Using API Gateways

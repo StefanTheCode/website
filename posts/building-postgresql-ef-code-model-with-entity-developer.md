@@ -38,24 +38,24 @@ Whether you’re a Visual Studio enthusiast or prefer working with standalone to
 
 Once you’ve got Entity Developer up and running, it’s time to create your first EF Core model.
 
-![Add Extension](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/add-extension.png)
+![Add Extension](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/add-extension.webp)
 
 Step-by-step:
 1. Launch the Create Model Wizard
 Start a new project and choose Devart EF Core Model as the model type.
 
-![Create EF Model](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/create-ef-model.png)
+![Create EF Model](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/create-ef-model.webp)
 
 2. Choose “Model-First” Approach
 Select the Model-First option. This lets you design your data model visually first, and then generate both your EF Core code and the corresponding PostgreSQL schema from it.
 
-![Use Model First](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/use-model-first.png)
+![Use Model First](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/use-model-first.webp)
 
 3. Set Up Your Target Environment
 Pick your desired EF Core version. 
 You’ll need to have [dotConnect for PostgreSQL](https://www.devart.com/dotconnect/postgresql/?utm_source=thecodeman&utm_medium=referral&utm_campaign=Q2) installed - it handles the communication between EF Core and your PostgreSQL database.
 
-![Model Setup](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/model-setup.png)
+![Model Setup](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/model-setup.webp)
 
 That’s it - you’re ready to start visually designing your EF Core model. 
 No need to write boilerplate code or fiddle with configuration files just to get started. 
@@ -90,10 +90,10 @@ This will create a new entity - give it a name like Blog, Post, or Comment. Once
 
 Entity Developer makes this super visual - no need to write attributes or annotations. You just configure everything through the UI.
 
-![Create Class](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/create-class.png)
+![Create Class](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/create-class.webp)
 
 Result:
-![Create Class Result](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/create-class-result.png)
+![Create Class Result](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/create-class-result.webp)
 
 Setting Up Relationships (Foreign Keys)
 
@@ -118,10 +118,10 @@ On the design surface, click on the small arrow or anchor point on the edge of t
 
 No need to manually type **[ForeignKey]** attributes or worry about EF conventions - Entity Developer handles the details behind the scenes.
 
-![Add Foreign Keys](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/add-foreign-keys.png)
+![Add Foreign Keys](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/add-foreign-keys.webp)
 
 Result:
-![Add Foreign Keys Result](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/add-foreign-keys-result.png)
+![Add Foreign Keys Result](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/add-foreign-keys-result.webp)
 This step is where the magic of visual modeling really shines. You can literally see your schema and relationships come together - making it easier to reason about and maintain. 
 
 Now, **we can create EF Code or generate database for PostgreSQL**.
@@ -143,7 +143,7 @@ Entity Developer will generate:
 
 If you're using Visual Studio integration, the generated files are added directly to your project. In the standalone version, they’re placed in the output folder you specified.
 
-![Generate Code](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/generate-code.png)
+![Generate Code](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/generate-code.webp)
 
 Let's see how part of the **BlogDbContext.cs** file looks like:
 
@@ -229,10 +229,10 @@ Next, let’s turn your model into an actual PostgreSQL schema.
 - Enums, default values, arrays, and JSONB columns
 - You can review and tweak the SQL script before executing it - or export it for use in [CI/CD](https://thecodeman.net/posts/bullet-Proof-dotnet-ci-on-github) pipelines.
 
-![Generate Database Script](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/generate-database-script.png)
+![Generate Database Script](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/generate-database-script.webp)
 
 We get SQL result:
-![Generate Database Script Result](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/database-script.png)
+![Generate Database Script Result](/images/blog/posts/building-postgresql-ef-code-model-with-entity-developer/database-script.webp)
 
 ## Core Benefits for EF Core & 
 ## PostgreSQL Development

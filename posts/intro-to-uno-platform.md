@@ -52,7 +52,7 @@ Team tip: add a global.json to pin your .NET SDK, then have everyone run uno.che
 
 If everything is set, you’ll get the friendly: **“Congratulations, everything looks great!”**
 
-![Uno Platform Check](/images/blog/posts/intro-to-uno-platform/uno-platform-check.png)
+![Uno Platform Check](/images/blog/posts/intro-to-uno-platform/uno-platform-check.webp)
 
 ### Visual Studio extension
 
@@ -62,7 +62,7 @@ For that, you should install the Uno Platform from the **Manage Extension** menu
 
 Here is the [complete guide](https://platform.uno/docs/articles/get-started-vs-2022.html?tabs=ubuntu2004) on how to do it.
 
-![Visual Studio Extension](/images/blog/posts/intro-to-uno-platform/visual-studio-extension.png)
+![Visual Studio Extension](/images/blog/posts/intro-to-uno-platform/visual-studio-extension.webp)
 
 ## Creating Uno App - Through Wizard
 
@@ -70,11 +70,11 @@ Now everything is ready to create our first application.
 
 We will choose the **Uno Platform App** as the project type and name the application "TheWeather".
 
-![Create Project](/images/blog/posts/intro-to-uno-platform/create-project.png)
+![Create Project](/images/blog/posts/intro-to-uno-platform/create-project.webp)
 
 Creating a project opens the Wizard for configuring the Uno Platform application.
 
-![Wizard](/images/blog/posts/intro-to-uno-platform/wizzard.png)
+![Wizard](/images/blog/posts/intro-to-uno-platform/wizzard.webp)
 
 I will not show each section through images, but I will explain them.
 
@@ -95,18 +95,18 @@ Check all the details [here](https://platform.uno/docs/articles/getting-started/
 And your application is finally ready. If you run the application now, you will see the finished application with a text field and a button to switch to another page. 
 It looks like this:
 
-![Weather App](/images/blog/posts/intro-to-uno-platform/weather-app.png)
+![Weather App](/images/blog/posts/intro-to-uno-platform/weather-app.webp)
 
 This is the layout of the desktop application. In addition, you can run the application on different platforms - I remind you that this is a cross-platform application. 
 
 For example, you can use an Android emulator to display the application on an Android phone:
 
-![Android Emulator](/images/blog/posts/intro-to-uno-platform/android-emulator.png)
+![Android Emulator](/images/blog/posts/intro-to-uno-platform/android-emulator.webp)
 
 In case you don't see the emulator, you can add it from the wizard located in **Tools -> Android -> Android Device Manager**.
 Instead of this application, we will create a simple application for displaying the time for the passed city. It looks like this:
 
-![Weather App Result](/images/blog/posts/intro-to-uno-platform/weather-app-result.png)
+![Weather App Result](/images/blog/posts/intro-to-uno-platform/weather-app-result.webp)
 
 ### External API:
 
@@ -225,7 +225,7 @@ Fair expectations: structural changes (adding projects, new DI registrations, re
 
 But for 80–90% of day-to-day UI work, Hot Design turns the loop into **change → see → iterate**, which boosts speed and raises the quality bar at the same time.
 
-![Hot Design](/images/blog/posts/intro-to-uno-platform/hot-design.png)
+![Hot Design](/images/blog/posts/intro-to-uno-platform/hot-design.webp)
 
 ### Add DTOs for Accepting Weather data
 

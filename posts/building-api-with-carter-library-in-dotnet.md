@@ -61,7 +61,7 @@ What you get:
 ## Project Structure
 
 Here’s the setup we’ll use:
-![Project Structure](/images/blog/posts/building-api-with-carter-library-in-dotnet/project-structure.png)
+![Project Structure](/images/blog/posts/building-api-with-carter-library-in-dotnet/project-structure.webp)
 Each feature gets its own module, model, validator, and service. It’s simple and scales well.
 
 ## Setting Things Up

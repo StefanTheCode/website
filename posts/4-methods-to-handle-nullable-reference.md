@@ -27,7 +27,7 @@ The Nullable Reference Types feature was introduced in C# 8 to address this issu
 
 Let's say we have a class:
 
-![Customer class](/images/blog/posts/4-methods-to-handle-nullable-reference/customer-class.png)
+![Customer class](/images/blog/posts/4-methods-to-handle-nullable-reference/customer-class.webp)
 
 In .Net we will get a warning for underlined properties:
 <b style="color: red">CS8618**: Non-nullable field 'Name' must contain a non-null value when exiting constructor. Consider declaring the field as nullable.
@@ -38,7 +38,7 @@ Steps
 - Open .csproj project file
 - Inside the PropertyGroup change Nullable to disable
 
-![Property group project options](/images/blog/posts/4-methods-to-handle-nullable-reference/property-group-project-options.png)
+![Property group project options](/images/blog/posts/4-methods-to-handle-nullable-reference/property-group-project-options.webp)
 
 **Result**: We won't get any more warnings for null references, but we can potentially run into a Null Reference Exception if we don't check objects for null before using them.
 
@@ -48,7 +48,7 @@ Steps
 Steps
 - Make properties nullable reference type ** by using "?" **.
 
-![Properties nullable references](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-nullable-reference.png)
+![Properties nullable references](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-nullable-reference.webp)
 
     
 ## Method #3
@@ -56,7 +56,7 @@ Steps
 Steps
 - Assign a **default value** to properties.
 
-![Properties with default value](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-with-default-value.png)
+![Properties with default value](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-with-default-value.webp)
 
     
 ## Method #4
@@ -64,7 +64,7 @@ Steps
 Steps
 - Write a compiler directive  <b style="color: white"> `#nullable to disable (or enable)` ** feature.
 
-![Properties with compiler directive](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-with-compiler-directive.png)
+![Properties with compiler directive](/images/blog/posts/4-methods-to-handle-nullable-reference/properties-with-compiler-directive.webp)
 
 If you have a .NET 6 project, open it now and try it.
 If you haven't, make a coffee and check out these examples directly on my [GitHub repository](https://github.com/StefanTheCode/Newsletter/tree/main/1%23%20-%20NullableReference)

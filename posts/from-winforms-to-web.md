@@ -133,7 +133,7 @@ After installation, Visual Studio provides new templates designed specifically f
 - WinForms-style UI running in the browser
 - cloud-ready deployment
 
-![Wisej.NET Templates](/images/blog/posts/from-winforms-to-web/wisej-templates.png)
+![Wisej.NET Templates](/images/blog/posts/from-winforms-to-web/wisej-templates.webp)
 
 ### Licensing
 Wisej.NET requires a license, but:
@@ -177,13 +177,13 @@ This is the typical event-driven WinForms model that many legacy applications ar
 ## Step 2: Creating the Web Project
 
 Next, we create a **Wisej.NET 4 Web Desktop Application project** using the Wisej template.
-![Wisej.NET Web Application](/images/blog/posts/from-winforms-to-web/wisej-web-application.png)
+![Wisej.NET Web Application](/images/blog/posts/from-winforms-to-web/wisej-web-application.webp)
 
 During project creation, we can:
 - choose target frameworks
 - enable [Docker](https://thecodeman.net/posts/dotnet-docker-and-traefik) support
 - prepare the app for cloud deployment
-![New Project Setup](/images/blog/posts/from-winforms-to-web/new-project-setup.png)
+![New Project Setup](/images/blog/posts/from-winforms-to-web/new-project-setup.webp)
 
 At this point, we already have:
 - a browser-based runtime
@@ -205,14 +205,14 @@ Before (WinForms):
 ```csharp
 using System.Windows.Forms;
 ```
-![Before Winforms](/images/blog/posts/from-winforms-to-web/before-winforms.png)
+![Before Winforms](/images/blog/posts/from-winforms-to-web/before-winforms.webp)
 
 After (Web):
 
 ```csharp
 using Wisej.Web;
 ```
-![After Web Application](/images/blog/posts/from-winforms-to-web/after-web-application.png)
+![After Web Application](/images/blog/posts/from-winforms-to-web/after-web-application.webp)
 
 Program Entry Point:
 
@@ -244,7 +244,7 @@ namespace HelloWorldWebApplication
 ## The Result: A WinForms Application Running in the Browser
 
 Once the application starts:
-![Wisej.NET Web Application](/images/blog/posts/from-winforms-to-web/wisej-application.gif)
+![Animated demo of a WinForms application running in the browser via Wisej.NET](/images/blog/posts/from-winforms-to-web/wisej-application.gif)
 
 You get:
 - the same form

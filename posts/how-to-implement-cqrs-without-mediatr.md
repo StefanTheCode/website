@@ -79,7 +79,7 @@ I will show that in the following text.
 
 The project CQRS has a following structure:
 
-![Clean CQRS](/images/blog/posts/how-to-implement-cqrs-without-mediatr/cqrs-without-mediatr.png)
+![Clean CQRS](/images/blog/posts/how-to-implement-cqrs-without-mediatr/cqrs-without-mediatr.webp)
 
 To implement the CQRS pattern, without using any libraries, it is necessary to create only 4 interfaces.
 

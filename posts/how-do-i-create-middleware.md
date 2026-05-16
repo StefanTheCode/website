@@ -32,11 +32,11 @@ My way is to create **Factory-Based Middleware** through the implementation of t
 This class actually represents the middleware itself and has only one **InvokeAsync method** that is executed during each request. This is where you implement the logic of your middleware.
 Here's how you can do it:
 
-![My Custom Middleware](/images/blog/posts/how-do-i-create-middleware/my-custom-middleware.png)
+![My Custom Middleware](/images/blog/posts/how-do-i-create-middleware/my-custom-middleware.webp)
 And that's it, you have implemented your Middleware.
 Of course, in order for this to work, as for everything else, it is necessary to add the service and configure the middleware in the Program.cs class:
 
-![Registering Middleware Query](/images/blog/posts/how-do-i-create-middleware/registering-middleware.png)
+![Registering Middleware Query](/images/blog/posts/how-do-i-create-middleware/registering-middleware.webp)
 
 ## Why is this the way I prefer?
 
@@ -52,11 +52,11 @@ The strongly-typed nature of the middleware can make the code more readable and 
 ### Alternative #1: Convention Middleware
 In this case, instead of implementing the interface, I use RequestDelegate.
 Here is the implementation:
-![Custom Middleware](/images/blog/posts/how-do-i-create-middleware/custom-middleware.png)
+![Custom Middleware](/images/blog/posts/how-do-i-create-middleware/custom-middleware.webp)
 ### Alternative #2: Middleware with Request Delegate
 You can do that by calling the **Use method** on the WebApplication instance and providing a lambda method with two arguments. The first argument is the HttpContext and the second argument is the actual next request delegate in the pipeline RequestDelegate.
 Here is the implementation:
-![Middleware with request delegate](/images/blog/posts/how-do-i-create-middleware/middleware-with-request-delegate.png)
+![Middleware with request delegate](/images/blog/posts/how-do-i-create-middleware/middleware-with-request-delegate.webp)
 And that's it.
 
 ## Wrapping up
