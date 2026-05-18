@@ -4,7 +4,7 @@ import { PostMetadata } from "./PostMetadata";
 
 const PostPreview = (props: PostMetadata) => {
     const href = `/posts/${props.slug}`
-    const photo = `/images/blog/${props.slug}.png`
+    const photo = `/images/blog/${props.slug}.webp`
     return (
         <>
             <div className="d-flex">
