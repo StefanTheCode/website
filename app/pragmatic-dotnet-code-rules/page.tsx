@@ -298,14 +298,8 @@ const CodeRules = () => {
               <a href="#cr-curriculum" className="cr-btn cr-btn-ghost">See the curriculum</a>
             </div>
             <p className="cr-reassure">Presale price <span className="cr-dot"></span> 100% refundable until release <span className="cr-dot"></span> lifetime access</p>
-            <div className="cr-rating">
-              <div className="cr-rating-av">
-                <span>SD</span><span>AM</span><span>KK</span><span>JS</span><span>+</span>
-              </div>
-              <div className="cr-rating-txt">
-                <div className="cr-rating-top"><span className="cr-stars">★★★★★</span><span className="cr-rating-score">4.9</span></div>
-                <span className="cr-rating-sub">Loved by .NET devs (1000+ reviews)</span>
-              </div>
+            <div className="cr-hero-rating">
+              <EbookNewsletter />
             </div>
           </div>
           <div className="cr-cover cr-reveal">
@@ -323,8 +317,8 @@ const CodeRules = () => {
       <div className="cr-cred">
         <div className="cr-wrap cr-cred-row">
           <span><b>Microsoft MVP</b></span><span className="cr-sep"></span>
-          <span><b>20,000+</b> newsletter readers</span><span className="cr-sep"></span>
-          <span><b>102k+</b> LinkedIn</span><span className="cr-sep"></span>
+          <span><b>25,000+</b> newsletter readers</span><span className="cr-sep"></span>
+          <span><b>110k+</b> LinkedIn</span><span className="cr-sep"></span>
           <span><b>12</b> modules · <b>60+</b> lessons</span><span className="cr-sep"></span>
           <span className="cr-stars">★★★★★</span>
         </div>
@@ -338,7 +332,7 @@ const CodeRules = () => {
             <span className="cr-stars cr-spot-stars">★★★★★</span>
             <blockquote className="cr-spot-q">&quot;This is the most in-depth course on .NET quality that I have ever seen. Stefan explains, really in depth, how <span className="cr-amber">.editorconfig</span>, props files and static code analysis work and how to set them up from scratch. <span className="cr-amber">I highly recommend it</span> - it will increase your code quality, cut review time, and reduce bugs.&quot;</blockquote>
             <div className="cr-spot-who">
-              <div className="cr-spot-av">AM</div>
+              <div className="cr-spot-av"><Image src="/images/testimonials/testimonial2.jpg" alt="Anton Martyniuk" width={56} height={56} /></div>
               <div className="cr-spot-meta">
                 <div className="cr-spot-nm">Anton Martyniuk</div>
                 <div className="cr-spot-rl">Microsoft MVP · .NET Software Architect</div>
@@ -601,12 +595,17 @@ const CodeRules = () => {
             <div className="cr-tcard">
               <span className="cr-stars">★★★★★</span>
               <p className="cr-q">&quot;This is the most in-depth course on .NET quality that I have ever seen. Stefan explains, really in depth, how .editorconfig, props files and static code analysis work and how to set them up from scratch. I highly recommend it - it will increase your code quality, cut review time, and reduce bugs.&quot;</p>
-              <div className="cr-who"><div className="cr-av">AM</div><div><div className="cr-nm">Anton Martyniuk</div><div className="cr-rl">Microsoft MVP · .NET Software Architect</div></div></div>
+              <div className="cr-who"><div className="cr-av"><Image src="/images/testimonials/testimonial2.jpg" alt="Anton Martyniuk" width={46} height={46} /></div><div><div className="cr-nm">Anton Martyniuk</div><div className="cr-rl">Microsoft MVP · .NET Software Architect</div></div></div>
             </div>
             <div className="cr-tcard">
               <span className="cr-stars">★★★★★</span>
               <p className="cr-q">&quot;I really enjoyed the chapters on EditorConfig and automating code cleanup. The step-by-step explanation made the concept easy to understand. The sections on Visual Studio cleanup profiles and Git pre-commit hooks were especially useful - they show how to automate formatting without manual checks.&quot;</p>
-              <div className="cr-who"><div className="cr-av">KK</div><div><div className="cr-nm">Kanaiya Katarmal</div><div className="cr-rl">.NET Developer</div></div></div>
+              <div className="cr-who"><div className="cr-av"><Image src="/images/testimonials/testimonial1.jpg" alt="Kanaiya Katarmal" width={46} height={46} /></div><div><div className="cr-nm">Kanaiya Katarmal</div><div className="cr-rl">.NET Developer</div></div></div>
+            </div>
+            <div className="cr-tcard">
+              <span className="cr-stars">★★★★★</span>
+              <p className="cr-q">&quot;Great course, for every user, even if you are starting to code. You can get a clear view of code rules. Practice with simple codes to check the desired results.&quot;</p>
+              <div className="cr-who"><div className="cr-av">O</div><div><div className="cr-nm">Oso</div><div className="cr-rl">.NET Developer</div></div></div>
             </div>
           </div>
         </div>
@@ -627,8 +626,8 @@ const CodeRules = () => {
             <p>For more than 10 years I&apos;ve been building large-scale .NET solutions where consistency, clarity, and automation aren&apos;t optional - they&apos;re the only way teams ship fast and reliably.</p>
             <p>Everything in this course comes from real production experience. These are the exact files and configs I use every day - not theory, not &quot;ideal world&quot; scenarios.</p>
             <div className="cr-about-stats">
-              <div><div className="cr-v">20,000+</div><div className="cr-l">Newsletter</div></div>
-              <div><div className="cr-v">102k+</div><div className="cr-l">LinkedIn</div></div>
+              <div><div className="cr-v">25,000+</div><div className="cr-l">Newsletter</div></div>
+              <div><div className="cr-v">110k+</div><div className="cr-l">LinkedIn</div></div>
               <div><div className="cr-v">8,000+</div><div className="cr-l">Twitter / X</div></div>
             </div>
           </div>
