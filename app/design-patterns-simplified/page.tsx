@@ -3,6 +3,7 @@ import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
 import Image from 'next/image'
 import Script from 'next/script';
+import './ebook.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
