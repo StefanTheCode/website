@@ -1,39 +1,42 @@
 import config from '@/config.json'
 import EbookNewsletter from '@/components/ebookTestimonials';
-import EbookTestimonials2 from '@/components/ebook2Testimonials';
+import PatternPicker from '@/components/PatternPicker';
 import { Metadata } from 'next';
 import Image from 'next/image'
 import Script from 'next/script';
+// @ts-ignore -- global stylesheet side-effect import resolved by Next.js at build time
+import './ebook.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
-  title: "Design Patterns that Deliver — Builder, Decorator, Strategy, Adapter & Mediator in C#",
+  title: "Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor",
   alternates: {
     canonical: 'https://thecodeman.net/design-patterns-that-deliver-ebook',
   },
-  description: "Master 5 essential C# design patterns with real-world examples: Builder, Decorator, Strategy, Adapter, and Mediator. Includes advanced implementations, UML diagrams, GitHub repo, and 100 interview questions.",
+  description: "Master 10 production C# design patterns: Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline (Chain of Responsibility), Specification, Factory, and State. Real problems to working code with unit tests, async, trade-offs, UML diagrams, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
   keywords: [
     'design patterns c#',
+    'c# design patterns book',
     'builder pattern c#',
     'decorator pattern c#',
     'strategy pattern c#',
     'adapter pattern c#',
     'mediator pattern c#',
+    'result pattern c#',
+    'specification pattern c#',
+    'factory pattern c#',
+    'state pattern c#',
+    'chain of responsibility c#',
     'MediatR',
-    'c# design patterns examples',
     'design patterns .NET',
-    'software design patterns',
     'design patterns interview questions',
-    'fluent builder pattern',
-    'clean architecture design patterns',
-    'c# design patterns book',
-    'gang of four patterns c#',
+    'AI design pattern tutor',
   ],
   openGraph: {
-    title: "Design Patterns that Deliver — Builder, Decorator, Strategy, Adapter & Mediator in C#",
+    title: "Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor",
     type: "website",
     url: "https://thecodeman.net/design-patterns-that-deliver-ebook",
-    description: "Master 5 essential C# design patterns with real-world examples: Builder, Decorator, Strategy, Adapter, and Mediator. Includes GitHub repo and 100 interview questions.",
+    description: "10 production C# design patterns from real problems to working code — with unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
     images: [
       {
         url: 'https://thecodeman.net/og-ebookimage2.png',
@@ -43,11 +46,11 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Design Patterns that Deliver — Builder, Decorator, Strategy, Adapter & Mediator in C#",
+    title: "Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "Master 5 essential C# design patterns with real-world examples: Builder, Decorator, Strategy, Adapter, and Mediator. Includes GitHub repo and 100 interview questions.",
+    description: "10 production C# design patterns from real problems to working code — with unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
     images: [
       {
         url: 'https://thecodeman.net/og-ebookimage2.png',
@@ -67,9 +70,9 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': 'https://thecodeman.net/design-patterns-that-deliver-ebook',
       url: 'https://thecodeman.net/design-patterns-that-deliver-ebook',
-      name: 'Design Patterns that Deliver — Builder, Decorator, Strategy, Adapter & Mediator in C#',
+      name: 'Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor',
       description:
-        'Master 5 essential C# design patterns with real-world examples: Builder, Decorator, Strategy, Adapter, and Mediator. Includes GitHub repo and 100 interview questions.',
+        'Master 10 production C# design patterns from real problems to working code — Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline, Specification, Factory, and State — with unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.',
       isPartOf: { '@id': 'https://thecodeman.net/#website' },
       about: {
         '@type': 'Thing',
@@ -86,7 +89,7 @@ const jsonLd = {
       '@type': 'Book',
       name: 'Design Patterns that Deliver',
       description:
-        'A practical ebook covering 5 essential design patterns in C# — Builder, Decorator, Strategy, Adapter, and Mediator — with real-world examples, UML diagrams, advanced implementations, a GitHub repository, and 100 interview questions.',
+        'A practical ebook covering 10 production design patterns in C# — Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline (Chain of Responsibility), Specification, Factory, and State — with real-world examples, unit tests, trade-off analysis, UML diagrams, advanced implementations, a GitHub repository, 100 interview questions, and a built-in AI tutor.',
       author: {
         '@type': 'Person',
         name: 'Stefan Djokic',
@@ -108,6 +111,48 @@ const jsonLd = {
         { '@type': 'Thing', name: 'Strategy Pattern' },
         { '@type': 'Thing', name: 'Adapter Pattern' },
         { '@type': 'Thing', name: 'Mediator Pattern' },
+        { '@type': 'Thing', name: 'Result Pattern' },
+        { '@type': 'Thing', name: 'Chain of Responsibility Pattern' },
+        { '@type': 'Thing', name: 'Specification Pattern' },
+        { '@type': 'Thing', name: 'Factory Pattern' },
+        { '@type': 'Thing', name: 'State Pattern' },
+      ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        bestRating: '5',
+        ratingCount: '6',
+        reviewCount: '6',
+      },
+      review: [
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Milan Jovanovic' },
+          reviewBody:
+            'Design Patterns ebook is a quick and enjoyable read about the most important design patterns in C#. The examples were refreshing, and I especially liked being able to access the source code.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Raul Fernando Aillon Salinas' },
+          reviewBody:
+            'I love the simplicity of how every pattern is explained. The real-life examples are an incredible way to provide context and understand why we are choosing this pattern.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Jeroen Opmeer' },
+          reviewBody:
+            'This ebook shows that good technical information does not have to be buried in hundreds of pages of fluff. Exactly what a developer wants to read.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Saeed Esmaeelinejad' },
+          reviewBody:
+            'Amazing with nice visualization which helps a lot for a better understanding of how patterns work. I like that it mentions the Pros and Cons to decide which pattern suits your case.',
+        },
       ],
       url: 'https://thecodeman.net/design-patterns-that-deliver-ebook',
     },
@@ -116,42 +161,42 @@ const jsonLd = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'What is the Builder Pattern in C# and when should you use it?',
+          name: 'Which design patterns does Design Patterns that Deliver cover?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The Builder Pattern is a creational design pattern that separates the construction of a complex object from its representation. In C#, use it when you need to create objects with many optional parameters, avoid telescoping constructors, or build objects step by step. Common variants include Fluent Builder, Step Builder, and Director-based Builder.',
+            text: 'It covers 10 production patterns in modern C#: five foundational ones — Builder, Decorator, Strategy, Adapter, and Mediator — plus five that ship real systems — Result (errors as values), Pipeline / Chain of Responsibility, Specification, Factory (to keyed DI), and State. Each goes from a real problem to working code with unit tests, trade-offs, and when-not-to-use guidance.',
           },
         },
         {
           '@type': 'Question',
-          name: 'What is the Decorator Pattern in C# and how does it work?',
+          name: 'What are the AI tools included with the book?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The Decorator Pattern is a structural design pattern that lets you attach new behaviors to objects by wrapping them in decorator classes. In C#, it is commonly used with dependency injection (Scrutor) to add cross-cutting concerns like logging, caching, or retry policies without modifying the original class.',
+            text: 'Two. The free Pattern Picker lets anyone describe a problem and get the right C#/.NET pattern with a tutorial link. Ask the Book is an AI tutor for owners that answers strictly from the book, cited by chapter — accurate, production-grade, not generic internet code.',
           },
         },
         {
           '@type': 'Question',
-          name: 'What is the Strategy Pattern in C# and when should you use it?',
+          name: 'What is the Result pattern in C#?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The Strategy Pattern is a behavioral design pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable. In C#, use it when you have multiple ways to perform an operation and want to select the algorithm at runtime, often combined with dependency injection or the Factory Pattern.',
+            text: 'The Result pattern models expected failures (validation, business rules, conflicts) as return values instead of throwing exceptions. In C# you compose steps railway-style with Bind/Map/Match — including async — and map results onto ProblemDetails at the API boundary. The book shows a hand-rolled Result plus libraries like ErrorOr and FluentResults.',
           },
         },
         {
           '@type': 'Question',
-          name: 'What is the Adapter Pattern in C# and when should you use it?',
+          name: 'What is the Specification pattern in C# and EF Core?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The Adapter Pattern is a structural design pattern that allows incompatible interfaces to work together. In C#, use it when integrating third-party libraries or legacy code that has a different interface than what your application expects. It comes in two variants: Object Adapter (composition) and Class Adapter (inheritance).',
+            text: 'The Specification pattern turns a business rule into a composable, testable object you combine with And/Or/Not. Expressed as Expression<Func<T,bool>>, it translates to EF Core SQL using parameter rebinding (an ExpressionVisitor) — not Expression.Invoke, which EF Core cannot translate. The same spec is reused for queries and in-memory validation.',
           },
         },
         {
           '@type': 'Question',
-          name: 'What is the Mediator Pattern in C# and how does MediatR implement it?',
+          name: 'Are design patterns still relevant in modern .NET?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The Mediator Pattern is a behavioral design pattern that reduces chaotic dependencies between objects by having them communicate through a mediator object. In C#, the MediatR library is the most popular implementation, providing request/response handling and pipeline behaviors for cross-cutting concerns like validation and logging in Clean Architecture.',
+            text: 'Absolutely. MediatR (Mediator), Scrutor (Decorator), Polly (Strategy/resilience), IHttpClientFactory (Factory), keyed DI, and ASP.NET middleware (Chain of Responsibility) are all pattern implementations used daily in production .NET around dependency injection, pipelines, and Clean Architecture.',
           },
         },
         {
@@ -159,15 +204,7 @@ const jsonLd = {
           name: 'Which design patterns are most commonly asked in C# interviews?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The most commonly asked design patterns in C# interviews are Builder, Decorator, Strategy, Adapter, Mediator, Singleton, Factory, Observer, and Repository. This ebook includes a bonus mini-ebook with 100 design pattern interview questions and answers covering all of these.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'What programming languages are covered in this design patterns ebook?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'The primary examples are in C# with a complete GitHub repository of 20 mini-projects. Bonus code samples in 4 additional programming languages are also included, making it useful regardless of your tech stack.',
+            text: 'Builder, Decorator, Strategy, Adapter, Mediator, Factory, State, and Chain of Responsibility come up constantly — all covered here. The book also includes a bonus mini-ebook with 100 design pattern interview questions and answers.',
           },
         },
         {
@@ -175,7 +212,15 @@ const jsonLd = {
           name: 'Do I need to know all Gang of Four patterns before reading this book?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'No. This book focuses on the 5 most impactful and commonly used patterns from real-world experience. Each pattern is explained from scratch with real-world problems, solutions, UML diagrams, and advanced variations. It is accessible for intermediate developers and still valuable for experienced ones.',
+            text: 'No. This book focuses on the 10 most impactful patterns from real-world .NET experience. Each is explained from scratch with a real problem, the solution, UML diagrams, advanced variations, and unit tests. It is accessible for intermediate developers and still valuable for senior ones.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What do I get when I buy Design Patterns that Deliver?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'You get the full ebook (PDF and EPUB) covering 10 production patterns, a GitHub repository with 20 runnable C# mini-projects, a bonus mini-ebook with 100 design pattern interview questions and answers, a quick-reference pattern decision guide, access to the Ask-the-Book AI tutor, and lifetime access including future updates. Delivery is instant after checkout.',
           },
         },
       ],
@@ -183,727 +228,824 @@ const jsonLd = {
   ],
 };
 
+const HIDE_GLOBAL_CHROME = `
+body{padding-top:0 !important}
+.promo-bar{display:none !important}
+nav#ftco-navbar.header-nav{display:none !important}
+`;
+
+const PAGE_JS = `
+(function(){
+  document.documentElement.classList.add('dp-js');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('dp-in');io.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.dp-reveal').forEach(function(el){io.observe(el);});
+    var sticky=document.getElementById('dp-stickybar');
+    var hero=document.getElementById('dp-hero');
+    if(sticky&&hero){var so=new IntersectionObserver(function(es){es.forEach(function(e){sticky.classList.toggle('dp-show', !e.isIntersecting);});},{threshold:0}); so.observe(hero);}
+  } else {
+    document.querySelectorAll('.dp-reveal').forEach(function(el){el.classList.add('dp-in');});
+  }
+})();
+`;
+
+const MS = (
+  <span className="dp-ms"><i></i><i></i><i></i><i></i></span>
+);
+
 const Ebook = () => {
   return (
-    <>
+    <div className="dp-page">
+      <style dangerouslySetInnerHTML={{ __html: HIDE_GLOBAL_CHROME }} />
       <Script
         id="design-patterns-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* ═══════════════════════════════════════════════════
-          HERO
-      ═══════════════════════════════════════════════════ */}
-      <section id="home-section" className="hero container">
-        <div className="row d-md-flex no-gutters">
-          <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 slider-text pt-5 float-left">
-            <div className="text">
-              <h1 className='display-none'>Design Patterns that Deliver</h1>
-              <p className="header-text mt-4" style={{ marginBottom: 0, lineHeight: 1.1 }}>Stop <span className='text-yellow'>Guessing</span></p>
-              <p className="header-text" style={{ marginTop: 0, lineHeight: 1.1 }}>Design Patterns.</p>
-              <h2 className="mb-3 text-white">Start using the right one - with real C# code you can apply in your next PR.</h2>
-              <p className="mb-4 text-white" style={{ fontSize: '1.15rem', opacity: 0.9 }}>5 battle-tested patterns. Real-world problems. Production-ready implementations. Plus a GitHub repo with 20 mini-projects and 100 interview Q&amp;As.</p>
+      <div className="dp-ambience" aria-hidden="true"></div>
+      <div className="dp-grain" aria-hidden="true"></div>
 
-              <div className="mb-4">
-                <p className="text-white mb-1" style={{ fontSize: '0.95rem', opacity: 0.75 }}>By Stefan Djokic, Microsoft MVP &middot; {config.EbookCopiesNumber}+ copies sold</p>
-              </div>
+      {/* 1. ANNOUNCEMENT BAR */}
+      <div className="dp-topbar">
+        <span>📘 <b>Design Patterns that Deliver</b> · 10 patterns + 2 AI tutors</span>
+        <span className="dp-tdot"></span>
+        <span><b>{config.EbookCopiesNumber}+</b> copies sold · instant download</span>
+      </div>
 
-              <a href={CHECKOUT_URL} className="lemonsqueezy-button">
-                <button className="btn btn-lg btn-primary border-radius-10px button-padding">
-                  Get the Ebook + Real-World Examples - <span className='text-green'> $32.99</span>
-                </button>
-              </a>
-            </div>
+      {/* 2. STICKY NAV */}
+      <nav className="dp-nav">
+        <div className="dp-wrap dp-nav-row">
+          <a className="dp-brand" href="#dp-top"><span className="dp-glyph">&lt;/&gt;</span> Design Patterns that Deliver</a>
+          <div className="dp-nav-links">
+            <a href="#dp-patterns">The Patterns</a>
+            <a href="#dp-ai">AI Tutor</a>
+            <a href="#dp-included">What You Get</a>
+            <a href="#dp-pricing">Pricing</a>
+            <a href="#dp-faq">FAQ</a>
           </div>
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-right">
-            <Image src={'/images/ebook-thumb2.png'} priority={true} alt={'Design Patterns that Deliver - C# design patterns ebook cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <div className="dp-nav-right">
+            <span className="dp-nav-price"><b>$32.99</b></span>
+            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook</a>
           </div>
         </div>
-        <EbookTestimonials2 />
-      </section>
+      </nav>
 
-      <hr className='background-yellow' />
+      <div id="dp-top"></div>
 
-      {/* ═══════════════════════════════════════════════════
-          PROBLEM / PAIN
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="pain-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <p className="header-text">You know the theory.</p>
-              <p className="header-text"><span className='text-yellow'>But the code still looks wrong.</span></p>
+      {/* 3. HERO */}
+      <header className="dp-hero" id="dp-hero">
+        <div className="dp-wrap dp-hero-grid">
+          <div className="dp-reveal">
+            <span className="dp-chip">{MS} By Stefan Đokić · Microsoft MVP</span>
+            <h1>Stop guessing design patterns. <span className="dp-amber">Start shipping the right one.</span></h1>
+            <p className="dp-lead"><b>Ten</b> production-grade C# patterns — the five everyone needs (<b>Builder</b>, <b>Decorator</b>, <b>Strategy</b>, <b>Adapter</b>, <b>Mediator</b>) plus five that ship real systems (<b>Result</b>, <b>Pipeline</b>, <b>Specification</b>, <b>Factory</b>, <b>State</b>). Each from a real problem to working code — with unit tests, trade-offs, a GitHub repo, 100 interview Q&amp;As, and a built-in <b>AI tutor</b>.</p>
+            <div className="dp-cta">
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
+              <a href="/read/design-patterns-that-deliver/builder" className="dp-btn dp-btn-ghost">Read a free chapter →</a>
+              <a href="/tools/pattern-picker" className="dp-btn dp-btn-ghost">Try the free AI tool →</a>
+            </div>
+            <p className="dp-reassure">Instant download <span className="dp-dot"></span> PDF + EPUB <span className="dp-dot"></span> GitHub repo included <span className="dp-dot"></span> AI tutor <span className="dp-dot"></span> lifetime updates</p>
+            <div className="dp-hero-rating">
+              <span className="dp-stars" style={{ fontSize: 18, letterSpacing: 2 }}>★★★★★</span>
+              <span style={{ marginLeft: 12, fontSize: 14, color: 'var(--muted)' }}>Rated 5/5 · loved by {config.EbookCopiesNumber}+ developers</span>
             </div>
           </div>
-          <div className="row text-center">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-              <h5 className='pt-3 text-white'>You&apos;ve read the Gang of Four. You&apos;ve watched YouTube tutorials. You can name patterns on a whiteboard.</h5>
-              <h5 className='pt-3 text-white'>But when you open your IDE and face a real problem, you freeze:</h5>
-              <div className='row'>
-                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center'>
-                  <h5 className='pt-3 text-white'>&bull; &quot;Should this be a Strategy or a Factory?&quot;</h5>
-                  <h5 className='text-white'>&bull; &quot;Am I overengineering this with a Decorator?&quot;</h5>
-                  <h5 className='text-white'>&bull; &quot;How does this pattern even work with DI?&quot;</h5>
-                  <h5 className='text-white'>&bull; &quot;The example online is a Pizza class... how does that help me?&quot;</h5>
-                  <h5 className='pt-3 text-white'>The gap between knowing a pattern and <span className='text-yellow'>using it in production</span> is massive.</h5>
-                  <h5 className='text-white'>That&apos;s what this ebook closes.</h5>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center vertical-center">
-              <Image src={'/images/real-world-examples.webp'} className='border-radius-20px' alt={'C# design patterns real-world implementation example'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
+          <div className="dp-cover dp-reveal">
+            <div className="dp-glow"></div>
+            <div className="dp-frame">
+              <Image src="/images/ebook-thumb2.png" alt="Design Patterns that Deliver - C# design patterns ebook cover" width={0} height={0} sizes="(max-width:940px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} priority />
             </div>
           </div>
         </div>
-      </section>
+      </header>
 
-      <hr className='background-yellow' />
+      {/* 4. CREDIBILITY STRIP */}
+      <div className="dp-cred">
+        <div className="dp-wrap dp-cred-row">
+          <span><b>Microsoft MVP</b></span><span className="dp-sep"></span>
+          <span><b>{config.EbookCopiesNumber}+</b> copies sold</span><span className="dp-sep"></span>
+          <span><b>20,000+</b> newsletter readers</span><span className="dp-sep"></span>
+          <span><b>102k+</b> LinkedIn</span><span className="dp-sep"></span>
+          <span><b>10</b> patterns · <b>20</b> mini-projects</span><span className="dp-sep"></span>
+          <span className="dp-stars">★★★★★</span>
+        </div>
+      </div>
 
-      {/* ═══════════════════════════════════════════════════
-          TRANSFORMATION / OUTCOMES
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="outcomes-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <p className="header-text">What Changes <span className='text-yellow'>After You Read This</span></p>
-            </div>
+      {/* 4.5 START-HERE FLOW (3 entry points) */}
+      <section id="dp-start">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">Start here</span>
+            <h2 className="dp-sec-title">Three ways in — pick yours</h2>
+            <p className="dp-sec-sub">Whether you&apos;re just browsing, want to read before you buy, or already own the book — there&apos;s a door for you.</p>
           </div>
-
-          <div className="row">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(220, 53, 69, 0.08)', border: '1px solid rgba(220, 53, 69, 0.3)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-danger text-center mb-4'><b>Before</b></h3>
-                <h5 className='text-white'>&#10060; Copy-paste pattern examples from StackOverflow</h5>
-                <h5 className='text-white'>&#10060; Can&apos;t decide which pattern fits the problem</h5>
-                <h5 className='text-white'>&#10060; Overengineer simple features with wrong abstractions</h5>
-                <h5 className='text-white'>&#10060; Struggle to explain patterns in interviews</h5>
-                <h5 className='text-white'>&#10060; Every tutorial uses Pizza or Animal classes</h5>
-                <h5 className='text-white'>&#10060; Don&apos;t know how patterns work with dependency injection</h5>
-              </div>
+          <div className="dp-flow dp-reveal">
+            <div className="dp-flow-step">
+              <span className="dp-flow-tag">Free</span>
+              <div className="dp-flow-num">PATH 01 · JUST BROWSING</div>
+              <h3>Find your pattern in seconds</h3>
+              <p>Describe the problem you&apos;re stuck on. The free AI <b>Pattern Picker</b> recommends the right C#/.NET pattern with a tutorial for each.</p>
+              <a className="dp-flow-link" href="/tools/pattern-picker">Try the Pattern Picker →</a>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(40, 167, 69, 0.08)', border: '1px solid rgba(40, 167, 69, 0.3)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-success text-center mb-4'><b>After</b></h3>
-                <h5 className='text-white'>&#10004; Choose the right pattern in minutes</h5>
-                <h5 className='text-white'>&#10004; Refactor messy code into clean, maintainable architecture</h5>
-                <h5 className='text-white'>&#10004; Know exactly when to use - and when NOT to use - each pattern</h5>
-                <h5 className='text-white'>&#10004; Speak confidently about patterns in any interview</h5>
-                <h5 className='text-white'>&#10004; Have production-ready C# code you can adapt immediately</h5>
-                <h5 className='text-white'>&#10004; Understand advanced variants (Fluent Builder, Scrutor Decorators, MediatR)</h5>
-              </div>
+            <div className="dp-flow-step">
+              <span className="dp-flow-tag">No signup</span>
+              <div className="dp-flow-num">PATH 02 · READ FIRST</div>
+              <h3>Read a full chapter, free</h3>
+              <p>The entire <b>Builder</b> chapter is open in the web reader — real copyable code, diagrams, and the AI tutor on every example.</p>
+              <a className="dp-flow-link" href="/read/design-patterns-that-deliver/builder">Read the Builder chapter →</a>
             </div>
-          </div>
-
-          <div className="row text-center mt-4">
-            <div className="col-xl-12 text-center">
-              <a href={CHECKOUT_URL} className="lemonsqueezy-button">
-                <button className='btn btn-lg btn-primary border-radius-10px button-padding'>Start Writing Better Architecture Today - <span className='text-green'> $32.99</span></button>
-              </a>
+            <div className="dp-flow-step">
+              <span className="dp-flow-tag">For owners</span>
+              <div className="dp-flow-num">PATH 03 · YOU OWN IT</div>
+              <h3>Ask the book anything</h3>
+              <p>Sign in with your purchase and chat with <b>Ask the Book</b> — an AI tutor that answers strictly from the book, cited by chapter.</p>
+              <a className="dp-flow-link" href="/tools/ask-the-book">Open Ask the Book →</a>
             </div>
           </div>
         </div>
       </section>
 
-      <hr className='background-yellow' />
-
-      {/* ═══════════════════════════════════════════════════
-          WHAT'S INSIDE (5 Patterns overview)
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="learn-section">
-        <div className="container">
-          <div className='row'>
-            <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
-              <div className="row justify-content-center mb-5">
-                <div className="col-md-12 heading-section text-center">
-                  <p className="header-text">5 Patterns. <span className='text-yellow'>Real Problems. Real Code.</span></p>
-                  <h5 className='text-white pt-2' style={{ opacity: 0.8 }}>Each pattern starts with a real-world problem, not a textbook definition</h5>
-                </div>
+      {/* 4.6 MAIN TESTIMONIAL SPOTLIGHT */}
+      <section className="dp-spotlight-sec">
+        <div className="dp-wrap dp-reveal">
+          <div className="dp-spotlight">
+            <span className="dp-mvp-pill">{MS} Recommended by a Microsoft MVP</span>
+            <span className="dp-stars dp-spot-stars">★★★★★</span>
+            <blockquote className="dp-spot-q">&quot;A quick and enjoyable read about the most important design patterns in C#. The examples were <span className="dp-amber">refreshing</span>, and I especially liked being able to access the source code. If you&apos;re just starting or need a refresher, <span className="dp-amber">this book will be your design patterns companion.</span>&quot;</blockquote>
+            <div className="dp-spot-who">
+              <div className="dp-spot-av">MJ</div>
+              <div className="dp-spot-meta">
+                <div className="dp-spot-nm">Milan Jovanović</div>
+                <div className="dp-spot-rl">Microsoft MVP · Creator of Pragmatic Clean Architecture</div>
               </div>
-
-              <div className="row text-center">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-                  <h2 className='text-yellow text-center'><b>Builder Pattern</b></h2>
-                  <h5 className='pt-3'>Stop creating objects with <span className='text-yellow'>10-parameter constructors</span>. Learn to build complex objects step by step - from basic Builder to Fluent Builder, Director Class, and Step Builder with validation.</h5>
-                  <h5 className='pt-3 text-white'>&bull; Fluent Builder &bull; Director Class &bull; Nested Builders</h5>
-                  <h5 className='text-white'>&bull; FluentValidation integration &bull; Step Builder</h5>
-                </div>
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-                  <h2 className='text-yellow text-center'><b>Decorator Pattern</b></h2>
-                  <h5 className='pt-3'>Add logging, caching, or retry logic <span className='text-yellow'>without touching the original class</span>. Learn how Scrutor makes decorators effortless with .NET dependency injection.</h5>
-                  <h5 className='pt-3 text-white'>&bull; Composing Decorators &bull; Scrutor + DI</h5>
-                  <h5 className='text-white'>&bull; Resilient API Service (Retry Policy) &bull; Cross-cutting concerns</h5>
-                </div>
-              </div>
-
-              <hr className='background-yellow' />
-
-              <div className="row text-center">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-                  <h2 className='text-yellow text-center'><b>Strategy Pattern</b></h2>
-                  <h5 className='pt-3'>Swap algorithms at runtime <span className='text-yellow'>without if-else chains</span>. Combine Strategy with Factory, dependency injection, and configuration-based selection.</h5>
-                  <h5 className='pt-3 text-white'>&bull; DI with Strategy &bull; Strategy + Factory</h5>
-                  <h5 className='text-white'>&bull; Config-based selection &bull; Runtime algorithm swap</h5>
-                </div>
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-                  <h2 className='text-yellow text-center'><b>Adapter Pattern</b></h2>
-                  <h5 className='pt-3'>Integrate third-party APIs and legacy systems <span className='text-yellow'>without rewriting everything</span>. Learn both Object and Class Adapter with a real cloud providers example.</h5>
-                  <h5 className='pt-3 text-white'>&bull; Object vs Class Adapter &bull; Cloud Provider integration</h5>
-                  <h5 className='text-white'>&bull; Legacy system wrapping &bull; Interface compatibility</h5>
-                </div>
-              </div>
-
-              <hr className='background-yellow' />
-
-              <div className="row text-center">
-                <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3"></div>
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-5 text-center">
-                  <h2 className='text-yellow text-center'><b>Mediator Pattern</b></h2>
-                  <h5 className='pt-3'>Decouple your components and <span className='text-yellow'>orchestrate communication cleanly</span>. From basic mediator to MediatR with pipeline behaviors for Clean Architecture.</h5>
-                  <h5 className='pt-3 text-white'>&bull; MediatR in Clean Architecture &bull; Pipeline behaviors</h5>
-                  <h5 className='text-white'>&bull; Cross-cutting concerns &bull; Event Aggregation</h5>
-                </div>
-                <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3"></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="row text-center mt-3">
-            <div className="col-xl-12 text-center">
-              <a href={CHECKOUT_URL} className="lemonsqueezy-button">
-                <button className='btn btn-lg btn-primary border-radius-10px button-padding'>Get the Ebook + Real-World Examples - <span className='text-green'> $32.99</span></button>
-              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <hr className='background-yellow' />
+      <div className="dp-divider"></div>
 
-      {/* ═══════════════════════════════════════════════════
-          OFFER STACK - What You Get
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="included-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <p className="header-text">You Don&apos;t Just Get <span className='text-yellow'>a PDF</span></p>
+      {/* 5. PROBLEM */}
+      <section id="dp-problem">
+        <div className="dp-wrap dp-pain-grid">
+          <div className="dp-reveal">
+            <span className="dp-eyebrow">The gap</span>
+            <h2 className="dp-sec-title">You know the theory. But in the IDE, the code still looks wrong.</h2>
+            <p style={{ color: 'var(--muted)', fontSize: 16.5, marginTop: 4 }}>You&apos;ve read the Gang of Four. You&apos;ve watched the tutorials. You can name patterns on a whiteboard. Then a real problem lands and you freeze:</p>
+            <ul className="dp-pain-list">
+              <li><span className="dp-x">✕</span> &quot;Should this be a Strategy or a Factory?&quot;</li>
+              <li><span className="dp-x">✕</span> &quot;Should I throw here, or return a Result?&quot;</li>
+              <li><span className="dp-x">✕</span> &quot;How does this pattern even work with DI?&quot;</li>
+              <li><span className="dp-x">✕</span> &quot;The example online is a Pizza class... how does that help me?&quot;</li>
+            </ul>
+            <p className="dp-kicker">The gap between knowing a pattern and <span className="dp-amber">using it in production is massive.</span><br />That&apos;s exactly what this ebook closes.</p>
+          </div>
+          <div className="dp-reveal">
+            <div className="dp-media-frame">
+              <Image src="/images/real-world-examples.webp" alt="C# design patterns real-world implementation example" width={0} height={0} sizes="(max-width:860px) 100vw, 40vw" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
           </div>
-          <div className="row">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-yellow mb-4'>&#128214; The Ebook</h3>
-                <h5 className='text-white'>&#10004; 5 design patterns, explained from problem to production</h5>
-                <h5 className='text-white'>&#10004; Real-world scenarios - not Pizza or Animal classes</h5>
-                <h5 className='text-white'>&#10004; UML diagrams for every pattern</h5>
-                <h5 className='text-white'>&#10004; Advanced variants for each pattern</h5>
-                <h5 className='text-white'>&#10004; Pros, cons, and when NOT to use each one</h5>
+        </div>
+      </section>
+
+      <div className="dp-divider"></div>
+
+      {/* 6. BEFORE / AFTER */}
+      <section>
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">The transformation</span>
+            <h2 className="dp-sec-title">What changes after you read this</h2>
+          </div>
+          <div className="dp-ba dp-reveal">
+            <div className="dp-ba-card dp-before">
+              <h3>Before</h3>
+              <ul>
+                <li><span className="dp-ic">✕</span> Copy-paste pattern examples from StackOverflow</li>
+                <li><span className="dp-ic">✕</span> Can&apos;t decide which pattern fits the problem</li>
+                <li><span className="dp-ic">✕</span> Overengineer simple features with the wrong abstraction</li>
+                <li><span className="dp-ic">✕</span> Struggle to explain patterns in interviews</li>
+                <li><span className="dp-ic">✕</span> Every tutorial uses Pizza or Animal classes</li>
+                <li><span className="dp-ic">✕</span> No idea how patterns work with dependency injection</li>
+              </ul>
+            </div>
+            <div className="dp-ba-card dp-after">
+              <h3>After</h3>
+              <ul>
+                <li><span className="dp-ic">✔</span> Choose the right pattern in minutes</li>
+                <li><span className="dp-ic">✔</span> Refactor messy code into clean, maintainable architecture</li>
+                <li><span className="dp-ic">✔</span> Know exactly when to use - and when NOT to use - each one</li>
+                <li><span className="dp-ic">✔</span> Speak confidently about patterns in any interview</li>
+                <li><span className="dp-ic">✔</span> Have production-ready C# code with unit tests you can adapt</li>
+                <li><span className="dp-ic">✔</span> Master advanced variants (Fluent/Step Builder, Scrutor, MediatR, keyed DI)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="dp-divider"></div>
+
+      {/* 7. THE 10 PATTERNS */}
+      <section id="dp-patterns">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">The system</span>
+            <h2 className="dp-sec-title">10 patterns. Real problems. Real code.</h2>
+            <p className="dp-sec-sub">Each pattern starts with a real-world problem you&apos;d actually hit in production - then the solution, the UML, the advanced variants, unit tests, and when NOT to use it.</p>
+          </div>
+
+          {/* Group A */}
+          <p className="dp-eyebrow dp-center" style={{ marginBottom: 22 }}>The foundational five</p>
+          <div className="dp-patterns dp-reveal">
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">🧱</div>
+              <div className="dp-pat-num">PATTERN 01</div>
+              <h3>Builder <span className="dp-amber">Pattern</span></h3>
+              <p>Stop creating objects with <span className="dp-amber">10-parameter constructors</span>. From basic to Fluent, Director, Nested, FluentValidation, and a Step Builder the compiler enforces.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">Fluent Builder</span><span className="dp-tag">Director Class</span><span className="dp-tag">Step Builder</span><span className="dp-tag">FluentValidation</span><span className="dp-tag">Test Data Builder</span>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-yellow mb-4'>&#128187; GitHub Repository</h3>
-                <h5 className='text-white'>&#10004; 20 mini-projects with complete C# solutions</h5>
-                <h5 className='text-white'>&#10004; Clone, run, and modify immediately</h5>
-                <h5 className='text-white'>&#10004; Production-ready code structure</h5>
-                <h5 className='text-white'>&#10004; Every pattern variation implemented</h5>
-                <h5 className='text-white'>&#10004; Bonus: code in 4 additional languages</h5>
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">🎨</div>
+              <div className="dp-pat-num">PATTERN 02</div>
+              <h3>Decorator <span className="dp-amber">Pattern</span></h3>
+              <p>Add caching, logging, or retry <span className="dp-amber">without touching the original class</span>. Compose the onion in DI with Scrutor, Polly resilience, and HybridCache.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">Scrutor + DI</span><span className="dp-tag">Polly v8</span><span className="dp-tag">HybridCache</span><span className="dp-tag">Cross-cutting concerns</span>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-yellow mb-4'>&#127919; Interview Prep Mini-Ebook</h3>
-                <h5 className='text-white'>&#10004; 100 design pattern interview questions</h5>
-                <h5 className='text-white'>&#10004; Detailed answers with code examples</h5>
-                <h5 className='text-white'>&#10004; Covers all major patterns (not just these 5)</h5>
-                <h5 className='text-white'>&#10004; Perfect for senior-level interviews</h5>
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">⚡</div>
+              <div className="dp-pat-num">PATTERN 03</div>
+              <h3>Strategy <span className="dp-amber">Pattern</span></h3>
+              <p>Swap algorithms at runtime <span className="dp-amber">without if-else chains</span>. Keyed DI, a factory for dynamic choice, and configuration-based selection.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">Keyed DI (.NET 8)</span><span className="dp-tag">Strategy + Factory</span><span className="dp-tag">Config selection</span><span className="dp-tag">Lifetimes</span>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-yellow mb-4'>&#9889; Quick Reference</h3>
-                <h5 className='text-white'>&#10004; Pattern decision guide - which pattern for which problem</h5>
-                <h5 className='text-white'>&#10004; Cheat sheet with key implementation steps</h5>
-                <h5 className='text-white'>&#10004; When to use vs. when NOT to use summary</h5>
-                <h5 className='text-white'>&#10004; DI integration patterns at a glance</h5>
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">🔌</div>
+              <div className="dp-pat-num">PATTERN 04</div>
+              <h3>Adapter <span className="dp-amber">Pattern</span></h3>
+              <p>Integrate third-party APIs and legacy systems <span className="dp-amber">without rewriting everything</span>. Object vs Class adapters, error translation, a cloud-agnostic storage layer.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">Object vs Class</span><span className="dp-tag">Cloud Providers</span><span className="dp-tag">Error translation</span><span className="dp-tag">Legacy wrapping</span>
+              </div>
+            </div>
+            <div className="dp-pat-card dp-span2">
+              <div className="dp-pat-ico">🚀</div>
+              <div className="dp-pat-num">PATTERN 05</div>
+              <h3>Mediator <span className="dp-amber">Pattern</span></h3>
+              <p>Decouple components and <span className="dp-amber">orchestrate communication cleanly</span>. From a basic mediator to MediatR with validation, transaction, and logging pipeline behaviors — plus an honest take on licensing.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">MediatR pipelines</span><span className="dp-tag">Transaction behavior</span><span className="dp-tag">Notifications</span><span className="dp-tag">Source-generated alt</span>
               </div>
             </div>
           </div>
 
-          <div className="row justify-content-center mt-3 mb-4">
-            <div className="col-xl-8 col-lg-10 col-md-12">
-              <div style={{ background: 'linear-gradient(135deg, rgba(255,193,7,0.1), rgba(255,193,7,0.03))', border: '2px solid rgba(255,193,7,0.4)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-yellow text-center mb-4'>&#127873; Bonuses Included</h3>
-                <div className="row">
-                  <div className="col-md-4 text-center mb-3">
-                    <h5 className='text-white'>&#128218; <span className='text-yellow'>EPUB Format</span></h5>
-                    <h5 className='text-white' style={{ opacity: 0.8 }}>Read on any e-reader, tablet, or phone</h5>
+          {/* Group B */}
+          <p className="dp-eyebrow dp-center" style={{ margin: '48px 0 22px' }}>Five more that ship real systems</p>
+          <div className="dp-patterns dp-reveal">
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">🛤️</div>
+              <div className="dp-pat-num">PATTERN 06</div>
+              <h3>Result <span className="dp-amber">Pattern</span></h3>
+              <p>Model expected failures as <span className="dp-amber">values, not exceptions</span>. Railway-oriented Bind/Map/Match — including async — and clean ProblemDetails responses.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">Railway-oriented</span><span className="dp-tag">Async Bind/Map</span><span className="dp-tag">ProblemDetails</span><span className="dp-tag">ErrorOr / FluentResults</span>
+              </div>
+            </div>
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">🔗</div>
+              <div className="dp-pat-num">PATTERN 07</div>
+              <h3>Pipeline <span className="dp-amber">/ Chain of Responsibility</span></h3>
+              <p>The pattern <span className="dp-amber">behind ASP.NET middleware</span>. Build your own typed, async pipeline of focused handlers that each decide whether to continue.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">ASP.NET middleware</span><span className="dp-tag">Async chain</span><span className="dp-tag">MediatR behaviors</span><span className="dp-tag">Short-circuit</span>
+              </div>
+            </div>
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">🔎</div>
+              <div className="dp-pat-num">PATTERN 08</div>
+              <h3>Specification <span className="dp-amber">Pattern</span></h3>
+              <p>Stop drowning the repository in query methods. <span className="dp-amber">Composable rules that translate to EF Core SQL</span> — done with parameter rebinding, not the Invoke trick that throws.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">EF Core translation</span><span className="dp-tag">And / Or / Not</span><span className="dp-tag">ExpressionVisitor</span><span className="dp-tag">Ardalis.Specification</span>
+              </div>
+            </div>
+            <div className="dp-pat-card">
+              <div className="dp-pat-ico">🏭</div>
+              <div className="dp-pat-num">PATTERN 09</div>
+              <h3>Factory <span className="dp-amber">Patterns</span></h3>
+              <p>Stop welding code to <span className="dp-amber">concrete types with <code>new</code></span>. Factory Method, Abstract Factory, and the modern .NET way — keyed DI, factory delegates, ActivatorUtilities.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">Keyed DI</span><span className="dp-tag">ActivatorUtilities</span><span className="dp-tag">Func&lt;T&gt;</span><span className="dp-tag">IHttpClientFactory</span>
+              </div>
+            </div>
+            <div className="dp-pat-card dp-span2">
+              <div className="dp-pat-ico">🚦</div>
+              <div className="dp-pat-num">PATTERN 10</div>
+              <h3>State <span className="dp-amber">Pattern</span></h3>
+              <p>Kill the <span className="dp-amber">boolean soup</span> of IsPaid/IsShipped flags. Model a lifecycle so illegal transitions are impossible — guarded enums, class-per-state, optimistic concurrency, and Stateless for big workflows.</p>
+              <div className="dp-tags">
+                <span className="dp-tag">Guarded transitions</span><span className="dp-tag">Class-per-state</span><span className="dp-tag">Optimistic concurrency</span><span className="dp-tag">Stateless library</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="dp-center" style={{ marginTop: 40 }}>
+            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
+          </div>
+        </div>
+      </section>
+
+      <div className="dp-divider"></div>
+
+      {/* 7.5 AI TUTOR SECTION */}
+      <section id="dp-ai">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">Built-in AI</span>
+            <h2 className="dp-sec-title">Two AI tutors, not one PDF</h2>
+            <p className="dp-sec-sub">Most pattern books are static. This one comes with AI you can actually ask — try the free one right here.</p>
+          </div>
+
+          <div className="dp-ai-grid dp-reveal">
+            {/* LIVE Pattern Picker */}
+            <div className="dp-ai-panel dp-ai-live">
+              <div className="dp-ai-head">
+                <span className="dp-ai-pill">{MS} Free · live demo</span>
+              </div>
+              <h3>Pattern Picker</h3>
+              <p className="dp-ai-sub">Describe a real problem in your C#/.NET code and get the right pattern in seconds — every result links to a full tutorial, and to the book chapter where one exists.</p>
+              <PatternPicker />
+            </div>
+
+            {/* Ask the Book — static preview */}
+            <div className="dp-ai-panel">
+              <div className="dp-ai-head">
+                <span className="dp-ai-pill dp-ai-owner">🔒 For book owners</span>
+              </div>
+              <h3>Ask the Book</h3>
+              <p className="dp-ai-sub">An AI tutor that answers strictly from the book — production-grade, cited by chapter. Not generic internet code. Here&apos;s what a real answer looks like:</p>
+
+              <div className="dp-ai-window">
+                <div className="dp-ai-bar"><i></i><i></i><i></i><span>ask-the-book</span></div>
+                <div className="dp-ai-chat">
+                  <div className="dp-ai-msg dp-ai-q">Should I throw or return a Result when shipping an order that&apos;s already shipped?</div>
+                  <div className="dp-ai-msg dp-ai-a">
+                    Return a <code>Result</code>. &quot;Already shipped&quot; is an <em>expected</em> outcome a user can trigger, so model it as a value and map it to a <code>409 Conflict</code> — keep <code>throw</code> for true invariant violations. In the State chapter the guarded transition returns <code>Result.Failure</code> and the endpoint uses <code>Match</code> to pick the status code.
+                    <span className="dp-ai-cite">📖 Cited: <b>State</b> · <b>Result</b> chapters</span>
                   </div>
-                  <div className="col-md-4 text-center mb-3">
-                    <h5 className='text-white'>&#127763; <span className='text-yellow'>Dark &amp; Light Mode</span></h5>
-                    <h5 className='text-white' style={{ opacity: 0.8 }}>Comfortable reading day or night</h5>
-                  </div>
-                  <div className="col-md-4 text-center mb-3">
-                    <h5 className='text-white'>&#128196; <span className='text-yellow'>100 Interview Q&amp;As</span></h5>
-                    <h5 className='text-white' style={{ opacity: 0.8 }}>With code examples for every answer</h5>
+                  <div className="dp-ai-msg dp-ai-q">And how do I keep two requests from shipping it twice?</div>
+                  <div className="dp-ai-msg dp-ai-a">
+                    Add optimistic concurrency — a <code>[Timestamp]</code> rowversion — and handle <code>DbUpdateConcurrencyException</code>. The in-memory guard stops illegal transitions; the rowversion stops <em>concurrent</em> ones.
+                    <span className="dp-ai-cite">📖 Cited: <b>State</b> chapter</span>
                   </div>
                 </div>
               </div>
+              <a href="/tools/ask-the-book" className="dp-flow-link" style={{ marginTop: 16, display: 'inline-flex' }}>Owners: open Ask the Book →</a>
             </div>
           </div>
 
-          <div className="row text-center mt-3">
-            <div className="col-xl-12 text-center">
-              <h5 className='text-white mb-2' style={{ opacity: 0.7 }}>Total value: ebook + repo + interview prep + cheat sheets + EPUB</h5>
-              <a href={CHECKOUT_URL} className="lemonsqueezy-button">
-                <button className='btn btn-lg btn-primary border-radius-10px button-padding'>Get Everything for <span className='text-green'> $32.99</span></button>
-              </a>
-            </div>
-          </div>
+          <p className="dp-ai-foot dp-center" style={{ textAlign: 'center', marginTop: 22 }}>
+            The free Pattern Picker is open to everyone. Ask the Book unlocks when you own the book.
+          </p>
         </div>
       </section>
 
-      <hr className='background-yellow' />
+      <div className="dp-divider"></div>
 
-      {/* ═══════════════════════════════════════════════════
-          SOCIAL PROOF
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="proof-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <p className="header-text"><span className='text-yellow'>{config.EbookCopiesNumber}+ Developers</span> Already Use These Patterns</p>
+      {/* 8. EVERYTHING YOU GET */}
+      <section id="dp-included">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">The full package</span>
+            <h2 className="dp-sec-title">You don&apos;t just get a PDF</h2>
+            <p className="dp-sec-sub">Everything you need to understand, apply, and explain design patterns in real .NET projects.</p>
+          </div>
+          <div className="dp-eg-grid dp-reveal">
+            <div className="dp-eg-card">
+              <div className="dp-eg-ico">📘</div><h3>The Ebook</h3>
+              <ul>
+                <li><span className="dp-ic">✔</span> 10 patterns, problem to production</li>
+                <li><span className="dp-ic">✔</span> Real scenarios + unit tests, no toy classes</li>
+                <li><span className="dp-ic">✔</span> UML/Mermaid diagrams &amp; trade-offs</li>
+                <li><span className="dp-ic">✔</span> Pros, cons &amp; when NOT to use</li>
+              </ul>
             </div>
+            <div className="dp-eg-card">
+              <div className="dp-eg-ico">💻</div><h3>GitHub Repository</h3>
+              <ul>
+                <li><span className="dp-ic">✔</span> 20 mini-projects, complete C#</li>
+                <li><span className="dp-ic">✔</span> Clone, run, and modify instantly</li>
+                <li><span className="dp-ic">✔</span> Every pattern variation implemented</li>
+                <li><span className="dp-ic">✔</span> Bonus: code in 4 more languages</li>
+              </ul>
+            </div>
+            <div className="dp-eg-card">
+              <div className="dp-eg-ico">🤖</div><h3>AI Tutor — Ask the Book</h3>
+              <ul>
+                <li><span className="dp-ic">✔</span> Answers strictly from the book</li>
+                <li><span className="dp-ic">✔</span> Cited by chapter, production-grade</li>
+                <li><span className="dp-ic">✔</span> Plus the free Pattern Picker</li>
+                <li><span className="dp-ic">✔</span> Read online with AI on every example</li>
+              </ul>
+            </div>
+            <div className="dp-eg-card">
+              <div className="dp-eg-ico">🎯</div><h3>Interview Prep Ebook</h3>
+              <ul>
+                <li><span className="dp-ic">✔</span> 100 design pattern questions</li>
+                <li><span className="dp-ic">✔</span> Detailed answers with code</li>
+                <li><span className="dp-ic">✔</span> Covers all major GoF patterns</li>
+                <li><span className="dp-ic">✔</span> Built for senior-level interviews</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="dp-bonus-grid dp-reveal" style={{ marginTop: 32 }}>
+            <div className="dp-bonus-card">
+              <div className="dp-gift">📖</div>
+              <h3>EPUB + Web Reader</h3>
+              <p>Read on any device, or online with copyable code and an AI tutor on every example.</p>
+            </div>
+            <div className="dp-bonus-card">
+              <div className="dp-gift">⚡</div>
+              <h3>Quick-Reference Guide</h3>
+              <p>A pattern decision cheat sheet: when to use vs. when not to, DI integration at a glance.</p>
+            </div>
+            <div className="dp-bonus-card">
+              <div className="dp-gift">📄</div>
+              <h3>100 Interview Q&amp;As</h3>
+              <p>With a working code example behind every single answer.</p>
+            </div>
+          </div>
+          <p className="dp-bonus-foot dp-reveal">Ebook + repo + AI tutor + interview prep + cheat sheets + EPUB · <b>all for $32.99</b></p>
+        </div>
+      </section>
+
+      <div className="dp-divider"></div>
+
+      {/* 9. TESTIMONIALS */}
+      <section id="dp-proof">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">Proof</span>
+            <h2 className="dp-sec-title">{config.EbookCopiesNumber}+ developers already use these patterns</h2>
+            <p className="dp-sec-sub">Real feedback from engineers - from juniors to Microsoft MVPs - who put this ebook to work.</p>
           </div>
 
           <EbookNewsletter />
 
-          <div className="row mt-4 justify-content-center">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #4a90d9, #357abd)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>MJ</div>
-                  <div style={{ marginLeft: '12px' }}>
-                    <p className='text-yellow mb-0' style={{ fontWeight: 'bold' }}>Milan Jovanovic</p>
-                    <p className='text-white mb-0' style={{ fontSize: '0.85rem', opacity: 0.7 }}>Microsoft MVP</p>
-                  </div>
-                </div>
-                <p className='text-white' style={{ fontStyle: 'italic' }}>&quot;Design Patterns ebook is a quick and enjoyable read about the most important design patterns in C#. The examples were refreshing, and I especially liked being able to access the source code. If you&apos;re just starting or need a refresher, this book will be your design patterns companion.&quot;</p>
-                <p className='text-yellow mb-0'>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-              </div>
+          <div className="dp-tg dp-reveal">
+            <div className="dp-tcard">
+              <span className="dp-stars">★★★★★</span>
+              <p className="dp-q">&quot;Design Patterns ebook is a quick and enjoyable read about the most important design patterns in C#. The examples were refreshing, and I especially liked being able to access the source code. If you&apos;re just starting or need a refresher, this book will be your design patterns companion.&quot;</p>
+              <div className="dp-who"><div className="dp-av">MJ</div><div><div className="dp-nm">Milan Jovanović</div><div className="dp-rl">Microsoft MVP</div></div></div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #e8a838, #d4922a)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>RA</div>
-                  <div style={{ marginLeft: '12px' }}>
-                    <p className='text-yellow mb-0' style={{ fontWeight: 'bold' }}>Raul Fernando Aillon Salinas</p>
-                    <p className='text-white mb-0' style={{ fontSize: '0.85rem', opacity: 0.7 }}>Software Developer</p>
-                  </div>
-                </div>
-                <p className='text-white' style={{ fontStyle: 'italic' }}>&quot;I love the simplicity of how every pattern is explained. The real-life examples are an incredible way to provide context and understand why we are choosing this pattern. By providing the writer&apos;s point of view of preferences we are able to evaluate the pros and cons, to decide which is better for our particular use case.&quot;</p>
-                <p className='text-yellow mb-0'>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-              </div>
+            <div className="dp-tcard">
+              <span className="dp-stars">★★★★★</span>
+              <p className="dp-q">&quot;I love the simplicity of how every pattern is explained. The real-life examples are an incredible way to provide context and understand why we are choosing this pattern. By providing the writer&apos;s point of view we can evaluate the pros and cons and decide which is better for our particular use case.&quot;</p>
+              <div className="dp-who"><div className="dp-av">RA</div><div><div className="dp-nm">Raul Fernando Aillon Salinas</div><div className="dp-rl">Software Developer</div></div></div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>JO</div>
-                  <div style={{ marginLeft: '12px' }}>
-                    <p className='text-yellow mb-0' style={{ fontWeight: 'bold' }}>Jeroen Opmeer</p>
-                    <p className='text-white mb-0' style={{ fontSize: '0.85rem', opacity: 0.7 }}>C#/.NET Senior Developer</p>
-                  </div>
-                </div>
-                <p className='text-white' style={{ fontStyle: 'italic' }}>&quot;This ebook shows that good technical information doesn&apos;t have to be burried in hundreds of pages of fluff. Exactly what a developer wants to read, core information on what a specific technology is about and how to apply it.&quot;</p>
-                <p className='text-yellow mb-0'>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-              </div>
+            <div className="dp-tcard">
+              <span className="dp-stars">★★★★★</span>
+              <p className="dp-q">&quot;This ebook shows that good technical information doesn&apos;t have to be buried in hundreds of pages of fluff. Exactly what a developer wants to read - core information on what a specific technology is about and how to apply it.&quot;</p>
+              <div className="dp-who"><div className="dp-av">JO</div><div><div className="dp-nm">Jeroen Opmeer</div><div className="dp-rl">C#/.NET Senior Developer</div></div></div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #00b894, #00cec9)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>NK</div>
-                  <div style={{ marginLeft: '12px' }}>
-                    <p className='text-yellow mb-0' style={{ fontWeight: 'bold' }}>Nikola Knezevic</p>
-                    <p className='text-white mb-0' style={{ fontSize: '0.85rem', opacity: 0.7 }}>Software Developer, Content Creator</p>
-                  </div>
-                </div>
-                <p className='text-white' style={{ fontStyle: 'italic' }}>&quot;The book is packed with five important design patterns in C#. Each pattern is explained step by step, with access to a GitHub repository, making it easy for everyone to grasp the material.&quot;</p>
-                <p className='text-yellow mb-0'>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-              </div>
+            <div className="dp-tcard">
+              <span className="dp-stars">★★★★★</span>
+              <p className="dp-q">&quot;Each pattern is explained step by step, with access to a GitHub repository, making it easy for everyone to grasp the material. A genuinely practical take on design patterns in C#.&quot;</p>
+              <div className="dp-who"><div className="dp-av">NK</div><div><div className="dp-nm">Nikola Knezević</div><div className="dp-rl">Software Developer, Content Creator</div></div></div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #fd79a8, #e84393)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>SE</div>
-                  <div style={{ marginLeft: '12px' }}>
-                    <p className='text-yellow mb-0' style={{ fontWeight: 'bold' }}>Saeed Esmaeelinejad</p>
-                    <p className='text-white mb-0' style={{ fontSize: '0.85rem', opacity: 0.7 }}>Senior Software Engineer</p>
-                  </div>
-                </div>
-                <p className='text-white' style={{ fontStyle: 'italic' }}>&quot;I just read the book and it&apos;s amazing with nice visualization which helps a lot for a better understanding of how patterns work. One of the points that I like is mentioning the Pros and Cons, they help you to decide which pattern is suitable for your case.&quot;</p>
-                <p className='text-yellow mb-0'>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-              </div>
+            <div className="dp-tcard">
+              <span className="dp-stars">★★★★★</span>
+              <p className="dp-q">&quot;It&apos;s amazing, with nice visualization which helps a lot for a better understanding of how patterns work. One of the points I like is mentioning the Pros and Cons - they help you decide which pattern is suitable for your case.&quot;</p>
+              <div className="dp-who"><div className="dp-av">SE</div><div><div className="dp-nm">Saeed Esmaeelinejad</div><div className="dp-rl">Senior Software Engineer</div></div></div>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #636e72, #2d3436)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>SM</div>
-                  <div style={{ marginLeft: '12px' }}>
-                    <p className='text-yellow mb-0' style={{ fontWeight: 'bold' }}>Stefan Milosevic</p>
-                    <p className='text-white mb-0' style={{ fontSize: '0.85rem', opacity: 0.7 }}>Senior Software Engineer</p>
-                  </div>
-                </div>
-                <p className='text-white' style={{ fontStyle: 'italic' }}>&quot;This book is a very fun and interesting way to get into the world of design patterns. It also has everything that you need to start applying those patterns in your application. Highly recommended.&quot;</p>
-                <p className='text-yellow mb-0'>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="row text-center mt-4">
-            <div className="col-xl-12 text-center">
-              <a href={CHECKOUT_URL} className="lemonsqueezy-button">
-                <button className='btn btn-lg btn-primary border-radius-10px button-padding'>Join {config.EbookCopiesNumber}+ Developers - <span className='text-green'> $32.99</span></button>
-              </a>
+            <div className="dp-tcard">
+              <span className="dp-stars">★★★★★</span>
+              <p className="dp-q">&quot;This book is a very fun and interesting way to get into the world of design patterns. It also has everything you need to start applying those patterns in your application. Highly recommended.&quot;</p>
+              <div className="dp-who"><div className="dp-av">SM</div><div><div className="dp-nm">Stefan Milošević</div><div className="dp-rl">Senior Software Engineer</div></div></div>
             </div>
           </div>
         </div>
       </section>
 
-      <hr className='background-yellow' />
+      <div className="dp-divider"></div>
 
-      {/* ═══════════════════════════════════════════════════
-          INSTRUCTOR / TRUST
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section background-yellow" id="author-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <h2 className="text-black"><b>Written by a Developer, for Developers</b></h2>
-            </div>
+      {/* 10. ABOUT */}
+      <section>
+        <div className="dp-wrap dp-about">
+          <div className="dp-reveal">
+            <div className="dp-media-frame"><Image src="/images/ebook-stefan.webp" alt="Stefan Đokić, Microsoft MVP and author of Design Patterns that Deliver" width={0} height={0} sizes="(max-width:860px) 100vw, 360px" style={{ width: '100%', height: 'auto', display: 'block' }} /></div>
           </div>
-          <div className="row">
-            <div className="col-md-3"></div>
-            <div className="col-md-6">
-              <div className="row">
-                <div className="col-md-6 ebook-profile-div">
-                  <Image src={'/images/ebook-stefan.webp'} className='mb-5 border-radius-20px ebook-profile-img' alt={'Stefan Djokic - Microsoft MVP and author of Design Patterns that Deliver'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-                </div>
-                <div className="col-md-6 ebook-about-div">
-                  <p className='text-black text-font-2rem'><b>Hi, I&apos;m Stefan</b></p>
-                  <p className='text-black'><b>Microsoft MVP</b> and <b>Senior Software Engineer</b> with years of experience building production .NET systems. I teach {config.NewsletterSubCount} through my newsletter, and {config.LinkedinFollowers} follow my content on LinkedIn.</p>
-                </div>
-                <div className="col-md-12">
-                  <p className='text-black'>I wrote this ebook because I was frustrated with pattern books that use toy examples. Every pattern in this book comes from a real problem I&apos;ve solved in production code.</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-3"></div>
-          </div>
-          <div className="row">
-            <div className="col-md-5"></div>
-            <div className="col-md-2">
-              <Image src={'/images/mvp.png'} className='mb-5 mt-5' alt={'Stefan Djokic - Microsoft MVP badge'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-            </div>
-            <div className="col-md-5"></div>
-          </div>
-          <div className="row mt-5">
-            <div className="col-md-4">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'><a className='text-black' href='https://thecodeman.net/blog'>Newsletter</a></p>
-                  <p className='text-black text-font-2rem'><b>{config.NewsletterSubCount}</b></p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'><a className='text-black' href='https://www.linkedin.com/in/djokic-stefan/'>LinkedIn</a></p>
-                  <p className='text-black text-font-2rem'><b>{config.LinkedinFollowers}</b></p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <p className='text-black text-font-2rem'><a className='text-black' href='https://twitter.com/TheCodeMan__'>Twitter</a></p>
-                  <p className='text-black text-font-2rem'><b>{config.TwitterFollowers}</b></p>
-                </div>
-              </div>
+          <div className="dp-reveal">
+            <span className="dp-mvp-pill">{MS} Microsoft MVP</span>
+            <h2>Written by a developer, for developers.</h2>
+            <p>Hi, I&apos;m <b>Stefan Đokić</b> - Microsoft MVP and Senior Software Engineer with years of experience building production .NET systems.</p>
+            <p>I wrote this ebook because I was frustrated with pattern books that use toy examples. <b>Every pattern in this book comes from a real problem I&apos;ve solved in production code</b> - not Pizza classes, not abstract shapes.</p>
+            <p>I teach {config.NewsletterSubCount} through my newsletter, and {config.LinkedinFollowers} follow my content on LinkedIn.</p>
+            <div className="dp-about-stats">
+              <div><div className="dp-v">20,000+</div><div className="dp-l">Newsletter</div></div>
+              <div><div className="dp-v">102k+</div><div className="dp-l">LinkedIn</div></div>
+              <div><div className="dp-v">8,000+</div><div className="dp-l">Twitter / X</div></div>
             </div>
           </div>
         </div>
       </section>
 
-      <hr className='background-yellow' />
+      <div className="dp-divider"></div>
 
-      {/* ═══════════════════════════════════════════════════
-          WHO IS THIS FOR / NOT FOR
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="who-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <p className="header-text">Is This Ebook <span className='text-yellow'>Right for You?</span></p>
-            </div>
+      {/* 11. PRICING */}
+      <section id="dp-pricing">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">One simple price</span>
+            <h2 className="dp-sec-title">Everything, for less than a lunch out.</h2>
           </div>
-          <div className="row">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(40, 167, 69, 0.08)', border: '1px solid rgba(40, 167, 69, 0.3)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-success text-center mb-4'><b>This is for you if...</b></h3>
-                <h5 className='text-white'>&#10004; You&apos;re a .NET / C# developer (mid-level or senior)</h5>
-                <h5 className='text-white'>&#10004; You know what design patterns are but struggle to apply them</h5>
-                <h5 className='text-white'>&#10004; You want production-ready code, not textbook theory</h5>
-                <h5 className='text-white'>&#10004; You&apos;re preparing for senior-level interviews</h5>
-                <h5 className='text-white'>&#10004; You want to write cleaner, more maintainable architecture</h5>
-                <h5 className='text-white'>&#10004; You&apos;re a tech lead looking for patterns your team can adopt</h5>
-              </div>
+          <div className="dp-pricing dp-reveal">
+            <div className="dp-price-card">
+              <h3>Design Patterns that Deliver</h3>
+              <p className="dp-psub">Ebook + GitHub repo + AI tutor + interview prep + cheat sheets</p>
+              <div className="dp-amt"><span className="dp-now">$32.99</span></div>
+              <p className="dp-save">One-time payment · lifetime access · no subscription</p>
+              <ul>
+                <li><span className="dp-ic">✔</span> The full ebook in PDF + EPUB</li>
+                <li><span className="dp-ic">✔</span> 10 patterns (5 foundational + 5 production)</li>
+                <li><span className="dp-ic">✔</span> GitHub repo: 20 runnable mini-projects</li>
+                <li><span className="dp-ic">✔</span> Ask-the-Book AI tutor, cited by chapter</li>
+                <li><span className="dp-ic">✔</span> 100 interview questions &amp; answers</li>
+                <li><span className="dp-ic">✔</span> Quick-reference pattern decision guide</li>
+                <li><span className="dp-ic">✔</span> Lifetime access + all future updates</li>
+              </ul>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
+              <p className="dp-grt">Instant download · Secure checkout via Lemon Squeezy</p>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-              <div style={{ background: 'rgba(220, 53, 69, 0.08)', border: '1px solid rgba(220, 53, 69, 0.3)', borderRadius: '12px', padding: '2rem' }}>
-                <h3 className='text-danger text-center mb-4'><b>This is NOT for you if...</b></h3>
-                <h5 className='text-white'>&#10060; You&apos;re a complete beginner still learning C# basics</h5>
-                <h5 className='text-white'>&#10060; You want a reference for all 23 GoF patterns</h5>
-                <h5 className='text-white'>&#10060; You prefer abstract theory over practical implementation</h5>
-                <h5 className='text-white'>&#10060; You&apos;re looking for language-agnostic content only</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <hr className='background-yellow' />
-
-      {/* ═══════════════════════════════════════════════════
-          FULL TABLE OF CONTENTS
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="toc-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <p className="header-text">Full <span className='text-yellow'>Table of Contents</span></p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-              <div className="blog-entry text-left" style={{ width: '100%' }}>
-                <details className="curriculum-details" open>
-                  <summary className="text-yellow">
-                    &#128736; Builder Pattern
-                  </summary>
-                  <div className="pt-3">
-                    <h5 className="text-white text-left">Real World Problem</h5>
-                    <h5 className="text-white text-left">Solution + Basic Builder Implementation</h5>
-                    <h5 className="text-white text-left">Definition + UML Diagram</h5>
-                    <h5 className="text-white text-left">Fluent Builder Pattern</h5>
-                    <h5 className="text-white text-left">Director Class</h5>
-                    <h5 className="text-white text-left">Nested Builder Objects (Hierarchical)</h5>
-                    <h5 className="text-white text-left">Builder Pattern + FluentValidation</h5>
-                    <h5 className="text-white text-left">Step Builder Pattern</h5>
-                    <h5 className="text-white text-left">Pros &amp; Cons</h5>
-                    <h5 className="text-white text-left">When to &amp; When NOT to Use It</h5>
-                  </div>
-                </details>
-
-                <details className="curriculum-details" open>
-                  <summary className="text-yellow">
-                    &#127912; Decorator Pattern
-                  </summary>
-                  <div className="pt-3">
-                    <h5 className="text-white text-left">Real World Problem</h5>
-                    <h5 className="text-white text-left">Solution + Basic Decorator Implementation</h5>
-                    <h5 className="text-white text-left">Definition + UML Diagram</h5>
-                    <h5 className="text-white text-left">Composing Decorators</h5>
-                    <h5 className="text-white text-left">Adding Scrutor to Decorator Pattern</h5>
-                    <h5 className="text-white text-left">Real Problem - Resilient API Service (Retry Policy)</h5>
-                    <h5 className="text-white text-left">Pros &amp; Cons</h5>
-                    <h5 className="text-white text-left">When to &amp; When NOT to Use It</h5>
-                  </div>
-                </details>
-
-                <details className="curriculum-details" open>
-                  <summary className="text-yellow">
-                    &#9889; Strategy Pattern
-                  </summary>
-                  <div className="pt-3">
-                    <h5 className="text-white text-left">Real World Problem</h5>
-                    <h5 className="text-white text-left">Solution + Basic Strategy Implementation</h5>
-                    <h5 className="text-white text-left">Definition + UML Diagram</h5>
-                    <h5 className="text-white text-left">Dependency Injection with Strategy Pattern</h5>
-                    <h5 className="text-white text-left">Combining Strategy Pattern with Factory Pattern</h5>
-                    <h5 className="text-white text-left">Using Configuration Settings for Strategy Selection</h5>
-                    <h5 className="text-white text-left">Pros &amp; Cons</h5>
-                    <h5 className="text-white text-left">When to &amp; When NOT to Use It</h5>
-                  </div>
-                </details>
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-              <div className="blog-entry text-left" style={{ width: '100%' }}>
-                <details className="curriculum-details" open>
-                  <summary className="text-yellow">
-                    &#128268; Adapter Pattern
-                  </summary>
-                  <div className="pt-3">
-                    <h5 className="text-white text-left">Real World Problem</h5>
-                    <h5 className="text-white text-left">Solution + Basic Adapter Implementation</h5>
-                    <h5 className="text-white text-left">Definition + UML Diagram</h5>
-                    <h5 className="text-white text-left">Object Adapter Pattern</h5>
-                    <h5 className="text-white text-left">Class Adapter Pattern</h5>
-                    <h5 className="text-white text-left">Example: Cloud Providers Integration</h5>
-                    <h5 className="text-white text-left">Pros &amp; Cons</h5>
-                    <h5 className="text-white text-left">When to &amp; When NOT to Use It</h5>
-                  </div>
-                </details>
-
-                <details className="curriculum-details" open>
-                  <summary className="text-yellow">
-                    &#128640; Mediator Pattern
-                  </summary>
-                  <div className="pt-3">
-                    <h5 className="text-white text-left">Real World Problem</h5>
-                    <h5 className="text-white text-left">Solution + Basic Mediator Implementation</h5>
-                    <h5 className="text-white text-left">Definition + UML Diagram</h5>
-                    <h5 className="text-white text-left">Cross-Cutting Concerns</h5>
-                    <h5 className="text-white text-left">MediatR Library in Clean Architecture</h5>
-                    <h5 className="text-white text-left">Event Aggregation</h5>
-                    <h5 className="text-white text-left">Pros &amp; Cons</h5>
-                    <h5 className="text-white text-left">When to &amp; When NOT to Use It</h5>
-                  </div>
-                </details>
-
-                <details className="curriculum-details" open>
-                  <summary className="text-yellow">
-                    &#127919; Bonus: Interview Prep
-                  </summary>
-                  <div className="pt-3">
-                    <h5 className="text-white text-left">100 Design Pattern Interview Questions</h5>
-                    <h5 className="text-white text-left">Detailed Answers with Explanations</h5>
-                    <h5 className="text-white text-left">Covers All Major GoF Patterns</h5>
-                  </div>
-                </details>
-              </div>
-            </div>
-          </div>
-          <div className="row text-center mt-4">
-            <div className="col-xl-12 text-center">
-              <a href={CHECKOUT_URL} className="lemonsqueezy-button">
-                <button className='btn btn-lg btn-primary border-radius-10px button-padding'>Get the Ebook + Real-World Examples - <span className='text-green'> $32.99</span></button>
-              </a>
+            <div className="dp-why">
+              <h3>Why developers buy this</h3>
+              <div className="dp-why-item"><span className="dp-ic">⚡</span><div><div className="dp-t">Instant access</div><div className="dp-d">Download the ebook and clone the repo seconds after checkout.</div></div></div>
+              <div className="dp-why-item"><span className="dp-ic">💻</span><div><div className="dp-t">Real, runnable code</div><div className="dp-d">20 mini-projects you can open, run, and adapt today.</div></div></div>
+              <div className="dp-why-item"><span className="dp-ic">🤖</span><div><div className="dp-t">An AI tutor that knows it</div><div className="dp-d">Ask the Book answers from these exact chapters, cited.</div></div></div>
+              <div className="dp-why-item"><span className="dp-ic">🔁</span><div><div className="dp-t">Lifetime updates</div><div className="dp-d">Buy once, get every future update to the book and code free.</div></div></div>
             </div>
           </div>
         </div>
       </section>
 
-      <hr className='background-yellow' />
+      <div className="dp-divider"></div>
 
-      {/* ═══════════════════════════════════════════════════
-          FAQ (AEO-optimized)
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="faq-section">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-12 heading-section text-center">
-              <p className="header-text">
-                Frequently Asked <span className="text-yellow">Questions</span>
-              </p>
-            </div>
+      {/* 12. FIT CHECK */}
+      <section>
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">Honest fit check</span>
+            <h2 className="dp-sec-title">Is this ebook right for you?</h2>
           </div>
-
-          <div className="row text-left">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-5">
-              <div className="blog-entry text-left pt-3">
-                <h3 className="text-yellow text-left pt-3">
-                  What are design patterns in .NET?
-                </h3>
-                <h5 className="text-white text-left">
-                  Design patterns are reusable solutions to common software design problems. In .NET and C#, they help you structure code that is maintainable, testable, and scalable. The most practical ones include Builder, Decorator, Strategy, Adapter, and Mediator - which are the 5 covered in this ebook with production-ready implementations.
-                </h5>
-
-                <h3 className="text-yellow text-left pt-3">
-                  Which design patterns should I learn first as a C# developer?
-                </h3>
-                <h5 className="text-white text-left">
-                  Start with the patterns you&apos;ll use most in real projects: <span className="text-yellow">Builder</span> for object creation, <span className="text-yellow">Strategy</span> for swappable algorithms, <span className="text-yellow">Decorator</span> for adding behavior without modifying classes, <span className="text-yellow">Adapter</span> for integrating third-party code, and <span className="text-yellow">Mediator</span> for decoupling components. These 5 cover 80% of real-world needs.
-                </h5>
-
-                <h3 className="text-yellow text-left pt-3">
-                  Are design patterns still relevant in modern .NET?
-                </h3>
-                <h5 className="text-white text-left">
-                  Absolutely. Modern .NET with dependency injection, middleware pipelines, and Clean Architecture relies heavily on design patterns. MediatR (Mediator), Scrutor (Decorator), Polly (Strategy), and HttpClientFactory (Builder) are all pattern implementations used daily in production .NET applications.
-                </h5>
-
-                <h3 className="text-yellow text-left pt-3">
-                  How is this different from other design patterns books?
-                </h3>
-                <h5 className="text-white text-left">
-                  Most pattern books explain theory with abstract examples (Pizza, Animal, Shape classes). This ebook starts every pattern with a <span className="text-yellow">real production problem</span>, shows the solution in C#, then explores advanced variants. You also get a GitHub repo with 20 runnable mini-projects.
-                </h5>
-              </div>
+          <div className="dp-fit dp-reveal">
+            <div className="dp-fit-card dp-no">
+              <h3>Probably not, if you…</h3>
+              <ul>
+                <li><span className="dp-ic">✕</span> Are a complete beginner still learning C# basics</li>
+                <li><span className="dp-ic">✕</span> Want a reference for all 23 GoF patterns</li>
+                <li><span className="dp-ic">✕</span> Prefer abstract theory over practical code</li>
+                <li><span className="dp-ic">✕</span> Are looking for language-agnostic content only</li>
+              </ul>
             </div>
-
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-5">
-              <div className="blog-entry text-left pt-3">
-                <h3 className="text-yellow text-left pt-3">
-                  What knowledge level do I need?
-                </h3>
-                <h5 className="text-white text-left">
-                  You should be comfortable with C# and basic .NET development. The ebook is designed for <span className="text-yellow">intermediate to senior developers</span> who know the language but want to level up their architecture and design skills. It&apos;s not for absolute beginners.
-                </h5>
-
-                <h3 className="text-yellow text-left pt-3">
-                  Do I get code I can use in my projects?
-                </h3>
-                <h5 className="text-white text-left">
-                  Yes. You get full access to a <span className="text-yellow">GitHub repository</span> with 20 mini-projects - one for each pattern and each advanced variant. The code is structured, documented, and ready to clone, run, and adapt for your own projects.
-                </h5>
-
-                <h3 className="text-yellow text-left pt-3">
-                  How do I apply design patterns in real .NET projects?
-                </h3>
-                <h5 className="text-white text-left">
-                  Each pattern starts with a real-world scenario you&apos;d encounter in production. The ebook shows you step-by-step how to identify the problem, choose the right pattern, implement it with proper dependency injection, and understand when NOT to use it. The GitHub repo gives you complete, runnable examples.
-                </h5>
-
-                <h3 className="text-yellow text-left pt-3">
-                  Is there a refund policy?
-                </h3>
-                <h5 className="text-white text-left">
-                  The ebook is a digital product delivered instantly. If you&apos;re not satisfied, reach out directly and we&apos;ll work it out. {config.EbookCopiesNumber}+ developers have purchased it and the feedback has been overwhelmingly positive.
-                </h5>
-              </div>
+            <div className="dp-fit-card dp-yes">
+              <h3>Built for developers who…</h3>
+              <ul>
+                <li><span className="dp-ic">✔</span> Are .NET / C# developers (mid-level or senior)</li>
+                <li><span className="dp-ic">✔</span> Know what patterns are but struggle to apply them</li>
+                <li><span className="dp-ic">✔</span> Want production-ready code with tests, not textbook theory</li>
+                <li><span className="dp-ic">✔</span> Are preparing for senior-level interviews</li>
+                <li><span className="dp-ic">✔</span> Want cleaner, more maintainable architecture</li>
+                <li><span className="dp-ic">✔</span> Lead a team and want patterns everyone can adopt</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <hr className='background-yellow' />
+      <div className="dp-divider"></div>
 
-      {/* ═══════════════════════════════════════════════════
-          FINAL CTA
-      ═══════════════════════════════════════════════════ */}
-      <section className="ftco-section" id="final-cta-section">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-xl-8 col-lg-10 col-md-12 text-center">
-              <p className="header-text mb-3">Stop Reading About Patterns.</p>
-              <p className="header-text"><span className='text-yellow'>Start Using Them in Real Code.</span></p>
-              <h5 className='text-white pt-3 mb-5' style={{ opacity: 0.8 }}>5 patterns. Real C# implementations. A GitHub repo you can clone today. Plus 100 interview questions to make sure you can explain what you build.</h5>
-
-              <a href={CHECKOUT_URL} className="lemonsqueezy-button">
-                <button className='btn btn-lg btn-primary border-radius-10px button-padding' style={{ fontSize: '1.2rem', padding: '18px 40px' }}>
-                  Start Writing Better Architecture Today - <span className='text-green'> $32.99</span>
-                </button>
-              </a>
-              <p className='text-white mt-3' style={{ fontSize: '0.85rem', opacity: 0.6 }}>{config.EbookCopiesNumber}+ copies sold. Instant delivery. GitHub repo included.</p>
-            </div>
+      {/* 13. FULL TABLE OF CONTENTS */}
+      <section id="dp-toc">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">The full table of contents</span>
+            <h2 className="dp-sec-title">Exactly what&apos;s inside</h2>
+            <p className="dp-sec-sub">Click any pattern to expand. Every chapter follows the same problem → solution → advanced variants → tests → when-not-to-use flow.</p>
+          </div>
+          <div className="dp-acc dp-acc-2 dp-reveal">
+            <details open>
+              <summary>🧱 Builder Pattern <span className="dp-meta">9 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">Record + required vs. a builder</div>
+                <div className="dp-lesson">Classic, Fluent &amp; Director</div>
+                <div className="dp-lesson">Nested builders (config lambdas)</div>
+                <div className="dp-lesson">Step Builder (compiler-enforced)</div>
+                <div className="dp-lesson">FluentValidation in Build()</div>
+                <div className="dp-lesson">Test Data Builders + a real test</div>
+                <div className="dp-lesson">Thread-safety &amp; trade-offs</div>
+                <div className="dp-lesson">Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🎨 Decorator Pattern <span className="dp-meta">8 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">Coffee → cross-cutting concerns</div>
+                <div className="dp-lesson">Caching, logging, Polly resilience</div>
+                <div className="dp-lesson">Match retry to real exceptions</div>
+                <div className="dp-lesson">HybridCache &amp; stampede</div>
+                <div className="dp-lesson">Composing the onion with Scrutor</div>
+                <div className="dp-lesson">Captive-dependency lifetime trap</div>
+                <div className="dp-lesson">Testing + Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>⚡ Strategy Pattern <span className="dp-meta">8 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">From if-else to a family of classes</div>
+                <div className="dp-lesson">Strategy vs. domain polymorphism</div>
+                <div className="dp-lesson">Keyed DI (.NET 8) + lifetimes</div>
+                <div className="dp-lesson">A factory for dynamic choice</div>
+                <div className="dp-lesson">Real case: payment gateways</div>
+                <div className="dp-lesson">Strategy + Decorator</div>
+                <div className="dp-lesson">Config-driven selection + test</div>
+                <div className="dp-lesson">Pros, Cons &amp; when NOT to use</div>
+              </div>
+            </details>
+            <details>
+              <summary>🔌 Adapter Pattern <span className="dp-meta">8 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">Legacy payment gateway</div>
+                <div className="dp-lesson">Object vs Class adapter</div>
+                <div className="dp-lesson">Error translation</div>
+                <div className="dp-lesson">Cloud-agnostic storage (S3/Azure)</div>
+                <div className="dp-lesson">Stream ownership &amp; lifetimes</div>
+                <div className="dp-lesson">When an adapter &quot;lies&quot;</div>
+                <div className="dp-lesson">Testing + Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🚀 Mediator Pattern <span className="dp-meta">9 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">Chatroom → MediatR</div>
+                <div className="dp-lesson">Request / response handlers</div>
+                <div className="dp-lesson">Validation behavior (ValidateAsync)</div>
+                <div className="dp-lesson">Transaction behavior</div>
+                <div className="dp-lesson">Notifications &amp; publisher strategy</div>
+                <div className="dp-lesson">Testing a behavior</div>
+                <div className="dp-lesson">Licensing &amp; source-generated alts</div>
+                <div className="dp-lesson">Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🛤️ Result Pattern <span className="dp-meta">9 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">Exceptions for the non-exceptional</div>
+                <div className="dp-lesson">Minimal Result&lt;T&gt; + non-generic</div>
+                <div className="dp-lesson">Railway: Bind / Map / Match</div>
+                <div className="dp-lesson">Async railway (the part most skip)</div>
+                <div className="dp-lesson">Aggregating validation errors</div>
+                <div className="dp-lesson">Mapping to ProblemDetails</div>
+                <div className="dp-lesson">Benchmark: throw vs. Result</div>
+                <div className="dp-lesson">Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🔗 Chain of Responsibility &amp; Pipelines <span className="dp-meta">9 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">CoR vs. Pipeline</div>
+                <div className="dp-lesson">ASP.NET middleware as the pattern</div>
+                <div className="dp-lesson">A typed, async domain pipeline</div>
+                <div className="dp-lesson">Compose once; terminal handler</div>
+                <div className="dp-lesson">Short-circuiting</div>
+                <div className="dp-lesson">Relationship to MediatR behaviors</div>
+                <div className="dp-lesson">Testing a handler</div>
+                <div className="dp-lesson">Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🔎 Specification Pattern <span className="dp-meta">9 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">The repository method explosion</div>
+                <div className="dp-lesson">An EF-translatable specification</div>
+                <div className="dp-lesson">Composing with an ExpressionVisitor</div>
+                <div className="dp-lesson">Using it against EF Core</div>
+                <div className="dp-lesson">Proving it&apos;s real SQL</div>
+                <div className="dp-lesson">One rule, two uses (+ test)</div>
+                <div className="dp-lesson">Includes / paging (Ardalis)</div>
+                <div className="dp-lesson">Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🏭 Factory Patterns <span className="dp-meta">9 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">`new` welds you to a type</div>
+                <div className="dp-lesson">IHttpClientFactory in the BCL</div>
+                <div className="dp-lesson">Factory Method &amp; Abstract Factory</div>
+                <div className="dp-lesson">Keyed DI + a thin factory</div>
+                <div className="dp-lesson">Func&lt;T&gt; &amp; ActivatorUtilities</div>
+                <div className="dp-lesson">The captive-dependency trap</div>
+                <div className="dp-lesson">Testing a factory</div>
+                <div className="dp-lesson">Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🚦 State Pattern <span className="dp-meta">9 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">Boolean soup &amp; illegal transitions</div>
+                <div className="dp-lesson">Guarded transitions (one guard)</div>
+                <div className="dp-lesson">Throw vs. return a Result</div>
+                <div className="dp-lesson">Class-per-state (singletons)</div>
+                <div className="dp-lesson">Optimistic concurrency (rowversion)</div>
+                <div className="dp-lesson">Entry/exit actions &amp; Stateless</div>
+                <div className="dp-lesson">Testing illegal transitions</div>
+                <div className="dp-lesson">Pros &amp; Cons</div>
+                <div className="dp-lesson">When NOT to Use It</div>
+              </div>
+            </details>
+            <details>
+              <summary>🎯 Bonus: Interview Prep <span className="dp-meta">3 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">100 Design Pattern Interview Questions</div>
+                <div className="dp-lesson">Detailed Answers with Explanations</div>
+                <div className="dp-lesson">Covers All Major GoF Patterns</div>
+              </div>
+            </details>
+            <details>
+              <summary>🤖 Bonus: AI Tutor &amp; Web Reader <span className="dp-meta">3 topics</span><span className="dp-tog">+</span></summary>
+              <div className="dp-acc-body">
+                <div className="dp-lesson">Ask the Book — answers cited by chapter</div>
+                <div className="dp-lesson">Free Pattern Picker for any problem</div>
+                <div className="dp-lesson">Read online with copyable code</div>
+              </div>
+            </details>
           </div>
         </div>
       </section>
-    </>
+
+      <div className="dp-divider"></div>
+
+      {/* 14. FAQ */}
+      <section id="dp-faq">
+        <div className="dp-wrap">
+          <div className="dp-sec-head dp-center dp-reveal">
+            <span className="dp-eyebrow dp-center">Questions</span>
+            <h2 className="dp-sec-title">Frequently asked questions</h2>
+          </div>
+          <div className="dp-acc dp-reveal">
+            <details open><summary>Which patterns does the book cover?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>Ten production patterns in modern C#: five foundational ones - Builder, Decorator, Strategy, Adapter, Mediator - plus five that ship real systems - Result, Pipeline (Chain of Responsibility), Specification, Factory, and State. Each goes from a real problem to working code with unit tests, trade-offs, and when-not-to-use guidance.</p></div></details>
+            <details><summary>What are the AI tools, and which are free?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>Two. The <strong>Pattern Picker</strong> is free for everyone - describe a problem and get the right C#/.NET pattern with a tutorial link. <strong>Ask the Book</strong> is an AI tutor for owners that answers strictly from the book, cited by chapter - accurate, production-grade, not generic internet code. You can try the Pattern Picker live on this page.</p></div></details>
+            <details><summary>Are design patterns still relevant in modern .NET?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>Absolutely. MediatR (Mediator), Scrutor (Decorator), Polly (resilience), IHttpClientFactory (Factory), keyed DI, and ASP.NET middleware (Chain of Responsibility) are all pattern implementations used daily in production .NET around dependency injection, pipelines, and Clean Architecture.</p></div></details>
+            <details><summary>How is this different from other design patterns books?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>Most pattern books explain theory with abstract examples (Pizza, Animal, Shape classes). This ebook starts every pattern with a real production problem, shows the solution in C# with unit tests and trade-offs, then explores advanced variants. You also get a GitHub repo with 20 runnable mini-projects and a built-in AI tutor.</p></div></details>
+            <details><summary>What knowledge level do I need?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>You should be comfortable with C# and basic .NET development. The ebook is designed for intermediate to senior developers who know the language but want to level up their architecture and design skills. It&apos;s not for absolute beginners.</p></div></details>
+            <details><summary>Do I get code I can use in my own projects?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>Yes. You get full access to a GitHub repository with 20 mini-projects - one for each pattern and each advanced variant. The code is structured, documented, and ready to clone, run, and adapt.</p></div></details>
+            <details><summary>What formats does the ebook come in?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>You get PDF and EPUB, plus a web reader so you can read online with copyable code and the AI tutor on every example. Both light and dark modes are included.</p></div></details>
+            <details><summary>Is there a refund policy?<span className="dp-tog">+</span></summary><div className="dp-acc-body"><p>The ebook is a digital product delivered instantly. If you&apos;re not satisfied, reach out directly and we&apos;ll work it out. {config.EbookCopiesNumber}+ developers have purchased it and the feedback has been overwhelmingly positive.</p></div></details>
+          </div>
+        </div>
+      </section>
+
+      {/* 15. FINAL CTA */}
+      <section className="dp-final">
+        <div className="dp-wrap dp-reveal">
+          <span className="dp-eyebrow dp-center">Stop reading about patterns. Start shipping them.</span>
+          <h2>Real C# code you can apply in your next PR.</h2>
+          <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
+          <p className="dp-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>Instant download · PDF + EPUB · GitHub repo · AI tutor · {config.EbookCopiesNumber}+ copies sold</p>
+        </div>
+      </section>
+
+      {/* 16. STICKY BOTTOM CTA */}
+      <div className="dp-stickybar" id="dp-stickybar">
+        <div className="dp-wrap dp-sb-row">
+          <div className="dp-sb-info">
+            <span className="dp-sb-nm">Design Patterns that Deliver</span>
+            <span className="dp-sb-cd">10 patterns + AI tutor · instant download</span>
+          </div>
+          <div className="dp-sb-right">
+            <span className="dp-sb-pr">$32.99</span>
+            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get it</a>
+          </div>
+        </div>
+      </div>
+
+      <Script id="design-patterns-page-js" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: PAGE_JS }} />
+    </div>
   )
 }
 

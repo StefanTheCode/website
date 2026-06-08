@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run build:embeddings",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "seo-check": "node scripts/seo-check.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "check:image-seo": "node scripts/check-image-seo.mjs"
+    "check:image-seo": "node scripts/check-image-seo.mjs",
+    "build:embeddings": "node --env-file-if-exists=.env scripts/build-embeddings.mjs"
   },
   "dependencies": {
     "@types/react": "18.2.20",

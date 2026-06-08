@@ -1,0 +1,92 @@
+{
+  "slug": "design-patterns-that-deliver",
+  "title": "Design Patterns That Deliver",
+  "subtitle": "Real, modern, production C#/.NET design patterns — the way they actually ship.",
+  "author": "Stefan Đokić",
+  "version": "2.1",
+  "cover": "/images/ebooks/design-patterns-that-deliver.png",
+  "productUrl": "/design-patterns-that-deliver-ebook",
+  "description": "Ten production design patterns for intermediate-to-senior .NET developers: Builder, Decorator, Strategy, Adapter, Mediator — plus Result, Pipeline (Chain of Responsibility), Specification, Factory, and State. Each from a real problem to modern C# code, with diagrams, unit tests, advanced trade-offs, and when-not-to-use guidance.",
+  "chapters": [
+    {
+      "file": "01-builder.md",
+      "slug": "builder",
+      "title": "The Builder Pattern in Modern C#",
+      "order": 1,
+      "access": "free",
+      "estReadMin": 24
+    },
+    {
+      "file": "02-decorator.md",
+      "slug": "decorator",
+      "title": "The Decorator Pattern in Modern C#",
+      "order": 2,
+      "access": "paid",
+      "estReadMin": 22
+    },
+    {
+      "file": "03-strategy.md",
+      "slug": "strategy",
+      "title": "The Strategy Pattern in Modern C#",
+      "order": 3,
+      "access": "paid",
+      "estReadMin": 20
+    },
+    {
+      "file": "04-adapter.md",
+      "slug": "adapter",
+      "title": "The Adapter Pattern in Modern C#",
+      "order": 4,
+      "access": "paid",
+      "estReadMin": 20
+    },
+    {
+      "file": "05-mediator.md",
+      "slug": "mediator",
+      "title": "The Mediator Pattern in Modern C#",
+      "order": 5,
+      "access": "paid",
+      "estReadMin": 24
+    },
+    {
+      "file": "06-result.md",
+      "slug": "result",
+      "title": "The Result Pattern: Errors as Values",
+      "order": 6,
+      "access": "paid",
+      "estReadMin": 24
+    },
+    {
+      "file": "07-pipeline.md",
+      "slug": "pipeline",
+      "title": "Chain of Responsibility & Pipelines",
+      "order": 7,
+      "access": "paid",
+      "estReadMin": 20
+    },
+    {
+      "file": "08-specification.md",
+      "slug": "specification",
+      "title": "The Specification Pattern",
+      "order": 8,
+      "access": "paid",
+      "estReadMin": 22
+    },
+    {
+      "file": "09-factory.md",
+      "slug": "factory",
+      "title": "Factory Patterns: Factory Method to Keyed DI",
+      "order": 9,
+      "access": "paid",
+      "estReadMin": 20
+    },
+    {
+      "file": "10-state.md",
+      "slug": "state",
+      "title": "The State Pattern: Safe Workflows",
+      "order": 10,
+      "access": "paid",
+      "estReadMin": 22
+    }
+  ]
+}

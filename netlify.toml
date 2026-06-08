@@ -6,6 +6,19 @@
   NODE_VERSION = "22"
   NPM_FLAGS = "--legacy-peer-deps"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  # Bundle the prebuilt RAG index + pattern catalog + ebook content with the functions.
+  included_files = ["public/ai/embeddings.json", "components/data/patternCatalog.json", "ebooks/**"]
+
+# Clean URLs for the AI endpoints: /api/<tool> -> /.netlify/functions/<tool>
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/posts/semantic-search-ai-in-dotnet9"
   to = "/posts/semantic-search-ai-in-dotnet"

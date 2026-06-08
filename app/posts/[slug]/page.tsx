@@ -16,6 +16,8 @@ import Author from "@/app/author";
 import { Metadata } from "next";
 import ReadingProgress from "@/components/ReadingProgress";
 import ShareButtons from "@/components/ShareButtons";
+import PatternTools from "@/components/PatternTools";
+import PremiumChapterBanner from "@/components/PremiumChapterBanner";
 import TableOfContents from "@/components/TableOfContents";
 import RelatedPosts from "@/components/RelatedPosts";
 import PostNavigation from "@/components/PostNavigation";
@@ -243,6 +245,11 @@ export default async function PostPage(
                 </div>
               </div>
 
+              {/* Premium upsell banner — top of free Design Patterns posts */}
+              {post.data.category === "Design Patterns" && (
+                <PremiumChapterBanner slug={slug} />
+              )}
+
               {/* Table of Contents */}
               <TableOfContents />
 
@@ -274,6 +281,8 @@ export default async function PostPage(
 
               {/* Share Buttons */}
               <ShareButtons url={meta.url} title={meta.title} image={meta.image} />
+
+              {post.data.category === "Design Patterns" && <PatternTools />}
 
               <Author />
 

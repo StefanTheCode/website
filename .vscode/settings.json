@@ -1,0 +1,23 @@
+{
+  // Keep VS Code responsive on this image-heavy repo. The optimize-images
+  // script can produce ~500 .webp siblings under public/images/**, which is
+  // enough to overwhelm the file watcher and the TypeScript server on
+  // Windows. Exclude generated artifacts from watching/search but keep
+  // them visible in the explorer.
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "**/reports/**": true,
+    "public/images/**/*.webp": true
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "reports": true,
+    "public/images/**/*.webp": true
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  }
+}

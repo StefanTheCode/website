@@ -164,6 +164,8 @@ export default function Header() {
                 <div className={`dropdown-menu ${openDropdown === 'ebooks' ? 'show' : ''}`}>
                   <a className="dropdown-item" href="/design-patterns-simplified" onClick={closeMenu}>Ebook Simplified</a>
                   <a className="dropdown-item" href="/design-patterns-that-deliver-ebook" onClick={closeMenu}>5 Patterns Ebook</a>
+                  <a className="dropdown-item" href="/read" onClick={closeMenu}>Read Online (Web Reader)</a>
+                  <a className="dropdown-item" href="/tools/pattern-picker" onClick={closeMenu}>AI Pattern Picker (Free)</a>
                 </div>
               </li>
 

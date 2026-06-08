@@ -1,0 +1,9 @@
+{
+  "name": "thecodeman-functions",
+  "private": true,
+  "type": "module",
+  "description": "Netlify Functions for TheCodeMan AI tools (Pattern Picker, Ask the Book, etc.)",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
