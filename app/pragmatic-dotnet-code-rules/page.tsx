@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Script from 'next/script';
 import EbookNewsletter from '@/components/ebookTestimonials';
 import FreePreviewButton from '@/components/FreePreviewButton';
-// @ts-expect-error -- Next.js supports side-effect CSS imports in app routes.
 import './coderules.css';
 
 export const metadata: Metadata = {
