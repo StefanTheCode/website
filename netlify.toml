@@ -6,11 +6,21 @@
   NODE_VERSION = "22"
   NPM_FLAGS = "--legacy-peer-deps"
 
+# Disable Netlify post-processing. Asset optimization / HTML & JS minification
+# corrupts Next.js inline RSC flight scripts (self.__next_f.push), which causes
+# a client-side "Connection closed." crash on first load of every page.
+[build.processing]
+  skip_processing = true
+
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  # Bundle the prebuilt RAG index + pattern catalog + ebook content with the functions.
-  included_files = ["public/ai/embeddings.json", "components/data/patternCatalog.json", "ebooks/**"]
+  # Bundle the prebuilt RAG index + pattern catalog with all functions.
+  included_files = ["public/ai/embeddings.json", "components/data/patternCatalog.json"]
+
+# Bundle ebook content only with the function that actually reads it.
+[functions."content-chapter"]
+  included_files = ["ebooks/**"]
 
 # Clean URLs for the AI endpoints: /api/<tool> -> /.netlify/functions/<tool>
 [[redirects]]
