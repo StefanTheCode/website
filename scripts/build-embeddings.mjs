@@ -81,6 +81,25 @@ function gatherChunks() {
 }
 
 async function main() {
+  const provider = (process.env.EMBEDDINGS_PROVIDER || "openai").toLowerCase();
+  const hasKey =
+    provider === "voyage"
+      ? Boolean(process.env.VOYAGE_API_KEY)
+      : Boolean(process.env.OPENAI_API_KEY);
+
+  if (!hasKey) {
+    if (fs.existsSync(OUT_FILE)) {
+      console.warn(
+        `No embeddings API key set — skipping embeddings build and using existing ${OUT_FILE}.`
+      );
+      return;
+    }
+    console.warn(
+      "No embeddings API key set and no existing embeddings.json found — skipping embeddings build."
+    );
+    return;
+  }
+
   const chunks = gatherChunks();
   if (chunks.length === 0) {
     console.error("No ebook chunks found under /ebooks — nothing to embed.");
