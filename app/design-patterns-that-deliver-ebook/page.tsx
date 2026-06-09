@@ -569,8 +569,8 @@ const Ebook = () => {
         <div className="dp-wrap">
           <div className="dp-sec-head dp-center dp-reveal">
             <span className="dp-eyebrow dp-center">Built-in AI</span>
-            <h2 className="dp-sec-title">Two AI tutors, not one PDF</h2>
-            <p className="dp-sec-sub">Most pattern books are static. This one comes with AI you can actually ask — try the free one right here.</p>
+            <h2 className="dp-sec-title">AI tools, not one static PDF</h2>
+            <p className="dp-sec-sub">Most pattern books are static. This one ships with a suite of AI tools — three free for everyone, plus a tutor that knows the book. Try the free one right here.</p>
           </div>
 
           <div className="dp-ai-grid dp-reveal">
@@ -611,9 +611,17 @@ const Ebook = () => {
             </div>
           </div>
 
-          <p className="dp-ai-foot dp-center" style={{ textAlign: 'center', marginTop: 22 }}>
-            The free Pattern Picker is open to everyone. Ask the Book unlocks when you own the book.
-          </p>
+          <div className="dp-center" style={{ marginTop: 26 }}>
+            <p className="dp-ai-foot" style={{ textAlign: 'center', marginBottom: 14 }}>
+              Three free AI tools for everyone · Ask the Book unlocks when you own it.
+            </p>
+            <div className="dp-cta" style={{ justifyContent: 'center' }}>
+              <a href="/playground" className="dp-btn dp-btn-ghost">▶️ C# Playground</a>
+              <a href="/tools/pattern-comparison" className="dp-btn dp-btn-ghost">⚖️ Pattern Comparison</a>
+              <a href="/tools/interview-quiz" className="dp-btn dp-btn-ghost">🎯 Interview Quiz</a>
+              <a href="/tools" className="dp-btn dp-btn-ghost">All AI tools →</a>
+            </div>
+          </div>
         </div>
       </section>
 
