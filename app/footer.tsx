@@ -27,9 +27,10 @@ export default function Footer() {
           <div className="col-md-4 mb-4">
             <h5 className="footer-heading">Resources</h5>
             <ul className="footer-link-list">
-              <li><a href="/design-patterns-that-deliver-ebook">Design Patterns That Deliver (Ebook)</a></li>
+              <li><a href="/design-patterns-that-deliver-ebook">Design Patterns That Deliver (Course)</a></li>
               <li><a href="/design-patterns-simplified">Design Patterns Simplified (Ebook)</a></li>
               <li><a href="/pragmatic-dotnet-code-rules">Pragmatic .NET Code Rules (Course)</a></li>
+              <li><a href="/tools">Free AI Pattern Tools</a></li>
               <li><a href="/pass-your-interview">Interview Prep Kit (Free)</a></li>
               <li><a href="/about-me">About Stefan Djokic</a></li>
               <li><a href="/sponsorship">Sponsor TheCodeMan</a></li>

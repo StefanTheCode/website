@@ -72,6 +72,7 @@
 .cr-nav{position:sticky;top:0;z-index:40;background:rgba(18,1,25,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .cr-nav .cr-nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .cr-brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;color:var(--h);font-size:16px}
+.cr-brand-logo{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--line);display:block}
 .cr-glyph{font-family:'JetBrains Mono';color:var(--amber);background:rgba(255,179,27,.1);border:1px solid rgba(255,179,27,.25);border-radius:8px;padding:3px 8px;font-size:14px}
 .cr-nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500}
 .cr-nav-links a{color:var(--muted);transition:color .15s}

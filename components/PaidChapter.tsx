@@ -96,7 +96,7 @@ export default function PaidChapter({ bookSlug, chapterSlug, productUrl, summary
     e.preventDefault();
     setErr("");
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setErr("Please enter a valid email.");
-    if (key.trim().length < 3) return setErr("Enter your license key or order number.");
+    if (key.trim().length < 3) return setErr("Enter your order number or license key.");
     setBusy(true);
     try {
       const res = await fetch("/api/auth-key", {
@@ -152,6 +152,9 @@ export default function PaidChapter({ bookSlug, chapterSlug, productUrl, summary
             {summary ||
               "Unlock every chapter, the 20 runnable mini-projects, the 100 interview Q&A, and the AI tutor."}
           </p>
+          <p style={{ color: "#9C92B8", fontSize: 14, margin: "0 0 14px" }}>
+            Open the personal access link from your purchase email, or sign in here:
+          </p>
 
           <form
             onSubmit={signIn}
@@ -167,7 +170,7 @@ export default function PaidChapter({ bookSlug, chapterSlug, productUrl, summary
             <input
               style={inputStyle}
               type="text"
-              placeholder="License key or order number"
+              placeholder="Order number or license key"
               value={key}
               onChange={(ev) => setKey(ev.target.value)}
             />

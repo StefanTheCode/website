@@ -148,6 +148,27 @@ export default function Header() {
                 </a>
                 <div className={`dropdown-menu ${openDropdown === 'courses' ? 'show' : ''}`}>
                   <a className="dropdown-item" href="/pragmatic-dotnet-code-rules" onClick={closeMenu}>Pragmatic .NET Code Rules</a>
+                  <a className="dropdown-item" href="/design-patterns-that-deliver-ebook" onClick={closeMenu}>Design Patterns That Deliver</a>
+                </div>
+              </li>
+
+              <li className={`nav-item dropdown ${openDropdown === 'ai' ? 'show' : ''}`}>
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  onClick={(e) => { e.preventDefault(); toggleDropdown('ai'); }}
+                  aria-expanded={openDropdown === 'ai'}
+                >
+                  AI Tools
+                </a>
+                <div className={`dropdown-menu ${openDropdown === 'ai' ? 'show' : ''}`}>
+                  <a className="dropdown-item" href="/tools/pattern-picker" onClick={closeMenu}>Pattern Picker (Free)</a>
+                  <a className="dropdown-item" href="/tools/pattern-comparison" onClick={closeMenu}>Pattern Comparison (Free)</a>
+                  <a className="dropdown-item" href="/tools/interview-quiz" onClick={closeMenu}>Interview Quiz (Free)</a>
+                  <a className="dropdown-item" href="/playground" onClick={closeMenu}>C# Playground (soon)</a>
+                  <a className="dropdown-item" href="/tools/ask-the-book" onClick={closeMenu}>Ask the Book (Owners)</a>
+                  <a className="dropdown-item" href="/tools" onClick={closeMenu}>All AI Tools →</a>
                 </div>
               </li>
 
@@ -162,10 +183,8 @@ export default function Header() {
                   Ebooks
                 </a>
                 <div className={`dropdown-menu ${openDropdown === 'ebooks' ? 'show' : ''}`}>
-                  <a className="dropdown-item" href="/design-patterns-simplified" onClick={closeMenu}>Ebook Simplified</a>
-                  <a className="dropdown-item" href="/design-patterns-that-deliver-ebook" onClick={closeMenu}>5 Patterns Ebook</a>
-                  <a className="dropdown-item" href="/read" onClick={closeMenu}>Read Online (Web Reader)</a>
-                  <a className="dropdown-item" href="/tools/pattern-picker" onClick={closeMenu}>AI Pattern Picker (Free)</a>
+                  <a className="dropdown-item" href="/design-patterns-simplified" onClick={closeMenu}>Design Patterns Simplified</a>
+                  <a className="dropdown-item" href="/tools" onClick={closeMenu}>Free AI Tools →</a>
                 </div>
               </li>
 

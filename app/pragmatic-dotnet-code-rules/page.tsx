@@ -269,7 +269,15 @@ const CodeRules = () => {
       {/* 2. COURSE-ONLY STICKY NAV */}
       <nav className="cr-nav">
         <div className="cr-wrap cr-nav-row">
-          <a className="cr-brand" href="#cr-top"><span className="cr-glyph">&lt;/&gt;</span> Pragmatic .NET Code Rules</a>
+          <a className="cr-brand" href="/" aria-label="TheCodeMan home">
+            <Image
+              src="/images/thecodeman-logo.webp"
+              alt="Stefan Đokić"
+              width={40}
+              height={40}
+              className="cr-brand-logo"
+            />
+          </a>
           <div className="cr-nav-links">
             <a href="#cr-problem">The Problem</a>
             <a href="#cr-learn">What You Learn</a>

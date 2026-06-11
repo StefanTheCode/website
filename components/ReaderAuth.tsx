@@ -62,7 +62,7 @@ export default function ReaderAuth() {
     e.preventDefault();
     setErr("");
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setErr("Please enter a valid email.");
-    if (key.trim().length < 3) return setErr("Enter your license key or order number.");
+    if (key.trim().length < 3) return setErr("Enter your order number or license key.");
     setBusy(true);
     try {
       const res = await fetch("/api/auth-key", {
@@ -123,8 +123,8 @@ export default function ReaderAuth() {
         <div style={panel}>
           <form onSubmit={signIn}>
             <p style={{ margin: "0 0 12px", color: "#D4CDE6", fontSize: 13.5 }}>
-              Sign in with the email you bought with and your <strong>license key</strong>{" "}
-              (or <strong>order number</strong> from your receipt).
+              Use the personal access link from your purchase email, or sign in
+              here with your email and <strong>order number</strong> (from your receipt).
             </p>
             <input
               style={input}
@@ -136,7 +136,7 @@ export default function ReaderAuth() {
             <input
               style={input}
               type="text"
-              placeholder="License key or order number"
+              placeholder="Order number or license key"
               value={key}
               onChange={(e) => setKey(e.target.value)}
             />
