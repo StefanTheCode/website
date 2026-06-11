@@ -1,8 +1,7 @@
-// Step 1 of magic-link login.
-// POST /api/auth-request  { email }
-// Looks up the email's purchases in Lemon Squeezy. If they own something,
-// emails a short-lived sign-in link. Always returns the same generic response
-// so the endpoint can't be used to enumerate who bought what.
+// Step 1 of magic-link login (primary login method).
+// POST /api/auth-request  { email, returnTo? }
+// Verifies the email owns a product in Lemon Squeezy, then emails a short-lived
+// sign-in link. Always returns the same generic response (no enumeration).
 
 import { json, preflight, readJson, clientIp } from "./_shared/http.mjs";
 import { checkRateLimit } from "./_shared/ratelimit.mjs";
@@ -23,13 +22,17 @@ export default async (req, context) => {
   if (req.method === "OPTIONS") return preflight(req);
   if (req.method !== "POST") return json(req, 405, { error: "Method not allowed" });
 
-  const { email } = await readJson(req);
-  const clean = (email || "").trim().toLowerCase();
+  const body = await readJson(req);
+  const clean = (body.email || "").trim().toLowerCase();
+  const returnTo =
+    typeof body.returnTo === "string" && body.returnTo.startsWith("/") && !body.returnTo.startsWith("//")
+      ? body.returnTo
+      : undefined;
+
   if (!clean || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(clean)) {
     return json(req, 400, { error: "Please enter a valid email." });
   }
 
-  // Throttle by email and IP to prevent abuse / spam.
   const ipRl = await checkRateLimit(`authreq-ip:${clientIp(req, context)}`, 15);
   const emailRl = await checkRateLimit(`authreq-email:${clean}`, 5);
   if (!ipRl.ok || !emailRl.ok) {
@@ -42,13 +45,13 @@ export default async (req, context) => {
       const token = await sign({
         email: clean,
         ent,
+        returnTo,
         purpose: "login",
-        exp: Date.now() + 15 * 60 * 1000, // 15 minutes
+        exp: Date.now() + 15 * 60 * 1000,
       });
       const url = `${siteOrigin(req)}/api/auth-verify?token=${encodeURIComponent(token)}`;
       await sendMagicLink(clean, url);
     }
-    // else: no purchase — stay silent (generic response below).
   } catch (e) {
     return json(req, 502, { error: "Couldn't verify your purchase right now. Please try again." });
   }

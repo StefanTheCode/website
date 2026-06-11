@@ -1,6 +1,7 @@
 // Step 2 of magic-link login.
 // GET /api/auth-verify?token=...
-// Verifies the magic-link token, sets the session cookie, and redirects to /read.
+// Verifies the token, sets the session cookie, and redirects back to where the
+// user started (returnTo) or /read.
 
 import { verify, sign, sessionCookie } from "./_shared/session.mjs";
 
@@ -28,8 +29,16 @@ export default async (req) => {
     email: payload.email,
     ent: payload.ent || [],
     purpose: "session",
-    exp: Date.now() + 30 * 24 * 60 * 60 * 1000, // 30 days
+    exp: Date.now() + 30 * 24 * 60 * 60 * 1000,
   });
 
-  return redirect(`${origin}/read?login=ok`, sessionCookie(session));
+  const dest =
+    typeof payload.returnTo === "string" &&
+    payload.returnTo.startsWith("/") &&
+    !payload.returnTo.startsWith("//")
+      ? payload.returnTo
+      : "/read";
+
+  const sep = dest.includes("?") ? "&" : "?";
+  return redirect(`${origin}${dest}${sep}login=ok`, sessionCookie(session));
 };

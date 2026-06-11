@@ -118,3 +118,26 @@ export function hasFullAI(entitlements) {
   const e = new Set(entitlements || []);
   return e.has("deliver") || e.has("bundle");
 }
+
+/** Fetch a single order by its numeric id. Returns null if not found. */
+export async function getOrderById(orderId) {
+  const apiKey = process.env.LEMONSQUEEZY_API_KEY;
+  if (!apiKey) throw new Error("LEMONSQUEEZY_API_KEY is not configured");
+  const res = await fetch(`${LS_API}/orders/${encodeURIComponent(orderId)}`, {
+    headers: {
+      Accept: "application/vnd.api+json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+  });
+  if (!res.ok) return null;
+  const d = await res.json();
+  const a = d.data?.attributes || {};
+  return {
+    id: d.data?.id,
+    identifier: a.identifier,
+    email: (a.user_email || "").toLowerCase(),
+    status: (a.status || "").toLowerCase(),
+    refunded: a.refunded === true,
+    productId: String(a.first_order_item?.product_id ?? a.product_id ?? ""),
+  };
+}
