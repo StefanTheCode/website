@@ -131,7 +131,7 @@ export default function Home() {
               <div className="blog-entry text-center">
                 <h3><a href="https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-">YouTube Channel
                 </a></h3>
-                <h5> Check out the last video:</h5>
+                <h5> Check out the latest video:</h5>
                 <a href='https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-' target='_blank'  className='text-black'>
                 <h4>How to implement CQRS without MediatR in .NET?</h4>
                 <Image src={'/images/last-youtube.webp'} className='social-icon' alt={'Last YouTube video'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
@@ -143,7 +143,7 @@ export default function Home() {
                 <h3><a href="/design-patterns-that-deliver-ebook">Design Patterns ebooks
                 </a></h3>
                 <h5> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</h5>
-                <a href='/design-patterns-that-deliver-ebook' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Check out the last ebook</button></a>
+                <a href='/design-patterns-that-deliver-ebook' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>See the latest ebook</button></a>
               </div>
             </div>
 
@@ -155,7 +155,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center mb-5">
             <div className="col-md-12 heading-section text-center">
-              <p className="header-text">Recent <span className='text-yellow'> TheCodeMan.NET </span>Issues</p>
+              <p className="header-text">Recent <span className='text-yellow'> TheCodeMan.NET </span>Articles</p>
             </div>
           </div>
           <div className="row d-flex">

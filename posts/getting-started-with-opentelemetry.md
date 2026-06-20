@@ -16,7 +16,7 @@ meta_description: "OpenTelemetry is an open-source framework for observability t
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Level up your projects with FREE Clean Architecture template created by Milan Jovanovic, trusted by over 10,000 developers. Packed with features like CQRS, JWT authentication, Domain Events, and Docker support, it’s everything you need to start strong - <a href="https://www.milanjovanovic.tech/templates/clean-architecture?utm_source=stefan&utm_medium=website&utm_campaign=20.01.2024" style="color: #a5b4fc; text-decoration: underline;">download it now</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

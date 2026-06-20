@@ -16,7 +16,7 @@ meta_description: "Neon is a serverless Postgres database designed for modern cl
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- I launched my YouTube channel and built The CodeMan Community - your hub for .NET content, mini-courses, and expert advice! **The first 100 members get in for just $4/month!** 🚀 Join now and grab my first ebook for free:  - <a href="https://www.skool.com/thecodeman/about" style="color: #a5b4fc; text-decoration: underline;">Join now</a></p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

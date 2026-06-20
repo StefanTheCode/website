@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="row mb-4">
           <div className="col-md-4 mb-4">
             <h5 className="footer-heading">TheCodeMan.NET</h5>
-            <p className="footer-text">Practical .NET tutorials, architecture patterns, and C# tips by Microsoft MVP Stefan Djokic. Helping 20,000+ developers become better engineers.</p>
+            <p className="footer-text">Practical .NET tutorials, architecture patterns, and C# tips by Microsoft MVP Stefan Đokić. Helping 25,000+ developers become better engineers.</p>
             <div className="footer-social-row mt-3">
               <a href="https://www.linkedin.com/in/djokic-stefan" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">LinkedIn</a>
               <a href="https://x.com/TheCodeMan__" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="X / Twitter">X</a>

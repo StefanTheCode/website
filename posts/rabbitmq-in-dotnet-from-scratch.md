@@ -14,7 +14,7 @@ meta_description: "RabbitMQ is a message broker. Think of it like a reliable pos
 
 <p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored - I write these deep dives in my free time and keep them free for everyone. If your company sells AI tools, dev tools, courses, or services that .NET developers would actually use, sponsoring an issue is the most direct way to reach them.</p>
 
-<a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+<a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </div>
 Shape the future of .NET tooling by spending just 10 minutes on JetBrains’ .NET development market research. Fill out the survey and enter the prize draw!
 [Start now](https://surveys.jetbrains.com/s3/dotnet-development-survey-newsletters?utm_source=newsletter_the_code_man&utm_medium=cpc&utm_campaign=rider_brand_survey)

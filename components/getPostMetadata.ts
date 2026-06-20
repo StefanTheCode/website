@@ -11,6 +11,15 @@ const getPostMetadata = (): PostMetadata[] => {
   const posts = markdownPosts.map((fileName) => {
     const fileContents = fs.readFileSync(`posts/${fileName}`, "utf8");
     const matterResult = matter(fileContents);
+    const slug = fileName.replace(".md", "");
+    // Resolve the thumbnail robustly: frontmatter photoUrl wins, then an
+    // existing .webp (the current standard), then fall back to .png.
+    const resolvePhoto = (): string => {
+      const fromFrontmatter = matterResult.data.photoUrl;
+      if (fromFrontmatter) return fromFrontmatter;
+      if (fs.existsSync(`public/images/blog/${slug}.webp`)) return `/images/blog/${slug}.webp`;
+      return `/images/blog/${slug}.png`;
+    };
     return {
       newsletterTitle: matterResult.data.newsletterTitle,
       title: matterResult.data.title,
@@ -18,8 +27,8 @@ const getPostMetadata = (): PostMetadata[] => {
       subtitle: matterResult.data.subtitle,
       readTime: matterResult.data.readTime,
       category: matterResult.data.category,
-      slug: fileName.replace(".md", ""),
-      photo: `/images/blog/${fileName.replace(".md", "")}.png`
+      slug: slug,
+      photo: resolvePhoto()
     };
   });
 

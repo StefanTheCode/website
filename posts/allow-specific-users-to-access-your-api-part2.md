@@ -16,7 +16,7 @@ meta_description: "IP whitelisting is a security measure used to control access 
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Unlock Your Potential as a .NET Architect! Dive into "Software Architecture with C# 12 and .NET 8" and design scalable solutions <a href="https://packt.link/BGi5A" style="color: #a5b4fc; text-decoration: underline;">here</a>. Master software architecture fundamentals, explore cutting-edge technologies, and tackle real-world scenarios. Elevate your skills with this essential guide! Transform user requirements into robust architectures with Azure DevOps, layered designs, and more.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

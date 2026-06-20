@@ -17,7 +17,7 @@ meta_description: "Measured on .NET 10 + k6: thread pool fix gives 10.5x lower p
 <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">Most devs still use Windows Server like it's 2016. But with Server 2025 + Azure Arc, hybrid is becoming the default. If you're building APIs or distributed systems, this shift matters. Join us for <a href="https://fandf.co/3Qq5vec" target="_blank" rel="noopener noreferrer" style="color: #a5b4fc; text-decoration: underline;">Windows Server Summit 2026</a>.<br/>📅 May 11–13 · Online &nbsp;·&nbsp; <a href="https://fandf.co/3Qq5vec" target="_blank" rel="noopener noreferrer" style="color: #a5b4fc; text-decoration: underline;"><strong>Save the date</strong></a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
-Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #ffffff; background: #6366f1; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </p>
 </div>
 

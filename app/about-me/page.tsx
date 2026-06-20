@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://thecodeman.net/about-me",
   },
-  description: "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 20,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses on C#, .NET architecture, and design patterns.",
+  description: "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 25,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses on C#, .NET architecture, and design patterns.",
   openGraph: {
     title: "About Stefan Djokic - Microsoft MVP & Senior .NET Engineer",
     type: "website",
     url: "https://thecodeman.net/about-me",
-    description: "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 20,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses on C#, .NET architecture, and design patterns.",
+    description: "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 25,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses on C#, .NET architecture, and design patterns.",
   },
   twitter: {
     title: "About Stefan Djokic - Microsoft MVP & Senior .NET Engineer",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
     description:
-      "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 20,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses.",
+      "Stefan Djokic is a Microsoft MVP and senior .NET engineer who helps 25,000+ developers improve their skills through a weekly newsletter, blog, ebooks, and courses.",
   },
 };
 
@@ -154,7 +154,7 @@ export default function Page() {
                   {`Become a Better Backend Engineer`}
                 </h3>
                 <p style={{ fontSize: "16px", margin: 0 }}>
-                  {`Join 10,000+ engineers who are improving their skills every Tuesday morning`}
+                  {`Join 25,000+ engineers who are improving their skills every Monday morning`}
                 </p>
 
                 {/* EOMail Form Embed safely within a wrapping div */}
