@@ -116,10 +116,10 @@ export default function Home() {
               </div>
             </div>
             </div>
-            <div className="row text-center">
+            <div className="row text-center home-help-row">
 
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div className="blog-entry text-center">
+              <div className="blog-entry text-center home-help-card">
                 <h3><a href="/sponsorship">Promote your business to {config.NewsletterSubCount}
                 </a></h3>
                 <h5 >Looking to expand your followers, subscribers, or clientele swiftly? Feature your brand in my newsletter!
@@ -128,7 +128,7 @@ export default function Home() {
               </div>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div className="blog-entry text-center">
+              <div className="blog-entry text-center home-help-card">
                 <h3><a href="https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-">YouTube Channel
                 </a></h3>
                 <h5> Check out the latest video:</h5>
@@ -139,7 +139,7 @@ export default function Home() {
               </div>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div className="blog-entry text-center">
+              <div className="blog-entry text-center home-help-card">
                 <h3><a href="/design-patterns-that-deliver-ebook">Design Patterns ebooks
                 </a></h3>
                 <h5> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</h5>

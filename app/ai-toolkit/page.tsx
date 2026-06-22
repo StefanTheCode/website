@@ -41,9 +41,9 @@ const PRICE_ANNUAL = '$100';
 const DEMO_EMBED_URL = '';
 
 const card = {
-  border: '1px solid rgba(255,255,255,0.12)',
+  border: '1px solid var(--tk-line)',
   borderRadius: '16px',
-  background: 'rgba(255,255,255,0.03)',
+  background: 'var(--tk-card-bg)',
 } as const;
 
 const findings = [
@@ -171,7 +171,7 @@ const AiToolkit = () => {
                 {/* ── Demo video ── */}
                 <div className="row justify-content-center" data-reveal data-delay="4">
                   <div className="col-xs-12 col-sm-12 col-md-10 col-lg-9">
-                    <div style={{ position: 'relative', paddingTop: '56.25%', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.03)' }}>
+                    <div style={{ position: 'relative', paddingTop: '56.25%', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--tk-line)', background: 'var(--tk-card-bg)' }}>
                       {DEMO_EMBED_URL ? (
                         <iframe
                           src={DEMO_EMBED_URL}
@@ -242,145 +242,4 @@ const AiToolkit = () => {
               <span className="tk-eyebrow" data-reveal>What you get</span>
               <h2 className="text-white" data-reveal data-delay="1">AI tools for every part of .NET</h2>
             </div>
-            {features.map((feat, i) => (
-              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-4" key={feat.title} data-reveal data-delay={String((i % 3) + 1)}>
-                <div className="tk-card p-4 h-100" style={{ ...card, textAlign: 'left' }}>
-                  <h3 className="text-white mb-3" style={{ fontSize: '1.15rem' }}>{feat.title}</h3>
-                  <p className="text-white mb-0" style={{ fontSize: '0.95rem', opacity: 0.85 }}>{feat.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <hr className="background-yellow" />
-
-        {/* ── AI + .NET keyword section ── */}
-        <div className="container">
-          <div className="row justify-content-center pt-4">
-            <div className="col-xs-12 col-sm-12 col-md-11 col-lg-9 text-center">
-              <span className="tk-eyebrow" data-reveal>Built for the AI-powered .NET developer</span>
-              <h2 className="text-white mb-4" data-reveal data-delay="1">AI, .NET, agents, MCP and Claude - in one place</h2>
-              <p className="text-white" style={{ opacity: 0.85, lineHeight: 1.7 }} data-reveal data-delay="2">
-                This is where .NET meets modern AI. Use AI agents for C# code review and security auditing, optimize
-                Entity Framework Core queries, generate xUnit tests, wire up OpenTelemetry observability, and ship
-                cleaner ASP.NET Core services. Everything is built as Claude skills and agents, designed to fit
-                Model Context Protocol (MCP) workflows and the wider AI tooling you already use - so you can finally
-                use AI on your real .NET projects, not toy examples. And the library keeps growing every week.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <hr className="background-yellow" />
-
-        {/* ── Categories ── */}
-        <div className="container">
-          <div className="row text-center pt-4">
-            <div className="col-md-12 mb-4">
-              <span className="tk-eyebrow" data-reveal>The library</span>
-              <h2 className="text-white" data-reveal data-delay="1">Covering every part of .NET</h2>
-            </div>
-            {categories.map((name, i) => (
-              <div className="col-xs-12 col-sm-6 col-md-4 mb-3" key={name} data-reveal data-delay={String((i % 3) + 1)}>
-                <div className="tk-card p-3 text-center" style={{ ...card }}>
-                  <b className="text-white">{name}</b>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <hr className="background-yellow" />
-
-        {/* ── How it works ── */}
-        <div className="container">
-          <div className="row justify-content-center text-center pt-4">
-            <div className="col-md-12 mb-5">
-              <span className="tk-eyebrow" data-reveal>How it works</span>
-              <h2 className="text-white" data-reveal data-delay="1">From install to senior-level output</h2>
-            </div>
-            {steps.map(([title, desc], i) => (
-              <div className="col-xs-12 col-sm-12 col-md-4 mb-4" key={title} data-reveal data-delay={String(i + 1)}>
-                <div className="tk-card p-4 h-100" style={{ ...card, textAlign: 'left' }}>
-                  <div className="tk-step-num mb-1">{`STEP 0${i + 1}`}</div>
-                  <div className="tk-step-big">{`0${i + 1}`}</div>
-                  <h3 className="text-white mb-2" style={{ fontSize: '1.1rem' }}>{title}</h3>
-                  <p className="text-white mb-0" style={{ fontSize: '0.95rem', opacity: 0.85 }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <hr className="background-yellow" />
-
-        {/* ── Pricing (single plan) ── */}
-        <div className="container">
-          <div className="row justify-content-center text-center pt-4">
-            <div className="col-md-12 mb-4">
-              <span className="tk-eyebrow" data-reveal>Pricing</span>
-              <h2 className="text-white" data-reveal data-delay="1">Start free for 7 days</h2>
-              <p className="text-white" style={{ opacity: 0.85 }} data-reveal data-delay="2">Try everything free for a week. Cancel anytime.</p>
-            </div>
-
-            <div className="col-xs-12 col-sm-12 col-md-8 col-lg-5 mb-4" data-reveal>
-              <div className="tk-card tk-pop p-4 h-100" style={{ ...card, borderColor: '#ffbd39', boxShadow: '0 10px 40px rgba(255,189,57,0.12)' }}>
-                <span className="tk-badge">7-day free trial</span>
-                <div className="text-white" style={{ opacity: 0.7, textTransform: 'uppercase', letterSpacing: '0.6px', fontSize: '0.8rem' }}>Membership</div>
-                <div className="text-white" style={{ fontSize: '2.6rem', fontWeight: 900, margin: '6px 0 0' }}>{PRICE_MONTHLY}<span style={{ fontSize: '1rem', opacity: 0.7 }}>/mo</span></div>
-                <div className="text-white mb-2" style={{ opacity: 0.7, fontSize: '0.95rem' }}>or {PRICE_ANNUAL}/year</div>
-                <ul style={{ listStyle: 'none', padding: 0, textAlign: 'left', margin: '16px 0' }}>
-                  {['Access to all 50+ AI tools', 'New tools added every week', 'The local dashboard', 'The full community', '7-day free trial · cancel anytime'].map((x) => (
-                    <li key={x} className="text-white mb-2" style={{ opacity: 0.9, paddingLeft: '24px', position: 'relative' }}>
-                      <span style={{ position: 'absolute', left: 0, color: '#46d39a', fontWeight: 800 }}>✓</span>{x}
-                    </li>
-                  ))}
-                </ul>
-                <a href={TOOLKIT_URL} className="tk-btn" style={{ ...yellowBtn, display: 'block' }} target="_blank" rel="noopener" data-cta="start-trial">Start your free trial</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <hr className="background-yellow" />
-
-        {/* ── FAQ ── */}
-        <div className="container">
-          <div className="row justify-content-center pt-4">
-            <div className="col-xs-12 col-sm-12 col-md-11 col-lg-8">
-              <div className="text-center mb-4">
-                <span className="tk-eyebrow" data-reveal>FAQ</span>
-                <h2 className="text-white" data-reveal data-delay="1">AI and .NET, answered</h2>
-              </div>
-              {faqs.map(([q, a], i) => (
-                <div key={q} className="tk-card p-4 mb-3" style={{ ...card }} data-reveal data-delay={String(Math.min(i + 1, 5))}>
-                  <h3 className="text-white mb-2" style={{ fontSize: '1.05rem' }}>{q}</h3>
-                  <p className="text-white mb-0" style={{ opacity: 0.85, fontSize: '0.95rem' }}>{a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <hr className="background-yellow" />
-
-        {/* ── Final CTA ── */}
-        <div className="container">
-          <div className="row justify-content-center text-center pt-4 pb-5">
-            <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8" data-reveal>
-              <h2 className="text-white mb-3">Use AI on your real .NET code</h2>
-              <p className="text-white mb-4" style={{ opacity: 0.85 }}>Start your 7-day free trial. Cancel anytime.</p>
-              <div className="d-flex flex-wrap justify-content-center gap-3">
-                <a href={TOOLKIT_URL} className="tk-btn" style={yellowBtn} target="_blank" rel="noopener" data-cta="start-trial">Start your 7-day free trial</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-    </>
-  );
-};
-
-export default AiToolkit;
+  

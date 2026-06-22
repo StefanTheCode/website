@@ -17749,3 +17749,412 @@ nav#ftco-navbar.header-nav.ftco_navbar.scrolled.sleep {
   letter-spacing: 0.04em;
   margin: 0;
 }
+/* AI Toolkit header CTA - filled variant of .join-community-btn */
+.toolkit-cta-btn {
+  background: #ffbd39;
+  color: #2a003a !important;
+  border-color: #ffbd39;
+}
+.toolkit-cta-btn:hover {
+  background: #ffffff;
+  color: #2a003a !important;
+  border-color: #ffffff;
+}
+
+/* ============================================================
+   AI Toolkit page polish (tk-*)  - brand-colored, page-scoped
+   ============================================================ */
+.tk-eyebrow{
+  display:inline-block; font-size:.78rem; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:#ffbd39;
+  margin-bottom:12px;
+}
+.tk-hero-glow{ position:relative; }
+.tk-hero-glow::before{
+  content:""; position:absolute; left:50%; top:-40px; transform:translateX(-50%);
+  width:760px; max-width:120%; height:460px;
+  background:radial-gradient(closest-side, rgba(255,189,57,.16), transparent 72%);
+  pointer-events:none; z-index:0;
+}
+.tk-hero-glow > *{ position:relative; z-index:1; }
+
+/* scroll reveal */
+[data-reveal]{
+  opacity:0; transform:translateY(26px);
+  transition:opacity .65s cubic-bezier(.2,.7,.2,1), transform .65s cubic-bezier(.2,.7,.2,1);
+  will-change:opacity, transform;
+}
+[data-reveal].tk-in{ opacity:1; transform:none; }
+[data-reveal][data-delay="1"]{ transition-delay:.07s }
+[data-reveal][data-delay="2"]{ transition-delay:.14s }
+[data-reveal][data-delay="3"]{ transition-delay:.21s }
+[data-reveal][data-delay="4"]{ transition-delay:.28s }
+[data-reveal][data-delay="5"]{ transition-delay:.35s }
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1 !important; transform:none !important; transition:none !important; }
+}
+
+/* card hover lift + glow */
+.tk-card{ transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.tk-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,189,57,.5) !important;
+  box-shadow:0 18px 44px rgba(0,0,0,.38);
+}
+
+/* numbered steps */
+.tk-step-num{ font-family:'JetBrains Mono', monospace; font-size:.8rem; letter-spacing:.14em; color:#ffbd39; opacity:.85; }
+.tk-step-big{ font-size:3rem; font-weight:900; color:rgba(255,189,57,.16); line-height:1; margin-bottom:8px; }
+
+/* pricing highlight badge */
+.tk-pop{ position:relative; }
+.tk-badge{
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:#ffbd39; color:#2a003a; font-weight:800; font-size:.72rem;
+  letter-spacing:.06em; text-transform:uppercase; padding:5px 14px;
+  border-radius:999px; white-space:nowrap; box-shadow:0 6px 18px rgba(255,189,57,.3);
+}
+
+/* CTA shine sweep */
+.tk-btn{ position:relative; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease; }
+.tk-btn:hover{ transform:translateY(-2px); }
+.tk-btn::after{
+  content:""; position:absolute; top:0; left:-130%; width:55%; height:100%;
+  background:linear-gradient(110deg, transparent, rgba(255,255,255,.5), transparent);
+  transform:skewX(-20deg); transition:left .6s ease;
+}
+.tk-btn:hover::after{ left:150%; }
+
+/* marquee of toolkit names */
+.tk-marquee{
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.tk-marquee-track{ display:flex; gap:12px; width:max-content; animation:tk-scroll 60s linear infinite; }
+.tk-marquee:hover .tk-marquee-track{ animation-play-state:paused; }
+@keyframes tk-scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.tk-chip{
+  white-space:nowrap; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04); color:rgba(255,255,255,.82);
+  border-radius:999px; padding:8px 16px; font-size:.84rem; font-weight:600;
+  font-family:'JetBrains Mono', monospace;
+}
+@media (prefers-reduced-motion: reduce){ .tk-marquee-track{ animation:none; } }
+
+/* ============================================================
+   THEME ENGINE — dark (default) + light mode
+   Toggled via [data-theme] on <html>. The shell already routes
+   through --pg-* tokens, so flipping these switches the whole
+   site. Appended last so it wins the cascade.
+   ============================================================ */
+:root,
+:root[data-theme="dark"] {
+  --pg-page-bg: linear-gradient(90deg, #1a0224 0%, #250036 100%);
+  --pg-page-text: var(--pg-body);
+  --pg-link: #ffbd39;
+  --pg-nav-bg: #160320;
+  --pg-nav-blur: none;
+  --pg-text-white: #ffffff;
+  --pg-promo-bg: linear-gradient(90deg, #2B0A3B, #3a0d4d);
+  --pg-promo-text: #EDE4F2;
+}
+
+:root[data-theme="light"] {
+  /* Pragmatic palette, light surfaces */
+  --pg-bg: #FAF7FB;
+  --pg-raised: #FFFFFF;
+  --pg-card: #FFFFFF;
+  --pg-deep: #F2ECF6;
+  --pg-amber: #E0930A;
+  --pg-amber-bright: #B5710A;
+  --pg-amber-dim: #9A6209;
+  --pg-h: #1B0A26;
+  --pg-body: #3C2C48;
+  --pg-muted: #695777;
+  --pg-faint: #8A7B95;
+  --pg-line: rgba(26, 4, 36, 0.12);
+
+  --pg-page-bg: linear-gradient(180deg, #FBF8FD 0%, #F3ECF8 100%);
+  --pg-page-text: var(--pg-body);
+  --pg-link: #B5710A;
+  --pg-nav-bg: rgba(255, 255, 255, 0.90);
+  --pg-nav-blur: saturate(180%) blur(12px);
+  --pg-text-white: #1B0A26;
+  --pg-promo-bg: linear-gradient(90deg, #2B0A3B, #3a0d4d); /* keep dark strip */
+  --pg-promo-text: #EDE4F2;
+}
+
+/* page surface */
+body {
+  background: var(--pg-page-bg) !important;
+  color: var(--pg-page-text);
+}
+a { color: var(--pg-link); }
+a:hover, a:focus { color: var(--pg-link); }
+
+/* text helpers adapt to theme */
+.text-white { color: var(--pg-text-white) !important; }
+.header-text-feature-b { color: var(--pg-text-white) !important; }
+
+/* navbar through token (re-anchored to win over earlier overrides) */
+nav#ftco-navbar.header-nav,
+nav#ftco-navbar.header-nav.ftco_navbar,
+nav#ftco-navbar.header-nav.ftco_navbar.scrolled,
+nav#ftco-navbar.header-nav.ftco_navbar.awake,
+nav#ftco-navbar.header-nav.ftco_navbar.sleep,
+nav#ftco-navbar.header-nav.ftco_navbar.scrolled.awake,
+nav#ftco-navbar.header-nav.ftco_navbar.scrolled.sleep {
+  background-color: var(--pg-nav-bg) !important;
+  -webkit-backdrop-filter: var(--pg-nav-blur) !important;
+  backdrop-filter: var(--pg-nav-blur) !important;
+}
+
+/* announcement strip stays dark in both themes */
+.promo-bar { background: var(--pg-promo-bg) !important; }
+.promo-text { color: var(--pg-promo-text) !important; }
+
+/* light-mode readability for homepage cards/headings */
+:root[data-theme="light"] .blog-entry h5,
+:root[data-theme="light"] .heading-section h2,
+:root[data-theme="light"] .heading-section h1 { color: var(--pg-h); }
+
+/* ---- Theme toggle button (header) ---- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--pg-line);
+  color: var(--pg-amber-bright);
+  padding: 0;
+  transition: background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--pg-amber);
+  background: rgba(255, 179, 27, 0.12);
+}
+.theme-toggle svg { width: 20px; height: 20px; display: block; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+:root[data-theme="light"] .theme-toggle { background: rgba(26, 4, 36, 0.05); }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+@media (max-width: 991.98px) {
+  .theme-toggle { margin: 10px 0; }
+}
+
+/* ============================================================
+   LIGHT MODE FIXES — readable text + brand buttons
+   ============================================================ */
+
+/* Body copy + headings: force dark in light mode (the base
+   stylesheet hardcodes p/li/headings to white). */
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6,
+:root[data-theme="light"] .header-text,
+:root[data-theme="light"] .header-text-feature-b,
+:root[data-theme="light"] .header-sub-text,
+:root[data-theme="light"] .header-sub-text-join {
+  color: var(--pg-h) !important;
+}
+:root[data-theme="light"] p,
+:root[data-theme="light"] ul li,
+:root[data-theme="light"] ol li,
+:root[data-theme="light"] td,
+:root[data-theme="light"] .text-white {
+  color: var(--pg-body) !important;
+}
+
+/* Accent words stay amber (placed last so they win) */
+:root[data-theme="light"] .text-yellow,
+:root[data-theme="light"] a.text-yellow,
+:root[data-theme="light"] .text-yellow * {
+  color: var(--pg-amber-bright) !important;
+}
+/* Yellow-background sections keep dark text */
+:root[data-theme="light"] .background-yellow,
+:root[data-theme="light"] .background-yellow *,
+:root[data-theme="light"] .text-black {
+  color: #1B0A26 !important;
+}
+
+/* Primary / CTA buttons -> deep purple with yellow text */
+:root[data-theme="light"] .btn-primary,
+:root[data-theme="light"] .join-community-btn,
+:root[data-theme="light"] .toolkit-cta-btn {
+  background: #2B0A3B !important;
+  background-image: none !important;
+  border: 1px solid #2B0A3B !important;
+  color: #FFC650 !important;
+  box-shadow: 0 8px 22px rgba(43, 10, 59, 0.22) !important;
+}
+:root[data-theme="light"] .btn-primary:hover,
+:root[data-theme="light"] .btn-primary:focus,
+:root[data-theme="light"] .btn-primary:not(:disabled):not(.disabled):active,
+:root[data-theme="light"] .join-community-btn:hover,
+:root[data-theme="light"] .toolkit-cta-btn:hover {
+  background: #3a0d4d !important;
+  border-color: #3a0d4d !important;
+  color: #FFD062 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(43, 10, 59, 0.30) !important;
+}
+
+/* ============================================================
+   LIGHT MODE — links (never amber) + blog pages
+   ============================================================ */
+:root { --pg-link-hover: #ffd062; }
+:root[data-theme="dark"] { --pg-link-hover: #ffd062; }
+:root[data-theme="light"] {
+  --pg-link: #6A1B9A;        /* purple link, never yellow */
+  --pg-link-hover: #54137A;
+}
+
+/* base link color/hover follow the token */
+:root[data-theme="light"] a { color: var(--pg-link); }
+a:hover, a:focus { color: var(--pg-link-hover); }
+
+/* Blog: post-title links read as strong dark headings */
+:root[data-theme="light"] .newsletter-post-title { color: var(--pg-h) !important; }
+:root[data-theme="light"] .newsletter-post-title:hover { color: var(--pg-link) !important; }
+
+/* Homepage recent-post titles: dark, not amber */
+:root[data-theme="light"] .blog-entry h5,
+:root[data-theme="light"] .blog-entry .text-yellow { color: var(--pg-h) !important; }
+:root[data-theme="light"] .blog-entry a:hover h5 { color: var(--pg-link) !important; }
+
+/* Blog hero black band -> transparent on light */
+:root[data-theme="light"] .background-black { background-color: transparent !important; }
+
+/* Blog excerpt + sidebar divider */
+:root[data-theme="light"] .blog-content { color: var(--pg-muted) !important; }
+:root[data-theme="light"] .border-right { border-right-color: var(--pg-line) !important; }
+
+/* Blog search input -> light surface, dark text */
+:root[data-theme="light"] .blog-search-input {
+  background: #ffffff !important;
+  border: 1px solid var(--pg-line) !important;
+  color: var(--pg-h) !important;
+}
+:root[data-theme="light"] .blog-search-input::placeholder { color: var(--pg-muted) !important; }
+:root[data-theme="light"] .blog-search-input:focus {
+  border-color: var(--pg-amber) !important;
+  box-shadow: 0 0 0 4px rgba(224, 147, 10, 0.16) !important;
+}
+
+/* Inline code readable on light */
+:root[data-theme="light"] :not(pre) > code {
+  background: rgba(43, 10, 59, 0.06) !important;
+  border: 1px solid rgba(43, 10, 59, 0.15) !important;
+  color: #2B0A3B !important;
+  box-shadow: none !important;
+}
+
+/* Footer link accents -> purple, not amber, on light */
+:root[data-theme="light"] .ftco-footer .footer-link-list a:hover,
+:root[data-theme="light"] .ftco-footer .footer-view-all,
+:root[data-theme="light"] .ftco-footer .footer-social-link:hover { color: var(--pg-link) !important; }
+
+/* ============================================================
+   404 / not-found page — spaced, themed recovery buttons
+   ============================================================ */
+.not-found-container{max-width:720px;margin:0 auto;padding:90px 20px;text-align:center}
+.not-found-code{font-size:.95rem;letter-spacing:.22em;font-weight:700;color:var(--pg-link,#ffbd39);opacity:.85;text-transform:uppercase}
+.not-found-title{margin:.35em 0 .5em}
+.not-found-text{max-width:560px;margin:0 auto 2.2rem;line-height:1.6}
+.not-found-links{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+.not-found-link-primary,
+.not-found-link-secondary{display:inline-block;padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.not-found-link-primary{background:#ffbd39;color:#1a0224 !important}
+.not-found-link-primary:hover{transform:translateY(-1px);color:#1a0224 !important}
+.not-found-link-secondary{border:1px solid rgba(255,255,255,.3);color:#fff !important}
+.not-found-link-secondary:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.6)}
+:root[data-theme="light"] .not-found-link-secondary{border-color:var(--pg-line);color:var(--pg-h) !important}
+
+/* ============================================================
+   REFINEMENTS R2 — header density, blog hero, light-mode
+   categories/TOC/links/share, breadcrumb, help & home cards,
+   ai-toolkit border tokens
+   ============================================================ */
+
+/* 1. Header density — prevent nav overlap on laptop widths */
+@media (min-width:992px){
+  nav#ftco-navbar.header-nav .navbar-nav .nav-link{font-size:.9rem !important;padding-left:.5rem;padding-right:.5rem}
+  nav#ftco-navbar.header-nav .nav-join-cta{margin-left:8px}
+  nav#ftco-navbar.header-nav .join-community-btn{padding:7px 14px;font-size:.8rem}
+  nav#ftco-navbar.header-nav .brand-text .brand-name{font-size:1.05rem}
+  nav#ftco-navbar.header-nav .brand-text .brand-sub{font-size:.72rem}
+}
+@media (min-width:992px) and (max-width:1300px){
+  nav#ftco-navbar.header-nav .navbar-nav .nav-link{font-size:.8rem !important;padding-left:.38rem;padding-right:.38rem}
+  nav#ftco-navbar.header-nav .join-community-btn{padding:6px 11px;font-size:.74rem}
+  nav#ftco-navbar.header-nav .nav-join-cta{margin-left:6px}
+  nav#ftco-navbar.header-nav .theme-toggle{width:34px;height:34px}
+}
+
+/* 2. Blog hero — tighten vertical rhythm */
+.hero.background-black .header-text{line-height:1.05 !important;margin-top:0 !important;margin-bottom:0 !important}
+.hero.background-black .header-text.mtbottom20{margin-bottom:18px !important}
+
+/* 3. Blog category pills — purple in light mode (scoped) */
+:root[data-theme="light"] .blog-categories .btn-outline-yellow{color:#6A1B9A !important;border-color:#6A1B9A !important;background:transparent !important}
+:root[data-theme="light"] .blog-categories .btn-outline-yellow:hover{background:#6A1B9A !important;color:#fff !important}
+:root[data-theme="light"] .blog-categories .btn-warning{background:#6A1B9A !important;border-color:#6A1B9A !important;color:#fff !important}
+
+/* 4. Light-mode links — bold purple + underline */
+:root[data-theme="light"] .blog-content a,
+:root[data-theme="light"] .post-body a,
+:root[data-theme="light"] .help-card a,
+:root[data-theme="light"] .blog-post-content a,
+:root[data-theme="light"] article a{color:#6A1B9A !important;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+:root[data-theme="light"] .blog-content a:hover,
+:root[data-theme="light"] .post-body a:hover,
+:root[data-theme="light"] article a:hover{color:#54137A !important}
+
+/* 5. Light-mode Table of Contents */
+:root[data-theme="light"] .toc{background:#F6F1FA !important;border:1px solid rgba(26,4,36,.12) !important}
+:root[data-theme="light"] .toc-title{color:#6A1B9A !important}
+:root[data-theme="light"] .toc-item a{color:#3C2C48 !important}
+:root[data-theme="light"] .toc-item a:hover{color:#6A1B9A !important;background:rgba(106,27,154,.08) !important}
+:root[data-theme="light"] .toc-active a{color:#6A1B9A !important;border-left-color:#6A1B9A !important;background:rgba(106,27,154,.10) !important}
+
+/* 6. Light-mode share / copy-link buttons */
+:root[data-theme="light"] .share-buttons{border-top:1px solid rgba(26,4,36,.12) !important;border-bottom:1px solid rgba(26,4,36,.12) !important}
+:root[data-theme="light"] .share-btn{color:#2B0A3B !important;border:1px solid rgba(26,4,36,.22) !important;background:#F6F1FA !important}
+:root[data-theme="light"] .share-btn:hover{background:#EBE2F2 !important}
+:root[data-theme="light"] .share-btn-copy:hover{background:#6A1B9A !important;border-color:#6A1B9A !important;color:#fff !important}
+
+/* 7. Breadcrumb — more space before the title */
+.breadcrumb-nav{display:block;margin-bottom:24px}
+
+/* 8. Blog-post '3 ways I can help' — compact cards */
+.help-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);border-radius:12px;padding:20px 22px}
+.help-card-number{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#ffbd39;color:#1a0224;font-weight:700;font-size:15px;margin-bottom:10px}
+.help-card h4{font-size:1.05rem;margin-bottom:8px;line-height:1.25}
+.help-card p{font-size:.9rem;line-height:1.5;margin-bottom:8px}
+.contact-section .text-center.mb-5{margin-bottom:1.6rem !important}
+:root[data-theme="light"] .help-card{background:#fff !important;border:1px solid rgba(26,4,36,.12) !important}
+
+/* 9. Homepage 'How can I help you' — defined equal-height cards */
+.home-help-row > [class*="col-"]{display:flex}
+.home-help-card{display:flex;flex-direction:column;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:30px 26px}
+.home-help-card h3{font-size:1.3rem;margin-bottom:14px}
+.home-help-card h3 a{color:#ffbd39}
+.home-help-card h5{font-size:.95rem;line-height:1.55;flex:1 0 auto}
+.home-help-card .btn-primary{margin-top:18px !important;align-self:center}
+:root[data-theme="light"] .home-help-card{background:#fff !important;border:1px solid rgba(26,4,36,.12) !important}
+:root[data-theme="light"] .home-help-card h3 a{color:var(--pg-amber-bright) !important}
+
+/* 10. ai-toolkit — theme-aware border/surface tokens */
+:root{--tk-line:rgba(255,255,255,.12);--tk-card-bg:rgba(255,255,255,.03)}
+:root[data-theme="light"]{--tk-line:rgba(26,4,36,.15);--tk-card-bg:#ffffff}

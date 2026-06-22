@@ -325,7 +325,7 @@ const Ebook = () => {
         <div className="dp-wrap dp-cred-row">
           <span><b>Microsoft MVP</b></span><span className="dp-sep"></span>
           <span><b>{config.EbookCopiesNumber}+</b> copies sold</span><span className="dp-sep"></span>
-          <span><b>20,000+</b> newsletter readers</span><span className="dp-sep"></span>
+          <span><b>25,000+</b> newsletter readers</span><span className="dp-sep"></span>
           <span><b>102k+</b> LinkedIn</span><span className="dp-sep"></span>
           <span><b>10</b> patterns · <b>20</b> mini-projects</span><span className="dp-sep"></span>
           <span className="dp-stars">★★★★★</span>
@@ -758,7 +758,7 @@ const Ebook = () => {
             <p>I wrote this ebook because I was frustrated with pattern books that use toy examples. <b>Every pattern in this book comes from a real problem I&apos;ve solved in production code</b> - not Pizza classes, not abstract shapes.</p>
             <p>I teach {config.NewsletterSubCount} through my newsletter, and {config.LinkedinFollowers} follow my content on LinkedIn.</p>
             <div className="dp-about-stats">
-              <div><div className="dp-v">20,000+</div><div className="dp-l">Newsletter</div></div>
+              <div><div className="dp-v">25,000+</div><div className="dp-l">Newsletter</div></div>
               <div><div className="dp-v">102k+</div><div className="dp-l">LinkedIn</div></div>
               <div><div className="dp-v">8,000+</div><div className="dp-l">Twitter / X</div></div>
             </div>

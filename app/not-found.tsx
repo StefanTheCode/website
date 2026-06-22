@@ -13,8 +13,8 @@ export default function NotFound() {
             But don&apos;t worry — there&apos;s plenty of .NET content waiting for you.
           </p>
           <div className="not-found-links">
-            <Link href="/" className="not-found-link-primary">Go Home</Link>
-            <Link href="/blog" className="not-found-link-secondary">Browse Blog</Link>
+            <Link href="/" className="not-found-link-primary">Go to homepage</Link>
+            <Link href="/blog" className="not-found-link-secondary">Browse the blog</Link>
           </div>
         </div>
       </section>

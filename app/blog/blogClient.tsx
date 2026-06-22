@@ -144,7 +144,7 @@ const BlogClient = ({ allPosts }: Props) => {
           <BlogSearch query={searchQuery} onQueryChange={setSearchQuery} />
 
           {/* Category Filter */}
-          <div className="row justify-content-center mt-4">
+          <div className="row justify-content-center mt-4 blog-categories">
           <button
   className={`btn btn-sm m-2 border-radius-5px ${!selectedCategory ? 'btn-warning' : 'btn-outline-yellow'}`}
   onClick={() => selectCategory(null)}

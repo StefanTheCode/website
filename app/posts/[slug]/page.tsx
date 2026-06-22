@@ -254,6 +254,7 @@ export default async function PostPage(
               <TableOfContents />
 
               {post.content ? (
+                <div className="post-body">
                 <Markdown
                   options={{
                     overrides: {
@@ -272,6 +273,7 @@ export default async function PostPage(
                 >
                   {post.content}
                 </Markdown>
+                </div>
               ) : (
                 <p>Post content missing.</p>
               )}

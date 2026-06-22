@@ -7,9 +7,9 @@
    ============================================================ */
 
 .dp-page{
-  --bg:#140A2E; --raised:#1B1140; --card:#22184C; --deep:#0D0722;
+  --bg:#1A0424; --raised:#220630; --card:#2B0A3B; --deep:#120119;
   --amber:#FFB31B; --amber-bright:#FFC650; --amber-dim:#C98A12;
-  --h:#F3EFFA; --body:#D4CDE6; --muted:#9C92B8; --faint:#6F6690;
+  --h:#F6EFF4; --body:#D9CDE0; --muted:#A998B4; --faint:#7C6A88;
   --bad:#E2607A; --good:#5FD0A0;
   --line:rgba(255,255,255,.09);
   --maxw:1180px; --radius:18px;
@@ -60,7 +60,7 @@
 .dp-btn .dp-old{text-decoration:line-through;opacity:.5;font-size:.82em;font-weight:400;margin-left:2px}
 
 /* announcement bar */
-.dp-topbar{background:linear-gradient(90deg,#22184C,#3a1d52);border-bottom:1px solid var(--line);
+.dp-topbar{background:linear-gradient(90deg,#2B0A3B,#3a0d4d);border-bottom:1px solid var(--line);
   display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;padding:10px 18px;font-size:13.5px;color:var(--body)}
 .dp-topbar b{color:var(--amber)}
 .dp-topbar .dp-tdot{width:4px;height:4px;border-radius:50%;background:var(--faint)}
@@ -343,3 +343,10 @@
 body:has(.dp-page){padding-top:0 !important}
 body:has(.dp-page) .promo-bar{display:none !important}
 body:has(.dp-page) nav#ftco-navbar.header-nav{display:none !important}
+
+/* --- Hero visible on load + reduced-motion safety (a11y fix) --- */
+.dp-js #dp-hero .dp-reveal{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .dp-js .dp-reveal,
+  .dp-js .dp-reveal.dp-in{opacity:1 !important;transform:none !important;transition:none !important}
+}
