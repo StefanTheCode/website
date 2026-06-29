@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Script from 'next/script';
-import EbookNewsletter from '@/components/ebookTestimonials';
 import FreePreviewButton from '@/components/FreePreviewButton';
+import EbookNewsletter from '@/components/ebookTestimonials';
 import './coderules.css';
 
 export const metadata: Metadata = {
@@ -596,25 +596,19 @@ const CodeRules = () => {
             <p className="cr-sec-sub">Specific feedback from engineers who already had opinions about code quality before they bought this.</p>
           </div>
 
-          {/* Live Senja reviews widget */}
-          <EbookNewsletter />
-
-          <div className="cr-tg cr-reveal">
-            <div className="cr-tcard">
-              <span className="cr-stars">★★★★★</span>
-              <p className="cr-q">&quot;This is the most in-depth course on .NET quality that I have ever seen. Stefan explains, really in depth, how .editorconfig, props files and static code analysis work and how to set them up from scratch. I highly recommend it - it will increase your code quality, cut review time, and reduce bugs.&quot;</p>
-              <div className="cr-who"><div className="cr-av"><Image src="/images/testimonials/testimonial2.jpg" alt="Anton Martyniuk" width={46} height={46} /></div><div><div className="cr-nm">Anton Martyniuk</div><div className="cr-rl">Microsoft MVP · .NET Software Architect</div></div></div>
-            </div>
-            <div className="cr-tcard">
-              <span className="cr-stars">★★★★★</span>
-              <p className="cr-q">&quot;I really enjoyed the chapters on EditorConfig and automating code cleanup. The step-by-step explanation made the concept easy to understand. The sections on Visual Studio cleanup profiles and Git pre-commit hooks were especially useful - they show how to automate formatting without manual checks.&quot;</p>
-              <div className="cr-who"><div className="cr-av"><Image src="/images/testimonials/testimonial1.jpg" alt="Kanaiya Katarmal" width={46} height={46} /></div><div><div className="cr-nm">Kanaiya Katarmal</div><div className="cr-rl">.NET Developer</div></div></div>
-            </div>
-            <div className="cr-tcard">
-              <span className="cr-stars">★★★★★</span>
-              <p className="cr-q">&quot;Great course, for every user, even if you are starting to code. You can get a clear view of code rules. Practice with simple codes to check the desired results.&quot;</p>
-              <div className="cr-who"><div className="cr-av">O</div><div><div className="cr-nm">Oso</div><div className="cr-rl">.NET Developer</div></div></div>
-            </div>
+          {/* Live Senja reviews widget — authentic course testimonials */}
+          <div className="cr-reveal">
+            <div
+              className="senja-embed"
+              data-id="489b3774-2ef7-4c22-8d58-91df0c2a60f4"
+              data-mode="shadow"
+              data-lazyload="false"
+              style={{ display: 'block', width: '100%' }}
+            ></div>
+            <Script
+              src="https://widget.senja.io/widget/489b3774-2ef7-4c22-8d58-91df0c2a60f4/platform.js"
+              strategy="afterInteractive"
+            />
           </div>
         </div>
       </section>

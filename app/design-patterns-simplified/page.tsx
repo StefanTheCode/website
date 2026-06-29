@@ -1,5 +1,4 @@
 import config from '@/config.json'
-import EbookReviews from '@/components/ebookReviews';
 import { Metadata } from 'next';
 import Image from 'next/image'
 import Script from 'next/script';
@@ -547,34 +546,19 @@ const Ebook = () => {
             <h2 className="dp-sec-title">In their own words</h2>
             <p className="dp-sec-sub">Developers around the world learning design patterns the simple way.</p>
           </div>
+          {/* Live Senja reviews widget — authentic ebook testimonials */}
           <div className="dp-reveal">
-            <EbookReviews />
-          </div>
-          <div className="dp-tg dp-reveal">
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">I love the simplicity of how every pattern is explained. The real-life examples are an incredible way to provide context and understand why we are choosing this pattern.</p>
-              <div className="dp-who">
-                <span className="dp-av">RA</span>
-                <span><span className="dp-nm">Raul F. Aillon Salinas</span><br /><span className="dp-rl">Software Engineer</span></span>
-              </div>
-            </div>
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">This ebook shows that good technical information does not have to be buried in hundreds of pages of fluff. Exactly what a developer wants to read.</p>
-              <div className="dp-who">
-                <span className="dp-av">JO</span>
-                <span><span className="dp-nm">Jeroen Opmeer</span><br /><span className="dp-rl">.NET Developer</span></span>
-              </div>
-            </div>
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">Amazing visualizations that help a lot for a better understanding of how patterns work. I like that it mentions the pros and cons to decide which pattern suits your case.</p>
-              <div className="dp-who">
-                <span className="dp-av">SE</span>
-                <span><span className="dp-nm">Saeed Esmaeelinejad</span><br /><span className="dp-rl">Software Developer</span></span>
-              </div>
-            </div>
+            <div
+              className="senja-embed"
+              data-id="06079a0b-d21a-43dd-9387-3cfdf6b63fd0"
+              data-mode="shadow"
+              data-lazyload="false"
+              style={{ display: 'block', width: '100%' }}
+            ></div>
+            <Script
+              src="https://widget.senja.io/widget/06079a0b-d21a-43dd-9387-3cfdf6b63fd0/platform.js"
+              strategy="afterInteractive"
+            />
           </div>
         </div>
       </section>

@@ -1,5 +1,4 @@
 import config from '@/config.json'
-import EbookNewsletter from '@/components/ebookTestimonials';
 import PatternPicker from '@/components/PatternPicker';
 import { Metadata } from 'next';
 import Image from 'next/image'
@@ -374,7 +373,7 @@ const Ebook = () => {
             <span className="dp-stars dp-spot-stars">★★★★★</span>
             <blockquote className="dp-spot-q">&quot;A quick and enjoyable read about the most important design patterns in C#. The examples were <span className="dp-amber">refreshing</span>, and I especially liked being able to access the source code. If you&apos;re just starting or need a refresher, <span className="dp-amber">this book will be your design patterns companion.</span>&quot;</blockquote>
             <div className="dp-spot-who">
-              <div className="dp-spot-av">MJ</div>
+              <div className="dp-spot-av"><Image src="/images/testimonials/testimonial3.jpg" alt="Milan Jovanović, Microsoft MVP" width={56} height={56} /></div>
               <div className="dp-spot-meta">
                 <div className="dp-spot-nm">Milan Jovanović</div>
                 <div className="dp-spot-rl">Microsoft MVP · Creator of Pragmatic Clean Architecture</div>
@@ -706,39 +705,19 @@ const Ebook = () => {
             <p className="dp-sec-sub">Real feedback from engineers - from juniors to Microsoft MVPs - who put this ebook to work.</p>
           </div>
 
-          <EbookNewsletter />
-
-          <div className="dp-tg dp-reveal">
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">&quot;Design Patterns ebook is a quick and enjoyable read about the most important design patterns in C#. The examples were refreshing, and I especially liked being able to access the source code. If you&apos;re just starting or need a refresher, this book will be your design patterns companion.&quot;</p>
-              <div className="dp-who"><div className="dp-av">MJ</div><div><div className="dp-nm">Milan Jovanović</div><div className="dp-rl">Microsoft MVP</div></div></div>
-            </div>
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">&quot;I love the simplicity of how every pattern is explained. The real-life examples are an incredible way to provide context and understand why we are choosing this pattern. By providing the writer&apos;s point of view we can evaluate the pros and cons and decide which is better for our particular use case.&quot;</p>
-              <div className="dp-who"><div className="dp-av">RA</div><div><div className="dp-nm">Raul Fernando Aillon Salinas</div><div className="dp-rl">Software Developer</div></div></div>
-            </div>
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">&quot;This ebook shows that good technical information doesn&apos;t have to be buried in hundreds of pages of fluff. Exactly what a developer wants to read - core information on what a specific technology is about and how to apply it.&quot;</p>
-              <div className="dp-who"><div className="dp-av">JO</div><div><div className="dp-nm">Jeroen Opmeer</div><div className="dp-rl">C#/.NET Senior Developer</div></div></div>
-            </div>
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">&quot;Each pattern is explained step by step, with access to a GitHub repository, making it easy for everyone to grasp the material. A genuinely practical take on design patterns in C#.&quot;</p>
-              <div className="dp-who"><div className="dp-av">NK</div><div><div className="dp-nm">Nikola Knezević</div><div className="dp-rl">Software Developer, Content Creator</div></div></div>
-            </div>
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">&quot;It&apos;s amazing, with nice visualization which helps a lot for a better understanding of how patterns work. One of the points I like is mentioning the Pros and Cons - they help you decide which pattern is suitable for your case.&quot;</p>
-              <div className="dp-who"><div className="dp-av">SE</div><div><div className="dp-nm">Saeed Esmaeelinejad</div><div className="dp-rl">Senior Software Engineer</div></div></div>
-            </div>
-            <div className="dp-tcard">
-              <span className="dp-stars">★★★★★</span>
-              <p className="dp-q">&quot;This book is a very fun and interesting way to get into the world of design patterns. It also has everything you need to start applying those patterns in your application. Highly recommended.&quot;</p>
-              <div className="dp-who"><div className="dp-av">SM</div><div><div className="dp-nm">Stefan Milošević</div><div className="dp-rl">Senior Software Engineer</div></div></div>
-            </div>
+          {/* Live Senja reviews widget — authentic ebook testimonials */}
+          <div className="dp-reveal">
+            <div
+              className="senja-embed"
+              data-id="c9c1f621-7173-45e3-9313-1f6413693e80"
+              data-mode="shadow"
+              data-lazyload="false"
+              style={{ display: 'block', width: '100%' }}
+            ></div>
+            <Script
+              src="https://widget.senja.io/widget/c9c1f621-7173-45e3-9313-1f6413693e80/platform.js"
+              strategy="afterInteractive"
+            />
           </div>
         </div>
       </section>

@@ -305,3 +305,10 @@
 body:has(.cr-page){padding-top:0 !important}
 body:has(.cr-page) .promo-bar{display:none !important}
 body:has(.cr-page) nav#ftco-navbar.header-nav{display:none !important}
+
+/* --- Hero visible on load + reduced-motion safety (a11y fix) --- */
+.cr-js #cr-hero .cr-reveal{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .cr-js .cr-reveal,
+  .cr-js .cr-reveal.cr-in{opacity:1 !important;transform:none !important;transition:none !important}
+}
