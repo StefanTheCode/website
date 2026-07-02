@@ -33,7 +33,16 @@ async function loadRunner(): Promise<(code: string) => Promise<RunResult>> {
     // to itself, so pointing here loads the whole runtime from /dotnet/_framework/.
     const mod: any = await dynamicImport("/dotnet/_framework/dotnet.js");
     const dotnet = mod.dotnet;
-    const { getAssemblyExports, getConfig } = await dotnet.create();
+    // Skip Subresource-Integrity verification of the boot resources. The hashes
+    // in blazor.boot.json are computed at build time over the exact bytes; git
+    // end-of-line normalization can rewrite the text-based runtime files
+    // (dotnet.native.js, etc.) on deploy so the bytes — and thus the hashes — no
+    // longer match, which makes the runtime refuse to load in production while
+    // still working locally. Disabling the check sidesteps that entirely; the
+    // files are served from our own origin, so integrity adds nothing here.
+    const { getAssemblyExports, getConfig } = await dotnet
+      .withConfig({ disableIntegrityCheck: true })
+      .create();
     const config = getConfig();
     const exports = await getAssemblyExports(config.mainAssemblyName);
 
