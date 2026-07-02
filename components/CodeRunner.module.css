@@ -1,0 +1,87 @@
+/* ============================================================
+   CodeRunner — in-browser C# editor + .NET WASM runner.
+   Dark/amber theme, matching the reader & tools.
+   ============================================================ */
+.shell {
+  --bg:#0D0722; --card:#22184C; --raised:#1B1140;
+  --amber:#FFB31B; --amber-bright:#FFC650;
+  --h:#F3EFFA; --body:#D4CDE6; --muted:#9C92B8; --faint:#6F6690;
+  --good:#5FD0A0; --bad:#E2607A;
+  --line:rgba(255,255,255,.10);
+
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  background:var(--bg);
+  font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin:22px 0;
+  box-shadow:0 18px 50px rgba(13,7,34,.35);
+}
+
+.toolbar {
+  display:flex; align-items:center; gap:10px;
+  padding:9px 14px;
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.02);
+}
+.dots { display:flex; gap:7px; }
+.dots i { width:11px; height:11px; border-radius:50%; display:block; }
+.dots i:nth-child(1){ background:#E2607A } .dots i:nth-child(2){ background:var(--amber) } .dots i:nth-child(3){ background:var(--good) }
+.lang { margin-left:6px; font-size:12px; color:var(--muted); letter-spacing:.04em; }
+.actions { margin-left:auto; display:flex; gap:8px; }
+.btn {
+  font-family:'Space Grotesk', system-ui, sans-serif;
+  font-size:13px; font-weight:600; cursor:pointer;
+  border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--h);
+  padding:7px 13px; border-radius:9px; transition:transform .12s, border-color .12s, background .12s;
+}
+.btn:hover:not(:disabled){ transform:translateY(-1px); border-color:rgba(255,179,27,.4); }
+.btn:disabled{ opacity:.5; cursor:default; }
+.btnRun {
+  background:linear-gradient(180deg,var(--amber-bright),var(--amber));
+  color:#2a1500; border:none;
+  box-shadow:0 8px 20px rgba(255,179,27,.22);
+}
+.btnRun:hover:not(:disabled){ transform:translateY(-1px); box-shadow:0 12px 28px rgba(255,179,27,.34); }
+
+.editorWrap { display:flex; max-height:460px; overflow:auto; background:var(--bg); }
+.gutter {
+  user-select:none; text-align:right; padding:14px 10px 14px 14px;
+  color:var(--faint); font-size:13px; line-height:1.55; background:rgba(0,0,0,.18);
+  border-right:1px solid var(--line); white-space:pre;
+}
+.textarea {
+  flex:1; border:0; outline:0; resize:vertical;
+  min-height:160px; padding:14px 16px;
+  background:transparent; color:#E7E2F5;
+  font-family:inherit; font-size:13px; line-height:1.55; tab-size:4;
+  white-space:pre; overflow-wrap:normal;
+}
+.textarea::placeholder { color:var(--faint); }
+
+.output { border-top:1px solid var(--line); background:rgba(0,0,0,.22); }
+.outHead {
+  display:flex; align-items:center; gap:8px;
+  padding:8px 14px; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+}
+.spinner {
+  width:11px; height:11px; border-radius:50%;
+  border:2px solid rgba(255,179,27,.3); border-top-color:var(--amber);
+  animation:cr-spin .7s linear infinite;
+}
+@keyframes cr-spin { to { transform:rotate(360deg); } }
+.outBody {
+  margin:0; padding:0 16px 16px; font-size:13px; line-height:1.55;
+  color:var(--body); white-space:pre-wrap; word-break:break-word; max-height:240px; overflow:auto;
+}
+.outBody.err { color:#ffc9d3; }
+.outEmpty { color:var(--faint); }
+
+.banner {
+  display:flex; gap:10px; align-items:flex-start;
+  padding:12px 14px; font-family:'Manrope', system-ui, sans-serif;
+  font-size:13px; color:var(--body); background:rgba(255,179,27,.06);
+  border-top:1px solid var(--line);
+}
+.banner a { color:var(--amber); text-decoration:none; }
+.banner a:hover { text-decoration:underline; }

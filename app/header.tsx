@@ -173,7 +173,7 @@ export default function Header() {
                   <a className="dropdown-item" href="/tools/pattern-picker" onClick={closeMenu}>Pattern Picker (Free)</a>
                   <a className="dropdown-item" href="/tools/pattern-comparison" onClick={closeMenu}>Pattern Comparison (Free)</a>
                   <a className="dropdown-item" href="/tools/interview-quiz" onClick={closeMenu}>Interview Quiz (Free)</a>
-                  <a className="dropdown-item" href="/playground" onClick={closeMenu}>C# Playground (soon)</a>
+                  <a className="dropdown-item" href="/playground" onClick={closeMenu}>C# Playground (Free)</a>
                   <a className="dropdown-item" href="/tools/ask-the-book" onClick={closeMenu}>Ask the Book (Owners)</a>
                   <a className="dropdown-item" href="/tools" onClick={closeMenu}>All AI Tools →</a>
                 </div>

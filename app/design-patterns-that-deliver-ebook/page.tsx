@@ -615,7 +615,7 @@ const Ebook = () => {
               Three free AI tools for everyone · Ask the Book unlocks when you own it.
             </p>
             <div className="dp-cta" style={{ justifyContent: 'center' }}>
-              <a href="/playground" className="dp-btn dp-btn-ghost">▶️ C# Playground (soon)</a>
+              <a href="/playground" className="dp-btn dp-btn-ghost">▶️ C# Playground</a>
               <a href="/tools/pattern-comparison" className="dp-btn dp-btn-ghost">⚖️ Pattern Comparison</a>
               <a href="/tools/interview-quiz" className="dp-btn dp-btn-ghost">🎯 Interview Quiz</a>
               <a href="/tools" className="dp-btn dp-btn-ghost">All AI tools →</a>

@@ -22,6 +22,10 @@
 [functions."content-chapter"]
   included_files = ["ebooks/**"]
 
+# Bundle the downloadable PDFs/EPUBs only with the download function.
+[functions."download"]
+  included_files = ["protected/**"]
+
 # Clean URLs for the AI endpoints: /api/<tool> -> /.netlify/functions/<tool>
 [[redirects]]
   from = "/api/*"

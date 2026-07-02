@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllBooks, getBook } from "@/components/getEbookData";
 import ReaderAuth from "@/components/ReaderAuth";
+import ResourcesPanel from "@/components/ResourcesPanel";
 import "../reader.css";
 
 export function generateStaticParams() {
@@ -69,6 +70,8 @@ export default async function BookHome(
             {book.author ? ` · ${book.author}` : ""}
           </p>
         </div>
+
+        <ResourcesPanel bookSlug={book.slug} />
 
         <ol className="rd-toc">
           {book.chapters.map((c) => {

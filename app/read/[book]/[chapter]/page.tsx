@@ -10,6 +10,7 @@ import {
   getChapterHeadings,
 } from "@/components/getEbookData";
 import ShikiCode from "@/components/ShikiCode";
+import CodeRunner from "@/components/CodeRunner";
 import ReadingProgress from "@/components/ReadingProgress";
 import Mermaid from "@/components/Mermaid";
 import { mermaidToDivs } from "@/components/mermaidPrep";
@@ -149,6 +150,13 @@ export default async function ChapterPage(
                                 : props.children;
                               const className = child?.props?.className ?? "";
                               const code = child?.props?.children ?? "";
+                              // A code block whose first line is "// playground" becomes
+                              // an interactive, runnable editor (in-browser .NET WASM).
+                              const codeStr = Array.isArray(code) ? code.join("") : String(code ?? "");
+                              if (codeStr.trimStart().startsWith("// playground")) {
+                                const clean = codeStr.replace(/^\s*\/\/ playground[^\n]*\n/, "");
+                                return <CodeRunner initialCode={clean} />;
+                              }
                               return <ShikiCode className={className} code={code} />;
                             },
                           },

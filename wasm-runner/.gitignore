@@ -1,0 +1,6 @@
+# .NET build artifacts — do NOT commit these.
+bin/
+obj/
+
+# The PUBLISHED runtime lives in ../public/dotnet/ and SHOULD be committed
+# (that's what the website serves). See README.md.

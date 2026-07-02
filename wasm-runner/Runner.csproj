@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    In-browser C# runner for the TheCodeMan playground.
+    Publishes to WebAssembly and exposes a [JSExport] Run(code) that compiles
+    and executes arbitrary self-contained C# via Roslyn scripting.
+
+    Build with ./build-wasm.sh  (or see README.md). Output goes to ../public/dotnet/.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>Runner</AssemblyName>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <!-- Keep the interpreter (Roslyn can't run under AOT) and don't trim away
+         the compiler / reference assemblies. Invariant globalization trims ICU. -->
+    <RunAOTCompilation>false</RunAOTCompilation>
+    <PublishTrimmed>false</PublishTrimmed>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <WasmEnableThreads>false</WasmEnableThreads>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Roslyn scripting: compile + execute C# at runtime. -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.9.2" />
+    <!-- Reference assemblies bundled as embedded resources so scripts have
+         something to compile against inside the browser sandbox (no file system). -->
+    <PackageReference Include="Basic.Reference.Assemblies.Net80" Version="1.7.0" />
+  </ItemGroup>
+
+</Project>
