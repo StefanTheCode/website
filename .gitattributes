@@ -1,0 +1,12 @@
+# The .NET WebAssembly runtime under public/dotnet/ is integrity-checked against
+# SHA-256 hashes in blazor.boot.json. Git end-of-line normalization (autocrlf)
+# would rewrite the text-based files (dotnet.native.js, blazor.boot.json, ...),
+# changing their bytes so the hashes no longer match — which makes the runtime
+# refuse to load in production while still working locally. Treat every file in
+# that folder as binary so git preserves the exact bytes.
+public/dotnet/** binary
+
+# Belt-and-suspenders: never normalize the WASM app-bundle asset types anywhere.
+*.wasm binary
+*.dat binary
+*.blat binary
