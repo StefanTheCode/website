@@ -40,3 +40,376 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+access-links.csv
+
+/docs/Design Patterns/design-patterns-simplified/Design Patterns.pdf
+/docs/Design Patterns/design-patterns-that-deliver-ebook/Design Patterns That Deliver - Dark mode.pdf
+/docs/Design Patterns/design-patterns-that-deliver-ebook/Design Patterns That Deliver - Light mode.pdf
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/DesignPatterns/DesignTimeBuild/.dtbcache.v2
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/DesignPatterns/v17/.futdcache.v2
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/DesignPatterns/v17/.suo
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/DesignPatterns/v17/DocumentLayout.backup.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/DesignPatterns/v17/DocumentLayout.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/ProjectEvaluation/designpatterns.metadata.v9.bin
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/ProjectEvaluation/designpatterns.projects.v9.bin
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/.vs/ProjectEvaluation/designpatterns.strings.v9.bin
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/AdapterPattern.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/AdapterPattern.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/AdapterPattern.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/AdapterPattern.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/Debug/net8.0/AdapterPattern.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/Debug/net8.0/AdapterPattern.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/Debug/net8.0/AdapterPattern.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/Debug/net8.0/AdapterPattern.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/Debug/net8.0/AdapterPattern.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/AdapterPattern/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/BuilderFluentValidation (Full version Only).csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/BuilderFluentValidation (Full version Only).csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/BuilderFluentValidation (Full version Only).csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/BuilderFluentValidation (Full version Only).csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/Debug/net8.0/BuilderFluentValidation (Full version Only).AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/Debug/net8.0/BuilderFluentValidation (Full version Only).AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/Debug/net8.0/BuilderFluentValidation (Full version Only).assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/Debug/net8.0/BuilderFluentValidation (Full version Only).csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/Debug/net8.0/BuilderFluentValidation (Full version Only).GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/Debug/net8.0/BuilderFluentValidation (Full version Only).GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/BuilderFluentValidation/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/ClassAdapter.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/ClassAdapter.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/ClassAdapter.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/ClassAdapter.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/Debug/net8.0/ClassAdapter.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/Debug/net8.0/ClassAdapter.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/Debug/net8.0/ClassAdapter.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/Debug/net8.0/ClassAdapter.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/Debug/net8.0/ClassAdapter.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ClassAdapter/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/bin/Debug/net8.0/CleanBuilder.deps.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/bin/Debug/net8.0/CleanBuilder.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/bin/Debug/net8.0/CleanBuilder.exe
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/bin/Debug/net8.0/CleanBuilder.pdb
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/bin/Debug/net8.0/CleanBuilder.runtimeconfig.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/Builder/IUrlBuilder.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/CleanBuilder.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/ConcreteBuilder/UrlBuilder.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/Director/UrlDirector.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/CleanBuilder.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/CleanBuilder.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/CleanBuilder.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/apphost.exe
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.csproj.BuildWithSkipAnalyzers
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.csproj.CoreCompileInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.csproj.FileListAbsolute.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.genruntimeconfig.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/CleanBuilder.pdb
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/ref/CleanBuilder.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/Debug/net8.0/refint/CleanBuilder.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/Product/URL.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanBuilder/Program.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/CleanDecorator.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/CleanDecorator.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/CleanDecorator.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/CleanDecorator.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/Debug/net8.0/CleanDecorator.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/Debug/net8.0/CleanDecorator.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/Debug/net8.0/CleanDecorator.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/Debug/net8.0/CleanDecorator.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/Debug/net8.0/CleanDecorator.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CleanDecorator/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/CloudProvidersIntegration.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/CloudProvidersIntegration.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/CloudProvidersIntegration.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/CloudProvidersIntegration.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/CloudProvidersIntegration.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/CloudProvidersIntegration.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/CloudProvidersIntegration.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/CloudProvidersIntegration.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/CloudProvidersIntegration.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/CloudProvidersIntegration.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/CloudProvidersIntegration.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CloudProvidersIntegration/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/ComposingDecorators.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/ComposingDecorators.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/ComposingDecorators.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/ComposingDecorators.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/ComposingDecorators.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/ComposingDecorators.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/ComposingDecorators.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/ComposingDecorators.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/ComposingDecorators.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/ComposingDecorators.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/ComposingDecorators.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ComposingDecorators/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/CrossCuttingConcerns.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/CrossCuttingConcerns.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/CrossCuttingConcerns.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/CrossCuttingConcerns.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/CrossCuttingConcerns.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/CrossCuttingConcerns.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/CrossCuttingConcerns.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/CrossCuttingConcerns.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/CrossCuttingConcerns.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/CrossCuttingConcerns.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/CrossCuttingConcerns.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/CrossCuttingConcerns/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/DesignPatterns.sln
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/EventAggregation.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/EventAggregation.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/EventAggregation.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/EventAggregation.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/EventAggregation.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/EventAggregation.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/EventAggregation.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/EventAggregation.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/EventAggregation.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/EventAggregation.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/EventAggregation.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/EventAggregation/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/bin/Debug/net8.0/FluentBuilderPattern.deps.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/bin/Debug/net8.0/FluentBuilderPattern.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/bin/Debug/net8.0/FluentBuilderPattern.exe
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/bin/Debug/net8.0/FluentBuilderPattern.pdb
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/bin/Debug/net8.0/FluentBuilderPattern.runtimeconfig.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/Builder/ProductUrlBuilder.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/FluentBuilderPattern.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/apphost.exe
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.csproj.BuildWithSkipAnalyzers
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.csproj.CoreCompileInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.csproj.FileListAbsolute.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.genruntimeconfig.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/FluentBuilderPattern.pdb
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/ref/FluentBuilderPattern.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/Debug/net8.0/refint/FluentBuilderPattern.dll
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/FluentBuilderPattern.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/FluentBuilderPattern.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/FluentBuilderPattern.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/Product/URL.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentBuilderPattern/Program.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/FluentValidation/FluentValidation.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/MediatorPattern.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/Debug/net8.0/MediatorPattern.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/Debug/net8.0/MediatorPattern.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/Debug/net8.0/MediatorPattern.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/Debug/net8.0/MediatorPattern.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/Debug/net8.0/MediatorPattern.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/MediatorPattern.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/MediatorPattern.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/MediatorPattern.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorPattern/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/MediatorWithMediatR.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/MediatorWithMediatR.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/MediatorWithMediatR.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/MediatorWithMediatR.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/MediatorWithMediatR.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/MediatorWithMediatR.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/MediatorWithMediatR.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/MediatorWithMediatR.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/MediatorWithMediatR.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/MediatorWithMediatR.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/MediatorWithMediatR.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/MediatorWithMediatR/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/NestedBuilders (Full version Only).csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/Debug/net8.0/NestedBuilders (Full version Only).AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/Debug/net8.0/NestedBuilders (Full version Only).AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/Debug/net8.0/NestedBuilders (Full version Only).assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/Debug/net8.0/NestedBuilders (Full version Only).GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/Debug/net8.0/NestedBuilders (Full version Only).GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/NestedBuilders (Full version Only).csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/NestedBuilders (Full version Only).csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/NestedBuilders (Full version Only).csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/NestedBuilders/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/Debug/net8.0/ObjectAdapter.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/Debug/net8.0/ObjectAdapter.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/Debug/net8.0/ObjectAdapter.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/Debug/net8.0/ObjectAdapter.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/Debug/net8.0/ObjectAdapter.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/ObjectAdapter.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/ObjectAdapter.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/ObjectAdapter.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ObjectAdapter/ObjectAdapter.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/ResilientAPIService.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/ResilientAPIService.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/ResilientAPIService.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/ResilientAPIService.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/ResilientAPIService.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/ResilientAPIService.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/ResilientAPIService.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/ResilientAPIService.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/obj/ResilientAPIService.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/ResilientAPIService.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/ResilientAPIService/ResilientAPIService.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/Debug/net8.0/StepBuilder (Full version Only).AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/Debug/net8.0/StepBuilder (Full version Only).AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/Debug/net8.0/StepBuilder (Full version Only).assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/Debug/net8.0/StepBuilder (Full version Only).GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/Debug/net8.0/StepBuilder (Full version Only).GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/StepBuilder (Full version Only).csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/StepBuilder (Full version Only).csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/obj/StepBuilder (Full version Only).csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StepBuilder/StepBuilder (Full version Only).csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/Debug/net8.0/StrategyPattern.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/Debug/net8.0/StrategyPattern.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/Debug/net8.0/StrategyPattern.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/Debug/net8.0/StrategyPattern.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/Debug/net8.0/StrategyPattern.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/StrategyPattern.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/StrategyPattern.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/obj/StrategyPattern.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPattern/StrategyPattern.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/StrategyPatternConfigurationSettings.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/StrategyPatternConfigurationSettings.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/StrategyPatternConfigurationSettings.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/StrategyPatternConfigurationSettings.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/StrategyPatternConfigurationSettings.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/Debug/net8.0/StrategyPatternConfigurationSettings.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/StrategyPatternConfigurationSettings.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/StrategyPatternConfigurationSettings.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/obj/StrategyPatternConfigurationSettings.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/StrategyPatternConfigurationSettings.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPatternConfigurationSettings/StrategyPatternConfigurationSettings.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/StrategyPaymentGatewayWithFactory.AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/StrategyPaymentGatewayWithFactory.AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/StrategyPaymentGatewayWithFactory.assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/StrategyPaymentGatewayWithFactory.csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/StrategyPaymentGatewayWithFactory.GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/Debug/net8.0/StrategyPaymentGatewayWithFactory.GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/StrategyPaymentGatewayWithFactory.csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/StrategyPaymentGatewayWithFactory.csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/obj/StrategyPaymentGatewayWithFactory.csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/StrategyPaymentGatewayWithFactory.csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/StrategyPaymentGatewayWithFactory/StrategyPaymentGatewayWithFactory.csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/rpswa.dswa.cache.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/staticwebassets.removed.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/UrlBuilder (Full version Only).AssemblyInfo.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/UrlBuilder (Full version Only).AssemblyInfoInputs.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/UrlBuilder (Full version Only).assets.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/UrlBuilder (Full version Only).csproj.AssemblyReference.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/UrlBuilder (Full version Only).GeneratedMSBuildEditorConfig.editorconfig
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/Debug/net8.0/UrlBuilder (Full version Only).GlobalUsings.g.cs
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/project.assets.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/project.nuget.cache
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/UrlBuilder (Full version Only).csproj.nuget.dgspec.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/UrlBuilder (Full version Only).csproj.nuget.g.props
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/obj/UrlBuilder (Full version Only).csproj.nuget.g.targets
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/Properties/launchSettings.json
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/UrlBuilder (Full version Only).csproj
+/docs/Design Patterns/design-patterns-that-deliver-ebook/DesignPatterns/UrlBuilder/UrlBuilder (Full version Only).csproj.user
+/docs/Design Patterns/design-patterns-that-deliver-ebook/EPUB Format/Design Patterns That Deliver - Dark mode.epub
+/docs/Design Patterns/design-patterns-that-deliver-ebook/EPUB Format/Design Patterns That Deliver - Light mode.epub
+/docs/Design Patterns/design-patterns-that-deliver-ebook/EPUB Format/Interview Questions - Dark mode.epub
+/docs/Design Patterns/design-patterns-that-deliver-ebook/EPUB Format/Interview Questions - Light mode.epub
+/docs/Design Patterns/design-patterns-that-deliver-ebook/Interview Questions - Dark mode.pdf
+/docs/Design Patterns/design-patterns-that-deliver-ebook/Interview Questions - Light mode.pdf
+/docs/Design Patterns/design-patterns-that-deliver-ebook/Other languages/READ ME.txt
+/docs/Design Patterns/design-patterns-that-deliver-ebook/README.md
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/FileContentIndex/54d24534-1ddd-422f-8127-d47ccedfe67c.vsidx
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/FileContentIndex/8d924e40-f5e0-40e4-bc58-c616205cb841.vsidx
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/FileContentIndex/8f4235e0-5196-4fb9-9541-98d0ba14ddbc.vsidx
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/FileContentIndex/b344ca4b-4819-4f33-b7c6-59aadb908a3c.vsidx
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/FileContentIndex/de1eaf38-5244-42b1-9463-bc78a3e40592.vsidx
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/v18/.futdcache.v2
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/v18/.suo
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/v18/TestStore/0/000.testlog
+/samples/production-scaling-lab/src/ProductionScalingLab.Api/.vs/ProductionScalingLab.Api.slnx/v18/TestStore/0/testlog.manifest
+/write-blog-full/assets/newsletter_template.html
+/write-blog-full/scripts/__pycache__/extract_post.cpython-310.pyc
+/write-blog-full/scripts/__pycache__/finalize.cpython-310.pyc
+/write-blog-full/scripts/__pycache__/prepare.cpython-310.pyc
+/write-blog-full/scripts/extract_post.py
+/write-blog-full/scripts/finalize.py
+/write-blog-full/scripts/prepare.py
+/write-blog-full/SKILL.md
+/.write-blog-skill/write-blog/SKILL.md
+/ebooks/design-patterns-that-deliver/_RECENZIJA-design-patterns.md
+/ebooks/design-patterns-that-deliver/01-builder.md
+/generate-blog-header/scripts/prepare.py
+/generate-blog-header/SKILL.md
+/newsletter/ai-agents-for-dotnet-security-and-ef-core.html
+/newsletter/capacity-planning-for-dotnet-apis-email.html
+/newsletter/keyed-services-in-dotnet-dependency-injection.html
+/newsletter/online-launch/email-1-upsell-simplified-buyers.html
+/newsletter/online-launch/email-2-deliver-owners-update.html
+/newsletter/online-launch/email-3-newsletter-announcement.html

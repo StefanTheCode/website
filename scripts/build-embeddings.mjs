@@ -135,5 +135,11 @@ async function main() {
 
 main().catch((e) => {
   console.error(e);
+  // Never fail a deploy over embeddings: the committed embeddings.json is the
+  // source of truth at runtime. Only hard-fail if we have nothing to fall back to.
+  if (fs.existsSync(OUT_FILE)) {
+    console.warn(`Embeddings build failed — keeping existing ${OUT_FILE}.`);
+    process.exit(0);
+  }
   process.exit(1);
 });
