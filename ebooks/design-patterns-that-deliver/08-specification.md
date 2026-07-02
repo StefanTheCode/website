@@ -162,6 +162,53 @@ WHERE [p].[IsActive] = CAST(1 AS bit)
 
 If instead you saw EF Core warn about client evaluation - or throw *"could not be translated"* - that's the signature of the `Invoke` mistake. Capture the generated SQL once (`.ToQueryString()` on the `IQueryable`) and eyeball it; it's the fastest way to confirm a spec stays server-side.
 
+## Try it — run it live
+
+This example is self-contained (in-memory, no EF Core), so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+var sellable = new ActiveSpec().And(new InStockSpec());
+
+Console.WriteLine(sellable.IsSatisfiedBy(new Product(true, 5)));   // True
+Console.WriteLine(sellable.IsSatisfiedBy(new Product(true, 0)));   // False - out of stock
+Console.WriteLine(sellable.IsSatisfiedBy(new Product(false, 5)));  // False - inactive
+
+public record Product(bool IsActive, int Stock);
+
+public abstract class Spec<T>
+{
+    public abstract Expression<Func<T, bool>> ToExpr();
+    public bool IsSatisfiedBy(T x) => ToExpr().Compile()(x);
+    public Spec<T> And(Spec<T> other) => new AndSpec<T>(this, other);
+}
+
+public sealed class ActiveSpec : Spec<Product>
+{
+    public override Expression<Func<Product, bool>> ToExpr() => p => p.IsActive;
+}
+
+public sealed class InStockSpec : Spec<Product>
+{
+    public override Expression<Func<Product, bool>> ToExpr() => p => p.Stock > 0;
+}
+
+public sealed class AndSpec<T> : Spec<T>
+{
+    private readonly Spec<T> _l, _r;
+    public AndSpec(Spec<T> l, Spec<T> r) { _l = l; _r = r; }
+
+    public override Expression<Func<T, bool>> ToExpr()
+    {
+        var p = Expression.Parameter(typeof(T));
+        var body = Expression.AndAlso(
+            Expression.Invoke(_l.ToExpr(), p),
+            Expression.Invoke(_r.ToExpr(), p));
+        return Expression.Lambda<Func<T, bool>>(body, p);
+    }
+}
+```
+
 ## The real payoff: one rule, two uses
 
 The same `ActiveProductSpec` is reused in the domain layer to validate a single entity - `spec.IsSatisfiedBy(product)` - so the rule for "active" is defined **once** and used both in queries and in business logic. That single-source-of-truth property is what justifies the machinery:

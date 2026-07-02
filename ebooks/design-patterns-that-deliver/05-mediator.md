@@ -76,6 +76,51 @@ alice.Send("Hi everyone!"); // Alice -> Bob: Hi everyone!
 
 `User` has zero references to other users. All interaction flows through `ChatRoom`. That's the whole idea.
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+var room = new ChatRoom();
+var alice = new User("Alice", room);
+var bob   = new User("Bob", room);
+var carol = new User("Carol", room);
+room.Register(alice);
+room.Register(bob);
+room.Register(carol);
+
+alice.Send("Hi all!");
+
+public sealed class ChatRoom
+{
+    private readonly List<User> _users = new();
+    public void Register(User u) => _users.Add(u);
+
+    public void Broadcast(User from, string msg)
+    {
+        foreach (var u in _users)
+            if (u != from) u.Receive(from.Name, msg);
+    }
+}
+
+public sealed class User
+{
+    private readonly ChatRoom _room;
+    public string Name { get; }
+    public User(string name, ChatRoom room) { Name = name; _room = room; }
+
+    public void Send(string msg)
+    {
+        Console.WriteLine($"{Name} sends: {msg}");
+        _room.Broadcast(this, msg);
+    }
+
+    public void Receive(string from, string msg) =>
+        Console.WriteLine($"  {Name} received from {from}: {msg}");
+}
+```
+
 ## Definition
 
 > The **Mediator** pattern defines a central object that encapsulates how a set of objects interact. Components (colleagues) don't reference each other; they communicate through the mediator, which centralizes control and reduces dependencies.

@@ -90,6 +90,49 @@ Console.WriteLine(order.Description); // Coffee, +espresso, +whipped cream
 Console.WriteLine(order.Cost);        // 3.40
 ```
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+ICoffee coffee = new SimpleCoffee();
+coffee = new MilkDecorator(coffee);
+coffee = new SugarDecorator(coffee);
+
+Console.WriteLine($"{coffee.Description()} = ${coffee.Cost():0.00}");
+
+public interface ICoffee { string Description(); decimal Cost(); }
+
+public sealed class SimpleCoffee : ICoffee
+{
+    public string Description() => "Coffee";
+    public decimal Cost() => 2.00m;
+}
+
+public abstract class CoffeeDecorator : ICoffee
+{
+    protected readonly ICoffee Inner;
+    protected CoffeeDecorator(ICoffee inner) => Inner = inner;
+    public abstract string Description();
+    public abstract decimal Cost();
+}
+
+public sealed class MilkDecorator : CoffeeDecorator
+{
+    public MilkDecorator(ICoffee inner) : base(inner) { }
+    public override string Description() => $"{Inner.Description()} + Milk";
+    public override decimal Cost() => Inner.Cost() + 0.50m;
+}
+
+public sealed class SugarDecorator : CoffeeDecorator
+{
+    public SugarDecorator(ICoffee inner) : base(inner) { }
+    public override string Description() => $"{Inner.Description()} + Sugar";
+    public override decimal Cost() => Inner.Cost() + 0.25m;
+}
+```
+
 ## Definition
 
 > The **Decorator** is a structural pattern that attaches new responsibilities to an object dynamically and transparently, by wrapping it in another object of the same type. It's a flexible alternative to subclassing for extending behavior.

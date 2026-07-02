@@ -76,6 +76,33 @@ Adding a new option is now *adding a class*, not editing a method. The wall of `
 
 > **Is the shipping example a bit "textbook"?** A little - the algorithms differ only by constants. That's intentional for learning the shape. The pattern earns its keep when the strategies are *genuinely* different, which is exactly the payment-gateway case we build below: different SDKs, different dependencies, different failure modes. Read the shipping version for the shape, the payment version for the reality.
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+var checkout = new Checkout(new Dictionary<string, IShipping>
+{
+    ["standard"] = new Standard(),
+    ["express"]  = new Express(),
+});
+
+Console.WriteLine($"standard: ${checkout.Quote("standard", 3.0m):0.00}");
+Console.WriteLine($"express:  ${checkout.Quote("express", 3.0m):0.00}");
+
+public interface IShipping { decimal Cost(decimal kg); }
+public sealed class Standard : IShipping { public decimal Cost(decimal kg) => 5m + 0.5m * kg; }
+public sealed class Express  : IShipping { public decimal Cost(decimal kg) => 15m + 1.2m * kg; }
+
+public sealed class Checkout
+{
+    private readonly IReadOnlyDictionary<string, IShipping> _strategies;
+    public Checkout(IReadOnlyDictionary<string, IShipping> s) => _strategies = s;
+    public decimal Quote(string key, decimal kg) => _strategies[key].Cost(kg);
+}
+```
+
 ## Definition
 
 > The **Strategy** pattern defines a family of algorithms, encapsulates each in its own class, and makes them interchangeable at runtime - decoupling the algorithm from the client that uses it.

@@ -94,6 +94,37 @@ IPaymentProcessor processor = new LegacyPaymentAdapter(new LegacyPaymentService(
 PaymentResult result = await processor.ProcessAsync(49.99m, "USD", cardToken);
 ```
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+IPaymentProcessor pay = new LegacyGatewayAdapter(new LegacyGateway());
+
+Console.WriteLine(pay.Pay(49.99m, "usd"));
+
+// The interface our domain wants:
+public interface IPaymentProcessor { string Pay(decimal amount, string currency); }
+
+// The old library we can't change (dollars in cents, uppercase ISO):
+public sealed class LegacyGateway
+{
+    public string MakePayment(int cents, string isoCurrency) =>
+        $"[legacy] charged {cents} {isoCurrency} cents -> OK";
+}
+
+// The adapter translates our call into the legacy shape:
+public sealed class LegacyGatewayAdapter : IPaymentProcessor
+{
+    private readonly LegacyGateway _legacy;
+    public LegacyGatewayAdapter(LegacyGateway legacy) => _legacy = legacy;
+
+    public string Pay(decimal amount, string currency) =>
+        _legacy.MakePayment((int)(amount * 100), currency.ToUpperInvariant());
+}
+```
+
 ## Definition
 
 > The **Adapter** is a structural pattern that converts the interface of a class into another interface clients expect, letting otherwise-incompatible types collaborate through a translating wrapper - without changing either side.

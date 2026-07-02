@@ -1,8 +1,23 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createRoot, type Root } from "react-dom/client";
+import CodeRunner from "./CodeRunner";
 
-/** Renders unlocked HTML and wires up the copy buttons emitted by markdown.mjs. */
+/** base64 (UTF-8 safe) -> string */
+function decodeB64(encoded: string): string {
+  try {
+    return decodeURIComponent(
+      Array.from(atob(encoded), (c) =>
+        "%" + c.charCodeAt(0).toString(16).padStart(2, "0")
+      ).join("")
+    );
+  } catch {
+    return "";
+  }
+}
+
+/** Renders unlocked HTML, wires copy buttons, and mounts runnable playgrounds. */
 function UnlockedChapter({ html }: { html: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -13,12 +28,7 @@ function UnlockedChapter({ html }: { html: string }) {
     function handleClick(e: MouseEvent) {
       const btn = (e.target as Element).closest<HTMLElement>("[data-copy-code]");
       if (!btn) return;
-      const encoded = btn.dataset.copyCode ?? "";
-      const code = decodeURIComponent(
-        Array.from(atob(encoded), (c) =>
-          "%" + c.charCodeAt(0).toString(16).padStart(2, "0")
-        ).join("")
-      );
+      const code = decodeB64(btn.dataset.copyCode ?? "");
       navigator.clipboard.writeText(code).then(() => {
         const prev = btn.textContent;
         btn.textContent = "Copied";
@@ -31,6 +41,28 @@ function UnlockedChapter({ html }: { html: string }) {
     container.addEventListener("click", handleClick);
     return () => container.removeEventListener("click", handleClick);
   }, []);
+
+  // Mount an interactive CodeRunner into every `// playground` placeholder that
+  // markdown.mjs emitted (<div class="rd-run" data-code="…">).
+  useEffect(() => {
+    const container = ref.current;
+    if (!container) return;
+    const roots: Root[] = [];
+
+    container.querySelectorAll<HTMLElement>(".rd-run[data-code]").forEach((el) => {
+      if (el.dataset.mounted) return;
+      el.dataset.mounted = "1";
+      const code = decodeB64(el.dataset.code || "");
+      const root = createRoot(el);
+      root.render(<CodeRunner initialCode={code} />);
+      roots.push(root);
+    });
+
+    return () => {
+      // Defer unmount to avoid a synchronous-unmount-during-render warning.
+      roots.forEach((r) => setTimeout(() => r.unmount(), 0));
+    };
+  }, [html]);
 
   return (
     <div ref={ref} className="rd-body" dangerouslySetInnerHTML={{ __html: html }} />

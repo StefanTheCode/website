@@ -169,6 +169,57 @@ EmailMessage email = new FluentEmailBuilder()
 
 **Why this is the default choice:** method chaining reads top-to-bottom like a specification, there's no Director required, and `Build()` is the single place where the immutable product is produced. Note the `[.. _to]` copy on build - we'll come back to why that detail is non-negotiable.
 
+### Try it yourself
+
+Here's the Fluent Builder, self-contained, in an **editable editor right here**. Change the recipients, the subject, add a `Cc`. Live in-browser compile &amp; run (via .NET WebAssembly - no install, no server) is landing shortly; for now you can edit and copy freely.
+
+```csharp
+// playground
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+EmailMessage email = new FluentEmailBuilder()
+    .From("billing@acme.io")
+    .To("customer@example.com")
+    .Cc("audit@acme.io")
+    .Subject("Your October invoice")
+    .Body("Thanks for your order!")
+    .Build();
+
+Console.WriteLine(email);
+
+public sealed record EmailMessage(
+    string From, IReadOnlyList<string> To, IReadOnlyList<string> Cc, string Subject, string Body)
+{
+    public override string ToString() =>
+        $"From:    {From}\n" +
+        $"To:      {string.Join(", ", To)}\n" +
+        $"Cc:      {string.Join(", ", Cc)}\n" +
+        $"Subject: {Subject}\n\n{Body}";
+}
+
+public sealed class FluentEmailBuilder
+{
+    private string _from = "";
+    private readonly List<string> _to = new();
+    private readonly List<string> _cc = new();
+    private string _subject = "";
+    private string _body = "";
+
+    public FluentEmailBuilder From(string v)    { _from = v;    return this; }
+    public FluentEmailBuilder To(string v)      { _to.Add(v);   return this; }
+    public FluentEmailBuilder Cc(string v)      { _cc.Add(v);   return this; }
+    public FluentEmailBuilder Subject(string v) { _subject = v; return this; }
+    public FluentEmailBuilder Body(string v)    { _body = v;    return this; }
+
+    // Always copy collections out so the immutable result stays immutable.
+    public EmailMessage Build() => new(_from, _to.ToList(), _cc.ToList(), _subject, _body);
+}
+```
+
+> Want a blank canvas or the other patterns (Result, State, Strategy, Specification) as runnable demos? The full [C# playground](/playground) lets you run anything self-contained.
+
 > **The trade-off you're accepting.** The Fluent Builder is ergonomic but *not* compile-time safe: like the classic form, `new FluentEmailBuilder().Build()` with nothing set compiles and runs. You have two honest answers, and you pick based on who the caller is:
 >
 > - If the builder is consumed **inside your own codebase**, add a runtime guarantee - the FluentValidation step later in this chapter, run inside `Build()`.

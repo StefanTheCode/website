@@ -13,7 +13,6 @@ import ShikiCode from "@/components/ShikiCode";
 import CodeRunner from "@/components/CodeRunner";
 import ReadingProgress from "@/components/ReadingProgress";
 import Mermaid from "@/components/Mermaid";
-import { mermaidToDivs } from "@/components/mermaidPrep";
 import PaidChapter from "@/components/PaidChapter";
 import FreeChapterCTA from "@/components/FreeChapterCTA";
 import ReaderAuth from "@/components/ReaderAuth";
@@ -78,7 +77,6 @@ export default async function ChapterPage(
 
   const chapterData = getChapterContent(bookSlug, chapterSlug);
   const isFree = chapterData?.access === "free" && !!chapterData.content;
-  const prepared = isFree ? mermaidToDivs(chapterData!.content) : "";
   const summary = (chapterData?.data?.summary as string) || book.subtitle || "";
   // For free chapters extract headings from the already-loaded content.
   // For paid chapters use the dedicated headings-only function (content is
@@ -150,9 +148,16 @@ export default async function ChapterPage(
                                 : props.children;
                               const className = child?.props?.className ?? "";
                               const code = child?.props?.children ?? "";
+                              const codeStr = Array.isArray(code) ? code.join("") : String(code ?? "");
+                              // ```mermaid → a div the <Mermaid /> client renders. Emitting
+                              // it as a React element preserves data-mermaid (raw-HTML divs
+                              // lose it through markdown-to-jsx, leaving an empty box).
+                              if (className.includes("mermaid")) {
+                                const b64 = Buffer.from(codeStr.trim(), "utf8").toString("base64");
+                                return <div className="mermaid" data-mermaid={b64} />;
+                              }
                               // A code block whose first line is "// playground" becomes
                               // an interactive, runnable editor (in-browser .NET WASM).
-                              const codeStr = Array.isArray(code) ? code.join("") : String(code ?? "");
                               if (codeStr.trimStart().startsWith("// playground")) {
                                 const clean = codeStr.replace(/^\s*\/\/ playground[^\n]*\n/, "");
                                 return <CodeRunner initialCode={clean} />;
@@ -177,7 +182,7 @@ export default async function ChapterPage(
                         },
                       }}
                     >
-                      {prepared}
+                      {chapterData!.content}
                     </Markdown>
                   </div>
                 ) : (

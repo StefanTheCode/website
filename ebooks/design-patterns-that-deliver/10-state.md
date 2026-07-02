@@ -217,6 +217,46 @@ machine.Configure(OrderState.Shipped)
 
 Hand-roll for a handful of states; switch to Stateless when entry/exit actions and guards start multiplying.
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+var order = new Order();
+Console.WriteLine($"Start: {order.State}");
+
+order.Pay();   Console.WriteLine($"Pay()  -> {order.State}");
+order.Ship();  Console.WriteLine($"Ship() -> {order.State}");
+
+try { order.Cancel(); }
+catch (InvalidOperationException ex) { Console.WriteLine($"Blocked: {ex.Message}"); }
+
+public enum OrderState { Pending, Paid, Shipped, Delivered, Cancelled }
+
+public sealed class Order
+{
+    public OrderState State { get; private set; } = OrderState.Pending;
+
+    public void Pay()  => Move(OrderState.Pending, OrderState.Paid);
+    public void Ship() => Move(OrderState.Paid, OrderState.Shipped);
+
+    public void Cancel()
+    {
+        if (State is OrderState.Shipped or OrderState.Delivered)
+            throw new InvalidOperationException($"Cannot cancel a {State} order.");
+        State = OrderState.Cancelled;
+    }
+
+    private void Move(OrderState from, OrderState to)
+    {
+        if (State != from)
+            throw new InvalidOperationException($"Cannot go {State} -> {to}.");
+        State = to;
+    }
+}
+```
+
 ## Testing illegal transitions
 
 The whole promise is "illegal transitions fail." Test that promise directly:

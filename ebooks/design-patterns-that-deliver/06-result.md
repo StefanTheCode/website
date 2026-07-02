@@ -149,6 +149,38 @@ public Result<Receipt> Checkout(CheckoutRequest request) =>
 
 No `try/catch`, no nested `if`s - every step declares its own failure, and the first one to fail wins.
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+var ok  = Parse("42").Bind(Double).Map(x => $"Result = {x}");
+var bad = Parse("oops").Bind(Double).Map(x => $"Result = {x}");
+
+Console.WriteLine(ok.IsSuccess  ? ok.Value  : $"Error: {ok.Error}");
+Console.WriteLine(bad.IsSuccess ? bad.Value : $"Error: {bad.Error}");
+
+static Result<int> Parse(string s) =>
+    int.TryParse(s, out var n) ? Result<int>.Ok(n) : Result<int>.Fail($"'{s}' is not a number");
+
+static Result<int> Double(int n) => Result<int>.Ok(n * 2);
+
+public readonly struct Result<T>
+{
+    public bool IsSuccess { get; }
+    public T Value { get; }
+    public string Error { get; }
+    private Result(bool ok, T v, string e) { IsSuccess = ok; Value = v; Error = e; }
+
+    public static Result<T> Ok(T v) => new(true, v, "");
+    public static Result<T> Fail(string e) => new(false, default!, e);
+
+    public Result<TO> Bind<TO>(Func<T, Result<TO>> f) => IsSuccess ? f(Value) : Result<TO>.Fail(Error);
+    public Result<TO> Map<TO>(Func<T, TO> f) => IsSuccess ? Result<TO>.Ok(f(Value)) : Result<TO>.Fail(Error);
+}
+```
+
 ## The part most tutorials skip: async railway
 
 Here's the catch that makes the synchronous version above a toy in real .NET: **`LoadCustomer` and `Persist` are async.** They return `Task<Result<Customer>>`, and the sync `Bind`/`Map` above **don't compose over `Task`** - you'd be back to `await`-ing and re-checking `IsSuccess` by hand. A production Result pattern *must* ship async combinators:

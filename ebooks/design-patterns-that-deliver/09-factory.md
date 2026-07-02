@@ -144,6 +144,37 @@ flowchart TD
     H -->|HttpClient| I[IHttpClientFactory]
 ```
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+INotifier email = NotifierFactory.Create("email");
+INotifier sms   = NotifierFactory.Create("sms");
+
+Console.WriteLine(email.Send("Your order shipped"));
+Console.WriteLine(sms.Send("Your order shipped"));
+
+try { NotifierFactory.Create("carrier-pigeon"); }
+catch (ArgumentException ex) { Console.WriteLine($"Rejected: {ex.Message}"); }
+
+public interface INotifier { string Send(string message); }
+
+public sealed class EmailNotifier : INotifier { public string Send(string m) => $"EMAIL: {m}"; }
+public sealed class SmsNotifier   : INotifier { public string Send(string m) => $"SMS: {m}"; }
+
+public static class NotifierFactory
+{
+    public static INotifier Create(string channel) => channel switch
+    {
+        "email" => new EmailNotifier(),
+        "sms"   => new SmsNotifier(),
+        _       => throw new ArgumentException($"Unknown channel '{channel}'"),
+    };
+}
+```
+
 ## Testing a factory
 
 A factory's job is "given input X, return the right concrete type." That's a one-line assertion per branch - and it's worth writing because a mis-registered key is otherwise a runtime surprise:

@@ -80,6 +80,12 @@ export async function renderMarkdown(md) {
       if (b.lang === "mermaid") {
         const b64 = Buffer.from(b.code.trim(), "utf8").toString("base64");
         html += `<div class="mermaid" data-mermaid="${b64}"></div>`;
+      } else if (/^\s*\/\/ playground\b/.test(b.code)) {
+        // A code block whose first line is "// playground" becomes an
+        // interactive, runnable editor. PaidChapter mounts <CodeRunner> here.
+        const clean = b.code.replace(/^\s*\/\/ playground[^\n]*\n/, "");
+        const enc = Buffer.from(clean, "utf8").toString("base64");
+        html += `<div class="rd-run" data-code="${enc}"></div>`;
       } else {
         let codeHtml;
         try {

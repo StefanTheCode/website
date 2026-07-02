@@ -176,6 +176,53 @@ public async Task AutoApprove_claims_small_amounts_and_does_not_call_next()
 }
 ```
 
+## Try it — run it live
+
+This example is self-contained, so you can edit it and press **▶ Run** right here — it compiles and executes in your browser.
+
+```csharp
+// playground
+var pipeline = new Pipeline<Order>()
+    .Use(new NotEmpty())
+    .Use(new WithinLimit(1000m));
+
+Console.WriteLine(pipeline.Run(new Order(0, 50m)));    // fails NotEmpty
+Console.WriteLine(pipeline.Run(new Order(3, 5000m)));  // fails WithinLimit
+Console.WriteLine(pipeline.Run(new Order(3, 250m)));   // passes every step
+
+public record Order(int Items, decimal Total);
+
+public interface IStep<T> { string? Check(T input); }
+
+public sealed class NotEmpty : IStep<Order>
+{
+    public string? Check(Order o) => o.Items <= 0 ? "Order has no items" : null;
+}
+
+public sealed class WithinLimit : IStep<Order>
+{
+    private readonly decimal _max;
+    public WithinLimit(decimal max) => _max = max;
+    public string? Check(Order o) => o.Total > _max ? $"Total {o.Total} exceeds {_max}" : null;
+}
+
+public sealed class Pipeline<T>
+{
+    private readonly List<IStep<T>> _steps = new();
+    public Pipeline<T> Use(IStep<T> step) { _steps.Add(step); return this; }
+
+    public string Run(T input)
+    {
+        foreach (var step in _steps)
+        {
+            var error = step.Check(input);
+            if (error is not null) return $"REJECTED: {error}";
+        }
+        return "ACCEPTED";
+    }
+}
+```
+
 ## Relationship to Mediator pipeline behaviors
 
 If you use MediatR, its `IPipelineBehavior` is this exact pattern applied to the request pipeline (each behavior calls `next()`), and ASP.NET middleware is it applied to HTTP. Reach for a *hand-built* chain like the one above when the steps are **domain logic** (approval rules, fraud checks, document processing) rather than infrastructure concerns - and when the *CoR semantics* (first handler claims, rest skip) are what you want, which MediatR behaviors don't give you (every behavior runs).
