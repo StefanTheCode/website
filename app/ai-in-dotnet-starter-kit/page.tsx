@@ -3,23 +3,23 @@ import Image from 'next/image';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
-  title: 'AI in .NET Starter Kit - Semantic Search, RAG System & MCP Server',
+  title: 'AI in .NET Starter Kit - Semantic Search, RAG, MCP Server + Free Claude Code Skill',
   description:
-    'Free source code for building AI features in .NET 10. Semantic Search, RAG System, and MCP Server - all running locally with Ollama, pgvector, and ASP.NET Core.',
+    'Free source code for building AI features in .NET 10. Semantic Search, RAG System, and MCP Server - plus a free Claude Code skill for .NET from the .NET AI ToolKit. All running locally with Ollama, pgvector, and ASP.NET Core.',
   openGraph: {
-    title: 'AI in .NET Starter Kit - Semantic Search, RAG System & MCP Server',
+    title: 'AI in .NET Starter Kit - Semantic Search, RAG, MCP Server + Free Claude Code Skill',
     type: 'website',
     url: 'https://thecodeman.net/ai-in-dotnet-starter-kit',
     description:
-      'Free source code for building AI features in .NET 10. Semantic Search, RAG System, and MCP Server - all running locally with Ollama, pgvector, and ASP.NET Core.',
+      'Free source code for building AI features in .NET 10. Semantic Search, RAG System, and MCP Server - plus a free Claude Code skill for .NET from the .NET AI ToolKit. All running locally with Ollama, pgvector, and ASP.NET Core.',
   },
   twitter: {
-    title: 'AI in .NET Starter Kit - Semantic Search, RAG System & MCP Server',
+    title: 'AI in .NET Starter Kit - Semantic Search, RAG, MCP Server + Free Claude Code Skill',
     card: 'summary_large_image',
     site: '@TheCodeMan__',
     creator: '@TheCodeMan__',
     description:
-      'Free source code for building AI features in .NET 10. Semantic Search, RAG System, and MCP Server - all running locally with Ollama, pgvector, and ASP.NET Core.',
+      'Free source code for building AI features in .NET 10. Semantic Search, RAG System, and MCP Server - plus a free Claude Code skill for .NET from the .NET AI ToolKit. All running locally with Ollama, pgvector, and ASP.NET Core.',
   },
 };
 
@@ -64,14 +64,21 @@ const AiStarterKit = () => {
 
               <h4 className="text-white mb-4" style={{ fontWeight: 400, lineHeight: 1.6 }}>
                 Three complete, working projects - Semantic Search, RAG System, and MCP Server -
-                built with .NET 10 and running entirely on your machine.
+                built with .NET 10 and running entirely on your machine. Plus{' '}
+                <span className="text-yellow">5 free Claude Code skills</span> that make Claude write
+                production-grade .NET for you.
               </h4>
 
-              <div className="d-flex flex-wrap justify-content-center gap-3 mb-5">
-                {['✅ .NET 10', '✅ Semantic Search', '✅ RAG System', '✅ MCP Server', '✅ Ollama LLMs', '✅ pgvector'].map((item) => (
+              <div className="d-flex flex-wrap justify-content-center gap-3 mb-3">
+                {['✅ .NET 10', '✅ Semantic Search', '✅ RAG System', '✅ MCP Server', '✅ Ollama LLMs', '✅ pgvector', '✅ 5 Claude Code Skills'].map((item) => (
                   <span key={item} className="text-white">{item}</span>
                 ))}
               </div>
+
+              <p className="text-white mb-5" style={{ fontSize: '0.9rem', opacity: 0.7 }}>
+                Want the full arsenal - 44+ skills, 7 specialist agents &amp; CLAUDE.md templates?
+                That lives inside the <span className="text-yellow">.NET AI ToolKit community</span>.
+              </p>
 
               <div className="row justify-content-center">
                 <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
@@ -99,6 +106,70 @@ const AiStarterKit = () => {
         </div>
 
         <hr className="background-yellow" />
+
+        {/* ── NEW UPDATE: free Claude Code skill ── */}
+        <div className="container">
+          <div className="row justify-content-center pt-5">
+            <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
+              <div
+                className="p-4"
+                style={{
+                  border: '1px solid rgba(80, 250, 123, 0.35)',
+                  borderRadius: '16px',
+                  background: 'rgba(80, 250, 123, 0.06)',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'inline-block',
+                    background: '#50fa7b',
+                    color: '#0d2818',
+                    borderRadius: '999px',
+                    padding: '5px 14px',
+                    fontSize: '0.8rem',
+                    fontWeight: 800,
+                    letterSpacing: '0.5px',
+                    marginBottom: '14px',
+                  }}
+                >
+                  🆕 NEW UPDATE
+                </div>
+                <h3 className="text-white mb-3">
+                  Now included: <span className="text-yellow">5 free Claude Code skills</span> for .NET
+                </h3>
+                <p className="text-white mb-4" style={{ lineHeight: 1.6 }}>
+                  Five Claude Code skills that make Claude write production .NET instead of generic C#:
+                  an <strong>EF Core query optimizer</strong> (N+1, projections, <code>AsNoTracking</code>),
+                  a <strong>Minimal API scaffolder</strong>, an <strong>integration-test writer</strong>
+                  (Testcontainers, no in-memory fakes), a <strong>Result-pattern refactor</strong>, and a
+                  <strong> modern .NET code reviewer</strong>.
+                </p>
+                <p className="text-white mb-3">
+                  Free and open-source &mdash; installed in Claude Code with one command:
+                </p>
+                <pre
+                  style={{
+                    background: '#16122e',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '10px',
+                    padding: '16px',
+                    color: '#f8f8f2',
+                    fontSize: '0.85rem',
+                    overflowX: 'auto',
+                    marginBottom: '0',
+                  }}
+                >
+{`/plugin marketplace add StefanTheCode/dotnet-claude-skills
+/plugin install dotnet-claude-skills@thecodeman-free-skills`}
+                </pre>
+                <p className="text-white mt-3 mb-0" style={{ fontSize: '0.9rem', opacity: 0.85 }}>
+                  Grab the free source code below to get started. The full set &mdash; 44+ skills, 7 agents
+                  &amp; CLAUDE.md templates &mdash; lives inside the <span className="text-yellow">.NET AI ToolKit community</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* ── What's Inside ── */}
         <div className="container">
