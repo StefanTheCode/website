@@ -159,8 +159,8 @@ const AiStarterKit = () => {
                     marginBottom: '0',
                   }}
                 >
-{`/plugin marketplace add StefanTheCode/dotnet-claude-skills
-/plugin install dotnet-claude-skills@thecodeman-free-skills`}
+{`/plugin marketplace add StefanTheCode/dotnet-claude-starter
+/plugin install dotnet-claude-starter@thecodeman-claude-starter`}
                 </pre>
                 <p className="text-white mt-3 mb-0" style={{ fontSize: '0.9rem', opacity: 0.85 }}>
                   Grab the free source code below to get started. The full set &mdash; 44+ skills, 7 agents
