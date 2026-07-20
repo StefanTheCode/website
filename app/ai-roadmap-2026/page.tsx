@@ -144,8 +144,8 @@ const AiRoadmap2026 = () => {
       />
       <section className="ftco-about img ftco-section ftco-no-pb sponsorship-header">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-10 heading-section text-center">
+          <div className="row align-items-start justify-content-center">
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 heading-section text-center mb-5 mb-md-0">
               <h1 className="text-white mb-4">
                 Everyone&apos;s talking about AI in .NET.
                 <br />
@@ -157,45 +157,39 @@ const AiRoadmap2026 = () => {
                 then build AI features into your own apps - with runnable projects, not theory.
               </h3>
 
-              <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-4">
-                <div className="text-white">✅ 8 steps -</div>
-                <div className="text-white">✅ Claude Code, MCP, RAG, agents -</div>
-                <div className="text-white">✅ 4 portfolio projects -</div>
+              <div className="mb-4">
+                <div className="text-white mb-1">✅ 8 steps</div>
+                <div className="text-white mb-1">✅ Claude Code, MCP, RAG, agents</div>
+                <div className="text-white mb-1">✅ 4 portfolio projects</div>
                 <div className="text-white">✅ Runnable .NET code</div>
               </div>
 
-              <div className="row justify-content-center" id="download-roadmap">
-                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
-                  <div className="text-center p-4">
-                    <h4 className="text-white">
-                      Send me the <span className="text-yellow">FREE AI Roadmap</span> now
-                    </h4>
-                    <div id="eomail-form-hero" dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />
-                  </div>
+              <div id="download-roadmap" style={{ maxWidth: '440px', margin: '0 auto' }}>
+                <div className="p-4" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)' }}>
+                  <h4 className="text-white">
+                    Send me the <span className="text-yellow">FREE AI Roadmap</span> now
+                  </h4>
+                  <div id="eomail-form-hero" dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <hr className="background-yellow" />
-
-        {/* Roadmap infographic */}
-        <div className="container">
-          <div className="row justify-content-center pt-5">
-            <div className="col-xs-12 col-sm-12 col-md-11 col-lg-9 text-center">
+            {/* Right: infographic */}
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
               <Image
                 src="/images/ai-roadmap-2026.png"
                 alt="AI Roadmap for .NET Developers 2026 - 8 steps from AI-curious to shipping real AI: Claude Code, MCP, LLMs, embeddings, RAG, and AI agents"
                 width={0}
                 height={0}
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 priority
                 style={{ width: '100%', height: 'auto', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}
               />
             </div>
           </div>
         </div>
+
+        <hr className="background-yellow" />
 
         {/* The 8-Week Path */}
         <div className="container">
