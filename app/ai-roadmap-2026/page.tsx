@@ -1,6 +1,9 @@
 import { Metadata } from 'next'
 import Script from 'next/script'
 import Image from 'next/image'
+import FreeMotion from '../../components/free/FreeMotion'
+
+const PAGE_URL = 'https://thecodeman.net/ai-roadmap-2026'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
@@ -8,31 +11,17 @@ export const metadata: Metadata = {
   description:
     'Free AI roadmap for .NET developers. Go from AI-curious to shipping real AI in 8 steps: Claude Code & skills, MCP servers in C#, LLMs with Microsoft.Extensions.AI, embeddings, RAG, and AI agents - with runnable .NET projects.',
   keywords: [
-    'AI roadmap for .NET developers',
-    '.NET AI roadmap 2026',
-    'AI for .NET developers',
-    'Claude Code .NET',
-    'MCP server C#',
-    'Model Context Protocol .NET',
-    'RAG in .NET',
-    'Microsoft.Extensions.AI',
-    'AI agents in .NET',
-    'semantic search .NET',
-    'embeddings .NET',
-    'how to use AI in .NET',
-    'build AI features in .NET',
-    'Claude skills for .NET',
-    'AI coding assistant .NET',
-    'IChatClient .NET',
+    'AI roadmap for .NET developers', '.NET AI roadmap 2026', 'AI for .NET developers', 'Claude Code .NET',
+    'MCP server C#', 'Model Context Protocol .NET', 'RAG in .NET', 'Microsoft.Extensions.AI',
+    'AI agents in .NET', 'semantic search .NET', 'embeddings .NET', 'how to use AI in .NET',
+    'build AI features in .NET', 'Claude skills for .NET', 'AI coding assistant .NET', 'IChatClient .NET',
     'learn AI as a .NET developer',
   ],
-  alternates: {
-    canonical: 'https://thecodeman.net/ai-roadmap-2026',
-  },
+  alternates: { canonical: PAGE_URL },
   openGraph: {
     title: 'AI Roadmap for .NET Developers 2026 - Claude Code, MCP, RAG & AI Agents',
     type: 'website',
-    url: 'https://thecodeman.net/ai-roadmap-2026',
+    url: PAGE_URL,
     description:
       'Free AI roadmap for .NET developers. 8 steps from AI-curious to shipping real AI: Claude Code, MCP in C#, LLMs, embeddings, RAG, and AI agents - with runnable .NET projects.',
     siteName: 'TheCodeMan.net',
@@ -85,6 +74,18 @@ const techStack = [
   { category: 'Production', tech: 'Evals, OpenTelemetry, prompt-injection guardrails' },
 ]
 
+const marqueeItems = [
+  'Claude Code', 'CLAUDE.md', 'Skills & Agents', 'MCP in C#', 'Microsoft.Extensions.AI', 'IChatClient',
+  'Embeddings', 'pgvector', 'RAG', 'Semantic Kernel', 'Evals', 'Guardrails',
+]
+
+const stats: { target: number; suffix?: string; label: string }[] = [
+  { target: 8, label: 'Steps' },
+  { target: 8, label: 'Week plan' },
+  { target: 4, label: 'Portfolio projects' },
+  { target: 3, label: 'Runnable solutions' },
+]
+
 const faqItems = [
   { question: 'What is the best AI roadmap for .NET developers in 2026?', answer: 'The AI Roadmap for .NET Developers is an 8-step, 8-week guide that takes you from using AI coding assistants (Claude Code, Copilot, Cursor) to building AI features into your own apps - MCP servers in C#, LLM calls with Microsoft.Extensions.AI, embeddings, RAG, and AI agents. It classifies every topic as MUST or OPTIONAL and ships with runnable .NET projects.' },
   { question: 'How do .NET developers use AI in their work?', answer: 'Two ways. First, use AI to write .NET faster: an assistant like Claude Code plus a CLAUDE.md context file, reusable skills, and agents. Second, build AI into your apps: call LLMs with Microsoft.Extensions.AI, add semantic search with embeddings, ground answers in your data with RAG, and build agents that call your C# tools via MCP.' },
@@ -97,155 +98,149 @@ const faqItems = [
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://thecodeman.net/ai-roadmap-2026',
-      url: 'https://thecodeman.net/ai-roadmap-2026',
-      name: 'AI Roadmap for .NET Developers 2026',
-      description:
-        'Free AI roadmap for .NET developers. 8 steps from AI-curious to shipping real AI: Claude Code, MCP in C#, LLMs, embeddings, RAG, and AI agents.',
-      isPartOf: { '@id': 'https://thecodeman.net/#website' },
-      about: { '@type': 'Thing', name: 'AI for .NET Development' },
-      author: { '@type': 'Person', name: 'Stefan Đokić', url: 'https://thecodeman.net', jobTitle: 'Microsoft MVP' },
-    },
-    {
-      '@type': 'Course',
-      name: 'AI Roadmap for .NET Developers 2026',
-      description:
-        'A free 8-week, 8-step roadmap for .NET developers to use AI to build faster and build AI features into their apps. Covers Claude Code, MCP, LLMs, embeddings, RAG, and agents, with runnable .NET projects.',
-      provider: { '@type': 'Person', name: 'Stefan Đokić', url: 'https://thecodeman.net' },
-      isAccessibleForFree: true,
-      educationalLevel: 'Intermediate',
-      teaches: 'Claude Code, MCP in C#, Microsoft.Extensions.AI, embeddings, semantic search, RAG, AI agents, production AI',
-      timeRequired: 'P8W',
-      url: 'https://thecodeman.net/ai-roadmap-2026',
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: faqItems.map((f) => ({
-        '@type': 'Question',
-        name: f.question,
-        acceptedAnswer: { '@type': 'Answer', text: f.answer },
-      })),
-    },
+    { '@type': 'WebPage', '@id': PAGE_URL, url: PAGE_URL, name: 'AI Roadmap for .NET Developers 2026', description: 'Free AI roadmap for .NET developers. 8 steps from AI-curious to shipping real AI: Claude Code, MCP in C#, LLMs, embeddings, RAG, and AI agents.', isPartOf: { '@id': 'https://thecodeman.net/#website' }, about: { '@type': 'Thing', name: 'AI for .NET Development' }, author: { '@type': 'Person', name: 'Stefan Đokić', url: 'https://thecodeman.net', jobTitle: 'Microsoft MVP' } },
+    { '@type': 'Course', name: 'AI Roadmap for .NET Developers 2026', description: 'A free 8-week, 8-step roadmap for .NET developers to use AI to build faster and build AI features into their apps. Covers Claude Code, MCP, LLMs, embeddings, RAG, and agents, with runnable .NET projects.', provider: { '@type': 'Person', name: 'Stefan Đokić', url: 'https://thecodeman.net' }, isAccessibleForFree: true, educationalLevel: 'Intermediate', teaches: 'Claude Code, MCP in C#, Microsoft.Extensions.AI, embeddings, semantic search, RAG, AI agents, production AI', timeRequired: 'P8W', url: PAGE_URL },
+    { '@type': 'FAQPage', mainEntity: faqItems.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
   ],
 }
 
-// TODO: create a dedicated EmailOctopus form for the AI Roadmap and replace this form ID.
 const FORM_SCRIPT = `<script async src="https://eomail4.com/form/75d3c36e-842b-11f1-8edb-47846d42d594.js" data-form="75d3c36e-842b-11f1-8edb-47846d42d594"></script>`
+
+const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
+const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: '#ffbd39', color: '#2a003a' } as const
 
 const AiRoadmap2026 = () => {
   return (
     <>
-      <Script
-        id="ai-roadmap-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <FreeMotion />
+      <Script id="ai-roadmap-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="ftco-about img ftco-section ftco-no-pb sponsorship-header">
-        <div className="container">
-          <div className="row align-items-start justify-content-center">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 heading-section text-center mb-5 mb-md-0">
-              <h1 className="text-white mb-4">
-                Everyone&apos;s talking about AI in .NET.
-                <br />
-                <span className="text-yellow">Here&apos;s the exact path to actually use it.</span>
-              </h1>
 
-              <h3 className="text-white mb-4">
-                From AI-curious to shipping real AI in 8 steps. Use AI to write .NET faster,
-                then build AI features into your own apps - with runnable projects, not theory.
-              </h3>
+        {/* ── Hero ── */}
+        <div className="tk-hero-glow crk-hero-glow">
+          <div className="container">
+            <div className="row align-items-center justify-content-center mt-5">
+              <div className="col-xs-12 col-sm-12 col-md-6 heading-section text-center text-md-left mb-5 mb-md-0">
+                <span className="tk-eyebrow" data-reveal>Free AI roadmap for .NET</span>
 
-              <div className="mb-4">
-                <div className="text-white mb-1">✅ 8 steps</div>
-                <div className="text-white mb-1">✅ Claude Code, MCP, RAG, agents</div>
-                <div className="text-white mb-1">✅ 4 portfolio projects</div>
-                <div className="text-white">✅ Runnable .NET code</div>
-              </div>
+                <h1 className="text-white mb-4" data-reveal data-delay="1">
+                  Everyone&apos;s talking about AI in .NET.
+                  <br />
+                  <span className="text-yellow crk-shimmer">Here&apos;s the exact path to use it.</span>
+                </h1>
 
-              <div id="download-roadmap" style={{ maxWidth: '440px', margin: '0 auto' }}>
-                <div className="p-4" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)' }}>
-                  <h4 className="text-white">
-                    Send me the <span className="text-yellow">FREE AI Roadmap</span> now
-                  </h4>
-                  <div id="eomail-form-hero" dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />
+                <h4 className="text-white mb-4" style={{ fontWeight: 400, lineHeight: 1.6 }} data-reveal data-delay="2">
+                  From AI-curious to shipping real AI in 8 steps. Use AI to write .NET faster, then build AI features
+                  into your own apps - with runnable projects, not theory.
+                </h4>
+
+                <div id="download-roadmap" style={{ maxWidth: '460px' }} className="mx-auto mx-md-0" data-reveal data-delay="3">
+                  <div className="tk-card crk-form-card p-4 p-md-5" style={card}>
+                    <h5 className="text-white mb-3">Send me the <span className="text-yellow">FREE AI Roadmap</span></h5>
+                    <div dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />
+                  </div>
+                </div>
+
+                <div className="d-flex flex-wrap justify-content-center justify-content-md-start gap-3 mt-4" data-reveal data-delay="4">
+                  {['8 steps', 'Claude Code, MCP, RAG, agents', 'Runnable .NET code'].map((b) => (
+                    <span key={b} className="text-white d-inline-flex align-items-center" style={{ opacity: 0.8, fontSize: '0.9rem' }}>
+                      <span className="text-yellow" style={{ marginRight: '8px' }}>✓</span>{b}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
 
-            {/* Right: infographic */}
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
-              <Image
-                src="/images/ai-roadmap-2026.png"
-                alt="AI Roadmap for .NET Developers 2026 - 8 steps from AI-curious to shipping real AI: Claude Code, MCP, LLMs, embeddings, RAG, and AI agents"
-                width={0}
-                height={0}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-                style={{ width: '100%', height: 'auto', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}
-              />
+              <div className="col-xs-12 col-sm-12 col-md-6 text-center" data-reveal data-delay="2">
+                <div className="tk-card p-2" style={{ ...card, display: 'inline-block' }}>
+                  <Image src="/images/ai-roadmap-2026.png" alt="AI Roadmap for .NET Developers 2026 - 8 steps from AI-curious to shipping real AI: Claude Code, MCP, LLMs, embeddings, RAG, and AI agents" width={0} height={0} sizes="(max-width: 768px) 100vw, 50vw" priority style={{ width: '100%', height: 'auto', borderRadius: '12px' }} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <hr className="background-yellow" />
-
-        {/* The 8-Week Path */}
-        <div className="container">
-          <div className="row text-center pt-5">
-            <div className="col-md-12 mb-5">
-              <h2 className="text-white">The 8-Week Path</h2>
-              <p className="text-white">Each step builds on the previous one. Don&apos;t skip ahead.</p>
+        {/* ── Marquee ── */}
+        <div className="container-fluid px-0 mt-5" data-reveal>
+          <div className="tk-marquee">
+            <div className="tk-marquee-track">
+              {[...marqueeItems, ...marqueeItems].map((name, i) => (
+                <span className="tk-chip" key={`${name}-${i}`}>{name}</span>
+              ))}
             </div>
+          </div>
+        </div>
 
+        {/* ── Stats ── */}
+        <div className="container mt-5" data-reveal>
+          <div className="row justify-content-center text-center">
+            {stats.map((s, i) => (
+              <div className="col-6 col-md-3 mb-4" key={s.label} data-reveal data-delay={String((i % 4) + 1)}>
+                <div className="tk-card p-4 h-100" style={card}>
+                  <div className="text-yellow crk-count" style={{ fontSize: '2.4rem', fontWeight: 900, lineHeight: 1 }} data-target={s.target} data-suffix={s.suffix ?? ''} data-comma="0">0{s.suffix ?? ''}</div>
+                  <div className="text-white mt-2" style={{ opacity: 0.75, fontSize: '0.9rem' }}>{s.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <hr className="crk-divider" />
+
+        {/* ── 8-Week Path ── */}
+        <div className="container">
+          <div className="row text-center pt-4">
+            <div className="col-md-12 mb-5">
+              <span className="tk-eyebrow" data-reveal>The 8-week path</span>
+              <h2 className="text-white" data-reveal data-delay="1">Each step builds on the last</h2>
+              <p className="text-white" style={{ opacity: 0.85 }} data-reveal data-delay="2">Don&apos;t skip ahead - the order is the point.</p>
+            </div>
             {roadmapSteps.map((item, index) => (
-              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-3 mb-4" key={index}>
-                <div className="p-4 h-100" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)', textAlign: 'left' }}>
-                  <div style={{ display: 'inline-block', background: 'rgba(124, 92, 255, 0.16)', border: '1px solid rgba(124, 92, 255, 0.4)', color: '#c7b8ff', borderRadius: '999px', padding: '5px 12px', fontSize: '0.8rem', fontWeight: 700, marginBottom: '12px' }}>
-                    {item.step} · {item.weeks}
-                  </div>
+              <div className="col-xs-12 col-sm-6 col-lg-3 mb-4" key={index} data-reveal data-delay={String((index % 4) + 1)}>
+                <div className={`tk-card crk-accent-card ${['crk-a-yellow', 'crk-a-teal', 'crk-a-purple', 'crk-a-coral'][index % 4]} p-4 h-100`} style={{ ...card, textAlign: 'left' }}>
+                  <div className="crk-pill">{item.step} · {item.weeks}</div>
                   <h5 className="text-white mb-2">{item.title}</h5>
-                  <p className="text-white mb-0" style={{ fontSize: '0.9rem' }}>{item.description}</p>
+                  <p className="text-white mb-0" style={{ fontSize: '0.9rem', opacity: 0.85 }}>{item.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* What's Inside */}
+        <hr className="crk-divider" />
+
+        {/* ── What's Inside ── */}
         <div className="container">
-          <div className="row text-center pt-5">
+          <div className="row text-center pt-4">
             <div className="col-md-12 mb-5">
-              <h2 className="text-white">What&apos;s Inside</h2>
-              <p className="text-white">Not vague advice. A complete roadmap with real code, real projects, and a real plan.</p>
+              <span className="tk-eyebrow" data-reveal>What&apos;s inside</span>
+              <h2 className="text-white" data-reveal data-delay="1">Real code, real projects, a real plan</h2>
             </div>
-
             {whatsInsideItems.map((item, index) => (
-              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 mb-4" key={index}>
-                <div className="p-4 h-100" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)', textAlign: 'left' }}>
-                  <h5 className="text-white mb-3"><span className="text-yellow">✓</span> {item.title}</h5>
-                  <p className="text-white mb-0">{item.description}</p>
+              <div className="col-xs-12 col-sm-12 col-md-6 mb-4" key={index} data-reveal data-delay={String((index % 2) + 1)}>
+                <div className={`tk-card crk-accent-card ${['crk-a-teal', 'crk-a-purple', 'crk-a-coral', 'crk-a-yellow'][index % 4]} p-4 h-100`} style={{ ...card, textAlign: 'left' }}>
+                  <h5 className="text-white mb-3"><span className="crk-check">✓</span> {item.title}</h5>
+                  <p className="text-white mb-0" style={{ opacity: 0.85 }}>{item.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Tech Stack */}
-        <div className="container">
-          <div className="row pt-5 pb-3">
-            <div className="col-md-12 text-center mb-4">
-              <h2 className="text-white">What You&apos;ll Learn</h2>
-              <p className="text-white">The tools and concepts, introduced when you need them - not as a random shopping list.</p>
-            </div>
+        <hr className="crk-divider" />
 
-            <div className="col-md-8 offset-md-2">
-              <div className="p-4" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)' }}>
+        {/* ── What you'll learn (tech stack) ── */}
+        <div className="container">
+          <div className="row justify-content-center pt-4">
+            <div className="col-md-12 text-center mb-5">
+              <span className="tk-eyebrow" data-reveal>What you&apos;ll learn</span>
+              <h2 className="text-white" data-reveal data-delay="1">The tools, introduced when you need them</h2>
+            </div>
+            <div className="col-md-10 col-lg-9" data-reveal>
+              <div className="tk-card p-4 p-md-5" style={card}>
                 {techStack.map((item, index) => (
-                  <div key={index} className="d-flex justify-content-between align-items-center py-2" style={{ borderBottom: index < techStack.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
+                  <div key={index} className="d-flex justify-content-between align-items-center py-3 flex-wrap" style={{ borderBottom: index < techStack.length - 1 ? '1px solid var(--tk-line)' : 'none', gap: '8px' }}>
                     <span className="text-white" style={{ fontWeight: 600 }}>{item.category}</span>
-                    <span className="text-yellow" style={{ textAlign: 'right' }}>{item.tech}</span>
+                    <span className="text-yellow" style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", fontSize: '0.86rem' }}>{item.tech}</span>
                   </div>
                 ))}
               </div>
@@ -253,22 +248,23 @@ const AiRoadmap2026 = () => {
           </div>
         </div>
 
-        {/* Who Is It For + What Is This */}
+        <hr className="crk-divider" />
+
+        {/* ── Who / What ── */}
         <div className="container">
-          <div className="row pt-5 pb-5">
-            <div className="col-md-6 mb-4">
-              <div className="p-4 h-100" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)', textAlign: 'left' }}>
-                <h3 className="text-white mb-3">Who is this for?</h3>
+          <div className="row pt-4">
+            <div className="col-md-6 mb-4" data-reveal>
+              <div className="tk-card p-4 p-md-5 h-100" style={{ ...card, textAlign: 'left' }}>
+                <h3 className="text-white mb-3" style={{ fontSize: '1.3rem' }}>Who is this for?</h3>
                 {whoIsItFor.map((item, index) => (
-                  <p key={index} className="text-white mb-2">✅ {item}</p>
+                  <p key={index} className="text-white mb-2" style={{ opacity: 0.88 }}><span style={{ color: '#46d39a', marginRight: '10px' }}>✓</span>{item}</p>
                 ))}
               </div>
             </div>
-
-            <div className="col-md-6 mb-4">
-              <div className="p-4 h-100" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)', textAlign: 'left' }}>
-                <h3 className="text-white mb-3">What is this exactly?</h3>
-                <p className="text-white mb-0">
+            <div className="col-md-6 mb-4" data-reveal data-delay="1">
+              <div className="tk-card p-4 p-md-5 h-100" style={{ ...card, textAlign: 'left' }}>
+                <h3 className="text-white mb-3" style={{ fontSize: '1.3rem' }}>What is this exactly?</h3>
+                <p className="text-white mb-0" style={{ opacity: 0.85 }}>
                   A practical, opinionated roadmap for .NET developers who want to actually use AI - both to build faster
                   (Claude Code, skills, MCP) and to build AI features into their apps (LLMs, embeddings, RAG, agents).
                   It comes with runnable .NET projects, free Claude Code skills, an 8-week plan, and honest advice on
@@ -279,40 +275,33 @@ const AiRoadmap2026 = () => {
           </div>
         </div>
 
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
-              <div className="text-center p-4">
-                <h4 className="text-white">Send me the <span className="text-yellow">FREE AI Roadmap</span> now</h4>
-                <div className="d-flex justify-content-center" dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />
-              </div>
-            </div>
-          </div>
-        </div>
+        <hr className="crk-divider" />
 
-        {/* FAQ - AEO optimized */}
+        {/* ── FAQ ── */}
         <div className="container">
-          <div className="row pt-5 pb-5">
-            <div className="col-md-12 text-center mb-4">
-              <h2 className="text-white">Frequently Asked Questions</h2>
+          <div className="row pt-4">
+            <div className="col-md-12 text-center mb-5">
+              <span className="tk-eyebrow" data-reveal>FAQ</span>
+              <h2 className="text-white" data-reveal data-delay="1">Frequently asked questions</h2>
             </div>
-
             <div className="col-md-10 offset-md-1">
               {faqItems.map((item, index) => (
-                <div key={index} className="mb-4 p-4" style={{ border: '1px solid rgba(255,255,255,0.12)', borderRadius: '16px', background: 'rgba(255,255,255,0.03)', textAlign: 'left' }}>
-                  <h3 className="text-yellow mb-3" style={{ fontSize: '1.15rem' }}>{item.question}</h3>
-                  <p className="text-white mb-0">{item.answer}</p>
+                <div key={index} className="tk-card crk-accent-card mb-4 p-4 p-md-5" style={{ ...card, textAlign: 'left' }} data-reveal data-delay={String((index % 3) + 1)}>
+                  <h3 className="text-yellow mb-3" style={{ fontSize: '1.12rem' }}>{item.question}</h3>
+                  <p className="text-white mb-0" style={{ opacity: 0.85 }}>{item.answer}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
-              <div className="text-center p-4">
-                <h4 className="text-white">Send me the <span className="text-yellow">FREE AI Roadmap</span> now</h4>
+        {/* ── Final CTA ── */}
+        <div className="container pt-2 pb-5">
+          <div className="row justify-content-center" data-reveal>
+            <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
+              <div className="tk-card crk-form-card p-5 text-center" style={{ ...card, background: 'rgba(255,189,57,0.06)', borderColor: 'rgba(255,189,57,0.3)' }}>
+                <h2 className="text-white mb-3">Two months. Eight things shipped.</h2>
+                <p className="text-white mb-4" style={{ opacity: 0.85 }}>Send me the FREE AI Roadmap and start today.</p>
                 <div className="d-flex justify-content-center" dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />
               </div>
             </div>

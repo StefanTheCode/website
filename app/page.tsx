@@ -7,6 +7,7 @@ import MyComponent from '@/components/newsletterTestimonials'
 import { Metadata } from 'next'
 import EbookNewsletter from '@/components/ebookTestimonials'
 import Script from 'next/script'
+import FreeMotion from '@/components/free/FreeMotion'
 
 const postMetadata = getPostMetadata();
 
@@ -20,7 +21,7 @@ const sortedPostMetadata = postMetadata.sort((a, b) => {
 const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
   const href = `/posts/${post.slug}`
   return (
-    <div className="col-xl-3 col-lg-12 col-md-12 d-flex mb-5">
+    <div className="col-xl-3 col-lg-12 col-md-12 d-flex mb-5" data-reveal>
       <a href={href}>
         <div className="blog-entry text-center">
           <div>
@@ -37,12 +38,13 @@ const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
 export default function Home() {
   return (
     <>
+      <FreeMotion />
       <section id="home-section " className="hero container">
-        <div className="row d-md-flex no-gutters">
+        <div className="row d-md-flex no-gutters tk-hero-glow crk-hero-glow">
           <div className="col-xl-12 mt-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center slider-text padding-top-10per" >
             <div className="text" >
-              <h1 className="header-text-feature-b  mtbottom20">Become a Better <span className='text-yellow'>.NET</span> Engineer</h1>
-              <p className="header-text-feature-b mtbottom20">One Tip Weekly</p>
+              <h1 className="header-text-feature-b  mtbottom20" data-reveal>Become a Better <span className='text-yellow crk-shimmer'>.NET</span> Engineer</h1>
+              <p className="header-text-feature-b mtbottom20" data-reveal data-delay="1">One Tip Weekly</p>
               <div className='container mt-5'>
                 <div className='row text-center'>
                   <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
@@ -102,12 +104,12 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center mb-5">
             <div className="col-md-12 heading-section text-center">
-              <p className="header-text">How can I <span className='text-yellow'> help you</span></p>
+              <p className="header-text" data-reveal>How can I <span className='text-yellow crk-shimmer'> help you</span></p>
             </div>
           </div>
           <div className="row text-center">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
-              <div className="blog-entry text-center">
+              <div className="blog-entry text-center tk-card crk-accent-card crk-a-yellow" data-reveal>
                 <h3><a href="https://www.skool.com/thecodeman-community-2911">TheCodeMan Community
                 </a></h3>
                 <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. Your hub for .NET content, mini-courses, and expert advice for FREE! </h5>
@@ -119,7 +121,7 @@ export default function Home() {
             <div className="row text-center home-help-row">
 
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div className="blog-entry text-center home-help-card">
+              <div className="blog-entry text-center home-help-card tk-card crk-accent-card crk-a-yellow" data-reveal data-delay="1">
                 <h3><a href="/sponsorship">Promote your business to {config.NewsletterSubCount}
                 </a></h3>
                 <h5 >Looking to expand your followers, subscribers, or clientele swiftly? Feature your brand in my newsletter!
@@ -128,7 +130,7 @@ export default function Home() {
               </div>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div className="blog-entry text-center home-help-card">
+              <div className="blog-entry text-center home-help-card tk-card crk-accent-card crk-a-teal" data-reveal data-delay="2">
                 <h3><a href="https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-">YouTube Channel
                 </a></h3>
                 <h5> Check out the latest video:</h5>
@@ -139,7 +141,7 @@ export default function Home() {
               </div>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div className="blog-entry text-center home-help-card">
+              <div className="blog-entry text-center home-help-card tk-card crk-accent-card crk-a-purple" data-reveal data-delay="3">
                 <h3><a href="/design-patterns-that-deliver-ebook">Design Patterns ebooks
                 </a></h3>
                 <h5> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</h5>
@@ -155,7 +157,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center mb-5">
             <div className="col-md-12 heading-section text-center">
-              <p className="header-text">Recent <span className='text-yellow'> TheCodeMan.NET </span>Articles</p>
+              <p className="header-text" data-reveal>Recent <span className='text-yellow crk-shimmer'> TheCodeMan.NET </span>Articles</p>
             </div>
           </div>
           <div className="row d-flex">
@@ -167,14 +169,14 @@ export default function Home() {
       <section className="ftco-section background-yellow" id="blog-section">
         <div className="container">
           <div className="row">
-            <div className="col-md-4 ">
+            <div className="col-md-4 " data-reveal>
               <div className="row">
                 <div className="col-md-12 text-center">
                   <Image src={'/images/csharp.png'} className='skill-csharp-img' alt={'C# Logo'} width={110} height={120} />
                 </div>
               </div>
             </div>
-            <div className="col-md-4 ">
+            <div className="col-md-4 " data-reveal>
               <div className="row">
                 <div className="col-md-12 text-center">
                   <Image src={'/images/dotnet.png'} className='skill-img' alt={'Dotnet (.NET) Logo'} width={128} height={128} />
@@ -182,7 +184,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 ">
+            <div className="col-md-4 " data-reveal>
               <div className="row">
                 <div className="col-md-12 text-center">
                   <Image src={'/images/sql-server.webp'} className='skill-img' alt={'SQL Server Logo'} width={128} height={128} />
@@ -197,7 +199,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center mb-5 pb-3">
             <div className="col-md-7 heading-section text-center ">
-              <p className="header-text">Socials</p>
+              <p className="header-text" data-reveal>Socials</p>
               <p className='text-white'>Reach out to me and follow my content on one of the following networks:</p>
             </div>
           </div>

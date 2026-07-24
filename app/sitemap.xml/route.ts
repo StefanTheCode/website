@@ -66,6 +66,8 @@ export async function GET() {
     "newsletter-archive",
     "black-friday",
     "dotnet-roadmap-2026",
+    "ai-roadmap-2026",
+    "ai-roadmap-course",
   ];
 
   const buildTime = new Date();

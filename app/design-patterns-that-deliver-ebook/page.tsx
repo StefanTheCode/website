@@ -3,6 +3,7 @@ import PatternPicker from '@/components/PatternPicker';
 import { Metadata } from 'next';
 import Image from 'next/image'
 import Script from 'next/script';
+import FreeMotion from '@/components/free/FreeMotion';
 // @ts-ignore -- global stylesheet side-effect import resolved by Next.js at build time
 import './ebook.css';
 
@@ -262,6 +263,7 @@ const Ebook = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <FreeMotion />
       <div className="dp-ambience" aria-hidden="true"></div>
       <div className="dp-grain" aria-hidden="true"></div>
 
@@ -297,7 +299,7 @@ const Ebook = () => {
         <div className="dp-wrap dp-hero-grid">
           <div className="dp-reveal">
             <span className="dp-chip">{MS} By Stefan Đokić · Microsoft MVP</span>
-            <h1>Stop guessing design patterns. <span className="dp-amber">Start shipping the right one.</span></h1>
+            <h1>Stop guessing design patterns. <span className="dp-amber crk-shimmer">Start shipping the right one.</span></h1>
             <p className="dp-lead"><b>Ten</b> production-grade C# patterns — the five everyone needs (<b>Builder</b>, <b>Decorator</b>, <b>Strategy</b>, <b>Adapter</b>, <b>Mediator</b>) plus five that ship real systems (<b>Result</b>, <b>Pipeline</b>, <b>Specification</b>, <b>Factory</b>, <b>State</b>). Each from a real problem to working code — with unit tests, trade-offs, a GitHub repo, 100 interview Q&amp;As, and a built-in <b>AI tutor</b>.</p>
             <div className="dp-cta">
               <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
@@ -737,9 +739,9 @@ const Ebook = () => {
             <p>I wrote this ebook because I was frustrated with pattern books that use toy examples. <b>Every pattern in this book comes from a real problem I&apos;ve solved in production code</b> - not Pizza classes, not abstract shapes.</p>
             <p>I teach {config.NewsletterSubCount} through my newsletter, and {config.LinkedinFollowers} follow my content on LinkedIn.</p>
             <div className="dp-about-stats">
-              <div><div className="dp-v">25,000+</div><div className="dp-l">Newsletter</div></div>
-              <div><div className="dp-v">102k+</div><div className="dp-l">LinkedIn</div></div>
-              <div><div className="dp-v">8,000+</div><div className="dp-l">Twitter / X</div></div>
+              <div><div className="dp-v crk-count" data-target="25000" data-comma="1" data-suffix="+">0+</div><div className="dp-l">Newsletter</div></div>
+              <div><div className="dp-v crk-count" data-target="102" data-suffix="k+">0k+</div><div className="dp-l">LinkedIn</div></div>
+              <div><div className="dp-v crk-count" data-target="8000" data-comma="1" data-suffix="+">0+</div><div className="dp-l">Twitter / X</div></div>
             </div>
           </div>
         </div>

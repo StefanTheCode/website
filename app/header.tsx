@@ -132,6 +132,7 @@ export default function Header() {
                 <div className={`dropdown-menu ${openDropdown === 'free' ? 'show' : ''}`}>
                   <a className="dropdown-item" href="/dotnet-roadmap-2026" onClick={closeMenu}>.NET Roadmap 2026</a>
                   <a className="dropdown-item" href="/ai-roadmap-2026" onClick={closeMenu}>AI Roadmap for .NET 2026</a>
+                  <a className="dropdown-item" href="/ai-roadmap-course" onClick={closeMenu}>AI Roadmap Course (free lessons)</a>
                   <a className="dropdown-item" href="/dotnet-code-rules-starter-kit" onClick={closeMenu}>.NET Code Rules Starter Kit</a>
                   <a className="dropdown-item" href="/vertical-slices-architecture" onClick={closeMenu}>Vertical Slice Architecture</a>
                   <a className="dropdown-item" href="/pass-your-interview" onClick={closeMenu}>Pass Interview Prep Kit</a>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Script from 'next/script';
 import FreePreviewButton from '@/components/FreePreviewButton';
 import EbookNewsletter from '@/components/ebookTestimonials';
+import FreeMotion from '@/components/free/FreeMotion';
 import './coderules.css';
 
 export const metadata: Metadata = {
@@ -255,6 +256,7 @@ const CodeRules = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <FreeMotion />
       <div className="cr-ambience" aria-hidden="true"></div>
       <div className="cr-grain" aria-hidden="true"></div>
 
@@ -299,7 +301,7 @@ const CodeRules = () => {
         <div className="cr-wrap cr-hero-grid">
           <div className="cr-reveal">
             <span className="cr-chip">{MS} By Stefan Đokić · Microsoft MVP</span>
-            <h1>Make your .NET codebase <span className="cr-amber">enforce itself.</span></h1>
+            <h1>Make your .NET codebase <span className="cr-amber crk-shimmer">enforce itself.</span></h1>
             <p className="cr-lead">Get the exact <code>.editorconfig</code>, Roslyn analyzers, CI quality gates, and automation I use in production. Stop arguing about code style - let the build do it. Copy, apply, ship.</p>
             <div className="cr-cta">
               <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Reserve Your Spot - $74.89 →</a>
@@ -628,9 +630,9 @@ const CodeRules = () => {
             <p>For more than 10 years I&apos;ve been building large-scale .NET solutions where consistency, clarity, and automation aren&apos;t optional - they&apos;re the only way teams ship fast and reliably.</p>
             <p>Everything in this course comes from real production experience. These are the exact files and configs I use every day - not theory, not &quot;ideal world&quot; scenarios.</p>
             <div className="cr-about-stats">
-              <div><div className="cr-v">25,000+</div><div className="cr-l">Newsletter</div></div>
-              <div><div className="cr-v">110k+</div><div className="cr-l">LinkedIn</div></div>
-              <div><div className="cr-v">8,000+</div><div className="cr-l">Twitter / X</div></div>
+              <div><div className="cr-v crk-count" data-target="25000" data-comma="1" data-suffix="+">0+</div><div className="cr-l">Newsletter</div></div>
+              <div><div className="cr-v crk-count" data-target="110" data-suffix="k+">0k+</div><div className="cr-l">LinkedIn</div></div>
+              <div><div className="cr-v crk-count" data-target="8000" data-comma="1" data-suffix="+">0+</div><div className="cr-l">Twitter / X</div></div>
             </div>
           </div>
         </div>
