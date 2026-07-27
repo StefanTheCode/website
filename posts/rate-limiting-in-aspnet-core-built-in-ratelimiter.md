@@ -270,6 +270,8 @@ Rate limiting stopped being a library problem in .NET 7. The built-in `RateLimit
 
 The two decisions that matter most: partition by something that identifies the *caller* so one client can't starve the rest, and know up front whether per-instance limiting is enough or whether you need a distributed counter. Get those right and a script finding your login endpoint on a Monday becomes a non-event instead of an outage.
 
+And if you'd rather have this kind of review done for you - catching the dropped token, the proxy-blind partition key, the missing overload - that's exactly what I built [AI for .NET Developers](https://thecodeman.net/ai-toolkit) for: 50+ Claude-based skills and agents that review your C#, audit security, and optimize EF Core right down to the file and line, running on your real code. If you live in .NET, it's worth a look.
+
 That's all from me today.
 
 <!--END-->
