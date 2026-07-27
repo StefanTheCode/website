@@ -196,7 +196,7 @@ To make it concrete, here's the loop I run, not the theory:
 3. **Let skills guard quality.** When I touch data access, the EF Core skill kicks in without me asking. When I write auth, the security habits apply.
 4. **Send in an agent for the big passes.** Before a release, I point the security auditor at the whole API and read its ranked report like a second set of senior eyes.
 
-I've packaged the whole set of skills and agents I use - architecture, EF Core, performance, security, testing, DevOps - into **[TheCodeMan AI Toolkit](https://www.skool.com/thecodeman-ai-toolkit-9723)**, and I add new ones every week. If you want a running start instead of building each one from scratch, that's the shortcut. But everything in this issue works with files you write yourself - that's the point of showing you the structure.
+I've packaged the whole set of skills and agents I use - architecture, EF Core, performance, security, testing, DevOps - into **[AI for .NET Developers Community](https://www.skool.com/thecodeman-ai-toolkit-9723)**, and I add new ones every week. If you want a running start instead of building each one from scratch, that's the shortcut. But everything in this issue works with files you write yourself - that's the point of showing you the structure.
 
 ## FAQ
 
@@ -224,7 +224,7 @@ Memory is `CLAUDE.md` - the file that stops you from re-explaining your stack ev
 
 Start today with the smallest possible step: create a `CLAUDE.md` in one repo, put five real rules in it, and open a session. That one file will change how the whole thing feels. Add your first skill the third time you retype the same prompt.
 
-If you want to skip ahead and see 50+ of these built for real .NET work, they're inside **[TheCodeMan AI Toolkit](https://www.skool.com/thecodeman-ai-toolkit-9723)**. And if you just want a room full of .NET developers figuring this out together, that's what the **[community](https://www.skool.com/thecodeman-community-2911)** is for.
+If you want to skip ahead and see 50+ of these built for real .NET work, they're inside **[AI for .NET Developers Community](https://www.skool.com/thecodeman-ai-toolkit-9723)**. And if you just want a room full of .NET developers figuring this out together, that's what the **[community](https://www.skool.com/thecodeman-community-2911)** is for.
 
 That's all from me today.
 
