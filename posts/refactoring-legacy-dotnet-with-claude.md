@@ -190,18 +190,6 @@ The whole thing is a loop with a safety net at its center, not a straight line t
 
 ![Legacy .NET AI Flow](/images/blog/posts/refactoring-legacy-dotnet-with-claude/legacy-dotnet-ai-flow.png)
 
-```mermaid
-flowchart TD
-    A[Assess: legacy-modernization-assistant] --> B[Safety net: coverage-gap-finder + xunit-test-generator]
-    B --> C[Fix debt: SQL, transactions, leaks, async]
-    C --> D[Carve seams: IOrderRepository, modular-monolith-generator]
-    D --> E[Upgrade one major: dotnet-upgrade-agent]
-    E --> F{Build + tests green?}
-    F -->|No| B
-    F -->|Yes| G[Next slice]
-    G --> C
-```
-
 Each slice goes through the same cycle. The agents do the tedious, mechanical, easy-to-get-wrong parts; you make the judgment calls and keep the build green.
 
 ## Practical Rules That Keep This Safe
