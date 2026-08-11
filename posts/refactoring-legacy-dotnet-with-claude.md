@@ -188,7 +188,7 @@ For `LegacyErp` that means net48 to .NET 8, verify green, then .NET 8 to .NET 9 
 
 The whole thing is a loop with a safety net at its center, not a straight line to a rewrite:
 
-![Legacy .NET AI Flow](/images/blog/posts/refactoring-legacy-dotnet-with-claude/legacy-dotnet-ai-flow.png)
+![Legacy .NET AI Flow](/images/blog/posts/refactoring-legacy-dotnet-with-claude/legacy-dotnet-ai-flow.webp)
 
 Each slice goes through the same cycle. The agents do the tedious, mechanical, easy-to-get-wrong parts; you make the judgment calls and keep the build green.
 
