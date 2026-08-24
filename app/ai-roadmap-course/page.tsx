@@ -95,9 +95,10 @@ const good = { box: callout('rgba(124,92,255,.4)', 'rgba(124,92,255,.08)'), colo
 const parts = [
   { label: '1 · Claude Code + CLAUDE.md', href: '#part1', state: 'on' },
   { label: '2 · Skills & Agents', href: '#part2', state: 'on' },
-  { label: '3 · MCP in C# 🔒', state: 'lock' },
-  { label: '4 · Your first AI feature 🔒', state: 'lock' },
-  { label: '5 · Workflow 🔒', state: 'lock' },
+  { label: '3 · MCP in C#', href: '#part3', state: 'on' },
+  { label: '4 · Your first AI feature', href: '#part4', state: 'on' },
+  { label: '5 · Workflow', href: '#part5', state: 'on' },
+  { label: '🔧 Projects', href: '#projects', state: 'link' },
   { label: '⚡ Cheat sheet', href: '#reference', state: 'link' },
   { label: 'Glossary', href: '#glossary', state: 'link' },
   { label: 'FAQ', href: '#faq', state: 'link' },
@@ -140,12 +141,76 @@ const refWhere = [
   ['.claude/skills/<name>/SKILL.md', 'A skill'],
   ['.claude/agents/<name>.md', 'An agent'],
   ['.claude/commands/<name>.md', 'A slash command'],
+  ['.mcp.json (repo root)', 'MCP servers (tools) the AI can call - Part 3'],
 ]
 
 const hooks = [
   ['Post-edit on *.cs', 'Runs dotnet format - every file stays clean automatically'],
   ['Pre-commit', 'Blocks DateTime.Now, async void, new HttpClient() in staged files'],
   ['Pre-bash guard', 'Blocks destructive git ops (force push, reset --hard)'],
+]
+
+/* ---------- Part 3 data ---------- */
+const mcpWhen = [
+  ['Write code your way', 'CLAUDE.md + skills (Parts 1-2)'],
+  ['Review the whole repo and report back', 'An agent (Part 2)'],
+  ['Do something in your systems - query a DB, call your API, check a ticket', 'An MCP tool (this lesson)'],
+]
+const mcpTransports = [
+  ['stdio', 'Local dev - the client launches your server', 'The client starts your process and talks over stdin/stdout'],
+  ['Streamable HTTP', 'A shared or remote server many clients use', 'You host it (ASP.NET Core) and clients connect over HTTP'],
+]
+
+/* ---------- Part 4 data ---------- */
+const providerSwap = [
+  ['OpenAI', 'new ChatClient("gpt-4o-mini", key).AsIChatClient()', 'Default - cheap and capable'],
+  ['Azure OpenAI', 'new AzureOpenAIClient(...).GetChatClient(deployment).AsIChatClient()', 'Your Azure tenant / enterprise'],
+  ['Ollama (local)', 'new OllamaApiClient(uri, "llama3.1")', 'Free local dev - no data leaves your machine'],
+]
+const chatPipeline = [
+  ['.UseFunctionInvocation()', 'The model can call your C# functions (tools)'],
+  ['.UseOpenTelemetry()', 'Traces + token metrics in your observability stack'],
+  ['.UseDistributedCache()', 'Identical prompts served from cache - saves tokens'],
+  ['.UseLogging()', 'Every prompt and response logged'],
+]
+
+/* ---------- Part 5 data ---------- */
+const workflowStages = [
+  ['Context', 'CLAUDE.md', 'Part 1'],
+  ['Scaffold', 'A skill', 'Part 2'],
+  ['Touch real systems', 'An MCP tool', 'Part 3'],
+  ['Verify', 'Hooks + dotnet test', 'Part 2'],
+  ['Review', 'An agent', 'Part 2'],
+  ['Orchestrate', 'A slash command', 'This lesson'],
+  ['Approve & ship', 'You', 'Always'],
+]
+
+/* ---------- Runnable projects ---------- */
+const projects = [
+  {
+    name: 'Claude Code skills + agent',
+    step: 'Parts 1-2',
+    desc: 'A CLAUDE.md template, ready-made skills, and an agent that make Claude write idiomatic .NET instead of generic C#.',
+    href: 'https://github.com/StefanTheCode/AI-in-.NET/tree/main/Claude',
+  },
+  {
+    name: 'MCP Server - API Performance Analysis',
+    step: 'Part 3',
+    desc: 'A real MCP server in C#: ask Copilot or Claude to load-test your API, catch ThreadPool starvation and GC pressure, and suggest fixes - with a Blazor dashboard and a sample API full of intentionally broken endpoints.',
+    href: 'https://github.com/StefanTheCode/AI-in-.NET/tree/main/MCP%20Server%20-%20API%20Performance%20Analysis',
+  },
+  {
+    name: 'Semantic Search AI Example',
+    step: 'Track B · Step 5',
+    desc: 'Search by meaning, not keywords: local embeddings with Ollama + Microsoft.Extensions.AI, stored and queried in Postgres.',
+    href: 'https://github.com/StefanTheCode/AI-in-.NET/tree/main/Semantic%20Search%20AI%20Example',
+  },
+  {
+    name: 'RAG Basics',
+    step: 'Track B · Step 6',
+    desc: 'A minimal RAG pipeline: embed your text, store vectors in Postgres (pgvector), retrieve the top matches, and ground an Ollama LLM in your data so it answers from what you gave it - or says "I don\'t know".',
+    href: 'https://github.com/StefanTheCode/AI-in-.NET/tree/main/RAG%20Basics',
+  },
 ]
 
 const glossary = [
@@ -159,6 +224,10 @@ const glossary = [
   ['Embedding', 'A vector representation of text, so you can search by meaning.'],
   ['RAG', 'Retrieval-Augmented Generation - retrieve your relevant data, then let the LLM answer from it (covered in Track B).'],
   ['IChatClient', 'The Microsoft.Extensions.AI abstraction for calling any LLM provider from .NET.'],
+  ['MCP server', 'A small C# app that exposes your operations as tools any AI client can call - built with the ModelContextProtocol SDK.'],
+  ['Tool calling', 'When the LLM decides to call one of your functions (or MCP tools), then uses the result in its answer.'],
+  ['Structured output', 'Asking the LLM for a typed result (GetResponseAsync<T>) instead of free text, so you get a parsed object back.'],
+  ['Plan mode', 'A Claude Code mode where it proposes a full plan and waits for your approval before touching any file.'],
 ]
 
 const faq = [
@@ -281,7 +350,14 @@ npm install -g @anthropic-ai/claude-code
 # The .NET AI ToolKit (skills + agents)
 /plugin marketplace add StefanTheCode/dotnet-ai-toolkit
 /plugin install dotnet-ai-toolkit@thecodeman-ai-toolkit
-/plugin marketplace update thecodeman-ai-toolkit   # get new skills`
+/plugin marketplace update thecodeman-ai-toolkit   # get new skills
+
+# Build an MCP server in C# (Part 3)
+dotnet add package ModelContextProtocol --prerelease
+
+# Call an LLM from .NET (Part 4)
+dotnet add package Microsoft.Extensions.AI
+dotnet add package Microsoft.Extensions.AI.OpenAI`
 
 const promptsRef = `> Give me a short plan first, then wait for my OK
 > This EF query is slow, optimize it
@@ -290,6 +366,205 @@ const promptsRef = `> Give me a short plan first, then wait for my OK
 > Review this PR like a senior .NET engineer
 > Audit the security of this API
 > Don't invent problems - leave correct code alone`
+
+/* ---------- Part 3 code ---------- */
+const mcpInstall = `dotnet new console -n OrdersMcp
+cd OrdersMcp
+dotnet add package ModelContextProtocol --prerelease
+dotnet add package Microsoft.Extensions.Hosting`
+
+const mcpProgram = `using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+var builder = Host.CreateApplicationBuilder(args);
+
+builder.Services
+  .AddMcpServer()               // register the server
+  .WithStdioServerTransport()   // the client launches it, talks over stdio
+  .WithToolsFromAssembly();     // auto-discover [McpServerTool] methods
+
+// your own services are available to tools via DI
+builder.Services.AddSingleton<IOrderService, OrderService>();
+
+await builder.Build().RunAsync();`
+
+const mcpTool = `using System.ComponentModel;
+using ModelContextProtocol.Server;
+
+[McpServerToolType]
+public sealed class OrderTools
+{
+  // The model reads this Description to decide WHEN to call the tool.
+  [McpServerTool, Description("Get the current status of an order by its id.")]
+  public static async Task<string> GetOrderStatus(
+    IOrderService orders,                                  // injected from DI
+    [Description("The order id, e.g. 1024")] int orderId,
+    CancellationToken ct)
+  {
+    var order = await orders.FindAsync(orderId, ct);
+    return order is null
+      ? $"No order {orderId} found."
+      : $"Order {orderId}: {order.Status}, total {order.Total:C}.";
+  }
+}`
+
+const mcpRegister = `# Claude Code: register the server (run from any project)
+claude mcp add orders -- dotnet run --project ./OrdersMcp
+
+# then just ask - Claude calls the tool itself
+> what's the status of order 1024?`
+
+const mcpJson = `{
+  "mcpServers": {
+    "orders": {
+      "command": "dotnet",
+      "args": ["run", "--project", "./OrdersMcp"]
+    }
+  }
+}`
+
+/* ---------- Part 4 code ---------- */
+const featureInstall = `dotnet add package Microsoft.Extensions.AI
+dotnet add package Microsoft.Extensions.AI.OpenAI`
+
+const featureRegister = `using Microsoft.Extensions.AI;
+using OpenAI.Chat;
+
+// One registration. The rest of your app depends on IChatClient, not OpenAI.
+builder.Services.AddChatClient(
+  new ChatClient("gpt-4o-mini", builder.Configuration["OpenAI:Key"])
+    .AsIChatClient());`
+
+const featureCall = `public sealed class SummaryService(IChatClient chat)
+{
+  public async Task<string> SummarizeAsync(string text, CancellationToken ct)
+  {
+    var response = await chat.GetResponseAsync(
+      $"Summarize this in exactly two sentences:\\n\\n{text}",
+      cancellationToken: ct);
+
+    return response.Text;
+  }
+}`
+
+const featureStream = `// Stream tokens as they arrive - perfect for chat UIs.
+await foreach (var update in
+  chat.GetStreamingResponseAsync(prompt, cancellationToken: ct))
+{
+  Console.Write(update.Text);
+}`
+
+const featureStructured = `public record SupportTicket(string Title, string Priority, string[] Tags);
+
+// Ask for a typed result - the library builds the schema and parses the JSON.
+var response = await chat.GetResponseAsync<SupportTicket>(
+  $"Turn this email into a support ticket:\\n\\n{email}",
+  cancellationToken: ct);
+
+SupportTicket ticket = response.Result;   // strongly typed, ready to save`
+
+const featurePipeline = `builder.Services
+  .AddChatClient(new ChatClient("gpt-4o-mini", key).AsIChatClient())
+  .UseFunctionInvocation()   // let the model call your C# tools
+  .UseOpenTelemetry()        // traces + token metrics
+  .UseLogging();             // every call logged`
+
+/* ---------- Part 5 code ---------- */
+const workflowCommand = `# .claude/commands/ship.md
+Ship a feature end to end. Do NOT commit - I do that.
+
+1. Give me a short plan and wait for my OK.
+2. Scaffold the vertical slice with the my-endpoint skill.
+3. Write integration tests (WebApplicationFactory + Testcontainers).
+4. Run \`dotnet build && dotnet test\`. Fix failures, repeat until green.
+5. Run the aspnetcore-security-auditor agent on the new code.
+6. Summarize the diff + the agent's top findings, then stop.`
+
+const workflowRun = `> /ship a create-invoice endpoint
+
+# Claude plans -> scaffolds (skill) -> tests -> reviews (agent)
+# -> hands you the diff. You read it and commit.`
+
+/* ---------- Part 3 code (real project) ---------- */
+const mcpHttpProgram = `var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+  .AddMcpServer()
+  .WithHttpTransport()          // remote server - clients connect over HTTP
+  .WithToolsFromAssembly();
+
+var app = builder.Build();
+app.MapMcp("/mcp");             // the MCP endpoint Copilot/Claude connect to
+app.Run();`
+
+const mcpHttpJson = `// .vscode/mcp.json  (GitHub Copilot)
+{
+  "servers": {
+    "performance-lab": {
+      "type": "http",
+      "url": "http://localhost:5200/mcp"
+    }
+  }
+}`
+
+const mcpRealTool = `[McpServerToolType]
+public sealed class PerformanceTools(
+  LoadTestRunner runner,
+  ResultAnalyzer analyzer,
+  IResultStore   store,
+  ILogger<PerformanceTools> logger)          // all injected from DI
+{
+  [McpServerTool(Name = "run_load_test")]
+  [Description(
+    "Run a load test against an API endpoint. Fires concurrent HTTP " +
+    "requests and returns throughput, latency percentiles, and error " +
+    "rate. Returns a result ID for analyze_results or generate_report.")]
+  public async Task<string> RunLoadTest(
+    [Description("Full URL, e.g. http://localhost:5100/fast")] string url,
+    [Description("Seconds to run. Default: 10")] int durationSeconds = 10,
+    [Description("Concurrent virtual users. Default: 10")] int concurrentUsers = 10,
+    CancellationToken ct = default)
+  {
+    var result   = await runner.RunAsync(
+      new LoadTestRequest { Url = url, DurationSeconds = durationSeconds,
+                            ConcurrentUsers = concurrentUsers }, ct);
+    var analysis = analyzer.Analyze(result);   // ThreadPool starvation? GC pressure?
+    store.Add(result, analysis);
+    return FormatLoadTestResult(result, analysis);   // a tight, model-readable summary
+  }
+}`
+
+/* ---------- Part 4 code (extra) ---------- */
+const chatHistory = `List<ChatMessage> chat =
+[
+  new(ChatRole.System, "You are a terse .NET assistant. Answer in one paragraph."),
+  new(ChatRole.User,   userQuestion),
+];
+
+var response = await chat_client.GetResponseAsync(chat, cancellationToken: ct);
+chat.AddMessages(response);   // keep the reply so the next turn has context`
+
+const toolCalling = `// Expose a plain C# method as a tool the model can call.
+[Description("Get the current stock count for a product SKU.")]
+static int GetStock(string sku) => Inventory.CountFor(sku);
+
+var options = new ChatOptions
+{
+  Tools = [AIFunctionFactory.Create(GetStock)]
+};
+
+// With .UseFunctionInvocation() on the pipeline, the library runs the
+// call for you and feeds the result back to the model - automatically.
+var response = await chat.GetResponseAsync(
+  "How many units of SKU-42 are left?", options, cancellationToken: ct);`
+
+/* ---------- Part 5 code (extra) ---------- */
+const triageCommand = `# .claude/commands/triage.md
+Triage a slow endpoint end to end:
+1. Run the performance-lab MCP tool (run_load_test) on the endpoint.
+2. From the numbers, name the likely cause - ThreadPool starvation? GC? N+1?
+3. Propose the minimal .NET fix and show the diff. Do NOT apply yet.
+4. On my OK, apply it and re-run the test to prove it's faster.`
 
 /* ---------- small render helpers ---------- */
 const langLabel: Record<string, string> = { csharp: 'C#', bash: 'bash', markdown: 'md', text: 'text' }
@@ -597,6 +872,374 @@ claude`}</Code>
                   </span>
                 </div>
                 <p className="text-white mt-3"><span className="text-yellow"><b>Next →</b></span> Part 3: MCP - give the AI real <em>tools</em> in C#, so it can do things in your systems, not just write code.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ---------------- PART 3 ---------------- */}
+          <div className="row justify-content-center">
+            <div className="col-md-10" id="part3">
+              <div className="tk-card crk-accent-card" style={sectionCard}>
+                <div style={kicker}>PART 3 · LESSON 3 OF 5</div>
+                <h2 className="text-white">Give the AI real tools: <span className="text-yellow">MCP in C#</span></h2>
+                <p className="text-white">
+                  So far the AI only <em>writes</em> code. In this lesson you give it <strong>tools</strong> - the
+                  ability to actually do things in your systems: query a database, call your API, check a ticket. You
+                  build the tool once, in C#, and any AI client can call it.
+                </p>
+
+                <h4 className="text-white mt-4">What MCP is (in one paragraph)</h4>
+                <p className="text-white">
+                  <strong>MCP - the Model Context Protocol</strong> - is a standard way for AI clients (Claude Code,
+                  Copilot, Cursor) to call external tools. You write an <strong>MCP server</strong>: a small program
+                  that exposes some operations as tools. The client tells the model which tools exist, the model picks
+                  one when it needs it, your C# runs, and the result flows back into the conversation. Skills tell the
+                  AI <em>how</em> to write code; MCP tools let it <em>do</em> something.
+                </p>
+
+                <div style={good.box}>
+                  <div style={{ fontWeight: 800, color: good.color, marginBottom: '6px' }}>🧭 Skill vs. agent vs. MCP tool</div>
+                  <span className="text-white">
+                    <strong>Skill</strong> = &quot;write this the way we do.&quot; <strong>Agent</strong> = &quot;review
+                    my repo and report back.&quot; <strong>MCP tool</strong> = &quot;go touch a real system and bring
+                    back real data.&quot; The first two shape text; MCP takes action.
+                  </span>
+                </div>
+
+                <h4 className="text-white mt-4">How a tool call actually flows</h4>
+                <ol className="text-white">
+                  <li>Your server tells the client which tools exist - name, description, parameters.</li>
+                  <li>You ask a question; the model decides a tool would help and picks one.</li>
+                  <li>The client calls your C# method with the arguments the model filled in.</li>
+                  <li>Your code runs - a real query, a real API call - and returns a result.</li>
+                  <li>The model reads that result and answers, grounded in what your tool returned.</li>
+                </ol>
+                <p style={muted}>You never wire the call up by hand - the model decides, the client routes, your C# runs. Your whole job is to write good tools and describe them well.</p>
+
+                <h4 className="text-white mt-4">When you actually want a tool</h4>
+                <DataTable head={['You want the AI to…', 'Reach for']} rows={mcpWhen} />
+
+                <h4 className="text-white mt-4">Step 1 - Create the server</h4>
+                <Code lang="bash">{mcpInstall}</Code>
+                <p style={muted}>
+                  The C# SDK is <code>ModelContextProtocol</code>. It still ships under <code>--prerelease</code> - drop
+                  the flag once your version is stable.
+                </p>
+                <Code>{mcpProgram}</Code>
+                <p style={muted}>
+                  Three lines do the work: <code>AddMcpServer</code> registers it, <code>WithStdioServerTransport</code>{' '}
+                  lets the client launch it, and <code>WithToolsFromAssembly</code> auto-discovers your tools.
+                </p>
+
+                <h4 className="text-white mt-4">Step 2 - Write a tool</h4>
+                <p className="text-white">
+                  A tool is just a method with two attributes. The <code>[Description]</code> is what the model reads to
+                  decide <em>when</em> to call it - treat it like a skill&apos;s trigger. Services are injected from DI,
+                  so your tool can use the same <code>IOrderService</code> your app already has.
+                </p>
+                <Code>{mcpTool}</Code>
+
+                <h4 className="text-white mt-4">Step 3 - Connect it to Claude Code</h4>
+                <Code lang="bash">{mcpRegister}</Code>
+                <p style={muted}>Prefer config in the repo? Drop a <code>.mcp.json</code> so the whole team gets the same tools:</p>
+                <Code lang="markdown">{mcpJson}</Code>
+
+                <h4 className="text-white mt-4">stdio vs. HTTP - which transport?</h4>
+                <DataTable head={['Transport', 'Use it when', 'How it runs']} rows={mcpTransports} />
+                <p style={muted}>Start with <strong>stdio</strong>. Move to HTTP once a server needs to be shared, hosted, or consumed by more than a command-line client.</p>
+
+                <h4 className="text-white mt-4">See it in a real project: <span className="text-yellow">Performance Lab</span></h4>
+                <p className="text-white">
+                  Here&apos;s a full MCP server I built so you can read real code, not just snippets.{' '}
+                  <strong>Performance Lab</strong> lets you ask Copilot or Claude - in plain English - to load-test a
+                  .NET API, spot <strong>ThreadPool starvation</strong>, <strong>GC pressure</strong>, or a high error
+                  rate, and suggest the fix. It ships with a sample API full of intentionally broken endpoints and a
+                  Blazor dashboard to visualise the runs.
+                </p>
+                <p style={muted}>
+                  Because a Blazor dashboard <em>and</em> AI clients both talk to it, the server uses the{' '}
+                  <strong>HTTP transport</strong> - the exact case the table above calls out:
+                </p>
+                <Code>{mcpHttpProgram}</Code>
+                <Code lang="markdown">{mcpHttpJson}</Code>
+                <p className="text-white">
+                  The tools are a class with a primary constructor - your services (<code>LoadTestRunner</code>,{' '}
+                  <code>ResultAnalyzer</code>, a store, a logger) are injected straight in, exactly like anywhere else
+                  in ASP.NET Core:
+                </p>
+                <Code>{mcpRealTool}</Code>
+                <div style={good.box}>
+                  <div style={{ fontWeight: 800, color: good.color, marginBottom: '6px' }}>📦 Clone it and run it</div>
+                  <span className="text-white">
+                    Full solution - API, MCP server, dashboard, tests -{' '}
+                    <a className="text-yellow" href="https://github.com/StefanTheCode/AI-in-.NET/tree/main/MCP%20Server%20-%20API%20Performance%20Analysis" target="_blank" rel="noopener noreferrer">MCP Server - API Performance Analysis</a>.
+                    Run the three projects, connect Copilot, and ask it to compare <code>/slow</code> vs <code>/fast</code>.
+                    You&apos;ll watch the AI diagnose your API from real numbers.
+                  </span>
+                </div>
+
+                <div style={never.box}>
+                  <div style={{ fontWeight: 800, color: never.color, marginBottom: '6px' }}>⛔ A tool runs with your permissions</div>
+                  <span className="text-white">
+                    An MCP tool executes real code against real systems. <strong>Validate every input</strong>, scope
+                    credentials to the minimum, and never expose a destructive operation (delete, refund, deploy)
+                    without a confirmation step. The model will call what you give it.
+                  </span>
+                </div>
+
+                <div style={warn.box}>
+                  <div style={{ fontWeight: 800, color: warn.color, marginBottom: '6px' }}>⚠️ Common mistakes</div>
+                  <ul className="text-white" style={{ margin: 0 }}>
+                    <li>A vague <code>[Description]</code> → the model never calls the tool (same rule as skills).</li>
+                    <li>Returning a giant blob - return a tight, readable result the model can use.</li>
+                    <li>Logging to stdout on a stdio server - it corrupts the protocol. Log to <em>stderr</em>.</li>
+                    <li>Read/write tools with no guardrails. Start read-only.</li>
+                  </ul>
+                </div>
+
+                <div style={good.box}>
+                  <div style={{ fontWeight: 800, color: good.color, marginBottom: '6px' }}>✅ Your exercise</div>
+                  <ol className="text-white" style={{ margin: 0 }}>
+                    <li>Build a one-tool MCP server over stdio (start read-only - a lookup).</li>
+                    <li>Register it with <code>claude mcp add</code> and call it from a prompt.</li>
+                    <li>Inject a real service so it returns real data from your app.</li>
+                    <li>Share what tool you exposed in the community feed.</li>
+                  </ol>
+                </div>
+
+                <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
+                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <span className="text-white">
+                    MCP turns the AI from a code writer into something that can <strong>act</strong> in your systems.
+                    Expose an operation as a tool with <code>[McpServerTool]</code> + a sharp <code>[Description]</code>,
+                    run it over stdio, and register it with one command. Keep tools scoped and safe - they run for real.
+                  </span>
+                </div>
+                <p className="text-white mt-3"><span className="text-yellow"><b>Next →</b></span> Part 4: stop using other people&apos;s AI - build your own AI feature in C#.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ---------------- PART 4 ---------------- */}
+          <div className="row justify-content-center">
+            <div className="col-md-10" id="part4">
+              <div className="tk-card crk-accent-card" style={sectionCard}>
+                <div style={kicker}>PART 4 · LESSON 4 OF 5</div>
+                <h2 className="text-white">Build your <span className="text-yellow">first AI feature</span></h2>
+                <p className="text-white">
+                  Parts 1-3 were about using AI to build .NET. Now you flip sides: you put AI <em>inside</em> your app.
+                  The good news - it&apos;s just another service you inject. One interface, <code>IChatClient</code>, and
+                  any provider behind it.
+                </p>
+
+                <h4 className="text-white mt-4">The one abstraction: <span className="text-yellow">IChatClient</span></h4>
+                <p className="text-white">
+                  <code>Microsoft.Extensions.AI</code> gives .NET a single interface for talking to any LLM -{' '}
+                  <code>IChatClient</code>. You register one provider at startup; the rest of your code depends on the
+                  interface, not on OpenAI or Azure. Swap providers by changing one line.
+                </p>
+                <Code lang="bash">{featureInstall}</Code>
+                <Code>{featureRegister}</Code>
+                <p style={muted}>
+                  The model id lives on the <code>ChatClient</code>; <code>.AsIChatClient()</code> adapts it to the
+                  standard interface. (The exact adapter name tracks the package version.)
+                </p>
+
+                <h4 className="text-white mt-4">Step 1 - Call the model</h4>
+                <p className="text-white">Inject <code>IChatClient</code> like any other service and ask:</p>
+                <Code>{featureCall}</Code>
+
+                <h4 className="text-white mt-4">Step 2 - Stream the response</h4>
+                <p className="text-white">For anything user-facing, stream tokens as they come instead of waiting for the whole answer:</p>
+                <Code>{featureStream}</Code>
+
+                <h4 className="text-white mt-4">Step 3 - Get <span className="text-yellow">structured output</span> (the real unlock)</h4>
+                <p className="text-white">
+                  Free text is hard to use in code. Ask for a <strong>typed result</strong> and the library builds the
+                  JSON schema, tells the model, and parses the response into your record:
+                </p>
+                <Code>{featureStructured}</Code>
+                <p style={muted}>This is what turns an LLM from a chatbot into a <strong>feature</strong>: classify a ticket, extract fields from an email, tag content - all as real C# objects.</p>
+
+                <h4 className="text-white mt-4">Give it a role - and memory</h4>
+                <p className="text-white">
+                  A single prompt is stateless. Pass a <strong>list of messages</strong> instead - a{' '}
+                  <code>System</code> message sets the role and rules, and you keep appending turns so the model
+                  remembers the conversation:
+                </p>
+                <Code>{chatHistory}</Code>
+                <p style={muted}>The <code>System</code> message is where you put guardrails - tone, format, &quot;only answer from the context I give you.&quot; It&apos;s the CLAUDE.md of your feature.</p>
+
+                <h4 className="text-white mt-4">Let the model call your code (tools)</h4>
+                <p className="text-white">
+                  Same idea as MCP from Part 3 - but <em>in-process</em>. Hand the model a C# method and it decides when
+                  to call it, so your feature can pull real data mid-answer instead of guessing:
+                </p>
+                <Code>{toolCalling}</Code>
+                <p style={muted}>MCP tools do this <strong>across</strong> processes for any client; <code>AIFunctionFactory</code> does it <strong>inside</strong> one app. This is the seed of an AI agent (Step 7 in the roadmap).</p>
+
+                <h4 className="text-white mt-4">Swap providers without touching your code</h4>
+                <DataTable head={['Provider', 'Register with', 'Good for']} rows={providerSwap} />
+                <p style={muted}>Develop locally against Ollama (free, private), ship on OpenAI or Azure. Your feature code never changes.</p>
+
+                <h4 className="text-white mt-4">Production niceties, almost for free</h4>
+                <p className="text-white"><code>IChatClient</code> is a pipeline - wrap it with middleware the same way you&apos;d wrap an HTTP client:</p>
+                <Code>{featurePipeline}</Code>
+                <DataTable head={['Add to the pipeline', 'What you get']} rows={chatPipeline} />
+
+                <div style={warn.box}>
+                  <div style={{ fontWeight: 800, color: warn.color, marginBottom: '6px' }}>⚠️ Tokens are money - and latency</div>
+                  <ul className="text-white" style={{ margin: 0 }}>
+                    <li>Use the <strong>smallest model that works</strong> (like <code>gpt-4o-mini</code>) - upgrade only when quality demands it.</li>
+                    <li>Cache identical prompts with <code>.UseDistributedCache()</code>.</li>
+                    <li>Keep prompts tight and cap the output length - you pay for both directions.</li>
+                    <li>Never put a secret key in source - use configuration / user-secrets.</li>
+                  </ul>
+                </div>
+
+                <div style={never.box}>
+                  <div style={{ fontWeight: 800, color: never.color, marginBottom: '6px' }}>⛔ The model can be wrong - and confident</div>
+                  <span className="text-white">
+                    Treat every response as <strong>untrusted input</strong>. Validate structured output before you save
+                    it, never run model text as code or SQL, and don&apos;t surface raw answers where correctness is
+                    critical without a check. You&apos;re still the engineer.
+                  </span>
+                </div>
+
+                <div style={good.box}>
+                  <div style={{ fontWeight: 800, color: good.color, marginBottom: '6px' }}>✅ Your exercise</div>
+                  <ol className="text-white" style={{ margin: 0 }}>
+                    <li>Register an <code>IChatClient</code> and call it from one endpoint.</li>
+                    <li>Return a <strong>typed</strong> result with <code>GetResponseAsync&lt;T&gt;</code>.</li>
+                    <li>Point it at Ollama locally, then at OpenAI - same code.</li>
+                    <li>Add <code>.UseLogging()</code> and look at what a call actually costs.</li>
+                  </ol>
+                </div>
+
+                <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
+                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <span className="text-white">
+                    An AI feature in .NET is one interface: <code>IChatClient</code>. Register a provider once, call{' '}
+                    <code>GetResponseAsync</code>, stream for UIs, and use <strong>structured output</strong> to get
+                    typed objects instead of text. Mind tokens, and treat every answer as untrusted.
+                  </span>
+                </div>
+                <p className="text-white mt-3"><span className="text-yellow"><b>Next →</b></span> Part 5: chain everything into one repeatable workflow.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ---------------- PART 5 ---------------- */}
+          <div className="row justify-content-center">
+            <div className="col-md-10" id="part5">
+              <div className="tk-card crk-accent-card" style={sectionCard}>
+                <div style={kicker}>PART 5 · LESSON 5 OF 5</div>
+                <h2 className="text-white">Tie it together: one repeatable <span className="text-yellow">workflow</span></h2>
+                <p className="text-white">
+                  You now have four pieces - context, skills &amp; agents, MCP tools, and AI features. The last skill is{' '}
+                  <strong>orchestration</strong>: wiring them into one repeatable loop so shipping a feature is a single
+                  command, not ten manual steps.
+                </p>
+
+                <h4 className="text-white mt-4">The loop every task should follow</h4>
+                <p className="text-white">Plan → Build → Verify → Review → <strong>you</strong> ship. Each stage is powered by something you already built:</p>
+                <DataTable head={['Stage', 'What runs it', 'From']} rows={workflowStages} />
+
+                <h4 className="text-white mt-4">Step 1 - Wrap the loop in a slash command</h4>
+                <p className="text-white">
+                  A slash command turns the whole sequence into one word. It calls your skills, runs your tests, and
+                  invokes your agent - in order, every time:
+                </p>
+                <Code lang="markdown">{workflowCommand}</Code>
+                <Code lang="bash">{workflowRun}</Code>
+                <p style={muted}>Same steps, same quality bar - 9am or a Friday deploy. That&apos;s the point of a workflow: consistency you don&apos;t have to remember.</p>
+
+                <h4 className="text-white mt-4">Step 2 - Keep the gates in place</h4>
+                <ul className="text-white">
+                  <li><strong>Plan mode</strong> for anything risky - it proposes, you approve, then it touches files.</li>
+                  <li><strong>Hooks</strong> enforce your rules automatically (format on save, block bad patterns pre-commit).</li>
+                  <li><strong>An agent</strong> is the second pair of eyes before you commit.</li>
+                  <li><strong>You</strong> read the diff and press commit. The AI never ships on its own.</li>
+                </ul>
+                <div style={tip.box}>
+                  <div style={{ fontWeight: 800, color: tip.color, marginBottom: '6px' }}>💡 The mindset</div>
+                  <span className="text-white">
+                    The AI <strong>executes</strong>; you <strong>decide</strong>. A good workflow moves the boring
+                    steps to the machine and keeps every real decision - and the commit - with you.
+                  </span>
+                </div>
+
+                <h4 className="text-white mt-4">Step 3 - Let it reach further with MCP</h4>
+                <p className="text-white">
+                  Because your tools from Part 3 are in the loop, the workflow isn&apos;t limited to writing code. Wire
+                  the <strong>Performance Lab</strong> MCP server into a <code>/triage</code> command and the AI can
+                  measure a slow endpoint, name the cause from real numbers, propose the fix, and prove it - one pass,
+                  grounded in your systems:
+                </p>
+                <Code lang="markdown">{triageCommand}</Code>
+                <p style={muted}>That&apos;s the payoff of the whole track: context (Part 1) + a skill&apos;s checklist (Part 2) + a real tool (Part 3) + a model call (Part 4), orchestrated into one command - and you still approve every change.</p>
+
+                <div style={warn.box}>
+                  <div style={{ fontWeight: 800, color: warn.color, marginBottom: '6px' }}>⚠️ Don&apos;t automate away your judgment</div>
+                  <ul className="text-white" style={{ margin: 0 }}>
+                    <li>No auto-commit, no auto-deploy from a command. Always end with a human gate.</li>
+                    <li>Keep commands small and composable - <code>/scaffold</code>, <code>/verify</code>, <code>/ship</code> - not one mega-command.</li>
+                    <li>If you can&apos;t explain what a step did, don&apos;t ship it.</li>
+                  </ul>
+                </div>
+
+                <div style={good.box}>
+                  <div style={{ fontWeight: 800, color: good.color, marginBottom: '6px' }}>✅ Your exercise</div>
+                  <ol className="text-white" style={{ margin: 0 }}>
+                    <li>Write a <code>/ship</code> command that scaffolds, tests, and reviews - then stops for you.</li>
+                    <li>Add one hook (format on save, or a pre-commit guard).</li>
+                    <li>Run a full feature through the loop without leaving Claude Code.</li>
+                    <li>Share your command file in the community feed.</li>
+                  </ol>
+                </div>
+
+                <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
+                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <span className="text-white">
+                    A workflow chains your context, skills, agents, MCP tools, and tests into one repeatable loop behind
+                    a slash command - with plan mode, hooks, and <strong>you</strong> as the gates. That&apos;s the whole
+                    of Track A: the AI does the work, you stay the engineer.
+                  </span>
+                </div>
+                <p className="text-white mt-3">
+                  <span className="text-yellow"><b>That&apos;s Track A. Next →</b></span> Track B: build AI <em>into</em>{' '}
+                  your apps at depth - embeddings &amp; semantic search, RAG, and agents. Grab a{' '}
+                  <a className="text-yellow" href="#projects">runnable project</a> to start from, or see the full{' '}
+                  <a className="text-yellow" href="/ai-roadmap-2026">AI Roadmap for .NET</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* ---------------- PROJECTS ---------------- */}
+          <div className="row justify-content-center">
+            <div className="col-md-10" id="projects">
+              <div className="tk-card crk-accent-card" style={sectionCard}>
+                <div style={kicker}>PROJECTS · BUILD THESE NEXT</div>
+                <h2 className="text-white">Runnable <span className="text-yellow">.NET projects</span> that match the roadmap</h2>
+                <p style={muted}>Each is a self-contained solution with its own README - clone it, set your own keys, run it. All on .NET 10. Read the code alongside the lessons above.</p>
+                <div className="row">
+                  {projects.map((p, i) => (
+                    <div className="col-md-6" key={i} style={{ marginTop: '16px' }}>
+                      <a href={p.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+                        <div style={{ ...card, background: 'rgba(255,255,255,0.03)', padding: '18px 20px', height: '100%' }}>
+                          <div style={{ ...kicker, marginBottom: '10px' }}>{p.step}</div>
+                          <h5 className="text-white" style={{ marginBottom: '6px' }}>{p.name} <span className="text-yellow">↗</span></h5>
+                          <p style={{ ...muted, margin: 0, fontSize: '14px' }}>{p.desc}</p>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ ...muted, marginTop: '18px', fontSize: '14px' }}>
+                  All four live in one repo:{' '}
+                  <a className="text-yellow" href="https://github.com/StefanTheCode/AI-in-.NET" target="_blank" rel="noopener noreferrer">github.com/StefanTheCode/AI-in-.NET</a>
+                </p>
               </div>
             </div>
           </div>
