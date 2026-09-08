@@ -263,6 +263,15 @@ const Ebook = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      {/* Meta Pixel: ViewContent for this product page (used for retargeting) */}
+      <Script
+        id="dp-meta-viewcontent"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `if(window.fbq){fbq('track','ViewContent',{content_name:'Design Patterns that Deliver',content_type:'product',value:32.99,currency:'USD'});}`,
+        }}
+      />
+
       <FreeMotion />
       <div className="dp-ambience" aria-hidden="true"></div>
       <div className="dp-grain" aria-hidden="true"></div>

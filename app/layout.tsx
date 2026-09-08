@@ -93,6 +93,23 @@ export default function RootLayout({
         `
           }}>
         </script>
+
+        {/* Meta Pixel base code */}
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+              n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init','1321122855270380');
+              fbq('track','PageView');
+            `,
+          }}
+        />
         {/* <script 
             dangerouslySetInnerHTML={{
                 __html: `
@@ -177,6 +194,8 @@ export default function RootLayout({
       <body>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBBCS5FT"
           height="0" width="0" className='display-none visible-hidden'></iframe></noscript>
+        <noscript><img height="1" width="1" style={{ display: 'none' }}
+          src="https://www.facebook.com/tr?id=1321122855270380&ev=PageView&noscript=1" alt="" /></noscript>
         <Header></Header>
         {children}
         <Footer></Footer>
@@ -189,6 +208,25 @@ export default function RootLayout({
         <Script
           src="https://app.lemonsqueezy.com/js/lemon.js"
           strategy="afterInteractive"
+        />
+
+        {/* Fire Meta Pixel Purchase when the Lemon Squeezy overlay checkout succeeds */}
+        <Script
+          id="ls-meta-purchase"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function initLS(){
+                if(window.LemonSqueezy && window.LemonSqueezy.Setup){
+                  window.LemonSqueezy.Setup({ eventHandler: function(e){
+                    if(e && e.event === 'Checkout.Success' && window.fbq){
+                      fbq('track','Purchase',{ value:32.99, currency:'USD' });
+                    }
+                  }});
+                } else { setTimeout(initLS, 400); }
+              })();
+            `,
+          }}
         />
       </body>
     </html>
