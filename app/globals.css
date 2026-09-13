@@ -16774,6 +16774,16 @@ img, video, iframe, svg {
   height: auto;
 }
 
+/* --- Blog post images: keep readable but always fit the window (no full-height scroll) --- */
+.post-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 70vh;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
 /* --- Curriculum details on smaller screens --- */
 .curriculum-details summary {
   font-size: 1.1rem;

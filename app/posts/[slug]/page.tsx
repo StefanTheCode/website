@@ -29,19 +29,41 @@ const postsDir = path.join(process.cwd(), "posts");
 const blogImagesDir = path.join(process.cwd(), "public", "images", "blog");
 const DEFAULT_OG_IMAGE = "https://thecodeman.net/og-image.webp";
 
-// Resolve a post's image URL at build time. If the per-post cover image
-// (public/images/blog/<slug>.png) does not exist on disk, fall back to the
-// default OG image so og:image and JSON-LD `image` never point to a 404.
-// Broken image URLs invalidate Article rich results in Google.
-function getPostImageUrl(slug: string): string {
-  try {
-    const localPath = path.join(blogImagesDir, `${slug}.png`);
-    if (fs.existsSync(localPath)) {
-      return `https://thecodeman.net/images/blog/${slug}.png`;
+// Supported cover-image extensions, in order of preference.
+// The blog cover images live in public/images/blog/<slug>.<ext> and are
+// authored as .webp; older assets may be .png/.jpg. We must check the real
+// extension on disk, otherwise og:image silently falls back to the default.
+const IMAGE_EXTS = ["webp", "png", "jpg", "jpeg"];
+
+// Resolve a post's share/OG image URL at build time.
+// Order: explicit `image` in frontmatter -> per-post cover file on disk
+// (public/images/blog/<slug>.<ext>, any supported extension) -> default OG
+// image. Falling back to the default (instead of a 404) keeps og:image and
+// JSON-LD `image` valid; a broken image URL would invalidate Article rich
+// results in Google.
+function getPostImageUrl(slug: string, frontmatterImage?: string): string {
+  // 1) Explicit image from frontmatter — absolute URL or site-relative path.
+  if (frontmatterImage && typeof frontmatterImage === "string") {
+    const img = frontmatterImage.trim();
+    if (img) {
+      if (img.startsWith("http")) return img;
+      return `https://thecodeman.net${img.startsWith("/") ? "" : "/"}${img}`;
     }
-  } catch {
-    // ignore — fall through to default
   }
+
+  // 2) Per-post cover file on disk, trying each supported extension.
+  for (const ext of IMAGE_EXTS) {
+    try {
+      const localPath = path.join(blogImagesDir, `${slug}.${ext}`);
+      if (fs.existsSync(localPath)) {
+        return `https://thecodeman.net/images/blog/${slug}.${ext}`;
+      }
+    } catch {
+      // ignore — try next extension
+    }
+  }
+
+  // 3) Fallback.
   return DEFAULT_OG_IMAGE;
 }
 
@@ -89,7 +111,7 @@ export async function generateMetadata(
 
   const title = data.title || "TheCodeMan Blog";
   const description = data.meta_description || data.subtitle || "Practical .NET knowledge by Stefan Djokic.";
-  const image = getPostImageUrl(slug);
+  const image = getPostImageUrl(slug, data.image);
   const url = `https://thecodeman.net/posts/${slug}`;
 
   return {
@@ -103,7 +125,7 @@ export async function generateMetadata(
       description,
       url,
       type: "article",
-      images: [{ url: image }],
+      images: [{ url: image, alt: title }],
       publishedTime: data.date ? new Date(data.date).toISOString() : undefined,
       authors: ["Stefan Djokic"],
       tags: data.category ? [data.category] : undefined,
@@ -135,7 +157,7 @@ export default async function PostPage(
   const meta = {
     title: post.data.title,
     description: post.data.meta_description || "",
-    image: getPostImageUrl(slug),
+    image: getPostImageUrl(slug, post.data.image),
     url: `https://thecodeman.net/posts/${slug}`,
     date: post.data.date,
   };
