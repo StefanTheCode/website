@@ -1,0 +1,10 @@
+.promo { display:flex; align-items:center; gap:2rem; padding:2rem; margin:2rem 0; border:1px solid #9a79de; border-radius:18px; background:linear-gradient(115deg,#221139,#372052); color:#f4efff; }
+.promo h2 { color:#fff; font-size:clamp(1.4rem,3vw,2rem); margin:0 0 .6rem; }
+.promo p { margin:0; max-width:65ch; line-height:1.7; }
+.promo .eyebrow { color:#dfceff; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.7rem; }
+.promo .link { flex-shrink:0; display:inline-block; background:#ffbd39; color:#241033; border-radius:9px; padding:.9rem 1.2rem; font-weight:700; text-decoration:none; }
+.promo .link:hover { background:#ffd477; }
+.link:focus-visible { outline:3px solid #fff; outline-offset:5px; }
+.compact { display:block; }
+.compact .link { margin-top:1.2rem; }
+@media(max-width:767px) { .promo { flex-direction:column; align-items:flex-start; padding:1.5rem; gap:1.2rem; } }

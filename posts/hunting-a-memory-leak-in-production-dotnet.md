@@ -43,7 +43,7 @@ faq:
 
 <p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored. Instead, let me point you to something I run every single day: my <strong>AI for .NET Developers Community</strong> - for .NET developers who want to actually use AI on real code. 50+ ready-to-run skills and agents for .NET (a memory-profiling helper included), a new one added every week, and the room to figure it all out together.</p>
 
-<a href="https://www.skool.com/thecodeman-ai-toolkit-9723" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
+<a href="https://www.skool.com/ai-for-dotnet-developers" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
 
 <p style="margin: 16px 0 8px 0; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.6);">Want to reach thousands of .NET developers like this?</p>
 
@@ -227,7 +227,7 @@ public sealed class PriceCache : IDisposable
 
 Register `PriceCache` as a singleton, inject it into the view model, and the per-request object holds no subscription at all. Nothing to leak. When the lifetimes match - one long-lived subscriber for a long-lived event - the whole class of bug disappears.
 
-Diagnosing this by hand is a skill worth having, but it's also exactly the kind of tedious pattern-matching I've handed to tooling. The memory-profiling helper in my [AI for .NET Developers Community](https://www.skool.com/thecodeman-ai-toolkit-9723) flags per-request types that subscribe to static or singleton events without a matching unsubscribe - the leak above, caught in review instead of at 6 a.m.
+Diagnosing this by hand is a skill worth having, but it's also exactly the kind of tedious pattern-matching I've handed to tooling. The memory-profiling helper in my [AI for .NET Developers Community](https://www.skool.com/ai-for-dotnet-developers) flags per-request types that subscribe to static or singleton events without a matching unsubscribe - the leak above, caught in review instead of at 6 a.m.
 
 ## The Other Usual Suspects
 
@@ -275,7 +275,7 @@ A memory leak in managed .NET is almost never the garbage collector's fault. The
 
 The method holds up every time. Confirm the shape with `dotnet-counters` so you're not chasing a cache. Take two `dotnet-gcdump` snapshots under load and diff them to find the type that grows. Run `gcroot` on one instance to see who's holding it. The chain always ends somewhere concrete - a static event, a timer, a closure, a cache with no eviction - and once you can see the chain, the fix is usually a single line: unsubscribe, dispose, bound the cache, or fix the lifetime mismatch that created the reference in the first place.
 
-Mine was four lines and three days. Yours will be shorter now, because you know exactly which three tools to reach for and in what order. And if you'd rather have this kind of pattern - the per-request object wired to a process-lifetime event - caught in review instead of on a 6 a.m. graph, that's the sort of thing the skills and agents in my [AI for .NET Developers Community](https://www.skool.com/thecodeman-ai-toolkit-9723) do on your real code, with a new one added every week.
+Mine was four lines and three days. Yours will be shorter now, because you know exactly which three tools to reach for and in what order. And if you'd rather have this kind of pattern - the per-request object wired to a process-lifetime event - caught in review instead of on a 6 a.m. graph, that's the sort of thing the skills and agents in my [AI for .NET Developers Community](https://www.skool.com/ai-for-dotnet-developers) do on your real code, with a new one added every week.
 
 That's all from me today.
 

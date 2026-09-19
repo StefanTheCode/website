@@ -1,3 +1,4 @@
+import AiCommunityPromo from '@/components/AiCommunityPromo';
 import { Metadata } from 'next'
 import Script from 'next/script'
 import Image from 'next/image'
@@ -307,6 +308,7 @@ const AiRoadmap2026 = () => {
             </div>
           </div>
         </div>
+      <div className="container"><AiCommunityPromo /></div>
       </section>
     </>
   )

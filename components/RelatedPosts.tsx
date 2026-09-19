@@ -42,7 +42,7 @@ export default function RelatedPosts({ currentSlug, currentCategory, allPosts }:
         {related.map((post) => (
           <Link key={post.slug} href={`/posts/${post.slug}`} className="related-post-card">
             <Image
-              src={`/images/blog/${post.slug}.png`}
+              src={post.photo}
               alt={post.title}
               width={400}
               height={200}

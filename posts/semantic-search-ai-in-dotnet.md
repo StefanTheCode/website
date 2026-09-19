@@ -1,11 +1,23 @@
 ---
-title: "Semantic Search in 50 Lines of Code - AI in .NET"
+title: "Semantic Search in .NET with Microsoft.Extensions.AI"
 subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how to implement it in .NET with Microsoft.Extensions.AI:"
 date: "Feb 24 2025"
 category: "AI"
 readTime: "Read Time: 4 minutes"
-meta_description: "Learn how to implement semantic search in .NET using Microsoft.Extensions.AI and embeddings. Build AI-powered search with cosine similarity in just 50 lines of C# code."
+meta_description: "Learn semantic search in C# with Microsoft.Extensions.AI, text embeddings and cosine similarity. Rank related documents before building a RAG workflow."
+updated: "2026-09-19"
+faq:
+  - q: "How is semantic search different from keyword search?"
+    a: "Keyword search matches words or terms. Semantic search compares vector embeddings to rank content by similarity in meaning. Depending on the application, combining the two can be useful."
+  - q: "Is semantic search the same as RAG?"
+    a: "No. Semantic search retrieves relevant items. RAG adds a generation step that gives retrieved context to a language model and asks it to produce an answer."
+  - q: "Do I need a vector database for this C# example?"
+    a: "No. This introductory example compares vectors in application memory. A persistent vector store becomes useful when your data size, query volume or operational requirements outgrow that approach."
 ---
+
+Semantic search in .NET compares embeddings to find text with a similar meaning. This C# example introduces an embedding generator, vector comparison and ranking matching documents. It is the retrieval foundation you can later use in a RAG application.
+
+**Version note:** The original example was published in February 2025. Package APIs may differ from current releases; use the [Microsoft.Extensions.AI documentation](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) to check your installed version.
 
 <!--START-->
 
@@ -54,7 +66,7 @@ By using Microsoft.Extensions.AI, developers can avoid writing low-level code to
 
 Let's see how to implement it.
 
-## Semantic Search Implmentation - Real Example
+## Semantic Search Implementation in C#
 
 You know I have a blog on my website. Let's say I want to implement Search functionality via .NET. 
 

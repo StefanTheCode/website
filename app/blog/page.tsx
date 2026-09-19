@@ -1,80 +1,44 @@
-import { Metadata } from "next";
-import getPostMetadata from "@/components/getPostMetadata";
-import BlogClient from "./blogClient";
-import { Suspense } from "react";
+import { Metadata } from 'next';
+import getPostMetadata from '@/components/getPostMetadata';
+import AiCommunityPromo from '@/components/AiCommunityPromo';
+import { aiLearningPaths } from '@/components/aiCommunity';
+import BlogClient from './blogClient';
+import { Suspense } from 'react';
+import Link from 'next/link';
+import styles from './page.module.css';
 
+const title = 'C# & .NET Blog: AI, MCP, RAG and Software Architecture';
+const description = 'Practical C# and .NET tutorials by Stefan Djokic: Claude Code, MCP servers, RAG, AI agents, ASP.NET Core and software architecture with real code examples.';
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thecodeman.net'),
-  title: ".NET Blog - C# Tutorials, Architecture & Best Practices",
-  alternates: {
-    canonical: 'https://thecodeman.net/blog',
-  },
-  description: "Practical .NET tutorials, C# tips, architecture patterns, and software engineering best practices by Microsoft MVP Stefan Djokic. New articles every week.",
-  openGraph: {
-    title: ".NET Blog - C# Tutorials, Architecture & Best Practices",
-    type: "website",
-    url: "https://thecodeman.net/blog",
-    description: "Practical .NET tutorials, C# tips, architecture patterns, and software engineering best practices by Microsoft MVP Stefan Djokic. New articles every week."
-  },
-  twitter: {
-    title: ".NET Blog - C# Tutorials, Architecture & Best Practices",
-    card: "summary_large_image",
-    site: "@TheCodeMan__",
-    creator: "@TheCodeMan__",
-    description: "Practical .NET tutorials, C# tips, architecture patterns, and software engineering best practices by Microsoft MVP Stefan Djokic."
-  }
+  title: { absolute: title }, description,
+  alternates: { canonical: 'https://thecodeman.net/blog' },
+  openGraph: { title, description, type: 'website', url: 'https://thecodeman.net/blog', images: ['/og-image.webp'] },
+  twitter: { title, description, card: 'summary_large_image', images: ['/og-image.webp'] },
 };
 
-const BlogPage = () => {
-  const postMetadata = getPostMetadata();
-
-  // Sort newest first so crawlers see fresh posts at the top of the indexable list.
-  const sortedPosts = [...postMetadata].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-
-  return (
-    <>
-      {/*
-        SEO-only server-rendered post index.
-        BlogClient is a client component that depends on useSearchParams(),
-        which forces Next.js (under output: 'export') to render only the
-        Suspense fallback in the static HTML. Without this list, the static
-        /blog HTML contains zero links to posts, so Googlebot has no
-        crawlable internal link to newly-published articles until the JS
-        runtime executes. This <nav> ships every post URL in the initial
-        HTML. It is positioned off-screen so it does not affect the visual
-        design, but it is fully crawlable (NOT display:none, NOT hidden).
-      */}
-      <nav
-        aria-label="All blog posts"
-        style={{
-          position: "absolute",
-          width: "1px",
-          height: "1px",
-          padding: 0,
-          margin: "-1px",
-          overflow: "hidden",
-          clip: "rect(0, 0, 0, 0)",
-          whiteSpace: "nowrap",
-          border: 0,
-        }}
-      >
-        <h2>All articles</h2>
-        <ul>
-          {sortedPosts.map((p) => (
-            <li key={p.slug}>
-              <a href={`/posts/${p.slug}`}>{p.title}</a>
-            </li>
-          ))}
-        </ul>
+export default function BlogPage() {
+  const posts = getPostMetadata();
+  const sortedPosts = [...posts].sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return <>
+    <section className={`container ${styles.intro}`}>
+      <h1 className="text-white">C#, .NET and AI: practical developer guides</h1>
+      <p className="text-white">Learn with real code examples from Microsoft MVP Stefan Djokic. Explore AI workflows, ASP.NET Core, architecture, performance and testing.</p>
+      <AiCommunityPromo />
+      <nav aria-label="AI and .NET learning paths" className={`row ${styles.learningPaths}`}>
+        {aiLearningPaths.map(path => <div key={path.id} className="col-md-4 mb-4">
+          <h2 className="text-white">{path.title}</h2>
+          <ul>{path.articles.map(article => <li key={article.slug}><Link href={`/posts/${article.slug}`} className="text-yellow">{article.title}</Link></li>)}</ul>
+        </div>)}
       </nav>
-
-      <Suspense fallback={<div>Loading blog...</div>}>
-        <BlogClient allPosts={postMetadata} />
-      </Suspense>
-    </>
-  );
-};
-
-export default BlogPage;
+    </section>
+    <Suspense fallback={<p className="container">Loading article filters. Browse all articles below.</p>}>
+      <BlogClient allPosts={posts} />
+    </Suspense>
+    <section className="container pb-5">
+      <details>
+        <summary className="text-yellow">Browse all {sortedPosts.length} articles by date</summary>
+        <nav aria-label="All blog posts"><ul>{sortedPosts.map(p => <li key={p.slug}><Link href={`/posts/${p.slug}`}>{p.title}</Link></li>)}</ul></nav>
+      </details>
+    </section>
+  </>;
+}

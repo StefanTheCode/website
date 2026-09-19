@@ -88,9 +88,12 @@ for (const f of fmFiles) {
 
   // Cover image must exist or page.tsx will fall back to default OG image.
   // Still warn so we know which posts are missing branded covers.
-  const imgPath = path.join(IMAGES_DIR, `${slug}.png`);
-  if (!fs.existsSync(imgPath)) {
-    warn(`[image] ${slug}: missing public/images/blog/${slug}.png — using default OG image fallback`);
+  const explicitImage = fm.image;
+  const hasCover = explicitImage
+    ? (/^https?:\/\//.test(explicitImage) || fs.existsSync(path.join(ROOT, 'public', explicitImage.replace(/^\//, ''))))
+    : ['webp', 'png', 'jpg', 'jpeg'].some(ext => fs.existsSync(path.join(IMAGES_DIR, `${slug}.${ext}`)));
+  if (!hasCover) {
+    warn(`[image] ${slug}: no cover image found — using default OG image fallback`);
   }
 }
 

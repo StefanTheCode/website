@@ -7,7 +7,6 @@ import PostPreview from "@/components/PostPreview";
 import BlogSearch from "@/components/BlogSearch";
 import Subscribe from "../subscribe";
 import config from "@/config.json";
-import Image from 'next/image';
 import Fuse from "fuse.js";
 
 const POSTS_PER_PAGE = 10;
@@ -106,38 +105,12 @@ const BlogClient = ({ allPosts }: Props) => {
 
   return (
     <>
-      {/* Hero Header */}
-      <section id="home-section" className="hero container background-black padding-bottom-5per">
-        <div className="row d-md-flex no-gutters">
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text padding-top-10per">
-            <div className="text">
-              <p className="header-text">Become a </p>
-              <p className="header-text mtopminus10"><span className='text-yellow'>.NET Pro</span></p>
-              <p className="header-text mtbottom20 ">while drinking coffee</p>
-              <p className="mb-4 header-sub-text">Every <span className='text-yellow'>Monday morning</span>, start the week with a cup of coffee and <span className='text-yellow'>1 actionable .NET tip</span>.</p>
-              <p className="header-sub-text-join">Join <span className='text-yellow'>{config.NewsletterSubCount}</span> to improve your .NET Knowledge.</p>
-              <div className='row'>
-                <div className='col-xs-4 col-sm-12 col-md-2 col-lg-2'></div>
-                <div className="col-xs-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 text-center octopus-input-margin-left"
-                  dangerouslySetInnerHTML={{
-                    __html: `<script async src="https://eomail4.com/form/03cc8224-cde8-11ef-b5d5-4bdfe653a4b5.js" data-form="03cc8224-cde8-11ef-b5d5-4bdfe653a4b5"></script>`
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top-10per" id="profile-image">
-            <Image src={'/images/blog-header.webp'} priority alt={'Blog header image'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-          </div>
-        </div>
-      </section>
-
       {/* Blog Posts */}
       <section className="img ftco-section">
         <div className="container">
           <div className="col-md-12 text-center" ref={headingRef}>
             <h2><b className='text-yellow'>TheCodeMan.NET</b></h2>
-            <h2>previous issues </h2>
+            <h2>Browse the tutorials</h2>
           </div>
 
           {/* Search */}

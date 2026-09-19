@@ -278,7 +278,7 @@ Producer-consumer stopped needing a library the moment `System.Threading.Channel
 
 The two decisions that matter most: bound the channel so a burst can't take the process down, and complete the writer on shutdown so a deploy drains instead of dropping. Get those right and the endpoint that fell over under a burst of uploads just... doesn't - it accepts what it can, makes the caller wait when it must, and works through the backlog at a pace it can actually sustain.
 
-And if you'd rather have this kind of review done for you - catching the fire-and-forget `Task.Run`, the unbounded channel, the try/catch in the wrong place - that's exactly what I built [AI for .NET Developers](https://thecodeman.net/ai-toolkit) for: 50+ Claude-based skills and agents that review your C#, audit security, and optimize EF Core right down to the file and line, running on your real code. If you live in .NET, it's worth a look.
+And if you'd rather have this kind of review done for you - catching the fire-and-forget `Task.Run`, the unbounded channel, the try/catch in the wrong place - that's exactly what I built [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) for: 50+ Claude-based skills and agents that review your C#, audit security, and optimize EF Core right down to the file and line, running on your real code. If you live in .NET, it's worth a look.
 
 That's all from me today.
 

@@ -3,7 +3,7 @@ import path from "path";
 import Markdown from "markdown-to-jsx";
 import matter from "gray-matter";
 import getPostMetadata from "../../../components/getPostMetadata";
-import "../[slug]/page.module.css";
+import styles from './page.module.css';
 import Subscribe from "@/app/subscribe";
 import Help from "@/app/help";
 import config from "@/config.json";
@@ -24,6 +24,8 @@ import PostNavigation from "@/components/PostNavigation";
 import HeadingAnchors from "@/components/HeadingAnchors";
 import Link from "next/link";
 import Image from "next/image";
+import AiCommunityPromo from "@/components/AiCommunityPromo";
+import { aiLearningPaths, isAiPost, AI_COMMUNITY_URL, AI_COMMUNITY_PATH, AI_COMMUNITY_IMAGE } from "@/components/aiCommunity";
 
 const postsDir = path.join(process.cwd(), "posts");
 const blogImagesDir = path.join(process.cwd(), "public", "images", "blog");
@@ -127,6 +129,7 @@ export async function generateMetadata(
       type: "article",
       images: [{ url: image, alt: title }],
       publishedTime: data.date ? new Date(data.date).toISOString() : undefined,
+      modifiedTime: data.updated ? new Date(data.updated).toISOString() : undefined,
       authors: ["Stefan Djokic"],
       tags: data.category ? [data.category] : undefined,
     },
@@ -156,13 +159,17 @@ export default async function PostPage(
 
   const meta = {
     title: post.data.title,
-    description: post.data.meta_description || "",
+    description: post.data.meta_description || post.data.subtitle || "",
     image: getPostImageUrl(slug, post.data.image),
     url: `https://thecodeman.net/posts/${slug}`,
     date: post.data.date,
   };
 
   const published = post.data.date ? new Date(post.data.date).toISOString() : undefined;
+
+  const modified = post.data.updated ? new Date(post.data.updated).toISOString() : published;
+  const aiPost = isAiPost(post.data.category);
+  const learningPath = aiLearningPaths.find(p => p.articles.some(a => a.slug === slug));
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -191,10 +198,15 @@ export default async function PostPage(
       "@id": meta.url
     },
     datePublished: published,
-    dateModified: published
+    dateModified: modified,
+    articleSection: post.data.category,
+    ...(aiPost ? { isPartOf: { "@type": "CollectionPage", "@id": `${AI_COMMUNITY_URL}#page`, url: AI_COMMUNITY_URL, name: "AI for .NET Developers" } } : {})
   };
 
-  const faq = Array.isArray(post.data.faq) ? post.data.faq : [];
+  // Frontmatter FAQs are rendered from the same data as their schema. Questions
+  // already authored in Markdown stay there without a second, divergent answer.
+  const faq = (Array.isArray(post.data.faq) ? post.data.faq : [])
+    .filter((item: { q: string; a: string }) => !post.content.includes(item.q));
   const faqLd = faq.length
     ? {
       "@context": "https://schema.org",
@@ -210,25 +222,35 @@ export default async function PostPage(
     }
     : null;
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://thecodeman.net" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://thecodeman.net/blog" },
+      ...(aiPost ? [{ "@type": "ListItem", position: 3, name: "AI for .NET Developers", item: AI_COMMUNITY_URL }] : []),
+      { "@type": "ListItem", position: aiPost ? 4 : 3, name: meta.title, item: meta.url },
+    ],
+  };
   const allPosts = getPostMetadata();
 
   return (
     <>
       <ReadingProgress />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd).replace(/</g, "\\u003c") }} />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd).replace(/</g, "\\u003c") }}
       />
       {faqLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd).replace(/</g, "\\u003c") }}
         />
       )}
 
-      <section className="img ftco-section">
+      <section className={`img ${styles.article}`}>
         <div className="container">
-          <div className="row justify-content-center pb-5 pt-10">
+          <div className="row justify-content-center pb-5">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section border-right">
 
               {/* Breadcrumb */}
@@ -236,7 +258,7 @@ export default async function PostPage(
                 <Link href="/">Home</Link>
                 <span className="breadcrumb-sep">/</span>
                 <Link href="/blog">Blog</Link>
-                {post.data.category && (
+                {aiPost ? (<><span className="breadcrumb-sep">/</span><Link href={AI_COMMUNITY_PATH}>AI for .NET Developers</Link></>) : post.data.category && (
                   <>
                     <span className="breadcrumb-sep">/</span>
                     <Link href={`/blog?category=${encodeURIComponent(post.data.category)}`}>{post.data.category}</Link>
@@ -246,11 +268,12 @@ export default async function PostPage(
                 <span className="breadcrumb-current">{meta.title}</span>
               </nav>
 
-              <div className="row justify-content-center pb-5">
+              <div className="row justify-content-center pb-3">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center">
                   <h1 className="blog-header2">{meta.title}</h1>
                   <div className="post-meta-bar">
                     <span>{meta.date}</span>
+                    {post.data.updated && <span> &middot; Updated <time dateTime={post.data.updated}>{post.data.updated}</time></span>}
                     {post.data.readTime && (
                       <>
                         <span className="meta-sep" />
@@ -271,6 +294,8 @@ export default async function PostPage(
               {post.data.category === "Design Patterns" && (
                 <PremiumChapterBanner slug={slug} />
               )}
+
+              {aiPost && <p className="text-white">Part of the <Link href={AI_COMMUNITY_PATH} className="text-yellow">AI for .NET Developers</Link> learning library: practical C# workflows, MCP and AI applications.</p>}
 
               {/* Table of Contents */}
               <TableOfContents />
@@ -299,6 +324,22 @@ export default async function PostPage(
               ) : (
                 <p>Post content missing.</p>
               )}
+
+              {faq.length > 0 && (
+                <section className="post-body" aria-label="Frequently asked questions">
+                  <h2>Frequently asked questions</h2>
+                  {faq.map((item: { q: string; a: string }) => <div key={item.q}><h3>{item.q}</h3><p>{item.a}</p></div>)}
+                </section>
+              )}
+              {aiPost && <>
+                {learningPath && <nav aria-label="Continue learning about AI in .NET" className="mt-4">
+                  <h2 className="text-white" style={{ fontSize: '1.4rem' }}>Continue learning: {learningPath.title}</h2>
+                  <ul>{learningPath.articles.filter(a => a.slug !== slug).map(a => <li key={a.slug}><Link href={`/posts/${a.slug}`}>{a.title}</Link></li>)}
+                    <li><Link href="/ai-roadmap-2026">Follow the free AI roadmap for .NET developers</Link></li>
+                  </ul>
+                </nav>}
+                <AiCommunityPromo compact />
+              </>}
 
               {/* Heading Anchor Links */}
               <HeadingAnchors />
@@ -330,6 +371,11 @@ export default async function PostPage(
                   {/* Product Cards */}
                   <div className="sidebar-products">
                     <h4 className="sidebar-products-header">Recommended for .NET Engineers</h4>
+                    <Link href={AI_COMMUNITY_PATH} className="sidebar-product-card" data-cta="ai-community-sidebar">
+                      <Image src={AI_COMMUNITY_IMAGE} alt="AI for .NET Developers community" width={300} height={159} className="sidebar-product-img" />
+                      <span className="sidebar-product-title">AI for .NET Developers</span>
+                      <span className="sidebar-product-label">Community &middot; Skills &middot; AI lessons</span>
+                    </Link>
 
                     <Link href="/pragmatic-dotnet-code-rules?utm_source=sidebar" className="sidebar-product-card">
                       <Image src="/images/course.webp" alt="Pragmatic .NET Code Rules Course" width={300} height={160} className="sidebar-product-img" />

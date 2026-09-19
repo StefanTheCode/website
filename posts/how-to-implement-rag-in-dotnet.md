@@ -1,11 +1,23 @@
 ---
-title: "How to implement RAG system - AI in .NET"
+title: "RAG in .NET with C#, Ollama and PostgreSQL pgvector"
 subtitle: "RAG (Retrieval-Augmented Generation) is an AI framework that enhances generative large language models (LLMs) by integrating traditional information retrieval methods, such as search engines and databases."
 date: "Mar 10 2025"
 category: "AI"
 readTime: "Read Time: 5 minutes"
-meta_description: "RAG (Retrieval-Augmented Generation) is an AI framework that enhances generative large language models (LLMs) by integrating traditional information retrieval methods, such as search engines and databases."
+meta_description: "Understand a C# RAG pipeline using Ollama embeddings and PostgreSQL pgvector: store your data, retrieve relevant context and generate an answer in .NET."
+updated: "2026-09-19"
+faq:
+  - q: "What are the main steps in a .NET RAG pipeline?"
+    a: "Prepare and store the source text, generate embeddings, retrieve relevant chunks for a question, and provide those chunks to a model as context. Evaluate retrieval and answer quality separately."
+  - q: "Does RAG prevent hallucinations?"
+    a: "No. Retrieval can supply useful evidence, but irrelevant context or incorrect model output can still produce a wrong answer. Test with representative questions, verify source references and handle cases where the data does not contain an answer."
+  - q: "Is Neon required for this example?"
+    a: "No. Neon is one PostgreSQL hosting option. The approach requires PostgreSQL with pgvector and can be adapted to a compatible local or hosted database."
 ---
+
+A RAG application in .NET retrieves relevant data before asking a language model to answer. This walkthrough separates the C# implementation into embedding generation, PostgreSQL retrieval and answer generation, using Ollama and pgvector.
+
+**Version note:** This is the original March 2025 walkthrough, with illustrative code snippets rather than a complete runnable project. Check current Ollama, Npgsql and pgvector APIs before adapting it. The custom `IEmbeddingGenerator` interface below is not the generic interface from Microsoft.Extensions.AI.
 
 <!--START-->
 

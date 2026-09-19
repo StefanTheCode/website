@@ -1,18 +1,21 @@
 ---
-title: "Claude for .NET Developers: The Setup I Wish I Had on Day One"
+title: "Claude Code for .NET: Setup, CLAUDE.md, Skills and Agents"
 subtitle: "A practical getting-started guide to using Claude on real C# projects - how to install it, why CLAUDE.md is the file that changes everything, and how skills and agents turn it into a workflow instead of a chat window."
 date: "Jul 27 2026"
 author: "Stefan Đokić"
 category: "AI"
 readTime: "5 minutes"
-meta_description: "A getting-started guide to Claude for .NET developers: install Claude Code, write a CLAUDE.md for your C# repo, and use skills and agents on real code - not copy-paste."
+meta_description: "Set up Claude Code for C# and .NET. Add project context with CLAUDE.md, create skills and agents, and review changes on your real codebase."
+updated: "2026-09-19"
 ---
+
+Claude Code for .NET works best when it has clear project context and a task you can verify. This guide walks through setup, a `CLAUDE.md` file, reusable skills and agents for real C# projects. Start with a small change, inspect the diff and run your tests before expanding the task.
 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">A quick word from me</p>
 
 <p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored. Instead, let me point you to something I run every single day: my <strong>AI for .NET Developers Community</strong> - for .NET developers who want to actually use AI on real code. 50+ ready-to-run skills and agents for .NET (the security auditor and EF Core optimizer from this issue included), a new one added every week, and the room to figure it all out together.</p>
-<a href="https://www.skool.com/thecodeman-ai-toolkit-9723" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
+<a href="https://www.skool.com/ai-for-dotnet-developers" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
 <p style="margin: 10px 10px 12px 0; font-size: 16px; line-height: 1.6; color: #fff;">Want to reach thousands of .NET developers like this?</p>
 
 <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Sponsor TheCodeMan →</a>
@@ -183,7 +186,7 @@ That's the split worth remembering:
 
 ![An agent reporting security findings on a .NET API](/images/blog/posts/claude-for-dotnet-developers/agent-report.webp)
 
-That exact security auditor is one of the agents I keep in my AI for .NET Developers Community. If you'd rather run it than build it, you can grab it and point it at your own API today - it's part of the **[7-day free trial](https://www.skool.com/thecodeman-ai-toolkit-9723)**.
+That exact security auditor is one of the agents I keep in my AI for .NET Developers Community. If you'd rather run it than build it, you can grab it and point it at your own API today - it's part of the **[7-day free trial](https://www.skool.com/ai-for-dotnet-developers)**.
 
 You can start with zero of these and add them as patterns repeat. The first time you catch yourself typing the same review prompt for the third time - that's your first skill.
 
@@ -196,7 +199,7 @@ To make it concrete, here's the loop I run, not the theory:
 3. **Let skills guard quality.** When I touch data access, the EF Core skill kicks in without me asking. When I write auth, the security habits apply.
 4. **Send in an agent for the big passes.** Before a release, I point the security auditor at the whole API and read its ranked report like a second set of senior eyes.
 
-I've packaged the whole set of skills and agents I use - architecture, EF Core, performance, security, testing, DevOps - into **[AI for .NET Developers Community](https://www.skool.com/thecodeman-ai-toolkit-9723)**, and I add new ones every week. If you want a running start instead of building each one from scratch, that's the shortcut. But everything in this issue works with files you write yourself - that's the point of showing you the structure.
+I've packaged the whole set of skills and agents I use - architecture, EF Core, performance, security, testing, DevOps - into **[AI for .NET Developers Community](https://www.skool.com/ai-for-dotnet-developers)**, and I add new ones every week. If you want a running start instead of building each one from scratch, that's the shortcut. But everything in this issue works with files you write yourself - that's the point of showing you the structure.
 
 ## FAQ
 
@@ -224,7 +227,7 @@ Memory is `CLAUDE.md` - the file that stops you from re-explaining your stack ev
 
 Start today with the smallest possible step: create a `CLAUDE.md` in one repo, put five real rules in it, and open a session. That one file will change how the whole thing feels. Add your first skill the third time you retype the same prompt.
 
-If you want to skip ahead and see 50+ of these built for real .NET work, they're inside **[AI for .NET Developers Community](https://www.skool.com/thecodeman-ai-toolkit-9723)**. And if you just want a room full of .NET developers figuring this out together, that's what the **[community](https://www.skool.com/thecodeman-community-2911)** is for.
+If you want to skip ahead and see 50+ of these built for real .NET work, they're inside **[AI for .NET Developers Community](https://www.skool.com/ai-for-dotnet-developers)**. And if you just want a room full of .NET developers figuring this out together, that's what the **[community](https://www.skool.com/thecodeman-community-2911)** is for.
 
 That's all from me today.
 

@@ -8,6 +8,22 @@ import { Metadata } from 'next'
 import EbookNewsletter from '@/components/ebookTestimonials'
 import Script from 'next/script'
 import FreeMotion from '@/components/free/FreeMotion'
+import AiCommunityPromo from '@/components/AiCommunityPromo'
+
+export const metadata: Metadata = {
+  title: { absolute: 'TheCodeMan | .NET, C# & AI for Developers' },
+  description: 'Practical C# and .NET tutorials by Microsoft MVP Stefan Djokic. Learn AI coding workflows, MCP and RAG, and explore the AI for .NET Developers community.',
+  openGraph: {
+    title: 'TheCodeMan | .NET, C# & AI for Developers',
+    description: 'Practical .NET tutorials and AI workflows by Stefan Djokic. Explore C#, MCP, RAG and the AI for .NET Developers community.',
+    url: 'https://thecodeman.net', type: 'website', images: ['/og-image.webp'],
+  },
+  twitter: {
+    card: 'summary_large_image', title: 'TheCodeMan | .NET, C# & AI for Developers',
+    description: 'Practical .NET tutorials and AI workflows by Stefan Djokic. Explore C#, MCP, RAG and the AI for .NET Developers community.',
+    images: ['/og-image.webp'],
+  },
+};
 
 const postMetadata = getPostMetadata();
 
@@ -21,7 +37,7 @@ const sortedPostMetadata = postMetadata.sort((a, b) => {
 const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
   const href = `/posts/${post.slug}`
   return (
-    <div className="col-xl-3 col-lg-12 col-md-12 d-flex mb-5" data-reveal>
+    <div key={post.slug} className="col-xl-3 col-lg-12 col-md-12 d-flex mb-5" data-reveal>
       <a href={href}>
         <div className="blog-entry text-center">
           <div>
@@ -45,6 +61,7 @@ export default function Home() {
             <div className="text" >
               <h1 className="header-text-feature-b  mtbottom20" data-reveal>Become a Better <span className='text-yellow crk-shimmer'>.NET</span> Engineer</h1>
               <p className="header-text-feature-b mtbottom20" data-reveal data-delay="1">One Tip Weekly</p>
+              <p className="text-white" style={{ maxWidth: '680px', margin: '0 auto 20px' }}>Practical C#, architecture and AI skills for your next .NET project.</p>
               <div className='container mt-5'>
                 <div className='row text-center'>
                   <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
@@ -87,6 +104,7 @@ export default function Home() {
           </div> */}
         </div>
       </section>
+      <div className="container"><AiCommunityPromo /></div>
 
 
       <section className="ftco-section background-yellow" id="newsletter-section">

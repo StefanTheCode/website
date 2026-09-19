@@ -221,7 +221,7 @@ const AiStarterKit = () => {
 
                 <p className="text-white mt-3 mb-0" style={{ fontSize: '0.9rem', opacity: 0.8 }}>
                   Free and open-source. The full set - 44+ skills, 7 agents &amp; CLAUDE.md templates - lives inside the{' '}
-                  <Link href="/ai-toolkit" className="text-yellow">.NET AI ToolKit community</Link>.
+                  <Link href="/ai-for-dotnet-developers" className="text-yellow">AI for .NET Developers community</Link>.
                 </p>
               </div>
             </div>

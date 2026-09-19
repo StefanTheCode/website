@@ -1,11 +1,14 @@
 ---
-title: "How to use ChatGPT in C# application?"
+title: "ChatGPT in C#: A Legacy OpenAI Integration Example"
 subtitle: "ChatGPT (Generative Pre-trained Transforer) is a large language model developed by OpenAI. It is designed to understand natural language ... "
 date: "February 20 2023"
 category: "AI"
 readTime: "Read Time: 3 minutes"
-meta_description: "ChatGPT (Generative Pre-trained Transforer) is a large language model developed by OpenAI. It is designed to understand natural language ..."
+meta_description: "A historical C# OpenAI integration example from 2023, with context for readers exploring model APIs and links to the AI for .NET learning path."
+updated: "2026-09-19"
 ---
+
+**Historical example (February 2023):** The package, model names and completion API in this article reflect the original publication. This is not a current setup guide. For a broader starting point, follow the [AI roadmap for .NET developers](/ai-roadmap-2026) and explore the [AI for .NET Developers learning paths](/ai-for-dotnet-developers#learn).
 
 <!--START-->
 

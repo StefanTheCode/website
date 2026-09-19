@@ -1,11 +1,19 @@
 ---
-title: "I Built an MCP Server That Tests .NET API Performance"
+title: "Build a C# MCP Server for .NET API Performance Testing"
 subtitle: "What if your AI coding assistant could run load tests, detect ThreadPool starvation, and suggest fixes - all from a single chat message?"
 date: "May 14 2026"
 category: "AI"
 readTime: "Read Time: 10 minutes"
-meta_description: "Learn how to build a practical MCP server in .NET that gives GitHub Copilot the ability to run load tests, detect performance problems, and suggest fixes - all from a chat conversation."
+meta_description: "Build a .NET MCP server that lets GitHub Copilot run API load tests, investigate ThreadPool starvation and compare performance fixes in C#."
+updated: "2026-09-19"
+faq:
+  - q: "What does this .NET MCP server do?"
+    a: "It exposes tools for testing a .NET API so an AI assistant can request measurements and use the results during a performance investigation. The server performs the tool work; the assistant interprets the returned results."
+  - q: "Does an MCP server replace API performance tests?"
+    a: "No. MCP makes the test tools available to an assistant. Reproducible workloads, representative environments and human review are still needed to decide whether a change improves performance."
 ---
+
+A C# MCP server can expose performance-testing tools to an AI assistant. This tutorial connects GitHub Copilot to a .NET API test workflow so you can investigate blocking calls, ThreadPool starvation and slow endpoints. It focuses on a concrete MCP use case: measuring a problem before proposing a fix.
 
 <!--START-->
 

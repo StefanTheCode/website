@@ -1,12 +1,20 @@
 ---
-title: "AI Agents for .NET: How I Audit a Whole Codebase in One Command"
+title: "AI Code Review for .NET: Security and EF Core Agents"
 subtitle: "I built a library of AI skills and agents for .NET that run on your real code - a file, a folder, a whole project, or a GitHub link. In this issue I show two of them in action on a real production .NET 10 app, then walk you through adding one to Claude from start to finish so you can run it on your own code today."
 date: "Jun 22 2026"
 author: "Stefan Đokić"
 category: "AI Tools"
 readTime: "6 minutes"
-meta_description: "Learn how AI agents and skills can audit your .NET codebase - security holes, EF Core N+1 queries and more - and follow a step-by-step tutorial to add a skill to Claude and run it on your own C# project."
+meta_description: "Use Claude skills and AI agents to review C# code, find ASP.NET Core authorization gaps and investigate EF Core N+1 queries in a real .NET app."
+updated: "2026-09-19"
+faq:
+  - q: "Can AI review an entire .NET codebase?"
+    a: "A repository-aware assistant can inspect multiple files and report findings, but context limits and missing runtime information affect coverage. Scope the review, ask for file references and verify findings with tests and measurements."
+  - q: "What is the difference between a Claude skill and an agent?"
+    a: "In this workflow, a skill provides reusable instructions for a focused job such as reviewing EF Core queries. An agent handles a broader investigation, such as exploring an API and reporting potential security issues."
 ---
+
+AI code review for .NET can help you investigate security and database issues across a repository. This walkthrough shows a Claude agent reviewing ASP.NET Core authorization and logging, then a focused skill inspecting EF Core queries. Treat each finding as something to verify in your application.
 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">A quick word from me</p>
@@ -174,7 +182,7 @@ Even simpler. Each tool also ships as a `.skill` bundle (a zipped folder). Open 
 
 I packaged the two tools from this issue so you can run them today. Download them, drop them into Claude using the steps above, and point them at your own code:
 
-**[Download the two tools from this issue →](https://www.skool.com/thecodeman-ai-toolkit-9723)**
+**[Download the two tools from this issue →](https://www.skool.com/ai-for-dotnet-developers)**
 
 And these two are just the start. There are **50+ AI tools for .NET** in the same style - architecture, EF Core, performance, observability, testing, security and DevOps - with new ones added every week.
 
@@ -186,7 +194,7 @@ You can try all of them inside **TheCodeMan AI Toolkit** on a **7-day free trial
 
 If you just want to grab a few tools and go, the trial is enough. And if you want to stick around and keep getting new tools and learn how to use AI properly as a .NET developer, even better - that is what the community is for.
 
-**[Start your 7-day free trial →](https://www.skool.com/thecodeman-ai-toolkit-9723)**
+**[Start your 7-day free trial →](https://www.skool.com/ai-for-dotnet-developers)**
 
 That's all from me today.
 

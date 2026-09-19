@@ -65,11 +65,11 @@ export default function Header() {
         <div className="container promo-inner-center">
           <div className="promo-center-group">
             <span className="promo-text">
-              🔥 <strong>Pragmatic .NET Code Rules Course</strong> is on Presale - 50% off!
+              <strong>AI for .NET Developers</strong> — skills, agents and practical lessons
             </span>
 
-            <a href="/pragmatic-dotnet-code-rules?utm_source=promo" className="promo-buy-btn">
-              BUY NOW
+            <a href="/ai-for-dotnet-developers" className="promo-buy-btn" data-cta="ai-community-header">
+              EXPLORE COMMUNITY
             </a>
           </div>
         </div>
@@ -202,7 +202,7 @@ export default function Header() {
               </li>
 
               <li className="nav-item nav-join-cta">
-                <a href="/ai-toolkit" className="join-community-btn toolkit-cta-btn" onClick={closeMenu}>
+                <a href="/ai-for-dotnet-developers" className="join-community-btn toolkit-cta-btn" onClick={closeMenu}>
                   AI for .NET Devs
                 </a>
               </li>

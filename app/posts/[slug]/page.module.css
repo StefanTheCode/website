@@ -1,0 +1,14 @@
+.article {
+  position: relative;
+  padding: 2rem 0 0.5rem;
+}
+
+.article :global(.breadcrumb-sep) {
+  margin: 0 0.35rem;
+}
+
+@media (max-width: 767px) {
+  .article {
+    padding-top: 1.5rem;
+  }
+}

@@ -26,7 +26,7 @@ const getPostsFromFolder = (folderName: string): PostEntry[] => {
     const stat = fs.statSync(fullPath);
     return {
       slug: fileName.replace(".md", ""),
-      date: matterResult.data.date || null,
+      date: matterResult.data.updated || matterResult.data.date || null,
       mtime: stat.mtime,
     };
   });
@@ -63,7 +63,7 @@ export async function GET() {
     "playground",
     "builder-pattern-free-stuff",
     "ai-in-dotnet-starter-kit",
-    "ai-toolkit",
+    "ai-for-dotnet-developers",
     "vertical-slices-architecture",
     "pragmatic-dotnet-code-rules",
     "dotnet-code-rules-starter-kit",

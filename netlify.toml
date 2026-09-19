@@ -26,6 +26,25 @@
 [functions."download"]
   included_files = ["protected/**"]
 
+# Keep old campaign links and backlinks working after the community rename.
+[[redirects]]
+  from = "/ai-toolkit"
+  to = "/ai-for-dotnet-developers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ai-toolkit/"
+  to = "/ai-for-dotnet-developers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ai-toolkit.html"
+  to = "/ai-for-dotnet-developers"
+  status = 301
+  force = true
+
 # Clean URLs for the AI endpoints: /api/<tool> -> /.netlify/functions/<tool>
 [[redirects]]
   from = "/api/*"
