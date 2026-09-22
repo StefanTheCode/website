@@ -27,6 +27,10 @@ const getPostMetadata = (): PostMetadata[] => {
       subtitle: matterResult.data.subtitle,
       readTime: matterResult.data.readTime,
       category: matterResult.data.category,
+      searchText: [matterResult.data.meta_description, matterResult.data.keywords, matterResult.data.tags]
+        .flat()
+        .filter(Boolean)
+        .join(" "),
       slug: slug,
       photo: resolvePhoto()
     };
@@ -51,6 +55,10 @@ const getPatterns = (): PostMetadata[] => {
       subtitle: matterResult.data.subtitle,
       readTime: matterResult.data.readTime,
       category: matterResult.data.category,
+      searchText: [matterResult.data.meta_description, matterResult.data.keywords, matterResult.data.tags]
+        .flat()
+        .filter(Boolean)
+        .join(" "),
       slug: fileName.replace(".md", ""),
       photo: `/images/blog/${fileName.replace(".md", "")}.png`
     };

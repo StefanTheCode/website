@@ -1,13 +1,13 @@
 'use client';
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { PostMetadata } from "@/components/PostMetadata";
 import PostPreview from "@/components/PostPreview";
 import BlogSearch from "@/components/BlogSearch";
+import { searchBlogPosts } from "@/components/searchBlogPosts";
 import Subscribe from "../subscribe";
 import config from "@/config.json";
-import Fuse from "fuse.js";
 
 const POSTS_PER_PAGE = 10;
 
@@ -18,37 +18,77 @@ interface Props {
 const BlogClient = ({ allPosts }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const page = parseInt(searchParams.get("page") ?? "1");
+  const requestedPage = Number.parseInt(searchParams.get("page") ?? "1", 10);
   const selectedCategory = searchParams.get("category");
-  const searchQuery = searchParams.get("q") ?? "";
+  const urlSearchQuery = searchParams.get("q") ?? "";
+  const [searchQuery, setSearchQuery] = useState(urlSearchQuery);
+  const deferredSearchQuery = useDeferredValue(searchQuery);
 
   const headingRef = useRef<HTMLDivElement | null>(null);
+  const lastWrittenQueryRef = useRef<string | null>(null);
+  const searchUpdateTimeoutRef = useRef<number | null>(null);
+
+  // Keep typing instant while still storing the settled search in the URL.
+  useEffect(() => {
+    if (urlSearchQuery === lastWrittenQueryRef.current) {
+      lastWrittenQueryRef.current = null;
+      return;
+    }
+
+    setSearchQuery(urlSearchQuery);
+  }, [urlSearchQuery]);
+
+  useEffect(() => {
+    const normalizedQuery = searchQuery.trim();
+
+    if (normalizedQuery === urlSearchQuery || normalizedQuery === lastWrittenQueryRef.current) {
+      return;
+    }
+
+    searchUpdateTimeoutRef.current = window.setTimeout(() => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (normalizedQuery) {
+        params.set("q", normalizedQuery);
+      } else {
+        params.delete("q");
+      }
+
+      params.delete("page");
+      const queryString = params.toString();
+      lastWrittenQueryRef.current = normalizedQuery;
+      router.replace(queryString ? `/blog?${queryString}` : "/blog", { scroll: false });
+    }, 300);
+
+    return () => {
+      if (searchUpdateTimeoutRef.current !== null) {
+        window.clearTimeout(searchUpdateTimeoutRef.current);
+        searchUpdateTimeoutRef.current = null;
+      }
+    };
+  }, [router, searchParams, searchQuery, urlSearchQuery]);
 
   const filteredPosts = useMemo(() => {
-    let posts = [...allPosts];
+    let posts = [...allPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     if (selectedCategory) {
       posts = posts.filter(post => post.category != null && post.category.toLowerCase() === selectedCategory.toLowerCase());
     }
 
-    const normalizedSearch = searchQuery.trim();
+    const normalizedSearch = deferredSearchQuery.trim();
 
     if (normalizedSearch) {
-      const fuse = new Fuse(posts, {
-        keys: [
-          { name: 'title', weight: 0.4 },
-          { name: 'subtitle', weight: 0.3 },
-          { name: 'category', weight: 0.2 },
-          { name: 'newsletterTitle', weight: 0.1 },
-        ],
-        threshold: 0.4,
-      });
-
-      return fuse.search(normalizedSearch).map((result) => result.item);
+      return searchBlogPosts(posts, normalizedSearch);
     }
 
-    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [allPosts, selectedCategory, searchQuery]);
+    return posts;
+  }, [allPosts, deferredSearchQuery, selectedCategory]);
+
+  const totalPosts = filteredPosts.length;
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+  const safeRequestedPage = Number.isFinite(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+  const isEditingSearch = searchQuery.trim() !== urlSearchQuery;
+  const page = isEditingSearch ? 1 : Math.min(safeRequestedPage, Math.max(totalPages, 1));
 
   const currentPosts = useMemo(() => {
     const startIndex = (page - 1) * POSTS_PER_PAGE;
@@ -63,39 +103,59 @@ const BlogClient = ({ allPosts }: Props) => {
     }
   }, [page, selectedCategory]);
 
-  const totalPosts = filteredPosts.length;
-
-  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
-
   const changePage = (newPage: number) => {
+    if (searchUpdateTimeoutRef.current !== null) {
+      window.clearTimeout(searchUpdateTimeoutRef.current);
+      searchUpdateTimeoutRef.current = null;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
+    const normalizedQuery = searchQuery.trim();
+
+    if (normalizedQuery) {
+      params.set("q", normalizedQuery);
+    } else {
+      params.delete("q");
+    }
+
     params.set("page", newPage.toString());
+    lastWrittenQueryRef.current = normalizedQuery;
     router.push(`/blog?${params.toString()}`, { scroll: false });
   };
 
   const selectCategory = (category: string | null) => {
+    if (searchUpdateTimeoutRef.current !== null) {
+      window.clearTimeout(searchUpdateTimeoutRef.current);
+      searchUpdateTimeoutRef.current = null;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
     if (category) {
       params.set("category", category);
     } else {
       params.delete("category");
     }
-    params.set("page", "1");
-    router.push(`/blog?${params.toString()}`, {  scroll: false });
-  };
-
-  const setSearchQuery = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    const hasMeaningfulQuery = value.trim().length > 0;
-
-    if (hasMeaningfulQuery) {
-      params.set("q", value);
+    const normalizedQuery = searchQuery.trim();
+    if (normalizedQuery) {
+      params.set("q", normalizedQuery);
     } else {
       params.delete("q");
     }
+    params.delete("page");
+    const queryString = params.toString();
+    lastWrittenQueryRef.current = normalizedQuery;
+    router.push(queryString ? `/blog?${queryString}` : "/blog", { scroll: false });
+  };
 
-    params.set("page", "1");
-    router.replace(`/blog?${params.toString()}`, { scroll: false });
+  const clearFilters = () => {
+    if (searchUpdateTimeoutRef.current !== null) {
+      window.clearTimeout(searchUpdateTimeoutRef.current);
+      searchUpdateTimeoutRef.current = null;
+    }
+
+    lastWrittenQueryRef.current = "";
+    setSearchQuery("");
+    router.push("/blog", { scroll: false });
   };
 
   const uniqueCategories = Array.from(new Set(allPosts.map(post => post.category))).filter(Boolean);
@@ -138,24 +198,43 @@ const BlogClient = ({ allPosts }: Props) => {
             })}
           </div>
 
+          <p className="blog-results-summary" role="status" aria-live="polite">
+            {totalPosts === 0
+              ? "No articles found"
+              : `${totalPosts} ${totalPosts === 1 ? "article" : "articles"} found`}
+            {deferredSearchQuery.trim() ? ` for “${deferredSearchQuery.trim()}”` : ""}
+          </p>
+
           <div className="row pt-5 mt-5">
             <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12 border-right">
               {currentPosts.map((post) => (
                 <PostPreview key={post.slug} {...post} />
               ))}
 
+              {totalPosts === 0 && (
+                <div className="blog-empty-state">
+                  <h3>Nothing matched that search</h3>
+                  <p>Try a shorter term, another topic, or clear the active filters.</p>
+                  <button type="button" className="btn btn-warning" onClick={clearFilters}>
+                    Clear search and filters
+                  </button>
+                </div>
+              )}
+
               {/* Pagination */}
-              <div className="mt-4 text-center">
+              {totalPages > 1 && <nav className="mt-4 text-center" aria-label="Blog pagination">
                 {Array.from({ length: totalPages }, (_, i) => (
                   <button
                     key={i + 1}
                     onClick={() => changePage(i + 1)}
                     className={`btn btn-sm m-1 ${page === i + 1 ? 'btn-warning' : 'btn-outline-secondary'}`}
+                    aria-current={page === i + 1 ? "page" : undefined}
+                    aria-label={`Page ${i + 1}`}
                   >
                     {i + 1}
                   </button>
                 ))}
-              </div>
+              </nav>}
             </div>
 
             {/* Sidebar */}
