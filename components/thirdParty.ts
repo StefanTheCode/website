@@ -63,8 +63,11 @@ export const THIRD_PARTY_LOADER = `
       f.setAttribute('src',f.getAttribute('data-lazy-src'));f.removeAttribute('data-lazy-src');
     });
   }
+  var lemonStarted=false;
   function lemon(){
-    if(!document.querySelector('.lemonsqueezy-button')||window.LemonSqueezy)return;
+    /* Load lemon.js at most once (guard stops a MutationObserver -> append -> observer loop). */
+    if(lemonStarted||window.LemonSqueezy||!document.querySelector('.lemonsqueezy-button'))return;
+    lemonStarted=true;
     add('https://app.lemonsqueezy.com/js/lemon.js').onload=function(){
       try{if(window.createLemonSqueezy){window.createLemonSqueezy();}
         window.LemonSqueezy&&window.LemonSqueezy.Setup({eventHandler:function(e){
@@ -81,8 +84,14 @@ export const THIRD_PARTY_LOADER = `
     try{if(!document.querySelector('[data-no-eo-popup]')){add('https://eomail4.com/form/${EO_POPUP_FORM_ID}.js',{'data-form':'${EO_POPUP_FORM_ID}'});}}catch(e){}
     try{lemon();}catch(e){}
     /* Embeds rendered later by client components get activated as they appear. */
-    try{new MutationObserver(function(ms){for(var i=0;i<ms.length;i++){if(ms[i].addedNodes.length){activate(document);lemon();return;}}})
-      .observe(document.body,{childList:true,subtree:true});}catch(e){}
+    /* Debounced, and only for nodes we actually care about - never for the scripts we add ourselves. */
+    try{var pending=false;new MutationObserver(function(ms){
+        if(pending)return;
+        for(var i=0;i<ms.length;i++){var n=ms[i].addedNodes;for(var j=0;j<n.length;j++){var el=n[j];
+          if(el.nodeType!==1||el.tagName==='SCRIPT'||el.tagName==='LINK'||el.tagName==='STYLE')continue;
+          if(el.matches('script[type="text/lazy"],iframe[data-lazy-src],.lemonsqueezy-button')||el.querySelector('script[type="text/lazy"],iframe[data-lazy-src],.lemonsqueezy-button')){
+            pending=true;setTimeout(function(){pending=false;try{activate(document);lemon();}catch(e){}},50);return;}}}
+      }).observe(document.body,{childList:true,subtree:true});}catch(e){}
     window.__tcm3pLoaded=true;
     try{window.dispatchEvent(new Event('tcm:3p-loaded'));}catch(e){}
   }
