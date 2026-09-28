@@ -6,7 +6,7 @@ import getPostMetadata from '@/components/getPostMetadata'
 import MyComponent from '@/components/newsletterTestimonials'
 import { Metadata } from 'next'
 import EbookNewsletter from '@/components/ebookTestimonials'
-import Script from 'next/script'
+import NewsletterForm from '@/components/NewsletterForm'
 import FreeMotion from '@/components/free/FreeMotion'
 import AiCommunityPromo from '@/components/AiCommunityPromo'
 
@@ -41,10 +41,10 @@ const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
       <a href={href}>
         <div className="blog-entry text-center">
           <div>
-            <Image src={post.photo} className="blog-post-img" alt={post.title} width={0} height={0} sizes="100vw" style={{ width: '80%', height: '20%' }} />
+            <Image src={post.photo} className="blog-post-img" alt={post.title} width={2000} height={1500} sizes="(max-width: 1200px) 80vw, 300px" style={{ width: '80%', height: '20%' }} />
           </div>
-          <h5 className='text-yellow mt-3'>{post.title}
-          </h5>
+          <h3 className='h5 text-yellow mt-3 post-card-title'>{post.title}
+          </h3>
         </div>
       </a>
     </div>
@@ -53,7 +53,7 @@ const postPreviews = sortedPostMetadata.slice(0, 4).map((post) => {
 
 export default function Home() {
   return (
-    <>
+    <div>
       <FreeMotion />
       <section id="home-section " className="hero container">
         <div className="row d-md-flex no-gutters tk-hero-glow crk-hero-glow">
@@ -65,11 +65,7 @@ export default function Home() {
               <div className='container mt-5'>
                 <div className='row text-center'>
                   <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
-                  <div className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center"
-                    dangerouslySetInnerHTML={{
-                      __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
-                    }}
-                  ></div>
+                  <NewsletterForm className="col-xs-4 col-sm-12 col-md-8 col-lg-6 col-xl-6 text-center" />
                   <div className='col-xs-4 col-sm-12 col-md-3 col-lg-3'></div>
                 </div>
               </div>
@@ -88,19 +84,15 @@ export default function Home() {
               <div className='container'>
                 <div className='row text-center'>
                   <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2 mb-5">
-                    <div className="senja-embed" data-id="ea80a7ca-913b-44b0-be8f-ff917bc894e0" data-lazyload="false"></div>
-                    <Script
-                      src="https://static.senja.io/dist/platform.js"
-                      async
-                      type="text/javascript">
-                    </Script>
+                    <div className="senja-embed" data-id="ea80a7ca-913b-44b0-be8f-ff917bc894e0" data-lazyload="false" style={{ minHeight: 40 }}></div>
+                    <div dangerouslySetInnerHTML={{ __html: '<script type="text/lazy" data-src="https://static.senja.io/dist/platform.js"></script>' }} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
           {/* <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="profile-image">
-            <Image src={'/images/stefan-djokic.webp'} priority={true} quality={100} alt={'Profile image of Stefan Djokic'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: '100%' }} />
+            <Image src={'/images/stefan-djokic.webp'} priority={true} quality={100} alt={'Profile image of Stefan Djokic'} width={1536} height={2040} sizes="100vw" style={{ width: '100%', height: '100%' }} />
           </div> */}
         </div>
       </section>
@@ -130,7 +122,7 @@ export default function Home() {
               <div className="blog-entry text-center tk-card crk-accent-card crk-a-yellow" data-reveal>
                 <h3><a href="https://www.skool.com/thecodeman-community-2911">TheCodeMan Community
                 </a></h3>
-                <h5 > <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. Your hub for .NET content, mini-courses, and expert advice for FREE! </h5>
+                <p className="h5 card-desc"> <span className='text-yellow'><b>1# .NET Community on Skool</b></span>. Your hub for .NET content, mini-courses, and expert advice for FREE! </p>
                 <a href='https://www.skool.com/thecodeman-community-2911'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>Join Community</button>
                 </a>
               </div>
@@ -142,19 +134,19 @@ export default function Home() {
               <div className="blog-entry text-center home-help-card tk-card crk-accent-card crk-a-yellow" data-reveal data-delay="1">
                 <h3><a href="/sponsorship">Promote your business to {config.NewsletterSubCount}
                 </a></h3>
-                <h5 >Looking to expand your followers, subscribers, or clientele swiftly? Feature your brand in my newsletter!
-                </h5>
+                <p className="h5 card-desc">Looking to expand your followers, subscribers, or clientele swiftly? Feature your brand in my newsletter!
+                </p>
                 <a href='/sponsorship' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'> Reserve a spot</button></a>
               </div>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="blog-entry text-center home-help-card tk-card crk-accent-card crk-a-teal" data-reveal data-delay="2">
-                <h3><a href="https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-">YouTube Channel
+                <h3><a href="https://www.youtube.com/@thecodeman_">YouTube Channel
                 </a></h3>
-                <h5> Check out the latest video:</h5>
-                <a href='https://youtu.be/Y9qJSIF0ZFs?si=YVhb64EeZRKDZ2x-' target='_blank'  className='text-black'>
-                <h4>How to implement CQRS without MediatR in .NET?</h4>
-                <Image src={'/images/last-youtube.webp'} className='social-icon' alt={'Last YouTube video'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <p className="h5 card-desc"> Check out the latest video:</p>
+                <a href='https://youtu.be/l9_e2sUf85g' target='_blank'  className='text-black'>
+                <h4>I Built a C# AI Agent That Scrapes the Web (Without Getting Blocked)</h4>
+                <Image src={'/images/last-youtube.webp'} className='social-icon' alt={'Last YouTube video'} width={640} height={360} style={{ width: '30%', height: 'auto' }} />
                 </a>
               </div>
             </div>
@@ -162,7 +154,7 @@ export default function Home() {
               <div className="blog-entry text-center home-help-card tk-card crk-accent-card crk-a-purple" data-reveal data-delay="3">
                 <h3><a href="/design-patterns-that-deliver-ebook">Design Patterns ebooks
                 </a></h3>
-                <h5> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</h5>
+                <p className="h5 card-desc"> I specialize in content on design patterns, focusing on practical application over theory. I've authored two ebooks featuring real-world examples of applying design patterns effectively.</p>
                 <a href='/design-patterns-that-deliver-ebook' className='text-black'><button className='btn btn-primary border-radius-5px mt-5 button-padding'>See the latest ebook</button></a>
               </div>
             </div>
@@ -227,32 +219,32 @@ export default function Home() {
               <div className='row'>
               <div className="col-md-2 d-flex">
               <a href="https://www.skool.com/thecodeman" target="_blank" rel="noopener">
-                <Image src={'/images/icons/skool-icon.webp'} className='social-icon' alt={'Skool Community'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/icons/skool-icon.webp'} className='social-icon' alt={'Skool Community'} width={240} height={240} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
               </a>
             </div>
             <div className="col-md-2 d-flex">
               <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener">
-                <Image src={'/images/icons/youtube-icon.png'} className='social-icon' alt={'YouTube Channel'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/icons/youtube-icon.png'} className='social-icon' alt={'YouTube Channel'} width={256} height={256} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
               </a>
             </div>
             <div className="col-md-2 d-flex">
               <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank" rel="noopener">
-                <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
               </a>
             </div>
             <div className="col-md-2 d-flex ">
               <a href="https://twitter.com/TheCodeMan__" target="_blank" rel="noopener">
-                <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter (X)'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter (X)'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
               </a>
             </div>
             <div className="col-md-2 d-flex ">
               <a href="https://github.com/StefanTheCode" target="_blank" rel="noopener">
-                <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
               </a>
             </div>
             <div className="col-md-2 d-flex">
               <a href="https://medium.com/@thecodeman" target="_blank" rel="noopener">
-                <Image src={'/images/icons/medium-icon.webp'} className='social-icon' alt={'Medium'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                <Image src={'/images/icons/medium-icon.webp'} className='social-icon' alt={'Medium'} width={2048} height={2048} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
               </a>
             </div>
               </div>
@@ -271,6 +263,6 @@ export default function Home() {
             </div>
           </div></div>
       </section>
-    </>
+    </div>
   )
 }

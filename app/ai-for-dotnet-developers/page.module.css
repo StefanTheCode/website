@@ -1,6 +1,6 @@
 .page { color:var(--pg-page-text,#e8dfef); padding:130px 0 60px; }
 .wrap { width:min(1180px,calc(100% - 48px)); margin:auto; }
-.page h1,.page h2,.page h3 { color:var(--pg-text-white,#fff); font-family:'Space Grotesk',sans-serif; }
+.page h1,.page h2,.page h3 { color:var(--pg-text-white,#fff); font-family:'Space Grotesk', 'Space Grotesk Fallback',sans-serif; }
 .page h1 { font-size:clamp(2.8rem,5.2vw,4.5rem); line-height:1.08; letter-spacing:-.045em; margin:0 0 24px; }
 .page h1 span { color:var(--pg-link,#ffbd39); }
 .page h2 { font-size:clamp(1.8rem,3vw,2.6rem); line-height:1.2; letter-spacing:-.025em; max-width:780px; margin-bottom:24px; }

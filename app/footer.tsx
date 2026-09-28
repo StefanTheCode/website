@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container">
         <div className="row mb-4">
           <div className="col-md-4 mb-4">
-            <h5 className="footer-heading">TheCodeMan.NET</h5>
+            <h2 className="footer-heading">TheCodeMan.NET</h2>
             <p className="footer-text">Practical .NET tutorials, architecture patterns, and C# tips by Microsoft MVP Stefan Đokić. Helping 25,000+ developers become better engineers.</p>
             <div className="footer-social-row mt-3">
               <a href="https://www.linkedin.com/in/djokic-stefan" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">LinkedIn</a>
@@ -14,7 +14,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="col-md-4 mb-4">
-            <h5 className="footer-heading">Popular Articles</h5>
+            <h2 className="footer-heading">Popular Articles</h2>
             <ul className="footer-link-list">
               <li><a href="/posts/how-to-implement-cqrs-without-mediatr">How to Implement CQRS Without MediatR</a></li>
               <li><a href="/posts/solid-principles-in-dotnet">SOLID Principles in .NET</a></li>
@@ -25,7 +25,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="col-md-4 mb-4">
-            <h5 className="footer-heading">Resources &amp; Community</h5>
+            <h2 className="footer-heading">Resources &amp; Community</h2>
             <ul className="footer-link-list">
               <li><a href="/ai-for-dotnet-developers">AI for .NET Developers Community</a></li>
               <li><a href="/ai-roadmap-2026">Free AI Roadmap for .NET Developers</a></li>

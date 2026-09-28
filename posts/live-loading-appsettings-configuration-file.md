@@ -139,7 +139,7 @@ IOptionsSnapshot provides dynamic access to configuration settings that can chan
 
 **Use IOptionsMonitor when** you not only need dynamic access to configuration settings but also want to be notified whenever the configuration changes, so you can react to those changes in real-time.
 
-Check the source code [here](https://github.com/StefanTheCode/IOptionsSnapshot_IOptionsMonitor_Demo).
+Check the [source code on GitHub](https://github.com/StefanTheCode/IOptionsSnapshot_IOptionsMonitor_Demo).
 
 That's all from me today.
 

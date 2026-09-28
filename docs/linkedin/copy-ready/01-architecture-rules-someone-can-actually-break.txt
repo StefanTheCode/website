@@ -1,0 +1,24 @@
+Open your solution and pick one architecture rule your team keeps repeating in code reviews.
+
+“Billing must not reach into Orders.Infrastructure.”
+
+Now deliberately break it on a local branch. Add a real dependency, build, and run the tests.
+
+Does anything fail?
+
+If everything stays green, that rule currently depends on someone remembering it during review. Which works reasonably well until the PR is large, the reviewer is tired, or the person who designed the boundary leaves.
+
+This is where I like architecture tests in .NET. Start with one dependency restriction that protects something you actually care about. NetArchTest can inspect the relevant assembly and fail when a type takes a forbidden dependency.
+
+Then keep the deliberate violation for a minute. Run the test again. You want to see the exact offending type in the failure, so the next developer can fix it without reading a ten-page architecture document.
+
+That last step matters. A test scanning the wrong assembly can pass forever and protect absolutely nothing.
+
+I wouldn't begin with twenty naming rules. I'd begin with the boundary that keeps causing painful changes. Maybe it's Domain depending on infrastructure. Maybe it's one module reaching into another module's internals.
+
+Also, be honest about the coverage. A static dependency test won't catch a module querying another module's tables through raw SQL. That needs a different check, or database permissions that prevent it.
+
+One useful rule, one intentional violation, one clear failure. That's a pretty good first afternoon.
+
+If you want a starting point, get my free .NET Code Rules Starter Kit. It includes NetArchTest examples and a CI quality gate:
+https://thecodeman.net/dotnet-code-rules-starter-kit

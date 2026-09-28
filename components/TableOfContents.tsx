@@ -8,15 +8,24 @@ interface TocItem {
   level: number;
 }
 
-export default function TableOfContents() {
-  const [headings, setHeadings] = useState<TocItem[]>([]);
+const clientSlug = (text: string) =>
+  text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+/**
+ * `initialHeadings` is computed on the server from the post markdown so the TOC is part
+ * of the static HTML (no layout shift when it appears). On mount the list is re-read from
+ * the rendered article headings, so ids/text always match the DOM.
+ */
+export default function TableOfContents({ initialHeadings = [] }: { initialHeadings?: TocItem[] }) {
+  const [headings, setHeadings] = useState<TocItem[]>(initialHeadings);
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
     const article = document.querySelector('.heading-section.border-right');
     if (!article) return;
 
-    const elements = article.querySelectorAll('h2, h3');
+    // Only the article body (incl. FAQ) - not author / related-posts / help blocks.
+    const elements = article.querySelectorAll('.post-body h2, .post-body h3');
     const items: TocItem[] = [];
 
     elements.forEach((el) => {
@@ -24,10 +33,7 @@ export default function TableOfContents() {
       if (!text.trim()) return;
       // Use existing id or generate one
       if (!el.id) {
-        el.id = text
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)/g, '');
+        el.id = clientSlug(text);
       }
       items.push({
         id: el.id,

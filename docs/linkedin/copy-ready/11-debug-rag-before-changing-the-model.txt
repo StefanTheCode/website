@@ -1,0 +1,20 @@
+When a RAG answer is wrong, I'd like to see the retrieved chunks before hearing which model we should switch to.
+
+Was the answer actually present in the context?
+
+If it wasn't, a better prompt still leaves the model without the information it needs. Start by keeping a small set of realistic questions, the documents that should answer them, and some questions your data cannot answer.
+
+Evaluate retrieval separately from generation. For each question, inspect which chunks make it into the top results, whether they're current, and whether the caller is allowed to see them.
+
+That last part belongs in the retrieval boundary. Don't fetch documents across tenants and ask the model to ignore the unauthorized ones. Derive access scope from trusted identity and enforce it before the content reaches the model.
+
+With PostgreSQL and pgvector, also inspect the query plan when you combine approximate vector search with filters. Filtering can discard candidates found by the index, leaving fewer matching results than you expected. Depending on the workload, iterative scans, different search settings or exact search over a smaller eligible set may help. Measure recall and latency together.
+
+I'd store the embedding model and version alongside the indexing setup too. Two vectors having the same dimension doesn't mean embeddings from different models are comparable. A model change needs a re-indexing plan.
+
+Then inspect generation: does the answer follow the retrieved evidence, cite the right source, and admit when the evidence is insufficient?
+
+A useful debugging session can end with “our chunk split separated the rule from its exception.” That's a much more actionable result than another afternoon tweaking the system prompt.
+
+Want some code to experiment with? Get my free AI in .NET Starter Kit, with semantic search, RAG and MCP examples:
+https://thecodeman.net/ai-in-dotnet-starter-kit

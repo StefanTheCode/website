@@ -210,5 +210,5 @@ If you do not need to track changes to the results, which is absolutely unnecess
 
 That's all from me today.
 
-Make a coffee and check the source code [here](https://github.com/StefanTheCode/EFTips).
+Make a coffee and check [the source code on GitHub](https://github.com/StefanTheCode/EFTips).
 <!--END-->

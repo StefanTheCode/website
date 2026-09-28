@@ -1,0 +1,22 @@
+A customer asks: “Who changed the delivery address on my order?”
+
+You query the temporal history and find the old address, the new address, and their validity periods.
+
+Useful. But who made the change?
+
+SQL Server temporal tables preserve row versions. They don't automatically know the authenticated application user, the support ticket behind a correction, or why a background job made that update.
+
+If those questions matter, record that context explicitly. An audit record might include actor identity, operation ID, reason and the affected entity. Design how that record commits with the business change, so an update can't silently lose its explanation.
+
+There's a timing detail worth knowing too. Temporal period values use the transaction's begin time in UTC. They aren't an exact timestamp of when someone clicked Save or when a transaction committed. That matters when you reconstruct a sequence of events around a long-running transaction.
+
+I'd also be careful with “tamper-proof” claims. System versioning gives you history behavior, but it isn't a cryptographic proof that a sufficiently privileged operator couldn't alter the setup or historical data.
+
+And restoring one old row doesn't necessarily restore a valid business state. An order address might need to agree with shipment records, labels already created, and other tables. A historical query is a starting point for that investigation.
+
+My test would update the order through the API, a background job and an administrative path. Can support explain every change using the data we've actually stored?
+
+If all three paths only tell you what changed, there's still part of the audit feature to build.
+
+To try temporal history with EF Core, follow my order-history walkthrough. It covers the setup and historical queries:
+https://thecodeman.net/posts/temporal-tables-efcore-auditing-history

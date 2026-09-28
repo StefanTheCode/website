@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two free resources for building with AI in .NET</title>
+</head>
+<body style="margin:0; padding:0; background:#f4f4f5;">
+<!-- Preview text (hidden) -->
+<div style="display: none; max-height: 0px; overflow: hidden;">
+Two free resources I'd actually use this week: a realistic AI voice API and a practical guide to monitoring LLM apps. Both free to grab.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style="max-width:640px; margin:0 auto; padding:32px 24px; background:#ffffff; font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.65; color:#1a1a1a;">
+
+    <!-- ===== Title ===== -->
+    <h1 style="font-size:27px; line-height:1.3; margin:0 0 10px 0; color:#0f172a;">Two free resources worth your time this week</h1>
+    <p style="font-size:17px; color:#52525b; margin:0 0 26px 0;">Both are free, both are things I'd actually use, and both are relevant if you're starting to build AI features into your .NET apps. Here they are.</p>
+
+    <!-- =======================================================================
+         RESOURCE 1 — ElevenLabs (AI Voice)
+         ======================================================================= -->
+
+    <!-- Optional: drop the ElevenLabs banner asset here if you want it above the card.
+         <a href="https://r2trck.com/thecodeman-elevenlabs-c-4?utm_medium=newsletter&amp;utm_source=the-code-man-performance&amp;utm_campaign=ai-voice-lp&amp;utm_content=paid&amp;utm_term=8-25-2026" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+             <img src="BANNER_URL_HERE" alt="ElevenLabs" width="592" style="width:100%; max-width:100%; height:auto; display:block; margin:0 0 16px 0; border-radius:8px;">
+         </a>
+    -->
+
+    <div style="border:1px solid #e4e4e7; border-radius:12px; padding:24px; margin:0 0 28px 0; background:#fafafa;">
+        <p style="margin:0 0 8px 0; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#6366f1;">Free tool &nbsp;·&nbsp; ElevenLabs</p>
+        <h2 style="font-size:22px; margin:0 0 12px 0; color:#0f172a;">Realistic AI voices you can call from .NET</h2>
+        <p style="margin:0 0 14px 0;">ElevenLabs turns text into natural-sounding speech, and it ships with a clean REST API - so you're not stuck in a web UI. You send text, you get back audio, and you can wire that into a C# app with an <code style="background:#eef0f4; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpClient</code> call like any other endpoint.</p>
+        <p style="margin:0 0 14px 0;">It's the kind of thing that sits unused until you have one small job for it, and then it saves you an afternoon. A few real uses:</p>
+        <ul style="margin:0 0 18px 0; padding-left:22px;">
+            <li style="margin-bottom:8px;">Add a "listen to this post" button to your blog or docs - generate the audio once, cache it, serve it.</li>
+            <li style="margin-bottom:8px;">Give your videos or demos a clean voiceover without setting up a mic and re-recording every retake.</li>
+            <li style="margin-bottom:8px;">Build voice into an app - notifications, accessibility, an assistant reply - in dozens of languages from the same API.</li>
+        </ul>
+        <p style="margin:0 0 20px 0;">There's a free tier, so you can create an account and test a real API call in a few minutes before deciding anything.</p>
+        <p style="margin:0;"><a href="https://r2trck.com/thecodeman-elevenlabs-c-4?utm_medium=newsletter&amp;utm_source=the-code-man-performance&amp;utm_campaign=ai-voice-lp&amp;utm_content=paid&amp;utm_term=8-25-2026" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:13px 26px; background:#6366f1; color:#ffffff; font-weight:700; font-size:16px; border-radius:8px; text-decoration:none;">Try ElevenLabs free →</a></p>
+    </div>
+
+    <!-- =======================================================================
+         RESOURCE 2 — Datadog (LLM Observability Best Practices)
+         ======================================================================= -->
+
+    <div style="border:1px solid #e4e4e7; border-radius:12px; padding:24px; margin:0 0 28px 0; background:#fafafa;">
+        <p style="margin:0 0 8px 0; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#632ca6;">Free guide &nbsp;·&nbsp; Datadog</p>
+        <h2 style="font-size:22px; margin:0 0 12px 0; color:#0f172a;">LLM Observability Best Practices</h2>
+        <p style="margin:0 0 14px 0;">Shipping a feature that calls an LLM is easy. Knowing whether it's actually working in production is the hard part - the model can be slow, expensive, or quietly wrong, and none of that shows up in a normal exception log. This free guide from Datadog is a practical walk through how to watch an LLM-powered app once it's live.</p>
+        <p style="margin:0 0 14px 0;">What you get out of it:</p>
+        <ul style="margin:0 0 18px 0; padding-left:22px;">
+            <li style="margin-bottom:8px;">How to trace a request end to end - prompt, response, latency, and token cost per call.</li>
+            <li style="margin-bottom:8px;">How to catch bad output, hallucinations, and prompt regressions before your users report them.</li>
+            <li style="margin-bottom:8px;">What to actually measure to keep quality and cost under control as usage grows.</li>
+        </ul>
+        <p style="margin:0 0 20px 0;">It's genuinely useful as a checklist even if you never touch Datadog - a clear list of what to think about before you put an AI feature in front of real traffic.</p>
+        <p style="margin:0;"><a href="https://r2trck.com/the-code-man-datadog-3?utm_medium=newsletter&amp;utm_source=the-code-man-r&amp;utm_campaign=dg-content-ebook-LLMObservabilityBestPractices-ai-aiob-ww-en-701VY00000OjnwPYAR&amp;utm_content=paid&amp;utm_term=1-1-2026" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:13px 26px; background:#632ca6; color:#ffffff; font-weight:700; font-size:16px; border-radius:8px; text-decoration:none;">Download the free guide →</a></p>
+    </div>
+
+    <!-- ===== Honest note ===== -->
+    <p style="margin:0 0 4px 0; font-size:14px; color:#94a3b8;">Both links are partner links. If you sign up or download through them it costs you nothing and helps keep this newsletter free - I only put resources here that I'd send a friend anyway.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:28px 0;">
+    <p style="margin:0 0 16px 0;">That's all from me today.</p>
+    <p style="margin:0 0 24px 0;">P.S. Follow me on <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">YouTube</a>.</p>
+
+    <div style="text-align:center; margin:0 0 32px 0;">
+        <a href="https://thecodeman.net" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 34px; background:#000000; color:#ffd43b; font-weight:700; font-size:16px; border-radius:28px; text-decoration:none;">Check the website</a>
+    </div>
+
+    <!-- ===== Footer (EmailOctopus required tags) ===== -->
+    <div style="margin-top:36px; padding-top:20px; border-top:1px solid #e4e4e7; font-size:13px; line-height:1.6; color:#94a3b8; text-align:center;">
+        <p style="margin:0 0 10px 0;">{{SenderInfo}}</p>
+        <p style="margin:0 0 6px 0;"><a href="{{UnsubscribeURL}}" style="color:#94a3b8; text-decoration:underline;">Unsubscribe</a></p>
+        <p style="margin:0;"><a href="{{RewardsURL}}" style="color:#94a3b8; text-decoration:underline;">Powered by EmailOctopus</a></p>
+    </div>
+</div>
+</body>
+</html>

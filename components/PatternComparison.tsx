@@ -87,7 +87,7 @@ export default function PatternComparison() {
       <form className={styles.field} onSubmit={submit}>
         <div className={styles.row}>
           <PatternSelect value={a} onChange={setA} label="First pattern" />
-          <span style={{ color: "var(--muted)", fontWeight: 700, fontFamily: "'Space Grotesk',sans-serif" }}>vs</span>
+          <span style={{ color: "var(--muted)", fontWeight: 700, fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif" }}>vs</span>
           <PatternSelect value={b} onChange={setB} label="Second pattern" />
         </div>
         <div className={styles.row}>

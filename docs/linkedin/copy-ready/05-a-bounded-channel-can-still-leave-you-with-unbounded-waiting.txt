@@ -1,0 +1,22 @@
+You gave your Channel<T> a capacity of 1,000. Good start.
+
+Now check how many HTTP requests are waiting to write into it.
+
+With BoundedChannelFullMode.Wait, WriteAsync waits when the buffer is full. That bounds the items inside the channel. It doesn't automatically bound the number of producers waiting outside it, or the payloads those producers are holding.
+
+Under sustained overload, you can have a nicely bounded queue surrounded by thousands of waiting requests.
+
+I'd design three limits together: admission into the endpoint, buffer capacity, and active consumers. The consumer count should match what the downstream resource can handle. Fifty workers won't help a database that is already struggling with ten concurrent writes.
+
+For public HTTP traffic, decide how long admission may wait. A rejection with a clear overload response can be healthier than letting every caller sit there until their timeout expires. For an internal batch producer, waiting may be exactly the behavior you want.
+
+The full-mode choice is part of the feature too. Dropping old samples can make sense for a live dashboard. Dropping accepted invoice work is a very different promise.
+
+Then test shutdown. Complete the writer, stop admission, and give consumers a bounded drain period. If the consumers immediately observe a cancelled stoppingToken, they may exit with buffered items still waiting.
+
+A clean shutdown still doesn't make an in-memory queue durable. A crash can lose the buffer. If “202 Accepted” means the work must survive a restart, persist the job before acknowledging it.
+
+I'd watch queue age as well as queue depth. The oldest item tells you how long somebody has already been waiting.
+
+The producer, channel and worker setup is in my Channels walkthrough. Start there, then test the limits above in your own app:
+https://thecodeman.net/posts/producer-consumer-with-channels-in-dotnet

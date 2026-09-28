@@ -34,7 +34,7 @@ export default function ReadLibrary() {
         </div>
       </header>
 
-      <main className="rd-wrap rd-section">
+      <div className="rd-wrap rd-section">
         <div className="rd-hero">
           <span className="rd-eyebrow">Web reader</span>
           <h1>
@@ -62,7 +62,7 @@ export default function ReadLibrary() {
             );
           })}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

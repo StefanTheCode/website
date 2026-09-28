@@ -1,0 +1,24 @@
+Passing CancellationToken through every layer is a good habit. You still have to decide what cancellation means after a side effect.
+
+Imagine this order flow:
+
+Validate the request. Save the order. Publish OrderPlaced. Return the response.
+
+Now the client disconnects after the database commit. If you use RequestAborted for the publish and stop there, you can leave a saved order with no event sent.
+
+The token did exactly what you asked. The workflow is what needs attention.
+
+For reads, cancellation is usually straightforward: pass the request token to the database and outbound HTTP calls, and stop doing work when the result is no longer wanted.
+
+For a write, identify the point where you've accepted responsibility for completing the operation. One option is saving the order and an outbox message in the same transaction. A separate worker then delivers the message using its own lifecycle and time budget.
+
+Simply replacing RequestAborted with CancellationToken.None after the commit doesn't provide that durability. The process can still crash, and unbounded work can still hang.
+
+There's also an outcome problem for the caller. A timeout or cancellation near a remote commit can leave the caller unsure whether the operation succeeded. Give retries a stable operation identity and provide a way to reconcile the result.
+
+For CPU-heavy work, remember that a token doesn't interrupt the computation by force. The running code needs to observe it. Passing a token to Task.Run doesn't add checks inside your loop.
+
+The test I'd add: disconnect the client at several points around the commit, then inspect durable state. Every accepted order should have a recoverable next step, even when nobody is waiting for the response.
+
+I cover .NET details like this in my free newsletter. If you'd like the next one in your inbox, you can sign up here:
+https://thecodeman.net/

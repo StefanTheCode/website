@@ -17,7 +17,7 @@ export default function PatternTools() {
           fontWeight: 700,
           letterSpacing: ".4px",
           textTransform: "uppercase",
-          color: "#6366f1",
+          color: "#4f46e5",
           margin: "0 0 8px",
         }}
       >
@@ -33,13 +33,13 @@ export default function PatternTools() {
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
         <Link
           href="/tools/pattern-picker"
-          style={{ background: "#6366f1", color: "#fff", fontWeight: 700, padding: "10px 18px", borderRadius: 10, textDecoration: "none", fontSize: 14.5 }}
+          style={{ background: "#4f46e5", color: "#fff", fontWeight: 700, padding: "10px 18px", borderRadius: 10, textDecoration: "none", fontSize: 14.5 }}
         >
           Try the Pattern Picker →
         </Link>
         <Link
           href="/design-patterns-that-deliver-ebook"
-          style={{ background: "#fff", color: "#6366f1", border: "1px solid #c7d2fe", fontWeight: 700, padding: "10px 18px", borderRadius: 10, textDecoration: "none", fontSize: 14.5 }}
+          style={{ background: "#fff", color: "#4f46e5", border: "1px solid #c7d2fe", fontWeight: 700, padding: "10px 18px", borderRadius: 10, textDecoration: "none", fontSize: 14.5 }}
         >
           Get the book
         </Link>

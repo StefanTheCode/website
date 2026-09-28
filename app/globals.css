@@ -1,3 +1,14 @@
+/* Self-hosted Google Fonts (variable, latin + latin-ext). Replaces render-blocking fonts.googleapis.com CSS. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/manrope-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/space-grotesk-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/space-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+/* Metric-matched local fallbacks (same values next/font generates) so the swap to the
+   web font doesn't reflow text (prevents font-swap layout shift). */
+@font-face{font-family:'Manrope Fallback';src:local('Arial');ascent-override:103.31%;descent-override:29.07%;line-gap-override:0%;size-adjust:103.19%;}
+@font-face{font-family:'Space Grotesk Fallback';src:local('Arial');ascent-override:89.71%;descent-override:26.62%;line-gap-override:0%;size-adjust:109.69%;}
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -115,6 +126,12 @@ section {
 .display-none {
   display: none;
 }
+
+/* Default promo-bar height so the fixed header + body padding are correct before
+   header.tsx measures it (prevents a large layout shift on first paint). */
+:root { --promo-h: 67px; }
+@media (max-width: 768px) { :root { --promo-h: 88px; } }
+@media (max-width: 420px) { :root { --promo-h: 111px; } }
 
 .visible-hidden {
   visibility: hidden;
@@ -12218,7 +12235,7 @@ a.text-dark:focus {
 }
 
 body {
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: 'Manrope', 'Manrope Fallback', Arial, sans-serif;
   background: #1a0224;
   background: linear-gradient(90deg, rgba(26, 2, 36, 1) 0%, rgba(37, 0, 54, 1) 100%);
   font-size: 16px;
@@ -15531,7 +15548,7 @@ textarea.form-control {
 .tcm-code__gutter {
   padding: 0 12px 0 16px;        /* levo/desno */
   text-align: right;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.55); /* was 0.35 - WCAG AA contrast */
   user-select: none;
 }
 
@@ -17605,13 +17622,13 @@ h3:hover .heading-anchor {
 
 /* --- Typography --- */
 body {
-  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Manrope', 'Manrope Fallback', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6,
 .header-text, .header-text-feature-b, .header-big {
-  font-family: 'Space Grotesk', 'Manrope', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Manrope', 'Manrope Fallback', system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
 
@@ -17662,7 +17679,7 @@ nav#ftco-navbar.header-nav.ftco_navbar.scrolled.sleep {
 }
 
 .brand-text .brand-name {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   color: var(--pg-h);
   letter-spacing: -0.01em;
 }
@@ -17737,10 +17754,10 @@ nav#ftco-navbar.header-nav.ftco_navbar.scrolled.sleep {
   background: var(--pg-deep) !important;
   border-top: 1px solid var(--pg-line);
   color: var(--pg-body);
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Manrope', 'Manrope Fallback', sans-serif;
 }
 .ftco-footer .footer-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   color: var(--pg-h);
   font-size: 1rem;
   font-weight: 700;
@@ -18079,7 +18096,8 @@ a:hover, a:focus { color: var(--pg-link-hover); }
 /* Homepage recent-post titles: dark, not amber */
 :root[data-theme="light"] .blog-entry h5,
 :root[data-theme="light"] .blog-entry .text-yellow { color: var(--pg-h) !important; }
-:root[data-theme="light"] .blog-entry a:hover h5 { color: var(--pg-link) !important; }
+:root[data-theme="light"] .blog-entry a:hover h5,
+:root[data-theme="light"] .blog-entry a:hover .post-card-title { color: var(--pg-link) !important; }
 
 /* Blog hero black band -> transparent on light */
 :root[data-theme="light"] .background-black { background-color: transparent !important; }
@@ -18205,7 +18223,7 @@ a:hover, a:focus { color: var(--pg-link-hover); }
 .home-help-card{display:flex;flex-direction:column;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:30px 26px}
 .home-help-card h3{font-size:1.3rem;margin-bottom:14px}
 .home-help-card h3 a{color:#ffbd39}
-.home-help-card h5{font-size:.95rem;line-height:1.55;flex:1 0 auto}
+.home-help-card h5,.home-help-card .card-desc{font-size:.95rem;line-height:1.55;flex:1 0 auto}
 .home-help-card .btn-primary{margin-top:18px !important;align-self:center}
 :root[data-theme="light"] .home-help-card{background:#fff !important;border:1px solid rgba(26,4,36,.12) !important}
 :root[data-theme="light"] .home-help-card h3 a{color:var(--pg-amber-bright) !important}
@@ -18337,3 +18355,29 @@ a:hover, a:focus { color: var(--pg-link-hover); }
   .td-line{ animation:none; }
   .td-tab{ transition:none; }
 }
+
+/* Card descriptions styled like h5 but marked up as paragraphs (valid heading order) */
+.card-desc { margin-top: 0; margin-bottom: 0.5rem; font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Manrope', 'Manrope Fallback', system-ui, sans-serif; letter-spacing: -0.02em; }
+:root[data-theme="light"] .card-desc { color: var(--pg-h) !important; }
+
+/* Footer copyright: meet WCAG AA contrast (was #7c6a88 on #120119 = 4.09:1) */
+.ftco-footer .footer-copyright { color: var(--pg-muted); }
+
+/* EmailOctopus placeholder (components/NewsletterForm.tsx) - matches the real form's look */
+.eo-placeholder input,
+.eo-placeholder button { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 16px; }
+.eo-placeholder button { font-weight: 400; height: 38px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Paragraphs from markdown that contain block content (components/MarkdownParagraph.tsx) */
+.md-p { color: white; font-size: 1.25rem; margin-top: 0; margin-bottom: 1rem; }
+:root[data-theme="light"] .md-p { color: var(--pg-body) !important; }
+
+/* Hero headings are the LCP element: show them immediately instead of fading in after hydration */
+h1[data-reveal] { opacity: 1; transform: none; }
+
+/* Active "AI for .NET Devs" nav CTA keeps readable dark text on its amber background */
+#ftco-navbar .navbar-nav a.toolkit-cta-btn.active,
+#ftco-navbar .navbar-nav a.toolkit-cta-btn.active span { color: #2a003a !important; }
+
+/* Post thumbnails sit in fixed-ratio boxes: crop instead of squashing the image */
+.blog-post-img { object-fit: cover; }

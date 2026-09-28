@@ -92,7 +92,7 @@ const BuilderPatternFreeStuff = () => {
                 <div id="download-chapter" data-reveal data-delay="3">
                   <div className="tk-card crk-form-card p-4 p-md-5" style={card}>
                     <h5 className="text-white mb-3">Get the free chapter in your inbox</h5>
-                    <div dangerouslySetInnerHTML={{ __html: `<script async src="https://eomail4.com/form/7ff08dac-bd74-11ef-b66e-1fbfad4a9056.js" data-form="7ff08dac-bd74-11ef-b66e-1fbfad4a9056"></script>` }} />
+                    <div dangerouslySetInnerHTML={{ __html: `<script type="text/lazy" data-src="https://eomail4.com/form/7ff08dac-bd74-11ef-b66e-1fbfad4a9056.js" data-form="7ff08dac-bd74-11ef-b66e-1fbfad4a9056"></script>` }} />
                   </div>
                 </div>
 
@@ -107,7 +107,7 @@ const BuilderPatternFreeStuff = () => {
 
               <div className="col-xs-12 col-sm-12 col-md-8 col-lg-5 text-center mt-5" data-reveal data-delay="2">
                 <div className="tk-card p-3" style={{ ...card, display: 'inline-block' }}>
-                  <Image src={'/images/builder-pattern-free.webp'} priority alt={'Design Patterns that Deliver - Builder Pattern chapter cover'} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
+                  <Image src={'/images/builder-pattern-free.webp'} priority alt={'Design Patterns that Deliver - Builder Pattern chapter cover'} width={600} height={535} sizes="100vw" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
                 </div>
               </div>
             </div>

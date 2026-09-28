@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function PlaygroundPage() {
   return (
-    <main className={styles.wrap} style={{ maxWidth: 1040 }}>
+    <div className={styles.wrap} style={{ maxWidth: 1040 }}>
       <div className={styles.head}>
         <span className={styles.badge}>Runs in your browser · .NET WebAssembly</span>
         <h1>
@@ -34,6 +34,13 @@ export default function PlaygroundPage() {
 
       <CodePlayground />
 
+      <p className={styles.hint} style={{ textAlign: "center", marginTop: 20 }}>
+        Preparing for interviews?{" "}
+        <Link href="/interview-practice" className={styles.amber} style={{ textDecoration: "none" }}>
+          Solve .NET interview problems against live tests →
+        </Link>
+      </p>
+
       <p className={styles.hint} style={{ textAlign: "center", marginTop: 24 }}>
         These run because they&apos;re self-contained C#. Patterns that need a
         database, HTTP, or DI (EF Core, ASP.NET, MediatR) are covered in full in{" "}
@@ -41,6 +48,6 @@ export default function PlaygroundPage() {
           Design Patterns That Deliver →
         </Link>
       </p>
-    </main>
+    </div>
   );
 }

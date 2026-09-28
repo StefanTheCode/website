@@ -5,6 +5,7 @@ import Head from './head'
 import Header from './header'
 import ogImage from './og-image.webp'
 import Script from "next/script";
+import { THIRD_PARTY_STUBS, THIRD_PARTY_LOADER } from "@/components/thirdParty";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
@@ -66,50 +67,11 @@ export default function RootLayout({
         />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2MN7C3CEX2"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag() { dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-2MN7C3CEX2');
-        `
-          }}>
-        </script>
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','GTM-NBBCS5FT');
-        `
-          }}>
-        </script>
-
-        {/* Meta Pixel base code */}
-        <Script
-          id="meta-pixel"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-              n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init','1321122855270380');
-              fbq('track','PageView');
-            `,
-          }}
-        />
+        <link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Analytics queues only (no network). The real GA4 / GTM / Meta Pixel scripts are
+            loaded on first user interaction by THIRD_PARTY_LOADER - see components/thirdParty.ts */}
+        <script dangerouslySetInnerHTML={{ __html: THIRD_PARTY_STUBS }} />
         {/* <script 
             dangerouslySetInnerHTML={{
                 __html: `
@@ -197,37 +159,9 @@ export default function RootLayout({
         <noscript><img height="1" width="1" style={{ display: 'none' }}
           src="https://www.facebook.com/tr?id=1321122855270380&ev=PageView&noscript=1" alt="" /></noscript>
         <Header></Header>
-        {children}
+        <main id="main-content">{children}</main>
         <Footer></Footer>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `<script async src="https://eomail4.com/form/68cdd53c-a55f-11ed-a80d-c50d697f08bd.js" data-form="68cdd53c-a55f-11ed-a80d-c50d697f08bd"></script>`
-          }}
-        />
-
-        <Script
-          src="https://app.lemonsqueezy.com/js/lemon.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Fire Meta Pixel Purchase when the Lemon Squeezy overlay checkout succeeds */}
-        <Script
-          id="ls-meta-purchase"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function initLS(){
-                if(window.LemonSqueezy && window.LemonSqueezy.Setup){
-                  window.LemonSqueezy.Setup({ eventHandler: function(e){
-                    if(e && e.event === 'Checkout.Success' && window.fbq){
-                      fbq('track','Purchase',{ value:32.99, currency:'USD' });
-                    }
-                  }});
-                } else { setTimeout(initLS, 400); }
-              })();
-            `,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: THIRD_PARTY_LOADER }} />
       </body>
     </html>
   )

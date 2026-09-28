@@ -150,7 +150,7 @@ const InterviewSimulatorWaitlist = () => {
                     </p>
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: `<script async src="https://eomail4.com/form/${WAITLIST_FORM_ID}.js" data-form="${WAITLIST_FORM_ID}"></script>`,
+                        __html: `<script type="text/lazy" data-src="https://eomail4.com/form/${WAITLIST_FORM_ID}.js" data-form="${WAITLIST_FORM_ID}"></script>`,
                       }}
                     />
                   </div>

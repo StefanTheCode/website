@@ -1,0 +1,22 @@
+Before adding another retry to a .NET service, I'd check how many retries already happen before the request reaches it.
+
+The client SDK might retry. So might the gateway. Your HttpClient might have a resilience handler too.
+
+If three layers each make up to three attempts, a single operation can trigger up to 27 calls at the bottom. That's the worst case, but it's exactly the case worth thinking about when a dependency is struggling.
+
+Small naming detail: MaxRetryAttempts = 3 means one initial attempt plus up to three retries. Four attempts. Easy to misread in a code review.
+
+I'd map the whole path, decide which layer owns retries for each dependency, and give the operation a total time budget. Each attempt gets a smaller timeout. Backoff gets jitter, so callers don't all come back together.
+
+Then I'd look at the operation itself.
+
+A payment timeout doesn't tell you whether the payment happened. It tells you that you didn't get a usable response in time. Blindly retrying that write can create a second charge.
+
+An idempotency key only helps if concurrent requests with the same key cannot both start the side effect. A “check the cache, call the provider, save the result” sequence still has a race. For an external payment, the provider's idempotency support matters too.
+
+The standard .NET HTTP resilience handler retries all HTTP methods by default. Review that policy before putting it in front of writes.
+
+For the next load test, make the dependency slow while keeping it alive. Watch outbound attempts per incoming request. That's a useful graph to have before an incident.
+
+I've put the .NET retry setup and pipeline ordering in the full walkthrough. Read it here:
+https://thecodeman.net/posts/when-retries-make-the-outage-worse

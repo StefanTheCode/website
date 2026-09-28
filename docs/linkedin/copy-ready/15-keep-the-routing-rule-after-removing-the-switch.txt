@@ -1,0 +1,20 @@
+Keyed services can clean up a factory switch in .NET. I'd still keep the decision about which provider to use easy to find.
+
+Say you have three implementations of IPaymentGateway. Registering them under keys is straightforward. The interesting part is deciding which one should handle a payment.
+
+That decision might depend on the merchant's contract, currency, region, or a provider outage. It's business behavior. Hiding it in calls to GetRequiredKeyedService across six handlers makes the switch disappear while scattering the routing policy.
+
+I'd put the selection behind a small resolver with a clear input and output. The resolver can use keyed DI internally. The rest of the application asks for the gateway appropriate to the operation.
+
+If the key is fixed for a consumer, [FromKeyedServices] can be enough. You don't need to build a dynamic routing abstraction for a dependency that never changes.
+
+The checks I'd add are fairly ordinary: unknown provider, unsupported currency, missing registration, and whether the selected service has the right lifetime. A keyed scoped service is still scoped; the key doesn't make it safe to capture in a singleton.
+
+I'd also treat fallback as an explicit policy. If a payment request times out, immediately trying another provider can create two charges when the first one actually succeeded. That's an outcome to reconcile, not just another implementation to resolve.
+
+For notification channels or storage backends, the trade-offs will be different. That's why I like keeping the policy visible and testable.
+
+Less wiring code is nice. Being able to explain why this request went to this provider is even more useful during support.
+
+If you're working through decisions like this, take a look at my Design Patterns that Deliver ebook. Strategy and Factory are two of the patterns I work through with C# examples and trade-offs:
+https://thecodeman.net/design-patterns-that-deliver-ebook

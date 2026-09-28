@@ -83,7 +83,7 @@ export default function Header() {
         <div className="container">
           <a className="navbar-brand d-flex align-items-center" href="/">
             <Image
-              src="/images/thecodeman-logo.webp"
+              src="/images/thecodeman-logo-96.webp"
               alt="Profile"
               width={48}
               height={48}

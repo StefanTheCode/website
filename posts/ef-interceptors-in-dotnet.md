@@ -368,5 +368,5 @@ If you want to go even further, the next “adult” use case is an **Outbox pat
 That's all for today.
 P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=120126), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
 The course is available in presale until the official release, with early-bird pricing for early adopters.
-You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=120126).
+You can find all the details [on the Pragmatic .NET Code Rules course page](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=120126).
 <!--END-->

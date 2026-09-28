@@ -187,7 +187,7 @@ Best Practices
 - Craft concise benchmarks focusing on specific tasks
 - Isolate benchmarks from external factors such as databases or network calls
 - Guard against unintended code optimizations by ensuring the benchmarked code produces tangible side effects.
-A year ago I created a challenge to optimize some functions and I used Benchmarking there. You can see the code [here](https://github.com/StefanTheCode/OptimizeMePlease).
+A year ago I created a challenge to optimize some functions and I used Benchmarking there. You can see [the OptimizeMePlease code on GitHub](https://github.com/StefanTheCode/OptimizeMePlease).
 
 That's all from me for today.
 

@@ -1,0 +1,24 @@
+“We limit each customer to 100 requests per minute.”
+
+On which instance?
+
+The built-in ASP.NET Core rate limiters keep their state in the application process. Put three instances behind a load balancer and each instance has its own counters.
+
+A client reaching all three may consume three separate budgets. The exact traffic split depends on the balancer, but the configuration hasn't magically become a shared quota.
+
+That's fine if the goal is protecting each instance. It's a different design problem if a paid API plan promises one limit across the whole service. That needs coordination at a gateway or a distributed implementation with the required consistency guarantees.
+
+I'd also separate request rate from expensive work in flight.
+
+A limit of 100 requests per minute can still allow many long-running exports at once. A concurrency limiter caps simultaneous executions. A window or token-bucket limiter controls a different dimension. Some endpoints need both.
+
+Partitioning deserves a review too. For a tenant quota, use trusted tenant identity established by authentication. Letting a caller invent a new partition key on every request defeats the limit. Per-IP limits have their own complications with shared networks and reverse proxies.
+
+And decide whether excess traffic waits or gets rejected. A long queue can consume the caller's entire timeout before useful work starts. Configure the rejection response deliberately; don't assume every limiter can estimate a meaningful Retry-After value.
+
+For testing, send the same caller through multiple instances and include slow requests. Count completed work, rejected work and time spent waiting.
+
+That tells you what your limit actually protects.
+
+For the ASP.NET Core policies, partitioning and rejection-handler examples, read my rate-limiting walkthrough:
+https://thecodeman.net/posts/rate-limiting-in-aspnet-core-built-in-ratelimiter

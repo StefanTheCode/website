@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementing the Saga Pattern With Wolverine (+Postgres)</title>
+</head>
+<body style="margin:0; padding:0; background:#f4f4f5;">
+<!-- Preview text (hidden) -->
+<div style="display: none; max-height: 0px; overflow: hidden;">
+A status column quietly breaks multi-step .NET workflows. Here's how the saga pattern fixes it with Wolverine and Postgres.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style="max-width:640px; margin:0 auto; padding:32px 24px; background:#ffffff; font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.65; color:#1a1a1a;">
+
+    <!-- ===== Hero image ===== -->
+    <a href="https://thecodeman.net/posts/implementing-the-saga-pattern-with-wolverine-postgres" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+        <img src="https://thecodeman.net/images/blog/implementing-the-saga-pattern-with-wolverine-postgres.webp" alt="Implementing the Saga Pattern With Wolverine (+Postgres)" width="592" style="width:100%; max-width:100%; height:auto; display:block; margin:0 0 16px 0; border-radius:8px;">
+    </a>
+
+    <!-- ===== Read on / Read time ===== -->
+    <p style="text-align:center; font-size:15px; color:#52525b; margin:0 0 28px 0;">
+        Read on: <a href="https://thecodeman.net/posts/implementing-the-saga-pattern-with-wolverine-postgres" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">my website</a> &nbsp;/&nbsp; Read time: <strong style="color:#6366f1;">8 minutes</strong>
+    </p>
+
+    <!-- ===== Sponsor block (Mode B = sponsorship CTA) ===== -->
+    <div style="border:1px solid #334155; border-radius:12px; padding:20px 24px; margin:0 0 28px 0; background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);">
+    <p style="margin:0 0 8px 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:rgba(255,255,255,0.7);">A quick word from me</p>
+    <p style="margin:0 0 12px 0; font-size:16px; line-height:1.6; color:#ffffff;">This issue isn't sponsored - I write these deep dives in my free time and keep them free for everyone. If your company sells AI tools, dev tools, courses, or services that .NET developers would actually use, sponsoring an issue is the most direct way to reach them.</p>
+    <p style="margin:0;"><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:11px 22px; background:#6366f1; color:#ffffff; font-weight:700; font-size:15px; border-radius:8px; text-decoration:none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a></p>
+</div>
+
+    <!-- ===== Title ===== -->
+    <h1 style="font-size:28px; line-height:1.3; margin:0 0 8px 0; color:#0f172a;">Implementing the Saga Pattern With Wolverine (+Postgres)</h1>
+    <p style="font-size:17px; color:#52525b; margin:0 0 28px 0;">How to build a stateful, long-running workflow in .NET using Wolverine's saga support with PostgreSQL persistence through Marten.</p>
+
+    <!-- =======================================================================
+         BODY START
+         ======================================================================= -->
+
+<!-- ===== The problem ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The problem</h2>
+<p style="margin:0 0 16px 0;">A lot of business processes are not a single database write. An order gets placed, then a payment arrives, then the warehouse confirms it shipped. Those steps happen at different times, often come from different services, and any of them can fail or never arrive at all. You still need to track where a given order is in that process and react when it either finishes or stalls.</p>
+<p style="margin:0 0 16px 0;">The steps also have no shared database transaction. You can't wrap "charge the card" and "reserve stock" and "send the invoice" in one <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">SaveChanges</code>, because they run in different services and at different moments. So you need something that remembers the state of each order between messages and knows what to do when the next message shows up.</p>
+<p style="margin:0 0 16px 0;">That is what the saga pattern is for. A saga is a piece of persisted state plus the handlers that move it forward as related messages arrive. In this issue I'll implement one with <a href="https://wolverinefx.net/" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">Wolverine</a> and store its state in PostgreSQL through Marten. If you've seen my earlier <a href="https://thecodeman.net/posts/saga-orchestration-pattern" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">saga orchestration post</a>, that used MassTransit's state machine; Wolverine takes a lighter, more code-first approach, so it's worth seeing both.</p>
+
+<!-- ===== Why the naive approach falls short ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Why the naive approach falls short</h2>
+<p style="margin:0 0 16px 0;">The version most teams reach for first is a status column. You add an <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Orders</code> table with a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Status</code> field, and each incoming message loads the row, checks the status, updates it, and saves.</p>
+<p style="margin:0 0 16px 0;">It holds up for a while, then the edge cases start. You end up writing the correlation logic by hand in every handler: find the right order, check whether it's in the expected state, guard against a message that arrived out of order or twice. Two messages for the same order can land at the same time and overwrite each other. And there's no natural place for "if this order isn't paid within 15 minutes, cancel it" - a status column doesn't wake itself up, so you bolt on a background job that scans the table looking for stale rows.</p>
+<p style="margin:0 0 16px 0;">None of that is impossible to build. It's just that you're rebuilding the same plumbing every time: correlate a message to a stateful instance, load it, apply the change, persist it, and schedule time-based follow-ups. A saga framework gives you that plumbing.</p>
+
+<!-- ===== What a saga looks like in Wolverine ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">What a saga looks like in Wolverine</h2>
+<p style="margin:0 0 16px 0;">Wolverine models a saga as a class that inherits from <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Wolverine.Saga</code>. The class holds the state, and its methods handle the messages that belong to it. There's no separate state-machine DSL - the state is properties, and the transitions are ordinary C# methods.</p>
+<p style="margin:0 0 16px 0;">Three conventions do most of the work:</p>
+<ul style="margin:0 0 16px 0; padding-left:22px;">
+    <li style="margin-bottom:8px;"><strong>Identity.</strong> The saga has an <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code> property (a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">string</code> or <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Guid</code>). Wolverine correlates an incoming message to a saga instance by looking for a member on the message that matches - either a property named <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code>, or one named after the saga type plus <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code> (so <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OrderId</code> for an <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Order</code> saga), or one marked with <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">[SagaIdentity]</code>.</li>
+    <li style="margin-bottom:8px;"><strong>Starting.</strong> A static or instance method named <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Start</code> (or <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">StartOrHandle</code>) creates a new saga instance from the first message.</li>
+    <li style="margin-bottom:8px;"><strong>Continuing.</strong> Instance methods named <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Handle</code> advance an existing instance. When all the work is done, you call <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">MarkCompleted()</code> to delete the state.</li>
+</ul>
+<p style="margin:0 0 16px 0;">Handler methods can also return messages, and Wolverine sends them for you - this is how a saga triggers the next step or schedules a timeout.</p>
+
+<!-- ===== Setting up Wolverine with PostgreSQL ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Setting up Wolverine with PostgreSQL</h2>
+<p style="margin:0 0 16px 0;">Wolverine persists saga state through a backing store. For Postgres, the natural fit is <a href="https://martendb.io/" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">Marten</a>, which stores documents in PostgreSQL and integrates with Wolverine directly. Saga instances are saved as Marten documents, and the same integration gives you Wolverine's durable inbox/outbox in the same database.</p>
+<p style="margin:0 0 16px 0;">Install the packages:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">dotnet add package WolverineFx.Marten</pre>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">WolverineFx.Marten</code> pulls in Wolverine and Marten together. Then wire it up:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddMarten(opts =&gt;
+    {
+        opts.Connection(builder.Configuration.GetConnectionString("postgres")!);
+    })
+    .IntegrateWithWolverine();
+
+builder.Host.UseWolverine();
+
+var app = builder.Build();</pre>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">AddMarten</code> configures the Postgres connection. <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">IntegrateWithWolverine()</code> tells Wolverine to use Marten for saga persistence and for its durable message storage - it will create the tables it needs in Postgres on startup. <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">UseWolverine()</code> starts the messaging runtime and discovers your handlers and sagas by convention.</p>
+
+<!-- ===== The example: an order fulfillment saga ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The example: an order fulfillment saga</h2>
+<p style="margin:0 0 16px 0;">Let's model a small order process. An order is placed, then two things need to happen in any order: the payment is received and the order is shipped. Once both have happened, we send the invoice and finish. If the payment never arrives in time, we cancel.</p>
+<p style="margin:0 0 16px 0;">First, the messages. These are plain records:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">public record OrderPlaced(string OrderId);
+public record PaymentReceived(string OrderId);
+public record OrderShipped(string OrderId);
+
+public record SendInvoice(string OrderId);
+public record CancelOrder(string OrderId);</pre>
+<p style="margin:0 0 16px 0;">Notice every message carries <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OrderId</code>. That's the correlation member Wolverine uses to route each message to the right saga instance.</p>
+<p style="margin:0 0 16px 0;">Now the saga itself:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">public class Order : Saga
+{
+    public string? Id { get; set; }
+
+    public bool Paid { get; set; }
+    public bool Shipped { get; set; }
+
+    // Starts the saga when an OrderPlaced message arrives.
+    // Returns a timeout message that Wolverine schedules for us.
+    public static (Order, OrderPaymentTimeout) Start(OrderPlaced placed)
+    {
+        var order = new Order { Id = placed.OrderId };
+        return (order, new OrderPaymentTimeout(placed.OrderId));
+    }
+
+    public object[] Handle(PaymentReceived received)
+    {
+        Paid = true;
+        return MaybeComplete();
+    }
+
+    public object[] Handle(OrderShipped shipped)
+    {
+        Shipped = true;
+        return MaybeComplete();
+    }
+
+    private object[] MaybeComplete()
+    {
+        if (Paid &amp;&amp; Shipped)
+        {
+            MarkCompleted();
+            return [new SendInvoice(Id!)];
+        }
+
+        return [];
+    }
+}</pre>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Start</code> builds the saga and returns a second value, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OrderPaymentTimeout</code>. Any message a saga method returns is cascaded - Wolverine sends it - so returning a timeout message here schedules it. Each <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Handle</code> method flips a flag and calls <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">MaybeComplete</code>, which finishes the saga and cascades <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">SendInvoice</code> only when both flags are set. Until then it returns an empty array and the saga stays alive, waiting for the other message.</p>
+<p style="margin:0 0 16px 0;">For the timeout, Wolverine has a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">TimeoutMessage</code> base type. A message that inherits from it is scheduled with the delay you pass to the base constructor:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">public record OrderPaymentTimeout(string OrderId)
+    : TimeoutMessage(15.Minutes());</pre>
+<p style="margin:0 0 16px 0;">And the saga handles it. If the order is already paid by the time the timeout fires, we ignore it; otherwise we cancel:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">public object[] Handle(OrderPaymentTimeout timeout)
+{
+    if (Paid)
+    {
+        return [];
+    }
+
+    MarkCompleted();
+    return [new CancelOrder(Id!)];
+}</pre>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">SendInvoice</code> and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">CancelOrder</code> are handled by ordinary Wolverine handlers outside the saga - the saga's job is coordination, not doing the invoicing work itself.</p>
+
+<!-- ===== Starting the saga from an endpoint ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Starting the saga from an endpoint</h2>
+<p style="margin:0 0 16px 0;">To kick things off, publish the first message. <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OrderPlaced</code> has a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Start</code> handler, so Wolverine creates a new <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Order</code> saga for it:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapPost("/orders", async (string orderId, IMessageBus bus) =&gt;
+{
+    await bus.PublishAsync(new OrderPlaced(orderId));
+    return Results.Accepted($"/orders/{orderId}");
+});</pre>
+<p style="margin:0 0 16px 0;">The other two messages come from wherever those steps actually happen - a payment webhook, a shipping service - and each one just needs to carry the same <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OrderId</code>:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapPost("/orders/{orderId}/paid", async (string orderId, IMessageBus bus) =&gt;
+{
+    await bus.PublishAsync(new PaymentReceived(orderId));
+    return Results.Ok();
+});
+
+app.MapPost("/orders/{orderId}/shipped", async (string orderId, IMessageBus bus) =&gt;
+{
+    await bus.PublishAsync(new OrderShipped(orderId));
+    return Results.Ok();
+});</pre>
+<p style="margin:0 0 16px 0;">Wolverine loads the matching <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Order</code> from Postgres, runs the right <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Handle</code> method, and saves the updated state - all in one transaction with the incoming message thanks to the Marten integration.</p>
+
+<!-- ===== The flow ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The flow</h2>
+<p style="margin:0 0 16px 0;">Here's the happy path, where both the payment and the shipment come in before the timeout:</p>
+<img src="https://thecodeman.net/images/blog/posts/implementing-the-saga-pattern-with-wolverine-postgres/order-saga-message-flow.webp" alt="Order saga message flow" width="592" style="width:100%; max-width:100%; height:auto; display:block; margin:0 0 20px 0; border-radius:8px;">
+<p style="margin:0 0 16px 0;">And the state the saga moves through:</p>
+<img src="https://thecodeman.net/images/blog/posts/implementing-the-saga-pattern-with-wolverine-postgres/order-saga-states.webp" alt="Order saga states" width="592" style="width:100%; max-width:100%; height:auto; display:block; margin:0 0 20px 0; border-radius:8px;">
+<p style="margin:0 0 16px 0;">The two middle states (Paid and Shipped) exist because the two messages can arrive in either order. The saga doesn't care which comes first - it just records what it has and checks whether it has everything.</p>
+
+<!-- ===== How the state lives in Postgres ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">How the state lives in Postgres</h2>
+<p style="margin:0 0 16px 0;">With the Marten integration, each saga instance is a document in a Postgres table named after the type - <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">mt_doc_order</code> for the <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Order</code> saga. The document holds the serialized state (the <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code>, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Paid</code>, and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Shipped</code> values), and Marten reads and writes it by the <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code>. When <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">MarkCompleted()</code> runs, the document is deleted.</p>
+<p style="margin:0 0 16px 0;">Because Wolverine's durable messaging uses the same database, the message that triggered a transition and the saga state change are committed together. If the process crashes after handling a message but before the state is saved, the message isn't acknowledged and is retried - you don't end up with a saga that half-advanced. This is the same durability you'd get from hand-rolling the <a href="https://thecodeman.net/posts/outbox-pattern-in-dotnet" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">outbox pattern</a>, except Wolverine provides it.</p>
+
+<!-- ===== A few practical notes ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">A few practical notes</h2>
+<p style="margin:0 0 16px 0;">Keep the correlation member consistent. Every message a saga handles has to carry the identity, and the name has to match one of Wolverine's conventions (<code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code>, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">&lt;SagaType&gt;Id</code>, or <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">[SagaIdentity]</code>). A message without a matching member can't be routed to an instance.</p>
+<p style="margin:0 0 16px 0;">Expect duplicate and out-of-order messages. Sagas make this easier because the state is right there, but your <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Handle</code> methods should still be safe to run more than once. Setting <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Paid = true</code> twice is harmless; incrementing a counter twice is not.</p>
+<p style="margin:0 0 16px 0;">Keep the saga about coordination. The saga decides what happens next and when; the actual work - charging a card, generating an invoice - belongs in normal handlers that the saga triggers with cascaded messages. That keeps the saga small and easy to reason about.</p>
+<p style="margin:0 0 16px 0;">Marten isn't the only option. Wolverine also supports EF Core for saga persistence if that's already in your stack. Marten is the most direct path when your database is Postgres and you don't want to hand-write a store.</p>
+
+<!-- ===== FAQ ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">FAQ</h2>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">What is the saga pattern?</h3>
+<p style="margin:0 0 16px 0;">It's a way to manage a business process that spans multiple steps and often multiple services, where there's no single database transaction to rely on. Each step is its own transaction, and the saga holds the state that ties them together and coordinates what happens next, including undoing earlier steps when something fails.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">How does Wolverine correlate a message to the right saga instance?</h3>
+<p style="margin:0 0 16px 0;">By matching a member on the message to the saga's identity. Wolverine looks for a property named <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code>, or one named after the saga type plus <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code> (like <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OrderId</code> for an <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Order</code> saga), or one marked with <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">[SagaIdentity]</code>. That value is used to load the correct instance from the store.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">Do I need Marten to use Wolverine sagas?</h3>
+<p style="margin:0 0 16px 0;">No. Marten is the natural choice for PostgreSQL and is what this issue uses, but Wolverine also supports EF Core for saga persistence. You pick the backing store; the saga code stays the same.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">How do saga timeouts work?</h3>
+<p style="margin:0 0 16px 0;">Wolverine has a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">TimeoutMessage</code> base type. A message that inherits from it is scheduled with the delay passed to its constructor, and when a saga returns one as a cascaded message, Wolverine schedules it and later routes it back to the same instance. Your saga handles it and decides what to do - typically cancel if the process hasn't completed.</p>
+
+<!-- ===== Wrapping Up ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Wrapping Up</h2>
+<p style="margin:0 0 16px 0;">The saga pattern solves a specific problem: coordinating a multi-step process whose steps arrive over time and can't share one transaction. Wolverine's take is code-first - a class that inherits from <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Saga</code>, an <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Id</code> for correlation, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Start</code> and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Handle</code> methods for the transitions, and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">MarkCompleted</code> when it's done. Backed by Marten and PostgreSQL, the state is persisted per instance and the transitions run in the same transaction as the messages that drive them.</p>
+<p style="margin:0 0 16px 0;">If you're already using Wolverine as a <a href="https://thecodeman.net/posts/mediatr-alternative-wolverine" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">MediatR alternative</a>, sagas are the same programming model extended with persisted state, so there's little new to learn beyond the conventions above.</p>
+<p style="margin:0 0 16px 0;">If you made it this far, you're serious about production-grade .NET systems. Use code <strong>DEEP20</strong> for a discount on <a href="https://thecodeman.net/design-patterns-that-deliver-ebook" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">Design Patterns that Deliver</a>.</p>
+
+    <!-- ======================================================================= -->
+    <!-- BODY END -->
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:28px 0;">
+    <p style="margin:0 0 16px 0;">That's all from me today.</p>
+    <p style="margin:0 0 24px 0;">P.S. Follow me on <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">YouTube</a>.</p>
+
+    <div style="text-align:center; margin:0 0 32px 0;">
+        <a href="https://thecodeman.net" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 34px; background:#000000; color:#ffd43b; font-weight:700; font-size:16px; border-radius:28px; text-decoration:none;">Check the website</a>
+    </div>
+
+    <!-- Promo: Pragmatic .NET Code Rules -->
+    <p style="margin:0 0 12px 0;"><strong>Your .NET codebase shouldn't depend on discipline. It should be automated.</strong></p>
+    <p style="margin:0 0 12px 0;">That's exactly what I teach in <a href="https://thecodeman.net/pragmatic-dotnet-code-rules" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">Pragmatic .NET Code Rules</a>.</p>
+    <p style="margin:0 0 12px 0;">🔥 Early access now available!</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://thecodeman.net/pragmatic-dotnet-code-rules" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">👉 Get in</a></p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <!-- Promo: Skool community -->
+    <p style="margin:0 0 12px 0;"><a href="https://www.skool.com/thecodeman-community-2911" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">#1 .NET Community on Skool Platform:</a> 🎯 Where .NET developers, architects, and enthusiasts come together to grow their skills, solve challenges, and build amazing solutions - faster than ever before!</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://www.skool.com/thecodeman-community-2911" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 1500+ readers here FOR FREE</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <!-- Promo: Design Patterns that Deliver -->
+    <p style="margin:0 0 12px 0;"><a href="https://thecodeman.net/design-patterns-that-deliver-ebook" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Design Patterns that Deliver:</a> This isn't just another design patterns book. Dive into real-world examples and practical solutions to real problems in real applications.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://thecodeman.net/design-patterns-that-deliver-ebook" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 800+ readers here</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <!-- Promo: Design Patterns Simplified -->
+    <p style="margin:0 0 12px 0;"><a href="https://thecodeman.net/design-patterns-simplified" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Design Patterns Simplified:</a> In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://thecodeman.net/design-patterns-simplified" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 1550+ readers here</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <!-- Promo: Sponsor the newsletter -->
+    <p style="text-align:center; margin:0 0 20px 0;"><strong>Promote yourself or your business to 22,200+ subscribers by <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="color:#dc2626; text-decoration:underline;">sponsoring this newsletter</a>.</strong></p>
+    <div style="text-align:center; margin:0 0 8px 0;">
+        <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 34px; background:#000000; color:#ffd43b; font-weight:700; font-size:16px; border-radius:28px; text-decoration:none;">Promote yourself</a>
+    </div>
+
+    <!-- ===== Footer (EmailOctopus required tags) ===== -->
+    <div style="margin-top:36px; padding-top:20px; border-top:1px solid #e4e4e7; font-size:13px; line-height:1.6; color:#94a3b8; text-align:center;">
+        <p style="margin:0 0 10px 0;">{{SenderInfo}}</p>
+        <p style="margin:0 0 6px 0;"><a href="{{UnsubscribeURL}}" style="color:#94a3b8; text-decoration:underline;">Unsubscribe</a></p>
+        <p style="margin:0;"><a href="{{RewardsURL}}" style="color:#94a3b8; text-decoration:underline;">Powered by EmailOctopus</a></p>
+    </div>
+</div>
+</body>
+</html>

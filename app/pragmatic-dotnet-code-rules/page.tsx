@@ -273,7 +273,7 @@ const CodeRules = () => {
         <div className="cr-wrap cr-nav-row">
           <a className="cr-brand" href="/" aria-label="TheCodeMan home">
             <Image
-              src="/images/thecodeman-logo.webp"
+              src="/images/thecodeman-logo-96.webp"
               alt="Stefan Đokić"
               width={40}
               height={40}
@@ -317,7 +317,7 @@ const CodeRules = () => {
             <div className="cr-frame">
               {/* Save the chosen Higgsfield render as public/images/course-hero.webp
                   (recommended: the "Stefan holding the box" image). */}
-              <Image src="/images/course-hero.webp" alt="Stefan Đokić holding the Pragmatic .NET Code Rules course" width={0} height={0} sizes="(max-width:940px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} priority />
+              <Image src="/images/course-hero.webp" alt="Stefan Đokić holding the Pragmatic .NET Code Rules course" width={1152} height={928} sizes="(max-width:940px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} priority />
             </div>
           </div>
         </div>
@@ -371,7 +371,7 @@ const CodeRules = () => {
           </div>
           <div className="cr-reveal">
             <div className="cr-media-frame">
-              <Image src="/images/course2.webp" alt="Code inconsistency across a .NET team" width={0} height={0} sizes="(max-width:860px) 100vw, 40vw" style={{ width: '100%', height: 'auto', display: 'block' }} />
+              <Image src="/images/course2.webp" alt="Code inconsistency across a .NET team" width={1152} height={928} sizes="(max-width:860px) 100vw, 40vw" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
           </div>
         </div>
@@ -434,7 +434,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">→</span> The mindset top engineering teams use to stay aligned</li>
               </ul>
             </div>
-            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/mindset.webp" alt="The code consistency mindset" width={0} height={0} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
+            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/mindset.webp" alt="The code consistency mindset" width={3800} height={2148} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
           </div>
 
           <div className="cr-learn-row cr-flip cr-reveal">
@@ -447,7 +447,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">→</span> Structure it for small projects and massive solutions</li>
               </ul>
             </div>
-            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/editorconfig.webp" alt=".editorconfig deep dive" width={0} height={0} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
+            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/editorconfig.webp" alt=".editorconfig deep dive" width={4972} height={3608} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
           </div>
 
           <div className="cr-learn-row cr-reveal">
@@ -460,7 +460,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">→</span> Remove 90% of manual cleanup from your workflow</li>
               </ul>
             </div>
-            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/cleanup.webp" alt="Visual Studio cleanup automation" width={0} height={0} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
+            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/cleanup.webp" alt="Visual Studio cleanup automation" width={860} height={620} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
           </div>
 
           <div className="cr-learn-row cr-flip cr-reveal">
@@ -473,7 +473,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">→</span> Enforce rules without drowning devs in noise</li>
               </ul>
             </div>
-            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/errors.webp" alt="Analyzers and warnings as errors" width={0} height={0} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
+            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/errors.webp" alt="Analyzers and warnings as errors" width={600} height={383} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
           </div>
 
           <div className="cr-learn-row cr-reveal">
@@ -486,7 +486,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">→</span> Fail PRs automatically when rules are violated</li>
               </ul>
             </div>
-            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/ci.png" alt="dotnet format and CI enforcement" width={0} height={0} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
+            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/ci.png" alt="dotnet format and CI enforcement" width={908} height={289} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
           </div>
 
           <div className="cr-learn-row cr-flip cr-reveal">
@@ -499,7 +499,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">→</span> Build a culture where clean code is the default</li>
               </ul>
             </div>
-            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/slack.webp" alt="Team-wide adoption strategies" width={0} height={0} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
+            <div className="cr-media"><div className="cr-media-frame"><Image src="/images/slack.webp" alt="Team-wide adoption strategies" width={1024} height={1467} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
           </div>
         </div>
       </section>
@@ -607,10 +607,7 @@ const CodeRules = () => {
               data-lazyload="false"
               style={{ display: 'block', width: '100%' }}
             ></div>
-            <Script
-              src="https://widget.senja.io/widget/489b3774-2ef7-4c22-8d58-91df0c2a60f4/platform.js"
-              strategy="afterInteractive"
-            />
+            <div dangerouslySetInnerHTML={{ __html: '<script type="text/lazy" data-src="https://widget.senja.io/widget/489b3774-2ef7-4c22-8d58-91df0c2a60f4/platform.js"></script>' }} />
           </div>
         </div>
       </section>
@@ -621,7 +618,7 @@ const CodeRules = () => {
       <section>
         <div className="cr-wrap cr-about">
           <div className="cr-reveal">
-            <div className="cr-media-frame"><Image src="/images/ebook-stefan.webp" alt="Stefan Đokić, Microsoft MVP" width={0} height={0} sizes="(max-width:860px) 100vw, 360px" style={{ width: '100%', height: 'auto', display: 'block' }} /></div>
+            <div className="cr-media-frame"><Image src="/images/ebook-stefan.webp" alt="Stefan Đokić, Microsoft MVP" width={1536} height={2040} sizes="(max-width:860px) 100vw, 360px" style={{ width: '100%', height: 'auto', display: 'block' }} /></div>
           </div>
           <div className="cr-reveal">
             <span className="cr-mvp-pill">{MS} Microsoft MVP</span>

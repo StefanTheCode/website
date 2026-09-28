@@ -13,8 +13,8 @@ photoUrl: "/images/blog/newsletter21.png"
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of API management and enhance your productivity <a href="https://www.postman.com/product/flows/" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Create a production-ready Blazor application from start to finish with the latest edition of Web Development with Blazor by Jimmy Engstrom. You can learn more <a href="https://amzn.to/3KNEATs" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Transform your API development process with Postman Flows! Experience a new way to visually create, debug, and automate complex API workflows with ease. Dive into the future of <a href="https://www.postman.com/product/flows/" style="color: #a5b4fc; text-decoration: underline;">API management and enhance your productivity here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Create a production-ready Blazor application from start to finish with the latest edition of Web Development with Blazor by Jimmy Engstrom. <a href="https://amzn.to/3KNEATs" style="color: #a5b4fc; text-decoration: underline;">You can learn more here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
@@ -175,9 +175,9 @@ Using the IDocumentationFILter abstraction, we created 3 implementations:
 2. AddGlobalMetadataDocumentFilter
 3. AddCustomHeaderToResponsesDocumentFilter
 
-For a deeper understanding and different implementations check out [here](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). 
+For a deeper understanding and different implementations check out [the Swashbuckle.AspNetCore repository](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). 
 
-You can download this source code from [here](https://github.com/StefanTheCode/SwaggerDocumentFilters).
+You can download [the source code from GitHub](https://github.com/StefanTheCode/SwaggerDocumentFilters).
 
 That's all from me today.
 <!--END-->

@@ -18,7 +18,9 @@ const getPostMetadata = (): PostMetadata[] => {
       const fromFrontmatter = matterResult.data.photoUrl;
       if (fromFrontmatter) return fromFrontmatter;
       if (fs.existsSync(`public/images/blog/${slug}.webp`)) return `/images/blog/${slug}.webp`;
-      return `/images/blog/${slug}.png`;
+      if (fs.existsSync(`public/images/blog/${slug}.png`)) return `/images/blog/${slug}.png`;
+      // No header image yet: use the site OG image instead of a broken (404) thumbnail.
+      return `/og-image.webp`;
     };
     return {
       newsletterTitle: matterResult.data.newsletterTitle,

@@ -89,7 +89,7 @@ const demoTabs: DemoTab[] = [
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
 const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: '#ffbd39', color: '#2a003a' } as const
 
-const FORM = `<script async src="https://eomail4.com/form/64f8b448-fe65-11ef-9a18-ad167120d785.js" data-form="64f8b448-fe65-11ef-9a18-ad167120d785"></script>`
+const FORM = `<script type="text/lazy" data-src="https://eomail4.com/form/64f8b448-fe65-11ef-9a18-ad167120d785.js" data-form="64f8b448-fe65-11ef-9a18-ad167120d785"></script>`
 
 const AiStarterKit = () => {
   return (
@@ -262,7 +262,7 @@ const AiStarterKit = () => {
           <div className="row align-items-center pt-4 pb-5">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-5 text-center mb-4" data-reveal>
               <div className="tk-card p-3" style={{ ...card, display: 'inline-block' }}>
-                <Image src="/images/rag-system-cover.png" priority alt="AI in .NET Starter Kit cover" width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
+                <Image src="/images/rag-system-cover.webp" priority alt="AI in .NET Starter Kit cover" width={3355} height={1580} sizes="100vw" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
               </div>
             </div>
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-7" data-reveal data-delay="1">

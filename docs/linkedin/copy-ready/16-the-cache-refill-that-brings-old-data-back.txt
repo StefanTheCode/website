@@ -1,0 +1,22 @@
+Deleting the cache entry after a database update still leaves a race worth testing.
+
+Here's one possible interleaving:
+
+A reader misses the cache and reads the old profile from the database. A writer commits a new email address and invalidates the cache. Then the first reader finishes and puts the old profile back into Redis.
+
+The invalidation happened. Stale data still came back.
+
+Now add a second lookup key, such as email → user ID, and there are more states to reason about. The index can point to a missing profile. The profile can contain an email that no longer matches the lookup. The two entries can expire at different times.
+
+Storing the full profile once and using secondary lookup keys avoids duplicated payloads, but it doesn't solve those races by itself.
+
+I'd start by defining how stale the feature is allowed to be. For a display name, a short stale period may be acceptable. For an ownership or authorization decision, a stale cache may be the wrong authority altogether.
+
+If stronger cache consistency is needed, a possible design uses monotonic entity versions plus an atomic conditional write. Keep a version or tombstone long enough to reject an older refill; deleting every trace of the new version removes that protection. Expiry and concurrent writers still need explicit handling.
+
+There's a deployment wrinkle too: in Redis Cluster, multi-key transactions and scripts require the relevant keys to share a hash slot. Arbitrary email and user-ID keys won't necessarily do that.
+
+I'd write the concurrency test before the helper class. Pause a reader after its database read, run the update and invalidation, then release the reader. See which version ends up in the cache.
+
+I explain the primary-entry and secondary-key layout in my dual-key Redis article. Read it alongside the refill race above when designing your cache:
+https://thecodeman.net/posts/dual-key-redis-caching-in-dotnet

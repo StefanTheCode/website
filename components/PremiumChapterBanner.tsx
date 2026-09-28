@@ -64,14 +64,14 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
           Free tutorial · the full version is in the book
         </p>
 
-        <h3
+        <h2
           style={{
             color: "#F3EFFA",
             fontSize: 20,
             fontWeight: 800,
             lineHeight: 1.3,
             margin: "0 0 8px",
-            fontFamily: "'Space Grotesk', sans-serif",
+            fontFamily: "'Space Grotesk', 'Space Grotesk Fallback', sans-serif",
           }}
         >
           You&apos;re reading the free intro
@@ -82,7 +82,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
             </>
           ) : null}
           .
-        </h3>
+        </h2>
 
         <p
           style={{
@@ -114,7 +114,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
                 borderRadius: 10,
                 textDecoration: "none",
                 fontSize: 14.5,
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Space Grotesk', 'Space Grotesk Fallback', sans-serif",
               }}
             >
               Read the production-grade chapter →
@@ -130,7 +130,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
                 borderRadius: 10,
                 textDecoration: "none",
                 fontSize: 14.5,
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Space Grotesk', 'Space Grotesk Fallback', sans-serif",
               }}
             >
               Go deeper in the book →
@@ -148,7 +148,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
               borderRadius: 10,
               textDecoration: "none",
               fontSize: 14.5,
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Space Grotesk', 'Space Grotesk Fallback', sans-serif",
             }}
           >
             See all 10 patterns

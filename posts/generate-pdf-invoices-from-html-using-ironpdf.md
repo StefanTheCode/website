@@ -165,7 +165,7 @@ Here is the Pdf file as result:
 
 Licensing
 
-IronPDF is free for development use and has multiple pricing tiers for commercial use that you can check out [here](https://ironpdf.com/licensing/).
+IronPDF is free for development use and has multiple pricing tiers for commercial use that you can check out [on the IronPDF licensing page](https://ironpdf.com/licensing/).
 
 And now, I use Automation tool to send the email with this attachment. 
 
@@ -241,7 +241,7 @@ And once you set it up, it feels like magic. One click, and a beautifully render
 
 If you want a starter project, a sample template, or have any questions, feel free to reach out. Happy to share what’s working for me!
 
-Be sure to check it out [here](https://ironpdf.com/).
+Be sure to check out [IronPDF](https://ironpdf.com/).
 
 That's all from me today. 
 

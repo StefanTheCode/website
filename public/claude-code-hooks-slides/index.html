@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code Hooks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<style>
+  :root{
+    --bg:#160d2b;
+    --bg-2:#1d1140;
+    --panel:#241748;
+    --panel-2:#2c1d55;
+    --line:#3b2a6b;
+    --text:#ECE7FA;
+    --muted:#9d90c4;
+    --muted-2:#7d6fb0;
+    --accent:#ffd23f;
+    --accent-ink:#2a1c00;
+    --green:#48e08a;
+    --red:#ff6b7d;
+    --code-bg:#282a36;
+    --code-line:#3a3d52;
+    /* Dracula-ish tokens */
+    --c-key:#ff79c6;
+    --c-str:#f1fa8c;
+    --c-num:#bd93f9;
+    --c-com:#6272a4;
+    --c-fn:#50fa7b;
+    --c-attr:#8be9fd;
+    --c-punc:#f8f8f2;
+    --maxw:1080px;
+    --radius:16px;
+    font-synthesis-weight:none;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 78% -10%, #33206b 0%, rgba(51,32,107,0) 60%),
+      radial-gradient(900px 600px at 8% 110%, #2a1750 0%, rgba(42,23,80,0) 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+    height:100vh;
+    overflow:hidden;
+  }
+
+  /* progress */
+  #progress{
+    position:fixed;top:0;left:0;height:3px;width:0;
+    background:linear-gradient(90deg,var(--accent),#ffe98a);
+    z-index:40;transition:width .35s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 0 12px rgba(255,210,63,.5);
+  }
+
+  .stage{position:fixed;inset:0;bottom:56px;}
+
+  .slide{
+    position:absolute;inset:0;
+    display:flex;
+    padding:clamp(22px,5vh,64px) clamp(20px,6vw,96px);
+    overflow:auto;
+    opacity:0;visibility:hidden;
+    transform:translateY(10px);
+    transition:opacity .4s ease, transform .4s ease, visibility .4s;
+  }
+  .slide.active{opacity:1;visibility:visible;transform:none;}
+  .slide::-webkit-scrollbar{width:10px}
+  .slide::-webkit-scrollbar-thumb{background:var(--line);border-radius:20px}
+
+  .inner{margin:auto;width:100%;max-width:var(--maxw);}
+
+  /* typography */
+  .eyebrow{
+    font-family:"JetBrains Mono", ui-monospace, monospace;
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+    display:inline-flex;align-items:center;gap:.6em;margin:0 0 18px;
+  }
+  .eyebrow .num{color:var(--muted);}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.7}
+
+  h1{
+    font-family:"Bricolage Grotesque", ui-sans-serif, sans-serif;
+    font-weight:800;font-size:clamp(2.6rem,6.4vw,5.4rem);
+    line-height:.98;letter-spacing:-.02em;margin:0 0 22px;
+    text-wrap:balance;
+  }
+  h2{
+    font-family:"Bricolage Grotesque", ui-sans-serif, sans-serif;
+    font-weight:800;font-size:clamp(1.7rem,3.6vw,2.9rem);
+    line-height:1.04;letter-spacing:-.015em;margin:0 0 20px;
+    text-wrap:balance;
+  }
+  h2 .hl{color:var(--accent)}
+  .lead{font-size:clamp(1.05rem,1.7vw,1.4rem);color:var(--muted);max-width:60ch;margin:0 0 10px}
+  p{margin:0 0 14px;max-width:64ch}
+  strong{color:#fff;font-weight:600}
+  .accent{color:var(--accent);font-weight:600}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.92em;
+    background:var(--panel);border:1px solid var(--line);padding:.08em .42em;border-radius:6px;color:#fff}
+
+  /* title slide */
+  .title-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"JetBrains Mono",monospace;font-size:.78rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line);background:rgba(36,23,72,.5);
+    padding:8px 14px;border-radius:999px;margin-bottom:30px;
+  }
+  .title-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .sub{font-size:clamp(1.2rem,2.3vw,1.9rem);color:var(--text);font-weight:500;margin:0 0 14px;max-width:26ch}
+  .sub .hl{color:var(--accent)}
+
+  /* generic layout helpers */
+  .stack>*+*{margin-top:14px}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:1.05fr .95fr}
+  @media (max-width:820px){.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
+
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px;
+  }
+  .card h3{margin:0 0 8px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+  .card p{color:var(--muted);margin:0;font-size:.98rem}
+  .card .k{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:12px}
+
+  /* flow event->matcher->handler */
+  .flow{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;margin-top:6px}
+  .flow .step{flex:1 1 180px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .flow .step .t{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+  .flow .step .d{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.25rem;margin-bottom:4px}
+  .flow .step small{color:var(--muted)}
+  .flow .arrow{align-self:center;color:var(--muted-2);font-size:1.4rem;font-weight:700}
+  @media (max-width:820px){.flow .arrow{transform:rotate(90deg)}}
+
+  /* pain list */
+  .pain{display:flex;flex-direction:column;gap:12px;margin:6px 0 18px}
+  .pain li{list-style:none;display:flex;gap:14px;align-items:flex-start;
+    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--red);
+    border-radius:12px;padding:14px 16px}
+  .pain li .you{color:var(--muted);font-style:italic}
+  .pain li .then{color:#fff}
+  .pain .x{color:var(--red);font-weight:800;font-family:"JetBrains Mono",monospace}
+
+  ul.clean{margin:6px 0 0;padding:0}
+  ul.clean li{list-style:none;display:flex;gap:12px;align-items:flex-start;margin:0 0 12px;color:var(--muted)}
+  ul.clean li::before{content:"";flex:0 0 auto;width:8px;height:8px;margin-top:9px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+  ul.clean li b{color:#fff;font-weight:600}
+
+  /* code window */
+  .codewrap{margin:2px 0}
+  .win{background:var(--code-bg);border:1px solid var(--code-line);border-radius:12px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(0,0,0,.8)}
+  .win .bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:#21232f;border-bottom:1px solid var(--code-line)}
+  .win .bar .lights{display:flex;gap:6px}
+  .win .bar .lights i{width:11px;height:11px;border-radius:50%;display:block}
+  .win .bar .lights i:nth-child(1){background:#ff5f56}
+  .win .bar .lights i:nth-child(2){background:#ffbd2e}
+  .win .bar .lights i:nth-child(3){background:#27c93f}
+  .win .bar .name{font-family:"JetBrains Mono",monospace;font-size:.74rem;color:var(--muted);margin-left:6px}
+  .win .bar .lang{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2)}
+  .win .bar .copy{margin-left:12px;background:transparent;border:1px solid var(--code-line);color:var(--muted);
+    font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 9px;border-radius:6px;cursor:pointer;transition:.18s}
+  .win .bar .copy:hover{color:var(--accent);border-color:var(--accent)}
+  .win .bar .copy.ok{color:var(--green);border-color:var(--green)}
+  .win pre{margin:0;padding:16px 18px;overflow-x:auto;max-height:none}
+  .win code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86rem;line-height:1.6;background:none;color:var(--c-punc)}
+  @media (max-width:820px){.win code{font-size:.78rem}}
+
+  /* hljs token colors (Dracula-flavored) */
+  .hljs-keyword,.hljs-selector-tag,.hljs-literal,.hljs-built_in{color:var(--c-key)}
+  .hljs-string,.hljs-attr,.hljs-regexp,.hljs-addition{color:var(--c-str)}
+  .hljs-number,.hljs-symbol{color:var(--c-num)}
+  .hljs-comment,.hljs-quote,.hljs-meta .hljs-comment{color:var(--c-com);font-style:italic}
+  .hljs-title,.hljs-title.function_,.hljs-section{color:var(--c-fn)}
+  .hljs-attribute,.hljs-name,.hljs-variable,.hljs-template-variable{color:var(--c-attr)}
+  .hljs-meta{color:var(--c-com)}
+  .hljs-property{color:var(--c-attr)}
+  .hljs-punctuation{color:var(--c-punc)}
+
+  /* what-happens callout */
+  .happens{display:flex;gap:12px;align-items:flex-start;margin-top:16px;
+    background:rgba(72,224,138,.08);border:1px solid rgba(72,224,138,.35);border-radius:12px;padding:13px 16px}
+  .happens .tag{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--green);border:1px solid rgba(72,224,138,.4);border-radius:6px;padding:3px 7px;flex:0 0 auto;margin-top:2px}
+  .happens p{margin:0;color:var(--text);font-size:.96rem}
+  .note{display:flex;gap:12px;align-items:flex-start;margin-top:14px;
+    background:rgba(255,210,63,.07);border:1px solid rgba(255,210,63,.3);border-radius:12px;padding:12px 15px}
+  .note .tag{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);border:1px solid rgba(255,210,63,.4);border-radius:6px;padding:3px 7px;flex:0 0 auto;margin-top:2px}
+  .note p{margin:0;color:var(--muted);font-size:.92rem}
+  .note p b{color:#fff}
+
+  /* exit code table */
+  table.codes{width:100%;border-collapse:collapse;margin-top:8px;font-size:.98rem}
+  table.codes td,table.codes th{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.codes th{color:var(--muted);font-weight:500;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:"JetBrains Mono",monospace}
+  table.codes td:first-child{white-space:nowrap}
+  table.codes .ec{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:1rem;padding:.12em .5em;border-radius:6px}
+  .ec.z{background:rgba(72,224,138,.16);color:var(--green)}
+  .ec.two{background:rgba(255,107,125,.16);color:var(--red)}
+  .ec.oth{background:var(--panel);color:var(--muted)}
+  table.codes td b{color:#fff;font-weight:600}
+
+  /* scopes */
+  .scopes{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+  .scope{display:grid;grid-template-columns:minmax(230px,auto) 1fr;gap:16px;align-items:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px}
+  .scope code{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:.86rem}
+  .scope span{color:var(--muted);font-size:.95rem}
+  .scope.star{border-color:rgba(255,210,63,.45);background:rgba(255,210,63,.06)}
+  @media (max-width:820px){.scope{grid-template-columns:1fr;gap:4px}}
+
+  .kicker-lg{font-family:"Bricolage Grotesque",sans-serif}
+
+  /* footer bar */
+  .bar{
+    position:fixed;left:0;right:0;bottom:0;height:56px;z-index:30;
+    display:flex;align-items:center;gap:16px;
+    padding:0 clamp(16px,4vw,40px);
+    background:rgba(22,13,43,.82);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+  }
+  .brand{display:flex;flex-direction:column;line-height:1.1;font-size:.7rem;letter-spacing:.02em}
+  .brand b{font-family:"Bricolage Grotesque",sans-serif;color:#fff;font-size:.86rem;letter-spacing:0}
+  .brand span{color:var(--muted-2)}
+  .bar .spacer{flex:1}
+  .counter{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--muted);letter-spacing:.08em}
+  .counter b{color:var(--accent)}
+  .nav{display:flex;gap:8px}
+  .nav button, .ov-btn{
+    width:34px;height:34px;border-radius:9px;border:1px solid var(--line);
+    background:var(--panel);color:var(--text);cursor:pointer;font-size:1rem;
+    display:grid;place-items:center;transition:.16s;
+  }
+  .nav button:hover, .ov-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .nav button:disabled{opacity:.3;cursor:default;border-color:var(--line);color:var(--muted)}
+  .hint{font-family:"JetBrains Mono",monospace;font-size:.66rem;color:var(--muted-2);letter-spacing:.06em}
+  @media (max-width:680px){.hint{display:none}.brand span{display:none}}
+
+  /* overview */
+  #overview{position:fixed;inset:0;z-index:50;background:rgba(15,8,30,.96);backdrop-filter:blur(6px);
+    padding:clamp(20px,5vw,56px);overflow:auto;display:none}
+  #overview.open{display:block}
+  #overview h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;margin:0 0 22px;color:#fff;
+    display:flex;align-items:center;gap:12px}
+  #overview h4 .esc{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--muted);
+    border:1px solid var(--line);border-radius:6px;padding:4px 9px;cursor:pointer}
+  .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .ov-card{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 16px;cursor:pointer;
+    transition:.16s;color:var(--text);font:inherit}
+  .ov-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .ov-card.current{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .ov-card .n{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--accent);letter-spacing:.1em}
+  .ov-card .ttl{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1rem;margin-top:6px;color:#fff;line-height:1.2}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+  @media (prefers-reduced-motion:reduce){
+    .slide{transition:opacity .01s}#progress{transition:none}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div class="stage" id="stage">
+
+  <!-- 1 TITLE -->
+  <section class="slide" data-title="Title" data-kicker="Intro">
+    <div class="inner">
+      <span class="title-badge"><span class="dot"></span> AI for .NET Developers &nbsp;/&nbsp; Field Guide</span>
+      <h1>Claude Code<br>Hooks</h1>
+      <p class="sub">Make the agent follow your rules <span class="hl">- automatically.</span></p>
+      <p class="lead">Turn "please format the code" and "don't touch the migrations" from hopeful instructions into rules the agent physically cannot skip. Six copy-paste recipes for a real .NET repo.</p>
+    </div>
+  </section>
+
+  <!-- 2 PROBLEM -->
+  <section class="slide" data-title="The problem" data-kicker="Why">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">01</span> The problem</span>
+      <h2>You keep saying it. It keeps <span class="hl">forgetting.</span></h2>
+      <ul class="pain">
+        <li><span class="x">&times;</span><div><span class="you">"Run dotnet format after you edit."</span><br><span class="then">Does it twice, then forgets.</span></div></li>
+        <li><span class="x">&times;</span><div><span class="you">"Never touch the EF migrations folder."</span><br><span class="then">Three prompts later, edits a migration.</span></div></li>
+        <li><span class="x">&times;</span><div><span class="you">"Run the tests before you say you're done."</span><br><span class="then">Says "done" with a red build.</span></div></li>
+      </ul>
+      <p>Instructions in <span class="mono">CLAUDE.md</span> are <strong>suggestions the model tries to follow</strong>. They are probabilistic. On a long session, under heavy context, they drift.</p>
+    </div>
+  </section>
+
+  <!-- 3 WHAT IS A HOOK -->
+  <section class="slide" data-title="What is a hook?" data-kicker="Concept">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">02</span> What is a hook?</span>
+      <h2>A hook is <span class="hl">code that always fires.</span></h2>
+      <p class="lead">A hook is your shell command, run deterministically at a fixed point in the agent's lifecycle - before a tool runs, after an edit, when it tries to finish.</p>
+      <div class="grid g2" style="margin-top:20px">
+        <div class="card" style="border-left:3px solid var(--red)">
+          <span class="k">CLAUDE.md</span>
+          <p style="color:var(--text)">A <b style="color:#fff">suggestion</b> the model may follow. Fades under context.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--green)">
+          <span class="k">A hook</span>
+          <p style="color:var(--text)">Code that runs <b style="color:#fff">every time</b>, no matter what the model decides.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 MENTAL MODEL -->
+  <section class="slide" data-title="The mental model" data-kicker="Concept">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">03</span> The mental model</span>
+      <h2>Event <span class="hl">&rarr;</span> Matcher <span class="hl">&rarr;</span> Handler</h2>
+      <div class="flow">
+        <div class="step"><div class="t">Event</div><div class="d">A moment</div><small>PreToolUse, PostToolUse, Stop, SessionStart...</small></div>
+        <div class="arrow">&rarr;</div>
+        <div class="step"><div class="t">Matcher</div><div class="d">A filter</div><small>Only fire for these tools: <span class="mono" style="font-size:.85em">Bash</span>, <span class="mono" style="font-size:.85em">Edit|Write</span></small></div>
+        <div class="arrow">&rarr;</div>
+        <div class="step"><div class="t">Handler</div><div class="d">Your command</div><small>Gets event JSON on stdin. Talks back via exit code + stdout.</small></div>
+      </div>
+      <p style="margin-top:20px">That is the whole thing. Event fires, matcher checks, your command runs with JSON on <span class="mono">stdin</span>, Claude reads the result and acts.</p>
+    </div>
+  </section>
+
+  <!-- 5 HOW IT TALKS BACK -->
+  <section class="slide" data-title="Exit codes" data-kicker="Concept">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">04</span> How your command talks back</span>
+      <h2>Three exit codes. That's the <span class="hl">whole protocol.</span></h2>
+      <table class="codes">
+        <thead><tr><th>Exit</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ec z">0</span></td><td><b>All good, carry on.</b> Valid JSON on stdout is applied. On <span class="mono">SessionStart</span> / <span class="mono">UserPromptSubmit</span>, stdout is added to Claude's context.</td></tr>
+          <tr><td><span class="ec two">2</span></td><td><b>Block it.</b> <span class="mono">PreToolUse</span> blocks the tool, <span class="mono">Stop</span> refuses to finish, <span class="mono">UserPromptSubmit</span> blocks the prompt. Your <span class="mono">stderr</span> is fed back to Claude.</td></tr>
+          <tr><td><span class="ec oth">other</span></td><td><b>Non-blocking warning.</b> The action proceeds; stderr is shown to you.</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><span class="tag">clean way</span><p>For structured control, return JSON on stdout with <span class="mono">permissionDecision</span> and a reason - shown on the guardrail slides.</p></p>
+    </div>
+  </section>
+
+  <!-- 6 WHERE CONFIG LIVES -->
+  <section class="slide" data-title="Where config lives" data-kicker="Setup">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">05</span> Where config lives</span>
+      <h2>One committed file. Your <span class="hl">whole team inherits it.</span></h2>
+      <div class="scopes">
+        <div class="scope"><code>~/.claude/settings.json</code><span>All your projects - personal, not committed.</span></div>
+        <div class="scope star"><code>.claude/settings.json</code><span><b style="color:#fff">The money file.</b> Committed to git - every teammate gets the same rules.</span></div>
+        <div class="scope"><code>.claude/settings.local.json</code><span>This project, personal, git-ignored.</span></div>
+      </div>
+      <p class="note"><span class="tag">convention</span><p>Put scripts in <span class="mono">.claude/hooks/</span> and reference them with <span class="mono">${CLAUDE_PROJECT_DIR}</span> so they resolve wherever the session started.</p></p>
+    </div>
+  </section>
+
+  <!-- 7 RECIPE 1 -->
+  <section class="slide" data-title="Auto-format C#" data-kicker="Recipe 1">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">Recipe 1</span> Auto-format C# after every edit</span>
+      <h2>Claude edits a <span class="hl">.cs</span> file &rarr; your formatter runs.</h2>
+      <div class="grid g2">
+        <div class="stack">
+          <div class="codewrap" data-title=".claude/settings.json">
+<script type="text/plain" data-lang="json">
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/format-cs.sh",
+            "statusMessage": "Formatting C#..."
+          }
+        ]
+      }
+    ]
+  }
+}
+</script>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="codewrap" data-title="format-cs.sh">
+<script type="text/plain" data-lang="bash">
+#!/usr/bin/env bash
+# fires after Edit/Write - formats only the changed .cs file
+file_path=$(jq -r '.tool_input.file_path // empty')
+
+case "$file_path" in
+  *.cs) ;;
+  *) exit 0 ;;   # not C# - nothing to do
+esac
+
+dotnet format "$CLAUDE_PROJECT_DIR" --include "$file_path" >/dev/null 2>&1
+exit 0
+</script>
+          </div>
+        </div>
+      </div>
+      <div class="happens"><span class="tag">what happens</span><p>Claude writes <span class="mono">OrderService.cs</span>, the hook fires, whitespace and usings get fixed. Claude never fights the reformat - the file is just correct.</p></div>
+      <p class="note"><span class="tag">faster</span><p><span class="mono">dotnet format</span> feels slow? Swap the command for <b>CSharpier</b> - <span class="mono">csharpier format "$file_path"</span> formats a single file in milliseconds.</p></p>
+    </div>
+  </section>
+
+  <!-- 8 RECIPE 2 -->
+  <section class="slide" data-title="Protect files" data-kicker="Recipe 2">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">Recipe 2</span> Protect files Claude must never touch</span>
+      <h2>Migrations, generated files, prod config - <span class="hl">read-only.</span></h2>
+      <div class="grid g2">
+        <div class="codewrap" data-title="protect-paths.sh">
+<script type="text/plain" data-lang="bash">
+#!/usr/bin/env bash
+file_path=$(jq -r '.tool_input.file_path // empty')
+
+blocked='(/Migrations/|\.Designer\.cs$|appsettings\.Production\.json$)'
+
+if [[ "$file_path" =~ $blocked ]]; then
+  jq -n --arg f "$file_path" '{
+    hookSpecificOutput: {
+      hookEventName: "PreToolUse",
+      permissionDecision: "deny",
+      permissionDecisionReason:
+        ("Editing \($f) is blocked by repo policy. For a schema change, create a NEW migration with dotnet ef migrations add.")
+    }
+  }'
+fi
+exit 0
+</script>
+        </div>
+        <div class="stack">
+          <div class="codewrap" data-title=".claude/settings.json  (PreToolUse)">
+<script type="text/plain" data-lang="json">
+{
+  "matcher": "Edit|Write",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/protect-paths.sh"
+    }
+  ]
+}
+</script>
+          </div>
+          <div class="happens"><span class="tag">what happens</span><p>Claude tries to "fix" a migration, the hook denies it, Claude reads the reason and does the right thing - it creates a new migration instead.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 RECIPE 3 -->
+  <section class="slide" data-title="Block dangerous bash" data-kicker="Recipe 3">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">Recipe 3</span> Block dangerous shell commands</span>
+      <h2>Force-push, drop database, <span class="hl">rm -rf</span> - not on your watch.</h2>
+      <div class="codewrap" data-title="block-dangerous-bash.sh">
+<script type="text/plain" data-lang="bash">
+#!/usr/bin/env bash
+cmd=$(jq -r '.tool_input.command // empty')
+
+# the commands you never want an agent running unsupervised
+danger='(rm[[:space:]]+-rf[[:space:]]+/|git[[:space:]]+push.*--force|dotnet[[:space:]]+ef[[:space:]]+database[[:space:]]+drop|DROP[[:space:]]+DATABASE)'
+
+if echo "$cmd" | grep -Eiq "$danger"; then
+  echo "Blocked: '$cmd' matches the dangerous-command policy. Ask before running this." >&2
+  exit 2      # <- exit 2 on PreToolUse blocks the call, stderr goes back to Claude
+fi
+exit 0
+</script>
+      </div>
+      <div class="happens"><span class="tag">what happens</span><p>Claude proposes <span class="mono">git push --force</span>, the hook kills it, the message lands in Claude's context, it backs off. Your <span class="mono">main</span> branch survives the night.</p></div>
+      <p style="margin-top:6px">Matcher: <span class="mono">"Bash"</span> on the <span class="mono">PreToolUse</span> event.</p>
+    </div>
+  </section>
+
+  <!-- 10 RECIPE 4 -->
+  <section class="slide" data-title="The test gate" data-kicker="Recipe 4">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">Recipe 4 &middot; the hero</span> Don't let Claude finish on a red build</span>
+      <h2>The <span class="hl">Stop</span> gate: "done" means the build is green.</h2>
+      <div class="grid g2">
+        <div class="codewrap" data-title="gate-build.sh">
+<script type="text/plain" data-lang="bash">
+#!/usr/bin/env bash
+cd "$CLAUDE_PROJECT_DIR" || exit 0
+
+output=$(dotnet build --nologo -clp:ErrorsOnly 2>&1)
+
+if [ $? -ne 0 ]; then
+  echo "Build is broken. Fix these before finishing:" >&2
+  echo "$output" | tail -n 40 >&2
+  exit 2      # <- refuses the stop, Claude keeps going
+fi
+exit 0
+</script>
+        </div>
+        <div class="stack">
+          <div class="codewrap" data-title=".claude/settings.json  (Stop)">
+<script type="text/plain" data-lang="json">
+{
+  "Stop": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/gate-build.sh",
+          "timeout": 300,
+          "statusMessage": "Verifying build..."
+        }
+      ]
+    }
+  ]
+}
+</script>
+          </div>
+          <div class="happens"><span class="tag">what happens</span><p>Claude says "All set!", the hook builds red, exit 2 sends the errors back, Claude fixes them, tries again, green, done. You get a working tree - not an optimistic summary.</p></div>
+        </div>
+      </div>
+      <p class="note"><span class="tag">loop safety</span><p>A gate that never passes loops the agent. Keep the check <b>fast and achievable</b> - a build or one focused unit project, not the 20-minute integration suite.</p></p>
+    </div>
+  </section>
+
+  <!-- 11 RECIPE 5 -->
+  <section class="slide" data-title="Inject context" data-kicker="Recipe 5">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">Recipe 5</span> Inject your conventions at session start</span>
+      <h2>Stop pasting your architecture <span class="hl">every time.</span></h2>
+      <div class="grid g2">
+        <div class="codewrap" data-title="load-context.sh">
+<script type="text/plain" data-lang="bash">
+#!/usr/bin/env bash
+cd "$CLAUDE_PROJECT_DIR" || exit 0
+
+echo "## Project conventions (auto-loaded)"
+echo "- Architecture: Vertical Slice + MediatR."
+echo "- Errors: return Result<T>, do not throw for control flow."
+echo "- Tests: xUnit + FluentAssertions on every handler."
+echo ""
+echo "## Live git state"
+echo "Branch: $(git rev-parse --abbrev-ref HEAD)"
+git status --porcelain | head -n 15
+</script>
+        </div>
+        <div class="stack">
+          <p>On <span class="mono">SessionStart</span>, whatever your script prints to stdout is added straight to Claude's context.</p>
+          <div class="happens"><span class="tag">what happens</span><p>Every new session, Claude already knows your architecture <b>and</b> what's currently dirty in the tree - before you type a word.</p></div>
+          <p class="note"><span class="tag">pair it</span><p><span class="mono">CLAUDE.md</span> for the stable rules, this hook for the <b>live</b> state. Want it on every prompt? Use <span class="mono">UserPromptSubmit</span> + <span class="mono">additionalContext</span>.</p></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 RECIPE 6 -->
+  <section class="slide" data-title="Notifications" data-kicker="Recipe 6">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">Recipe 6</span> Tell me when you need me</span>
+      <h2>Long run, you tabbed to Slack. <span class="hl">Get pinged.</span></h2>
+      <div class="codewrap" data-title="notify.sh  (macOS)">
+<script type="text/plain" data-lang="bash">
+#!/usr/bin/env bash
+msg=$(jq -r '.message // "Claude Code needs your attention"')
+osascript -e "display notification \"$msg\" with title \"Claude Code\" sound name \"Glass\""
+exit 0
+</script>
+      </div>
+      <ul class="clean" style="margin-top:16px">
+        <li><b>Linux:</b> &nbsp;<span class="mono">notify-send "Claude Code" "$msg"</span></li>
+        <li><b>Windows / PowerShell:</b> &nbsp;<span class="mono">[System.Media.SystemSounds]::Asterisk.Play()</span> or BurntToast</li>
+      </ul>
+      <p style="margin-top:10px">The <span class="mono">Notification</span> event fires when Claude wants your input or a permission.</p>
+    </div>
+  </section>
+
+  <!-- 13 STARTER KIT -->
+  <section class="slide" data-title="The starter kit" data-kicker="Ship it">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">06</span> The complete starter kit</span>
+      <h2>Drop it in. Commit. <span class="hl">Feel the difference.</span></h2>
+      <div class="grid g2">
+        <div class="codewrap" data-title=".claude/settings.json">
+<script type="text/plain" data-lang="json">
+{
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command",
+        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/load-context.sh" } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Edit|Write", "hooks": [ { "type": "command",
+        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/protect-paths.sh" } ] },
+      { "matcher": "Bash", "hooks": [ { "type": "command",
+        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/block-dangerous-bash.sh" } ] }
+    ],
+    "PostToolUse": [
+      { "matcher": "Edit|Write", "hooks": [ { "type": "command",
+        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/format-cs.sh" } ] }
+    ],
+    "Stop": [
+      { "hooks": [ { "type": "command",
+        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/gate-build.sh", "timeout": 300 } ] }
+    ]
+  }
+}
+</script>
+        </div>
+        <div class="codewrap" data-title="folder layout">
+<script type="text/plain" data-lang="bash">
+your-dotnet-repo/
+├── .claude/
+│   ├── settings.json          # committed - the config
+│   └── hooks/
+│       ├── load-context.sh
+│       ├── protect-paths.sh
+│       ├── block-dangerous-bash.sh
+│       ├── format-cs.sh
+│       └── gate-build.sh
+├── src/
+└── tests/
+</script>
+        </div>
+      </div>
+      <p class="note"><span class="tag">one-time</span><p>Make scripts executable: <span class="mono">chmod +x .claude/hooks/*.sh</span> &nbsp;&middot;&nbsp; bash examples need <span class="mono">jq</span>.</p></p>
+    </div>
+  </section>
+
+  <!-- 14 DEBUG / CHEAT -->
+  <section class="slide" data-title="Debug & cheat sheet" data-kicker="Reference">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">07</span> Debugging &amp; the cheat sheet</span>
+      <h2>When a hook <span class="hl">won't fire.</span></h2>
+      <div class="grid g2">
+        <div class="stack">
+          <ul class="clean">
+            <li><b>claude --debug</b> - see every hook fire, its exit code and output.</li>
+            <li><b>/hooks</b> - list registered hooks and which file they came from.</li>
+            <li>Not firing? 90% of the time: script not <b>executable</b>, wrong <b>matcher</b> case, or a relative path instead of <span class="mono">${CLAUDE_PROJECT_DIR}</span>.</li>
+          </ul>
+          <div class="codewrap" data-title="test a script by hand">
+<script type="text/plain" data-lang="bash">
+echo '{"tool_input":{"file_path":"src/Foo.cs"}}' \
+  | ./.claude/hooks/format-cs.sh
+</script>
+          </div>
+        </div>
+        <div class="stack">
+          <p style="color:var(--muted);font-size:.9rem;margin-bottom:4px">Every script receives on stdin:</p>
+          <div class="codewrap" data-title="stdin JSON">
+<script type="text/plain" data-lang="json">
+{
+  "session_id": "abc123",
+  "cwd": "/path/to/repo",
+  "hook_event_name": "PreToolUse",
+  "permission_mode": "default",
+  "tool_name": "Bash",
+  "tool_input": { "command": "dotnet test" }
+}
+</script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 TWO RULES -->
+  <section class="slide" data-title="Two rules" data-kicker="Guardrails">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">08</span> Two rules before you go wild</span>
+      <h2>Powerful means <span class="hl">handle with care.</span></h2>
+      <div class="grid g2" style="margin-top:6px">
+        <div class="card" style="border-top:3px solid var(--red)">
+          <span class="k">Rule 1 &middot; Security</span>
+          <p style="color:var(--text)">Hooks run <b style="color:#fff">arbitrary shell with your full permissions</b>, automatically. Keep scripts in the repo so they're reviewable in PRs. Never source a hook from somewhere you don't control.</p>
+        </div>
+        <div class="card" style="border-top:3px solid var(--accent)">
+          <span class="k">Rule 2 &middot; Don't over-block</span>
+          <p style="color:var(--text)">A guardrail that fires on everything turns the agent into a wall. Block the genuinely dangerous; format, notify and load context <b style="color:#fff">freely</b>. Aim for an agent that's safe to leave running.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 NEXT -->
+  <section class="slide" data-title="Where this goes next" data-kicker="Outro">
+    <div class="inner">
+      <span class="eyebrow"><span class="num">09</span> Where this goes next</span>
+      <h2>Hooks are the <span class="hl">enforcement layer</span> of an AI-native .NET workflow.</h2>
+      <p class="lead"><span class="mono">CLAUDE.md</span> tells the model what you want. Hooks make the important parts non-negotiable.</p>
+      <ul class="clean" style="margin-top:14px">
+        <li>A <b>PreToolUse</b> hook that runs your real policy from a C# console app - <span class="mono">dotnet run --project .claude/tools/PolicyChecker</span>.</li>
+        <li>Ship team guardrails as an internal <b>plugin</b> so every repo gets them.</li>
+        <li>Wire the <b>Stop</b> gate to your CI checks - "done" in the agent = "green" in the pipeline.</li>
+      </ul>
+      <div class="happens" style="margin-top:20px"><span class="tag">your move</span><p>Get the starter kit into one real repo this week. We build the full policy engine, step by step, in the <b>AI Roadmap for .NET Developers</b> course.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- footer bar -->
+<div class="bar">
+  <div class="brand"><b>TheCodeMan.NET</b><span>Follow Stefan Đokić</span></div>
+  <div class="spacer"></div>
+  <button class="ov-btn" id="ovBtn" title="Overview (O)" aria-label="Overview">▦</button>
+  <div class="counter"><b id="cur">1</b> / <span id="total">16</span></div>
+  <div class="nav">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <button id="next" aria-label="Next slide">›</button>
+  </div>
+  <span class="hint">← → &nbsp;/&nbsp; space &nbsp;/&nbsp; O for overview</span>
+</div>
+
+<!-- overview -->
+<div id="overview" aria-hidden="true">
+  <h4>Overview <span class="esc" id="ovClose">Esc</span></h4>
+  <div class="ov-grid" id="ovGrid"></div>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var i = 0;
+
+  // render code windows from text/plain templates (no HTML escaping needed)
+  document.querySelectorAll('.codewrap').forEach(function(wrap){
+    var tpl = wrap.querySelector('script[type="text/plain"]');
+    if(!tpl) return;
+    var raw = tpl.textContent.replace(/^\n/,'').replace(/\s+$/,'');
+    var lang = tpl.getAttribute('data-lang') || 'plaintext';
+    var name = wrap.getAttribute('data-title') || '';
+    var win = document.createElement('div'); win.className = 'win';
+    var bar = document.createElement('div'); bar.className = 'bar';
+    bar.innerHTML = '<span class="lights"><i></i><i></i><i></i></span><span class="name"></span><span class="lang"></span><button class="copy" type="button">Copy</button>';
+    bar.querySelector('.name').textContent = name;
+    bar.querySelector('.lang').textContent = lang;
+    var pre = document.createElement('pre');
+    var code = document.createElement('code');
+    code.className = 'language-' + lang;
+    code.textContent = raw;
+    pre.appendChild(code);
+    win.appendChild(bar); win.appendChild(pre);
+    wrap.innerHTML = ''; wrap.appendChild(win);
+    try { if(window.hljs){ hljs.highlightElement(code); } } catch(e){}
+    bar.querySelector('.copy').addEventListener('click', function(){
+      var btn = this;
+      navigator.clipboard.writeText(raw).then(function(){
+        btn.textContent = 'Copied'; btn.classList.add('ok');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('ok'); }, 1400);
+      }).catch(function(){ btn.textContent='Ctrl+C'; });
+    });
+  });
+
+  document.getElementById('total').textContent = total;
+
+  function show(n, push){
+    i = Math.max(0, Math.min(total-1, n));
+    slides.forEach(function(s,idx){ s.classList.toggle('active', idx===i); });
+    document.getElementById('cur').textContent = i+1;
+    document.getElementById('progress').style.width = ((i)/(total-1)*100) + '%';
+    document.getElementById('prev').disabled = (i===0);
+    document.getElementById('next').disabled = (i===total-1);
+    slides[i].scrollTop = 0;
+    if(push !== false){ history.replaceState(null,'', '#'+(i+1)); }
+    var cards = document.querySelectorAll('.ov-card');
+    cards.forEach(function(c,idx){ c.classList.toggle('current', idx===i); });
+  }
+  function nextS(){ if(i<total-1) show(i+1); }
+  function prevS(){ if(i>0) show(i-1); }
+
+  document.getElementById('next').addEventListener('click', nextS);
+  document.getElementById('prev').addEventListener('click', prevS);
+
+  var ov = document.getElementById('overview');
+  function openOv(){ ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); }
+  function closeOv(){ ov.classList.remove('open'); ov.setAttribute('aria-hidden','true'); }
+  function toggleOv(){ ov.classList.contains('open') ? closeOv() : openOv(); }
+  document.getElementById('ovBtn').addEventListener('click', toggleOv);
+  document.getElementById('ovClose').addEventListener('click', closeOv);
+
+  // build overview
+  var grid = document.getElementById('ovGrid');
+  slides.forEach(function(s, idx){
+    var b = document.createElement('button'); b.className='ov-card';
+    var k = s.getAttribute('data-kicker') || '';
+    var t = s.getAttribute('data-title') || ('Slide '+(idx+1));
+    b.innerHTML = '<div class="n">'+String(idx+1).padStart(2,'0')+(k?' &middot; '+k:'')+'</div><div class="ttl"></div>';
+    b.querySelector('.ttl').textContent = t;
+    b.addEventListener('click', function(){ show(idx); closeOv(); });
+    grid.appendChild(b);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight' || e.key===' ' || e.key==='PageDown'){ e.preventDefault(); nextS(); }
+    else if(e.key==='ArrowLeft' || e.key==='PageUp'){ e.preventDefault(); prevS(); }
+    else if(e.key==='Home'){ e.preventDefault(); show(0); }
+    else if(e.key==='End'){ e.preventDefault(); show(total-1); }
+    else if(e.key==='o' || e.key==='O'){ toggleOv(); }
+    else if(e.key==='Escape'){ closeOv(); }
+  });
+
+  var start = parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(start)?0:start-1, false);
+})();
+</script>
+</body>
+</html>

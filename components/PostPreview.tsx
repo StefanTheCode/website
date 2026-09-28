@@ -29,7 +29,7 @@ const PostPreview = (props: PostMetadata) => {
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-5 text-center">
 
                                 <a href={href}>
-                                <Image src={photo} className="blog-post-img" alt={props.title} width={0} height={0} sizes="100vw" style={{ width: '80%', height: 'auto' }} />
+                                <Image src={photo} className="blog-post-img" alt={props.title} width={2000} height={1500} sizes="(max-width: 768px) 80vw, 400px" style={{ width: '80%', height: 'auto' }} />
                                     </a>
                             </div>
                         </div>

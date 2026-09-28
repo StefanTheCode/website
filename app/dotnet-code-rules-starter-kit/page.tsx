@@ -296,7 +296,7 @@ const CodeRulesStarterKit = () => {
                       <div
                         id="eomail-form-hero"
                         dangerouslySetInnerHTML={{
-                          __html: `<script async src="https://eomail4.com/form/4bf59088-e262-11f0-9f42-355d711e4cd9.js" data-form="4bf59088-e262-11f0-9f42-355d711e4cd9"></script>`,
+                          __html: `<script type="text/lazy" data-src="https://eomail4.com/form/4bf59088-e262-11f0-9f42-355d711e4cd9.js" data-form="4bf59088-e262-11f0-9f42-355d711e4cd9"></script>`,
                         }}
                       />
                     </div>

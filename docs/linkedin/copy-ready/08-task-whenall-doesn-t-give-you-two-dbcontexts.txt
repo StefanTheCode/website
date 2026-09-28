@@ -1,0 +1,26 @@
+This looks like a harmless performance improvement:
+
+Start the orders query. Start the payments query. Await Task.WhenAll.
+
+But if both queries use the same EF Core DbContext, you've introduced overlapping operations on an object that doesn't support them.
+
+Scoped registration doesn't help here. It gives you a context for the scope. It doesn't create a fresh context for each task inside that scope.
+
+The simplest fix is often to await the queries sequentially. Before rejecting that as slow, check whether you can get the required result with one projection instead.
+
+If the reads really are independent and parallel execution is worth it, create a separate context for each operation through IDbContextFactory, and dispose each one when its work is done.
+
+There are two costs to think through before shipping that version.
+
+First, database concurrency. An endpoint that used one active query can now use two. Multiply that across concurrent requests before deciding the optimization is free.
+
+Second, consistency. Two contexts don't automatically share one transaction or database snapshot. If these values must describe the same point in time, independent parallel reads may violate the feature's requirements.
+
+Pooling doesn't change any of this. DbContext pooling reuses context instances between units of work. It doesn't make an instance safe to share concurrently, and it's separate from the database driver's connection pool.
+
+I'd compare the sequential query, a single projection, and separate-context parallel reads under load. Include pool waits and tail latency in the comparison.
+
+The fastest version for one request on your laptop may be the version that makes every request wait in production.
+
+I've laid out the DbContext registration options and background-worker examples here. Use the guide to check how your app manages contexts:
+https://thecodeman.net/posts/managing-ef-core-dbcontext-lifetime

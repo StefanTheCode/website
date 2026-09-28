@@ -1,0 +1,22 @@
+For a first MCP server in .NET, I'd expose one boring operation that saves someone repeated manual work.
+
+Get the status of an order. Look up a failed job. Run a bounded diagnostic against a test environment.
+
+I'd avoid starting with “execute arbitrary SQL.” A narrow tool is easier to authorize, test, observe and describe accurately.
+
+Take GetOrderStatus. Its contract should say which identifier it accepts, which fields it returns, and what happens when the order doesn't exist or the caller can't access it. Keep the payload small enough that the useful result doesn't disappear inside a huge response.
+
+The server should derive the caller's scope from trusted authentication context. An order ID supplied by the model is input, not proof that the caller owns that order. The tool still needs the same authorization checks as any other entry point.
+
+Descriptions help the model choose and call a tool. They don't enforce those checks. Neither does a read-only label in the tool metadata.
+
+I'd test cancellation and time limits too. If the tool starts a diagnostic that runs for minutes, the contract needs a clear lifecycle instead of pretending it's a quick lookup.
+
+One small implementation detail for stdio servers: keep protocol output on stdout and send diagnostics to stderr. A stray Console.WriteLine can break communication in a surprisingly annoying way.
+
+Then try requests with missing IDs, inaccessible orders and malformed input. Inspect the actual tool calls and responses.
+
+A small tool that returns reliable, well-scoped data gives the agent something useful to work with. You can add the next operation once that contract holds up.
+
+Want a concrete example? I built a .NET MCP server that exposes API performance-testing tools. Here's the walkthrough:
+https://thecodeman.net/posts/building-mcp-server-in-dotnet

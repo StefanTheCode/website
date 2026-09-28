@@ -1,0 +1,22 @@
+An EF Core query can return one Order object and still move hundreds of rows across the network.
+
+Say the order has 20 items and 10 payments. Include both sibling collections in one joined query and you can get 200 result rows for that one order. EF assembles the object graph, so the multiplication is easy to miss when you only inspect the C# result.
+
+AsNoTracking() doesn't change that SQL shape.
+
+AsSplitQuery() can help by fetching the collections through separate queries. But I'd check two things before adding it everywhere.
+
+First, round-trip latency. Several smaller queries can still lose to one query when the database is far away and the joined result wasn't very large.
+
+Second, consistency. Another transaction can change the data between those queries. If your operation needs a consistent view, consider an appropriate snapshot or serializable transaction and measure the cost of that choice too.
+
+There's often a simpler option for a summary screen: don't fetch the collections. Project the values the screen needs. Item count, total amount, payment status. Let the database do the aggregation where it can translate it.
+
+I'd compare the generated SQL, rows transferred, logical reads and endpoint latency using realistic collection sizes. Ten test orders with one item each won't expose this problem.
+
+Also, collection projections can still produce complex SQL. Moving code into Select() isn't proof that the query is now cheap.
+
+The next time a second Include makes an endpoint slow, inspect the result-set shape before changing ORMs. There's a good chance the database is doing exactly what you asked it to do.
+
+For the C# examples behind these query shapes, take a look at my EF Core guide:
+https://thecodeman.net/posts/preoptimized-ef-query-techniques-5-steps-to-success

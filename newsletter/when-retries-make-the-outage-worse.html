@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When Retries Make the Outage Worse: Resilience Done Right in .NET</title>
+</head>
+<body style="margin:0; padding:0; background:#f4f4f5;">
+<!-- Preview text (hidden) -->
+<div style="display: none; max-height: 0px; overflow: hidden;">
+A retry that saves you in testing can be the thing that finishes off a slow service in production. Here&#x27;s how to get it right.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style="max-width:640px; margin:0 auto; padding:32px 24px; background:#ffffff; font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.65; color:#1a1a1a;">
+
+    <!-- ===== Hero image ===== -->
+    <a href="https://thecodeman.net/posts/when-retries-make-the-outage-worse" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+        <img src="https://thecodeman.net/images/blog/when-retries-make-the-outage-worse.webp" alt="When Retries Make the Outage Worse" width="592" style="width:100%; max-width:100%; height:auto; display:block; margin:0 0 16px 0; border-radius:8px;">
+    </a>
+
+    <!-- ===== Read on / Read time ===== -->
+    <p style="text-align:center; font-size:15px; color:#52525b; margin:0 0 28px 0;">
+        Read on: <a href="https://thecodeman.net/posts/when-retries-make-the-outage-worse" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">my website</a> &nbsp;/&nbsp; Read time: <strong style="color:#6366f1;">8 minutes</strong>
+    </p>
+
+    <!-- ===== Sponsor block ===== -->
+    <div style="border:1px solid #334155; border-radius:12px; padding:20px 24px; margin:0 0 28px 0; background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);">
+    <p style="margin:0 0 8px 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:rgba(255,255,255,0.7);">A word from this week's sponsors</p>
+    <p style="margin:0 0 12px 0; font-size:16px; line-height:1.6; color:#ffffff;">Datadog put together an <strong>AI Security Best Practices Guide</strong> - practical guidance for anyone building, deploying, or operating AI-powered applications. It covers how to secure the infrastructure behind AI apps, protect the software and data they rely on, and reduce risk across the entry points users interact with. If you're moving AI into production, security belongs in the architecture from day one.</p>
+    <p style="margin:0 0 20px 0;"><a href="https://r2trck.com/the-code-man-datadog-11?utm_medium=newsletter&amp;utm_source=the-code-man-r&amp;utm_campaign=dg-content-toolkit-2026AIEraDeveloper-delivery-cipipe-ww-en-701VY00000kMeE2YAK&amp;utm_content=paid&amp;utm_term=1-1-2026" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:11px 22px; background:#6366f1; color:#ffffff; font-weight:700; font-size:15px; border-radius:8px; text-decoration:none;">Read the guide →</a></p>
+    <p style="margin:0 0 12px 0; font-size:16px; line-height:1.6; color:#ffffff;"><strong>ElevenLabs</strong> is free to start - create an account and turn text into natural, human-sounding speech in minutes, no card required. The free tier gives you realistic AI voices in dozens of languages through a simple API you can call straight from your .NET code, so you can add narration, voiceover, or a voice feature to a project without paying anything upfront. If you've been meaning to try AI voice, this is the no-risk way to do it.</p>
+    <p style="margin:0;"><a href="https://r2trck.com/thecodeman-elevenlabs-c-4?utm_medium=newsletter&amp;utm_source=the-code-man-performance&amp;utm_campaign=ai-voice-lp&amp;utm_content=paid&amp;utm_term=8-25-2026" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:11px 22px; background:#6366f1; color:#ffffff; font-weight:700; font-size:15px; border-radius:8px; text-decoration:none;">Start free with ElevenLabs →</a></p>
+</div>
+
+    <!-- ===== Title ===== -->
+    <h1 style="font-size:28px; line-height:1.3; margin:0 0 8px 0; color:#0f172a;">When Retries Make the Outage Worse: Resilience Done Right in .NET</h1>
+    <p style="font-size:17px; color:#52525b; margin:0 0 28px 0;">A naive retry turns one slow dependency into a self-inflicted outage. Here&#x27;s how retries, timeouts, backoff, and circuit breakers actually fit together in .NET.</p>
+
+    <!-- BODY START -->
+
+<!-- ===== The Problem The Retry That Helps in Test ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The Problem: The Retry That Helps in Testing and Hurts in Production</h2>
+<p style="margin:0 0 16px 0;">A downstream call fails once in a while. A dropped connection, a brief blip, a request that times out for no reason you can find. So you wrap it in a retry:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapGet(&quot;/checkout&quot;, async (PaymentClient client) =&gt;
+{
+    for (int attempt = 0; attempt &lt; 3; attempt++)
+    {
+        try
+        {
+            return Results.Ok(await client.ChargeAsync());
+        }
+        catch (HttpRequestException)
+        {
+            // try again
+        }
+    }
+
+    return Results.StatusCode(502);
+});</pre>
+<p style="margin:0 0 16px 0;">In testing this looks great. You kill the payment service, the retry kicks in, the request recovers. Ship it.</p>
+<p style="margin:0 0 16px 0;">Then one day the payment service isn&#x27;t down - it&#x27;s slow. Every call that used to take 50ms now takes eight seconds. And this retry loop, the one that saved you in testing, is now making three slow calls where there used to be one. Multiply that by every user hitting checkout at the same time, and you&#x27;ve tripled the load on a service that was already struggling. The thing you added to survive a failure is now causing one.</p>
+<p style="margin:0 0 16px 0;">That&#x27;s the part that&#x27;s easy to miss. Retries don&#x27;t add load evenly - they add it exactly when the dependency is least able to take it. A healthy service barely notices retries because there&#x27;s almost nothing to retry. A struggling service gets hit with a wave of them right when it needs fewer calls, not more. The retry turns a slow dependency into a down one.</p>
+<p style="margin:0 0 16px 0;">This post is about getting retries right in .NET: when they help, when they make things worse, and how retries, backoff, timeouts, and circuit breakers fit together so you&#x27;re adding resilience instead of amplifying an outage.</p>
+<!-- ===== Why the Naive Retry Backfires ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Why the Naive Retry Backfires</h2>
+<p style="margin:0 0 16px 0;">Three things go wrong with the loop above, and they compound.</p>
+<p style="margin:0 0 16px 0;"><strong>It multiplies load under stress.</strong> One user request becomes three calls to the dependency. When the dependency is slow or erroring, every caller is retrying at once, so a service running at its limit suddenly gets 2-3x the traffic. This is the classic *retry storm* - the retries themselves become the load that keeps the service down.</p>
+<p style="margin:0 0 16px 0;"><strong>It retries things it shouldn&#x27;t.</strong> The loop catches <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpRequestException</code> and tries again - including cases where retrying can&#x27;t possibly help. A <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">400 Bad Request</code> will be bad the second time too. A <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">409 Conflict</code> means the state already changed. Retrying a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">POST</code> that already succeeded but whose response got lost can charge the card twice. A retry is only safe on a *transient* failure and an *idempotent* operation, and the naive loop checks for neither.</p>
+<p style="margin:0 0 16px 0;"><strong>It has no gap between attempts.</strong> The retries fire back to back, as fast as the loop runs. So instead of giving the dependency a moment to recover, you hit it three times in a few milliseconds. And because every caller retries on the same rhythm, the attempts line up into synchronized waves - everyone hammers, everyone backs off, everyone hammers again together.</p>
+<p style="margin:0 0 16px 0;">Now stack that across layers. Real systems retry at more than one level: the browser or client SDK retries, the API gateway retries, your service retries its downstream call. If each layer retries three times, one user request can become up to 27 calls at the bottom of the stack.</p>
+<img src="https://thecodeman.net/images/blog/posts/when-retries-make-the-outage-worse/retry-amplification.webp" alt="How one retried request multiplies into a flood of calls across layers" width="592" style="max-width:100%; height:auto; display:block; margin:0 0 20px 0; border-radius:8px;">
+<p style="margin:0 0 16px 0;">Each layer thinks it&#x27;s being helpful. Together they turn a single slow request into a flood. The fix isn&#x27;t to remove retries - it&#x27;s to make each retry deliberate: retry only what&#x27;s worth retrying, space the attempts out, cap the total time, and stop entirely when the dependency is clearly down.</p>
+<!-- ===== Retrying the Right Way in NET ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Retrying the Right Way in .NET</h2>
+<p style="margin:0 0 16px 0;">You don&#x27;t have to build this by hand. On .NET 10, the resilience story is <a href="https://www.pollydocs.org/" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">Polly v8</a>, wired into <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpClient</code> through <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Microsoft.Extensions.Http.Resilience</code> (the package has been there since .NET 8). Add the package:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">dotnet add package Microsoft.Extensions.Http.Resilience</pre>
+<p style="margin:0 0 16px 0;">Then attach a resilience handler to a typed client:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">builder.Services.AddHttpClient&lt;PaymentClient&gt;()
+    .AddResilienceHandler(&quot;payment&quot;, pipeline =&gt;
+    {
+        pipeline.AddRetry(new HttpRetryStrategyOptions
+        {
+            MaxRetryAttempts = 3,
+            BackoffType = DelayBackoffType.Exponential,
+            UseJitter = true,
+            Delay = TimeSpan.FromMilliseconds(500)
+        });
+    });</pre>
+<p style="margin:0 0 16px 0;">Three of those settings are doing the work the hand-rolled loop skipped.</p>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">BackoffType = DelayBackoffType.Exponential</code> spaces the attempts out and widens the gap each time - roughly 0.5s, then 1s, then 2s - so a dependency that needs a moment actually gets one, instead of three hits in a row.</p>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">UseJitter = true</code> adds a random offset to each delay. Without it, every caller that failed at the same instant retries at the same instant, and you get synchronized waves - the herd hammers in lockstep. Jitter smears those retries across time so the load is spread out instead of spiking. If you take one thing from this post, take this: <strong>exponential backoff without jitter is only half a fix.</strong></p>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpRetryStrategyOptions</code> also defaults its <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">ShouldHandle</code> to the transient HTTP failures - <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">5xx</code> responses, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">408 Request Timeout</code>, and network-level <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpRequestException</code> - and leaves <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">4xx</code> like <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">400</code> and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">409</code> alone. That&#x27;s the &quot;retry only transient failures&quot; rule you&#x27;d otherwise have to write yourself.</p>
+<p style="margin:0 0 16px 0;">What it does <strong>not</strong> know is whether your operation is safe to retry. That&#x27;s on you.</p>
+<!-- ===== The Rule the Framework Cant Enforce Idem ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The Rule the Framework Can&#x27;t Enforce: Idempotency</h2>
+<p style="margin:0 0 16px 0;">A retry replays a request. If replaying it can change the world twice, retrying is dangerous no matter how good your backoff is.</p>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">GET</code> is safe - reading twice is the same as reading once. <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">PUT</code> and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">DELETE</code> are usually safe by design. <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">POST</code> is the one to watch, because &quot;create an order&quot; or &quot;charge a card&quot; run twice makes two orders or two charges.</p>
+<p style="margin:0 0 16px 0;">The fix is to make the operation idempotent so a replay is harmless. The common pattern is an idempotency key: the caller sends a unique key, and the server records it and refuses to do the work twice for the same key.</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapPost(&quot;/charge&quot;, async (ChargeRequest req, IdempotencyStore store, IPaymentGateway paymentGateway) =&gt;
+{
+    // Same key seen before? Return the original result, don&#x27;t charge again.
+    if (await store.TryGetResultAsync(req.IdempotencyKey) is { } existing)
+        return Results.Ok(existing);
+
+    var result = await paymentGateway.ChargeAsync(req);
+    await store.SaveResultAsync(req.IdempotencyKey, result);
+
+    return Results.Ok(result);
+});</pre>
+<p style="margin:0 0 16px 0;">Now a retried charge with the same key returns the first result instead of charging again. The retry became safe. Without something like this, keep retries off your non-idempotent writes - a duplicate charge is a much worse outage than a failed one.</p>
+<!-- ===== Timeouts Are Half of a Good Retry ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Timeouts Are Half of a Good Retry</h2>
+<p style="margin:0 0 16px 0;">A retry only helps if the failing attempt fails *quickly*. If the dependency is slow rather than broken, each attempt hangs for the full slow duration before the retry even starts - so a 3-attempt retry against an 8-second call means the caller waits 24 seconds plus backoff to finally get an error. You&#x27;ve made the experience worse, not better.</p>
+<p style="margin:0 0 16px 0;">So retries need timeouts around them. There are two, and you want both.</p>
+<p style="margin:0 0 16px 0;">A <strong>per-attempt timeout</strong> caps a single try. If one attempt hangs, it&#x27;s cut off fast and the retry fires against a fresh attempt instead of waiting on a dead one.</p>
+<p style="margin:0 0 16px 0;">A <strong>total timeout</strong> caps the whole operation - all attempts and all the backoff waits between them - so the caller always gets an answer within a known bound, no matter how the retries play out.</p>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">Microsoft.Extensions.Http.Resilience</code> ships a preconfigured pipeline that combines all of this, so you don&#x27;t have to assemble it piece by piece:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">builder.Services.AddHttpClient&lt;PaymentClient&gt;()
+    .AddStandardResilienceHandler(options =&gt;
+    {
+        options.TotalRequestTimeout.Timeout = TimeSpan.FromSeconds(10);
+        options.AttemptTimeout.Timeout = TimeSpan.FromSeconds(2);
+
+        options.Retry.MaxRetryAttempts = 3;
+        options.Retry.UseJitter = true;
+    });</pre>
+<p style="margin:0 0 16px 0;">This one line, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">AddStandardResilienceHandler</code>, gives you a rate limiter, a total timeout, a retry with backoff and jitter, a circuit breaker, and a per-attempt timeout - already ordered correctly. For most HTTP clients it&#x27;s the right default, and you tune the numbers instead of building the pipeline. (If request-level timeouts on your *own* endpoints are the missing piece, that&#x27;s a different mechanism - I covered it in <a href="https://thecodeman.net/posts/request-timeouts-in-aspnet-core" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">request timeouts in ASP.NET Core</a>.)</p>
+<!-- ===== The Circuit Breaker Stop Hitting a Servi ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The Circuit Breaker: Stop Hitting a Service That&#x27;s Down</h2>
+<p style="margin:0 0 16px 0;">Retries assume the failure is temporary. But when a dependency is genuinely down - not blipping, down - retrying every request is the worst thing you can do. You spend effort, hold resources, and pile load onto something that can&#x27;t answer, and you make every caller wait through their full retry sequence just to fail anyway.</p>
+<p style="margin:0 0 16px 0;">A circuit breaker fixes that. It watches the failure rate, and when too many calls fail in a window, it *opens*: for a cooldown period it fails fast without even trying the call. After the cooldown it lets a trial request through, and if that succeeds it closes again.</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">builder.Services.AddHttpClient&lt;PaymentClient&gt;()
+    .AddResilienceHandler(&quot;payment&quot;, pipeline =&gt;
+    {
+        pipeline.AddRetry(new HttpRetryStrategyOptions
+        {
+            MaxRetryAttempts = 3,
+            BackoffType = DelayBackoffType.Exponential,
+            UseJitter = true
+        });
+
+        pipeline.AddCircuitBreaker(new HttpCircuitBreakerStrategyOptions
+        {
+            FailureRatio = 0.5,                          // open at 50% failures
+            SamplingDuration = TimeSpan.FromSeconds(30), // measured over 30s
+            MinimumThroughput = 10,                      // ignore low-traffic noise
+            BreakDuration = TimeSpan.FromSeconds(15)     // stay open 15s, then test
+        });
+    });</pre>
+<p style="margin:0 0 16px 0;">While the breaker is open, calls throw <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">BrokenCircuitException</code> immediately instead of hitting the network. That&#x27;s the point: a service that&#x27;s down gets a break from your traffic, and your callers fail in milliseconds instead of hanging. That fast failure is your cue to have a fallback ready - a cached value, a write queued to replay later, or a degraded response - so the user gets something better than a raw error. The retry handles the one-off blip; the breaker handles the sustained outage. You need both because they cover different failures.</p>
+<!-- ===== Order Matters How the Strategies Stack ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Order Matters: How the Strategies Stack</h2>
+<p style="margin:0 0 16px 0;">Retry, circuit breaker, and the two timeouts have to be arranged in the right order, or they fight each other. The standard handler already gets this right, and it&#x27;s worth understanding why the order is what it is:</p>
+<img src="https://thecodeman.net/images/blog/posts/when-retries-make-the-outage-worse/resilience-pipeline-order.webp" alt="The resilience pipeline order: a total timeout wraps the retry, which wraps the circuit breaker and the per-attempt timeout around the call" width="592" style="max-width:100%; height:auto; display:block; margin:0 0 20px 0; border-radius:8px;">
+<p style="margin:0 0 16px 0;">Read it from the outside in. The <strong>total timeout</strong> wraps everything, so the whole operation - every retry and every backoff wait - is bounded. Inside it, the <strong>retry</strong> re-runs what&#x27;s below it. Inside the retry, the <strong>circuit breaker</strong> sees each individual attempt, so it can count failures and open when too many pile up - and once it&#x27;s open, the retry&#x27;s next attempt hits the open breaker and fails fast instead of hammering the network. Innermost, the <strong>per-attempt timeout</strong> bounds each single call.</p>
+<p style="margin:0 0 16px 0;">The important consequences of this order: the circuit breaker sits *inside* the retry, so it counts attempts and can short-circuit the retry loop when the dependency is down. And the per-attempt timeout is *innermost*, so each try is bounded on its own while the total timeout still caps the sum. Get the nesting backwards - retry outside the total timeout, say - and you lose the guarantee that the caller gets an answer in bounded time. This is exactly why reaching for <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">AddStandardResilienceHandler</code> beats assembling the pieces yourself: the ordering is a solved problem.</p>
+<!-- ===== A Few Thresholds Worth Starting From ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">A Few Thresholds Worth Starting From</h2>
+<p style="margin:0 0 16px 0;">Numbers depend on your system, but these are sane defaults to tune from, not copy blindly:</p>
+<ul style="margin:0 0 16px 0; padding-left:22px;"><li style="margin-bottom:8px;"><strong>Attempts:</strong> 2-3 total for a synchronous request. More belongs in a background job, not the request path.</li><li style="margin-bottom:8px;"><strong>Retry budget:</strong> across all callers, cap retries as a fraction of live traffic (10% is a common ceiling) so a broad outage can&#x27;t turn every request into three - a per-call attempt limit doesn&#x27;t bound the total load, a budget does.</li><li style="margin-bottom:8px;"><strong>Backoff:</strong> exponential, base 200-500ms, <strong>always with jitter</strong>.</li><li style="margin-bottom:8px;"><strong>Per-attempt timeout:</strong> a small multiple of the dependency&#x27;s normal latency - not so tight you cut off healthy-but-slow calls, not so loose it never fires.</li><li style="margin-bottom:8px;"><strong>Total timeout:</strong> shorter than the timeout the *caller above you* is willing to wait, so you fail before they give up on you.</li><li style="margin-bottom:8px;"><strong>Circuit breaker:</strong> open around a 50% failure ratio over a short window, with a minimum throughput so a couple of failures on a quiet endpoint don&#x27;t trip it.</li></ul>
+<p style="margin:0 0 16px 0;">The through-line: retries should be few, spaced out, jittered, bounded by timeouts, and switched off entirely by a breaker when the dependency is clearly down. That&#x27;s the difference between resilience and amplification.</p>
+<!-- ===== FAQ ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">FAQ</h2>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">Should I retry POST requests in .NET?</h3>
+<p style="margin:0 0 16px 0;">Only if the operation is idempotent, or you make it idempotent with an idempotency key the server deduplicates on. A blind retry on a non-idempotent <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">POST</code> can charge a card twice or create two orders. <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">GET</code>, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">PUT</code>, and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">DELETE</code> are usually safe; <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">POST</code> is the one to think about.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">How many retries is too many?</h3>
+<p style="margin:0 0 16px 0;">For a synchronous request a caller is waiting on, 2-3 attempts total is usually the ceiling. Beyond that you&#x27;re mostly adding load and latency - if it failed twice quickly, the fourth try rarely helps. Long, patient retry counts belong in background jobs, not the request path.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">Do I still need retries if I have a circuit breaker?</h3>
+<p style="margin:0 0 16px 0;">Yes - they solve different problems. A retry handles a single transient blip. A circuit breaker handles a dependency that&#x27;s actually down, by stopping the calls entirely for a while. You want both, arranged with the breaker inside the retry so it can short-circuit the loop.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">What&#x27;s the difference between a per-attempt timeout and a total timeout?</h3>
+<p style="margin:0 0 16px 0;">A per-attempt timeout caps a single try, so one slow call can&#x27;t hang before the retry fires. A total timeout caps the whole operation including all retries and their waits, so the caller always gets an answer within a known bound. Use both.</p>
+<!-- ===== Wrapping Up ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Wrapping Up</h2>
+<p style="margin:0 0 16px 0;">Retries are the first resilience tool everyone reaches for, and the easiest one to get wrong. The naive loop works in a demo because the dependency is either fine or fully down. Production has a third state - slow, struggling, half-up - and that&#x27;s exactly where a blind retry stops being a safety net and starts being the load that finishes the service off.</p>
+<p style="margin:0 0 16px 0;">The fix isn&#x27;t fewer features, it&#x27;s deliberate ones. Retry only transient failures on idempotent operations. Space attempts with exponential backoff and jitter so callers don&#x27;t move in lockstep. Bound each attempt and the whole operation with timeouts. And put a circuit breaker in front so a dependency that&#x27;s down gets a break from your traffic instead of a beating. In .NET, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">AddStandardResilienceHandler</code> gives you all of it, correctly ordered, in one line - so the honest amount of work here is picking good numbers, not writing the machinery.</p>
+<p style="margin:0 0 16px 0;">Take one client in your app that calls something you don&#x27;t control, and check what it does when that thing gets *slow* - not down, slow. If the answer is &quot;retries three times and waits,&quot; you&#x27;ve found your next fifteen minutes of work.</p>
+    <!-- BODY END -->
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:28px 0;">
+    <p style="margin:0 0 16px 0;">That's all from me today.</p>
+    <p style="margin:0 0 24px 0;">P.S. Follow me on <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">YouTube</a>.</p>
+
+    <div style="text-align:center; margin:0 0 32px 0;">
+        <a href="https://thecodeman.net" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 34px; background:#000000; color:#ffd43b; font-weight:700; font-size:16px; border-radius:28px; text-decoration:none;">Check the website</a>
+    </div>
+
+    <p style="margin:0 0 12px 0;"><a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">AI for .NET Developers Community:</a> The place where .NET developers learn to actually use AI in real projects - building agents, wiring up MCP, and shipping AI features in C# without the hype.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join the community</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="margin:0 0 12px 0;"><a href="https://www.skool.com/thecodeman-community-2911" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">#1 .NET Community on Skool Platform:</a> 🎯 Where .NET developers, architects, and enthusiasts come together to grow their skills, solve challenges, and build amazing solutions - faster than ever before!</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://www.skool.com/thecodeman-community-2911" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 1500+ readers here FOR FREE</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="margin:0 0 12px 0;"><a href="https://thecodeman.net/design-patterns-that-deliver-ebook" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Design Patterns that Deliver:</a> This isn't just another design patterns book. Dive into real-world examples and practical solutions to real problems in real applications.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://thecodeman.net/design-patterns-that-deliver-ebook" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 800+ readers here</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="margin:0 0 12px 0;"><a href="https://thecodeman.net/design-patterns-simplified" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Design Patterns Simplified:</a> In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://thecodeman.net/design-patterns-simplified" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 1550+ readers here</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="text-align:center; margin:0 0 20px 0;"><strong>Promote yourself or your business to 22,200+ subscribers by <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="color:#dc2626; text-decoration:underline;">sponsoring this newsletter</a>.</strong></p>
+    <div style="text-align:center; margin:0 0 8px 0;">
+        <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 34px; background:#000000; color:#ffd43b; font-weight:700; font-size:16px; border-radius:28px; text-decoration:none;">Promote yourself</a>
+    </div>
+
+    <div style="margin-top:36px; padding-top:20px; border-top:1px solid #e4e4e7; font-size:13px; line-height:1.6; color:#94a3b8; text-align:center;">
+        <p style="margin:0 0 10px 0;">{{SenderInfo}}</p>
+        <p style="margin:0 0 6px 0;"><a href="{{UnsubscribeURL}}" style="color:#94a3b8; text-decoration:underline;">Unsubscribe</a></p>
+        <p style="margin:0;"><a href="{{RewardsURL}}" style="color:#94a3b8; text-decoration:underline;">Powered by EmailOctopus</a></p>
+    </div>
+</div>
+</body>
+</html>

@@ -13,7 +13,7 @@ meta_description: "Master API Gateway Ocelot in .NET: Learn to streamline micros
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
 <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Elevate your Angular skills with the updated recipes in the new edition of <a href="https://packt.link/LK0bg" style="color: #a5b4fc; text-decoration: underline;">Angular Cookbook</a> written by Google Developer Expert! Discover cutting-edge solutions and tooling for seamless app development. Check the full book <a href="https://packt.link/LK0bg" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Elevate your Angular skills with the updated recipes in the new edition of <a href="https://packt.link/LK0bg" style="color: #a5b4fc; text-decoration: underline;">Angular Cookbook</a> written by Google Developer Expert! Discover cutting-edge solutions and tooling for seamless app development. <a href="https://packt.link/LK0bg" style="color: #a5b4fc; text-decoration: underline;">Check the full book here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
@@ -54,7 +54,7 @@ The API Gateway can collect and aggregate metrics and logs from the microservice
 ## What is Ocelot?
 
 Ocelot is widely used in the .NET community as it integrates well with other .NET and ASP.NET Core features and services.
-​​​It's a lightweight API Gateway, making it an attractive choice for us, .NET developers, looking to implement an API gateway without introducing a lot of additional complexity or overhead. You can see more details [here](https://github.com/ThreeMammals/Ocelot). 
+​​​It's a lightweight API Gateway, making it an attractive choice for us, .NET developers, looking to implement an API gateway without introducing a lot of additional complexity or overhead. You can see more details [in the Ocelot repository](https://github.com/ThreeMammals/Ocelot). 
 
 ## How to implement Ocelot API Gateway in .NET?
 

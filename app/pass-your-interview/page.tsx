@@ -115,7 +115,7 @@ const PassYourInterview = () => {
                   <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
                     <div className="tk-card crk-form-card p-4 p-md-5" style={card}>
                       <h5 className="text-white mb-3">Get the free interview kit</h5>
-                      <div dangerouslySetInnerHTML={{ __html: `<script async src="https://eomail4.com/form/ab931ff0-e1c4-11ef-907b-c3a9263edd62.js" data-form="ab931ff0-e1c4-11ef-907b-c3a9263edd62"></script>` }} />
+                      <div dangerouslySetInnerHTML={{ __html: `<script type="text/lazy" data-src="https://eomail4.com/form/ab931ff0-e1c4-11ef-907b-c3a9263edd62.js" data-form="ab931ff0-e1c4-11ef-907b-c3a9263edd62"></script>` }} />
                     </div>
                   </div>
                 </div>
@@ -126,6 +126,15 @@ const PassYourInterview = () => {
                       <span className="text-yellow" style={{ marginRight: '8px' }}>✓</span>{b}
                     </span>
                   ))}
+                </div>
+
+                <div className="d-flex flex-column align-items-center mt-4" data-reveal data-delay="4">
+                  <a href="/interview-practice" style={yellowBtn}>
+                    Or practice interactively — solve problems in your browser →
+                  </a>
+                  <span className="text-white" style={{ opacity: 0.6, fontSize: '0.85rem', marginTop: '10px' }}>
+                    Write C#, run it against live tests, reveal the optimal solution. No signup.
+                  </span>
                 </div>
               </div>
             </div>

@@ -59,6 +59,8 @@ export default function AskAIDrawer({ chapter }: AskAIDrawerProps) {
         ref={drawerRef}
         className={`rd-ai-drawer${open ? " open" : ""}`}
         aria-hidden={!open}
+        // Closed drawer must not contain focusable elements for AT / keyboard users.
+        {...({ inert: !open } as Record<string, boolean>)}
       >
         <div className="rd-ai-drawer-head">
           <div className="rd-ai-drawer-title">

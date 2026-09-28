@@ -96,8 +96,13 @@ const BlogClient = ({ allPosts }: Props) => {
     return filteredPosts.slice(startIndex, endIndex);
   }, [filteredPosts, page]);
 
-  // Scroll to heading after filter/page change
+  // Scroll to heading after filter/page change (not on a plain first visit to /blog -
+  // that jumped the page down on load and caused a layout shift).
+  const firstScrollRef = useRef(true);
   useEffect(() => {
+    const isFirst = firstScrollRef.current;
+    firstScrollRef.current = false;
+    if (isFirst && page === 1 && !selectedCategory) return;
     if (headingRef.current) {
       headingRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -246,7 +251,7 @@ const BlogClient = ({ allPosts }: Props) => {
                   <div className="row">
                     <div className="col-md-12 padding-left0 padding-right0"
                       dangerouslySetInnerHTML={{
-                        __html: `<script async src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
+                        __html: `<script type="text/lazy" data-src="https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js" data-form="861505f8-b3f8-11ef-896f-474a313dbc14"></script>`
                       }}
                     />
                   </div>

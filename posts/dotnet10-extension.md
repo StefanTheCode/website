@@ -24,7 +24,7 @@ Thank you for the support 🙌  
 P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
 
 The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
-You can find all the details [here]((https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226)).
+You can find all the details [on the Pragmatic .NET Code Rules course page](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226).
 
 ## New "extension" keyword in .NET 10
 With .NET 10 extension feature now you can define **extension block**s for any type. It is shaping up to be one of the most exciting updates in recent years - and one of the most underrated gems is the new extension keyword introduced in C# 14 (Preview 3). 

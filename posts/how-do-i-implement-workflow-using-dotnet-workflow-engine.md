@@ -12,7 +12,7 @@ meta_description: "Master the art of implementing effective workflows in .NET ap
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">**- <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">Treblle Api Insights</a> ** Treblle has come out with a revolutionary new tool - API Insights. If until now you couldn't tell on the scale how good your API is, now you will be able to. It's a free tool, you only need to upload your .json of the API you're building and you'll get insights on how good your API is in 3 categories: Design, Performance, Security. Check your API <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">here</a>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">**- <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">Treblle Api Insights</a> ** Treblle has come out with a revolutionary new tool - API Insights. If until now you couldn't tell on the scale how good your API is, now you will be able to. It's a free tool, you only need to upload your .json of the API you're building and you'll get insights on how good your API is in 3 categories: Design, Performance, Security. <a href="https://apiinsights.io/?utm_source=newsletter&amp;utm_medium=stefan-email&amp;utm_campaign=api_insights" style="color: #a5b4fc; text-decoration: underline;">Check your API here</a>.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
@@ -41,7 +41,7 @@ Let's see how to integrate it in your .NET application.
 ## .NET Web Application Integration
 Before you continue reading:
 - you can watch here video of full integration with .Net.
-- you can check the project repository [here](https://github.com/StefanTheCode/WorkflowEngineDemo).
+- you can check [the project repository on GitHub](https://github.com/StefanTheCode/WorkflowEngineDemo).
 ### Steps: 
 1. Setting up the database
 2. Initializing WorkflowRuntime
@@ -59,7 +59,7 @@ WorkflowRuntime is a project that actually represents the communication between 
 2. Add the following NuGet packages into your project
 - **WorkflowEngine.NETCore-Core**
 - **WorkflowEngine.NETCore-ProviderForMSSQL** 
-3. Create a WorkflowInit.cs file and copy all the code from [here](https://github.com/StefanTheCode/WorkflowEngineDemo/blob/main/WorkflowLib/WorkflowInit.cs).
+3. Create a WorkflowInit.cs file and copy all the code from [WorkflowInit.cs on GitHub](https://github.com/StefanTheCode/WorkflowEngineDemo/blob/main/WorkflowLib/WorkflowInit.cs).
 4. Build the project to make sure there are no errors.
 WorkflowRuntime is ready. Now it is necessary to combine it with the designer that you will create yourself - I will show you how in the next step.
 ### 3. Connecting the Designer
@@ -70,7 +70,7 @@ On the localhost we create, the designer looks like this:
 ![Workflow Designer on Web Application](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/workflowdesigner-on-web-application.webp)
 
 So that you don't waste time on these steps, and that the reading doesn't become boring, I have prepared it for you.
-It's on the GitHub repository I posted above. Of course, if you want to get into the depth of this implementation, you can look at the [official documentation](https://workflowengine.io/documentation/how-to-integrate)[](https://workflowengine.io/documentation/how-to-integrate).
+It's on the GitHub repository I posted above. Of course, if you want to get into the depth of this implementation, you can look at the [official documentation](https://workflowengine.io/documentation/how-to-integrate).
 ## Okay, let's design our Newsletter Workflow!
 For the simplicity of the blog and explanation, I will create a simple workflow with a few activities and commands.
 Let's create 2 **commands** : **next** and **back** . Commands serve to move from one activity (state) to another. Let's say when the user subscribes to the newsletter, the next activity would be to send a confirmation email.
@@ -88,13 +88,13 @@ Now we are given the option to record the session - which will actually record i
 
 ## Creating a process and calling commands
 The goal of all this is to be able to create a custom application in which we will create through workflow activities and perform various actions on the occasion of them.
-For this purpose, it is possible to create a console or web application. You can see an example of the application [here](https://workflowengine.io/documentation/how-to-integrate#commands).
+For this purpose, it is possible to create a console or web application. You can see [an example integration in the Workflow Engine docs](https://workflowengine.io/documentation/how-to-integrate#commands).
 Console application example from the url:
 ![Console application to test workflow](/images/blog/posts/how-do-i-implement-workflow-using-dotnet-workflow-engine/console-application-to-test-workflow.webp)
 ## Conslusion
 By using designer, I can make changes on the fly—like when I decide to change the look of the newsletter or how people receive it. It's like having a remote control for the newsletter process, so I can adjust things without getting my hands dirty with the complicated code. Plus, I won't have to spend time checking and rechecking the code for errors, because I won't be touching it. This makes updating things a whole lot simpler and less stressful.
 Optimajet Workflow Engine is one of the easiest workflow engines for document approval when integrating is required. We recommend it to companies that develop information systems with workflow functionality.
-In addition, you can download Optimajet samples [here](https://workflowengine.io/downloads/net-core/).
+In addition, you can download [the Optimajet samples](https://workflowengine.io/downloads/net-core/).
 If you have any question, please, do not hesitate to [contact them](https://optimajet.com/book-a-meeting/).
 I can only agree with this and add that workflows also help us in our everyday life, without us even noticing it. How many times do we just make a plan and a path in our head, how we will do something today?
 That's all from me today.

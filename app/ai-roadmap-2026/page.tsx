@@ -105,7 +105,7 @@ const jsonLd = {
   ],
 }
 
-const FORM_SCRIPT = `<script async src="https://eomail4.com/form/75d3c36e-842b-11f1-8edb-47846d42d594.js" data-form="75d3c36e-842b-11f1-8edb-47846d42d594"></script>`
+const FORM_SCRIPT = `<script type="text/lazy" data-src="https://eomail4.com/form/75d3c36e-842b-11f1-8edb-47846d42d594.js" data-form="75d3c36e-842b-11f1-8edb-47846d42d594"></script>`
 
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
 const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: '#ffbd39', color: '#2a003a' } as const
@@ -153,7 +153,7 @@ const AiRoadmap2026 = () => {
 
               <div className="col-xs-12 col-sm-12 col-md-6 text-center" data-reveal data-delay="2">
                 <div className="tk-card p-2" style={{ ...card, display: 'inline-block' }}>
-                  <Image src="/images/ai-roadmap-2026.png" alt="AI Roadmap for .NET Developers 2026 - 8 steps from AI-curious to shipping real AI: Claude Code, MCP, LLMs, embeddings, RAG, and AI agents" width={0} height={0} sizes="(max-width: 768px) 100vw, 50vw" priority style={{ width: '100%', height: 'auto', borderRadius: '12px' }} />
+                  <Image src="/images/ai-roadmap-2026.webp" alt="AI Roadmap for .NET Developers 2026 - 8 steps from AI-curious to shipping real AI: Claude Code, MCP, LLMs, embeddings, RAG, and AI agents" width={928} height={1152} sizes="(max-width: 768px) 100vw, 50vw" priority style={{ width: '100%', height: 'auto', borderRadius: '12px' }} />
                 </div>
               </div>
             </div>

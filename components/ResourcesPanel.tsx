@@ -18,7 +18,7 @@ const card: React.CSSProperties = {
   gap: 8,
 };
 const h: React.CSSProperties = {
-  fontFamily: "'Space Grotesk',sans-serif",
+  fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif",
   color: "#F3EFFA",
   fontSize: 17,
   fontWeight: 700,
@@ -40,7 +40,7 @@ const btn: React.CSSProperties = {
   gap: 6,
   background: "linear-gradient(180deg,#FFC650,#FFB31B)",
   color: "#2a1500",
-  fontFamily: "'Space Grotesk',sans-serif",
+  fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif",
   fontWeight: 600,
   fontSize: 13.5,
   borderRadius: 9,

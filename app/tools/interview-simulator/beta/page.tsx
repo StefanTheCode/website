@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function InterviewSimulatorBetaPage() {
   return (
-    <main className={styles.wrap}>
+    <div className={styles.wrap}>
       <div className={styles.head}>
         <span className={styles.badge}>Beta · free for waitlist members</span>
         <h1>
@@ -35,6 +35,6 @@ export default function InterviewSimulatorBetaPage() {
       <p className={styles.hint} style={{ textAlign: "center", marginTop: 28 }}>
         Found a bug or have feedback? Reply to the beta email — I read everything. — Stefan
       </p>
-    </main>
+    </div>
   );
 }

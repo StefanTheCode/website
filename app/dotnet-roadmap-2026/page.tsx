@@ -106,7 +106,7 @@ const jsonLd = {
   ],
 }
 
-const FORM_SCRIPT = `<script async src="https://eomail4.com/form/782231c8-3778-11f1-b51d-5b8e82dfd76d.js" data-form="782231c8-3778-11f1-b51d-5b8e82dfd76d"></script>`
+const FORM_SCRIPT = `<script type="text/lazy" data-src="https://eomail4.com/form/782231c8-3778-11f1-b51d-5b8e82dfd76d.js" data-form="782231c8-3778-11f1-b51d-5b8e82dfd76d"></script>`
 
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
 

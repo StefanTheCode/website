@@ -1,0 +1,24 @@
+The useful part of a saga design review starts around here:
+
+Payment succeeded. Stock reservation failed. We requested a refund. The refund request timed out.
+
+What state is the order in now?
+
+“Rolled back” is probably too confident. You don't know whether the refund happened, and the original charge is already an external fact.
+
+A saga needs explicit states for that uncertainty. Depending on the domain, that might include CompensationPending, RefundConfirmed and ManualReviewRequired. The names matter less than having a durable answer to “what do we know, and what should happen next?”
+
+Compensation is another business operation. It can fail, be retried, arrive late, or need reconciliation with a provider. It needs idempotency just like the forward operation.
+
+Message ordering adds another dimension. A payment notification can arrive after a timeout has moved the order into cancellation. The handler needs a defined transition for that case. Setting Paid = true without considering the current state is rarely enough.
+
+I'd also test two messages reaching the same saga concurrently. A correlation ID routes them to the same logical workflow; it doesn't by itself prevent conflicting state updates. Use the persistence and concurrency controls provided by the framework, and verify their configuration.
+
+Wolverine with durable persistence can handle a lot of the messaging machinery. You still need to define the business transitions and make external effects safe to repeat.
+
+My test set would include duplicates, reversed delivery order, a crash after an external effect, and failed compensation. I'd also monitor how long sagas remain stuck in each state.
+
+An order waiting for reconciliation should be visible to operations, with enough context for someone to resolve it.
+
+For a concrete starting point, read my Wolverine and PostgreSQL saga walkthrough. Then extend the example with the failure paths your workflow needs:
+https://thecodeman.net/posts/implementing-the-saga-pattern-with-wolverine-postgres

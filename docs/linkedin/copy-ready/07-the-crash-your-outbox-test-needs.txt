@@ -1,0 +1,24 @@
+Here's the outbox test I'd add before trusting it with order events:
+
+Let the broker accept a message. Kill the publisher before it marks the outbox row as processed. Restart it.
+
+You should expect that message to be published again.
+
+Saving the order and its event in one database transaction closes the gap between “the order exists” and “we recorded an event to send.” It doesn't make the later broker publish and database update one atomic operation.
+
+So the consumer needs a plan for duplicates.
+
+For a database update, a useful approach is a processed-messages table with a unique key on consumer identity and message ID. Insert that marker and apply the business change in the same local transaction. If the transaction fails, both roll back.
+
+A SELECT that asks “have I seen this ID?” isn't enough by itself. Two consumers can both see no row and proceed. The uniqueness constraint is what arbitrates that race.
+
+And there's a second boundary: external side effects. A local deduplication row cannot atomically commit with a payment provider or email API. That call needs its own idempotency mechanism or a workflow that can reconcile an unknown result.
+
+On the publishing side, multiple workers also need a claiming strategy. If you're using PostgreSQL row locks with SKIP LOCKED, those locks need an active transaction for the period you're relying on them.
+
+The test result I want is quite specific: a duplicate arrives, the intended database effect happens once, and the system keeps processing later messages.
+
+That's a much stronger test than sending one event through a healthy broker.
+
+For the outbox table, interceptor and publisher example, start with my .NET walkthrough. Keep the failure cases above beside you as you adapt it:
+https://thecodeman.net/posts/outbox-pattern-in-dotnet

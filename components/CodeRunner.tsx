@@ -2,62 +2,19 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./CodeRunner.module.css";
+import { loadRunner } from "./dotnetRunner";
 
-/**
-// CodeRunner: in-browser C# editor (also embedded in the interview simulator).
 /**
  * CodeRunner — an in-browser C# editor that compiles & runs the code entirely
  * client-side via the self-hosted .NET WebAssembly runtime (Roslyn scripting).
+ * Also embedded in the interview simulator.
  *
- * The runtime assets live in /public/dotnet/ and are produced by the wasm-runner
- * project (see wasm-runner/README.md). Until those assets exist, the editor still
- * works for editing/copying and the Run button explains how to enable execution.
+ * The runtime itself is loaded via the shared loadRunner() in ./dotnetRunner so
+ * a single runtime is reused across every editor on the page. The assets live in
+ * /public/dotnet/ and are produced by the wasm-runner project. Until those assets
+ * exist, the editor still works for editing/copying and the Run button explains
+ * how to enable execution.
  */
-
-type RunResult = { ok: boolean; output: string };
-
-// One shared runtime across every CodeRunner instance on the page.
-let runtimePromise: Promise<(code: string) => Promise<RunResult>> | null = null;
-
-async function loadRunner(): Promise<(code: string) => Promise<RunResult>> {
-  if (runtimePromise) return runtimePromise;
-
-  runtimePromise = (async () => {
-    // Load the .NET WASM runtime at runtime ONLY. We hide the import from the
-    // bundler entirely (new Function) so neither webpack nor Turbopack tries to
-    // resolve /dotnet/dotnet.js at build time — it only exists after the
-    // wasm-runner build (see wasm-runner/README.md).
-    const dynamicImport = new Function("u", "return import(u)") as (u: string) => Promise<any>;
-    // .NET 8 AppBundle ships dotnet.js inside _framework/. It resolves its own
-    // siblings (dotnet.runtime.js, dotnet.native.wasm, blazor.boot.json) relative
-    // to itself, so pointing here loads the whole runtime from /dotnet/_framework/.
-    const mod: any = await dynamicImport("/dotnet/_framework/dotnet.js");
-    const dotnet = mod.dotnet;
-    // Skip Subresource-Integrity verification of the boot resources. The hashes
-    // in blazor.boot.json are computed at build time over the exact bytes; git
-    // end-of-line normalization can rewrite the text-based runtime files
-    // (dotnet.native.js, etc.) on deploy so the bytes — and thus the hashes — no
-    // longer match, which makes the runtime refuse to load in production while
-    // still working locally. Disabling the check sidesteps that entirely; the
-    // files are served from our own origin, so integrity adds nothing here.
-    const { getAssemblyExports, getConfig } = await dotnet
-      .withConfig({ disableIntegrityCheck: true })
-      .create();
-    const config = getConfig();
-    const exports = await getAssemblyExports(config.mainAssemblyName);
-
-    return async (code: string): Promise<RunResult> => {
-      const raw: string = await exports.Playground.Runner.Run(code);
-      try {
-        return JSON.parse(raw) as RunResult;
-      } catch {
-        return { ok: true, output: raw };
-      }
-    };
-  })();
-
-  return runtimePromise;
-}
 
 export default function CodeRunner({
   initialCode,

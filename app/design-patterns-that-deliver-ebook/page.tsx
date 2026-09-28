@@ -324,7 +324,7 @@ const Ebook = () => {
           <div className="dp-cover dp-reveal">
             <div className="dp-glow"></div>
             <div className="dp-frame">
-              <Image src="/images/ebook-thumb2.png" alt="Design Patterns that Deliver - C# design patterns ebook cover" width={0} height={0} sizes="(max-width:940px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} priority />
+              <Image src="/images/ebook-thumb2.webp" alt="Design Patterns that Deliver - C# design patterns ebook cover" width={1100} height={1192} sizes="(max-width:940px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} priority />
             </div>
           </div>
         </div>
@@ -413,7 +413,7 @@ const Ebook = () => {
           </div>
           <div className="dp-reveal">
             <div className="dp-media-frame">
-              <Image src="/images/real-world-examples.webp" alt="C# design patterns real-world implementation example" width={0} height={0} sizes="(max-width:860px) 100vw, 40vw" style={{ width: '100%', height: 'auto', display: 'block' }} />
+              <Image src="/images/real-world-examples.webp" alt="C# design patterns real-world implementation example" width={1159} height={771} sizes="(max-width:860px) 100vw, 40vw" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
           </div>
         </div>
@@ -725,10 +725,7 @@ const Ebook = () => {
               data-lazyload="false"
               style={{ display: 'block', width: '100%' }}
             ></div>
-            <Script
-              src="https://widget.senja.io/widget/c9c1f621-7173-45e3-9313-1f6413693e80/platform.js"
-              strategy="afterInteractive"
-            />
+            <div dangerouslySetInnerHTML={{ __html: '<script type="text/lazy" data-src="https://widget.senja.io/widget/c9c1f621-7173-45e3-9313-1f6413693e80/platform.js"></script>' }} />
           </div>
         </div>
       </section>
@@ -739,7 +736,7 @@ const Ebook = () => {
       <section>
         <div className="dp-wrap dp-about">
           <div className="dp-reveal">
-            <div className="dp-media-frame"><Image src="/images/ebook-stefan.webp" alt="Stefan Đokić, Microsoft MVP and author of Design Patterns that Deliver" width={0} height={0} sizes="(max-width:860px) 100vw, 360px" style={{ width: '100%', height: 'auto', display: 'block' }} /></div>
+            <div className="dp-media-frame"><Image src="/images/ebook-stefan.webp" alt="Stefan Đokić, Microsoft MVP and author of Design Patterns that Deliver" width={1536} height={2040} sizes="(max-width:860px) 100vw, 360px" style={{ width: '100%', height: 'auto', display: 'block' }} /></div>
           </div>
           <div className="dp-reveal">
             <span className="dp-mvp-pill">{MS} Microsoft MVP</span>

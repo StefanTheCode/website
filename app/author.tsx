@@ -12,10 +12,10 @@ export default function Author() {
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <h5 className='text-center'>
+            <p className='h5 text-center card-desc'>
               <b> Stefan Djokic</b> is a Microsoft MVP and senior .NET engineer with extensive experience designing enterprise-grade systems and teaching
               architectural best practices.
-            </h5>
+            </p>
           </div>
         </div>
       </div>

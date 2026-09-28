@@ -13,7 +13,7 @@ meta_description: "IP whitelisting is a security measure used to control access 
 <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">Sponsored</p>
 
 <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: #ffffff;">- Streamline your API development with <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">Postman's REST Client</a> a powerful tool for sending requests, inspecting responses, and debugging REST APIs with ease. Discover a more efficient way to build and test APIs at <a href="https://www.postman.com/product/rest-client/" style="color: #a5b4fc; text-decoration: underline;">link</a>.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Unlock Your Potential as a .NET Architect! Dive into "Software Architecture with C# 12 and .NET 8" and design scalable solutions <a href="https://packt.link/BGi5A" style="color: #a5b4fc; text-decoration: underline;">here</a>. Master software architecture fundamentals, explore cutting-edge technologies, and tackle real-world scenarios. Elevate your skills with this essential guide! Transform user requirements into robust architectures with Azure DevOps, layered designs, and more.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #ffffff;">-  Unlock Your Potential as a .NET Architect! Dive into "Software Architecture with C# 12 and .NET 8" and <a href="https://packt.link/BGi5A" style="color: #a5b4fc; text-decoration: underline;">design scalable solutions here</a>. Master software architecture fundamentals, explore cutting-edge technologies, and tackle real-world scenarios. Elevate your skills with this essential guide! Transform user requirements into robust architectures with Azure DevOps, layered designs, and more.</p>
 
 <p style="margin: 12px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
 Many thanks to the sponsors who make it possible for this newsletter to be free for readers.<br/><br/><a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
@@ -31,7 +31,7 @@ In those cases, we have several ways to potentially solve this problem.
 
 Last week I showed how to achieve this with an [API Key](https://thecodeman.net/posts/how-to-implement-api-key-authentication).
 
-You can read that article [here](https://thecodeman.net/posts/allow-specific-users-to-access-your-api-part1).
+You can read [Part 1 of this article](https://thecodeman.net/posts/allow-specific-users-to-access-your-api-part1).
 
 Today, I'm going to talk about IP Whitelisting.
 

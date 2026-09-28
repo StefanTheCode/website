@@ -40,7 +40,7 @@ function JoinLink({ children = 'Start your 7-day free trial' }: { children?: Rea
 
 export default function AiCommunityPage() {
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       <div className={styles.wrap}>
         <nav className={styles.breadcrumb} aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span>AI for .NET Developers</span></nav>
@@ -81,6 +81,6 @@ export default function AiCommunityPage() {
         </section>
         <section className={`${styles.section} ${styles.faq}`} id="faq"><p className={styles.eyebrow}>Before you start</p><h2>AI for .NET developers, explained.</h2>{faqs.map(([q,a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</section>
       </div>
-    </main>
+    </div>
   );
 }

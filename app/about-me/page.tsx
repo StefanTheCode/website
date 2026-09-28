@@ -82,7 +82,7 @@ export default function Page() {
         style={{ backgroundColor: "#facc15", minHeight: "100vh" }}
       >
         <div className="container text-center">
-          <h2 className="mb-4 text-font-2rem margin-top-minus-10" style={{ color: "#000" }}>
+          <h2 className="mb-4 text-font-2rem margin-top-minus-10 text-black" style={{ color: "#000" }}>
             Let’s stay connected
           </h2>
 
@@ -99,32 +99,32 @@ export default function Page() {
                           <div className='row'>
                           <div className="col-md-2 d-flex">
                           <a href="https://www.skool.com/thecodeman" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/skool-icon.webp'} className='social-icon' alt={'Skool Community'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                            <Image src={'/images/icons/skool-icon.webp'} className='social-icon' alt={'Skool Community'} width={240} height={240} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                           </a>
                         </div>
                         <div className="col-md-2 d-flex">
                           <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/youtube-icon.png'} className='social-icon' alt={'YouTube Channel'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                            <Image src={'/images/icons/youtube-icon.png'} className='social-icon' alt={'YouTube Channel'} width={256} height={256} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                           </a>
                         </div>
                         <div className="col-md-2 d-flex">
                           <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                            <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                           </a>
                         </div>
                         <div className="col-md-2 d-flex ">
                           <a href="https://twitter.com/TheCodeMan__" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter (X)'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                            <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter (X)'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                           </a>
                         </div>
                         <div className="col-md-2 d-flex ">
                           <a href="https://github.com/StefanTheCode" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                            <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                           </a>
                         </div>
                         <div className="col-md-2 d-flex">
                           <a href="https://medium.com/@thecodeman" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/medium-icon.webp'} className='social-icon' alt={'Medium'} width={0} height={0} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
+                            <Image src={'/images/icons/medium-icon.webp'} className='social-icon' alt={'Medium'} width={2048} height={2048} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
                           </a>
                         </div>
                           </div>
@@ -161,7 +161,7 @@ export default function Page() {
                 <div className="col-xs-4 col-sm-12 col-md-10 col-lg-6 col-xl-8 text-center">
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: `<script async src='https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js' data-form='861505f8-b3f8-11ef-896f-474a313dbc14'></script>`,
+                      __html: `<script type='text/lazy' data-src='https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js' data-form='861505f8-b3f8-11ef-896f-474a313dbc14'></script>`,
                     }}
                   ></div>
                 </div>

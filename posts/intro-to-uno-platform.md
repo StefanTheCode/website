@@ -89,7 +89,7 @@ I will not show each section through images, but I will explain them.
 **9. Application:** Set a reverse-DNS App ID (e.g., com.example.TheWeather) and author- used in manifests/bundles.
 **10. Testing:** You can skip now; add unit tests for VMs first, UI tests once you have navigation/async flows.
 
-Check all the details [here](https://platform.uno/docs/articles/getting-started/wizard/using-wizard.html?utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article).
+Check all the details [in the Uno Platform wizard docs](https://platform.uno/docs/articles/getting-started/wizard/using-wizard.html?utm_source=stefan-codeman&utm_medium=newsletter&utm_campaign=article).
 
 ## Development
 And your application is finally ready. If you run the application now, you will see the finished application with a text field and a button to switch to another page. 

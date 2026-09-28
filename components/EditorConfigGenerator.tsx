@@ -82,10 +82,11 @@ const codeBoxStyle: React.CSSProperties = {
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div>
-      <label style={labelStyle}>{label}</label>
+    // Wrapping <label> associates the text with the <select> (accessible name).
+    <label style={{ display: "block", margin: 0 }}>
+      <span style={{ ...labelStyle, display: "block" }}>{label}</span>
       {children}
-    </div>
+    </label>
   );
 }
 

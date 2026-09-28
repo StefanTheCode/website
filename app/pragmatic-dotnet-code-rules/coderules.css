@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 /* ============================================================
    Pragmatic .NET Code Rules — landing page styles
@@ -18,14 +17,14 @@
   position:relative;
   background:var(--bg);
   color:var(--body);
-  font-family:'Manrope',system-ui,sans-serif;
+  font-family:'Manrope', 'Manrope Fallback',system-ui,sans-serif;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
 .cr-page *{box-sizing:border-box}
 .cr-page h1,.cr-page h2,.cr-page h3,.cr-page h4{
-  font-family:'Space Grotesk',sans-serif;color:var(--h);line-height:1.1;letter-spacing:-.02em;margin:0}
+  font-family:'Space Grotesk', 'Space Grotesk Fallback',sans-serif;color:var(--h);line-height:1.1;letter-spacing:-.02em;margin:0}
 .cr-page p{margin:0}
 .cr-mono{font-family:'JetBrains Mono',monospace}
 .cr-page a{color:inherit;text-decoration:none}
@@ -50,7 +49,7 @@
 
 /* buttons */
 .cr-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:none;
-  font-family:'Space Grotesk';font-weight:600;font-size:16px;border-radius:12px;padding:15px 26px;
+  font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:600;font-size:16px;border-radius:12px;padding:15px 26px;
   transition:transform .15s,box-shadow .15s,background .15s}
 /* color scoped under .cr-page so it wins over `.cr-page a{color:inherit}` */
 .cr-page .cr-btn-primary{background:linear-gradient(180deg,var(--amber-bright),var(--amber));color:#2a1500 !important;
@@ -71,7 +70,7 @@
 /* nav */
 .cr-nav{position:sticky;top:0;z-index:40;background:rgba(18,1,25,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .cr-nav .cr-nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.cr-brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;color:var(--h);font-size:16px}
+.cr-brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:700;color:var(--h);font-size:16px}
 .cr-brand-logo{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--line);display:block}
 .cr-glyph{font-family:'JetBrains Mono';color:var(--amber);background:rgba(255,179,27,.1);border:1px solid rgba(255,179,27,.25);border-radius:8px;padding:3px 8px;font-size:14px}
 .cr-nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500}
@@ -80,7 +79,7 @@
 .cr-nav-right{display:flex;align-items:center;gap:18px}
 .cr-nav-price{font-family:'JetBrains Mono';font-size:14px;color:var(--muted)}
 .cr-nav-price b{color:var(--h)}
-.cr-nav-price .cr-s{text-decoration:line-through;opacity:.5;margin-right:4px}
+.cr-nav-price .cr-s{text-decoration:line-through;opacity:.75;margin-right:4px}
 .cr-nav .cr-btn{padding:11px 20px;font-size:14.5px}
 @media(max-width:980px){.cr-nav-links,.cr-nav-price{display:none}}
 
@@ -120,10 +119,10 @@
 .cr-spot-q{font-size:clamp(20px,2.6vw,28px);line-height:1.55;color:var(--h);font-weight:500;margin:0 auto 30px;max-width:760px}
 .cr-spot-q .cr-amber{color:var(--amber-bright)}
 .cr-spot-who{display:inline-flex;align-items:center;gap:14px}
-.cr-spot-av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#6f2da8,var(--amber));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;font-family:'Space Grotesk';color:#fff;flex-shrink:0;overflow:hidden}
+.cr-spot-av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#6f2da8,var(--amber));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;color:#fff;flex-shrink:0;overflow:hidden}
 .cr-spot-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .cr-spot-meta{text-align:left}
-.cr-spot-nm{font-weight:700;color:var(--h);font-family:'Space Grotesk';font-size:17px}
+.cr-spot-nm{font-weight:700;color:var(--h);font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-size:17px}
 .cr-spot-rl{font-size:13.5px;color:var(--muted)}
 
 /* sections */
@@ -149,7 +148,7 @@
 .cr-pain-list{list-style:none;margin:26px 0;padding:0}
 .cr-pain-list li{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--line);font-size:16px}
 .cr-pain-list li .cr-x{color:var(--bad);flex-shrink:0;font-weight:700}
-.cr-kicker{font-family:'Space Grotesk';font-size:22px;font-weight:600;color:var(--h);margin-top:26px;line-height:1.35}
+.cr-kicker{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-size:22px;font-weight:600;color:var(--h);margin-top:26px;line-height:1.35}
 .cr-media-frame{border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;line-height:0;background:linear-gradient(160deg,var(--card),var(--deep))}
 .cr-media-frame img{width:100%;height:auto;display:block}
 
@@ -173,7 +172,7 @@
 @media(max-width:860px){.cr-learn-row{grid-template-columns:1fr;gap:28px}.cr-learn-row .cr-media{order:-1}}
 .cr-learn-row.cr-flip .cr-media{order:2}
 @media(max-width:860px){.cr-learn-row.cr-flip .cr-media{order:-1}}
-.cr-learn-num{font-family:'Space Grotesk';font-size:14px;font-weight:700;color:var(--amber);letter-spacing:.1em;margin-bottom:14px}
+.cr-learn-num{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-size:14px;font-weight:700;color:var(--amber);letter-spacing:.1em;margin-bottom:14px}
 .cr-learn-row h3{font-size:28px;font-weight:700;margin-bottom:14px}
 .cr-learn-row p{color:var(--muted);font-size:16.5px;margin-bottom:18px}
 .cr-pts{list-style:none;margin:0;padding:0}
@@ -210,9 +209,9 @@
 .cr-tcard .cr-stars{letter-spacing:2px;margin-bottom:16px;display:block}
 .cr-tcard .cr-q{font-size:16px;color:var(--body);line-height:1.7;margin-bottom:22px;font-style:italic}
 .cr-who{display:flex;align-items:center;gap:13px}
-.cr-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#6f2da8,var(--amber));display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Space Grotesk';color:#fff;flex-shrink:0;overflow:hidden}
+.cr-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#6f2da8,var(--amber));display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;color:#fff;flex-shrink:0;overflow:hidden}
 .cr-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.cr-nm{font-weight:700;color:var(--h);font-family:'Space Grotesk'}
+.cr-nm{font-weight:700;color:var(--h);font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif}
 .cr-rl{font-size:13.5px;color:var(--muted)}
 
 /* about */
@@ -223,7 +222,7 @@
 .cr-about p{color:var(--body);margin-bottom:16px;font-size:16.5px}
 .cr-about b{color:var(--h)}
 .cr-about-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:24px;border-top:1px solid var(--line);padding-top:24px}
-.cr-about-stats .cr-v{font-family:'Space Grotesk';font-weight:700;font-size:24px;color:var(--amber)}
+.cr-about-stats .cr-v{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:700;font-size:24px;color:var(--amber)}
 .cr-about-stats .cr-l{font-size:13px;color:var(--muted)}
 .cr-mvp-pill{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-size:13px;margin-bottom:18px;color:var(--body)}
 
@@ -231,11 +230,11 @@
 .cr-pricing{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:start}
 @media(max-width:860px){.cr-pricing{grid-template-columns:1fr}}
 .cr-price-card{background:linear-gradient(170deg,var(--card),var(--deep));border:1px solid var(--line);border-radius:var(--radius);padding:40px;position:relative;overflow:hidden}
-.cr-ribbon{position:absolute;top:22px;right:-44px;transform:rotate(45deg);background:var(--amber);color:#2a1500;font-family:'Space Grotesk';font-weight:700;font-size:13px;padding:6px 56px}
+.cr-ribbon{position:absolute;top:22px;right:-44px;transform:rotate(45deg);background:var(--amber);color:#2a1500;font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:700;font-size:13px;padding:6px 56px}
 .cr-price-card h3{font-size:24px;margin-bottom:8px}
 .cr-psub{color:var(--muted);font-size:14.5px;margin-bottom:24px}
 .cr-amt{display:flex;align-items:baseline;gap:12px}
-.cr-amt .cr-now{font-family:'Space Grotesk';font-weight:700;font-size:56px;color:var(--h)}
+.cr-amt .cr-now{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:700;font-size:56px;color:var(--h)}
 .cr-amt .cr-was{font-size:22px;color:var(--muted);text-decoration:line-through}
 .cr-save{color:var(--good);font-size:14px;font-weight:600;margin:6px 0 24px}
 .cr-price-card ul{list-style:none;border-top:1px solid var(--line);padding:22px 0 0;margin:0 0 26px}
@@ -248,7 +247,7 @@
 .cr-why-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
 .cr-why-item:last-child{border-bottom:none}
 .cr-why-item .cr-ic{font-size:20px;flex-shrink:0}
-.cr-why-item .cr-t{font-weight:700;color:var(--h);font-family:'Space Grotesk';font-size:15.5px}
+.cr-why-item .cr-t{font-weight:700;color:var(--h);font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-size:15.5px}
 .cr-why-item .cr-d{font-size:13.5px;color:var(--muted)}
 
 /* fit */
@@ -267,9 +266,9 @@
 .cr-acc{max-width:860px;margin:0 auto}
 .cr-acc details{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;background:var(--card)}
 .cr-acc summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;cursor:pointer;
-  font-family:'Space Grotesk';font-weight:600;color:var(--h);font-size:16px;list-style:none}
+  font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:600;color:var(--h);font-size:16px;list-style:none}
 .cr-acc summary::-webkit-details-marker{display:none}
-.cr-acc summary .cr-meta{font-size:13px;color:var(--faint);font-family:'Manrope';font-weight:500;margin-left:auto;margin-right:4px}
+.cr-acc summary .cr-meta{font-size:13px;color:var(--faint);font-family:'Manrope', 'Manrope Fallback', sans-serif;font-weight:500;margin-left:auto;margin-right:4px}
 .cr-acc summary .cr-tog{color:var(--amber);font-size:20px;transition:transform .2s;flex-shrink:0}
 .cr-acc details[open] summary .cr-tog{transform:rotate(45deg)}
 .cr-acc-body{padding:0 22px 18px}
@@ -289,10 +288,10 @@
 .cr-stickybar.cr-show{transform:none}
 .cr-stickybar .cr-sb-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
 .cr-sb-info{display:flex;flex-direction:column;line-height:1.3}
-.cr-sb-info .cr-sb-nm{font-family:'Space Grotesk';font-weight:700;color:var(--h);font-size:15px}
+.cr-sb-info .cr-sb-nm{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:700;color:var(--h);font-size:15px}
 .cr-sb-info .cr-sb-cd{font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono'}
 .cr-sb-right{display:flex;align-items:center;gap:16px}
-.cr-sb-pr{font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--h)}
+.cr-sb-pr{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:700;font-size:18px;color:var(--h)}
 .cr-sb-pr .cr-s{font-size:13px;color:var(--muted);text-decoration:line-through;font-weight:400;margin-left:5px}
 .cr-stickybar .cr-btn{padding:11px 20px;font-size:14.5px}
 @media(max-width:600px){.cr-sb-info .cr-sb-nm{font-size:13px}.cr-sb-pr{font-size:15px}.cr-stickybar .cr-btn{padding:10px 15px;font-size:13px}}

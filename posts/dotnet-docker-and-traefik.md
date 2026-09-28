@@ -21,7 +21,7 @@ By supporting my work and purchasing my products, you directly help me keep this
 Thank you for the support 🙌
 I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
 The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
-You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126).
+You can find all the details [on the Pragmatic .NET Code Rules course page](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=260126).
 ## .NET 10 with Docker and Traefik – A Production-Ready Reverse Proxy Setup
 Every .NET developer eventually runs into the same problem.
  

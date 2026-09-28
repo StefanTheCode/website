@@ -1,0 +1,20 @@
+Changing a large export from ToListAsync() to streaming can fix one memory problem and expose another resource limit.
+
+Suppose an EF Core query is streamed directly into the HTTP response. The client reads slowly. As backpressure travels upstream, the database reader may stay open for much longer, holding a connection while the response drains.
+
+Memory looks better. Meanwhile, normal API requests can start waiting for database connections.
+
+That's why I'd load-test exports with slow clients as well as fast ones. Watch active connections, pool wait time, time to first record, total duration and cancellation behavior.
+
+NDJSON can be useful here: each completed line is an independent JSON value, so consumers can process records incrementally. A truncated final line still needs handling, and “I received some records” isn't proof that the export finished.
+
+Once response headers and data have been sent, you also can't turn a mid-stream failure into a normal JSON error response with a fresh status code. Define how the consumer detects completion or interruption.
+
+For a really large export, I'd consider bounded database pages written to a file in object storage, then serving that file independently of the query. That adds job management and storage, but it separates download speed from database connection lifetime.
+
+If you page, define stable ordering and consistency expectations. Data changing between pages can produce an export that isn't a single snapshot.
+
+IAsyncEnumerable is useful, but I'd trace buffering through the whole path: query execution, EF behavior, serializer, proxy and client. Any of those can change what “streaming” means in practice.
+
+For the JSON Lines format and .NET streaming examples, read the full article here. Then try the slow-client test against your own export:
+https://thecodeman.net/posts/streaming-json-in-dotnet-with-json-lines

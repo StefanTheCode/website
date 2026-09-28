@@ -178,7 +178,7 @@ const VerticalSlicesArchitecture = () => {
                   <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
                     <div className="tk-card crk-form-card p-4 p-md-5" style={card}>
                       <h5 className="text-white mb-3">Send me the <span className="text-yellow">FREE template</span> now</h5>
-                      <div dangerouslySetInnerHTML={{ __html: `<script async src="https://eomail4.com/form/138810fc-2805-11f1-987b-399d28f1f05e.js" data-form="138810fc-2805-11f1-987b-399d28f1f05e"></script>` }} />
+                      <div dangerouslySetInnerHTML={{ __html: `<script type="text/lazy" data-src="https://eomail4.com/form/138810fc-2805-11f1-987b-399d28f1f05e.js" data-form="138810fc-2805-11f1-987b-399d28f1f05e"></script>` }} />
                     </div>
                   </div>
                 </div>

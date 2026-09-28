@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 /* ============================================================
    Web reader (/read) — matches the "Design Patterns that Deliver"
@@ -8,14 +7,14 @@
 .rd-page{
   --bg:#140A2E; --raised:#1B1140; --card:#22184C; --deep:#0D0722;
   --amber:#FFB31B; --amber-bright:#FFC650;
-  --h:#F3EFFA; --body:#D4CDE6; --muted:#9C92B8; --faint:#6F6690;
+  --h:#F3EFFA; --body:#D4CDE6; --muted:#9C92B8; --faint:#958CB5; /* was #6F6690 - WCAG AA contrast */
   --bad:#E2607A; --good:#5FD0A0;
   --line:rgba(255,255,255,.09);
   --maxw:1180px; --radius:18px;
 
   position:relative;min-height:100vh;
   background:var(--bg);color:var(--body);
-  font-family:'Manrope',system-ui,sans-serif;line-height:1.65;
+  font-family:'Manrope', 'Manrope Fallback',system-ui,sans-serif;line-height:1.65;
   -webkit-font-smoothing:antialiased;
   /* overflow-x:hidden would promote overflow-y to 'auto', making .rd-page a
      scroll container and breaking position:sticky on the sidebar.
@@ -24,7 +23,7 @@
 }
 .rd-page *{box-sizing:border-box}
 .rd-page h1,.rd-page h2,.rd-page h3,.rd-page h4{
-  font-family:'Space Grotesk',sans-serif;color:var(--h);line-height:1.15;letter-spacing:-.02em;margin:0}
+  font-family:'Space Grotesk', 'Space Grotesk Fallback',sans-serif;color:var(--h);line-height:1.15;letter-spacing:-.02em;margin:0}
 .rd-page a{color:inherit;text-decoration:none}
 .rd-wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .rd-amber{color:var(--amber)}
@@ -39,13 +38,13 @@
 /* ---------- top bar ---------- */
 .rd-top{position:sticky;top:0;z-index:40;background:rgba(13,7,34,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .rd-top-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:18px}
-.rd-brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;color:var(--h);font-size:16px}
+.rd-brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:700;color:var(--h);font-size:16px}
 .rd-glyph{font-family:'JetBrains Mono';color:var(--amber);background:rgba(255,179,27,.1);border:1px solid rgba(255,179,27,.25);border-radius:8px;padding:3px 8px;font-size:14px}
 .rd-top-links{display:flex;gap:26px;font-size:14.5px;font-weight:500}
 .rd-top-links a{color:var(--muted);transition:color .15s}
 .rd-top-links a:hover{color:var(--h)}
 .rd-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--amber-bright),var(--amber));color:#2a1500 !important;
-  font-family:'Space Grotesk';font-weight:600;font-size:14.5px;border-radius:11px;padding:10px 18px;
+  font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-weight:600;font-size:14.5px;border-radius:11px;padding:10px 18px;
   box-shadow:0 8px 24px rgba(255,179,27,.25),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .15s}
 .rd-cta:hover{transform:translateY(-1px)}
 @media(max-width:720px){.rd-top-links{display:none}}
@@ -70,7 +69,7 @@
 .rd-book-card h2{font-size:24px;font-weight:700;margin-bottom:12px}
 .rd-book-card p{color:var(--muted);font-size:15.5px;margin:0 0 22px}
 .rd-book-go{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(180deg,var(--amber-bright),var(--amber));color:#2a1500;font-family:'Space Grotesk';
+  background:linear-gradient(180deg,var(--amber-bright),var(--amber));color:#2a1500;font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-weight:600;font-size:15px;border-radius:11px;padding:11px 20px;box-shadow:0 8px 24px rgba(255,179,27,.22)}
 
 /* ---------- book home / TOC ---------- */
@@ -85,7 +84,7 @@
 .rd-toc-item.locked{opacity:.8}
 .rd-toc-left{display:flex;align-items:baseline;gap:16px;min-width:0}
 .rd-toc-num{font-family:'JetBrains Mono';font-size:13px;color:var(--faint);min-width:26px}
-.rd-toc-title{font-family:'Space Grotesk';font-size:17px;font-weight:600;color:var(--h)}
+.rd-toc-title{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-size:17px;font-weight:600;color:var(--h)}
 .rd-toc-read{font-size:13px;color:var(--muted);margin-top:4px;font-family:'JetBrains Mono'}
 .rd-badge-free{font-family:'JetBrains Mono';font-size:12px;font-weight:500;color:var(--good);background:rgba(95,208,160,.1);border:1px solid rgba(95,208,160,.25);padding:5px 12px;border-radius:100px;flex-shrink:0}
 .rd-badge-lock{font-family:'JetBrains Mono';font-size:12px;font-weight:500;color:var(--amber);background:rgba(255,179,27,.08);border:1px solid rgba(255,179,27,.22);padding:5px 12px;border-radius:100px;flex-shrink:0}
@@ -144,7 +143,7 @@
 .rd-pagebtn{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;transition:border-color .15s,transform .15s}
 .rd-pagebtn:hover{border-color:rgba(255,179,27,.35);transform:translateY(-2px)}
 .rd-pagebtn .rd-dir{font-family:'JetBrains Mono';font-size:12px;color:var(--amber);text-transform:uppercase;letter-spacing:.1em}
-.rd-pagebtn .rd-pt{font-family:'Space Grotesk';font-size:15px;font-weight:600;color:var(--h);margin-top:6px}
+.rd-pagebtn .rd-pt{font-family:'Space Grotesk', 'Space Grotesk Fallback', sans-serif;font-size:15px;font-weight:600;color:var(--h);margin-top:6px}
 .rd-pagebtn.next{text-align:right}
 @media(max-width:600px){.rd-pager{flex-direction:column}}
 
@@ -169,7 +168,7 @@ body:has(.rd-page) footer{display:none !important}
   gap: 8px;
   background: linear-gradient(180deg, var(--amber-bright), var(--amber));
   color: #2a1500;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-weight: 700;
   font-size: 14.5px;
   border: none;
@@ -223,7 +222,7 @@ body:has(.rd-page) footer{display:none !important}
   display: flex;
   align-items: center;
   gap: 9px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-weight: 700;
   font-size: 16px;
   color: var(--h);
@@ -304,7 +303,7 @@ body:has(.rd-page) footer{display:none !important}
 }
 
 .rd-sidebar-booktitle {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: var(--faint);
@@ -376,7 +375,7 @@ body:has(.rd-page) footer{display:none !important}
 }
 
 .rd-sidebar-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--muted);
@@ -415,7 +414,7 @@ body:has(.rd-page) footer{display:none !important}
   display: block;
   background: linear-gradient(180deg, var(--amber-bright), var(--amber));
   color: #2a1500 !important;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-weight: 600;
   font-size: 13px;
   border-radius: 10px;
@@ -441,7 +440,7 @@ body:has(.rd-page) footer{display:none !important}
   align-items: flex-start;
   gap: 8px;
   font-size: 12.5px;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Manrope', 'Manrope Fallback', sans-serif;
   color: var(--faint);
   padding: 5px 8px 5px 0;
   line-height: 1.35;
@@ -476,7 +475,7 @@ body:has(.rd-page) footer{display:none !important}
   gap: 8px;
   background: rgba(255,179,27,.06);
   color: var(--amber) !important;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-weight: 600;
   font-size: 16px;
   border-radius: 11px;

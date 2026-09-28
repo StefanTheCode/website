@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Timeouts in ASP.NET Core: Stop Endpoints From Hanging Forever</title>
+</head>
+<body style="margin:0; padding:0; background:#f4f4f5;">
+<!-- Preview text (hidden) -->
+<div style="display: none; max-height: 0px; overflow: hidden;">
+One slow dependency and your requests hang forever. ASP.NET Core has a built-in timeout - here's how to use it.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div style="max-width:640px; margin:0 auto; padding:32px 24px; background:#ffffff; font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.65; color:#1a1a1a;">
+
+    <!-- ===== Hero image ===== -->
+    <a href="https://thecodeman.net/posts/request-timeouts-in-aspnet-core" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+        <img src="https://thecodeman.net/images/blog/request-timeouts-in-aspnet-core.webp" alt="Request Timeouts in ASP.NET Core" width="592" style="width:100%; max-width:100%; height:auto; display:block; margin:0 0 16px 0; border-radius:8px;">
+    </a>
+
+    <!-- ===== Read on / Read time ===== -->
+    <p style="text-align:center; font-size:15px; color:#52525b; margin:0 0 28px 0;">
+        Read on: <a href="https://thecodeman.net/posts/request-timeouts-in-aspnet-core" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">my website</a> &nbsp;/&nbsp; Read time: <strong style="color:#6366f1;">7 minutes</strong>
+    </p>
+
+    <!-- ===== Sponsor block ===== -->
+    <div style="border:1px solid #334155; border-radius:12px; padding:20px 24px; margin:0 0 28px 0; background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);">
+    <p style="margin:0 0 8px 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:rgba(255,255,255,0.7);">A word from this week's sponsor</p>
+    <p style="margin:0 0 12px 0; font-size:16px; line-height:1.6; color:#ffffff;">Datadog put together an <strong>AI Security Best Practices Guide</strong> - practical guidance for anyone building, deploying, or operating AI-powered applications. It covers how to secure the infrastructure behind AI apps, protect the software and data they rely on, and reduce risk across the entry points users interact with. If you're moving AI into production, security belongs in the architecture from day one.</p>
+    <p style="margin:0;"><a href="https://r2trck.com/the-code-man-datadog-11?utm_medium=newsletter&amp;utm_source=the-code-man-r&amp;utm_campaign=dg-content-toolkit-2026AIEraDeveloper-delivery-cipipe-ww-en-701VY00000kMeE2YAK&amp;utm_content=paid&amp;utm_term=1-1-2026" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:11px 22px; background:#6366f1; color:#ffffff; font-weight:700; font-size:15px; border-radius:8px; text-decoration:none;">Read the guide →</a></p>
+</div>
+
+    <!-- ===== Title ===== -->
+    <h1 style="font-size:28px; line-height:1.3; margin:0 0 8px 0; color:#0f172a;">Request Timeouts in ASP.NET Core: Stop Endpoints From Hanging Forever</h1>
+    <p style="font-size:17px; color:#52525b; margin:0 0 28px 0;">By default an ASP.NET Core request has no time limit. Here's how the request timeouts middleware puts one on an endpoint, and what actually happens when it fires.</p>
+
+    <!-- BODY START -->
+
+<!-- ===== The Problem A Request That Never Gives U ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The Problem: A Request That Never Gives Up</h2>
+<p style="margin:0 0 16px 0;">You have an endpoint that calls another service, or runs a report, or waits on a slow query. Most of the time it answers in 50 milliseconds. Then one day the thing it depends on gets slow, and the request just... waits.</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapGet(&quot;/report&quot;, async (ReportService service) =&gt;
+{
+    var data = await service.BuildAsync();
+    return Results.Ok(data);
+});</pre>
+<p style="margin:0 0 16px 0;">There&#x27;s no time limit here. If <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">BuildAsync</code> takes forty seconds, the request runs for forty seconds. If it never returns, the request never returns. The caller gave up long ago and moved on - but on your server the work keeps going, holding a thread pool thread, a database connection, and whatever memory it allocated along the way.</p>
+<p style="margin:0 0 16px 0;">That&#x27;s the part people miss. A slow dependency doesn&#x27;t just make one request slow. Each hanging request parks resources. A handful of them at once and the server has fewer connections and threads to serve everyone else, so requests that had nothing to do with the slow dependency start queuing too. One slow downstream call becomes a site-wide slowdown - the same resource-exhaustion story I traced in <a href="https://thecodeman.net/posts/what-breaks-first-at-10k-concurrent-connections-in-aspnet-core" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">what breaks first at 10k concurrent connections</a>.</p>
+<p style="margin:0 0 16px 0;">The fix is to put a ceiling on how long a request is allowed to run. ASP.NET Core has had a <a href="https://learn.microsoft.com/en-us/aspnet/core/performance/timeouts?view=aspnetcore-8.0" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">request timeouts middleware</a> for exactly this since .NET 8, and most codebases still don&#x27;t use it.</p>
+<p style="margin:0 0 16px 0;">Here&#x27;s the short version. ASP.NET Core&#x27;s request timeouts middleware, added in .NET 8, lets you cap how long a single request may run. You register it with <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">AddRequestTimeouts</code> and <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">UseRequestTimeouts</code>, then put a limit on an endpoint with <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">.WithRequestTimeout(TimeSpan.FromSeconds(5))</code> or the <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">[RequestTimeout]</code> attribute. When the limit is hit, the request&#x27;s <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">CancellationToken</code> is cancelled; if your code honors that token and the cancellation propagates, the caller gets a 504. The rest of this post is how each piece works and where it bites.</p>
+
+<!-- ===== What Timeout Actually Means Here ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">What &quot;Timeout&quot; Actually Means Here</h2>
+<p style="margin:0 0 16px 0;">Before the code, one thing worth being clear about, because it trips people up.</p>
+<p style="margin:0 0 16px 0;">The request timeouts middleware does not kill your request. It doesn&#x27;t abort the connection or forcibly stop your code mid-execution. What it does is cancel a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">CancellationToken</code> - the same <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpContext.RequestAborted</code> token you already get - once the time is up. Your code only stops if it actually watches that token. (If cancellation tokens are fuzzy, I covered the <a href="https://thecodeman.net/posts/cancellation-tokens-in-aspnet-core-mistakes" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">common cancellation token mistakes</a> separately.)</p>
+<p style="margin:0 0 16px 0;">So the middleware and your code cooperate. The middleware says &quot;time&#x27;s up&quot; by cancelling the token. Your code honors that by passing the token into the async calls it makes, so the cancelled token throws and the request unwinds. If you never pass the token anywhere, nothing throws: your forty-second call runs to completion and returns its normal response, and the timeout accomplishes nothing. The middleware only produces a timeout response when that cancellation actually propagates back out of your handler. The timeout is a signal, not a kill switch - it works only if your code listens for it.</p>
+<p style="margin:0 0 16px 0;">That&#x27;s the whole model. Keep it in mind while reading the rest.</p>
+
+<!-- ===== Enabling Request Timeouts ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Enabling Request Timeouts</h2>
+<p style="margin:0 0 16px 0;">Two lines to register it, same shape as any other ASP.NET Core middleware:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRequestTimeouts();
+
+var app = builder.Build();
+
+app.UseRequestTimeouts();</pre>
+<p style="margin:0 0 16px 0;">One ordering rule: if you use routing, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">UseRequestTimeouts</code> has to come after <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">UseRouting</code>. In a minimal API where routing is implicit that&#x27;s already handled; in an app with an explicit pipeline, put it after.</p>
+<p style="margin:0 0 16px 0;">Adding the middleware doesn&#x27;t time anything out on its own. It does nothing until you tell an endpoint what its limit is. Nothing has a timeout by default - you opt in per endpoint or set a default policy.</p>
+
+<!-- ===== Setting a Timeout on an Endpoint ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Setting a Timeout on an Endpoint</h2>
+<p style="margin:0 0 16px 0;">The simplest way is <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">WithRequestTimeout</code> on the endpoint:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapGet(&quot;/report&quot;, async (ReportService service, CancellationToken ct) =&gt;
+{
+    var data = await service.BuildAsync(ct);
+    return Results.Ok(data);
+})
+.WithRequestTimeout(TimeSpan.FromSeconds(5));</pre>
+<p style="margin:0 0 16px 0;">Note the <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">CancellationToken ct</code> parameter. ASP.NET Core injects the request&#x27;s token there, and the timeout middleware is what cancels it. <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">BuildAsync(ct)</code> has to pass it down - to the <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpClient</code> call, the EF Core query, whatever it does. That&#x27;s the cooperation part. When five seconds pass, the token is cancelled, the in-flight async call throws <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OperationCanceledException</code>, and the request unwinds instead of hanging.</p>
+<p style="margin:0 0 16px 0;">For controllers, the same thing is an attribute on the action:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">// inside your controller
+[HttpGet(&quot;report&quot;)]
+[RequestTimeout(milliseconds: 5000)]
+public async Task&lt;IActionResult&gt; GetReport(CancellationToken ct)
+{
+    var data = await _service.BuildAsync(ct);
+    return Ok(data);
+}</pre>
+<p style="margin:0 0 16px 0;">Put <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">[RequestTimeout]</code> on the class instead and it covers every action in that controller.</p>
+
+<!-- ===== What the Caller Gets Back ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">What the Caller Gets Back</h2>
+<p style="margin:0 0 16px 0;">When the timeout fires and the cancellation propagates out of your handler (you honored the token but didn&#x27;t catch it yourself), ASP.NET Core returns <strong>504 Gateway Timeout</strong>. That&#x27;s the default, and for most APIs it&#x27;s the right answer - the caller gets a clear &quot;this took too long&quot; instead of a socket that hangs until their own client gives up. One limit: if your handler has already started writing the response when the timeout fires, the status is already on the wire - the middleware can&#x27;t turn it into a 504 anymore.</p>
+<p style="margin:0 0 16px 0;">If you&#x27;d rather return something else, that&#x27;s a policy. A <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">RequestTimeoutPolicy</code> lets you set the status code, or write the response body yourself:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">builder.Services.AddRequestTimeouts(options =&gt;
+{
+    options.AddPolicy(&quot;slow-reports&quot;, new RequestTimeoutPolicy
+    {
+        Timeout = TimeSpan.FromSeconds(5),
+        TimeoutStatusCode = StatusCodes.Status503ServiceUnavailable,
+        WriteTimeoutResponse = async context =&gt;
+        {
+            context.Response.ContentType = &quot;application/json&quot;;
+            await context.Response.WriteAsync(
+                &quot;&quot;&quot;{&quot;error&quot;:&quot;Report timed out. Try a smaller date range.&quot;}&quot;&quot;&quot;);
+        }
+    });
+});</pre>
+<p style="margin:0 0 16px 0;">Then point the endpoint at the named policy instead of a raw <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">TimeSpan</code>:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapGet(&quot;/report&quot;, /* ... */)
+   .WithRequestTimeout(&quot;slow-reports&quot;);</pre>
+<p style="margin:0 0 16px 0;">Now a timeout on that endpoint returns 503 with a JSON message the client can actually show a user.</p>
+
+<!-- ===== One Default for the Whole App ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">One Default for the Whole App</h2>
+<p style="margin:0 0 16px 0;">If you want a blanket ceiling - &quot;no request should ever run longer than 30 seconds&quot; - set a default policy and every endpoint inherits it:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">builder.Services.AddRequestTimeouts(options =&gt;
+{
+    options.DefaultPolicy = new RequestTimeoutPolicy
+    {
+        Timeout = TimeSpan.FromSeconds(30)
+    };
+    options.AddPolicy(&quot;slow-reports&quot;, TimeSpan.FromSeconds(5));
+});</pre>
+<p style="margin:0 0 16px 0;">The default applies everywhere. Any endpoint with its own <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">WithRequestTimeout</code> overrides it. And an endpoint that genuinely needs to run long - a file upload, a streaming response, a long poll - opts out explicitly:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapPost(&quot;/upload&quot;, /* ... */)
+   .DisableRequestTimeout();</pre>
+<p style="margin:0 0 16px 0;"><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">[DisableRequestTimeout]</code> is the attribute form for controllers. This is the pattern I reach for on real apps: a sane default so nothing can hang forever, tighter limits on the endpoints you know should be fast, and an explicit opt-out on the few that are supposed to be slow.</p>
+<p style="margin:0 0 16px 0;">Here&#x27;s how a request flows through it:</p>
+<img src="https://thecodeman.net/images/blog/posts/request-timeouts-in-aspnet-core/request-timeout-flow.webp" alt="How a request flows through the ASP.NET Core request timeouts middleware" width="592" style="max-width:100%; height:auto; display:block; margin:0 0 20px 0; border-radius:8px;">
+<p style="margin:0 0 16px 0;">The two &quot;No&quot; branches are the ones that bite. No timeout means no limit. And a handler that ignores the token still finishes its work even after the timeout - so the token has to be threaded through for the timeout to mean anything.</p>
+
+<!-- ===== Handling the Timeout Inside the Endpoint ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Handling the Timeout Inside the Endpoint</h2>
+<p style="margin:0 0 16px 0;">Sometimes you don&#x27;t want the default 504 - you want to react to the cancellation yourself, maybe to return a partial result or a friendlier message. Catch the cancellation:</p>
+<pre style="margin:0 0 20px 0; padding:14px 16px; background:#f4f4f5; border:1px solid #e4e4e7; border-radius:6px; font-family:Consolas,Monaco,'Courier New',monospace; font-size:13px; line-height:1.5; white-space:pre; overflow-x:auto;">app.MapGet(&quot;/report&quot;, async (ReportService service, CancellationToken ct) =&gt;
+{
+    try
+    {
+        var data = await service.BuildAsync(ct);
+        return Results.Ok(data);
+    }
+    catch (OperationCanceledException)
+    {
+        return Results.Json(
+            new { error = &quot;Report timed out.&quot; },
+            statusCode: StatusCodes.Status503ServiceUnavailable);
+    }
+})
+.WithRequestTimeout(TimeSpan.FromSeconds(5));</pre>
+<p style="margin:0 0 16px 0;">One caveat: <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OperationCanceledException</code> fires both when the timeout hits and when the client disconnects (that also cancels <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">RequestAborted</code>). If you need to tell those apart, check the timeout feature - <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">context.Features.Get&lt;IHttpRequestTimeoutFeature&gt;()</code> - but for most endpoints treating &quot;cancelled&quot; as &quot;stop and return&quot; is enough.</p>
+
+<!-- ===== The Caveat That Wastes an Afternoon ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">The Caveat That Wastes an Afternoon</h2>
+<p style="margin:0 0 16px 0;">You wire all this up, set a two-second timeout, hit the endpoint with a ten-second delay, and... nothing times out. The request runs the full ten seconds.</p>
+<p style="margin:0 0 16px 0;">The request timeouts middleware does not fire when a debugger is attached. This is deliberate - it&#x27;s the same behavior as Kestrel&#x27;s timeouts, so you don&#x27;t get killed mid-step while debugging. But it means you cannot test timeouts by pressing F5 in Visual Studio. Run the app without the debugger (<code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">dotnet run</code>, or Ctrl+F5) and the timeout works as expected. I&#x27;ve watched more than one person conclude the feature is broken when it was just the debugger.</p>
+
+<!-- ===== This Isnt the Only Timeout You Have ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">This Isn&#x27;t the Only Timeout You Have</h2>
+<p style="margin:0 0 16px 0;">Request timeouts sit at the middleware layer, and they&#x27;re the right tool for &quot;cap how long this endpoint runs.&quot; But they&#x27;re not the only clock in the system, and they don&#x27;t replace the others:</p>
+<ul style="margin:0 0 16px 0; padding-left:22px;">
+    <li style="margin-bottom:8px;"><strong><code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpClient.Timeout</code></strong> caps an outgoing call your app makes to another service. Set it on the client - don&#x27;t rely on the request timeout to bound a downstream call.</li>
+    <li style="margin-bottom:8px;"><strong>EF Core / ADO.NET command timeout</strong> caps a single database command. A request timeout will cancel the token, but a well-set command timeout gives the database a chance to stop its own work too.</li>
+    <li style="margin-bottom:8px;"><strong>Kestrel timeouts</strong> (keep-alive, headers) protect the server at the connection level and are unrelated to how long your handler runs.</li>
+</ul>
+<p style="margin:0 0 16px 0;">Think of the request timeout as the outer bound on the whole request, and the others as inner bounds on the specific things it does. You usually want more than one. And if the goal is keeping one caller from overwhelming the server, timeouts pair well with <a href="https://thecodeman.net/posts/rate-limiting-in-aspnet-core-built-in-ratelimiter" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">rate limiting</a> - a different guardrail for the same problem.</p>
+
+<!-- ===== FAQ ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">FAQ</h2>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">What status code does an ASP.NET Core request timeout return?</h3>
+<p style="margin:0 0 16px 0;">By default, 504 Gateway Timeout, returned when the timeout fires and the endpoint doesn&#x27;t handle the cancellation itself. You can change it with <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">TimeoutStatusCode</code> on a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">RequestTimeoutPolicy</code> (503 is a common choice), or write a fully custom response with <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">WriteTimeoutResponse</code>.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">Does the request timeout stop my code from running?</h3>
+<p style="margin:0 0 16px 0;">No. It cancels the request&#x27;s <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">CancellationToken</code> (<code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">HttpContext.RequestAborted</code>). Your code stops only if it passes that token into its async calls and lets the resulting <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">OperationCanceledException</code> propagate. If you never use the token, the work runs to completion and the middleware only changes the response afterward.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">Why isn&#x27;t my request timeout firing?</h3>
+<p style="margin:0 0 16px 0;">The most common reason is a debugger being attached - the middleware is disabled in that case by design, same as Kestrel. Run without the debugger. The other reason is that adding the middleware isn&#x27;t enough on its own: an endpoint has no timeout until you set one with <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">WithRequestTimeout</code>, <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">[RequestTimeout]</code>, or a default policy.</p>
+<h3 style="font-size:18px; margin:24px 0 10px 0; color:#0f172a;">Which .NET version do I need?</h3>
+<p style="margin:0 0 16px 0;">The request timeouts middleware ships with ASP.NET Core 8.0 and is available in every version since. Before that you had to build request-level timeouts yourself with a <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">CancellationTokenSource</code> linked to <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">RequestAborted</code>.</p>
+
+<!-- ===== Wrapping Up ===== -->
+<h2 style="font-size:22px; margin:32px 0 12px 0; color:#0f172a;">Wrapping Up</h2>
+<p style="margin:0 0 16px 0;">The default behavior of an ASP.NET Core endpoint is to wait as long as it takes, and under a slow dependency that quietly turns into parked threads, held connections, and a slowdown that spreads past the one endpoint that caused it.</p>
+<p style="margin:0 0 16px 0;">The request timeouts middleware fixes that with very little code: register it, set a sensible default policy so nothing can hang forever, tighten the limit on endpoints you know should be fast, and opt the genuinely long-running ones out. Just remember the two things that make it real - thread the <code style="background:#f4f4f5; padding:1px 5px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:14px;">CancellationToken</code> through your calls so the timeout actually stops the work, and test it without the debugger attached.</p>
+<p style="margin:0 0 16px 0;">Pick one endpoint in your app that talks to something you don&#x27;t control, and put a timeout on it today. It&#x27;s five minutes of work and it&#x27;s the difference between one slow dependency and a slow site.</p>
+    <!-- BODY END -->
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:28px 0;">
+    <p style="margin:0 0 16px 0;">That's all from me today.</p>
+    <p style="margin:0 0 24px 0;">P.S. Follow me on <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline;">YouTube</a>.</p>
+
+    <div style="text-align:center; margin:0 0 32px 0;">
+        <a href="https://thecodeman.net" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 34px; background:#000000; color:#ffd43b; font-weight:700; font-size:16px; border-radius:28px; text-decoration:none;">Check the website</a>
+    </div>
+
+    <p style="margin:0 0 12px 0;"><a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">AI for .NET Developers Community:</a> The place where .NET developers learn to actually use AI in real projects - building agents, wiring up MCP, and shipping AI features in C# without the hype.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join the community</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="margin:0 0 12px 0;"><a href="https://www.skool.com/thecodeman-community-2911" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">#1 .NET Community on Skool Platform:</a> 🎯 Where .NET developers, architects, and enthusiasts come together to grow their skills, solve challenges, and build amazing solutions - faster than ever before!</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://www.skool.com/thecodeman-community-2911" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 1500+ readers here FOR FREE</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="margin:0 0 12px 0;"><a href="https://thecodeman.net/design-patterns-that-deliver-ebook" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Design Patterns that Deliver:</a> This isn't just another design patterns book. Dive into real-world examples and practical solutions to real problems in real applications.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://thecodeman.net/design-patterns-that-deliver-ebook" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 800+ readers here</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="margin:0 0 12px 0;"><a href="https://thecodeman.net/design-patterns-simplified" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Design Patterns Simplified:</a> In this concise and affordable ebook, I've distilled the essence of design patterns into an easy-to-digest format.</p>
+    <p style="text-align:center; margin:0 0 8px 0;"><a href="https://thecodeman.net/design-patterns-simplified" target="_blank" rel="noopener noreferrer" style="color:#6366f1; text-decoration:underline; font-weight:700;">Join 1550+ readers here</a>.</p>
+
+    <hr style="border:none; border-top:1px solid #e4e4e7; margin:24px 0;">
+
+    <p style="text-align:center; margin:0 0 20px 0;"><strong>Promote yourself or your business to 22,200+ subscribers by <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="color:#dc2626; text-decoration:underline;">sponsoring this newsletter</a>.</strong></p>
+    <div style="text-align:center; margin:0 0 8px 0;">
+        <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 34px; background:#000000; color:#ffd43b; font-weight:700; font-size:16px; border-radius:28px; text-decoration:none;">Promote yourself</a>
+    </div>
+
+    <div style="margin-top:36px; padding-top:20px; border-top:1px solid #e4e4e7; font-size:13px; line-height:1.6; color:#94a3b8; text-align:center;">
+        <p style="margin:0 0 10px 0;">{{SenderInfo}}</p>
+        <p style="margin:0 0 6px 0;"><a href="{{UnsubscribeURL}}" style="color:#94a3b8; text-decoration:underline;">Unsubscribe</a></p>
+        <p style="margin:0;"><a href="{{RewardsURL}}" style="color:#94a3b8; text-decoration:underline;">Powered by EmailOctopus</a></p>
+    </div>
+</div>
+</body>
+</html>

@@ -41,7 +41,7 @@ export default function PatternComparisonPage() {
   };
 
   return (
-    <main className={styles.wrap}>
+    <div className={styles.wrap}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <div className={styles.head}>
         <span className={styles.badge}>Free AI tool</span>
@@ -54,6 +54,6 @@ export default function PatternComparisonPage() {
         </p>
       </div>
       <PatternComparison />
-    </main>
+    </div>
   );
 }

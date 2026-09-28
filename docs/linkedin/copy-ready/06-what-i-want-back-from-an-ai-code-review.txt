@@ -1,0 +1,24 @@
+“This endpoint may have an authorization issue.”
+
+Okay. Show me the request that proves it.
+
+That's the standard I'd use when asking an AI agent to review a .NET API. A long list of confident findings isn't particularly useful if I have to investigate every item from scratch.
+
+For each finding, I want the file and line, the route through the application, the conditions required, and a way to reproduce the behavior. If the agent can't verify it, it should say what evidence is missing.
+
+Take a missing [Authorize] attribute. That might be a bug. It might also be an endpoint covered by a fallback policy or authorization applied to its route group. You have to follow the configuration before deciding.
+
+Same with EF Core. A navigation property inside a loop doesn't prove N+1 queries. Is lazy loading enabled? Was that relationship already loaded? What SQL runs when the endpoint is called?
+
+Here's a prompt I'd actually use:
+
+“Review authorization and EF query behavior. Trace configuration before reporting a bug. For each finding, include evidence, a reproduction or verification step, and the smallest proposed fix. Separate confirmed behavior from assumptions. Don't edit files yet.”
+
+Then I'd pick one finding, verify it, and make a focused change. For a performance claim, keep the dataset and test conditions the same before and after.
+
+AI can make repository exploration much faster. I still want a clear chain from “this looks suspicious” to “this request demonstrates the problem.”
+
+That's what makes a review useful to the person who has to merge the fix.
+
+I wrote up the security-review agent and EF Core review skill behind this workflow. You can explore both here:
+https://thecodeman.net/posts/ai-agents-for-dotnet-security-and-ef-core

@@ -58,7 +58,7 @@ In the search, type "gRPC" and create the **"ASP.NET Core gRPC Service"** projec
 ![gRPC Creating Server Project](/images/blog/posts/unlock-the-power-of-high-performance-web-applications-with-grpc/grpc-creating-server-project.png)
 Now you have a project that can be run immediately.
 When we access the address through the browser, we will receive the following message:
-"Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: [here](https://go.microsoft.com/fwlink/?linkid=2086909)" - because it is not an HTTP server, but a gRPC server for which you need a special client.
+"Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: [Create a gRPC client (Microsoft docs)](https://go.microsoft.com/fwlink/?linkid=2086909)" - because it is not an HTTP server, but a gRPC server for which you need a special client.
 The structure of the project looks like this:
 ![gRPC Server Project Structure](/images/blog/posts/unlock-the-power-of-high-performance-web-applications-with-grpc/grpc-server-project-structure.png)
 The most important file is ** greet.proto** in the Protos folder. gRPC proto files are the way we define the contract between the server and the client. Let’s look at different pieces of this file:

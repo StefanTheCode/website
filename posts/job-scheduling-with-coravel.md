@@ -24,7 +24,7 @@ Thank you for the support 🙌  
 P.S. I’m currently building a new course, [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226), focused on creating a predictable, consistent, and self-maintaining .NET codebase using .editorconfig, analyzers, Visual Studio code cleanup, and CI enforcement.
 
 The course is available for pre-sale until the official release, with early-bird pricing for early adopters.
-You can find all the details [here](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226).
+You can find all the details [on the Pragmatic .NET Code Rules course page](https://thecodeman.net/pragmatic-dotnet-code-rules?utm_source=website&utm_campaign=020226).
 
 ## Background
 Coravel is a lightweight open-source library that adds background job scheduling, queuing, caching, mailing, and event broadcasting to your .NET apps - all without requiring a separate infrastructure.

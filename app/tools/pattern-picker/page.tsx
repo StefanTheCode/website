@@ -41,7 +41,7 @@ export default function PatternPickerPage() {
   };
 
   return (
-    <main className={styles.wrap}>
+    <div className={styles.wrap}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
@@ -58,6 +58,6 @@ export default function PatternPickerPage() {
         </p>
       </div>
       <PatternPicker />
-    </main>
+    </div>
   );
 }

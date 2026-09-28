@@ -81,7 +81,7 @@ export default function ToolsHub() {
   };
 
   return (
-    <main className={styles.wrap}>
+    <div className={styles.wrap}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
@@ -125,6 +125,6 @@ export default function ToolsHub() {
           Get Design Patterns That Deliver →
         </Link>
       </p>
-    </main>
+    </div>
   );
 }

@@ -233,7 +233,7 @@ export default function CodePlayground() {
             borderRadius: 10,
             padding: "9px 12px",
             fontSize: 14,
-            fontFamily: "'Manrope', system-ui, sans-serif",
+            fontFamily: "'Manrope', 'Manrope Fallback', system-ui, sans-serif",
           }}
         >
           {EXAMPLES.map((e) => (

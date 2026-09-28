@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Markdown from "markdown-to-jsx";
+import MarkdownParagraph from "@/components/MarkdownParagraph";
 import {
   getAllBooks,
   getBook,
@@ -121,7 +122,7 @@ export default async function ChapterPage(
             sections={sections}
           />
 
-          <main className="rd-course-main">
+          <div className="rd-course-main">
             <div className="rd-wrap rd-section">
               <article className="rd-reader">
                 <div className="rd-chap-head">
@@ -141,6 +142,7 @@ export default async function ChapterPage(
                     <Markdown
                       options={{
                         overrides: {
+                          p: { component: MarkdownParagraph },
                           pre: {
                             component: (props: any) => {
                               const child = Array.isArray(props.children)
@@ -227,7 +229,7 @@ export default async function ChapterPage(
                 </nav>
               </article>
             </div>
-          </main>
+          </div>
         </div>
         <AskAIDrawer chapter={chapter.slug} />
       </div>

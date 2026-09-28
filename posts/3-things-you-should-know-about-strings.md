@@ -78,7 +78,7 @@ string result = builder.ToString(); // Converts to string once at the end
 ```
 
 And if we check the performances:
-![String Builder BenchmarkDotNet](/images/blog/posts/3-things-you-should-know-about-strings/string-builder-[benchmarkdotnet](https://thecodeman.net/posts/benchmarking-in-dotnet-step-by-step).png)
+![String Builder BenchmarkDotNet](/images/blog/posts/3-things-you-should-know-about-strings/string-builder-benchmarkdotnet.png)
 
 StringBuilder is essential for optimizing memory usage and improving performance in applications that perform extensive string manipulation.
 

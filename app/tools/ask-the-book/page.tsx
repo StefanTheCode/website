@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AskTheBookPage() {
   return (
-    <main className={styles.wrap}>
+    <div className={styles.wrap}>
       <div className={styles.head}>
         <span className={styles.badge}>AI tutor · book owners</span>
         <h1>
@@ -25,6 +25,6 @@ export default function AskTheBookPage() {
         </p>
       </div>
       <AskTheBook />
-    </main>
+    </div>
   );
 }

@@ -1,0 +1,22 @@
+The biggest object in a memory snapshot isn't necessarily the object causing your leak.
+
+It may just be the expensive thing a tiny delegate is keeping alive.
+
+A static event is a good example. A short-lived object subscribes with an instance method. The event keeps the delegate. The delegate keeps its target. That target keeps the rest of its object graph.
+
+From the GC's point of view, everything is reachable. Collecting more often won't fix the ownership mistake.
+
+Before chasing it, I'd separate process memory from the managed heap. A rising working set can involve native allocations, mapped memory or runtime behavior. That graph alone doesn't prove a managed leak.
+
+For a suspected managed leak, compare retained objects under similar load and at comparable collection points. Then follow the root path for a representative instance of a type that keeps accumulating.
+
+dotnet-counters helps establish the trend. Heap snapshots help compare types and retained graphs. When using dotnet-dump, dumpheap and gcroot help investigate what's retaining an object.
+
+If the path leads back to an event subscription, unsubscription needs an owner. Adding IDisposable is only half the fix; something must actually call Dispose. With lambdas, keep the delegate instance if you'll need to remove that subscription later.
+
+Then rerun the same workload and look at retained memory after collection. “Memory dropped once” isn't much evidence. You want the baseline to stop climbing across repeated cycles.
+
+One operational detail: heap capture can pause the process and need extra memory. Plan that before collecting from a container already close to its limit.
+
+If you like working through .NET problems this way, join my free newsletter. I'll send the next practical tip to your inbox:
+https://thecodeman.net/

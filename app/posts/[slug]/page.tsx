@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import Markdown from "markdown-to-jsx";
+import MarkdownParagraph from "@/components/MarkdownParagraph";
 import matter from "gray-matter";
 import getPostMetadata from "../../../components/getPostMetadata";
 import styles from './page.module.css';
@@ -19,6 +20,7 @@ import ShareButtons from "@/components/ShareButtons";
 import PatternTools from "@/components/PatternTools";
 import PremiumChapterBanner from "@/components/PremiumChapterBanner";
 import TableOfContents from "@/components/TableOfContents";
+import { slugify as mdSlugify } from "markdown-to-jsx";
 import RelatedPosts from "@/components/RelatedPosts";
 import PostNavigation from "@/components/PostNavigation";
 import HeadingAnchors from "@/components/HeadingAnchors";
@@ -298,13 +300,14 @@ export default async function PostPage(
               {aiPost && <p className="text-white">Part of the <Link href={AI_COMMUNITY_PATH} className="text-yellow">AI for .NET Developers</Link> learning library: practical C# workflows, MCP and AI applications.</p>}
 
               {/* Table of Contents */}
-              <TableOfContents />
+              <TableOfContents initialHeadings={getTocHeadings(normalizeHeadings(post.content), faq)} />
 
               {post.content ? (
                 <div className="post-body">
                 <Markdown
                   options={{
                     overrides: {
+                      p: { component: MarkdownParagraph },
                       pre: {
                         component: (props: any) => {
                           const child = Array.isArray(props.children) ? props.children[0] : props.children;
@@ -318,7 +321,7 @@ export default async function PostPage(
                     },
                   }}
                 >
-                  {post.content}
+                  {normalizeHeadings(post.content)}
                 </Markdown>
                 </div>
               ) : (
@@ -405,4 +408,49 @@ export default async function PostPage(
       </section>
     </>
   );
+}
+
+/** Server-side TOC entries (## / ### headings + FAQ) so the TOC is in the static HTML. */
+function getTocHeadings(markdown: string, faq: { q: string }[]) {
+  const items: { id: string; text: string; level: number }[] = [];
+  let inFence = false;
+  for (const line of (markdown || "").split(/\r?\n/)) {
+    if (/^\s*(```|~~~)/.test(line)) { inFence = !inFence; continue; }
+    if (inFence) continue;
+    const m = /^(#{2,3})\s+(.+?)\s*#*\s*$/.exec(line);
+    if (!m) continue;
+    const raw = m[2];
+    const text = raw
+      .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/<[^>]+>/g, "")
+      .replace(/(\*\*|__|\*|_|`)/g, "")
+      .trim();
+    if (text) items.push({ id: mdSlugify(raw), text, level: m[1].length });
+  }
+  if (faq.length > 0) {
+    const s = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    items.push({ id: s("Frequently asked questions"), text: "Frequently asked questions", level: 2 });
+    faq.forEach((f) => items.push({ id: s(f.q), text: f.q, level: 3 }));
+  }
+  return items;
+}
+
+/**
+ * markdown-to-jsx only treats "## Heading" as a heading when a blank line precedes it.
+ * Several older posts have headings directly under a paragraph, which rendered as literal
+ * "## ..." text. Insert the missing blank line (outside code fences).
+ */
+function normalizeHeadings(markdown: string) {
+  if (!markdown) return markdown;
+  const out: string[] = [];
+  let inFence = false;
+  for (const line of markdown.split(/\r?\n/)) {
+    if (/^\s*(```|~~~)/.test(line)) inFence = !inFence;
+    if (!inFence && /^#{1,6}\s+\S/.test(line) && out.length > 0 && out[out.length - 1].trim() !== "") {
+      out.push("");
+    }
+    out.push(line);
+  }
+  return out.join("\n");
 }

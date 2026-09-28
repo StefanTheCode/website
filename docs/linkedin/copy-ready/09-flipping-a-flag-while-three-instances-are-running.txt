@@ -1,0 +1,22 @@
+Try this feature-flag test with more than one API instance:
+
+Turn the flag off. Keep sending requests. Record which instance handled each request and which flag value it used.
+
+You may see both behaviors for a while.
+
+A central configuration store gives your instances a shared source. They can still refresh their local caches at different times. With request-driven refresh, an idle instance may not even check for a change until traffic reaches it.
+
+That's worth knowing if the flag is supposed to stop a problematic integration during an incident.
+
+I'd define the expected propagation delay and test it. I'd also decide what happens if the configuration store is unavailable: keep the last known value, use a conservative default, or reject that operation? The right answer depends on the feature.
+
+There's another easy trap with percentage rollouts. If a customer's experience needs to stay consistent, use a stable targeting decision based on a trusted identity. A fresh random decision on every request can make a checkout behave differently between steps.
+
+And decide whether the flag should stay fixed for the duration of a request or workflow. Re-evaluating it halfway through an operation can mix two implementations in one execution.
+
+Local appsettings.json can support reloads in suitable setups, so “JSON always requires a restart” is too broad. Coordinating a fleet is the part that needs more thought.
+
+Finally, give the flag an owner and a removal condition. Shipping the rollout is a good time to create the cleanup task, while everyone still remembers why both branches exist.
+
+If you're setting this up in .NET, my feature-flags article walks through Azure App Configuration. Start with the setup, then test propagation across your instances:
+https://thecodeman.net/posts/feature-flags-in-dotnet-without-redeploying

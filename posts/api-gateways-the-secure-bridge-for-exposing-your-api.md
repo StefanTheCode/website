@@ -95,7 +95,7 @@ We select Rate Limiting.
 ![Zuplo Rate Limiting](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-rate-limiting.webp)
 This opens the JSON configuration where you can define your Rate Limiting Policy in detail.
 ![Zuplo Rate Limiting Policy](/images/blog/posts/api-gateways-the-secure-bridge-for-exposing-your-api/zuplo-rate-limiting-policy.webp)
-Zuplo’s rate-limiting solution is highly flexible, and precise in globally distributed systems. Additionally, the platform automatically surfaces analytics on rate-limited users to you. For more info check out this [link](https://zuplo.com/docs/articles/step-3-add-rate-limiting?utm_source=linkedin&utm_medium=link&utm_campaign=stefan-gateway).
+Zuplo’s rate-limiting solution is highly flexible, and precise in globally distributed systems. Additionally, the platform automatically surfaces analytics on rate-limited users to you. For more info check out [Zuplo's rate limiting docs](https://zuplo.com/docs/articles/step-3-add-rate-limiting?utm_source=linkedin&utm_medium=link&utm_campaign=stefan-gateway).
 
 ## Benefits of Using API Gateways
 

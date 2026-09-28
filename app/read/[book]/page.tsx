@@ -55,7 +55,7 @@ export default async function BookHome(
         </div>
       </header>
 
-      <main className="rd-wrap rd-section">
+      <div className="rd-wrap rd-section">
         <div className="rd-crumbs">
           <Link href="/read">Library</Link> <span>/</span> {book.title}
         </div>
@@ -101,7 +101,7 @@ export default async function BookHome(
             );
           })}
         </ol>
-      </main>
+      </div>
     </div>
   );
 }

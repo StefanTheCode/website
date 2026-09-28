@@ -1,0 +1,22 @@
+An API can run out of useful capacity while CPU still looks comfortable.
+
+Here's a small calculation that helps explain why.
+
+At a stable 200 requests per second and an average request duration of 100 ms, you'd expect roughly 20 requests in flight. If average duration rises to 2 seconds while arrivals stay at 200 per second, that becomes roughly 400.
+
+Same arrival rate. Much more work sitting inside the system. This is an illustration of Little's Law using averages, not a benchmark or a prediction of your API's limit.
+
+Those requests may be waiting for database connections, downstream HTTP calls or available workers. They don't have to consume much CPU while they wait.
+
+I'd start a capacity test with a concrete target for latency and errors, then increase offered load while tracking completed throughput, tail latency, pool waits and queue age.
+
+Be careful with the load generator. In a closed-loop test, virtual users wait for a response before continuing. As the service slows, they can send fewer requests, which changes the pressure you're applying.
+
+An arrival-rate scenario in k6 can keep attempting the intended arrival rate independently of response time, provided the generator has enough capacity. Watch dropped iterations as well; otherwise you can mistake the generator's limit for the API's behavior.
+
+Then deliberately slow a dependency and test recovery. Does the queue drain after traffic falls? Do retries keep the dependency overloaded? Can healthy endpoints still get resources?
+
+The useful result is a measured operating range for a specified workload, deployment and latency target. Keep those conditions beside the number, so the next person knows when it needs to be measured again.
+
+If this is the kind of .NET work you're getting into, join my free newsletter for more practical notes on performance and architecture:
+https://thecodeman.net/

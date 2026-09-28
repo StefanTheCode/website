@@ -100,7 +100,7 @@ export default async function ShikiCode({ className, code }: Props) {
               <span className="tcm-code__line" key={i}>
                 {line.some((t) => t.content.length > 0) ? (
                   line.map((t, j) => (
-                    <span key={j} style={{ color: t.color }}>
+                    <span key={j} style={{ color: accessibleColor(t.color) }}>
                       {t.content}
                     </span>
                   ))
@@ -114,4 +114,17 @@ export default async function ShikiCode({ className, code }: Props) {
       </pre>
     </CodeFrame>
   );
+}
+
+// dark-plus colors that fall below WCAG AA (4.5:1) on the #212529 code background,
+// mapped to slightly lighter variants of the same hue.
+const LOW_CONTRAST: Record<string, string> = {
+  "#F44747": "#FF7B7B",
+  "#D16969": "#E08585",
+  "#808080": "#9A9A9A",
+  "#646695": "#8A8CC0",
+};
+function accessibleColor(color?: string) {
+  if (!color) return color;
+  return LOW_CONTRAST[color.toUpperCase()] ?? color;
 }

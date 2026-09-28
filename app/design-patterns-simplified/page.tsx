@@ -555,10 +555,7 @@ const Ebook = () => {
               data-lazyload="false"
               style={{ display: 'block', width: '100%' }}
             ></div>
-            <Script
-              src="https://widget.senja.io/widget/06079a0b-d21a-43dd-9387-3cfdf6b63fd0/platform.js"
-              strategy="afterInteractive"
-            />
+            <div dangerouslySetInnerHTML={{ __html: '<script type="text/lazy" data-src="https://widget.senja.io/widget/06079a0b-d21a-43dd-9387-3cfdf6b63fd0/platform.js"></script>' }} />
           </div>
         </div>
       </section>

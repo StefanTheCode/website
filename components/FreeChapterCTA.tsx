@@ -42,7 +42,7 @@ export default function FreeChapterCTA({
         >
           AI tutor · preview
         </p>
-        <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", color: "#F3EFFA", margin: "0 0 6px", fontSize: 22 }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif", color: "#F3EFFA", margin: "0 0 6px", fontSize: 22 }}>
           Ask the AI tutor about this chapter
         </h3>
         <p style={{ color: "#9C92B8", margin: "0 0 18px", fontSize: 15 }}>

@@ -1,0 +1,22 @@
+If a CQRS proposal for a small .NET API starts with two databases and a message broker, I'd ask to see the simpler version first.
+
+Take an order screen.
+
+The write side needs to enforce rules: can this order be cancelled, has payment settled, has fulfillment started? The read side needs a useful summary for the UI.
+
+Those are different jobs. Giving them separate handlers and separate models can be enough to make the code easier to work with. They can still use the same database and ship in the same application.
+
+MediatR is one way to dispatch those requests. Calling a handler directly through DI is another. The package doesn't determine whether the read and write responsibilities are separated.
+
+I like starting with the feature where the two sides are already pulling the code in different directions. A complicated write workflow and a read endpoint full of UI-specific joins are a decent candidate.
+
+A CRUD endpoint that just changes a display name? I'd need a reason before adding commands, dispatchers and a custom pipeline around it.
+
+And if you build your own dispatcher, count the work you're taking on. Validation, cancellation, behavior ordering, exception handling and tests still need to live somewhere. Forty lines in the first commit can become a small framework later.
+
+I'd keep one database until there is a measured reason to separate it. Once reads come from an asynchronously updated store, the UI also needs an answer for “I saved it, why can't I see it yet?”
+
+That's a product behavior to design, not just another infrastructure box.
+
+Want to see what a small implementation looks like? I walk through CQRS without MediatR here:
+https://thecodeman.net/posts/how-to-implement-cqrs-without-mediatr

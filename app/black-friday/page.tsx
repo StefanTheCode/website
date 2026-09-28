@@ -190,7 +190,7 @@ const BlackFriday = () => {
             <div className="col-md-8" id='reserveSpotForm'
               dangerouslySetInnerHTML={{
                 __html: `
-                         <script async src="https://eomail4.com/form/9ade17e6-9c87-11ef-86b3-890d9e639bbe.js" data-form="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></script>
+                         <script type="text/lazy" data-src="https://eomail4.com/form/9ade17e6-9c87-11ef-86b3-890d9e639bbe.js" data-form="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></script>
 
             `
               }}
