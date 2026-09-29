@@ -1,10 +1,11 @@
 ---
 title: "EF Core Interceptors in .NET"
+seo_title: "EF Core Interceptors: SaveChanges and DbCommand Interceptors"
 subtitle: "Add Auditing, Guardrails, and Observability Without Polluting Your DbContext"
 date: "January 12 2026"
 category: "Entity Framework"
 readTime: "Read Time: 4 minutes"
-meta_description: "Learn how to use Feature Flags in .NET to enable or disable features at runtime without redeploying your application. Includes a real production-ready example with Azure App Configuration, caching, and multi-instance support."
+meta_description: "Use EF Core interceptors in .NET: SaveChangesInterceptor for auditing and soft delete, DbCommandInterceptor for SQL tagging and slow query logging, and how to register them with DI."
 ---
 
 <!--START-->

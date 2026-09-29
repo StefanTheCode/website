@@ -1,10 +1,11 @@
 ---
 title: "Health Checks in .NET 8"
+seo_title: "ASP.NET Core Health Checks: MapHealthChecks, Custom Checks and UI"
 subtitle: "Health Checks in ASP.NET are a way to assess the health of an application and its dependencies... "
 date: "Jan 08 2024"
 category: "APIs"
 readTime: "Read Time: 4 minutes"
-meta_description: "Master Health Checks in .NET 8: Essential Guide for ASP.NET Core Apps - Learn to monitor application health effectively and ensure reliability. Ideal for .NET developers."
+meta_description: "Add health checks to ASP.NET Core with AddHealthChecks and MapHealthChecks, write custom health checks, customize the output and enable Health Checks UI, with C# examples."
 ---
 
 <!--START-->

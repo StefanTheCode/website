@@ -1,11 +1,12 @@
 ---
 title: "Rate Limiting in ASP.NET Core Without a Library: The Built-in RateLimiter"
+seo_title: "ASP.NET Core Rate Limiting with AddRateLimiter (Built-in)"
 subtitle: "Learn how the built-in RateLimiter middleware in ASP.NET Core protects your API - fixed window, sliding window, token bucket, and concurrency limiters, partitioned per user, with proper 429 responses."
 date: "July 12 2026"
 author: "Stefan Đokić"
 category: "Performance"
 readTime: "8 minutes"
-meta_description: "Rate limiting in ASP.NET Core with the built-in RateLimiter: fixed window, sliding window, token bucket and concurrency, per-user partitions, proper 429s."
+meta_description: "Built-in rate limiting in ASP.NET Core with AddRateLimiter: fixed window, sliding window, token bucket and concurrency limiters, per-user partitions and proper 429 responses."
 photoUrl: "/images/blog/rate-limiting-in-aspnet-core-built-in-ratelimiter.webp"
 faq:
   - q: "What's the difference between fixed window and sliding window rate limiting?"

@@ -1,10 +1,11 @@
 ---
 title: "Memory Caching in .NET"
+seo_title: "IMemoryCache in C#: Memory Caching in .NET with Examples"
 subtitle: ".NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources."
 date: "August 10 2024"
 category: ".NET"
 readTime: "Read Time: 7 minutes"
-meta_description: ".NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especiall..."
+meta_description: "How to use IMemoryCache in C# and ASP.NET Core: register the memory cache, get and set entries, absolute and sliding expiration, and MemoryCacheEntryOptions, with code examples."
 ---
 
 <!--START-->

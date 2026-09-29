@@ -1,10 +1,11 @@
 ---
 title: "Why You Need API Versioning in ASP.NET Core (.NET 10)"
+seo_title: "API Versioning in ASP.NET Core with Asp.Versioning (.NET 10)"
 subtitle: "Your API will need breaking changes. The question is whether you handle them gracefully - or break every client in production. Here's how I set up Minimal API versioning in every .NET 10 project."
 date: "Apr 11 2026"
 category: ".NET"
 readTime: "Read Time: 12 minutes"
-meta_description: "Learn how to implement API versioning in ASP.NET Core (.NET 10) using Minimal APIs and Asp.Versioning. Step-by-step guide covering URL segment versioning, Swagger per version, deprecation strategy, header versioning, and production-ready code examples."
+meta_description: "API versioning in ASP.NET Core with Asp.Versioning.Http and Asp.Versioning.Mvc: URL segment and header versioning, Minimal APIs, Swagger per version and deprecation, with .NET 10 code."
 ---
 
 <!--START-->

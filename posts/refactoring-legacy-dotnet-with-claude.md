@@ -1,5 +1,6 @@
 ---
 title: "Refactor Legacy .NET with Claude: A Test-First Workflow"
+seo_title: "Refactor Legacy .NET Code with Claude: Safe, Test-First Workflow"
 subtitle: "How I use Claude and a set of .NET agents to modernize a real legacy .NET Framework project incrementally - assess, add a safety net, fix the debt, and upgrade - without a big-bang rewrite."
 date: "August 9 2026"
 category: "AI"

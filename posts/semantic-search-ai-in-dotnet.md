@@ -1,5 +1,6 @@
 ---
 title: "Semantic Search in .NET with Microsoft.Extensions.AI"
+seo_title: "Semantic Search in C# with Embeddings and Microsoft.Extensions.AI"
 subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how to implement it in .NET with Microsoft.Extensions.AI:"
 date: "Feb 24 2025"
 category: "AI"

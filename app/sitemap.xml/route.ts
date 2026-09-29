@@ -77,13 +77,18 @@ export async function GET() {
   const buildTime = new Date();
   const posts = getPostsFromFolder("posts");
 
+  // Only the homepage and blog index really change on every build (new posts).
+  // Other static pages omit <lastmod>: stamping them all with the build time makes
+  // Google distrust lastmod for the whole sitemap.
+  const alwaysFresh = new Set(["", "blog"]);
   const staticUrls = staticRoutes.map((route) => ({
     url: route === "" ? BASE_URL : `${BASE_URL}/${route}`,
-    lastmod: buildTime.toISOString(),
+    lastmod: alwaysFresh.has(route) ? buildTime.toISOString() : null,
   }));
 
   const postUrls = posts.map((p) => ({
-    url: `${BASE_URL}/posts/${p.slug}`,
+    // Netlify serves lowercase post URLs (mixed-case slugs 301 to lowercase).
+    url: `${BASE_URL}/posts/${p.slug.toLowerCase()}`,
     // Prefer frontmatter date; fall back to file mtime so newly-added posts always have a fresh lastmod.
     lastmod: toIsoDate(p.date, p.mtime),
   }));
@@ -97,7 +102,9 @@ export async function GET() {
     allUrls
       .map(
         (u) =>
-          `  <url>\n    <loc>${u.url}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n  </url>`
+          `  <url>\n    <loc>${u.url}</loc>\n` +
+          (u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : "") +
+          `  </url>`
       )
       .join("\n") +
     `\n</urlset>\n`;

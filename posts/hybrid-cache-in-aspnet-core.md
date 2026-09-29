@@ -1,5 +1,6 @@
 ---
 title: "HybridCache in ASP.NET Core - .NET 9"
+seo_title: "HybridCache in .NET: Setup, Entry Options and C# Examples"
 subtitle: "Caching is a mechanism to store frequently used data in a temporary storage layer so that future requests for the same data can be served faster, reducing the need for repetitive data fetching or computation. "
 date: "Dec 08 2024"
 category: ".NET"

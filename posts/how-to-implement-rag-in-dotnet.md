@@ -1,10 +1,11 @@
 ---
 title: "RAG in .NET with C#, Ollama and PostgreSQL pgvector"
+seo_title: "RAG in C# and .NET: Step-by-Step with Ollama and pgvector"
 subtitle: "RAG (Retrieval-Augmented Generation) is an AI framework that enhances generative large language models (LLMs) by integrating traditional information retrieval methods, such as search engines and databases."
 date: "Mar 10 2025"
 category: "AI"
 readTime: "Read Time: 5 minutes"
-meta_description: "Understand a C# RAG pipeline using Ollama embeddings and PostgreSQL pgvector: store your data, retrieve relevant context and generate an answer in .NET."
+meta_description: "Build a RAG pipeline in C#: generate embeddings with Ollama, store them in PostgreSQL pgvector, retrieve relevant context and ground the LLM answer in .NET."
 updated: "2026-09-19"
 faq:
   - q: "What are the main steps in a .NET RAG pipeline?"

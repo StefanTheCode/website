@@ -25,6 +25,7 @@ export const aiLearningPaths: AiLearningPath[] = [
     id: 'mcp', label: '02 / CONNECT TOOLS', title: 'MCP servers and AI agents in .NET',
     description: 'Connect an AI assistant to your own tools. See how a C# MCP server exposes a performance-testing workflow and how agents review a repository.',
     articles: [
+      { slug: 'build-an-mcp-server-in-dotnet-for-claude', title: 'How to build an MCP server in C# (step by step)' },
       { slug: 'building-mcp-server-in-dotnet', title: 'Build a C# MCP server for .NET API performance testing' },
       { slug: 'ai-agents-for-dotnet-security-and-ef-core', title: 'Use AI agents to review ASP.NET Core security and EF Core' },
     ],
@@ -35,6 +36,7 @@ export const aiLearningPaths: AiLearningPath[] = [
     articles: [
       { slug: 'semantic-search-ai-in-dotnet', title: 'Semantic search with Microsoft.Extensions.AI and embeddings' },
       { slug: 'how-to-implement-rag-in-dotnet', title: 'RAG in .NET with Ollama and PostgreSQL pgvector' },
+      { slug: 'your-dotnet-api-doesnt-need-a-vector-database-anymore', title: 'Vector search with EF Core 10 and SQL Server 2025' },
     ],
   },
 ];

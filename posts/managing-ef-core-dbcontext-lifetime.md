@@ -1,5 +1,6 @@
 ---
 title: "Managing EF Core DbContext Lifetime (Without Shooting Yourself in the Foot)"
+seo_title: "EF Core DbContext Lifetime: AddDbContext vs Factory vs Pooling"
 subtitle: "Learn when to use AddDbContext (scoped), AddDbContextFactory, and AddDbContextPool in EF Core."
 date: "September 16 2025"
 category: "Entity Framework"

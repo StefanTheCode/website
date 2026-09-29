@@ -1,10 +1,11 @@
 ---
 title: "Build an MCP Server in .NET: Let Claude Call Your Own Code"
+seo_title: "How to Build an MCP Server in C# and .NET (Step by Step)"
 subtitle: "Build an MCP server in C# with the official SDK so Claude can query your real data and call your real APIs instead of you copy-pasting into chat."
 date: "August 9 2026"
 category: "AI"
 readTime: "Read Time: 7 minutes"
-meta_description: "Build an MCP server in .NET with the official C# SDK so Claude can call your own code, query your database, and hit your APIs. Real code, stdio and HTTP, plus the Claude Desktop config."
+meta_description: "Build an MCP server in C# with the official ModelContextProtocol SDK so Claude can call your code, query your database and hit your APIs. stdio and HTTP, full code and Claude Desktop config."
 ---
 
 <!--START-->

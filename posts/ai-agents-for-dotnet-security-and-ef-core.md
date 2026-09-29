@@ -1,5 +1,6 @@
 ---
 title: "AI Code Review for .NET: Security and EF Core Agents"
+seo_title: "AI Agents for .NET Code Review: Security Audit and EF Core N+1"
 subtitle: "I built a library of AI skills and agents for .NET that run on your real code - a file, a folder, a whole project, or a GitHub link. In this issue I show two of them in action on a real production .NET 10 app, then walk you through adding one to Claude from start to finish so you can run it on your own code today."
 date: "Jun 22 2026"
 author: "Stefan Đokić"

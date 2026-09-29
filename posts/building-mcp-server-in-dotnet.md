@@ -1,5 +1,6 @@
 ---
 title: "Build a C# MCP Server for .NET API Performance Testing"
+seo_title: "C# MCP Server: Let GitHub Copilot Load-Test Your .NET API"
 subtitle: "What if your AI coding assistant could run load tests, detect ThreadPool starvation, and suggest fixes - all from a single chat message?"
 date: "May 14 2026"
 category: "AI"

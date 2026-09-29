@@ -113,7 +113,9 @@ export async function generateMetadata(
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data } = matter(fileContent);
 
-  const title = data.title || "TheCodeMan Blog";
+  // Optional `seo_title` lets a post use a search-optimized <title> while the
+  // on-page H1 keeps the editorial `title`.
+  const title = data.seo_title || data.title || "TheCodeMan Blog";
   const description = data.meta_description || data.subtitle || "Practical .NET knowledge by Stefan Djokic.";
   const image = getPostImageUrl(slug, data.image);
   const url = `https://thecodeman.net/posts/${slug}`;

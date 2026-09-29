@@ -1,5 +1,6 @@
 ---
 title: "5 EF Core Query Techniques I Use in Every .NET 10 Project"
+seo_title: "EF Core Query Optimization: Projections, AsSplitQuery, AsNoTracking"
 subtitle: "Most EF Core performance problems aren't discovered - they're written. Here are 5 techniques I apply from day one to avoid slow queries, wasted memory, and N+1 disasters."
 date: "Jan 19 2026"
 category: "Entity Framework"
