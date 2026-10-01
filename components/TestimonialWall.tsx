@@ -92,10 +92,11 @@ function Card({ t, featured = false }: { t: Testimonial; featured?: boolean }) {
 /**
  * @param slug     wall slug in the testimonials app ("ebook2" | "ebook" | "course")
  * @param visible  how many cards show before "Show all"
+ * @param fallback rendered when the wall is empty or unreachable (e.g. the old widget)
  */
-export default async function TestimonialWall({ slug, visible = 6 }: { slug: string; visible?: number }) {
+export default async function TestimonialWall({ slug, visible = 6, fallback = null }: { slug: string; visible?: number; fallback?: React.ReactNode }) {
   const wall = await getWall(slug);
-  if (!wall || wall.testimonials.length === 0) return null;
+  if (!wall || wall.testimonials.length === 0) return <>{fallback}</>;
 
   // Prefer reviews with a photo and real substance near the top; keep the API order otherwise.
   const items = [...wall.testimonials].sort((a, b) => {
