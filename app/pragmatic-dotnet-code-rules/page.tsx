@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import TestimonialWall from '@/components/TestimonialWall';
 import Image from 'next/image';
 import Script from 'next/script';
 import FreePreviewButton from '@/components/FreePreviewButton';
@@ -598,16 +599,10 @@ const CodeRules = () => {
             <p className="cr-sec-sub">Specific feedback from engineers who already had opinions about code quality before they bought this.</p>
           </div>
 
-          {/* Live Senja reviews widget — authentic course testimonials */}
           <div className="cr-reveal">
-            <div
-              className="senja-embed"
-              data-id="489b3774-2ef7-4c22-8d58-91df0c2a60f4"
-              data-mode="shadow"
-              data-lazyload="false"
-              style={{ display: 'block', width: '100%' }}
-            ></div>
-            <div dangerouslySetInnerHTML={{ __html: '<script type="text/lazy" data-src="https://widget.senja.io/widget/489b3774-2ef7-4c22-8d58-91df0c2a60f4/platform.js"></script>' }} />
+
+            <TestimonialWall slug="course" />
+
           </div>
         </div>
       </section>

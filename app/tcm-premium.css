@@ -638,3 +638,35 @@ h1, h2 { font-weight: 700; letter-spacing: -0.02em; }
 .tcm-price__or { font-weight: 500; color: var(--s-faint); margin: 0 4px; }
 .tcm-bento__product img.tcm-bento__wide-img { width: 190px; }
 @media (max-width: 640px) { .tcm-bento__product img.tcm-bento__wide-img { width: 220px; } }
+
+/* ==========================================================================
+   TESTIMONIAL WALL (components/TestimonialWall.tsx)
+   ========================================================================== */
+.tcm-tw { display: flex; flex-direction: column; gap: 20px; text-align: left; }
+.tcm-tw__summary { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 15px; color: var(--s-muted); }
+.tcm-tw__summary b { color: var(--s-h); }
+.tcm-tw__stars { display: inline-flex; gap: 3px; }
+.tcm-tw__stars svg { width: 16px; height: 16px; fill: rgba(255, 255, 255, 0.18); }
+:root[data-theme="light"] .tcm-tw__stars svg { fill: rgba(26, 4, 36, 0.15); }
+.tcm-tw__stars svg.is-on { fill: var(--s-accent); }
+.tcm-tw__card { margin: 0; padding: 26px; gap: 16px; break-inside: avoid; }
+.tcm-tw__text { margin: 0; padding: 0; border: 0; white-space: pre-line; font-family: var(--font-body); font-style: normal; font-size: 15.5px; line-height: 1.65; color: var(--s-body); }
+.tcm-tw__card--featured { padding: 36px 40px; border-color: rgba(var(--tcm-amber-rgb), 0.22); background: linear-gradient(180deg, rgba(var(--tcm-amber-rgb), 0.06), rgba(255, 255, 255, 0.015)); }
+:root[data-theme="light"] .tcm-tw__card--featured { background: #FFFDF7; }
+.tcm-tw__card--featured .tcm-tw__text { font-family: var(--font-display); font-weight: 500; font-size: 20px; line-height: 1.55; color: var(--s-h); }
+.tcm-tw__who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.tcm-tw__who img, .tcm-tw__avatar { width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; object-fit: cover; }
+.tcm-tw__avatar { display: inline-flex; align-items: center; justify-content: center; background: rgba(var(--tcm-purple-rgb), 0.22); color: var(--s-purple-text); font-weight: 700; font-size: 14px; }
+.tcm-tw__who b { display: block; font-size: 15px; color: var(--s-h); }
+.tcm-tw__who span span { display: block; font-size: 13px; color: var(--s-faint); }
+.tcm-tw__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.tcm-tw__more summary { list-style: none; display: flex; justify-content: center; cursor: pointer; margin: 4px 0 0; }
+.tcm-tw__more[open] > .tcm-tw__grid { margin-top: 0; }
+.tcm-tw__more summary::-webkit-details-marker { display: none; }
+.tcm-tw__more[open] summary { display: none; }
+@media (max-width: 991.98px) { .tcm-tw__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .tcm-tw__grid { grid-template-columns: minmax(0, 1fr); }
+  .tcm-tw__card--featured { padding: 26px; }
+  .tcm-tw__card--featured .tcm-tw__text { font-size: 17px; }
+}

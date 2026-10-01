@@ -1,4 +1,5 @@
 import config from '@/config.json'
+import TestimonialWall from '@/components/TestimonialWall';
 import { Metadata } from 'next';
 import Image from 'next/image'
 import Script from 'next/script';
@@ -546,16 +547,8 @@ const Ebook = () => {
             <h2 className="dp-sec-title">In their own words</h2>
             <p className="dp-sec-sub">Developers around the world learning design patterns the simple way.</p>
           </div>
-          {/* Live Senja reviews widget — authentic ebook testimonials */}
           <div className="dp-reveal">
-            <div
-              className="senja-embed"
-              data-id="06079a0b-d21a-43dd-9387-3cfdf6b63fd0"
-              data-mode="shadow"
-              data-lazyload="false"
-              style={{ display: 'block', width: '100%' }}
-            ></div>
-            <div dangerouslySetInnerHTML={{ __html: '<script type="text/lazy" data-src="https://widget.senja.io/widget/06079a0b-d21a-43dd-9387-3cfdf6b63fd0/platform.js"></script>' }} />
+            <TestimonialWall slug="ebook" />
           </div>
         </div>
       </section>
