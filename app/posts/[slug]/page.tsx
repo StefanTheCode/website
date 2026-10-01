@@ -383,9 +383,9 @@ export default async function PostPage(
                     </Link>
 
                     <Link href="/design-patterns-that-deliver-ebook?utm_source=sidebar" className="sidebar-product-card">
-                      <Image src="/images/ebook2.webp" alt="Design Patterns that Deliver Ebook" width={300} height={160} className="sidebar-product-img" />
+                      <Image src="/images/dptd-course.webp" alt="Design Patterns that Deliver written course and ebook" width={1600} height={1015} className="sidebar-product-img" />
                       <span className="sidebar-product-title">Design Patterns that Deliver</span>
-                      <span className="sidebar-product-label">Ebook</span>
+                      <span className="sidebar-product-label">Written course + ebook</span>
                     </Link>
 
                     <Link href="/design-patterns-simplified?utm_source=sidebar" className="sidebar-product-card">

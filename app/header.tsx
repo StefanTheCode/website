@@ -28,13 +28,13 @@ const GROUPS: NavGroup[] = [
     links: [
       { href: "/ai-for-dotnet-developers", label: "AI for .NET Developers", note: "Community + lessons" },
       { href: "/pragmatic-dotnet-code-rules", label: "Pragmatic .NET Code Rules", note: "Video course" },
+      { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver", note: "Written course + ebook + AI tutor" },
     ],
   },
   {
     id: "ebooks",
     label: "Ebooks",
     links: [
-      { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver", note: "10 patterns + AI tutor" },
       { href: "/design-patterns-simplified", label: "Design Patterns Simplified" },
     ],
   },

@@ -20,7 +20,7 @@ const faqs = [
   ['Do I need Python to build AI applications?', 'You can build AI features with C# and .NET. Microsoft.Extensions.AI provides model and embedding abstractions; MCP connects tools to assistants; retrieval and RAG bring your own data into an application. Python is not a prerequisite for these workflows.'],
   ['Which AI tools does the community cover?', 'The community covers using and building AI with Claude, Codex and GitHub Copilot, alongside RAG, MCP and agents in C#. The downloadable .NET toolkit includes Claude skills and agents; check each tool’s installation guide for its supported environment.'],
   ['What is the difference between MCP, RAG and an AI agent?', 'MCP is a protocol for connecting AI clients to tools and context. RAG retrieves relevant information to include in a model’s input. An agent can use tools across multiple steps to carry out a task. You can learn and use each independently.'],
-  ['Can I try the community before subscribing?', 'There is a 7-day free trial. The currently listed membership is $19 per month or $180 per year. Check the current price and trial terms on Skool before joining. Any paid AI provider or coding assistant you use is separate from community membership.'],
+  ['Can I try the community before subscribing?', 'There is a 7-day free trial. The currently listed membership is $19 per month or $149 per year. Check the current price and trial terms on Skool before joining. Any paid AI provider or coding assistant you use is separate from community membership.'],
   ['How should I handle private code and AI-generated changes?', 'Use your organization’s approved AI tooling and review its data settings before sharing source code. Keep credentials out of prompts, limit tool permissions, review diffs and run tests. AI findings are a starting point for engineering review, not a guarantee of correctness.'],
 ];
 
@@ -51,7 +51,7 @@ export default function AiCommunityPage() {
             <p className={styles.lead}>Use AI in your daily work.<br />Build AI into your .NET apps.</p>
             <p>Move from experimenting with prompts to reviewing real C# code, connecting tools with MCP and understanding RAG. Learn alongside other .NET developers, with practical lessons and tools from Stefan Djokic.</p>
             <div className={styles.actions}><JoinLink /><a href="#learn" className={styles.secondary}>Explore the free guides ↓</a></div>
-            <p className={styles.note}>7-day free trial · Membership from $19/month · Hosted on Skool</p>
+            <p className={styles.note}>7-day free trial · $19/month or $149/year · Hosted on Skool</p>
           </div>
           <div className={styles.heroVisual}>
             <Image src={AI_COMMUNITY_IMAGE} alt="Stefan Djokic — learn to use AI and build AI features as a .NET developer" width={1084} height={576} priority sizes="(max-width: 1000px) 100vw, 50vw" />
@@ -77,7 +77,7 @@ export default function AiCommunityPage() {
           <div className={styles.roadmap}><div><h3>New to AI in .NET?</h3><p>Follow a structured learning plan or work through the free course preview.</p></div><div className={styles.actions}><Link href="/ai-roadmap-2026" className={styles.secondary}>Get the free AI roadmap</Link><Link href="/ai-roadmap-course" className={styles.textLink}>Try the course preview →</Link></div></div>
         </section>
         <section className={styles.section} id="join">
-          <div className={styles.membership}><div><p className={styles.eyebrow}>Your next step</p><h2>Bring a .NET project.<br />Start learning with us.</h2><p>For C# developers who want practical AI workflows, a reusable toolkit and a community working with the same stack.</p><ul><li>Full toolkit: .NET skills, agents and local dashboard</li><li>Classroom lessons and setup guides</li><li>Community discussions and production examples</li></ul></div><div className={styles.price}><span>7-day free trial</span><p><strong>$19</strong> / month</p><p>or $180 / year</p><JoinLink /><small>Current price and trial terms are shown on Skool. AI tool subscriptions are separate.</small></div></div>
+          <div className={styles.membership}><div><p className={styles.eyebrow}>Your next step</p><h2>Bring a .NET project.<br />Start learning with us.</h2><p>For C# developers who want practical AI workflows, a reusable toolkit and a community working with the same stack.</p><ul><li>Full toolkit: .NET skills, agents and local dashboard</li><li>Classroom lessons and setup guides</li><li>Community discussions and production examples</li></ul></div><div className={styles.price}><span>7-day free trial</span><p><strong>$19</strong> / month</p><p>or $149 / year · save 35%</p><JoinLink /><small>Current price and trial terms are shown on Skool. AI tool subscriptions are separate.</small></div></div>
         </section>
         <section className={`${styles.section} ${styles.faq}`} id="faq"><p className={styles.eyebrow}>Before you start</p><h2>AI for .NET developers, explained.</h2>{faqs.map(([q,a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</section>
       </div>

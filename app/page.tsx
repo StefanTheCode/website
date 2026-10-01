@@ -130,6 +130,7 @@ export default function Home() {
                 </div>
                 <h3 className="tcm-h3">AI for .NET Developers</h3>
                 <p>Use AI on your codebase and build AI into your apps. 50+ Claude skills and agents, practical lessons, and direct access to me.</p>
+                <span className="tcm-price">$19/month <span className="tcm-price__or">or</span> $149/year</span>
                 <span className="tcm-link">Join the community <Arrow /></span>
               </div>
             </a>
@@ -146,12 +147,12 @@ export default function Home() {
 
             <a href="/design-patterns-that-deliver-ebook" className="tcm-card tcm-bento__product" data-reveal data-delay="2">
               <div className="tcm-card__body">
-                <span className="tcm-eyebrow">Ebook · {ebookCopies} copies</span>
+                <span className="tcm-eyebrow">Written course + ebook</span>
                 <h3 className="tcm-h3">Design Patterns That Deliver</h3>
-                <p className="tcm-text">10 production-grade C# patterns, 20 mini-projects, 100 interview Q&amp;As and an AI tutor.</p>
+                <p className="tcm-text">10 production-grade C# patterns as online lessons, plus the full ebook, 20 mini-projects, 100 interview Q&amp;As and an AI tutor.</p>
                 <span className="tcm-price">$32.99</span>
               </div>
-              <Image src="/images/ebook2.webp" alt="Design Patterns That Deliver ebook" width={1500} height={1383} sizes="140px" />
+              <Image src="/images/dptd-course.webp" alt="Design Patterns That Deliver written course and ebook" width={1600} height={1015} sizes="180px" className="tcm-bento__wide-img" />
             </a>
 
             <div className="tcm-card tcm-bento__small" data-reveal>

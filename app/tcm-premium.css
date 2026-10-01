@@ -635,3 +635,6 @@ h1, h2 { font-weight: 700; letter-spacing: -0.02em; }
 :root:not([data-theme="light"]) .mk-btn-primary { background: var(--tcm-amber) !important; border-color: var(--tcm-amber) !important; color: var(--tcm-amber-ink) !important; }
 :root:not([data-theme="light"]) .mk-btn-primary:hover { background: var(--tcm-amber-hi) !important; color: var(--tcm-amber-ink) !important; }
 .tcm-nav__link:focus:not(:focus-visible), .tcm-filter:focus:not(:focus-visible), .tcm-pager__btn:focus:not(:focus-visible), .tcm-burger:focus:not(:focus-visible) { outline: none; box-shadow: none; }
+.tcm-price__or { font-weight: 500; color: var(--s-faint); margin: 0 4px; }
+.tcm-bento__product img.tcm-bento__wide-img { width: 190px; }
+@media (max-width: 640px) { .tcm-bento__product img.tcm-bento__wide-img { width: 220px; } }

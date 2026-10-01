@@ -32,7 +32,7 @@ const COLUMNS = [
     links: [
       { href: "/ai-for-dotnet-developers", label: "AI for .NET Developers" },
       { href: "/pragmatic-dotnet-code-rules", label: "Pragmatic .NET Code Rules" },
-      { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver" },
+      { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver (course)" },
       { href: "/design-patterns-simplified", label: "Design Patterns Simplified" },
     ],
   },

@@ -9,11 +9,11 @@ import './ebook.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
-  title: "Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor",
+  title: "Design Patterns that Deliver — Written C#/.NET Course + Ebook + AI Tutor",
   alternates: {
     canonical: 'https://thecodeman.net/design-patterns-that-deliver-ebook',
   },
-  description: "Master 10 production C# design patterns: Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline (Chain of Responsibility), Specification, Factory, and State. Real problems to working code with unit tests, async, trade-offs, UML diagrams, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
+  description: "A written course on 10 production C# design patterns, with the full ebook included: Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline (Chain of Responsibility), Specification, Factory, and State. Real problems to working code with unit tests, async, trade-offs, UML diagrams, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
   keywords: [
     'design patterns c#',
     'c# design patterns book',
@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     'AI design pattern tutor',
   ],
   openGraph: {
-    title: "Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor",
+    title: "Design Patterns that Deliver — Written C#/.NET Course + Ebook + AI Tutor",
     type: "website",
     url: "https://thecodeman.net/design-patterns-that-deliver-ebook",
-    description: "10 production C# design patterns from real problems to working code — with unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
+    description: "A written course on 10 production C# design patterns, from real problems to working code — online lessons plus the full ebook, unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
     images: [
       {
         url: 'https://thecodeman.net/og-ebookimage2.png',
@@ -46,11 +46,11 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor",
+    title: "Design Patterns that Deliver — Written C#/.NET Course + Ebook + AI Tutor",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "10 production C# design patterns from real problems to working code — with unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
+    description: "A written course on 10 production C# design patterns, from real problems to working code — online lessons plus the full ebook, unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.",
     images: [
       {
         url: 'https://thecodeman.net/og-ebookimage2.png',
@@ -70,7 +70,7 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': 'https://thecodeman.net/design-patterns-that-deliver-ebook',
       url: 'https://thecodeman.net/design-patterns-that-deliver-ebook',
-      name: 'Design Patterns that Deliver — 10 Production C#/.NET Patterns + AI Tutor',
+      name: 'Design Patterns that Deliver — Written C#/.NET Course + Ebook + AI Tutor',
       description:
         'Master 10 production C# design patterns from real problems to working code — Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline, Specification, Factory, and State — with unit tests, trade-offs, a GitHub repo, 100 interview questions, and a built-in AI tutor.',
       isPartOf: { '@id': 'https://thecodeman.net/#website' },
@@ -86,10 +86,12 @@ const jsonLd = {
       },
     },
     {
-      '@type': 'Book',
+      '@type': 'Course',
       name: 'Design Patterns that Deliver',
+      provider: { '@type': 'Person', name: 'Stefan Djokic', url: 'https://thecodeman.net' },
+      educationalLevel: 'Intermediate to advanced',
       description:
-        'A practical ebook covering 10 production design patterns in C# — Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline (Chain of Responsibility), Specification, Factory, and State — with real-world examples, unit tests, trade-off analysis, UML diagrams, advanced implementations, a GitHub repository, 100 interview questions, and a built-in AI tutor.',
+        'A written course with the full ebook included, covering 10 production design patterns in C# — Builder, Decorator, Strategy, Adapter, Mediator, Result, Pipeline (Chain of Responsibility), Specification, Factory, and State — with real-world examples, unit tests, trade-off analysis, UML diagrams, advanced implementations, a GitHub repository, 100 interview questions, and a built-in AI tutor.',
       author: {
         '@type': 'Person',
         name: 'Stefan Djokic',
@@ -102,7 +104,6 @@ const jsonLd = {
         availability: 'https://schema.org/InStock',
         url: 'https://thecodeman.net/design-patterns-that-deliver-ebook',
       },
-      bookFormat: 'https://schema.org/EBook',
       inLanguage: 'en',
       genre: 'Software Engineering',
       about: [
@@ -220,7 +221,7 @@ const jsonLd = {
           name: 'What do I get when I buy Design Patterns that Deliver?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'You get the full ebook (PDF and EPUB) covering 10 production patterns, a GitHub repository with 20 runnable C# mini-projects, a bonus mini-ebook with 100 design pattern interview questions and answers, a quick-reference pattern decision guide, access to the Ask-the-Book AI tutor, and lifetime access including future updates. Delivery is instant after checkout.',
+            text: 'You get the written course (online lessons for all 10 production patterns) plus the full ebook (PDF and EPUB), a GitHub repository with 20 runnable C# mini-projects, a bonus mini-ebook with 100 design pattern interview questions and answers, a quick-reference pattern decision guide, access to the Ask-the-Book AI tutor, and lifetime access including future updates. Delivery is instant after checkout.',
           },
         },
       ],
@@ -278,9 +279,9 @@ const Ebook = () => {
 
       {/* 1. ANNOUNCEMENT BAR */}
       <div className="dp-topbar">
-        <span>📘 <b>Design Patterns that Deliver</b> · 10 patterns + 2 AI tutors</span>
+        <span>📘 <b>Design Patterns that Deliver</b> · written course + ebook · 10 patterns + AI tutor</span>
         <span className="dp-tdot"></span>
-        <span><b>{config.EbookCopiesNumber}+</b> copies sold · instant download</span>
+        <span><b>{config.EbookCopiesNumber}+</b> developers enrolled · instant access</span>
       </div>
 
       {/* 2. STICKY NAV */}
@@ -296,7 +297,7 @@ const Ebook = () => {
           </div>
           <div className="dp-nav-right">
             <span className="dp-nav-price"><b>$32.99</b></span>
-            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook</a>
+            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course</a>
           </div>
         </div>
       </nav>
@@ -309,13 +310,13 @@ const Ebook = () => {
           <div className="dp-reveal">
             <span className="dp-chip">{MS} By Stefan Đokić · Microsoft MVP</span>
             <h1>Stop guessing design patterns. <span className="dp-amber crk-shimmer">Start shipping the right one.</span></h1>
-            <p className="dp-lead"><b>Ten</b> production-grade C# patterns — the five everyone needs (<b>Builder</b>, <b>Decorator</b>, <b>Strategy</b>, <b>Adapter</b>, <b>Mediator</b>) plus five that ship real systems (<b>Result</b>, <b>Pipeline</b>, <b>Specification</b>, <b>Factory</b>, <b>State</b>). Each from a real problem to working code — with unit tests, trade-offs, a GitHub repo, 100 interview Q&amp;As, and a built-in <b>AI tutor</b>.</p>
+            <p className="dp-lead">A <b>written course</b> with the full ebook included. <b>Ten</b> production-grade C# patterns — the five everyone needs (<b>Builder</b>, <b>Decorator</b>, <b>Strategy</b>, <b>Adapter</b>, <b>Mediator</b>) plus five that ship real systems (<b>Result</b>, <b>Pipeline</b>, <b>Specification</b>, <b>Factory</b>, <b>State</b>). Each from a real problem to working code — with unit tests, trade-offs, a GitHub repo, 100 interview Q&amp;As, and a built-in <b>AI tutor</b>.</p>
             <div className="dp-cta">
-              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
-              <a href="/read/design-patterns-that-deliver/builder" className="dp-btn dp-btn-ghost">Read a free chapter →</a>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
+              <a href="/read/design-patterns-that-deliver/builder" className="dp-btn dp-btn-ghost">Read a free lesson →</a>
               <a href="/tools/pattern-picker" className="dp-btn dp-btn-ghost">Try the free AI tool →</a>
             </div>
-            <p className="dp-reassure">Instant download <span className="dp-dot"></span> PDF + EPUB <span className="dp-dot"></span> GitHub repo included <span className="dp-dot"></span> AI tutor <span className="dp-dot"></span> lifetime updates</p>
+            <p className="dp-reassure">Instant access <span className="dp-dot"></span> Online lessons + ebook (PDF &amp; EPUB) <span className="dp-dot"></span> GitHub repo included <span className="dp-dot"></span> AI tutor <span className="dp-dot"></span> lifetime updates</p>
             <div className="dp-hero-rating">
               <span className="dp-stars" style={{ fontSize: 18, letterSpacing: 2 }}>★★★★★</span>
               <span style={{ marginLeft: 12, fontSize: 14, color: 'var(--muted)' }}>Rated 5/5 · loved by {config.EbookCopiesNumber}+ developers</span>
@@ -324,7 +325,7 @@ const Ebook = () => {
           <div className="dp-cover dp-reveal">
             <div className="dp-glow"></div>
             <div className="dp-frame">
-              <Image src="/images/ebook-thumb2.webp" alt="Design Patterns that Deliver - C# design patterns ebook cover" width={1100} height={1192} sizes="(max-width:940px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} priority />
+              <Image src="/images/dptd-course.webp" alt="Design Patterns that Deliver - written C# course on a laptop with the included ebook" width={1600} height={1015} sizes="(max-width:940px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} priority />
             </div>
           </div>
         </div>
@@ -334,7 +335,7 @@ const Ebook = () => {
       <div className="dp-cred">
         <div className="dp-wrap dp-cred-row">
           <span><b>Microsoft MVP</b></span><span className="dp-sep"></span>
-          <span><b>{config.EbookCopiesNumber}+</b> copies sold</span><span className="dp-sep"></span>
+          <span><b>{config.EbookCopiesNumber}+</b> developers enrolled</span><span className="dp-sep"></span>
           <span><b>25,000+</b> newsletter readers</span><span className="dp-sep"></span>
           <span><b>102k+</b> LinkedIn</span><span className="dp-sep"></span>
           <span><b>10</b> patterns · <b>20</b> mini-projects</span><span className="dp-sep"></span>
@@ -409,7 +410,7 @@ const Ebook = () => {
               <li><span className="dp-x">✕</span> &quot;How does this pattern even work with DI?&quot;</li>
               <li><span className="dp-x">✕</span> &quot;The example online is a Pizza class... how does that help me?&quot;</li>
             </ul>
-            <p className="dp-kicker">The gap between knowing a pattern and <span className="dp-amber">using it in production is massive.</span><br />That&apos;s exactly what this ebook closes.</p>
+            <p className="dp-kicker">The gap between knowing a pattern and <span className="dp-amber">using it in production is massive.</span><br />That&apos;s exactly what this course closes.</p>
           </div>
           <div className="dp-reveal">
             <div className="dp-media-frame">
@@ -567,7 +568,7 @@ const Ebook = () => {
           </div>
 
           <div className="dp-center" style={{ marginTop: 40 }}>
-            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
+            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
           </div>
         </div>
       </section>
@@ -642,13 +643,14 @@ const Ebook = () => {
         <div className="dp-wrap">
           <div className="dp-sec-head dp-center dp-reveal">
             <span className="dp-eyebrow dp-center">The full package</span>
-            <h2 className="dp-sec-title">You don&apos;t just get a PDF</h2>
+            <h2 className="dp-sec-title">A course, not just a PDF</h2>
             <p className="dp-sec-sub">Everything you need to understand, apply, and explain design patterns in real .NET projects.</p>
           </div>
           <div className="dp-eg-grid dp-reveal">
             <div className="dp-eg-card">
-              <div className="dp-eg-ico">📘</div><h3>The Ebook</h3>
+              <div className="dp-eg-ico">📘</div><h3>The Written Course + Ebook</h3>
               <ul>
+                <li><span className="dp-ic">✔</span> Online lessons, plus the full ebook (PDF &amp; EPUB)</li>
                 <li><span className="dp-ic">✔</span> 10 patterns, problem to production</li>
                 <li><span className="dp-ic">✔</span> Real scenarios + unit tests, no toy classes</li>
                 <li><span className="dp-ic">✔</span> UML/Mermaid diagrams &amp; trade-offs</li>
@@ -701,7 +703,7 @@ const Ebook = () => {
               <p>With a working code example behind every single answer.</p>
             </div>
           </div>
-          <p className="dp-bonus-foot dp-reveal">Ebook + repo + AI tutor + interview prep + cheat sheets + EPUB · <b>all for $32.99</b></p>
+          <p className="dp-bonus-foot dp-reveal">Written course + ebook + repo + AI tutor + interview prep + cheat sheets · <b>all for $32.99</b></p>
         </div>
       </section>
 
@@ -713,7 +715,7 @@ const Ebook = () => {
           <div className="dp-sec-head dp-center dp-reveal">
             <span className="dp-eyebrow dp-center">Proof</span>
             <h2 className="dp-sec-title">{config.EbookCopiesNumber}+ developers already use these patterns</h2>
-            <p className="dp-sec-sub">Real feedback from engineers - from juniors to Microsoft MVPs - who put this ebook to work.</p>
+            <p className="dp-sec-sub">Real feedback from engineers - from juniors to Microsoft MVPs - who put this course to work.</p>
           </div>
 
           {/* Live Senja reviews widget — authentic ebook testimonials */}
@@ -740,9 +742,9 @@ const Ebook = () => {
           </div>
           <div className="dp-reveal">
             <span className="dp-mvp-pill">{MS} Microsoft MVP</span>
-            <h2>Written by a developer, for developers.</h2>
+            <h2>Built by a developer, for developers.</h2>
             <p>Hi, I&apos;m <b>Stefan Đokić</b> - Microsoft MVP and Senior Software Engineer with years of experience building production .NET systems.</p>
-            <p>I wrote this ebook because I was frustrated with pattern books that use toy examples. <b>Every pattern in this book comes from a real problem I&apos;ve solved in production code</b> - not Pizza classes, not abstract shapes.</p>
+            <p>I built this course because I was frustrated with pattern books that use toy examples. <b>Every pattern in this course comes from a real problem I&apos;ve solved in production code</b> - not Pizza classes, not abstract shapes.</p>
             <p>I teach {config.NewsletterSubCount} through my newsletter, and {config.LinkedinFollowers} follow my content on LinkedIn.</p>
             <div className="dp-about-stats">
               <div><div className="dp-v crk-count" data-target="25000" data-comma="1" data-suffix="+">0+</div><div className="dp-l">Newsletter</div></div>
@@ -765,10 +767,11 @@ const Ebook = () => {
           <div className="dp-pricing dp-reveal">
             <div className="dp-price-card">
               <h3>Design Patterns that Deliver</h3>
-              <p className="dp-psub">Ebook + GitHub repo + AI tutor + interview prep + cheat sheets</p>
+              <p className="dp-psub">Written course + ebook + GitHub repo + AI tutor + interview prep + cheat sheets</p>
               <div className="dp-amt"><span className="dp-now">$32.99</span></div>
               <p className="dp-save">One-time payment · lifetime access · no subscription</p>
               <ul>
+                <li><span className="dp-ic">✔</span> The written course: online lessons for every pattern</li>
                 <li><span className="dp-ic">✔</span> The full ebook in PDF + EPUB</li>
                 <li><span className="dp-ic">✔</span> 10 patterns (5 foundational + 5 production)</li>
                 <li><span className="dp-ic">✔</span> GitHub repo: 20 runnable mini-projects</li>
@@ -777,15 +780,15 @@ const Ebook = () => {
                 <li><span className="dp-ic">✔</span> Quick-reference pattern decision guide</li>
                 <li><span className="dp-ic">✔</span> Lifetime access + all future updates</li>
               </ul>
-              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
-              <p className="dp-grt">Instant download · Secure checkout via Lemon Squeezy</p>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
+              <p className="dp-grt">Instant access · Secure checkout via Lemon Squeezy</p>
             </div>
             <div className="dp-why">
               <h3>Why developers buy this</h3>
-              <div className="dp-why-item"><span className="dp-ic">⚡</span><div><div className="dp-t">Instant access</div><div className="dp-d">Download the ebook and clone the repo seconds after checkout.</div></div></div>
+              <div className="dp-why-item"><span className="dp-ic">⚡</span><div><div className="dp-t">Instant access</div><div className="dp-d">Start the lessons, download the ebook and clone the repo seconds after checkout.</div></div></div>
               <div className="dp-why-item"><span className="dp-ic">💻</span><div><div className="dp-t">Real, runnable code</div><div className="dp-d">20 mini-projects you can open, run, and adapt today.</div></div></div>
               <div className="dp-why-item"><span className="dp-ic">🤖</span><div><div className="dp-t">An AI tutor that knows it</div><div className="dp-d">Ask the Book answers from these exact chapters, cited.</div></div></div>
-              <div className="dp-why-item"><span className="dp-ic">🔁</span><div><div className="dp-t">Lifetime updates</div><div className="dp-d">Buy once, get every future update to the book and code free.</div></div></div>
+              <div className="dp-why-item"><span className="dp-ic">🔁</span><div><div className="dp-t">Lifetime updates</div><div className="dp-d">Buy once, get every future update to the course, ebook and code free.</div></div></div>
             </div>
           </div>
         </div>
@@ -798,7 +801,7 @@ const Ebook = () => {
         <div className="dp-wrap">
           <div className="dp-sec-head dp-center dp-reveal">
             <span className="dp-eyebrow dp-center">Honest fit check</span>
-            <h2 className="dp-sec-title">Is this ebook right for you?</h2>
+            <h2 className="dp-sec-title">Is this course right for you?</h2>
           </div>
           <div className="dp-fit dp-reveal">
             <div className="dp-fit-card dp-no">
@@ -1020,7 +1023,7 @@ const Ebook = () => {
         <div className="dp-wrap dp-reveal">
           <span className="dp-eyebrow dp-center">Stop reading about patterns. Start shipping them.</span>
           <h2>Real C# code you can apply in your next PR.</h2>
-          <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook - $32.99 →</a>
+          <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
           <p className="dp-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>Instant download · PDF + EPUB · GitHub repo · AI tutor · {config.EbookCopiesNumber}+ copies sold</p>
         </div>
       </section>
