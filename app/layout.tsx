@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Footer from './footer'
 import './globals.css'
+import './tcm-premium.css'
 import Head from './head'
 import Header from './header'
 import ogImage from './og-image.webp'

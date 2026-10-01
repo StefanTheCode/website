@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Metadata } from "next";
+import config from "@/config.json";
+import Subscribe from "../subscribe";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thecodeman.net"),
@@ -24,152 +26,73 @@ export const metadata: Metadata = {
   },
 };
 
+const first = (v: string) => v.split(" ")[0];
+
+const PLACES = [
+  { href: "https://www.linkedin.com/in/djokic-stefan/", name: "LinkedIn", note: `${first(config.LinkedinFollowers)} followers · daily .NET posts` },
+  { href: "https://www.youtube.com/@thecodeman_", name: "YouTube", note: "Hands-on .NET and AI videos" },
+  { href: "https://twitter.com/TheCodeMan__", name: "X / Twitter", note: `${first(config.TwitterFollowers)} followers` },
+  { href: "https://github.com/StefanTheCode", name: "GitHub", note: "Source code for posts and ebooks" },
+  { href: "https://www.skool.com/thecodeman", name: "Skool community", note: "Free TheCodeMan community" },
+  { href: "https://medium.com/@thecodeman", name: "Medium", note: "Articles archive" },
+];
+
 export default function Page() {
   return (
-    <>
-      {/* FIRST FULL SCREEN SECTION */}
-      <section
-        className="ftco-about ftco-section d-flex align-items-center"
-        style={{
-          backgroundColor:
-            "linear-gradient(90deg, rgb(108 23 143), rgb(33 8 44))",
-          minHeight: "100vh",
-          paddingTop: "120px",
-        }}
-      >
-        <div className="container">
-          <div className="row align-items-center">
-            {/* LEFT TEXT */}
-            <div className="col-12 col-md-6 text-white mb-5 mb-md-0">
-              <h1 className="mb-4 text-yellow">Hi, I’m Stefan 👋</h1>
-              <p className="lead mb-4">
-                I am a senior software engineer with years of industry
-                experience. I help a large number of developers to become better
-                in their daily work through the content I share on social
-                networks, blog and newsletter.
-              </p>
-              <p className="mb-4 text-yellow">
-                <strong>
-                  "Keep it simple and focus on what matters. Don't let yourself
-                  be overwhelmed."
-                </strong>{" "}
-                <span style={{ color: '#fff' }}>- Confucius</span>
-              </p>
-              <p className="mb-4">
-                My goal is to convey knowledge to people in such a way -{" "}
-                <strong className="text-yellow">simple</strong>.
-              </p>
-            </div>
+    <div className="tcm-home">
+      <section className="tcm-container tcm-hero tcm-about">
+        <div className="tcm-hero__copy">
+          <span className="tcm-badge">About · Microsoft MVP</span>
+          <h1>Hi, I&rsquo;m <span className="tcm-accent">Stefan</span>.</h1>
+          <p className="tcm-hero__sub">I am a senior software engineer with years of industry experience. I help a large number of developers become better in their daily work through the content I share on social networks, my blog and newsletter.</p>
+          <figure className="tcm-card tcm-about__quote">
+            <blockquote>&ldquo;Keep it simple and focus on what matters. Don&rsquo;t let yourself be overwhelmed.&rdquo;</blockquote>
+            <figcaption>Confucius</figcaption>
+          </figure>
+          <p className="tcm-lead">My goal is to convey knowledge in a way that is <strong className="tcm-accent">simple</strong>.</p>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <a href="/blog" className="tcm-btn tcm-btn--primary">Read the blog</a>
+            <a href="/sponsorship" className="tcm-btn tcm-btn--secondary">Work with me</a>
+          </div>
+        </div>
+        <div className="tcm-hero__media">
+          <div className="tcm-hero__photo">
+            <Image src="/images/stefan-djokic.webp" alt="Stefan Djokic - Microsoft MVP and Senior .NET Engineer" width={900} height={1195} priority sizes="(max-width: 991px) 460px, 480px" />
+          </div>
+          <span className="tcm-float tcm-float--mvp">Microsoft MVP</span>
+        </div>
+      </section>
 
-            {/* RIGHT IMAGE */}
-            <div className="col-12 col-md-6 text-center">
-              <Image
-                src="/images/stefan-djokic.webp"
-                alt="Stefan Djokic - Microsoft MVP and Senior .NET Engineer"
-                width={380}
-                height={380}
-                className="img-fluid rounded"
-                priority
-              />
+      <section className="tcm-container" aria-label="Audience">
+        <div className="tcm-stats">
+          <div className="tcm-stat"><div className="tcm-stat__num">{first(config.NewsletterSubCount)}</div><div className="tcm-stat__label">newsletter subscribers</div></div>
+          <div className="tcm-stat"><div className="tcm-stat__num">{first(config.LinkedinFollowers)}</div><div className="tcm-stat__label">followers on LinkedIn</div></div>
+          <div className="tcm-stat"><div className="tcm-stat__num">{config.OpenRate}</div><div className="tcm-stat__label">average open rate</div></div>
+          <div className="tcm-stat"><div className="tcm-stat__num">{Number(config.EbookCopiesNumber).toLocaleString("en-US")}+</div><div className="tcm-stat__label">ebook copies sold</div></div>
+        </div>
+      </section>
+
+      <section className="tcm-section">
+        <div className="tcm-container">
+          <div className="tcm-head">
+            <div>
+              <span className="tcm-eyebrow">Let&rsquo;s stay connected</span>
+              <h2 className="tcm-h2">Follow me where you already are.</h2>
             </div>
+          </div>
+          <div className="tcm-places">
+            {PLACES.map((p) => (
+              <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" className="tcm-card tcm-place">
+                <span className="tcm-place__name">{p.name}</span>
+                <span className="tcm-text">{p.note}</span>
+                <span className="tcm-link">Open <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg></span>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SECOND FULL SCREEN SECTION */}
-      <section
-        className="ftco-section d-flex align-items-center background-yellow"
-        style={{ minHeight: "100vh" }}
-      >
-        <div className="container text-center">
-          <h2 className="mb-4 text-font-2rem margin-top-minus-10 text-black">
-            Let’s stay connected
-          </h2>
-
-          <p className="mb-2 text-black" style={{ fontSize: "18px" }}>
-            Follow me on social networks or join my community
-          </p>
-
-          {/* SOCIAL LINKS */}
-            <section className="ftco-section contact-section ftco-no-pb" id="contact-section">
-                    <div className="container">
-                      <div className="row d-flex text-center contact-info mb-5">
-                      <div className='col-md-2'></div>
-                        <div className='col-md-8'>
-                          <div className='row'>
-                          <div className="col-md-2 d-flex">
-                          <a href="https://www.skool.com/thecodeman" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/skool-icon.webp'} className='social-icon' alt={'Skool Community'} width={240} height={240} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-                          </a>
-                        </div>
-                        <div className="col-md-2 d-flex">
-                          <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/youtube-icon.png'} className='social-icon' alt={'YouTube Channel'} width={256} height={256} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-                          </a>
-                        </div>
-                        <div className="col-md-2 d-flex">
-                          <a href="https://www.linkedin.com/in/djokic-stefan/" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/linkedin-icon.png'} className='social-icon' alt={'Linkedin'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-                          </a>
-                        </div>
-                        <div className="col-md-2 d-flex ">
-                          <a href="https://twitter.com/TheCodeMan__" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/twitter-icon.png'} className='social-icon' alt={'Twitter (X)'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-                          </a>
-                        </div>
-                        <div className="col-md-2 d-flex ">
-                          <a href="https://github.com/StefanTheCode" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/github-icon.png'} className='social-icon' alt={'Github'} width={512} height={512} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-                          </a>
-                        </div>
-                        <div className="col-md-2 d-flex">
-                          <a href="https://medium.com/@thecodeman" target="_blank" rel="noopener">
-                            <Image src={'/images/icons/medium-icon.webp'} className='social-icon' alt={'Medium'} width={2048} height={2048} sizes="100vw" style={{ width: '30%', height: 'auto' }} />
-                          </a>
-                        </div>
-                          </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </section>
-
-          {/* JOIN COMMUNITY */}
-          <div className="row justify-content-center">
-            <div className="col-12 col-md-8">
-              <div
-                className="p-5"
-                style={{
-                  backgroundColor: "var(--tcm-card-2)",
-                  borderRadius: "12px",
-                  color: "white",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "20px",
-                }}
-              >
-                {/* Text Above Form */}
-                <h3 className="text-white" style={{ fontSize: "28px", fontWeight: "bold", margin: 0 }}>
-                  {`Become a Better Backend Engineer`}
-                </h3>
-                <p style={{ fontSize: "16px", margin: 0 }}>
-                  {`Join 25,000+ engineers who are improving their skills every Monday morning`}
-                </p>
-
-                {/* EOMail Form Embed safely within a wrapping div */}
-                <div className="col-xs-4 col-sm-12 col-md-10 col-lg-6 col-xl-8 text-center">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: `<script type='text/lazy' data-src='https://eomail4.com/form/861505f8-b3f8-11ef-896f-474a313dbc14.js' data-form='861505f8-b3f8-11ef-896f-474a313dbc14'></script>`,
-                    }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      <Subscribe />
+    </div>
   );
 }

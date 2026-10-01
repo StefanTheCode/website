@@ -6,7 +6,6 @@ import matter from "gray-matter";
 import getPostMetadata from "../../../components/getPostMetadata";
 import styles from './page.module.css';
 import Subscribe from "@/app/subscribe";
-import Help from "@/app/help";
 import config from "@/config.json";
 import { notFound } from "next/navigation";
 import CodeBlock from "@/components/CodeBlock";
@@ -25,6 +24,7 @@ import RelatedPosts from "@/components/RelatedPosts";
 import PostNavigation from "@/components/PostNavigation";
 import HeadingAnchors from "@/components/HeadingAnchors";
 import Link from "next/link";
+import { formatPostDate, formatReadTime } from "@/components/PostCard";
 import Image from "next/image";
 import AiCommunityPromo from "@/components/AiCommunityPromo";
 import { aiLearningPaths, isAiPost, AI_COMMUNITY_URL, AI_COMMUNITY_PATH, AI_COMMUNITY_IMAGE } from "@/components/aiCommunity";
@@ -252,10 +252,10 @@ export default async function PostPage(
         />
       )}
 
-      <section className={`img ${styles.article}`}>
+      <section className={`img ${styles.article} tcm-post`}>
         <div className="container">
           <div className="row justify-content-center pb-5">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section border-right">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 heading-section tcm-post-main">
 
               {/* Breadcrumb */}
               <nav className="breadcrumb-nav">
@@ -272,34 +272,28 @@ export default async function PostPage(
                 <span className="breadcrumb-current">{meta.title}</span>
               </nav>
 
-              <div className="row justify-content-center pb-3">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 heading-section text-center">
-                  <h1 className="blog-header2">{meta.title}</h1>
-                  <div className="post-meta-bar">
-                    <span>{meta.date}</span>
-                    {post.data.updated && <span> &middot; Updated <time dateTime={post.data.updated}>{post.data.updated}</time></span>}
-                    {post.data.readTime && (
-                      <>
-                        <span className="meta-sep" />
-                        <span> - {post.data.readTime}</span>
-                      </>
-                    )}
-                    {post.data.category && (
-                      <>
-                        <span className="meta-sep" />
-                        <Link href={`/blog?category=${encodeURIComponent(post.data.category)}`}> - {post.data.category}</Link>
-                      </>
-                    )}
-                  </div>
+              <header className="tcm-post-head">
+                <h1 className="tcm-post-head__title">{meta.title}</h1>
+                <div className="tcm-post-head__meta">
+                  <span className="tcm-post-head__author">
+                    <Image src="/images/thecodeman-logo-96.webp" alt="" width={32} height={32} />
+                    Stefan Đokić
+                  </span>
+                  <span>{formatPostDate(meta.date)}</span>
+                  {post.data.updated && <span>Updated <time dateTime={post.data.updated}>{formatPostDate(post.data.updated)}</time></span>}
+                  {post.data.readTime && <span>{formatReadTime(post.data.readTime)}</span>}
+                  {post.data.category && (
+                    <Link className="tcm-chip tcm-chip--purple" href={`/blog?category=${encodeURIComponent(post.data.category)}`}>{post.data.category}</Link>
+                  )}
                 </div>
-              </div>
+              </header>
 
               {/* Premium upsell banner — top of free Design Patterns posts */}
               {post.data.category === "Design Patterns" && (
                 <PremiumChapterBanner slug={slug} />
               )}
 
-              {aiPost && <p className="text-white">Part of the <Link href={AI_COMMUNITY_PATH} className="text-yellow">AI for .NET Developers</Link> learning library: practical C# workflows, MCP and AI applications.</p>}
+              {aiPost && <p className="tcm-post-lede">Part of the <Link href={AI_COMMUNITY_PATH} className="text-yellow">AI for .NET Developers</Link> learning library: practical C# workflows, MCP and AI applications.</p>}
 
               {/* Table of Contents */}
               <TableOfContents initialHeadings={getTocHeadings(normalizeHeadings(post.content), faq)} />
@@ -337,10 +331,11 @@ export default async function PostPage(
                 </section>
               )}
               {aiPost && <>
-                {learningPath && <nav aria-label="Continue learning about AI in .NET" className="mt-4">
-                  <h2 className="text-white" style={{ fontSize: '1.4rem' }}>Continue learning: {learningPath.title}</h2>
-                  <ul>{learningPath.articles.filter(a => a.slug !== slug).map(a => <li key={a.slug}><Link href={`/posts/${a.slug}`}>{a.title}</Link></li>)}
-                    <li><Link href="/ai-roadmap-2026">Follow the free AI roadmap for .NET developers</Link></li>
+                {learningPath && <nav aria-label="Continue learning about AI in .NET" className="tcm-card tcm-continue">
+                  <span className="tcm-eyebrow">Continue learning</span>
+                  <h2 className="tcm-h3">{learningPath.title}</h2>
+                  <ul className="tcm-linklist">{learningPath.articles.filter(a => a.slug !== slug).map(a => <li key={a.slug}><Link href={`/posts/${a.slug}`}>{a.title} <span>→</span></Link></li>)}
+                    <li><Link href="/ai-roadmap-2026">Follow the free AI roadmap for .NET developers <span>→</span></Link></li>
                   </ul>
                 </nav>}
                 <AiCommunityPromo compact />
@@ -366,7 +361,6 @@ export default async function PostPage(
                 allPosts={allPosts}
               />
 
-              <Help />
               <Subscribe />
             </div>
 
@@ -389,13 +383,13 @@ export default async function PostPage(
                     </Link>
 
                     <Link href="/design-patterns-that-deliver-ebook?utm_source=sidebar" className="sidebar-product-card">
-                      <Image src="/images/ebook.webp" alt="Design Patterns that Deliver Ebook" width={300} height={160} className="sidebar-product-img" />
+                      <Image src="/images/ebook2.webp" alt="Design Patterns that Deliver Ebook" width={300} height={160} className="sidebar-product-img" />
                       <span className="sidebar-product-title">Design Patterns that Deliver</span>
                       <span className="sidebar-product-label">Ebook</span>
                     </Link>
 
                     <Link href="/design-patterns-simplified?utm_source=sidebar" className="sidebar-product-card">
-                      <Image src="/images/ebook2.webp" alt="Design Patterns Simplified Ebook" width={300} height={160} className="sidebar-product-img" />
+                      <Image src="/images/ebook.webp" alt="Design Patterns Simplified Ebook" width={300} height={160} className="sidebar-product-img" />
                       <span className="sidebar-product-title">Design Patterns Simplified</span>
                       <span className="sidebar-product-label">Ebook — $9.95</span>
                     </Link>

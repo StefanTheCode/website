@@ -531,12 +531,14 @@ p {
 
 p b {
   font-size: 1.25rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
+  font-weight: 700;
 }
 
 p strong {
   font-size: 1.25rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
+  font-weight: 700;
 }
 
 abbr[title],
@@ -577,7 +579,8 @@ ol li b {
 
 ol li p strong {
   font-size: 1.25rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
+  font-weight: 700;
 }
 
 ul li {
@@ -587,12 +590,14 @@ ul li {
 
 ul li b {
   font-size: 1.25rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
+  font-weight: 700;
 }
 
 ul li p strong {
   font-size: 1.25rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
+  font-weight: 700;
 }
 
 dt {
@@ -868,22 +873,22 @@ h1,
 
 h2,
 .h2 {
-  font-size: 1.75rem !important;
+  font-size: 1.75rem;
   text-align: center;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
 }
 
 h3,
 .h3 {
   font-size: 1.75rem;
   text-align: center;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
 }
 
 h4,
 .h4 {
   font-size: 1.5rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
 }
 
 h5,
@@ -893,12 +898,14 @@ h5,
 
 h5 b {
   font-size: 1.25rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
+  font-weight: 700;
 }
 
 h5 strong {
   font-size: 1.25rem;
-  color: var(--tcm-amber) !important;
+  color: var(--tcm-h);
+  font-weight: 700;
 }
 
 h6,

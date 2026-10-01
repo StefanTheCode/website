@@ -1,28 +1,18 @@
 import './globals.css'
-import config from '@/config.json'
 import NewsletterForm from '@/components/NewsletterForm'
 
 export default function Subscribe() {
-    return (
-        <section className="ftco-section contact-section mb-3 mt-5 text-center" id="newsletter-section">
-        <div className="container">
-          <div className="row justify-content-center ">
-            <div className="col-md-12 heading-section text-center " id="footer-news-web">
-              <p className="header-text">1 Practical .NET & Architecture Tip Every Monday</p>
-            </div>
-            <div className='col-md-12'>
-              <p>Join <span className='text-yellow'> {config.NewsletterSubCount}</span> who mass-improve their .NET skills with actionable tips on C#, Software Architecture & Best Practices.</p>
-            </div>
-          </div>
-          <div className='container'>
-
-          <div className="row text-center">
-            <div className="col-md-2"></div>
-            <NewsletterForm className="col-md-8" />
-            <div className="col-md-2"></div>
-          </div>
-          </div>
+  return (
+    <section className="tcm-section tcm-section--last" id="newsletter-section">
+      <div className="tcm-container">
+        <div className="tcm-cta">
+          <span className="tcm-eyebrow">Every Monday · Free</span>
+          <h2 className="tcm-h2">One practical .NET &amp; architecture tip, every Monday.</h2>
+          <p>Join 25,000+ engineers who improve their C# skills in a 5-minute read.</p>
+          <NewsletterForm variant="inline" buttonText="Subscribe" className="tcm-form--center" />
+          <span className="tcm-cta__note">No spam. Unsubscribe anytime.</span>
         </div>
-      </section>
-    )
+      </div>
+    </section>
+  )
 }

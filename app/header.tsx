@@ -4,52 +4,94 @@ import { useEffect, useRef, useState } from "react";
 import "./globals.css";
 import Image from "next/image";
 
+type NavLink = { href: string; label: string; note?: string };
+type NavGroup = { id: string; label: string; links: NavLink[] };
+
+const GROUPS: NavGroup[] = [
+  {
+    id: "free",
+    label: "Free resources",
+    links: [
+      { href: "/dotnet-roadmap-2026", label: ".NET Roadmap 2026" },
+      { href: "/ai-roadmap-2026", label: "AI Roadmap for .NET 2026" },
+      { href: "/ai-roadmap-course", label: "AI Roadmap Course", note: "Free lessons" },
+      { href: "/dotnet-code-rules-starter-kit", label: ".NET Code Rules Starter Kit" },
+      { href: "/vertical-slices-architecture", label: "Vertical Slice Architecture" },
+      { href: "/pass-your-interview", label: "Pass Your .NET Interview", note: "250 interview Q&As" },
+      { href: "/builder-pattern-free-stuff", label: "Builder Pattern Chapter" },
+      { href: "/ai-in-dotnet-starter-kit", label: "AI in .NET Starter Kit" },
+    ],
+  },
+  {
+    id: "courses",
+    label: "Courses",
+    links: [
+      { href: "/ai-for-dotnet-developers", label: "AI for .NET Developers", note: "Community + lessons" },
+      { href: "/pragmatic-dotnet-code-rules", label: "Pragmatic .NET Code Rules", note: "Video course" },
+    ],
+  },
+  {
+    id: "ebooks",
+    label: "Ebooks",
+    links: [
+      { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver", note: "10 patterns + AI tutor" },
+      { href: "/design-patterns-simplified", label: "Design Patterns Simplified" },
+    ],
+  },
+  {
+    id: "ai",
+    label: "AI tools",
+    links: [
+      { href: "/tools/pattern-picker", label: "Pattern Picker" },
+      { href: "/tools/pattern-comparison", label: "Pattern Comparison" },
+      { href: "/tools/interview-quiz", label: "Interview Quiz" },
+      { href: "/playground", label: "C# Playground" },
+      { href: "/tools/ask-the-book", label: "Ask the Book", note: "For ebook owners" },
+      { href: "/tools", label: "All AI tools →" },
+    ],
+  },
+];
+
+const Chevron = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+);
+
 export default function Header() {
+  const headerRef = useRef<HTMLDivElement>(null);
   const promoRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [path, setPath] = useState("");
 
+  // Keep --promo-h in sync so the fixed header never covers page content.
   useEffect(() => {
     const setPromoHeight = () => {
       const h = promoRef.current?.offsetHeight ?? 0;
       document.documentElement.style.setProperty("--promo-h", `${h}px`);
     };
-
     setPromoHeight();
     window.addEventListener("resize", setPromoHeight);
     return () => window.removeEventListener("resize", setPromoHeight);
   }, []);
 
-  useEffect(() => {
-    const currentPath = window.location.pathname;
-    const navItems = document.querySelectorAll(".navbar-nav .nav-item a");
+  useEffect(() => { setPath(window.location.pathname); }, []);
 
-    navItems.forEach((item) => {
-      if (item.getAttribute("href") === currentPath) item.classList.add("active");
-      else item.classList.remove("active");
-    });
-  }, []);
-
-  // Close menu on resize to desktop
+  // Close dropdowns on outside click / Escape; close the mobile menu on desktop widths.
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 992) {
-        setMenuOpen(false);
-        setOpenDropdown(null);
-      }
+    const onDown = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) setOpenDropdown(null);
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpenDropdown(null); setMenuOpen(false); } };
+    const onResize = () => { if (window.innerWidth >= 992) setMenuOpen(false); };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
-
-  const toggleDropdown = (id: string) => {
-    setOpenDropdown(openDropdown === id ? null : id);
-  };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-    setOpenDropdown(null);
-  };
 
   const toggleTheme = () => {
     const root = document.documentElement;
@@ -58,190 +100,107 @@ export default function Header() {
     try { localStorage.setItem("theme", next); } catch (e) {}
   };
 
-  return (
-    <>
-      {/* PROMO BAR */}
-      <div ref={promoRef} className="promo-bar">
-        <div className="container promo-inner-center">
-          <div className="promo-center-group">
-            <span className="promo-text">
-              <strong>AI for .NET Developers</strong> — skills, agents and practical lessons
-            </span>
+  const isActive = (href: string) => path === href || (href !== "/" && path.startsWith(href + "/"));
+  const groupActive = (g: NavGroup) => g.links.some((l) => isActive(l.href));
 
-            <a href="/ai-for-dotnet-developers" className="promo-buy-btn" data-cta="ai-community-header">
-              EXPLORE COMMUNITY
-            </a>
-          </div>
+  return (
+    <div className="tcm-header" ref={headerRef}>
+      {/* Announcement (class promo-bar kept: product pages hide it by that name) */}
+      <div ref={promoRef} className="promo-bar tcm-announce">
+        <div className="tcm-announce__inner">
+          <span className="tcm-announce__tag">NEW</span>
+          <span className="tcm-announce__text"><strong>AI for .NET Developers</strong><span className="tcm-announce__more"> - skills, agents and practical lessons</span></span>
+          <a href="/ai-for-dotnet-developers" data-cta="ai-community-header">
+            Explore
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+          </a>
         </div>
       </div>
 
-      {/* NAVBAR */}
-      <nav
-        className="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target header-nav"
-        id="ftco-navbar"
-      >
-        <div className="container">
-          <a className="navbar-brand d-flex align-items-center" href="/">
-            <Image
-              src="/images/thecodeman-logo-96.webp"
-              alt="Profile"
-              width={48}
-              height={48}
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                marginRight: "12px",
-              }}
-            />
-
-            <div className="brand-text">
-              <div className="brand-name">Stefan Đokić</div>
-              <div className="brand-sub">Microsoft MVP</div>
-            </div>
+      {/* id/class kept: product pages hide the global nav with nav#ftco-navbar.header-nav */}
+      <nav className="header-nav tcm-nav" id="ftco-navbar" aria-label="Main">
+        <div className="tcm-container tcm-nav__bar">
+          <a className="tcm-brand" href="/">
+            <Image src="/images/thecodeman-logo-96.webp" alt="" width={48} height={48} />
+            <span className="tcm-brand__text">
+              <span className="tcm-brand__name">Stefan Đokić</span>
+              <span className="tcm-brand__sub">Microsoft MVP</span>
+            </span>
           </a>
 
-          <button
-            className="navbar-toggler"
-            type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-controls="ftco-nav"
-            aria-expanded={menuOpen}
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className={`navbar-collapse ${menuOpen ? 'show' : 'collapse'}`} id="ftco-nav">
-            <ul className="navbar-nav nav margin-left-auto">
-              <li className="nav-item">
-                <a href="/" className="nav-link" onClick={closeMenu}><span>Home</span></a>
-              </li>
-
-              <li className={`nav-item dropdown ${openDropdown === 'free' ? 'show' : ''}`}>
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  onClick={(e) => { e.preventDefault(); toggleDropdown('free'); }}
-                  aria-expanded={openDropdown === 'free'}
-                >
-                  Get for Free
-                </a>
-                <div className={`dropdown-menu ${openDropdown === 'free' ? 'show' : ''}`}>
-                  <a className="dropdown-item" href="/dotnet-roadmap-2026" onClick={closeMenu}>.NET Roadmap 2026</a>
-                  <a className="dropdown-item" href="/ai-roadmap-2026" onClick={closeMenu}>AI Roadmap for .NET 2026</a>
-                  <a className="dropdown-item" href="/ai-roadmap-course" onClick={closeMenu}>AI Roadmap Course (free lessons)</a>
-                  <a className="dropdown-item" href="/dotnet-code-rules-starter-kit" onClick={closeMenu}>.NET Code Rules Starter Kit</a>
-                  <a className="dropdown-item" href="/vertical-slices-architecture" onClick={closeMenu}>Vertical Slice Architecture</a>
-                  <a className="dropdown-item" href="/pass-your-interview" onClick={closeMenu}>Pass Interview Prep Kit</a>
-                  <a className="dropdown-item" href="/builder-pattern-free-stuff" onClick={closeMenu}>Builder Pattern Chapter</a>
-                  <a className="dropdown-item" href="/ai-in-dotnet-starter-kit" onClick={closeMenu}>AI in .NET Starter Kit</a>
-                </div>
-              </li>
-
-              <li className="nav-item">
-                <a href="/blog" className="nav-link" onClick={closeMenu}><span>Blog</span></a>
-              </li>
-
-              <li className={`nav-item dropdown ${openDropdown === 'courses' ? 'show' : ''}`}>
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  onClick={(e) => { e.preventDefault(); toggleDropdown('courses'); }}
-                  aria-expanded={openDropdown === 'courses'}
-                >
-                  Courses
-                </a>
-                <div className={`dropdown-menu ${openDropdown === 'courses' ? 'show' : ''}`}>
-                  <a className="dropdown-item" href="/pragmatic-dotnet-code-rules" onClick={closeMenu}>Pragmatic .NET Code Rules</a>
-                  <a className="dropdown-item" href="/design-patterns-that-deliver-ebook" onClick={closeMenu}>Design Patterns That Deliver</a>
-                </div>
-              </li>
-
-              <li className={`nav-item dropdown ${openDropdown === 'ai' ? 'show' : ''}`}>
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  onClick={(e) => { e.preventDefault(); toggleDropdown('ai'); }}
-                  aria-expanded={openDropdown === 'ai'}
-                >
-                  AI Tools
-                </a>
-                <div className={`dropdown-menu ${openDropdown === 'ai' ? 'show' : ''}`}>
-                  <a className="dropdown-item" href="/tools/pattern-picker" onClick={closeMenu}>Pattern Picker (Free)</a>
-                  <a className="dropdown-item" href="/tools/pattern-comparison" onClick={closeMenu}>Pattern Comparison (Free)</a>
-                  <a className="dropdown-item" href="/tools/interview-quiz" onClick={closeMenu}>Interview Quiz (Free)</a>
-                  <a className="dropdown-item" href="/playground" onClick={closeMenu}>C# Playground (Free)</a>
-                  <a className="dropdown-item" href="/tools/ask-the-book" onClick={closeMenu}>Ask the Book (Owners)</a>
-                  <a className="dropdown-item" href="/tools" onClick={closeMenu}>All AI Tools →</a>
-                </div>
-              </li>
-
-              <li className={`nav-item dropdown ${openDropdown === 'ebooks' ? 'show' : ''}`}>
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  onClick={(e) => { e.preventDefault(); toggleDropdown('ebooks'); }}
-                  aria-expanded={openDropdown === 'ebooks'}
-                >
-                  Ebooks
-                </a>
-                <div className={`dropdown-menu ${openDropdown === 'ebooks' ? 'show' : ''}`}>
-                  <a className="dropdown-item" href="/design-patterns-simplified" onClick={closeMenu}>Design Patterns Simplified</a>
-                  <a className="dropdown-item" href="/tools" onClick={closeMenu}>Free AI Tools →</a>
-                </div>
-              </li>
-
-              <li className="nav-item">
-                <a href="/sponsorship" className="nav-link" onClick={closeMenu}><span>For Sponsors</span></a>
-              </li>
-
-              <li className="nav-item nav-join-cta">
-                <a href="/ai-for-dotnet-developers" className="join-community-btn toolkit-cta-btn" onClick={closeMenu}>
-                  AI for .NET Devs
-                </a>
-              </li>
-
-              <li className="nav-item nav-join-cta">
-                <a href="https://www.skool.com/thecodeman-community-2911" className="join-community-btn" onClick={closeMenu}>
-                  Join FREE Community
-                </a>
-              </li>
-
-              <li className="nav-item d-flex align-items-center">
+          <ul className="tcm-nav__menu">
+            <li><a href="/blog" className={`tcm-nav__link ${isActive("/blog") ? "is-active" : ""}`}>Blog</a></li>
+            {GROUPS.map((g) => (
+              <li key={g.id}>
                 <button
                   type="button"
-                  className="theme-toggle"
-                  onClick={toggleTheme}
-                  aria-label="Toggle light/dark theme"
-                  title="Toggle light/dark theme"
+                  className={`tcm-nav__link ${groupActive(g) ? "is-active" : ""}`}
+                  aria-expanded={openDropdown === g.id}
+                  aria-controls={`dd-${g.id}`}
+                  onClick={() => setOpenDropdown(openDropdown === g.id ? null : g.id)}
                 >
-                  <svg className="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                  </svg>
-                  <svg className="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                  </svg>
+                  {g.label}<Chevron />
                 </button>
+                <div id={`dd-${g.id}`} className={`tcm-dd ${openDropdown === g.id ? "is-open" : ""}`}>
+                  {g.links.map((l) => (
+                    <a key={l.href} href={l.href} onClick={() => setOpenDropdown(null)}>
+                      {l.label}{l.note ? <small>{l.note}</small> : null}
+                    </a>
+                  ))}
+                </div>
               </li>
+            ))}
+            <li><a href="/sponsorship" className={`tcm-nav__link ${isActive("/sponsorship") ? "is-active" : ""}`}>Sponsor</a></li>
+          </ul>
 
-            </ul>
+          <div className="tcm-nav__actions">
+            <button type="button" className="theme-toggle" onClick={toggleTheme} aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+              <svg className="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <svg className="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+              </svg>
+            </button>
+            <a href="https://www.skool.com/thecodeman-community-2911" className="tcm-nav__text-link">Free community</a>
+            <a href="/ai-for-dotnet-developers" className="tcm-btn tcm-btn--primary tcm-btn--sm" data-cta="ai-community-nav">AI for .NET Devs</a>
+            <button
+              type="button"
+              className="tcm-burger"
+              aria-expanded={menuOpen}
+              aria-controls="tcm-mobile-menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+              )}
+            </button>
+          </div>
+        </div>
+
+        <div id="tcm-mobile-menu" className={`tcm-mobile ${menuOpen ? "is-open" : ""}`}>
+          <div className="tcm-container">
+            <a href="/blog" onClick={() => setMenuOpen(false)}>Blog</a>
+            {GROUPS.map((g) => (
+              <details key={g.id}>
+                <summary>{g.label}<Chevron /></summary>
+                {g.links.map((l) => (
+                  <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
+                ))}
+              </details>
+            ))}
+            <a href="/sponsorship" onClick={() => setMenuOpen(false)}>Sponsor</a>
+            <div className="tcm-mobile__ctas">
+              <a href="/ai-for-dotnet-developers" className="tcm-btn tcm-btn--primary">AI for .NET Developers</a>
+              <a href="https://www.skool.com/thecodeman-community-2911" className="tcm-btn tcm-btn--secondary">Join the free community</a>
+            </div>
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 }

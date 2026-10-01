@@ -10,23 +10,28 @@ export const MAIN_NEWSLETTER_FORM_ID = '861505f8-b3f8-11ef-896f-474a313dbc14';
  */
 export default function NewsletterForm({
   formId = MAIN_NEWSLETTER_FORM_ID,
-  buttonText = 'Join 20k+ engineers',
-  minHeight = 151,
+  buttonText = 'Join 25,000+ engineers',
+  minHeight,
   className,
+  variant = 'stack',
 }: {
   formId?: string;
   buttonText?: string;
   minHeight?: number;
   className?: string;
+  /** 'inline' = one-row premium field (email + button), used by the new layout. */
+  variant?: 'stack' | 'inline';
 }) {
+  const inline = variant === 'inline';
+  const cls = [className, inline ? 'tcm-form' : ''].filter(Boolean).join(' ');
   return (
-    <div data-eo-wrap className={className} style={{ minHeight }}>
+    <div data-eo-wrap className={cls || undefined} style={{ minHeight: minHeight ?? (inline ? 60 : 151) }}>
       <div className="eo-placeholder">
         <div>
-          <div className="form-group mb-2" style={{ marginTop: 16 }}>
+          <div className="form-group mb-2" style={inline ? undefined : { marginTop: 16 }}>
             <input aria-label="Email address" type="email" placeholder="Email address" className="form-control" autoComplete="email" />
           </div>
-          <button type="button" className="btn w-100 btn-primary mb-2">{buttonText}</button>
+          <button type="button" className={inline ? 'btn btn-primary' : 'btn w-100 btn-primary mb-2'}>{buttonText}</button>
         </div>
       </div>
       <div dangerouslySetInnerHTML={{ __html: eoFormScript(formId) }} />
