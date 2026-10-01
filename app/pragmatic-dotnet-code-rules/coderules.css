@@ -107,9 +107,8 @@
 .cr-cover .cr-glow{position:absolute;inset:-30px;background:radial-gradient(circle at 50% 40%,rgba(var(--tcm-amber-rgb), .22),transparent 60%);filter:blur(8px);z-index:-1}
 @media(max-width:940px){.cr-cover .cr-frame{transform:none}}
 
-/* hero rating badge (live Senja widget) */
+/* hero rating badge */
 .cr-hero-rating{margin-top:22px}
-.cr-hero-rating .senja-embed{display:block;max-width:420px}
 .cr-hero-rating .col-xs-12{padding:0;margin:0 !important}
 
 /* main testimonial spotlight */

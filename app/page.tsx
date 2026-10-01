@@ -76,8 +76,6 @@ export default function Home() {
             </div>
             <p>Read by engineers, architects and fellow <strong>Microsoft MVPs</strong></p>
           </div>
-          <div className="senja-embed" data-id="ea80a7ca-913b-44b0-be8f-ff917bc894e0" data-lazyload="false" style={{ minHeight: 40 }}></div>
-          <div dangerouslySetInnerHTML={{ __html: '<script type="text/lazy" data-src="https://static.senja.io/dist/platform.js"></script>' }} />
         </div>
 
         <div className="tcm-hero__media">

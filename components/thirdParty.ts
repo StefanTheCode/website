@@ -1,7 +1,7 @@
 /**
  * Third-party script loading (performance).
  *
- * Analytics, the EmailOctopus forms/popup, Senja widgets and Lemon Squeezy used to
+ * Analytics, the EmailOctopus forms/popup and Lemon Squeezy used to
  * load during page load and cost ~1.5 s of main-thread time (reCAPTCHA alone ~700 KB).
  * Now:
  *   1. THIRD_PARTY_STUBS runs inline in <head>: it only creates the gtag / dataLayer /
@@ -11,7 +11,7 @@
  *      interaction (mouse move, wheel, touch, key, click) it loads GA4, GTM, Meta Pixel,
  *      the EmailOctopus popup, Lemon Squeezy (only on pages with a checkout button) and
  *      activates every <script type="text/lazy" data-src="..."> placeholder in place
- *      (EmailOctopus inline forms, Senja widgets). The queued events are then sent.
+ *      (EmailOctopus inline forms). The queued events are then sent.
  *
  * To lazy-load any embed, render it as:
  *   <script type="text/lazy" data-src="https://..." data-form="..."></script>

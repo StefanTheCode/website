@@ -345,8 +345,6 @@ body nav#ftco-navbar.tcm-nav {
 .tcm-quote figcaption img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
 .tcm-quote figcaption b { display: block; color: var(--s-h); font-size: 15px; }
 .tcm-quote figcaption span { display: block; font-size: 13px; color: var(--s-faint); }
-.tcm-senja { margin-top: 28px; border-radius: 24px; overflow: hidden; }
-.tcm-senja iframe { display: block; border: 0; }
 
 /* Final CTA (also used as the site-wide <Subscribe/>) */
 .tcm-cta {
@@ -659,14 +657,20 @@ h1, h2 { font-weight: 700; letter-spacing: -0.02em; }
 .tcm-tw__avatar { display: inline-flex; align-items: center; justify-content: center; background: rgba(var(--tcm-purple-rgb), 0.22); color: var(--s-purple-text); font-weight: 700; font-size: 14px; }
 .tcm-tw__who b { display: block; font-size: 15px; color: var(--s-h); }
 .tcm-tw__who span span { display: block; font-size: 13px; color: var(--s-faint); }
-.tcm-tw__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
-.tcm-tw__more summary { list-style: none; display: flex; justify-content: center; cursor: pointer; margin: 4px 0 0; }
-.tcm-tw__more[open] > .tcm-tw__grid { margin-top: 0; }
-.tcm-tw__more summary::-webkit-details-marker { display: none; }
-.tcm-tw__more[open] summary { display: none; }
-@media (max-width: 991.98px) { .tcm-tw__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tcm-tw__cols { display: grid; grid-template-columns: repeat(var(--tw-cols, 3), minmax(0, 1fr)); gap: 20px; align-items: start; }
+.tcm-tw__col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.tcm-tw__item { display: flex; }
+.tcm-tw__item > .tcm-tw__card { width: 100%; }
+.tcm-tw__item.is-extra { display: none; }
+.tcm-tw__toggle { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+.tcm-tw__toggle:checked ~ .tcm-tw__cols .tcm-tw__item.is-extra { display: flex; }
+.tcm-tw__toggle:checked ~ .tcm-tw__more { display: none; }
+.tcm-tw__toggle:focus-visible ~ .tcm-tw__more .tcm-btn { outline: 2px solid var(--s-accent); outline-offset: 3px; }
+.tcm-tw__summary--inline { justify-content: flex-start; font-size: 14px; }
+.tcm-tw__more { display: flex; justify-content: center; cursor: pointer; margin: 4px 0 0; }
+@media (max-width: 991.98px) { .tcm-tw__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tcm-tw__col { display: contents; } }
 @media (max-width: 640px) {
-  .tcm-tw__grid { grid-template-columns: minmax(0, 1fr); }
+  .tcm-tw__cols { grid-template-columns: minmax(0, 1fr); }
   .tcm-tw__card--featured { padding: 26px; }
   .tcm-tw__card--featured .tcm-tw__text { font-size: 17px; }
 }

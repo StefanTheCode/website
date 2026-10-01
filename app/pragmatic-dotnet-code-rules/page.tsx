@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
-import TestimonialWall from '@/components/TestimonialWall';
+import TestimonialWall, { TestimonialRating } from '@/components/TestimonialWall';
 import Image from 'next/image';
 import Script from 'next/script';
 import FreePreviewButton from '@/components/FreePreviewButton';
-import EbookNewsletter from '@/components/ebookTestimonials';
 import FreeMotion from '@/components/free/FreeMotion';
 import './coderules.css';
 
@@ -310,7 +309,7 @@ const CodeRules = () => {
             </div>
             <p className="cr-reassure">Presale price <span className="cr-dot"></span> 100% refundable until release <span className="cr-dot"></span> lifetime access</p>
             <div className="cr-hero-rating">
-              <EbookNewsletter />
+              <TestimonialRating slug="course" />
             </div>
           </div>
           <div className="cr-cover cr-reveal">
@@ -590,7 +589,7 @@ const CodeRules = () => {
 
       <div className="cr-divider"></div>
 
-      {/* 10. TESTIMONIALS (Senja widget + cards) */}
+      {/* 10. TESTIMONIALS */}
       <section>
         <div className="cr-wrap">
           <div className="cr-sec-head cr-center cr-reveal">
