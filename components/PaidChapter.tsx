@@ -85,7 +85,7 @@ const inputStyle: React.CSSProperties = {
   width: "100%",
   maxWidth: 360,
   background: "rgba(13,7,34,.55)",
-  color: "#F3EFFA",
+  color: "var(--tcm-h)",
   border: "1px solid rgba(255,255,255,.12)",
   borderRadius: 11,
   padding: "12px 16px",
@@ -184,7 +184,7 @@ export default function PaidChapter({ bookSlug, chapterSlug, productUrl, summary
             {summary ||
               "Unlock every chapter, the 20 runnable mini-projects, the 100 interview Q&A, and the AI tutor."}
           </p>
-          <p style={{ color: "#9C92B8", fontSize: 14, margin: "0 0 14px" }}>
+          <p style={{ color: "var(--tcm-muted)", fontSize: 14, margin: "0 0 14px" }}>
             Open the personal access link from your purchase email, or sign in here:
           </p>
 
@@ -210,7 +210,7 @@ export default function PaidChapter({ bookSlug, chapterSlug, productUrl, summary
               {busy ? "Checking…" : "Unlock this chapter"}
             </button>
           </form>
-          {err && <p style={{ color: "#E2607A", margin: "4px 0 14px" }}>{err}</p>}
+          {err && <p style={{ color: "var(--tcm-bad)", margin: "4px 0 14px" }}>{err}</p>}
 
           <a className="rd-cta-ghost" href={productUrl}>
             Don't have it yet? Get the book →

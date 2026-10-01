@@ -9,7 +9,7 @@ type Session =
 const GITHUB_REPO = "https://github.com/StefanTheCode/Design-Patterns-That-Deliver";
 
 const card: React.CSSProperties = {
-  background: "var(--card, #22184C)",
+  background: "var(--card, var(--tcm-card))",
   border: "1px solid rgba(255,255,255,.09)",
   borderRadius: 14,
   padding: "20px 22px",
@@ -19,18 +19,18 @@ const card: React.CSSProperties = {
 };
 const h: React.CSSProperties = {
   fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif",
-  color: "#F3EFFA",
+  color: "var(--tcm-h)",
   fontSize: 17,
   fontWeight: 700,
   margin: 0,
 };
-const sub: React.CSSProperties = { color: "#9C92B8", fontSize: 14, margin: 0, lineHeight: 1.5 };
+const sub: React.CSSProperties = { color: "var(--tcm-muted)", fontSize: 14, margin: 0, lineHeight: 1.5 };
 const dl: React.CSSProperties = {
   fontFamily: "'JetBrains Mono',monospace",
   fontSize: 11.5,
   letterSpacing: ".08em",
   textTransform: "uppercase",
-  color: "#6F6690",
+  color: "var(--tcm-faint)",
   margin: "8px 0 4px",
 };
 const row: React.CSSProperties = { display: "flex", gap: 10, flexWrap: "wrap" };
@@ -38,8 +38,8 @@ const btn: React.CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
   gap: 6,
-  background: "linear-gradient(180deg,#FFC650,#FFB31B)",
-  color: "#2a1500",
+  background: "linear-gradient(180deg,var(--tcm-amber-hi),var(--tcm-amber))",
+  color: "var(--tcm-amber-ink)",
   fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif",
   fontWeight: 600,
   fontSize: 13.5,
@@ -50,8 +50,8 @@ const btn: React.CSSProperties = {
 const ghost: React.CSSProperties = {
   ...btn,
   background: "transparent",
-  color: "#FFB31B",
-  border: "1px solid rgba(255,179,27,.4)",
+  color: "var(--tcm-amber)",
+  border: "1px solid rgba(var(--tcm-amber-rgb), .4)",
 };
 
 export default function ResourcesPanel({ bookSlug }: { bookSlug: string }) {
@@ -77,7 +77,7 @@ export default function ResourcesPanel({ bookSlug }: { bookSlug: string }) {
           fontSize: 12,
           letterSpacing: ".2em",
           textTransform: "uppercase",
-          color: "#FFB31B",
+          color: "var(--tcm-amber)",
           margin: "0 0 14px",
         }}
       >

@@ -78,18 +78,18 @@ const jsonLd = {
 
 /* ---------- shared styles (match the site's card look) ---------- */
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' }
-const th = { textAlign: 'left' as const, padding: '10px 14px', color: '#a49dcb', fontSize: '12px', textTransform: 'uppercase' as const, letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.03)' }
-const td = { textAlign: 'left' as const, padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.08)', verticalAlign: 'top' as const, color: '#e9e7f6', fontSize: '14px' }
+const th = { textAlign: 'left' as const, padding: '10px 14px', color: 'var(--tcm-muted)', fontSize: '12px', textTransform: 'uppercase' as const, letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.03)' }
+const td = { textAlign: 'left' as const, padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.08)', verticalAlign: 'top' as const, color: 'var(--tcm-h)', fontSize: '14px' }
 const tableWrap = { ...card, overflow: 'hidden', margin: '16px 0' }
 const table = { width: '100%', borderCollapse: 'collapse' as const }
-const muted = { color: '#cfc9f2' }
+const muted = { color: 'var(--tcm-body)' }
 
 function callout(accent: string, bg: string) {
   return { border: `1px solid ${accent}`, borderRadius: '14px', background: bg, padding: '18px 20px', margin: '18px 0' }
 }
 const tip = { box: callout('rgba(80,250,123,.35)', 'rgba(80,250,123,.07)'), color: '#50fa7b' }
 const never = { box: callout('rgba(255,122,144,.35)', 'rgba(255,122,144,.07)'), color: '#ff7a90' }
-const warn = { box: callout('rgba(249,184,1,.4)', 'rgba(249,184,1,.07)'), color: '#f9b801' }
+const warn = { box: callout('rgba(var(--tcm-amber-rgb), .4)', 'rgba(var(--tcm-amber-rgb), .07)'), color: 'var(--tcm-amber)' }
 const good = { box: callout('rgba(124,92,255,.4)', 'rgba(124,92,255,.08)'), color: '#c7b8ff' }
 
 /* ---------- data ---------- */
@@ -602,7 +602,7 @@ function DataTable({ head, rows }: { head: string[]; rows: string[][] }) {
 }
 
 const sectionCard = { ...card, padding: '30px 28px', textAlign: 'left' as const, marginBottom: '28px' }
-const kicker = { display: 'inline-block', background: 'rgba(255,189,57,0.14)', border: '1px solid rgba(255,189,57,0.4)', color: '#ffbd39', borderRadius: '999px', padding: '5px 14px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '1px', marginBottom: '14px' }
+const kicker = { display: 'inline-block', background: 'rgba(var(--tcm-amber-rgb), 0.14)', border: '1px solid rgba(var(--tcm-amber-rgb), 0.4)', color: 'var(--tcm-amber)', borderRadius: '999px', padding: '5px 14px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '1px', marginBottom: '14px' }
 
 export default function AiRoadmapCoursePage() {
   return (
@@ -632,9 +632,9 @@ export default function AiRoadmapCoursePage() {
               <div className="d-flex flex-wrap justify-content-center" style={{ gap: '8px', marginTop: '10px' }}>
                 {parts.map((p, i) => {
                   const base = { fontSize: '13px', fontWeight: 700, borderRadius: '999px', padding: '7px 14px', border: '1px solid rgba(255,255,255,0.12)', display: 'inline-block' }
-                  if (p.state === 'on') return <a key={i} href={p.href} style={{ ...base, color: '#2a003a', background: '#ffbd39', borderColor: '#ffbd39', textDecoration: 'none' }}>{p.label}</a>
-                  if (p.state === 'lock') return <a key={i} href="https://www.skool.com/ai-for-dotnet-developers" target="_blank" rel="noopener noreferrer" title="Unlock in the community" style={{ ...base, color: '#a49dcb', background: 'rgba(255,255,255,0.03)', opacity: 0.6, textDecoration: 'none' }}>{p.label}</a>
-                  return <a key={i} href={p.href} style={{ ...base, color: '#cfc9f2', background: 'rgba(255,255,255,0.03)', textDecoration: 'none' }}>{p.label}</a>
+                  if (p.state === 'on') return <a key={i} href={p.href} style={{ ...base, color: 'var(--tcm-amber-ink)', background: 'var(--tcm-amber)', borderColor: 'var(--tcm-amber)', textDecoration: 'none' }}>{p.label}</a>
+                  if (p.state === 'lock') return <a key={i} href="https://www.skool.com/ai-for-dotnet-developers" target="_blank" rel="noopener noreferrer" title="Unlock in the community" style={{ ...base, color: 'var(--tcm-muted)', background: 'rgba(255,255,255,0.03)', opacity: 0.6, textDecoration: 'none' }}>{p.label}</a>
+                  return <a key={i} href={p.href} style={{ ...base, color: 'var(--tcm-body)', background: 'rgba(255,255,255,0.03)', textDecoration: 'none' }}>{p.label}</a>
                 })}
               </div>
             </div>
@@ -765,7 +765,7 @@ claude`}</Code>
                 </div>
 
                 <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
-                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <div style={{ fontWeight: 800, color: 'var(--tcm-amber)', marginBottom: '6px' }}>Recap</div>
                   <span className="text-white">
                     Claude starts every session blind to your repo - <code>CLAUDE.md</code> fixes that. Cover stack, architecture,
                     conventions, and (most importantly) <strong>what to never suggest</strong>. Prompt for outcomes, ask for a plan, leave good code alone.
@@ -866,7 +866,7 @@ claude`}</Code>
                 </div>
 
                 <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
-                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <div style={{ fontWeight: 800, color: 'var(--tcm-amber)', marginBottom: '6px' }}>Recap</div>
                   <span className="text-white">
                     <strong>Skills</strong> = reusable, auto-triggered capabilities (the <code>description</code> is the trigger,
                     the body is a checklist). <strong>Agents</strong> = specialists that review your whole codebase. Together they turn a general assistant into <em>your</em> .NET specialist.
@@ -1009,7 +1009,7 @@ claude`}</Code>
                 </div>
 
                 <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
-                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <div style={{ fontWeight: 800, color: 'var(--tcm-amber)', marginBottom: '6px' }}>Recap</div>
                   <span className="text-white">
                     MCP turns the AI from a code writer into something that can <strong>act</strong> in your systems.
                     Expose an operation as a tool with <code>[McpServerTool]</code> + a sharp <code>[Description]</code>,
@@ -1118,7 +1118,7 @@ claude`}</Code>
                 </div>
 
                 <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
-                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <div style={{ fontWeight: 800, color: 'var(--tcm-amber)', marginBottom: '6px' }}>Recap</div>
                   <span className="text-white">
                     An AI feature in .NET is one interface: <code>IChatClient</code>. Register a provider once, call{' '}
                     <code>GetResponseAsync</code>, stream for UIs, and use <strong>structured output</strong> to get
@@ -1200,7 +1200,7 @@ claude`}</Code>
                 </div>
 
                 <div style={{ ...card, background: 'rgba(255,255,255,0.05)', padding: '18px 20px', marginTop: '20px' }}>
-                  <div style={{ fontWeight: 800, color: '#f9b801', marginBottom: '6px' }}>Recap</div>
+                  <div style={{ fontWeight: 800, color: 'var(--tcm-amber)', marginBottom: '6px' }}>Recap</div>
                   <span className="text-white">
                     A workflow chains your context, skills, agents, MCP tools, and tests into one repeatable loop behind
                     a slash command - with plan mode, hooks, and <strong>you</strong> as the gates. That&apos;s the whole
@@ -1291,7 +1291,7 @@ claude`}</Code>
           {/* ---------------- CTA ---------------- */}
           <div className="row justify-content-center pb-5" data-reveal>
             <div className="col-md-10">
-              <div className="tk-card crk-form-card" style={{ ...card, background: 'rgba(255,189,57,0.06)', borderColor: 'rgba(255,189,57,0.3)', padding: '40px 28px', textAlign: 'center' }}>
+              <div className="tk-card crk-form-card" style={{ ...card, background: 'rgba(var(--tcm-amber-rgb), 0.06)', borderColor: 'rgba(var(--tcm-amber-rgb), 0.3)', padding: '40px 28px', textAlign: 'center' }}>
                 <h3 className="text-white mb-2">This is Track A. Track B is where it gets rare.</h3>
                 <p style={{ ...muted, maxWidth: '580px', margin: '0 auto 20px' }}>
                   The full course - Claude Code, skills, MCP in C#, then building real AI features (LLMs, RAG, agents) into your

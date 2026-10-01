@@ -217,7 +217,7 @@ export default function CodePlayground() {
             fontSize: 12,
             letterSpacing: ".14em",
             textTransform: "uppercase",
-            color: "#9C92B8",
+            color: "var(--tcm-muted)",
           }}
         >
           Load an example
@@ -228,7 +228,7 @@ export default function CodePlayground() {
           onChange={(e) => setExId(e.target.value)}
           style={{
             background: "rgba(13,7,34,.55)",
-            color: "#F3EFFA",
+            color: "var(--tcm-h)",
             border: "1px solid rgba(255,255,255,.12)",
             borderRadius: 10,
             padding: "9px 12px",

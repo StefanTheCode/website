@@ -105,7 +105,7 @@ const InterviewSimulatorWaitlist = () => {
                       width: '10px',
                       height: '10px',
                       borderRadius: '50%',
-                      backgroundColor: '#f59e0b',
+                      backgroundColor: 'var(--tcm-amber)',
                       display: 'inline-block',
                       marginRight: '10px',
                     }}
@@ -253,7 +253,7 @@ const InterviewSimulatorWaitlist = () => {
                 href="#waitlist"
                 className="btn"
                 style={{
-                  background: '#f59e0b',
+                  background: 'var(--tcm-amber)',
                   color: '#111',
                   fontWeight: 700,
                   borderRadius: '999px',

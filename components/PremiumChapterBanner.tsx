@@ -31,8 +31,8 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
         borderRadius: 16,
         padding: "22px 24px",
         margin: "8px 0 34px",
-        background: "linear-gradient(135deg,#140A2E 0%,#22184C 100%)",
-        border: "1px solid rgba(255,179,27,.28)",
+        background: "linear-gradient(135deg,var(--tcm-bg) 0%,var(--tcm-card) 100%)",
+        border: "1px solid rgba(var(--tcm-amber-rgb), .28)",
         boxShadow: "0 14px 40px rgba(13,7,34,.28)",
       }}
     >
@@ -43,7 +43,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
           inset: 0,
           pointerEvents: "none",
           background:
-            "radial-gradient(60% 60% at 100% 0%, rgba(255,179,27,.16), transparent 60%)",
+            "radial-gradient(60% 60% at 100% 0%, rgba(var(--tcm-amber-rgb), .16), transparent 60%)",
         }}
       />
       <div style={{ position: "relative", zIndex: 1 }}>
@@ -56,7 +56,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
             fontWeight: 700,
             letterSpacing: ".18em",
             textTransform: "uppercase",
-            color: "#FFB31B",
+            color: "var(--tcm-amber)",
             margin: "0 0 8px",
             fontFamily: "'JetBrains Mono', monospace",
           }}
@@ -66,7 +66,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
 
         <h2
           style={{
-            color: "#F3EFFA",
+            color: "var(--tcm-h)",
             fontSize: 20,
             fontWeight: 800,
             lineHeight: 1.3,
@@ -78,7 +78,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
           {patternName ? (
             <>
               {" "}
-              to the <span style={{ color: "#FFB31B" }}>{patternName}</span> pattern
+              to the <span style={{ color: "var(--tcm-amber)" }}>{patternName}</span> pattern
             </>
           ) : null}
           .
@@ -86,7 +86,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
 
         <p
           style={{
-            color: "#D4CDE6",
+            color: "var(--tcm-body)",
             fontSize: 15.5,
             lineHeight: 1.6,
             margin: "0 0 16px",
@@ -94,12 +94,12 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
           }}
         >
           This article covers the idea. The{" "}
-          <strong style={{ color: "#F3EFFA" }}>
+          <strong style={{ color: "var(--tcm-h)" }}>
             production-grade chapter
           </strong>{" "}
           in <em>Design Patterns That Deliver</em> goes further — unit tests,
           async, thread-safety, trade-offs, DI wiring, and exactly when{" "}
-          <strong style={{ color: "#F3EFFA" }}>not</strong> to use it.
+          <strong style={{ color: "var(--tcm-h)" }}>not</strong> to use it.
         </p>
 
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
@@ -107,8 +107,8 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
             <Link
               href={`${chapterUrl}?utm_source=blog_banner`}
               style={{
-                background: "linear-gradient(180deg,#FFC650,#FFB31B)",
-                color: "#2a1500",
+                background: "linear-gradient(180deg,var(--tcm-amber-hi),var(--tcm-amber))",
+                color: "var(--tcm-amber-ink)",
                 fontWeight: 700,
                 padding: "11px 20px",
                 borderRadius: 10,
@@ -123,8 +123,8 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
             <Link
               href="/design-patterns-that-deliver-ebook?utm_source=blog_banner"
               style={{
-                background: "linear-gradient(180deg,#FFC650,#FFB31B)",
-                color: "#2a1500",
+                background: "linear-gradient(180deg,var(--tcm-amber-hi),var(--tcm-amber))",
+                color: "var(--tcm-amber-ink)",
                 fontWeight: 700,
                 padding: "11px 20px",
                 borderRadius: 10,
@@ -140,7 +140,7 @@ export default function PremiumChapterBanner({ slug }: { slug: string }) {
           <Link
             href="/design-patterns-that-deliver-ebook?utm_source=blog_banner_secondary"
             style={{
-              color: "#F3EFFA",
+              color: "var(--tcm-h)",
               border: "1px solid rgba(255,255,255,.16)",
               background: "rgba(255,255,255,.04)",
               fontWeight: 700,

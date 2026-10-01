@@ -2,7 +2,7 @@
 .promo h2 { color:#fff; font-size:clamp(1.4rem,3vw,2rem); margin:0 0 .6rem; }
 .promo p { margin:0; max-width:65ch; line-height:1.7; }
 .promo .eyebrow { color:#dfceff; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.7rem; }
-.promo .link { flex-shrink:0; display:inline-block; background:#ffbd39; color:#241033; border-radius:9px; padding:.9rem 1.2rem; font-weight:700; text-decoration:none; }
+.promo .link { flex-shrink:0; display:inline-block; background:var(--tcm-amber); color:#241033; border-radius:9px; padding:.9rem 1.2rem; font-weight:700; text-decoration:none; }
 .promo .link:hover { background:#ffd477; }
 .link:focus-visible { outline:3px solid #fff; outline-offset:5px; }
 .compact { display:block; }

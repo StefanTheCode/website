@@ -253,7 +253,7 @@ export default function InterviewSimulator() {
               style={{
                 cursor: "pointer",
                 flex: "1 1 180px",
-                borderColor: categories.includes(c.id) ? "#f59e0b" : undefined,
+                borderColor: categories.includes(c.id) ? "var(--tcm-amber)" : undefined,
                 background: categories.includes(c.id) ? "rgba(245,158,11,0.12)" : undefined,
                 fontWeight: categories.includes(c.id) ? 700 : 400,
               }}

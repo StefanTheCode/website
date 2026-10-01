@@ -302,7 +302,7 @@ const DotNetRoadmap2026 = () => {
         <div className="container pt-2 pb-5">
           <div className="row justify-content-center" data-reveal>
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
-              <div className="tk-card crk-form-card p-5 text-center" style={{ ...card, background: 'rgba(255,189,57,0.06)', borderColor: 'rgba(255,189,57,0.3)' }}>
+              <div className="tk-card crk-form-card p-5 text-center" style={{ ...card, background: 'rgba(var(--tcm-amber-rgb), 0.06)', borderColor: 'rgba(var(--tcm-amber-rgb), 0.3)' }}>
                 <h2 className="text-white mb-3">Twelve weeks to job-ready.</h2>
                 <p className="text-white mb-4" style={{ opacity: 0.85 }}>Send me the FREE .NET Roadmap and start today.</p>
                 <div className="d-flex justify-content-center" dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />

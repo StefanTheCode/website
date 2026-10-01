@@ -241,8 +241,8 @@ const yellowBtn = {
   fontWeight: 800,
   fontSize: '1rem',
   textDecoration: 'none',
-  background: '#ffbd39',
-  color: '#2a003a',
+  background: 'var(--tcm-amber)',
+  color: 'var(--tcm-amber-ink)',
 } as const
 
 const CodeRulesStarterKit = () => {
@@ -353,7 +353,7 @@ const CodeRulesStarterKit = () => {
               <div className="crk-tree" style={{ ...card, overflow: 'hidden' }}>
                 <div className="d-flex align-items-center" style={{ gap: '8px', padding: '14px 18px', borderBottom: '1px solid var(--tk-line)' }}>
                   <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff6b81', display: 'inline-block' }} />
-                  <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd39', display: 'inline-block' }} />
+                  <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--tcm-amber)', display: 'inline-block' }} />
                   <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#46d39a', display: 'inline-block' }} />
                   <span className="text-white" style={{ marginLeft: '10px', opacity: 0.6, fontSize: '0.82rem', fontFamily: "'JetBrains Mono', monospace" }}>
                     <span className="crk-type" data-text="what's in the zip" />
@@ -363,7 +363,7 @@ const CodeRulesStarterKit = () => {
                 <div style={{ padding: '20px 22px', fontFamily: "'JetBrains Mono', monospace", fontSize: '0.9rem', lineHeight: 1.9, overflowX: 'auto' }}>
                   {fileTree.map((line, i) => (
                     <div key={i} className="crk-tree-line" style={{ whiteSpace: 'pre' }}>
-                      <span style={{ color: line.accent ? '#ffbd39' : 'rgba(255,255,255,0.9)', fontWeight: line.accent ? 700 : 400 }}>
+                      <span style={{ color: line.accent ? 'var(--tcm-amber)' : 'rgba(255,255,255,0.9)', fontWeight: line.accent ? 700 : 400 }}>
                         {line.text}
                       </span>
                       {line.comment && (
@@ -470,7 +470,7 @@ const CodeRulesStarterKit = () => {
             </div>
 
             <div className="col-md-6 mb-4" data-reveal data-delay="1">
-              <div className="tk-card p-4 p-md-5 h-100" style={{ ...card, borderColor: 'rgba(255,189,57,0.35)' }}>
+              <div className="tk-card p-4 p-md-5 h-100" style={{ ...card, borderColor: 'rgba(var(--tcm-amber-rgb), 0.35)' }}>
                 <h3 className="text-yellow mb-4" style={{ fontSize: '1.3rem' }}>After</h3>
                 {beforeAfterItems.map((item, index) => (
                   <p key={index} className="text-white mb-3" style={{ opacity: 0.92 }}>
@@ -538,7 +538,7 @@ const CodeRulesStarterKit = () => {
         <div className="container pt-4 pb-5">
           <div className="row justify-content-center" data-reveal>
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-9">
-              <div className="tk-card p-5 text-center" style={{ ...card, background: 'rgba(255,189,57,0.06)', borderColor: 'rgba(255,189,57,0.3)' }}>
+              <div className="tk-card p-5 text-center" style={{ ...card, background: 'rgba(var(--tcm-amber-rgb), 0.06)', borderColor: 'rgba(var(--tcm-amber-rgb), 0.3)' }}>
                 <h2 className="text-white mb-3">Stop reviewing style. Start shipping.</h2>
                 <p className="text-white mb-4" style={{ opacity: 0.85 }}>
                   Every file and guide above, free, in your inbox, ready in two minutes.

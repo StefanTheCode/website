@@ -56,7 +56,7 @@ const bonusItems = [
 ]
 
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
-const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: '#ffbd39', color: '#2a003a' } as const
+const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: 'var(--tcm-amber)', color: 'var(--tcm-amber-ink)' } as const
 
 const PassYourInterview = () => {
   return (
@@ -238,7 +238,7 @@ const PassYourInterview = () => {
         <div className="container pt-2 pb-5">
           <div className="row justify-content-center" data-reveal>
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-9">
-              <div className="tk-card p-5 text-center" style={{ ...card, background: 'rgba(255,189,57,0.06)', borderColor: 'rgba(255,189,57,0.3)' }}>
+              <div className="tk-card p-5 text-center" style={{ ...card, background: 'rgba(var(--tcm-amber-rgb), 0.06)', borderColor: 'rgba(var(--tcm-amber-rgb), 0.3)' }}>
                 <h2 className="text-white mb-3">Walk in prepared. Walk out hired.</h2>
                 <p className="text-white mb-4" style={{ opacity: 0.85 }}>250 questions, answers, and clean C# code - free, in your inbox.</p>
                 <a href="#download-kit" className="tk-btn" style={yellowBtn}>Get the free interview kit</a>

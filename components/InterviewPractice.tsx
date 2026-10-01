@@ -19,7 +19,7 @@ const CATEGORY_ORDER: Category[] = ["Arrays", "Strings", "Lists", "Trees"];
 
 const DIFF_COLOR: Record<string, string> = {
   Easy: "#34d399",
-  Medium: "#f59e0b",
+  Medium: "var(--tcm-amber)",
   Hard: "#f87171",
 };
 
@@ -196,7 +196,7 @@ export default function InterviewPractice() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: ".12em", textTransform: "uppercase", color: "#9C92B8" }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--tcm-muted)" }}>
             Problems
           </span>
           <span style={{ fontSize: 13, color: "#34d399", fontWeight: 700 }}>
@@ -209,7 +209,7 @@ export default function InterviewPractice() {
           if (inCat.length === 0) return null;
           return (
             <div key={cat} style={{ marginBottom: 12 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "#C9C2DE", margin: "6px 2px 6px" }}>{cat}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "var(--tcm-body)", margin: "6px 2px 6px" }}>{cat}</div>
               {inCat.map((p) => {
                 const isActive = p.id === activeId;
                 const isSolved = solved.has(p.id);
@@ -230,7 +230,7 @@ export default function InterviewPractice() {
                       borderRadius: 10,
                       border: `1px solid ${isActive ? "rgba(245,158,11,0.5)" : "rgba(255,255,255,0.08)"}`,
                       background: isActive ? "rgba(245,158,11,0.12)" : "transparent",
-                      color: "#F3EFFA",
+                      color: "var(--tcm-h)",
                       fontSize: 13.5,
                       lineHeight: 1.3,
                     }}
@@ -264,10 +264,10 @@ export default function InterviewPractice() {
           >
             {problem.difficulty}
           </span>
-          <span style={{ fontSize: 12, color: "#9C92B8" }}>{problem.category}</span>
+          <span style={{ fontSize: 12, color: "var(--tcm-muted)" }}>{problem.category}</span>
         </div>
 
-        <p style={{ color: "#C9C2DE", fontSize: 15, lineHeight: 1.6, margin: "0 0 14px" }}>{problem.prompt}</p>
+        <p style={{ color: "var(--tcm-body)", fontSize: 15, lineHeight: 1.6, margin: "0 0 14px" }}>{problem.prompt}</p>
 
         {/* Editor */}
         <div className={runnerStyles.shell}>
@@ -304,7 +304,7 @@ export default function InterviewPractice() {
           </div>
         </div>
 
-        <p style={{ fontSize: 12.5, color: "#9C92B8", margin: "8px 2px 0" }}>
+        <p style={{ fontSize: 12.5, color: "var(--tcm-muted)", margin: "8px 2px 0" }}>
           Implement the method, then press <strong>Run tests</strong> (or ⌘/Ctrl+Enter). Your code is checked against hidden test cases.
         </p>
 
@@ -329,7 +329,7 @@ export default function InterviewPractice() {
             ) : (
               <>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-                  <span style={{ fontSize: 18, fontWeight: 800, color: allPass ? "#34d399" : "#f59e0b" }}>
+                  <span style={{ fontSize: 18, fontWeight: 800, color: allPass ? "#34d399" : "var(--tcm-amber)" }}>
                     {run.passed}/{run.total} tests passed
                   </span>
                   {allPass && <span style={{ fontSize: 14, color: "#34d399" }}>🎉 Solved — nice work!</span>}
@@ -340,9 +340,9 @@ export default function InterviewPractice() {
                     <span aria-hidden style={{ color: c.pass ? "#34d399" : "#f87171", fontWeight: 700 }}>
                       {c.pass ? "✓" : "✗"}
                     </span>
-                    <span style={{ color: "#E7E2F3" }}>{c.label}</span>
+                    <span style={{ color: "var(--tcm-h)" }}>{c.label}</span>
                     {!c.pass && c.detail && (
-                      <span style={{ color: "#9C92B8", fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>— {c.detail}</span>
+                      <span style={{ color: "var(--tcm-muted)", fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>— {c.detail}</span>
                     )}
                   </div>
                 ))}
@@ -354,8 +354,8 @@ export default function InterviewPractice() {
                 )}
                 {run.stdout && (
                   <details style={{ marginTop: 10 }}>
-                    <summary style={{ cursor: "pointer", color: "#9C92B8", fontSize: 12.5 }}>Your Console output</summary>
-                    <pre style={{ margin: "6px 0 0", whiteSpace: "pre-wrap", fontFamily: "'JetBrains Mono', monospace", fontSize: 12.5, color: "#C9C2DE" }}>
+                    <summary style={{ cursor: "pointer", color: "var(--tcm-muted)", fontSize: 12.5 }}>Your Console output</summary>
+                    <pre style={{ margin: "6px 0 0", whiteSpace: "pre-wrap", fontFamily: "'JetBrains Mono', monospace", fontSize: 12.5, color: "var(--tcm-body)" }}>
                       {run.stdout}
                     </pre>
                   </details>
@@ -366,9 +366,9 @@ export default function InterviewPractice() {
         )}
 
         {unavailable && (
-          <div style={{ marginTop: 14, padding: 14, borderRadius: 12, background: "rgba(255,255,255,0.05)", fontSize: 14, color: "#C9C2DE" }}>
+          <div style={{ marginTop: 14, padding: 14, borderRadius: 12, background: "rgba(255,255,255,0.05)", fontSize: 14, color: "var(--tcm-body)" }}>
             🚧 <strong>The .NET runtime couldn&apos;t load in this browser.</strong> Try again, or open the{" "}
-            <a href="/playground" style={{ color: "#f59e0b" }}>full playground</a>.
+            <a href="/playground" style={{ color: "var(--tcm-amber)" }}>full playground</a>.
           </div>
         )}
 
@@ -380,7 +380,7 @@ export default function InterviewPractice() {
             style={{
               cursor: "pointer",
               background: "transparent",
-              color: "#f59e0b",
+              color: "var(--tcm-amber)",
               border: "1px solid rgba(245,158,11,0.5)",
               borderRadius: 10,
               padding: "9px 16px",
@@ -410,7 +410,7 @@ export default function InterviewPractice() {
               >
                 {problem.solution}
               </pre>
-              <p style={{ margin: 0, color: "#C9C2DE", fontSize: 14.5, lineHeight: 1.65 }}>{problem.explanation}</p>
+              <p style={{ margin: 0, color: "var(--tcm-body)", fontSize: 14.5, lineHeight: 1.65 }}>{problem.explanation}</p>
             </div>
           )}
         </div>

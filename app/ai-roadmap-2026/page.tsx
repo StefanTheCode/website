@@ -108,7 +108,7 @@ const jsonLd = {
 const FORM_SCRIPT = `<script type="text/lazy" data-src="https://eomail4.com/form/75d3c36e-842b-11f1-8edb-47846d42d594.js" data-form="75d3c36e-842b-11f1-8edb-47846d42d594"></script>`
 
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
-const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: '#ffbd39', color: '#2a003a' } as const
+const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: 'var(--tcm-amber)', color: 'var(--tcm-amber-ink)' } as const
 
 const AiRoadmap2026 = () => {
   return (
@@ -300,7 +300,7 @@ const AiRoadmap2026 = () => {
         <div className="container pt-2 pb-5">
           <div className="row justify-content-center" data-reveal>
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8">
-              <div className="tk-card crk-form-card p-5 text-center" style={{ ...card, background: 'rgba(255,189,57,0.06)', borderColor: 'rgba(255,189,57,0.3)' }}>
+              <div className="tk-card crk-form-card p-5 text-center" style={{ ...card, background: 'rgba(var(--tcm-amber-rgb), 0.06)', borderColor: 'rgba(var(--tcm-amber-rgb), 0.3)' }}>
                 <h2 className="text-white mb-3">Two months. Eight things shipped.</h2>
                 <p className="text-white mb-4" style={{ opacity: 0.85 }}>Send me the FREE AI Roadmap and start today.</p>
                 <div className="d-flex justify-content-center" dangerouslySetInnerHTML={{ __html: FORM_SCRIPT }} />

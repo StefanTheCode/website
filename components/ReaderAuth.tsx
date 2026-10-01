@@ -10,7 +10,7 @@ const panel: React.CSSProperties = {
   position: "absolute",
   top: "calc(100% + 10px)",
   right: 0,
-  background: "#22184C",
+  background: "var(--tcm-card)",
   border: "1px solid rgba(255,255,255,.12)",
   borderRadius: 14,
   padding: 18,
@@ -21,7 +21,7 @@ const panel: React.CSSProperties = {
 const input: React.CSSProperties = {
   width: "100%",
   background: "rgba(13,7,34,.55)",
-  color: "#F3EFFA",
+  color: "var(--tcm-h)",
   border: "1px solid rgba(255,255,255,.12)",
   borderRadius: 10,
   padding: "11px 14px",
@@ -29,7 +29,7 @@ const input: React.CSSProperties = {
   marginBottom: 10,
 };
 const link: React.CSSProperties = {
-  color: "#9C92B8",
+  color: "var(--tcm-muted)",
   background: "none",
   border: 0,
   cursor: "pointer",
@@ -99,8 +99,8 @@ export default function ReaderAuth() {
         </button>
         {open && (
           <div style={panel}>
-            <p style={{ margin: "0 0 6px", color: "#F3EFFA", fontWeight: 600 }}>Signed in</p>
-            <p style={{ margin: "0 0 14px", color: "#9C92B8", fontSize: 13.5 }}>
+            <p style={{ margin: "0 0 6px", color: "var(--tcm-h)", fontWeight: 600 }}>Signed in</p>
+            <p style={{ margin: "0 0 14px", color: "var(--tcm-muted)", fontSize: 13.5 }}>
               {session.entitlements?.length
                 ? `Access: ${session.entitlements.join(", ")}`
                 : "No books on this account yet."}
@@ -122,7 +122,7 @@ export default function ReaderAuth() {
       {open && (
         <div style={panel}>
           <form onSubmit={signIn}>
-            <p style={{ margin: "0 0 12px", color: "#D4CDE6", fontSize: 13.5 }}>
+            <p style={{ margin: "0 0 12px", color: "var(--tcm-body)", fontSize: 13.5 }}>
               Use the personal access link from your purchase email, or sign in
               here with your email and <strong>order number</strong> (from your receipt).
             </p>
@@ -148,7 +148,7 @@ export default function ReaderAuth() {
             >
               {busy ? "Checking…" : "Unlock my books"}
             </button>
-            {err && <p style={{ color: "#E2607A", margin: "10px 0 0", fontSize: 13 }}>{err}</p>}
+            {err && <p style={{ color: "var(--tcm-bad)", margin: "10px 0 0", fontSize: 13 }}>{err}</p>}
           </form>
         </div>
       )}

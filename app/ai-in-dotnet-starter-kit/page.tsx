@@ -87,7 +87,7 @@ const demoTabs: DemoTab[] = [
 ]
 
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
-const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: '#ffbd39', color: '#2a003a' } as const
+const yellowBtn = { display: 'inline-block', padding: '14px 34px', borderRadius: '999px', fontWeight: 800, fontSize: '1rem', textDecoration: 'none', background: 'var(--tcm-amber)', color: 'var(--tcm-amber-ink)' } as const
 
 const FORM = `<script type="text/lazy" data-src="https://eomail4.com/form/64f8b448-fe65-11ef-9a18-ad167120d785.js" data-form="64f8b448-fe65-11ef-9a18-ad167120d785"></script>`
 
@@ -209,7 +209,7 @@ const AiStarterKit = () => {
                 <div style={{ ...card, overflow: 'hidden' }}>
                   <div className="d-flex align-items-center" style={{ gap: '8px', padding: '12px 16px', borderBottom: '1px solid var(--tk-line)' }}>
                     <span style={{ width: '11px', height: '11px', borderRadius: '50%', background: '#ff6b81', display: 'inline-block' }} />
-                    <span style={{ width: '11px', height: '11px', borderRadius: '50%', background: '#ffbd39', display: 'inline-block' }} />
+                    <span style={{ width: '11px', height: '11px', borderRadius: '50%', background: 'var(--tcm-amber)', display: 'inline-block' }} />
                     <span style={{ width: '11px', height: '11px', borderRadius: '50%', background: '#46d39a', display: 'inline-block' }} />
                     <span className="text-white" style={{ marginLeft: '10px', opacity: 0.6, fontSize: '0.8rem', fontFamily: "'JetBrains Mono', monospace" }}>install in Claude Code</span>
                   </div>

@@ -24,8 +24,8 @@ export default function FreeChapterCTA({
 
       <div
         style={{
-          border: "1px solid rgba(255,179,27,.25)",
-          background: "linear-gradient(170deg,#22184C,#0D0722)",
+          border: "1px solid rgba(var(--tcm-amber-rgb), .25)",
+          background: "linear-gradient(170deg,var(--tcm-card),var(--tcm-deep))",
           borderRadius: 18,
           padding: "clamp(22px,4vw,32px)",
         }}
@@ -36,16 +36,16 @@ export default function FreeChapterCTA({
             fontSize: 12,
             letterSpacing: ".2em",
             textTransform: "uppercase",
-            color: "#FFB31B",
+            color: "var(--tcm-amber)",
             margin: "0 0 6px",
           }}
         >
           AI tutor · preview
         </p>
-        <h3 style={{ fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif", color: "#F3EFFA", margin: "0 0 6px", fontSize: 22 }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', 'Space Grotesk Fallback',sans-serif", color: "var(--tcm-h)", margin: "0 0 6px", fontSize: 22 }}>
           Ask the AI tutor about this chapter
         </h3>
-        <p style={{ color: "#9C92B8", margin: "0 0 18px", fontSize: 15 }}>
+        <p style={{ color: "var(--tcm-muted)", margin: "0 0 18px", fontSize: 15 }}>
           Grounded in the book — try a couple of questions free. Full access comes with the book.
         </p>
         <AskTheBook chapter={chapterSlug} />

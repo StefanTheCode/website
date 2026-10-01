@@ -78,15 +78,15 @@ export default function Page() {
 
       {/* SECOND FULL SCREEN SECTION */}
       <section
-        className="ftco-section d-flex align-items-center"
-        style={{ backgroundColor: "#facc15", minHeight: "100vh" }}
+        className="ftco-section d-flex align-items-center background-yellow"
+        style={{ minHeight: "100vh" }}
       >
         <div className="container text-center">
-          <h2 className="mb-4 text-font-2rem margin-top-minus-10 text-black" style={{ color: "#000" }}>
+          <h2 className="mb-4 text-font-2rem margin-top-minus-10 text-black">
             Let’s stay connected
           </h2>
 
-          <p className="mb-2" style={{ color: "#000", fontSize: "18px" }}>
+          <p className="mb-2 text-black" style={{ fontSize: "18px" }}>
             Follow me on social networks or join my community
           </p>
 
@@ -140,7 +140,7 @@ export default function Page() {
               <div
                 className="p-5"
                 style={{
-                  backgroundColor: "#5c2a7d",
+                  backgroundColor: "var(--tcm-card-2)",
                   borderRadius: "12px",
                   color: "white",
                   display: "flex",

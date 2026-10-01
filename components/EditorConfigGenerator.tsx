@@ -49,7 +49,7 @@ const DEFAULTS: Options = {
 
 const selectStyle: React.CSSProperties = {
   background: "rgba(13,7,34,.55)",
-  color: "#F3EFFA",
+  color: "var(--tcm-h)",
   border: "1px solid rgba(255,255,255,.09)",
   borderRadius: 10,
   padding: "11px 13px",
@@ -62,12 +62,12 @@ const labelStyle: React.CSSProperties = {
   fontSize: 11.5,
   letterSpacing: ".12em",
   textTransform: "uppercase",
-  color: "#9C92B8",
+  color: "var(--tcm-muted)",
   marginBottom: 7,
   display: "block",
 };
 const codeBoxStyle: React.CSSProperties = {
-  background: "#0D0722",
+  background: "var(--tcm-deep)",
   border: "1px solid rgba(255,255,255,.09)",
   borderRadius: 12,
   padding: "16px 18px",
@@ -75,7 +75,7 @@ const codeBoxStyle: React.CSSProperties = {
   fontFamily: "'JetBrains Mono', monospace",
   fontSize: 12.5,
   lineHeight: 1.6,
-  color: "#D4CDE6",
+  color: "var(--tcm-body)",
   margin: 0,
   maxHeight: 420,
 };
@@ -106,11 +106,11 @@ function Toggle({
         alignItems: "center",
         gap: 10,
         cursor: "pointer",
-        color: "#D4CDE6",
+        color: "var(--tcm-body)",
         fontSize: 14.5,
         padding: "10px 12px",
         background: "rgba(13,7,34,.4)",
-        border: `1px solid ${checked ? "rgba(255,179,27,.4)" : "rgba(255,255,255,.09)"}`,
+        border: `1px solid ${checked ? "rgba(var(--tcm-amber-rgb), .4)" : "rgba(255,255,255,.09)"}`,
         borderRadius: 10,
       }}
     >
@@ -118,7 +118,7 @@ function Toggle({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        style={{ accentColor: "#FFB31B", width: 17, height: 17 }}
+        style={{ accentColor: "var(--tcm-amber)", width: 17, height: 17 }}
       />
       {label}
     </label>
@@ -394,7 +394,7 @@ export default function EditorConfigGenerator() {
               </p>
               {result.notes.map((n, i) => (
                 <div key={i} style={{ marginTop: 12 }}>
-                  <p style={{ color: "#FFB31B", fontWeight: 600, margin: 0, fontSize: 15 }}>{n.title}</p>
+                  <p style={{ color: "var(--tcm-amber)", fontWeight: 600, margin: 0, fontSize: 15 }}>{n.title}</p>
                   <p className={styles.why} style={{ margin: "4px 0 0" }}>
                     {n.text}
                   </p>

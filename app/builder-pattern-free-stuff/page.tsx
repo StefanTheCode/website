@@ -37,7 +37,7 @@ const card = {
 const yellowBtn = {
   display: 'inline-block', padding: '14px 34px', borderRadius: '999px',
   fontWeight: 800, fontSize: '1rem', textDecoration: 'none',
-  background: '#ffbd39', color: '#2a003a',
+  background: 'var(--tcm-amber)', color: 'var(--tcm-amber-ink)',
 } as const
 
 const stats: { target: number; suffix?: string; comma?: boolean; label: string }[] = [
@@ -155,7 +155,7 @@ const BuilderPatternFreeStuff = () => {
         <div className="container pt-4 pb-5">
           <div className="row justify-content-center" data-reveal>
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-9">
-              <div className="tk-card p-5 text-center" style={{ ...card, background: 'rgba(255,189,57,0.06)', borderColor: 'rgba(255,189,57,0.3)' }}>
+              <div className="tk-card p-5 text-center" style={{ ...card, background: 'rgba(var(--tcm-amber-rgb), 0.06)', borderColor: 'rgba(var(--tcm-amber-rgb), 0.3)' }}>
                 <h2 className="text-white mb-3">Master one pattern today.</h2>
                 <p className="text-white mb-4" style={{ opacity: 0.85 }}>
                   Grab the free Builder Pattern chapter, or explore the full{' '}

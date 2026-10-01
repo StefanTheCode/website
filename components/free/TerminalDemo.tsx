@@ -16,7 +16,7 @@ export type DemoTab = { id: string; label: string; command: string; lines: DemoL
 const toneColor: Record<NonNullable<DemoLine["tone"]>, string> = {
   muted: "rgba(255,255,255,0.45)",
   green: "#46d39a",
-  yellow: "#ffbd39",
+  yellow: "var(--tcm-amber)",
   red: "#ff6b81",
   plain: "rgba(255,255,255,0.92)",
 };
@@ -118,7 +118,7 @@ export default function TerminalDemo({ title, tabs }: { title: string; tabs: Dem
       <div className="td-window" style={{ border: "1px solid var(--tk-line)", borderRadius: "16px", background: "var(--tk-card-bg)", overflow: "hidden" }}>
         <div className="d-flex align-items-center" style={{ gap: "8px", padding: "13px 18px", borderBottom: "1px solid var(--tk-line)" }}>
           <span style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ff6b81", display: "inline-block" }} />
-          <span style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ffbd39", display: "inline-block" }} />
+          <span style={{ width: "12px", height: "12px", borderRadius: "50%", background: "var(--tcm-amber)", display: "inline-block" }} />
           <span style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#46d39a", display: "inline-block" }} />
           <span className="text-white" style={{ marginLeft: "10px", opacity: 0.6, fontSize: "0.82rem", fontFamily: "'JetBrains Mono', monospace" }}>{title}</span>
         </div>
@@ -127,7 +127,7 @@ export default function TerminalDemo({ title, tabs }: { title: string; tabs: Dem
           <div style={{ color: "rgba(255,255,255,0.4)", marginBottom: "8px" }}>⏵⏵ auto-accept edits on</div>
           <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
             <span style={{ color: "#46d39a" }}>❯ </span>
-            <span style={{ color: "#ffbd39" }}>{typed}</span>
+            <span style={{ color: "var(--tcm-amber)" }}>{typed}</span>
             {!done && <span className="crk-caret" style={{ verticalAlign: "-2px" }} />}
           </div>
           <div style={{ marginTop: "10px" }}>
