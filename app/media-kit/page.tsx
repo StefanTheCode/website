@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const MediaKit = () => {
   const stats = [
-    { label: "Newsletter subscribers", value: "25,000+" },
+    { label: "Newsletter subscribers", value: "21,000+" },
     { label: "Newsletter open rate", value: "50-52%" },
     { label: "LinkedIn followers", value: "110,000+" },
     { label: "X / Twitter followers", value: "9,000+" },
@@ -51,11 +51,11 @@ const MediaKit = () => {
     {
       name: "Newsletter Dedicated",
       price: "$1,200",
-      desc: "Dedicated section inside the newsletter sent to 25,000+ subscribers.",
+      desc: "Dedicated section inside the newsletter sent to 21,000+ subscribers.",
     },
     {
       name: "YouTube Dedicated Video",
-      price: "$1,200",
+      price: "$1,500",
       desc: "Dedicated educational YouTube video built around your product.",
     },
     {
@@ -65,12 +65,12 @@ const MediaKit = () => {
     },
     {
       name: "Newsletter Ad",
-      price: "$450",
+      price: "$600",
       desc: "Short-form promotional placement inside the newsletter.",
     },
     {
       name: "X / Twitter Post",
-      price: "$200",
+      price: "$250",
       desc: "Short-form amplification for product launches, developer tools, or campaign support.",
     },
   ];
