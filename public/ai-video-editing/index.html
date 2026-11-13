@@ -255,9 +255,6 @@
 
 
   /* proof strip */
-  .proof { background: #fff; border-bottom: 1px solid var(--line); padding: 14px 0; font-size: 15px; text-align: center; }
-  .proof i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--rec); margin-right: 9px; vertical-align: 1px; animation: blink 1.6s infinite; }
-  .proof a { color: var(--ink); font-weight: 600; }
   /* what you'll get */
   .get .sub2 { color: #c9c4d6; max-width: 680px; font-size: 18px; }
   .get .grid { align-items: start; }
@@ -273,6 +270,37 @@
   .parts2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
   .getfoot { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 24px 0 18px; color: #bdb7cb; font-size: 14px; }
   .getfoot span::before { content: "\2713"; color: var(--mint); margin-right: 7px; }
+
+
+  /* hero loop + credibility row */
+  .hloop { border-radius: 14px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; margin: 0 0 18px; box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+  .hloop video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .demo .hloop { margin: 0 0 18px; }
+  .m-only { display: none; }
+  .proof { background: #fff; border-bottom: 1px solid var(--line); padding: 14px 0; }
+  .proof .wrap { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .proof img { width: 44px; height: 44px; border-radius: 50%; flex: none; }
+  .proof p { margin: 0; font-size: 15px; line-height: 1.45; }
+  .proof a { color: var(--ink); font-weight: 600; }
+  /* example output tabs */
+  .outtabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+  .outtabs button { border: 1px solid #3a3550; background: transparent; color: #c9c4d6; font: 600 14px Poppins, sans-serif; padding: 9px 14px; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s; }
+  .outtabs button.on { background: #fff; color: var(--ink); border-color: #fff; }
+  .opane { display: none; margin-top: 16px; }
+  .opane.on { display: block; }
+  .opane .cap { color: #9b95ab; font-size: 14px; margin: 0 0 10px; }
+  .pub { margin-top: 26px; background: var(--ink2); border: 1px solid #343046; border-radius: 14px; padding: 14px 18px; }
+  .pub summary { cursor: pointer; font: 600 15px Poppins, sans-serif; color: #e9e5f2; }
+  .pubin { margin-top: 14px; }
+  .pubin video { width: 100%; max-width: 640px; border-radius: 10px; display: block; background: #000; }
+  .pubin .note { color: #9b95ab; font-size: 13px; margin: 10px 0 0; }
+  .midcta { margin-top: 30px; text-align: center; }
+  .midcta .bfline { justify-content: center; }
+  .midcta.light .btn { box-shadow: 0 6px 0 #c9a21a; }
+  .partmore { display: none; }
+  /* consent: bottom bar */
+  .consent { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+  body.consenting .sticky { display: none !important; }
 
   /* real example */
   .example { background: var(--ink); color: #fff; }
@@ -344,12 +372,27 @@
   }
   @media (max-width: 860px) {
     section { padding: 54px 0; }
-    .hero { padding: 34px 0 54px; }
+    .hero { padding: 18px 0 48px; }
     .hero .grid, .get .grid, .showcase { grid-template-columns: 1fr; gap: 30px; }
     .pain .grid, .steps .grid, .fit { grid-template-columns: 1fr; }
     .outs { grid-template-columns: 1fr 1fr; }
     .books { height: 300px; max-width: 360px; }
     .parts2 { grid-template-columns: 1fr; }
+    .m-only { display: block; }
+    .d-only { display: none; }
+    .hero .pills { display: none; }
+    .m-hide { display: none; }
+    .hero .lead { font-size: 17px; margin-bottom: 18px; }
+    .hero .eyebrow { margin-bottom: 8px; }
+    .hloop { margin-bottom: 14px; }
+    .part li:nth-child(n+4) { display: none; }
+    .part.all li { display: block; }
+    .partmore { display: block; margin: 10px 0 0 32px; background: none; border: 0; color: var(--yel); font: 600 14px Poppins, sans-serif; cursor: pointer; padding: 4px 0; }
+    .part.all .partmore { display: none; }
+    .hero h1 { margin-bottom: 16px; }
+    .proof .wrap { justify-content: flex-start; }
+    .proof p { font-size: 14px; }
+    .outtabs button { font-size: 13px; padding: 8px 12px; }
     .proof { font-size: 14px; padding: 12px 0; }
     .hero .lead { font-size: 18px; }
     .top .btn { display: none; }
@@ -398,6 +441,10 @@
     .bfbar .long { display: none; }
     .bfbar .short { display: inline; }
     .bfbar .cdw { padding: 2px 7px; font-size: 12px; }
+    .bfbar .wrap { flex-wrap: nowrap; white-space: nowrap; gap: 6px; }
+    .bfbar .tag { font-size: 11px; letter-spacing: .08em; }
+    .bfbar .cdl { display: none; }
+    .consent { font-size: 12px; padding: 8px 10px; gap: 8px; }
   }
 </style>
 </head>
@@ -407,17 +454,17 @@
     <span class="tag">Black Friday</span>
     <span class="long">Launch price <b class="price-txt">$27</b> - goes up to <span class="reg-txt">$69</span> on Nov 30, 23:59 CET</span>
     <span class="short"><b class="price-txt">$27</b> until Nov 30, then <span class="reg-txt">$69</span></span>
-    <span class="cdw">Ends in <span class="cd" aria-hidden="true"></span></span>
+    <span class="cdw"><span class="cdl">Ends in </span><span class="cd" aria-hidden="true"></span></span>
   </div>
 </div>
 <div class="consent" id="consent">
-  <span>We use cookies to measure our ads (Meta Pixel). <a href="/ai-video-editing/privacy.html">Privacy</a></span>
+  <span>We use cookies to measure our ads. <a href="/ai-video-editing/privacy.html">Privacy</a></span>
   <div class="b"><button class="ok" id="c-ok">Accept</button><button id="c-no">Decline</button></div>
 </div>
 
 <div class="top"><div class="wrap">
   <a class="logo" href="#"><i></i>AI VIDEO EDITING PLAYBOOK <span class="by" style="font:500 12px Inter,sans-serif;letter-spacing:0;color:#9b95ab;margin-left:4px">by Stefan &#272;oki&#263;</span></a>
-  <a class="btn buy" href="#">Get it - <span class="price-txt">$27</span></a>
+  <a class="btn buy" data-cta="nav" href="#">Get it - <span class="price-txt">$27</span></a>
 </div></div>
 
 <!-- HERO -->
@@ -425,13 +472,15 @@
   <div>
     <div class="eyebrow">Playbook + Claude skill</div>
     <h1>Record once.<br><span>Claude does the editing.</span></h1>
-    <p class="lead">Turn your raw talking-head recordings into finished videos, captions, Shorts, thumbnails and descriptions - without learning an editor or paying one every week.</p>
-    <ul class="pills"><li>Cuts ums, pauses &amp; retakes</li><li>Captions</li><li><span class="fx-n">22</span> effects</li><li>3-5 Shorts per video</li><li>Thumbnails</li><li>Titles &amp; chapters</li></ul>
-    <a class="btn buy" href="#">Get the playbook - <span class="price-txt">$27</span></a>
+    <div class="hloop m-only"><video class="loopv" muted loop playsinline preload="none" poster="/ai-video-editing/demo/hero-loop-poster.jpg" data-src="/ai-video-editing/demo/hero-loop.mp4" aria-label="Raw recording, then the same moment edited by the skill"></video></div>
+    <p class="lead">Turn raw talking-head recordings into finished videos with captions, effects and Shorts<span class="m-hide"> - without learning an editor or paying one every week</span>.</p>
+    <ul class="pills"><li>Cuts ums, pauses &amp; retakes</li><li><span class="fx-n">22</span> editing effects</li><li>3-5 Shorts per video</li><li>Captions</li><li>Thumbnails</li><li>Titles &amp; chapters</li></ul>
+    <a class="btn buy" data-cta="hero" href="#">Get the playbook - <span class="price-txt">$27</span></a>
     <p class="bf bfline"><span><b>Black Friday launch price.</b> Goes up to <span class="reg-txt">$69</span> on Nov&nbsp;30.</span></p>
-    <div class="micro"><b>Instant download.</b> One-time payment. 14-day money-back guarantee.<br>Works with the Claude desktop app (paid plan) on Mac or Windows.</div>
+    <div class="micro"><b>Instant download.</b> One-time payment. 14-day money-back guarantee.<br>Runs in the Claude desktop app (Mac or Windows) with Claude Pro - $20/mo, the AI app by Anthropic. Already have it? You're set.</div>
   </div>
   <div class="demo" id="demo">
+    <div class="hloop d-only"><video class="loopv" muted loop playsinline preload="none" poster="/ai-video-editing/demo/hero-loop-poster.jpg" data-src="/ai-video-editing/demo/hero-loop.mp4" aria-label="Raw recording, then the same moment edited by the skill"></video></div>
     <div class="row"><span class="lab">Raw</span><div class="track"><span class="p" style="flex:3.07"></span><span class="k" style="flex:21.03"></span><span class="p" style="flex:4.03"></span><span class="k" style="flex:14.47"></span><span class="p" style="flex:5.20"></span><span class="k" style="flex:13.13"></span><span class="x" style="flex:0.84"></span><span class="k" style="flex:4.23"></span><span class="p" style="flex:17.47"></span><span class="k" style="flex:7.66"></span><span class="x" style="flex:0.47"></span><span class="k" style="flex:0.50"></span><span class="x" style="flex:0.57"></span><span class="k" style="flex:4.40"></span><span class="x" style="flex:0.40"></span><span class="k" style="flex:3.20"></span><span class="p" style="flex:0.06"></span><span class="k" style="flex:6.40"></span><span class="p" style="flex:0.37"></span><span class="k" style="flex:9.27"></span><span class="p" style="flex:4.43"></span><span class="k" style="flex:13.23"></span><span class="p" style="flex:7.37"></span><span class="k" style="flex:8.93"></span><span class="x" style="flex:1.10"></span><span class="k" style="flex:0.84"></span><span class="p" style="flex:4.56"></span><span class="k" style="flex:1.44"></span><span class="p" style="flex:4.83"></span><span class="k" style="flex:9.30"></span><span class="x" style="flex:10.17"></span><span class="k" style="flex:1.56"></span><span class="x" style="flex:0.20"></span><span class="k" style="flex:12.87"></span><span class="p" style="flex:7.97"></span><span class="k" style="flex:9.86"></span><span class="p" style="flex:2.50"></span><span class="k" style="flex:6.07"></span><span class="p" style="flex:3.63"></span><span class="k" style="flex:8.87"></span><span class="p" style="flex:32.47"></span><span class="k" style="flex:1.63"></span><span class="p" style="flex:9.00"></span><span class="k" style="flex:11.37"></span><span class="p" style="flex:3.20"></span><span class="k" style="flex:12.40"></span><span class="p" style="flex:0.16"></span><span class="k" style="flex:1.64"></span><span class="k" style="flex:5.43"></span><span class="p" style="flex:43.27"></span><span class="k" style="flex:5.20"></span><span class="p" style="flex:0.33"></span><span class="k" style="flex:3.00"></span><span class="p" style="flex:1.94"></span><span class="k" style="flex:10.03"></span><span class="p" style="flex:6.20"></span><span class="k" style="flex:2.00"></span><span class="p" style="flex:1.40"></span><span class="k" style="flex:23.37"></span><span class="x" style="flex:6.93"></span><span class="k" style="flex:9.00"></span><span class="x" style="flex:0.40"></span><span class="k" style="flex:1.90"></span><span class="x" style="flex:4.83"></span><span class="k" style="flex:3.00"></span><span class="x" style="flex:0.37"></span><span class="k" style="flex:15.07"></span><span class="p" style="flex:5.30"></span><span class="k" style="flex:12.43"></span><span class="p" style="flex:5.20"></span><span class="k" style="flex:17.13"></span><span class="p" style="flex:3.87"></span><span class="k" style="flex:8.03"></span><span class="k" style="flex:5.16"></span><span class="x" style="flex:1.14"></span><span class="k" style="flex:1.86"></span><span class="p" style="flex:0.27"></span><span class="k" style="flex:0.67"></span><span class="x" style="flex:0.40"></span><span class="k" style="flex:2.43"></span><span class="x" style="flex:0.33"></span><span class="k" style="flex:5.47"></span><span class="x" style="flex:0.27"></span><span class="k" style="flex:1.83"></span><span class="x" style="flex:4.33"></span><span class="k" style="flex:6.37"></span><span class="p" style="flex:0.77"></span><span class="k" style="flex:7.50"></span><span class="p" style="flex:2.30"></span><span class="k" style="flex:6.63"></span><span class="p" style="flex:1.37"></span><span class="k" style="flex:12.03"></span><span class="p" style="flex:3.20"></span><span class="k" style="flex:20.27"></span><span class="x" style="flex:0.46"></span><span class="k" style="flex:1.40"></span><span class="p" style="flex:0.30"></span><span class="k" style="flex:10.67"></span><span class="x" style="flex:0.57"></span><span class="k" style="flex:2.16"></span><span class="p" style="flex:4.54"></span><span class="k" style="flex:7.83"></span><span class="x" style="flex:8.70"></span><span class="k" style="flex:23.63"></span><span class="p" style="flex:2.10"></span><span class="k" style="flex:3.54"></span><span class="p" style="flex:2.53"></span><span class="k" style="flex:3.87"></span><span class="x" style="flex:29.16"></span><span class="k" style="flex:13.10"></span><span class="p" style="flex:1.37"></span></div></div>
     <div class="row"><span class="lab">Edited</span><div class="track" id="edited"><span class="p" style="flex:3.07"></span><span class="k" style="flex:21.03"></span><span class="p" style="flex:4.03"></span><span class="k" style="flex:14.47"></span><span class="p" style="flex:5.20"></span><span class="k" style="flex:13.13"></span><span class="x" style="flex:0.84"></span><span class="k" style="flex:4.23"></span><span class="p" style="flex:17.47"></span><span class="k" style="flex:7.66"></span><span class="x" style="flex:0.47"></span><span class="k" style="flex:0.50"></span><span class="x" style="flex:0.57"></span><span class="k" style="flex:4.40"></span><span class="x" style="flex:0.40"></span><span class="k" style="flex:3.20"></span><span class="p" style="flex:0.06"></span><span class="k" style="flex:6.40"></span><span class="p" style="flex:0.37"></span><span class="k" style="flex:9.27"></span><span class="p" style="flex:4.43"></span><span class="k" style="flex:13.23"></span><span class="p" style="flex:7.37"></span><span class="k" style="flex:8.93"></span><span class="x" style="flex:1.10"></span><span class="k" style="flex:0.84"></span><span class="p" style="flex:4.56"></span><span class="k" style="flex:1.44"></span><span class="p" style="flex:4.83"></span><span class="k" style="flex:9.30"></span><span class="x" style="flex:10.17"></span><span class="k" style="flex:1.56"></span><span class="x" style="flex:0.20"></span><span class="k" style="flex:12.87"></span><span class="p" style="flex:7.97"></span><span class="k" style="flex:9.86"></span><span class="p" style="flex:2.50"></span><span class="k" style="flex:6.07"></span><span class="p" style="flex:3.63"></span><span class="k" style="flex:8.87"></span><span class="p" style="flex:32.47"></span><span class="k" style="flex:1.63"></span><span class="p" style="flex:9.00"></span><span class="k" style="flex:11.37"></span><span class="p" style="flex:3.20"></span><span class="k" style="flex:12.40"></span><span class="p" style="flex:0.16"></span><span class="k" style="flex:1.64"></span><span class="k" style="flex:5.43"></span><span class="p" style="flex:43.27"></span><span class="k" style="flex:5.20"></span><span class="p" style="flex:0.33"></span><span class="k" style="flex:3.00"></span><span class="p" style="flex:1.94"></span><span class="k" style="flex:10.03"></span><span class="p" style="flex:6.20"></span><span class="k" style="flex:2.00"></span><span class="p" style="flex:1.40"></span><span class="k" style="flex:23.37"></span><span class="x" style="flex:6.93"></span><span class="k" style="flex:9.00"></span><span class="x" style="flex:0.40"></span><span class="k" style="flex:1.90"></span><span class="x" style="flex:4.83"></span><span class="k" style="flex:3.00"></span><span class="x" style="flex:0.37"></span><span class="k" style="flex:15.07"></span><span class="p" style="flex:5.30"></span><span class="k" style="flex:12.43"></span><span class="p" style="flex:5.20"></span><span class="k" style="flex:17.13"></span><span class="p" style="flex:3.87"></span><span class="k" style="flex:8.03"></span><span class="k" style="flex:5.16"></span><span class="x" style="flex:1.14"></span><span class="k" style="flex:1.86"></span><span class="p" style="flex:0.27"></span><span class="k" style="flex:0.67"></span><span class="x" style="flex:0.40"></span><span class="k" style="flex:2.43"></span><span class="x" style="flex:0.33"></span><span class="k" style="flex:5.47"></span><span class="x" style="flex:0.27"></span><span class="k" style="flex:1.83"></span><span class="x" style="flex:4.33"></span><span class="k" style="flex:6.37"></span><span class="p" style="flex:0.77"></span><span class="k" style="flex:7.50"></span><span class="p" style="flex:2.30"></span><span class="k" style="flex:6.63"></span><span class="p" style="flex:1.37"></span><span class="k" style="flex:12.03"></span><span class="p" style="flex:3.20"></span><span class="k" style="flex:20.27"></span><span class="x" style="flex:0.46"></span><span class="k" style="flex:1.40"></span><span class="p" style="flex:0.30"></span><span class="k" style="flex:10.67"></span><span class="x" style="flex:0.57"></span><span class="k" style="flex:2.16"></span><span class="p" style="flex:4.54"></span><span class="k" style="flex:7.83"></span><span class="x" style="flex:8.70"></span><span class="k" style="flex:23.63"></span><span class="p" style="flex:2.10"></span><span class="k" style="flex:3.54"></span><span class="p" style="flex:2.53"></span><span class="k" style="flex:3.87"></span><span class="x" style="flex:29.16"></span><span class="k" style="flex:13.10"></span><span class="p" style="flex:1.37"></span><span id="pad" style="--pad:250.8"></span></div></div>
     <div class="stats">
@@ -444,7 +493,10 @@
   </div>
 </div></header>
 
-<div class="proof"><div class="wrap"><i></i>I use this system for my own YouTube videos and Shorts - <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener">see the channel</a></div></div>
+<div class="proof"><div class="wrap">
+  <img src="data:image/webp;base64,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" alt="" width="44" height="44">
+  <p><b>By Stefan &#272;oki&#263;</b> - 3x Microsoft MVP, 150K+ people follow my content. I edit my own <a href="https://www.youtube.com/@thecodeman_" target="_blank" rel="noopener">YouTube videos</a> and Shorts with this.</p>
+</div></div>
 
 <!-- PAIN -->
 <section class="pain"><div class="wrap">
@@ -472,82 +524,86 @@
 <!-- REAL EXAMPLE -->
 <section class="example" id="example"><div class="wrap">
   <div class="eyebrow">Real example - not a mockup</div>
-  <h2>One of my real recordings,<br>before and after</h2>
-  <p class="sub">90 seconds of raw camera from my YouTube video about Claude Code, every slip-up still in. Next to it: <b>the same moment from the video I published.</b></p>
+  <h2>My raw recording,<br>edited by the skill</h2>
+  <p class="sub">3 minutes from one of my YouTube recordings, every slip-up still in. I sent Claude one sentence: <b>"Edit my video: Headless.mp4. Full package. Add effects."</b> Everything below came out of the skill.</p>
 
   <div class="player" id="player">
     <div class="tabs" role="tablist">
-      <button class="tab on" type="button" data-v="raw" role="tab" aria-selected="true">Raw recording <span>1:31</span></button>
-      <button class="tab" type="button" data-v="edited" role="tab" aria-selected="false">Final video <span>0:55</span></button>
+      <button class="tab on" type="button" data-v="raw" role="tab" aria-selected="true">Raw recording <span>2:55</span></button>
+      <button class="tab" type="button" data-v="edited" role="tab" aria-selected="false">Edited by the skill <span>1:40</span></button>
     </div>
     <div class="screen">
-      <video id="v-raw" src="/ai-video-editing/demo/raw.mp4" poster="/ai-video-editing/demo/raw-poster.jpg" controls preload="none" playsinline></video>
-      <video id="v-edited" src="/ai-video-editing/demo/edited.mp4" poster="/ai-video-editing/demo/edited-poster.jpg" controls preload="none" playsinline hidden></video>
+      <video id="v-raw" src="/ai-video-editing/demo/skill-raw.mp4" poster="/ai-video-editing/demo/skill-raw-poster.jpg" controls preload="none" playsinline></video>
+      <video id="v-edited" src="/ai-video-editing/demo/skill-edited.mp4" poster="/ai-video-editing/demo/skill-edited-poster.jpg" controls preload="none" playsinline hidden></video>
     </div>
     <div class="cutbar" id="cutbar" title="Tap to jump"><div class="segs" id="segs"></div><i class="ph" id="ph"></i></div>
-    <div class="legend"><span><i class="k"></i>kept</span><span><i class="x"></i>mistake, cut</span><span><i class="p"></i>pause, cut or shortened</span></div>
-    <div class="now" id="now"><b>Press play on the raw recording</b> and watch the bar: the red parts never made it into the final video.</div>
-    <p class="note">Retakes and long pauses were cut with Claude - the job this skill does. The animated overlays, zooms and colour look in this published video were made separately, with my own Claude workflow - they are not from the skill. The skill now also includes <span class="fx-n">22</span> editing effects of its own: <a href="#effects">see them in the gallery below</a>.</p>
+    <div class="legend"><span><i class="k"></i>kept</span><span><i class="x"></i>mistake, cut</span><span><i class="p"></i>pause, shortened</span></div>
+    <div class="now" id="now"><b>Press play on the raw recording</b> and watch the bar: red parts are what Claude cuts.</div>
   </div>
 
   <div class="nums">
-    <div><b><span data-time="91">1:31</span> <em>&rarr;</em> <span data-time="55">0:55</span></b><span>raw &rarr; final</span></div>
-    <div><b data-count="6">6</b><span>mistakes cut: false starts, a repeat, retakes, a stutter</span></div>
-    <div><b data-count="4">4</b><span>long pauses cut</span></div>
+    <div><b><span data-time="175">2:55</span> <em>&rarr;</em> <span data-time="100">1:40</span></b><span>raw &rarr; edited</span></div>
+    <div><b data-count="7">7</b><span>mistakes cut: false starts, retakes, repeats</span></div>
+    <div><b data-count="10">10</b><span>effects added: chapter card, text behind me, callouts...</span></div>
   </div>
 
-  <div class="report">
-    <div class="fn">What was cut <span>times in the raw clip</span></div>
-    <ul>
-      <li><code>00:22</code>False start: "There's one line that's-" - the clean take follows.</li>
-      <li><code>00:29</code>Repeat: "What happens-" - said again right after.</li>
-      <li><code>00:46</code>Retake: first try at "That's called failing closed" - the second take stays.</li>
-      <li><code>01:04</code>Retake: "And if the output- and if the output has no ver-" - the full sentence stays.</li>
-      <li><code>01:21</code>Stutter: "ex- explicit-" - kept "a clear, explicit pass."</li>
-    </ul>
+  <div class="outtabs" role="tablist">
+    <button type="button" class="on" data-o="o-thumbs">Thumbnails</button><button type="button" data-o="o-shorts">Shorts</button><button type="button" data-o="o-kit">Publish kit</button><button type="button" data-o="o-report">Report</button>
   </div>
-
-  <h3 class="sh3">Thumbnails - 3 versions for A/B testing</h3>
-  <p class="cap">My real thumbnails for this video. The AI portraits were made separately (Higgsfield), not by this skill.</p>
-  <div class="thumbs3">
-    <img src="/ai-video-editing/demo/thumb-1.jpg" alt="Thumbnail 1: BLOCK BAD COMMITS, with the line Blocker found - failing the build" width="1280" height="720" loading="lazy">
-    <img src="/ai-video-editing/demo/thumb-2.jpg" alt="Thumbnail 2: NEVER LEAK SECRETS AGAIN, with a .env file and a fake Stripe key" width="1280" height="720" loading="lazy">
-    <img src="/ai-video-editing/demo/thumb-3.jpg" alt="Thumbnail 3: AI REVIEWS EVERY COMMIT, green, with the claude -p line" width="1280" height="720" loading="lazy">
-  </div>
-
-  <h3 class="sh3">Shorts from the same video</h3>
-  <div class="shorts">
-    <figure><div class="ph9"><video src="/ai-video-editing/demo/short-1.mp4" poster="/ai-video-editing/demo/short-1-poster.jpg" controls preload="none" playsinline></video></div><figcaption><b>Short 1</b> 0:31 - animated version. The animations were made separately with my own Claude workflow, not by this skill.</figcaption></figure>
-    <figure><div class="ph9"><video src="/ai-video-editing/demo/short-2.mp4" poster="/ai-video-editing/demo/short-2-poster.jpg" controls preload="none" playsinline></video></div><figcaption><b>Short 2</b> 0:21 - vertical crop, word-by-word captions</figcaption></figure>
-    <p class="more"><b>6 Shorts</b> came out of this one recording, each built around its own hook. Here are two of them.</p>
-  </div>
-
-  <h3 class="sh3">Publish kit</h3>
-  <div class="kit">
-    <div>
-      <div class="lbl">Title options</div>
-      <ol><li>I Gave Git an AI Reviewer (It Blocks My Bad Commits)</li><li>An AI Code Reviewer in 10 Lines of PowerShell</li><li>Claude Code Without the Chat - It's Just a Command</li><li>Put Claude in Your Git Hooks (It Blocked a Leaked Secret)</li></ol>
-      <div class="lbl">Chapters</div>
-      <pre>0:00  An AI just blocked my git commit
-0:20  What we'll build
-0:33  Claude Code is a command (claude -p)
-1:13  A clean yes or no (--json-schema)
-1:58  The 10-line reviewer
-2:43  Blocked - live
-3:24  Fail closed
-4:09  AI for .NET Developers
-4:21  The whole team: pre-push + CI
-5:02  Safety rules for unattended agents
-5:49  Recap</pre>
-    </div>
-    <div>
-      <div class="lbl">Description</div>
-      <p>I wired Claude Code into git so it reviews every commit - and blocks the bad ones. No chat window, no review tool. I just type git commit, and an AI reads the diff and can refuse it.</p>
-      <div class="lbl">Also in the kit</div>
-      <p>Tags and a pinned comment.</p>
+  <div class="opane on" id="o-thumbs">
+    <p class="cap">3 versions for YouTube's A/B test, made from a frame of the video.</p>
+    <div class="thumbs3">
+      <img src="/ai-video-editing/demo/skill-thumb-1.jpg" alt="Thumbnail: AI BLOCKED MY COMMIT, yellow" width="1280" height="720" loading="lazy">
+      <img src="/ai-video-editing/demo/skill-thumb-2.jpg" alt="Thumbnail: AI BLOCKED MY COMMIT, red" width="1280" height="720" loading="lazy">
+      <img src="/ai-video-editing/demo/skill-thumb-3.jpg" alt="Thumbnail: AI BLOCKED MY COMMIT, mint" width="1280" height="720" loading="lazy">
     </div>
   </div>
-  <p class="fine">Videos are shown in 720p to keep this page fast. The originals are 4K, the Shorts 1080x1920.</p>
+  <div class="opane" id="o-shorts">
+    <div class="shorts">
+      <figure><div class="ph9"><video src="/ai-video-editing/demo/skill-short-1.mp4" poster="/ai-video-editing/demo/skill-short-1-poster.jpg" controls preload="none" playsinline></video></div><figcaption><b>Short 1</b> 0:21 - follows my face, word-by-word captions</figcaption></figure>
+      <figure><div class="ph9 cov"><img src="/ai-video-editing/demo/skill-short-1-cover.jpg" alt="Cover for Short 1" width="540" height="960" loading="lazy"></div><figcaption><b>Cover</b> for Short 1</figcaption></figure>
+      <figure><div class="ph9"><video src="/ai-video-editing/demo/skill-short-2.mp4" poster="/ai-video-editing/demo/skill-short-2-poster.jpg" controls preload="none" playsinline></video></div><figcaption><b>Short 2</b> 0:18 - two moments joined into one clip</figcaption></figure>
+      <figure><div class="ph9 cov"><img src="/ai-video-editing/demo/skill-short-2-cover.jpg" alt="Cover for Short 2" width="540" height="960" loading="lazy"></div><figcaption><b>Cover</b> for Short 2</figcaption></figure>
+    </div>
+  </div>
+  <div class="opane" id="o-kit">
+    <div class="kit">
+      <div>
+        <div class="lbl">Title options</div>
+        <ol><li>AI Blocked My Commit - Claude Code Headless Mode</li><li>Turn Claude Code Into a Command (claude -p)</li><li>A Git Gate With AI in 10 Lines of PowerShell</li></ol>
+        <div class="lbl">Chapters</div>
+        <pre>00:00 An AI blocked my commit
+00:35 Claude Code is a command (claude -p)
+01:16 Getting an answer your script can use</pre>
+      </div>
+      <div>
+        <div class="lbl">Description</div>
+        <p>I tried to commit a file and Git said no - an AI found a hard-coded secret and blocked it. How to turn Claude Code into a command with claude -p and get a clean yes/no your script can use.</p>
+        <div class="lbl">Also included</div>
+        <p>.srt subtitles and an edited transcript for posts and blogs.</p>
+      </div>
+    </div>
+  </div>
+  <div class="opane" id="o-report">
+    <div class="report">
+      <div class="fn">Claude's report <span>times in the raw clip</span></div>
+      <ul>
+        <li><code>00:42</code>False start: "Claude Code isn't just a command with..." - the clean take follows.</li>
+        <li><code>00:59</code>You said "You give it a prompt..." twice - kept the second take.</li>
+        <li><code>02:09</code>Retake: "By default Claude slash, by default Claude..." - kept the last one.</li>
+        <li><code>02:29</code>Retake: "you get and you, you get..." - kept "You get an envelope instead".</li>
+      </ul>
+    </div>
+  </div>
+
+  <details class="pub"><summary>And this is the video I published from the same recording</summary>
+    <div class="pubin">
+      <video src="/ai-video-editing/demo/edited.mp4" poster="/ai-video-editing/demo/edited-poster.jpg" controls preload="none" playsinline></video>
+      <p class="note">A different moment ("Fail closed"). I added these overlays and the colour look with my own Claude workflow before the skill had effects, so they are not skill output.</p>
+    </div>
+  </details>
+  <p class="fine">Shown in 720p to keep this page fast. The skill renders at your original quality.</p>
+  <div class="midcta"><a class="btn buy" data-cta="example" href="#">Get the same setup - <span class="price-txt">$27</span></a><p class="bf bfline"><span><b>Black Friday launch price.</b> Goes up to <span class="reg-txt">$69</span> on Nov&nbsp;30.</span></p></div>
 </div></section>
 
 <!-- EFFECTS:START -->
@@ -582,21 +638,9 @@
     <figure><div class="im"><img src="/ai-video-editing/demo/fx/fx-22-spotlight.webp" alt="Spotlight effect: The room dims so you and one big line stand out." width="960" height="540" loading="lazy" decoding="async"></div><figcaption><b>Spotlight</b><span>The room dims so you and one big line stand out.</span></figcaption></figure>
   </div>
   <button class="fxmore" type="button" id="fxmore">See all 22 effects</button>
+  <div class="midcta light"><a class="btn buy" data-cta="effects" href="#">Get all 22 effects - <span class="price-txt">$27</span></a></div>
 </div></section>
 <!-- EFFECTS:END -->
-
-<!-- OUTPUTS -->
-<section><div class="wrap">
-  <div class="eyebrow">From one recording</div>
-  <h2>A week of content, not just one video</h2>
-  <div class="outs">
-    <div class="out"><b>Clean edit</b><span>Fillers, retakes, dead air gone. Your pace.</span></div>
-    <div class="out"><b>Captions</b><span>.srt file + burned-in captions</span></div>
-    <div class="out"><b>3-5 Shorts</b><span>Vertical, face-tracked, with hooks</span></div>
-    <div class="out"><b>3 thumbnails</b><span>Ready for A/B tests</span></div>
-    <div class="out"><b>Publish kit</b><span>Titles, description, chapters, posts</span></div>
-  </div>
-</div></section>
 
 <!-- WHAT YOU'LL GET -->
 <section class="get" id="get"><div class="wrap">
@@ -643,7 +687,7 @@
     </div>
   </div>
   <div class="getfoot"><span>Instant download</span><span>One-time payment</span><span>Claude desktop app (paid plan), Mac &amp; Windows</span></div>
-  <a class="btn buy" href="#">Get the playbook - <span class="price-txt">$27</span></a>
+  <a class="btn buy" data-cta="offer" href="#">Get the playbook - <span class="price-txt">$27</span></a>
 </div></section>
 
 <!-- COMPARE / VALUE -->
@@ -690,20 +734,12 @@
         <li>From one sentence, no new app to learn</li>
         <li>Use it on every video you record</li>
       </ul>
-      <a class="btn buy" href="#">Get the playbook - <span class="price-txt">$27</span></a>
+      <a class="btn buy" data-cta="offer" href="#">Get the playbook - <span class="price-txt">$27</span></a>
       <p class="bf bfline"><span><b>Black Friday launch price.</b> Goes up to <span class="reg-txt">$69</span> on Nov&nbsp;30.</span></p>
     </div>
   </div>
   <p class="fine2">List prices in USD on Nov 13, 2026, and they can change. Those apps also do things this skill doesn't, like a full timeline editor or a big template library, and their plans come with limits. Editor rates vary with experience and video length.</p>
 
-  <h3 class="h3c">Cheaper than one edited video</h3>
-  <table>
-    <tr><th>Option</th><th>Your time</th><th>Cost</th></tr>
-    <tr><td>Edit everything yourself</td><td>Hours per video</td><td>Your evenings</td></tr>
-    <tr><td>Hire an editor</td><td>Briefing + feedback rounds</td><td>Typically $100-$300 per video</td></tr>
-    <tr><td>Monthly AI editing apps</td><td>Learn several new apps</td><td>About $110 a month for the set above</td></tr>
-    <tr class="us"><td>This playbook + Claude</td><td>One sentence + a short review</td><td><span class="price-txt">$27</span> once (you need a paid Claude plan)</td></tr>
-  </table>
 </div></section>
 
 <!-- FIT -->
@@ -745,14 +781,17 @@
 <!-- FAQ -->
 <section style="padding-top:0"><div class="wrap">
   <h2>Questions</h2>
+  <details><summary>I don't use Claude yet. What does it cost?</summary><p>Claude Pro is $20 a month (cheaper yearly) and you can cancel anytime. It includes the Claude desktop app and Cowork, which the skill runs in. If you already pay for Claude Pro or higher, there is nothing else to buy.</p></details>
+  <details><summary>Is this a subscription?</summary><p>No. You pay $27 once and keep the playbook, the skill and the bonus pack. The only subscription is your own Claude plan.</p></details>
   <details><summary>Do I need to know how to code?</summary><p>No. You talk to Claude in normal sentences. The code is inside the skill and Claude runs it for you.</p></details>
   <details><summary>Which Claude plan do I need?</summary><p>A paid plan that includes Cowork in the Claude desktop app (Pro or higher). Claude Code works too. The free plan is not enough.</p></details>
   <details><summary>How long does an edit take?</summary><p>It depends on your computer and the length of the video. As a rough guide, a 20-minute 1080p recording takes 15-30 minutes from start to finished file, and you don't have to watch.</p></details>
+  <details><summary>Do I need a powerful computer?</summary><p>No special hardware. Transcription and rendering run on your own Mac or Windows computer, so an older laptop is slower - it still works, you just wait longer. Phones and iPads are not supported.</p></details>
   <details><summary>Will it work for my type of video?</summary><p>It is built for people talking: to camera, over a screen recording, or in a course lesson. It is not made for cinematic edits, music videos or multi-camera shoots.</p></details>
   <details><summary>Does it work in other languages?</summary><p>The speech model understands dozens of languages. The playbook and the skill are written in English, and English gets the most testing.</p></details>
   <details><summary>Are my videos uploaded anywhere?</summary><p>The skill is designed to work on your files in the folder you connect and saves every result next to the original. It never changes or deletes your original recording.</p></details>
   <details><summary>Is this made by Anthropic?</summary><p>No. The AI Video Editing Playbook is an independent product that works with Claude. Claude is a trademark of Anthropic.</p></details>
-  <details><summary>What if it doesn't work for me?</summary><p>Email us within 14 days of purchase and you get a full refund. No forms, no hoops.</p></details>
+  <details><summary>What if I don't like the result?</summary><p>Tell Claude what to change in plain words ("keep the story at 05:20", "captions smaller") and it re-renders only that part. If it still isn't for you, email us within 14 days of purchase for a full refund - see the <a href="/ai-video-editing/terms.html">refund terms</a>.</p></details>
 </div></section>
 
 <!-- FINAL -->
@@ -761,16 +800,16 @@
   <p style="color:#cfc9dc">Playbook + Claude skill + bonus pack. Instant download.</p>
   <div class="price price-txt">$27</div>
   <p class="bf bfline"><span><b>Black Friday launch price.</b> Goes up to <span class="reg-txt">$69</span> on Nov&nbsp;30.</span><span class="cdw">Ends in <span class="cd"></span></span></p>
-  <a class="btn buy" href="#">Get the playbook</a>
-  <div><div class="guar"><div class="seal">14</div><div><b>14-day money-back guarantee</b><br><span style="color:#bdb7cb;font-size:15px">If it doesn't save you time, email us and get every cent back.</span></div></div></div>
+  <a class="btn buy" data-cta="final" href="#">Get the playbook</a>
+  <div><div class="guar"><div class="seal">14</div><div><b>14-day money-back guarantee</b><br><span style="color:#bdb7cb;font-size:15px">If it doesn't save you time, email us within 14 days and get every cent back. <a href="/ai-video-editing/terms.html" style="color:#bdb7cb">Terms</a></span></div></div></div>
 </div></section>
 
 <footer><div class="wrap">
-  <p><a href="https://thecodeman.net">TheCodeMan.NET</a><a href="/ai-video-editing/privacy.html">Privacy</a><a href="mailto:stefan@thecodeman.net">Contact</a></p>
+  <p><a href="https://thecodeman.net">TheCodeMan.NET</a> &middot; <a href="/ai-video-editing/terms.html">Terms &amp; refunds</a> &middot; <a href="/ai-video-editing/privacy.html">Privacy</a> &middot; <a href="mailto:stefan@thecodeman.net">Contact</a></p>
   <p>&copy; 2026 Stefan &#272;oki&#263; &middot; TheCodeMan.NET. The AI Video Editing Playbook is an independent product and is not affiliated with, endorsed or sponsored by Anthropic or Meta. Claude is a trademark of Anthropic. Results depend on your recordings, computer and Claude plan.</p>
 </div></footer>
 
-<div class="sticky" id="sticky"><a class="btn buy" href="#">Get the playbook - <span class="price-txt">$27</span></a></div>
+<div class="sticky" id="sticky"><a class="btn buy" data-cta="sticky" href="#">Get the playbook - <span class="price-txt">$27</span></a></div>
 
 
 
@@ -808,7 +847,7 @@
   document.querySelectorAll('a.buy').forEach(function (a) {
     a.href = url;
     a.addEventListener('click', function () {
-      if (window.fbq) fbq('track', 'InitiateCheckout', { value: R.VALUE, currency: R.CURRENCY, content_name: 'AI Video Editing Playbook' });
+      if (window.fbq) fbq('track', 'InitiateCheckout', { value: R.VALUE, currency: R.CURRENCY, content_name: 'AI Video Editing Playbook', content_category: a.getAttribute('data-cta') || 'other' });
     });
   });
 
@@ -825,13 +864,16 @@
   var KEY = 'tcm_consent', c = null;
   try { c = localStorage.getItem(KEY); } catch (e) {}
   var box = document.getElementById('consent');
-  if (!R.CONSENT_REQUIRED || c === 'yes') loadPixel(); else if (c !== 'no') box.style.display = 'flex';
-  function choose(v) { try { localStorage.setItem(KEY, v); } catch (e) {} box.style.display = 'none'; if (v === 'yes') loadPixel(); }
+  // Ask for consent only where cookie consent is required (EU/EEA/UK time zones, or unknown).
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  var needConsent = R.CONSENT_REQUIRED && (!tz || /^(Europe|Atlantic\/(Canary|Madeira|Azores|Faroe|Reykjavik))/.test(tz));
+  if (!needConsent || c === 'yes') loadPixel(); else if (c !== 'no') { box.style.display = 'flex'; document.body.classList.add('consenting'); }
+  function choose(v) { try { localStorage.setItem(KEY, v); } catch (e) {} box.style.display = 'none'; document.body.classList.remove('consenting'); if (v === 'yes') loadPixel(); }
   document.getElementById('c-ok').onclick = function () { choose('yes'); };
   document.getElementById('c-no').onclick = function () { choose('no'); };
 
 
-  var EX = {"clip":{"dur":90.666,"regions":[[0.0,3.45,"k",""],[3.45,6.11,"p","pause"],[6.11,15.41,"k",""],[15.41,22.14,"p","pause"],[22.14,24.39,"x","false start \"There's one line that's-\""],[24.39,28.91,"k",""],[28.91,30.18,"x","repeat \"What happens-\" (said again right after)"],[30.18,46.45,"k",""],[46.45,49.78,"x","first try at \"That's called failing closed\", then \"That-\""],[49.78,56.02,"p","pause"],[56.02,63.93,"k",""],[63.93,67.8,"x","retake \"And if the output- and if the output has no ver-\""],[67.8,72.34,"p","pause"],[72.34,81.05,"k",""],[81.05,82.29,"x","stutter \"ex- explicit-\""],[82.29,83.43,"k",""],[83.43,84.34,"x","false start \"A-\""],[84.34,90.02,"k",""],[90.02,90.66,"p","end of this clip"]]}};
+  var EX = {"clip":{"dur":176.0,"regions":[[0.0,3.07,"p","pause"],[3.07,24.1,"k",""],[24.1,28.13,"p","pause"],[28.13,42.6,"k",""],[42.6,50.53,"x","False start: \"Claude Code isn't just a command with...\""],[50.53,59.43,"k",""],[59.43,83.43,"x","First take of \"You give it a prompt...\" - said again right after"],[83.43,91.13,"k",""],[91.13,91.6,"x","Repeat: \"when it-\""],[91.6,96.73,"k",""],[96.73,97.47,"x","Repeat: \"whether the-\""],[97.47,100.67,"k",""],[100.67,100.73,"p","pause"],[100.73,107.13,"k",""],[107.13,107.5,"p","pause"],[107.5,116.77,"k",""],[116.77,121.2,"p","pause"],[121.2,129.23,"k",""],[129.23,133.67,"x","Retake: \"By default Claude slash, by default Claude...\""],[133.67,134.43,"k",""],[134.43,141.8,"p","pause"],[141.8,149.47,"k",""],[149.47,163.4,"x","Retake: \"you get and you, you get, you get an envelope\""],[163.4,169.47,"k",""],[169.47,170.93,"x","Repeat: \"and what the call costs\""],[170.93,173.0,"k",""],[173.0,176.0,"p","end of this clip"]]}};
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // scroll reveal + count-up
@@ -867,15 +909,15 @@
   // real example player: raw/edited tabs + cut bar synced to the video
   var vr = document.getElementById('v-raw'), ve = document.getElementById('v-edited');
   var segs = document.getElementById('segs'), ph = document.getElementById('ph'), now = document.getElementById('now');
-  var regs = EX.clip.regions, RAW = EX.clip.dur, ED = 55.17, mode = 'raw';
+  var regs = EX.clip.regions, RAW = EX.clip.dur, ED = 100.7, mode = 'raw';
   regs.forEach(function (r) { var sp = document.createElement('span'); sp.className = r[2]; sp.style.flex = (r[1] - r[0]).toFixed(2); segs.appendChild(sp); });
   function cur() { return mode === 'raw' ? vr : ve; }
   function tell(t) {
-    if (mode !== 'raw') { now.className = 'now'; now.innerHTML = '<b>Final video.</b> Same words, mistakes and long pauses gone. 1:31 became 0:55.'; return; }
+    if (mode !== 'raw') { now.className = 'now'; now.innerHTML = '<b>Edited by the skill.</b> Same words, mistakes and dead air gone, 10 effects added. 2:55 became 1:40.'; return; }
     var r = null; for (var i = 0; i < regs.length; i++) if (t >= regs[i][0] && t < regs[i][1]) { r = regs[i]; break; }
     if (!r) return;
     if (r[2] === 'x') { now.className = 'now cut'; now.innerHTML = '<b>&#9986; Cut:</b> ' + r[3]; }
-    else if (r[2] === 'p') { now.className = 'now'; now.innerHTML = '<b>Pause</b> - ' + (r[3] === 'end of this clip' ? 'end of this clip.' : 'cut down to a natural breath.'); }
+    else if (r[2] === 'p') { now.className = 'now'; now.innerHTML = '<b>Pause</b> - ' + (r[3] === 'end of this clip' ? 'end of this clip.' : 'shortened to a natural breath.'); }
     else { now.className = 'now'; now.innerHTML = '<b>Kept.</b> This part stays in the video.'; }
   }
   function tick(tSet) {
@@ -911,10 +953,40 @@
   });
   // effects gallery: show the first rows, the rest on request
   var fxg = document.getElementById('fxgrid'), fxm = document.getElementById('fxmore');
-  if (fxg && fxm) fxm.addEventListener('click', function () { fxg.classList.add('all'); });
+  if (fxg && fxm) fxm.addEventListener('click', function () { fxg.classList.add('all'); if (window.fbq) fbq('trackCustom', 'EffectsOpen'); });
 
   // only one video plays at a time
-  document.querySelectorAll('video').forEach(function (v) { v.addEventListener('play', function () { document.querySelectorAll('video').forEach(function (o) { if (o !== v) o.pause(); }); }); });
+  var vids = document.querySelectorAll('video:not(.loopv)'), played = {};
+  vids.forEach(function (v) { v.addEventListener('play', function () {
+    vids.forEach(function (o) { if (o !== v) o.pause(); });
+    var k = v.id || (v.getAttribute('src') || '').split('/').pop();
+    if (!played[k]) { played[k] = 1; if (window.fbq) fbq('trackCustom', 'DemoPlay', { video: k }); }
+  }); });
+
+  // example outputs: thumbnails / shorts / kit / report
+  document.querySelectorAll('.outtabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.outtabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      document.querySelectorAll('.opane').forEach(function (p) { p.classList.toggle('on', p.id === b.dataset.o); });
+      document.querySelectorAll('#' + b.dataset.o + ' .rv').forEach(function (e) { e.classList.add('in'); });
+      document.querySelectorAll('.opane video').forEach(function (v) { v.pause(); });
+    });
+  });
+
+  // What you'll get: on phones show 3 items per part, the rest on tap
+  document.querySelectorAll('.part').forEach(function (pt) {
+    var n = pt.querySelectorAll('li').length; if (n <= 3) return;
+    var bt = document.createElement('button'); bt.type = 'button'; bt.className = 'partmore'; bt.textContent = 'Show all ' + n;
+    bt.addEventListener('click', function () { pt.classList.add('all'); });
+    pt.appendChild(bt);
+  });
+
+  // hero loop: load and play only the visible copy (mobile or desktop), never with reduced motion
+  if (!reduce) document.querySelectorAll('.loopv').forEach(function (v) {
+    if (!v.offsetParent) return;
+    v.src = v.dataset.src; v.muted = true;
+    var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+  });
 
   // hero animation: raw timeline collapses into the edited one
   var demo = document.getElementById('demo');
