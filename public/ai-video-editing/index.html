@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <!--
   ===== SETUP (3 values) =====
-  1. CHECKOUT_URL  - your Lemon Squeezy checkout link for the product
+  1. CHECKOUT_URL  - your Lemon Squeezy checkout link for the product (keep ?embed=1 for the overlay)
   2. META_PIXEL_ID - from Meta Events Manager (also paste the same ID in Lemon Squeezy > Settings > Design > Meta pixel)
   3. PRICE         - shown in the buttons
 
@@ -27,7 +27,7 @@
 -->
 <script>
   window.PRODUCT = {
-    CHECKOUT_URL: "https://YOURSTORE.lemonsqueezy.com/buy/YOUR-VARIANT-ID",
+    CHECKOUT_URL: "https://stefandjokic.lemonsqueezy.com/checkout/buy/53ee0236-c9b3-4669-81b2-6aaeff60a972?embed=1",
     META_PIXEL_ID: "1656221896163479",
     PRICE: "$27",
     CURRENCY: "USD",
@@ -44,6 +44,7 @@
   })(window.PRODUCT);
 </script>
 <script>document.documentElement.classList.add('js');</script>
+<script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
 <style>
   :root { --ink:#17151f; --ink2:#221f2e; --paper:#fbf8f3; --muted:#6b6676; --line:#e7e0d4; --rec:#ff4d2e; --yel:#ffd23f; --mint:#2ec4a6; }
   * { box-sizing: border-box; }
@@ -844,12 +845,32 @@
     if (q.get(k)) extra.push('checkout[custom][' + k + ']=' + encodeURIComponent(q.get(k)));
   });
   var url = R.CHECKOUT_URL + (extra.length ? (R.CHECKOUT_URL.indexOf('?') < 0 ? '?' : '&') + extra.join('&') : '');
+  // Lemon Squeezy overlay: lemon.js (loaded with defer, so it runs after this script) opens every
+  // .lemonsqueezy-button link in an overlay on this page instead of a new tab.
   document.querySelectorAll('a.buy').forEach(function (a) {
     a.href = url;
+    a.classList.add('lemonsqueezy-button');
     a.addEventListener('click', function () {
       if (window.fbq) fbq('track', 'InitiateCheckout', { value: R.VALUE, currency: R.CURRENCY, content_name: 'AI Video Editing Playbook', content_category: a.getAttribute('data-cta') || 'other' });
     });
   });
+
+  // Purchase: the overlay tells this page when the order is done; we send Purchase to the pixel here
+  // (first-party, works with the overlay). Leave the Meta pixel field in Lemon Squeezy EMPTY so purchases
+  // are not counted twice.
+  var lsReady = false;
+  function setupLS() {
+    if (lsReady || !window.LemonSqueezy || !window.LemonSqueezy.Setup) return;
+    lsReady = true;
+    window.LemonSqueezy.Setup({ eventHandler: function (ev) {
+      if (!ev || ev.event !== 'Checkout.Success') return;
+      var o = (ev.data && ev.data.order && ev.data.order.data) || {}, at = o.attributes || {};
+      var value = at.total ? at.total / 100 : R.VALUE, cur = (at.currency || R.CURRENCY).toUpperCase();
+      if (window.fbq) fbq('track', 'Purchase', { value: value, currency: cur, content_name: 'AI Video Editing Playbook' }, { eventID: 'ls-order-' + (o.id || Date.now()) });
+    } });
+  }
+  window.addEventListener('load', setupLS);
+  setTimeout(setupLS, 2500);
 
   // Meta Pixel - loads only after consent
   function loadPixel() {
