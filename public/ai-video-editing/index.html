@@ -866,7 +866,11 @@
       if (!ev || ev.event !== 'Checkout.Success') return;
       var o = (ev.data && ev.data.order && ev.data.order.data) || {}, at = o.attributes || {};
       var value = at.total ? at.total / 100 : R.VALUE, cur = (at.currency || R.CURRENCY).toUpperCase();
-      if (window.fbq) fbq('track', 'Purchase', { value: value, currency: cur, content_name: 'AI Video Editing Playbook' }, { eventID: 'ls-order-' + (o.id || Date.now()) });
+      if (!window.fbq) return;
+      // advanced matching: the pixel hashes the buyer's email in the browser before sending it
+      var em = (at.user_email || '').trim().toLowerCase();
+      if (em) fbq('init', R.META_PIXEL_ID, { em: em });
+      fbq('track', 'Purchase', { value: value, currency: cur, content_name: 'AI Video Editing Playbook', content_ids: ['ai-video-editing-playbook'], content_type: 'product' }, { eventID: 'ls-order-' + (o.id || Date.now()) });
     } });
   }
   window.addEventListener('load', setupLS);
