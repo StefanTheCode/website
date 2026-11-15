@@ -26,7 +26,7 @@ const GROUPS: NavGroup[] = [
     id: "courses",
     label: "Courses",
     links: [
-      { href: "/ai-for-dotnet-developers", label: "AI for .NET Developers", note: "Community + lessons" },
+      { href: "/ai-for-developers", label: "AI for Developers", note: "Community + lessons" },
       { href: "/pragmatic-dotnet-code-rules", label: "Pragmatic .NET Code Rules", note: "Video course" },
       { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver", note: "Written course + ebook + AI tutor" },
     ],
@@ -109,8 +109,8 @@ export default function Header() {
       <div ref={promoRef} className="promo-bar tcm-announce">
         <div className="tcm-announce__inner">
           <span className="tcm-announce__tag">NEW</span>
-          <span className="tcm-announce__text"><strong>AI for .NET Developers</strong><span className="tcm-announce__more"> - skills, agents and practical lessons</span></span>
-          <a href="/ai-for-dotnet-developers" data-cta="ai-community-header">
+          <span className="tcm-announce__text"><strong>AI for Developers</strong><span className="tcm-announce__more"> - skills, agents and practical lessons</span></span>
+          <a href="/ai-for-developers" data-cta="ai-community-header">
             Explore
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
           </a>
@@ -164,7 +164,7 @@ export default function Header() {
               </svg>
             </button>
             <a href="https://www.skool.com/thecodeman-community-2911" className="tcm-nav__text-link">Free community</a>
-            <a href="/ai-for-dotnet-developers" className="tcm-btn tcm-btn--primary tcm-btn--sm" data-cta="ai-community-nav">AI for .NET Devs</a>
+            <a href="/ai-for-developers" className="tcm-btn tcm-btn--primary tcm-btn--sm" data-cta="ai-community-nav">AI for Developers</a>
             <button
               type="button"
               className="tcm-burger"
@@ -195,7 +195,7 @@ export default function Header() {
             ))}
             <a href="/sponsorship" onClick={() => setMenuOpen(false)}>Sponsor</a>
             <div className="tcm-mobile__ctas">
-              <a href="/ai-for-dotnet-developers" className="tcm-btn tcm-btn--primary">AI for .NET Developers</a>
+              <a href="/ai-for-developers" className="tcm-btn tcm-btn--primary">AI for Developers</a>
               <a href="https://www.skool.com/thecodeman-community-2911" className="tcm-btn tcm-btn--secondary">Join the free community</a>
             </div>
           </div>

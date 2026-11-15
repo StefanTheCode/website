@@ -1295,7 +1295,7 @@ claude`}</Code>
                 <h3 className="text-white mb-2">This is Track A. Track B is where it gets rare.</h3>
                 <p style={{ ...muted, maxWidth: '580px', margin: '0 auto 20px' }}>
                   The full course - Claude Code, skills, MCP in C#, then building real AI features (LLMs, RAG, agents) into your
-                  .NET apps - is inside the community, with new video clips as I record them.
+                  apps - is inside the AI for Developers community, with new video clips as I record them.
                 </p>
                 <a className="btn btn-primary py-3 px-4" href="https://www.skool.com/ai-for-dotnet-developers" target="_blank" rel="noopener noreferrer">
                   Join the community →

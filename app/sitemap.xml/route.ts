@@ -63,7 +63,7 @@ export async function GET() {
     "playground",
     "builder-pattern-free-stuff",
     "ai-in-dotnet-starter-kit",
-    "ai-for-dotnet-developers",
+    "ai-for-developers",
     "vertical-slices-architecture",
     "pragmatic-dotnet-code-rules",
     "dotnet-code-rules-starter-kit",

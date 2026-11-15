@@ -10,15 +10,15 @@ import { AI_COMMUNITY_PATH } from '@/components/aiCommunity'
 
 export const metadata: Metadata = {
   title: { absolute: 'TheCodeMan | .NET, C# & AI for Developers' },
-  description: 'Practical C# and .NET tutorials by Microsoft MVP Stefan Djokic. Learn AI coding workflows, MCP and RAG, and explore the AI for .NET Developers community.',
+  description: 'Practical C# and .NET tutorials by Microsoft MVP Stefan Djokic. Learn AI coding workflows, MCP and RAG, and explore the AI for Developers community.',
   openGraph: {
     title: 'TheCodeMan | .NET, C# & AI for Developers',
-    description: 'Practical .NET tutorials and AI workflows by Stefan Djokic. Explore C#, MCP, RAG and the AI for .NET Developers community.',
+    description: 'Practical .NET tutorials and AI workflows by Stefan Djokic. Explore C#, MCP, RAG and the AI for Developers community.',
     url: 'https://thecodeman.net', type: 'website', images: ['/og-image.webp'],
   },
   twitter: {
     card: 'summary_large_image', title: 'TheCodeMan | .NET, C# & AI for Developers',
-    description: 'Practical .NET tutorials and AI workflows by Stefan Djokic. Explore C#, MCP, RAG and the AI for .NET Developers community.',
+    description: 'Practical .NET tutorials and AI workflows by Stefan Djokic. Explore C#, MCP, RAG and the AI for Developers community.',
     images: ['/og-image.webp'],
   },
 };
@@ -120,15 +120,15 @@ export default function Home() {
 
           <div className="tcm-bento">
             <a href={AI_COMMUNITY_PATH} className="tcm-card tcm-card--featured tcm-bento__community" data-cta="ai-community-home" data-reveal>
-              <Image src="/images/ai-for-dotnet-developers.webp" alt="AI for .NET Developers community" width={1084} height={576} sizes="(max-width: 1100px) 100vw, 700px" />
+              <Image src="/images/ai-for-dotnet-developers.webp" alt="AI for Developers community" width={1084} height={576} sizes="(max-width: 1100px) 100vw, 700px" />
               <div className="tcm-card__body">
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   <span className="tcm-chip tcm-chip--accent">Community</span>
                   <span className="tcm-chip tcm-chip--outline">7-day free trial</span>
                 </div>
-                <h3 className="tcm-h3">AI for .NET Developers</h3>
-                <p>Use AI on your codebase and build AI into your apps. 50+ Claude skills and agents, practical lessons, and direct access to me.</p>
-                <span className="tcm-price">$19/month <span className="tcm-price__or">or</span> $149/year</span>
+                <h3 className="tcm-h3">AI for Developers</h3>
+                <p>Practical AI for developers who ship real systems. 50+ Claude skills and agents, a deep .NET Pack, weekly lessons and direct access to me.</p>
+                <span className="tcm-price">$19/month</span>
                 <span className="tcm-link">Join the community <Arrow /></span>
               </div>
             </a>

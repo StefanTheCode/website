@@ -39,7 +39,7 @@ faq:
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">A word from this week's sponsors</p>
 
-<p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;"><strong>AI for .NET Developers</strong> is my community for .NET devs who want to actually use AI in real projects - building agents, wiring up MCP, and shipping AI features in C# without the hype. You get 50+ Claude skills and agents, weekly lessons, and direct access to me. There's a 7-day free trial, so you can look around before you commit.</p>
+<p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;"><strong>AI for Developers</strong> is my community for developers who want to actually use AI in real projects - building agents, wiring up MCP, and shipping AI features without the hype, with a deep .NET Pack for C# work. You get 50+ Claude skills and agents, weekly lessons, and direct access to me. There's a 7-day free trial, so you can look around before you commit.</p>
 
 <a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community →</a>
 

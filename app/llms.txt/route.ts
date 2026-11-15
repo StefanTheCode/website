@@ -55,7 +55,7 @@ export async function GET() {
     "",
     "## AI for .NET developers",
     "",
-    `- [AI for .NET Developers](${BASE_URL}/ai-for-dotnet-developers): Community and learning hub for building AI features in C# - MCP, AI agents, RAG, Claude Code skills.`,
+    `- [AI for Developers](${BASE_URL}/ai-for-developers): Paid community for developers who use AI coding agents and build AI features - 50+ Claude Code skills and agents, MCP, RAG, AI agents and architecture, with a deep .NET Pack. 7-day free trial.`,
     `- [AI Roadmap for .NET Developers 2026](${BASE_URL}/ai-roadmap-2026): Step-by-step roadmap from AI-assisted coding to MCP servers, LLMs with Microsoft.Extensions.AI, embeddings, RAG and AI agents in .NET.`,
     `- [AI Roadmap Course](${BASE_URL}/ai-roadmap-course): Free written course on using Claude Code, CLAUDE.md, skills and agents on real .NET codebases.`,
     `- [AI in .NET Starter Kit](${BASE_URL}/ai-in-dotnet-starter-kit): Free source code for semantic search, RAG and an MCP server in .NET 10 with Ollama and pgvector.`,

@@ -204,7 +204,7 @@ export default async function PostPage(
     datePublished: published,
     dateModified: modified,
     articleSection: post.data.category,
-    ...(aiPost ? { isPartOf: { "@type": "CollectionPage", "@id": `${AI_COMMUNITY_URL}#page`, url: AI_COMMUNITY_URL, name: "AI for .NET Developers" } } : {})
+    ...(aiPost ? { isPartOf: { "@type": "CollectionPage", "@id": `${AI_COMMUNITY_URL}#page`, url: AI_COMMUNITY_URL, name: "AI for Developers" } } : {})
   };
 
   // Frontmatter FAQs are rendered from the same data as their schema. Questions
@@ -231,7 +231,7 @@ export default async function PostPage(
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://thecodeman.net" },
       { "@type": "ListItem", position: 2, name: "Blog", item: "https://thecodeman.net/blog" },
-      ...(aiPost ? [{ "@type": "ListItem", position: 3, name: "AI for .NET Developers", item: AI_COMMUNITY_URL }] : []),
+      ...(aiPost ? [{ "@type": "ListItem", position: 3, name: "AI for Developers", item: AI_COMMUNITY_URL }] : []),
       { "@type": "ListItem", position: aiPost ? 4 : 3, name: meta.title, item: meta.url },
     ],
   };
@@ -262,7 +262,7 @@ export default async function PostPage(
                 <Link href="/">Home</Link>
                 <span className="breadcrumb-sep">/</span>
                 <Link href="/blog">Blog</Link>
-                {aiPost ? (<><span className="breadcrumb-sep">/</span><Link href={AI_COMMUNITY_PATH}>AI for .NET Developers</Link></>) : post.data.category && (
+                {aiPost ? (<><span className="breadcrumb-sep">/</span><Link href={AI_COMMUNITY_PATH}>AI for Developers</Link></>) : post.data.category && (
                   <>
                     <span className="breadcrumb-sep">/</span>
                     <Link href={`/blog?category=${encodeURIComponent(post.data.category)}`}>{post.data.category}</Link>
@@ -293,7 +293,7 @@ export default async function PostPage(
                 <PremiumChapterBanner slug={slug} />
               )}
 
-              {aiPost && <p className="tcm-post-lede">Part of the <Link href={AI_COMMUNITY_PATH} className="text-yellow">AI for .NET Developers</Link> learning library: practical C# workflows, MCP and AI applications.</p>}
+              {aiPost && <p className="tcm-post-lede">Part of the <Link href={AI_COMMUNITY_PATH} className="text-yellow">AI for Developers</Link> learning library: practical C# workflows, MCP and AI applications.</p>}
 
               {/* Table of Contents */}
               <TableOfContents initialHeadings={getTocHeadings(normalizeHeadings(post.content), faq)} />
@@ -371,8 +371,8 @@ export default async function PostPage(
                   <div className="sidebar-products">
                     <h4 className="sidebar-products-header">Recommended for .NET Engineers</h4>
                     <Link href={AI_COMMUNITY_PATH} className="sidebar-product-card" data-cta="ai-community-sidebar">
-                      <Image src={AI_COMMUNITY_IMAGE} alt="AI for .NET Developers community" width={300} height={159} className="sidebar-product-img" />
-                      <span className="sidebar-product-title">AI for .NET Developers</span>
+                      <Image src={AI_COMMUNITY_IMAGE} alt="AI for Developers community" width={300} height={159} className="sidebar-product-img" />
+                      <span className="sidebar-product-title">AI for Developers</span>
                       <span className="sidebar-product-label">Community &middot; Skills &middot; AI lessons</span>
                     </Link>
 

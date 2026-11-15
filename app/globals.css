@@ -18382,7 +18382,7 @@ a:hover, a:focus { color: var(--pg-link-hover); }
 /* Hero headings are the LCP element: show them immediately instead of fading in after hydration */
 h1[data-reveal] { opacity: 1; transform: none; }
 
-/* Active "AI for .NET Devs" nav CTA keeps readable dark text on its amber background */
+/* Active "AI for Developers" nav CTA keeps readable dark text on its amber background */
 #ftco-navbar .navbar-nav a.toolkit-cta-btn.active,
 #ftco-navbar .navbar-nav a.toolkit-cta-btn.active span { color: var(--tcm-amber-ink) !important; }
 

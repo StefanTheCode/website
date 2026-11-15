@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import matter from 'gray-matter';
 
 const base = 'https://thecodeman.net';
-const route = '/ai-for-dotnet-developers';
+const route = '/ai-for-developers';
 const read = path => fs.readFileSync(path, 'utf8');
 const hub = read(`out${route}.html`);
 const htmlOnly = html => html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
@@ -18,7 +18,7 @@ assert.ok(!/<meta name="robots" content="[^"]*noindex/.test(hub), 'Hub must be i
 assert.ok(hub.includes('property="og:image" content="https://thecodeman.net/images/ai-for-dotnet-developers.webp"'), 'Community social image missing');
 assert.ok(fs.existsSync('public/images/ai-for-dotnet-developers.webp'));
 assert.ok(htmlOnly(hub).includes('https://www.skool.com/ai-for-dotnet-developers/about'), 'Join destination missing');
-assert.ok(visibleText(hub).includes('$19') && visibleText(hub).includes('$180'), 'Current offer missing');
+assert.ok(visibleText(hub).includes('$19') && visibleText(hub).includes('7-day free trial'), 'Current offer missing');
 const graph = jsonLd(hub).flatMap(x => x['@graph'] || [x]);
 for (const type of ['CollectionPage', 'Organization', 'ItemList', 'BreadcrumbList']) assert.ok(graph.some(x => x['@type'] === type), `Missing ${type}`);
 assert.ok(!graph.some(x => x['@type'] === 'SoftwareApplication'), 'Community must not claim to be an application');
@@ -26,8 +26,9 @@ assert.ok(!graph.some(x => x['@type'] === 'SoftwareApplication'), 'Community mus
 const sitemap = read('out/sitemap.xml');
 assert.ok(sitemap.includes(`<loc>${base}${route}</loc>`));
 assert.ok(!sitemap.includes(`${base}/ai-toolkit`), 'Old path still in sitemap');
+assert.ok(!sitemap.includes(`${base}/ai-for-dotnet-developers<`), 'Old community path still in sitemap');
 const redirects = read('netlify.toml').split('[[redirects]]').slice(1);
-for (const old of ['/ai-toolkit', '/ai-toolkit/', '/ai-toolkit.html']) {
+for (const old of ['/ai-toolkit', '/ai-toolkit/', '/ai-toolkit.html', '/ai-for-dotnet-developers', '/ai-for-dotnet-developers/', '/ai-for-dotnet-developers.html']) {
   const rule = redirects.find(x => x.includes(`from = "${old}"`));
   assert.ok(rule?.includes(`to = "${route}"`) && /status = 301/.test(rule) && /force = true/.test(rule), `301 missing: ${old}`);
 }

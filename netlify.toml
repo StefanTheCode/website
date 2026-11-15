@@ -26,22 +26,42 @@
 [functions."download"]
   included_files = ["protected/**"]
 
-# Keep old campaign links and backlinks working after the community rename.
+# Keep old campaign links and backlinks working after the community rename
+# (Points straight at the new route to avoid a redirect chain.)
 [[redirects]]
   from = "/ai-toolkit"
-  to = "/ai-for-dotnet-developers"
+  to = "/ai-for-developers"
   status = 301
   force = true
 
 [[redirects]]
   from = "/ai-toolkit/"
-  to = "/ai-for-dotnet-developers"
+  to = "/ai-for-developers"
   status = 301
   force = true
 
 [[redirects]]
   from = "/ai-toolkit.html"
-  to = "/ai-for-dotnet-developers"
+  to = "/ai-for-developers"
+  status = 301
+  force = true
+
+# Community renamed "AI for .NET Developers" -> "AI for Developers" (Oct 2026).
+[[redirects]]
+  from = "/ai-for-dotnet-developers"
+  to = "/ai-for-developers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ai-for-dotnet-developers/"
+  to = "/ai-for-developers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ai-for-dotnet-developers.html"
+  to = "/ai-for-developers"
   status = 301
   force = true
 

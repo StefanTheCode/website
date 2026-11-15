@@ -1,4 +1,4 @@
-export const AI_COMMUNITY_PATH = '/ai-for-dotnet-developers';
+export const AI_COMMUNITY_PATH = '/ai-for-developers';
 export const AI_COMMUNITY_URL = `https://thecodeman.net${AI_COMMUNITY_PATH}`;
 export const AI_COMMUNITY_JOIN_URL = 'https://www.skool.com/ai-for-dotnet-developers/about';
 export const AI_COMMUNITY_IMAGE = '/images/ai-for-dotnet-developers.webp';

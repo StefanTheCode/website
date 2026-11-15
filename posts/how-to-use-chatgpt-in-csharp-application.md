@@ -8,7 +8,7 @@ meta_description: "A historical C# OpenAI integration example from 2023, with co
 updated: "2026-09-19"
 ---
 
-**Historical example (February 2023):** The package, model names and completion API in this article reflect the original publication. This is not a current setup guide. For a broader starting point, follow the [AI roadmap for .NET developers](/ai-roadmap-2026) and explore the [AI for .NET Developers learning paths](/ai-for-dotnet-developers#learn).
+**Historical example (February 2023):** The package, model names and completion API in this article reflect the original publication. This is not a current setup guide. For a broader starting point, follow the [AI roadmap for .NET developers](/ai-roadmap-2026) and explore the [AI for Developers learning paths](/ai-for-developers#learn).
 
 <!--START-->
 
