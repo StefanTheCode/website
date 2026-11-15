@@ -20,6 +20,8 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 </div>
 
 
+> **Update (Nov 2026):** For which architecture tests are actually worth writing, with real failure outputs and NetArchTest gotchas, see [Architecture Tests in .NET: Test What the Compiler Can't See](https://thecodeman.net/posts/architecture-tests-dotnet-what-the-compiler-cant-see).
+
 ## Introduction: Why Architecture Breaks in .NET Projects
 Most teams don’t break their architecture in one dramatic moment.
 
