@@ -61,6 +61,176 @@ export const metadata: Metadata = {
 
 const CHECKOUT_URL = 'https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e';
 
+// Pricing. PRICE_NUM must match the Lemon Squeezy checkout price.
+const PRICE_NUM = '74.89';
+const FULL_PRICE_NUM = 150;
+const PRICE = `$${PRICE_NUM}`;
+const FULL_PRICE = `$${FULL_PRICE_NUM}`;
+const SAVE = `$${Math.round(FULL_PRICE_NUM - Number(PRICE_NUM))}`;
+
+// Curriculum. When a module is released, flip `live` to true -
+// the "x/12 modules live" progress, badges and lesson counts update everywhere.
+type Lesson = { n: string; title: string; preview?: string; tag?: 'ai' | 'bonus' };
+type CourseModule = { icon: string; num: string; title: string; live: boolean; lessons: Lesson[] };
+
+const CURRICULUM: CourseModule[] = [
+  {
+    icon: '🧱', num: '00', title: 'Course Introduction', live: true,
+    lessons: [
+      { n: '00.01', title: 'Welcome', preview: 'vlJhmURwVSM' },
+      { n: '00.02', title: 'What You Will Learn', preview: 'o9rwJhYA-P4' },
+      { n: '00.03', title: 'Who This Course Is For', preview: 'poQCgDSWfdw' },
+      { n: '00.04', title: 'Tools & Requirements', preview: 'PMqs_dSs0LU' },
+      { n: '00.05', title: 'How to follow the course', preview: '2fUxoUnMpI0' },
+    ],
+  },
+  {
+    icon: '🗂️', num: '01', title: 'The Foundation: EditorConfig', live: true,
+    lessons: [
+      { n: '01.00', title: 'Module Intro', preview: 'vBLHCsSoHP0' },
+      { n: '01.01', title: 'Why Code Style Consistency Matters', preview: 'L8BtAQO1t4I' },
+      { n: '01.02', title: 'Creating the CleanStart Solution Structure' },
+      { n: '01.03', title: 'What EditorConfig Is & How It Works' },
+      { n: '01.04', title: 'Adding the .editorconfig File' },
+      { n: '01.05', title: 'Running Code Cleanup to Apply Rules' },
+      { n: '01.06', title: 'EditorConfig Tips, Tricks & Best Practices' },
+      { n: '01.07', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🧹', num: '02', title: 'Automating Code Cleanup', live: true,
+    lessons: [
+      { n: '02.00', title: 'Module Intro', preview: 'CzkPS4jzgsY' },
+      { n: '02.01', title: 'Visual Studio Code Cleanup Profiles' },
+      { n: '02.02', title: 'Running Cleanup Automatically on Save' },
+      { n: '02.03', title: 'One-Click Full Solution Cleanup' },
+      { n: '02.04', title: 'Git Pre-Commit Hooks for Formatting' },
+      { n: '02.05', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🚨', num: '03', title: 'Diagnostics & Warnings as Errors', live: true,
+    lessons: [
+      { n: '03.01', title: 'Understanding Diagnostic Severities' },
+      { n: '03.02', title: 'Organizing Rules: Suggestion, Warning, Error' },
+      { n: '03.03', title: 'Enforcing Warnings as Errors in .NET Projects' },
+      { n: '03.04', title: 'How This Prevents Future Bugs' },
+      { n: '03.05', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🔍', num: '04', title: 'Static Analysis in .NET', live: true,
+    lessons: [
+      { n: '04.01', title: 'Introduction to .NET Analyzers' },
+      { n: '04.02', title: 'Adding StyleCop to the Project' },
+      { n: '04.03', title: 'Adding SonarAnalyzer for Deeper Analysis' },
+      { n: '04.04', title: 'Configuring Analyzer Rules in EditorConfig' },
+      { n: '04.05', title: 'Identifying Real-World Issues with Static Analysis' },
+      { n: '04.06', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🏗️', num: '05', title: 'Centralized Settings: Directory.Build.props', live: true,
+    lessons: [
+      { n: '05.01', title: 'Why Centralized Build Settings Matter' },
+      { n: '05.02', title: 'Creating Directory.Build.props' },
+      { n: '05.03', title: 'Adding Global Usings, LangVersion & Nullable' },
+      { n: '05.04', title: 'Unifying All Projects with Shared Rules' },
+      { n: '05.B', title: 'Central Package Management', tag: 'bonus' },
+      { n: '05.05', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '⚙️', num: '06', title: 'Visual Studio Productivity & Clean Code', live: true,
+    lessons: [
+      { n: '06.01', title: 'Essential VS Formatting Features' },
+      { n: '06.02', title: 'File Header Templates' },
+      { n: '06.03', title: 'Custom Snippets for Faster Development' },
+      { n: '06.04', title: 'Format on Save, Run Cleanup on Build' },
+      { n: '06.05', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🧹', num: '07', title: 'Project Cleanup & Consistency', live: true,
+    lessons: [
+      { n: '07.00', title: 'Module Intro' },
+      { n: '07.01', title: 'Standard Project Folder Structure' },
+      { n: '07.02', title: 'Enabling Nullable & Analyzing Warnings' },
+      { n: '07.03', title: 'Removing Unused Files, Refs & Dependencies' },
+      { n: '07.04', title: 'Normalizing Namespaces & Usings' },
+      { n: '07.05', title: 'Tools Find, AI Fixes, the Build Verifies', tag: 'ai' },
+      { n: '07.06', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🧱', num: '08', title: 'Architecture Tests', live: true,
+    lessons: [
+      { n: '08.00', title: 'Module Intro' },
+      { n: '08.01', title: 'Why Architecture Tests Matter' },
+      { n: '08.02', title: 'Adding NetArchTest' },
+      { n: '08.03', title: 'Testing Domain → Application → Infrastructure' },
+      { n: '08.04', title: 'Preventing Cycles & Wrong References' },
+      { n: '08.05', title: 'Architecture Tests as Guardrails for Agents', tag: 'ai' },
+      { n: '08.06', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🔄', num: '09', title: 'Integrating Code Quality into CI/CD', live: true,
+    lessons: [
+      { n: '09.00', title: 'Module Intro' },
+      { n: '09.01', title: 'dotnet format in CI' },
+      { n: '09.02', title: 'Running Analyzers in CI' },
+      { n: '09.03', title: 'Enforcing Warnings as Errors in the Pipeline' },
+      { n: '09.04', title: 'Preventing "Dirty Code" from Entering Main' },
+      { n: '09.05', title: 'Same Gates for Human and AI Pull Requests', tag: 'ai' },
+      { n: '09.06', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🧭', num: '10', title: 'Logging & Observability', live: false,
+    lessons: [
+      { n: '10.00', title: 'Module Intro' },
+      { n: '10.01', title: 'Adding Serilog to the Project' },
+      { n: '10.02', title: 'Structured Logging Best Practices' },
+      { n: '10.03', title: 'Keeping Sensitive Data Out of Logs' },
+      { n: '10.04', title: 'Adding OpenTelemetry (OTEL) Basics' },
+      { n: '10.05', title: 'Tracing Requests in an API' },
+      { n: '10.06', title: 'AI Writes Bad Logs - and Reads Your Traces', tag: 'ai' },
+      { n: '10.07', title: 'Chapter Recap' },
+    ],
+  },
+  {
+    icon: '🎁', num: '11', title: 'Bonus: Your Own Clean .NET Template', live: false,
+    lessons: [
+      { n: '11.01', title: 'Turning the CleanStart Solution Into a Template' },
+      { n: '11.02', title: 'Exporting as a Visual Studio Template' },
+      { n: '11.03', title: 'Exporting as a dotnet new Template' },
+      { n: '11.04', title: 'Sharing the Template with Your Team' },
+      { n: '11.05', title: 'Course Wrap-Up' },
+    ],
+  },
+  {
+    icon: '🤖', num: '12', title: 'AI-Assisted Dependency & PR Review', live: false,
+    lessons: [
+      { n: '12.01', title: 'Why Use AI for Dependency Updates' },
+      { n: '12.02', title: 'Setting Up Dependabot for NuGet in .NET' },
+      { n: '12.03', title: 'Creating a GitHub Action for AI PR Review' },
+      { n: '12.04', title: 'Designing Effective Prompts for Safe Updates' },
+      { n: '12.05', title: 'Optional: Labels, Changelog & Notifications' },
+      { n: '12.06', title: 'Chapter Recap' },
+    ],
+  },
+];
+
+const COURSE_MODULES = CURRICULUM.filter((m) => m.num !== '00');
+const MODULES_TOTAL = COURSE_MODULES.length;
+const MODULES_DONE = COURSE_MODULES.filter((m) => m.live).length;
+const PROGRESS_PCT = Math.round((MODULES_DONE / MODULES_TOTAL) * 100);
+const countLessons = (mods: CourseModule[]) => mods.reduce((sum, m) => sum + m.lessons.length, 0);
+const tensPlus = (n: number) => `${Math.floor(n / 10) * 10}+`;
+const LESSONS_TOTAL_LABEL = tensPlus(countLessons(CURRICULUM));
+const LESSONS_LIVE_LABEL = tensPlus(countLessons(CURRICULUM.filter((m) => m.live)));
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -87,7 +257,7 @@ const jsonLd = {
       '@type': 'Course',
       name: 'Pragmatic .NET Code Rules',
       description:
-        'A practical .NET code quality system using EditorConfig, Roslyn analyzers, TreatWarningsAsErrors, Visual Studio code cleanup, Git hooks, and CI quality gates. 12 modules, 60+ video lessons with production-ready configs.',
+        `A practical .NET code quality system using EditorConfig, Roslyn analyzers, TreatWarningsAsErrors, Visual Studio code cleanup, Git hooks, and CI quality gates. ${MODULES_TOTAL} modules and ${LESSONS_TOTAL_LABEL} video lessons with production-ready configs, including AI Bonus lessons on guardrails for Claude Code and GitHub Copilot. ${MODULES_DONE} of ${MODULES_TOTAL} modules are live now.`,
       provider: {
         '@type': 'Person',
         name: 'Stefan Djokic',
@@ -95,9 +265,9 @@ const jsonLd = {
       },
       offers: {
         '@type': 'Offer',
-        price: '74.89',
+        price: PRICE_NUM,
         priceCurrency: 'USD',
-        availability: 'https://schema.org/PreOrder',
+        availability: 'https://schema.org/InStock',
         url: 'https://thecodeman.net/pragmatic-dotnet-code-rules',
       },
       coursePrerequisites: 'Basic C# and .NET development experience',
@@ -110,6 +280,9 @@ const jsonLd = {
         'EnforceCodeStyleInBuild and warnings-as-errors',
         'Architecture tests with NetArchTest',
         'Structured logging with Serilog and OpenTelemetry',
+        'Keeping sensitive data out of logs with .NET redaction',
+        'GitHub Actions quality gates, lock files, NuGetAudit and branch rulesets',
+        'Guardrails for AI coding agents with CLAUDE.md and architecture tests',
         'AI-assisted dependency updates and PR review',
       ],
       hasCourseInstance: {
@@ -156,10 +329,10 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'Can I use this course with .NET 6, 7, 8, or 9?',
+          name: 'Can I use this course with .NET 6, 7, 8, 9, or 10?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. EditorConfig, Roslyn analyzers, and dotnet format are part of the SDK and are not tied to a specific .NET version. Everything in the course is forward-compatible.',
+            text: 'Yes. EditorConfig, Roslyn analyzers, and dotnet format are part of the SDK and are not tied to a specific .NET version. The course itself is recorded on .NET 10, and everything is forward-compatible.',
           },
         },
         {
@@ -188,10 +361,26 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'Will the course price increase after presale?',
+          name: 'Will the course price increase?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. Presale is $74.89, launch price is $149. The presale price does not come back.',
+            text: `Yes. Right now the course is ${PRICE} instead of ${FULL_PRICE}, because the last modules are still being released. When all ${MODULES_TOTAL} modules are live, the price goes to ${FULL_PRICE}. If you buy now, you get every future module and update at no extra cost.`,
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Is the Pragmatic .NET Code Rules course finished?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `${MODULES_DONE} of ${MODULES_TOTAL} modules are live (${LESSONS_LIVE_LABEL} lessons) and you get instant access to all of them. The remaining modules are released as they are finished, and you get them automatically.`,
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Is there a refund policy?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. There is a 14-day money-back guarantee. If the course is not for you, reach out within 14 days of purchase for a full refund.',
           },
         },
         {
@@ -216,20 +405,6 @@ nav#ftco-navbar.header-nav{display:none !important}
 const PAGE_JS = `
 (function(){
   document.documentElement.classList.add('cr-js');
-  var END = new Date('2026-06-30T23:59:59+02:00').getTime();
-  function pad(n){return String(n).padStart(2,'0');}
-  function tick(){
-    var diff = Math.max(0, END - Date.now());
-    var d=Math.floor(diff/864e5); diff-=d*864e5;
-    var h=Math.floor(diff/36e5); diff-=h*36e5;
-    var m=Math.floor(diff/6e4); diff-=m*6e4;
-    var s=Math.floor(diff/1e3);
-    var top=document.getElementById('cr-cd-top');
-    if(top){var qd=top.querySelector('[data-d]'),qh=top.querySelector('[data-h]'),qm=top.querySelector('[data-m]'),qs=top.querySelector('[data-s]');if(qd){qd.textContent=pad(d)+'d';qh.textContent=pad(h)+'h';qm.textContent=pad(m)+'m';qs.textContent=pad(s)+'s';}}
-    var bar=document.getElementById('cr-cd-bar');
-    if(bar){bar.textContent=pad(d)+'d '+pad(h)+'h '+pad(m)+'m '+pad(s)+'s';}
-  }
-  tick(); setInterval(tick,1000);
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('cr-in');io.unobserve(e.target);}});},{threshold:.12});
     document.querySelectorAll('.cr-reveal').forEach(function(el){io.observe(el);});
@@ -260,11 +435,14 @@ const CodeRules = () => {
       <div className="cr-ambience" aria-hidden="true"></div>
       <div className="cr-grain" aria-hidden="true"></div>
 
-      {/* 1. ANNOUNCEMENT / COUNTDOWN BAR */}
+      {/* 1. ANNOUNCEMENT / PROGRESS BAR */}
       <div className="cr-topbar">
-        <span>🔥 <b>Presale - 50% off.</b> Price goes up at launch - permanently.</span>
-        <span className="cr-cd" id="cr-cd-top">
-          <span data-d>00d</span><span data-h>00h</span><span data-m>00m</span><span data-s>00s</span>
+        <span>🔥 <b>{MODULES_DONE}/{MODULES_TOTAL} modules live.</b> Get instant access at {PRICE} - the price goes to {FULL_PRICE} when all {MODULES_TOTAL} are out.</span>
+        <span className="cr-topbar-prog">
+          <span className="cr-progress" role="progressbar" aria-label="Modules live" aria-valuemin={0} aria-valuemax={MODULES_TOTAL} aria-valuenow={MODULES_DONE}>
+            <span className="cr-progress-fill" style={{ width: `${PROGRESS_PCT}%` }}></span>
+          </span>
+          <span className="cr-topbar-pct">{MODULES_DONE}/{MODULES_TOTAL}</span>
         </span>
       </div>
 
@@ -288,8 +466,8 @@ const CodeRules = () => {
             <a href="#cr-faq">FAQ</a>
           </div>
           <div className="cr-nav-right">
-            <span className="cr-nav-price"><span className="cr-s">$149</span><b>$74.89</b></span>
-            <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Reserve Your Spot</a>
+            <span className="cr-nav-price"><span className="cr-s">{FULL_PRICE}</span><b>{PRICE}</b></span>
+            <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Instant Access</a>
           </div>
         </div>
       </nav>
@@ -303,11 +481,21 @@ const CodeRules = () => {
             <span className="cr-chip">{MS} By Stefan Đokić · Microsoft MVP</span>
             <h1>Make your .NET codebase <span className="cr-amber crk-shimmer">enforce itself.</span></h1>
             <p className="cr-lead">Get the exact <code>.editorconfig</code>, Roslyn analyzers, CI quality gates, and automation I use in production. Stop arguing about code style - let the build do it. Copy, apply, ship.</p>
+            <div className="cr-status">
+              <div className="cr-status-row">
+                <span><span className="cr-live-dot"></span><b>{MODULES_DONE} of {MODULES_TOTAL} modules live</b> · {LESSONS_LIVE_LABEL} lessons ready to watch</span>
+                <span className="cr-pct">{PROGRESS_PCT}%</span>
+              </div>
+              <span className="cr-progress" role="progressbar" aria-label="Modules live" aria-valuemin={0} aria-valuemax={MODULES_TOTAL} aria-valuenow={MODULES_DONE}>
+                <span className="cr-progress-fill" style={{ width: `${PROGRESS_PCT}%` }}></span>
+              </span>
+              <p className="cr-status-note">Discounted to {PRICE} (was {FULL_PRICE}) until the course is complete. New modules unlock for you the day they&apos;re released.</p>
+            </div>
             <div className="cr-cta">
-              <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Reserve Your Spot - $74.89 →</a>
+              <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Instant Access - {PRICE} <span className="cr-old">{FULL_PRICE}</span> →</a>
               <a href="#cr-curriculum" className="cr-btn cr-btn-ghost">See the curriculum</a>
             </div>
-            <p className="cr-reassure">Presale price <span className="cr-dot"></span> 100% refundable until release <span className="cr-dot"></span> lifetime access</p>
+            <p className="cr-reassure">Instant access <span className="cr-dot"></span> 14-day money-back guarantee <span className="cr-dot"></span> lifetime access + every new module</p>
             <div className="cr-hero-rating">
               <TestimonialRating slug="course" />
             </div>
@@ -327,9 +515,9 @@ const CodeRules = () => {
       <div className="cr-cred">
         <div className="cr-wrap cr-cred-row">
           <span><b>Microsoft MVP</b></span><span className="cr-sep"></span>
-          <span><b>25,000+</b> newsletter readers</span><span className="cr-sep"></span>
+          <span><b>21,000+</b> newsletter readers</span><span className="cr-sep"></span>
           <span><b>110k+</b> LinkedIn</span><span className="cr-sep"></span>
-          <span><b>12</b> modules · <b>60+</b> lessons</span><span className="cr-sep"></span>
+          <span><b>{MODULES_DONE}/{MODULES_TOTAL}</b> modules live · <b>{LESSONS_TOTAL_LABEL}</b> lessons</span><span className="cr-sep"></span>
           <span className="cr-stars">★★★★★</span>
         </div>
       </div>
@@ -421,7 +609,7 @@ const CodeRules = () => {
           <div className="cr-sec-head cr-center cr-reveal">
             <span className="cr-eyebrow cr-center">The system</span>
             <h2 className="cr-sec-title">What you&apos;ll learn</h2>
-            <p className="cr-sec-sub">Production-tested techniques across 12 modules and 60+ lessons.</p>
+            <p className="cr-sec-sub">Production-tested techniques across {MODULES_TOTAL} modules and {LESSONS_TOTAL_LABEL} lessons, including AI Bonus lessons for Claude Code and GitHub Copilot.</p>
           </div>
 
           <div className="cr-learn-row cr-reveal">
@@ -510,7 +698,7 @@ const CodeRules = () => {
       <section>
         <div className="cr-wrap">
           <div className="cr-sec-head cr-center cr-reveal">
-            <span className="cr-eyebrow cr-center">Presale-only · removed at launch</span>
+            <span className="cr-eyebrow cr-center">Included with your purchase</span>
             <h2 className="cr-sec-title">Join now and get <span className="cr-amber">$107 in bonuses</span>, free.</h2>
           </div>
           <div className="cr-bonus-grid cr-reveal">
@@ -533,7 +721,7 @@ const CodeRules = () => {
               <span className="cr-val">Value $29</span>
             </div>
           </div>
-          <p className="cr-bonus-foot cr-reveal">Bonuses total <s>$107</s> · <b>Yours free with the presale</b></p>
+          <p className="cr-bonus-foot cr-reveal">Bonuses total <s>$107</s> · <b>Yours free with the course</b></p>
         </div>
       </section>
 
@@ -550,8 +738,8 @@ const CodeRules = () => {
             <div className="cr-eg-card">
               <div className="cr-eg-ico">📹</div><h3>The Course</h3>
               <ul>
-                <li><span className="cr-ic">✔</span> 12 modules, 60+ video lessons</li>
-                <li><span className="cr-ic">✔</span> Step-by-step, production-focused</li>
+                <li><span className="cr-ic">✔</span> {MODULES_DONE}/{MODULES_TOTAL} modules live, {LESSONS_LIVE_LABEL} lessons today</li>
+                <li><span className="cr-ic">✔</span> AI Bonus lessons: Claude Code &amp; Copilot</li>
                 <li><span className="cr-ic">✔</span> Lifetime access + all updates</li>
                 <li><span className="cr-ic">✔</span> Hosted on Skool - watch anywhere</li>
               </ul>
@@ -635,18 +823,20 @@ const CodeRules = () => {
       <section id="cr-pricing">
         <div className="cr-wrap">
           <div className="cr-sec-head cr-center cr-reveal">
-            <span className="cr-eyebrow cr-center">Presale pricing</span>
-            <h2 className="cr-sec-title">Lock in the lowest price it will ever be.</h2>
+            <span className="cr-eyebrow cr-center">Discounted until the course is complete</span>
+            <h2 className="cr-sec-title">Get it now, before the price goes to {FULL_PRICE}.</h2>
           </div>
           <div className="cr-pricing cr-reveal">
             <div className="cr-price-card">
               <div className="cr-ribbon">50% OFF</div>
               <h3>Pragmatic .NET Code Rules</h3>
-              <p className="cr-psub">Complete course + bonuses + community</p>
-              <div className="cr-amt"><span className="cr-now">$74.89</span><span className="cr-was">$149</span></div>
-              <p className="cr-save">Save $74 · Presale price never comes back</p>
+              <p className="cr-psub">Instant access to {MODULES_DONE}/{MODULES_TOTAL} modules + every new module as it&apos;s released</p>
+              <div className="cr-amt"><span className="cr-now">{PRICE}</span><span className="cr-was">{FULL_PRICE}</span></div>
+              <p className="cr-save">Save {SAVE} · Price goes to {FULL_PRICE} when all {MODULES_TOTAL} modules are live</p>
               <ul>
-                <li><span className="cr-ic">✔</span> 12 modules, 60+ video lessons</li>
+                <li><span className="cr-ic">✔</span> Instant access: {MODULES_DONE}/{MODULES_TOTAL} modules, {LESSONS_LIVE_LABEL} lessons today</li>
+                <li><span className="cr-ic">✔</span> Remaining modules added free as they&apos;re released</li>
+                <li><span className="cr-ic">✔</span> AI Bonus lessons: Claude Code &amp; Copilot inside your rules</li>
                 <li><span className="cr-ic">✔</span> Production-ready config files</li>
                 <li><span className="cr-ic">✔</span> CI quality gate template + Starter Kit</li>
                 <li><span className="cr-ic">✔</span> Clean Commit Checklist (PDF)</li>
@@ -654,15 +844,15 @@ const CodeRules = () => {
                 <li><span className="cr-ic">✔</span> Community access (free, lifetime)</li>
                 <li><span className="cr-ic">✔</span> Lifetime access + all future updates</li>
               </ul>
-              <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Reserve Your Spot →</a>
-              <p className="cr-grt">Refundable until release · Secure checkout via Lemon Squeezy</p>
+              <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Instant Access →</a>
+              <p className="cr-grt">14-day money-back guarantee · Secure checkout via Lemon Squeezy</p>
             </div>
             <div className="cr-why">
-              <h3>Why join the presale?</h3>
-              <div className="cr-why-item"><span className="cr-ic">🔄</span><div><div className="cr-t">Zero risk</div><div className="cr-d">Refundable up until the official course release.</div></div></div>
-              <div className="cr-why-item"><span className="cr-ic">⏰</span><div><div className="cr-t">Lowest price ever</div><div className="cr-d">50% off the planned launch price - permanently gone after.</div></div></div>
-              <div className="cr-why-item"><span className="cr-ic">🎁</span><div><div className="cr-t">Exclusive bonuses</div><div className="cr-d">Starter Kit, CI template &amp; bonus video - presale only.</div></div></div>
-              <div className="cr-why-item"><span className="cr-ic">🔓</span><div><div className="cr-t">Early access</div><div className="cr-d">Get modules as they drop, before the official launch.</div></div></div>
+              <h3>Why buy now?</h3>
+              <div className="cr-why-item"><span className="cr-ic">🔓</span><div><div className="cr-t">Instant access</div><div className="cr-d">Start today with {MODULES_DONE} modules and {LESSONS_LIVE_LABEL} lessons. No waiting for a launch date.</div></div></div>
+              <div className="cr-why-item"><span className="cr-ic">⏰</span><div><div className="cr-t">Lowest price it will ever be</div><div className="cr-d">{PRICE} instead of {FULL_PRICE}. The price goes up when all {MODULES_TOTAL} modules are live.</div></div></div>
+              <div className="cr-why-item"><span className="cr-ic">🤖</span><div><div className="cr-t">AI Bonus lessons</div><div className="cr-d">Claude Code and Copilot working inside your rules, not around them.</div></div></div>
+              <div className="cr-why-item"><span className="cr-ic">🔄</span><div><div className="cr-t">Zero risk</div><div className="cr-d">14-day money-back guarantee. Not for you? Get a full refund.</div></div></div>
             </div>
           </div>
         </div>
@@ -707,146 +897,29 @@ const CodeRules = () => {
         <div className="cr-wrap">
           <div className="cr-sec-head cr-center cr-reveal">
             <span className="cr-eyebrow cr-center">The full curriculum</span>
-            <h2 className="cr-sec-title">12 modules. 60+ lessons.</h2>
-            <p className="cr-sec-sub">Click any module to expand. Lessons marked <span className="cr-good">Free preview</span> are open before you buy.</p>
+            <h2 className="cr-sec-title">{MODULES_TOTAL} modules. {LESSONS_TOTAL_LABEL} lessons. {MODULES_DONE} live now.</h2>
+            <p className="cr-sec-sub">Click any module to expand. <span className="cr-st cr-st-live">Live</span> modules are ready to watch today, <span className="cr-st cr-st-soon">Coming soon</span> ones unlock for you as they&apos;re released. <span className="cr-tag cr-tag-ai">🤖 AI Bonus</span> lessons show Claude Code and Copilot working inside your rules, and <span className="cr-good">Free preview</span> lessons are open before you buy.</p>
           </div>
           <div className="cr-acc cr-reveal">
-            <details open>
-              <summary>🧱 00 · Course Introduction <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">00.01</span> Welcome <FreePreviewButton videoId="vlJhmURwVSM" /></div>
-                <div className="cr-lesson"><span className="cr-n">00.02</span> What You Will Learn <FreePreviewButton videoId="o9rwJhYA-P4" /></div>
-                <div className="cr-lesson"><span className="cr-n">00.03</span> Who This Course Is For <FreePreviewButton videoId="poQCgDSWfdw" /></div>
-                <div className="cr-lesson"><span className="cr-n">00.04</span> Tools &amp; Requirements <FreePreviewButton videoId="PMqs_dSs0LU" /></div>
-                <div className="cr-lesson"><span className="cr-n">00.05</span> How to follow the course <FreePreviewButton videoId="2fUxoUnMpI0" /></div>
-              </div>
-            </details>
-            <details>
-              <summary>🗂️ 01 · The Foundation: EditorConfig <span className="cr-meta">8 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">01.00</span> Module Intro <FreePreviewButton videoId="vBLHCsSoHP0" /></div>
-                <div className="cr-lesson"><span className="cr-n">01.01</span> Why Code Style Consistency Matters <FreePreviewButton videoId="L8BtAQO1t4I" /></div>
-                <div className="cr-lesson"><span className="cr-n">01.02</span> Creating the CleanStart Solution Structure</div>
-                <div className="cr-lesson"><span className="cr-n">01.03</span> What EditorConfig Is &amp; How It Works</div>
-                <div className="cr-lesson"><span className="cr-n">01.04</span> Adding the .editorconfig File</div>
-                <div className="cr-lesson"><span className="cr-n">01.05</span> Running Code Cleanup to Apply Rules</div>
-                <div className="cr-lesson"><span className="cr-n">01.06</span> EditorConfig Tips, Tricks &amp; Best Practices</div>
-                <div className="cr-lesson"><span className="cr-n">01.07</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🧹 02 · Automating Code Cleanup <span className="cr-meta">6 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">02.00</span> Module Intro <FreePreviewButton videoId="CzkPS4jzgsY" /></div>
-                <div className="cr-lesson"><span className="cr-n">02.01</span> Visual Studio Code Cleanup Profiles</div>
-                <div className="cr-lesson"><span className="cr-n">02.02</span> Running Cleanup Automatically on Save</div>
-                <div className="cr-lesson"><span className="cr-n">02.03</span> One-Click Full Solution Cleanup</div>
-                <div className="cr-lesson"><span className="cr-n">02.04</span> Git Pre-Commit Hooks for Formatting</div>
-                <div className="cr-lesson"><span className="cr-n">02.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🚨 03 · Diagnostics &amp; Warnings as Errors <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">03.01</span> Understanding Diagnostic Severities</div>
-                <div className="cr-lesson"><span className="cr-n">03.02</span> Organizing Rules: Suggestion, Warning, Error</div>
-                <div className="cr-lesson"><span className="cr-n">03.03</span> Enforcing Warnings as Errors in .NET Projects</div>
-                <div className="cr-lesson"><span className="cr-n">03.04</span> How This Prevents Future Bugs</div>
-                <div className="cr-lesson"><span className="cr-n">03.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🔍 04 · Static Analysis in .NET <span className="cr-meta">6 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">04.01</span> Introduction to .NET Analyzers</div>
-                <div className="cr-lesson"><span className="cr-n">04.02</span> Adding StyleCop to the Project</div>
-                <div className="cr-lesson"><span className="cr-n">04.03</span> Adding SonarAnalyzer for Deeper Analysis</div>
-                <div className="cr-lesson"><span className="cr-n">04.04</span> Configuring Analyzer Rules in EditorConfig</div>
-                <div className="cr-lesson"><span className="cr-n">04.05</span> Identifying Real-World Issues with Static Analysis</div>
-                <div className="cr-lesson"><span className="cr-n">04.06</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🏗️ 05 · Centralized Settings: Directory.Build.props <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">05.01</span> Why Centralized Build Settings Matter</div>
-                <div className="cr-lesson"><span className="cr-n">05.02</span> Creating Directory.Build.props</div>
-                <div className="cr-lesson"><span className="cr-n">05.03</span> Adding Global Usings, LangVersion &amp; Nullable</div>
-                <div className="cr-lesson"><span className="cr-n">05.04</span> Unifying All Projects with Shared Rules</div>
-                <div className="cr-lesson"><span className="cr-n">05.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>⚙️ 06 · Visual Studio Productivity &amp; Clean Code <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">06.01</span> Essential VS Formatting Features</div>
-                <div className="cr-lesson"><span className="cr-n">06.02</span> File Header Templates</div>
-                <div className="cr-lesson"><span className="cr-n">06.03</span> Custom Snippets for Faster Development</div>
-                <div className="cr-lesson"><span className="cr-n">06.04</span> Format on Save, Run Cleanup on Build</div>
-                <div className="cr-lesson"><span className="cr-n">06.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🧹 07 · Project Cleanup &amp; Consistency <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">07.01</span> Standard Project Folder Structure</div>
-                <div className="cr-lesson"><span className="cr-n">07.02</span> Enabling nullable &amp; analyzing warnings</div>
-                <div className="cr-lesson"><span className="cr-n">07.03</span> Removing unused files, refs &amp; dependencies</div>
-                <div className="cr-lesson"><span className="cr-n">07.04</span> Normalizing namespaces &amp; usings</div>
-                <div className="cr-lesson"><span className="cr-n">07.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🧱 08 · Architecture Tests <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">08.01</span> Why Architecture Tests Matter</div>
-                <div className="cr-lesson"><span className="cr-n">08.02</span> Adding NetArchTest</div>
-                <div className="cr-lesson"><span className="cr-n">08.03</span> Testing Domain → Application → Infrastructure</div>
-                <div className="cr-lesson"><span className="cr-n">08.04</span> Preventing Cycles &amp; Wrong References</div>
-                <div className="cr-lesson"><span className="cr-n">08.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🔄 09 · Integrating Code Quality into CI/CD <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">09.01</span> dotnet format in CI</div>
-                <div className="cr-lesson"><span className="cr-n">09.02</span> Running Analyzers in CI</div>
-                <div className="cr-lesson"><span className="cr-n">09.03</span> Enforcing Warnings as Errors in the Pipeline</div>
-                <div className="cr-lesson"><span className="cr-n">09.04</span> Preventing &quot;Dirty Code&quot; from Entering Main</div>
-                <div className="cr-lesson"><span className="cr-n">09.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🧭 10 · Logging &amp; Observability <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">10.01</span> Adding Serilog to the Project</div>
-                <div className="cr-lesson"><span className="cr-n">10.02</span> Structured Logging Best Practices</div>
-                <div className="cr-lesson"><span className="cr-n">10.03</span> Adding OpenTelemetry (OTEL) Basics</div>
-                <div className="cr-lesson"><span className="cr-n">10.04</span> Tracing Requests in an API</div>
-                <div className="cr-lesson"><span className="cr-n">10.05</span> Chapter Recap</div>
-              </div>
-            </details>
-            <details>
-              <summary>🎁 11 · Bonus: Your Own Clean .NET Template <span className="cr-meta">5 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">11.01</span> Turning the CleanStart Solution Into a Template</div>
-                <div className="cr-lesson"><span className="cr-n">11.02</span> Exporting as a Visual Studio Template</div>
-                <div className="cr-lesson"><span className="cr-n">11.03</span> Exporting as a dotnet new Template</div>
-                <div className="cr-lesson"><span className="cr-n">11.04</span> Sharing the Template with Your Team</div>
-                <div className="cr-lesson"><span className="cr-n">11.05</span> Course Wrap-Up</div>
-              </div>
-            </details>
-            <details>
-              <summary>🤖 12 · AI-Assisted Dependency &amp; PR Review <span className="cr-meta">6 lessons</span><span className="cr-tog">+</span></summary>
-              <div className="cr-acc-body">
-                <div className="cr-lesson"><span className="cr-n">12.01</span> Why Use AI for Dependency Updates</div>
-                <div className="cr-lesson"><span className="cr-n">12.02</span> Setting Up Dependabot for NuGet in .NET</div>
-                <div className="cr-lesson"><span className="cr-n">12.03</span> Creating a GitHub Action for AI PR Review</div>
-                <div className="cr-lesson"><span className="cr-n">12.04</span> Designing Effective Prompts for Safe Updates</div>
-                <div className="cr-lesson"><span className="cr-n">12.05</span> Optional: Labels, Changelog &amp; Notifications</div>
-                <div className="cr-lesson"><span className="cr-n">12.06</span> Chapter Recap</div>
-              </div>
-            </details>
+            {CURRICULUM.map((m) => (
+              <details key={m.num} open={m.num === '00'} className={m.live ? undefined : 'cr-soon'}>
+                <summary>
+                  {m.icon} {m.num} · {m.title}
+                  <span className={m.live ? 'cr-st cr-st-live' : 'cr-st cr-st-soon'}>{m.live ? 'Live' : 'Coming soon'}</span>
+                  <span className="cr-meta">{m.lessons.length} lessons</span><span className="cr-tog">+</span>
+                </summary>
+                <div className="cr-acc-body">
+                  {m.lessons.map((l) => (
+                    <div className="cr-lesson" key={l.n}>
+                      <span className="cr-n">{l.n}</span> {l.title}
+                      {l.tag === 'ai' && <span className="cr-tag cr-tag-ai">🤖 AI Bonus</span>}
+                      {l.tag === 'bonus' && <span className="cr-tag">Bonus</span>}
+                      {l.preview && <FreePreviewButton videoId={l.preview} />}
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </section>
@@ -865,10 +938,11 @@ const CodeRules = () => {
             <details><summary>Is there a community included?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. You get access to a private Skool community where we discuss code rules, share setups, and ask questions. Community access is completely free and included.</p></div></details>
             <details><summary>Who is this course for?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>.NET developers who want clean, consistent, automated code. Great for individual developers, teams maintaining long-lived projects, and tech leads running code-quality initiatives.</p></div></details>
             <details><summary>What knowledge level do I need?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>You should be comfortable with C# and basic .NET projects. The content is practical for beginner+ and intermediate developers, and still very useful for seniors and team leads who want a system to roll out.</p></div></details>
-            <details><summary>Can I use this with .NET 6/7/8/9?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. EditorConfig, analyzers, and dotnet format are part of the .NET SDK - not tied to a specific version. Everything is forward-compatible.</p></div></details>
+            <details><summary>Can I use this with .NET 6/7/8/9/10?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. EditorConfig, analyzers, and dotnet format are part of the .NET SDK - not tied to a specific version. The course itself is recorded on .NET 10, and everything is forward-compatible.</p></div></details>
             <details><summary>Do I get lifetime access?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. Lifetime access to all lessons and every future update. No subscription, no renewal.</p></div></details>
-            <details><summary>Will the price increase later?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. The presale is 50% off the planned launch price ($149). When the course officially launches, the price goes up permanently.</p></div></details>
-            <details><summary>Is there a refund policy?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Pre-orders are refundable up until the official course release. If you feel it&apos;s not for you, just reach out before launch.</p></div></details>
+            <details><summary>Is the course finished?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>{MODULES_DONE} of {MODULES_TOTAL} modules are live ({LESSONS_LIVE_LABEL} lessons), and you get instant access to all of them. The remaining modules are released as they&apos;re finished, and they unlock for you automatically.</p></div></details>
+            <details><summary>Will the price increase later?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. Right now the course is {PRICE} instead of {FULL_PRICE}, because the last modules are still being released. When all {MODULES_TOTAL} modules are live, the price goes to {FULL_PRICE}. Buy now and you keep every future module and update at no extra cost.</p></div></details>
+            <details><summary>Is there a refund policy?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. There&apos;s a 14-day money-back guarantee. If you feel it&apos;s not for you, reach out within 14 days of purchase and you get a full refund.</p></div></details>
             <details><summary>What if I already have an .editorconfig?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Even better. The course shows you how to audit, improve, and enforce your existing setup - turning a basic config into a complete automated system.</p></div></details>
           </div>
         </div>
@@ -879,8 +953,8 @@ const CodeRules = () => {
         <div className="cr-wrap cr-reveal">
           <span className="cr-eyebrow cr-center">Stop arguing. Start enforcing.</span>
           <h2>Your codebase, clean - without relying on humans.</h2>
-          <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Reserve Your Spot - $74.89 →</a>
-          <p className="cr-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>Presale price · 50% off launch · Refundable until release · Lifetime access</p>
+          <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Instant Access - {PRICE} <span className="cr-old">{FULL_PRICE}</span> →</a>
+          <p className="cr-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>{MODULES_DONE}/{MODULES_TOTAL} modules live · 50% off until the course is complete · 14-day money-back · Lifetime access</p>
         </div>
       </section>
 
@@ -889,11 +963,11 @@ const CodeRules = () => {
         <div className="cr-wrap cr-sb-row">
           <div className="cr-sb-info">
             <span className="cr-sb-nm">Pragmatic .NET Code Rules</span>
-            <span className="cr-sb-cd">Presale ends in <span id="cr-cd-bar">-</span></span>
+            <span className="cr-sb-cd">{MODULES_DONE}/{MODULES_TOTAL} modules live · {FULL_PRICE} when complete</span>
           </div>
           <div className="cr-sb-right">
-            <span className="cr-sb-pr">$74.89<span className="cr-s">$149</span></span>
-            <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Reserve</a>
+            <span className="cr-sb-pr">{PRICE}<span className="cr-s">{FULL_PRICE}</span></span>
+            <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Access</a>
           </div>
         </div>
       </div>

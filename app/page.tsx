@@ -135,10 +135,10 @@ export default function Home() {
 
             <a href="/pragmatic-dotnet-code-rules" className="tcm-card tcm-bento__product" data-reveal data-delay="1">
               <div className="tcm-card__body">
-                <span className="tcm-eyebrow">Course · Presale -50%</span>
+                <span className="tcm-eyebrow">Course · 9/12 modules live · -50%</span>
                 <h3 className="tcm-h3">Pragmatic .NET Code Rules</h3>
                 <p className="tcm-text">Make your codebase enforce itself: .editorconfig, analyzers, CI quality gates.</p>
-                <span className="tcm-price">$74.89 <s>$149</s></span>
+                <span className="tcm-price">$74.89 <s>$150</s></span>
               </div>
               <Image src="/images/course-hero.webp" alt="Pragmatic .NET Code Rules course" width={1152} height={928} sizes="140px" />
             </a>
