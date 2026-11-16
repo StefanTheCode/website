@@ -8,11 +8,11 @@ import './coderules.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
-  title: "Pragmatic .NET Code Rules - Stop Arguing About Code Style and Let the Build Enforce It",
+  title: "Pragmatic .NET Code Rules - Guardrails for AI-Written Code",
   alternates: {
     canonical: 'https://thecodeman.net/pragmatic-dotnet-code-rules',
   },
-  description: "A practical course for .NET teams that replaces subjective code reviews with EditorConfig, Roslyn analyzers, TreatWarningsAsErrors, Visual Studio code cleanup, Git hooks, and CI quality gates. Production-ready configs included.",
+  description: "AI writes the code, your build decides what ships. EditorConfig, Roslyn analyzers, architecture tests and CI gates that stop bad .NET code from humans and AI agents.",
   keywords: [
     'editorconfig c#',
     'editorconfig dotnet',
@@ -29,12 +29,17 @@ export const metadata: Metadata = {
     'dotnet format ci pipeline',
     'code style enforcement',
     'StyleCop vs Roslyn analyzers',
+    'ai coding agent guardrails',
+    'ai generated code quality',
+    'claude code dotnet',
+    'CLAUDE.md for .NET',
+    'architecture tests dotnet',
   ],
   openGraph: {
-    title: "Pragmatic .NET Code Rules - Stop Arguing About Code Style and Let the Build Enforce It",
+    title: "Pragmatic .NET Code Rules - Guardrails for AI-Written Code",
     type: "website",
     url: "https://thecodeman.net/pragmatic-dotnet-code-rules",
-    description: "A practical .NET code quality system. EditorConfig, Roslyn analyzers, TreatWarningsAsErrors, code cleanup, Git hooks, CI gates. Built for real teams, not blog posts.",
+    description: "AI writes the code, your build decides what ships. EditorConfig, Roslyn analyzers, architecture tests, CI quality gates and CLAUDE.md - guardrails for AI-written .NET code.",
     images: [
       {
         url: 'https://thecodeman.net/og-course.webp',
@@ -44,11 +49,11 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Pragmatic .NET Code Rules - Stop Arguing About Code Style and Let the Build Enforce It",
+    title: "Pragmatic .NET Code Rules - Guardrails for AI-Written Code",
     card: "summary_large_image",
     site: "@TheCodeMan__",
     creator: "@TheCodeMan__",
-    description: "A practical .NET code quality system. EditorConfig, Roslyn analyzers, TreatWarningsAsErrors, code cleanup, Git hooks, CI gates. Built for real teams, not blog posts.",
+    description: "AI writes the code, your build decides what ships. EditorConfig, Roslyn analyzers, architecture tests, CI quality gates and CLAUDE.md - guardrails for AI-written .NET code.",
     images: [
       {
         url: 'https://thecodeman.net/og-course.webp',
@@ -200,24 +205,29 @@ const CURRICULUM: CourseModule[] = [
     ],
   },
   {
-    icon: '🎁', num: '11', title: 'Bonus: Your Own Clean .NET Template', live: false,
+    icon: '🧰', num: '11', title: 'The AI-Ready Template', live: false,
     lessons: [
+      { n: '11.00', title: 'Module Intro' },
       { n: '11.01', title: 'Turning the CleanStart Solution Into a Template' },
-      { n: '11.02', title: 'Exporting as a Visual Studio Template' },
-      { n: '11.03', title: 'Exporting as a dotnet new Template' },
-      { n: '11.04', title: 'Sharing the Template with Your Team' },
-      { n: '11.05', title: 'Course Wrap-Up' },
+      { n: '11.02', title: 'Exporting as a dotnet new Template' },
+      { n: '11.03', title: 'Exporting as a Visual Studio Template' },
+      { n: '11.04', title: 'Making the Template AI-Ready: CLAUDE.md, AGENTS.md & .mcp.json', tag: 'ai' },
+      { n: '11.05', title: 'Sharing the Template with Your Team' },
+      { n: '11.06', title: 'Chapter Recap' },
     ],
   },
   {
-    icon: '🤖', num: '12', title: 'AI-Assisted Dependency & PR Review', live: false,
+    icon: '🤖', num: '12', title: 'AI Guardrails', live: false,
     lessons: [
-      { n: '12.01', title: 'Why Use AI for Dependency Updates' },
-      { n: '12.02', title: 'Setting Up Dependabot for NuGet in .NET' },
-      { n: '12.03', title: 'Creating a GitHub Action for AI PR Review' },
-      { n: '12.04', title: 'Designing Effective Prompts for Safe Updates' },
-      { n: '12.05', title: 'Optional: Labels, Changelog & Notifications' },
-      { n: '12.06', title: 'Chapter Recap' },
+      { n: '12.00', title: 'Module Intro' },
+      { n: '12.01', title: 'Why AI Needs Guardrails, Not Trust' },
+      { n: '12.02', title: 'Hooks: Format, Build & Test After Every Agent Edit' },
+      { n: '12.03', title: 'Banning the Patterns AI Loves' },
+      { n: '12.04', title: 'Dependabot + NuGetAudit: Safe Dependency Updates' },
+      { n: '12.05', title: 'AI PR Review with GitHub Actions' },
+      { n: '12.06', title: 'What AI May Decide - and What It Must Not' },
+      { n: '12.07', title: 'Capstone: An Agent Builds a Feature, the Gates Catch Everything' },
+      { n: '12.08', title: 'Course Wrap-Up' },
     ],
   },
 ];
@@ -231,6 +241,48 @@ const tensPlus = (n: number) => `${Math.floor(n / 10) * 10}+`;
 const LESSONS_TOTAL_LABEL = tensPlus(countLessons(CURRICULUM));
 const LESSONS_LIVE_LABEL = tensPlus(countLessons(CURRICULUM.filter((m) => m.live)));
 
+// "Terminal" in the AI section - mirrors the dirty PR from lesson 09.04.
+type TermLine = { t: string; c?: string };
+const TERM_LINES: TermLine[] = [
+  { t: 'agent ▸ Add GET /api/subscribers/count', c: 't-cmd' },
+  { t: '  + #pragma warning disable S1144', c: 't-add' },
+  { t: '  ✓ dotnet build · 0 warnings', c: 't-ok' },
+  { t: '' },
+  { t: 'CI ▸ format               ✓ passed', c: 't-ok' },
+  { t: 'CI ▸ no-new-suppressions  ✕ failed', c: 't-bad' },
+  { t: '  New suppression needs a human-approved label', c: 't-dim' },
+  { t: 'CI ▸ build-and-test       ✕ failed', c: 't-bad' },
+  { t: '  Api_Should_Not_Use_Repositories_Directly', c: 't-cmd' },
+  { t: '  Endpoints must go through an Application', c: 't-dim' },
+  { t: '  handler, never straight to a repository.', c: 't-dim' },
+  { t: '  → Program', c: 't-dim' },
+  { t: '' },
+  { t: '⛔ Merge blocked · 2 of 3 required checks failed', c: 't-block' },
+];
+
+// CLAUDE.md that students end up with (sections from Modules 07-10).
+const CLAUDE_MD_LINES: TermLine[] = [
+  { t: '## Cleanup rules', c: 't-h' },
+  { t: '- dotnet build must pass with zero warnings.' },
+  { t: '- Never silence a diagnostic: no !, no #pragma,' },
+  { t: '  no <NoWarn>. If a fix needs one, stop and ask.' },
+  { t: '' },
+  { t: '## Architecture', c: 't-h' },
+  { t: '- Endpoints call a handler. Never inject a repository.' },
+  { t: '- Never edit, skip or delete an architecture test.' },
+  { t: '' },
+  { t: '## Pull requests', c: 't-h' },
+  { t: '- Never --no-verify, never push to main.' },
+  { t: '- CI fails? Read the log, fix the cause, push again.' },
+  { t: '' },
+  { t: '## Logging & observability', c: 't-h' },
+  { t: '- [LoggerMessage] only. Never interpolate a template.' },
+  { t: '- Personal data is [PersonalData], so it is masked.' },
+];
+const termLine = (l: TermLine, i: number) => (
+  <div key={i} className={l.c ? `cr-tl ${l.c}` : 'cr-tl'}>{l.t || '\u00a0'}</div>
+);
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -238,9 +290,9 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': 'https://thecodeman.net/pragmatic-dotnet-code-rules',
       url: 'https://thecodeman.net/pragmatic-dotnet-code-rules',
-      name: 'Pragmatic .NET Code Rules - Stop Arguing About Code Style and Let the Build Enforce It',
+      name: 'Pragmatic .NET Code Rules - Guardrails for AI-Written Code',
       description:
-        'A practical course for .NET teams that replaces subjective code reviews with EditorConfig, Roslyn analyzers, TreatWarningsAsErrors, Visual Studio code cleanup, Git hooks, and CI quality gates. Production-ready configs included.',
+        'AI writes the code, your build decides what ships. EditorConfig, Roslyn analyzers, architecture tests and CI gates that stop bad .NET code from humans and AI agents.',
       isPartOf: { '@id': 'https://thecodeman.net/#website' },
       about: {
         '@type': 'Thing',
@@ -283,6 +335,7 @@ const jsonLd = {
         'Keeping sensitive data out of logs with .NET redaction',
         'GitHub Actions quality gates, lock files, NuGetAudit and branch rulesets',
         'Guardrails for AI coding agents with CLAUDE.md and architecture tests',
+        'Claude Code hooks that format, build and test after every agent edit',
         'AI-assisted dependency updates and PR review',
       ],
       hasCourseInstance: {
@@ -357,6 +410,14 @@ const jsonLd = {
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'EnforceCodeStyleInBuild is an MSBuild property that tells the compiler to evaluate IDE code style rules during build, not just inside the IDE. Combined with TreatWarningsAsErrors, code style violations fail the build - locally and in CI.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does this course help with AI-generated code from Claude Code, Copilot or Cursor?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes - that is where it matters most. Instruction files like CLAUDE.md tell an agent what you want, but only the build, analyzers, architecture tests and CI gates make sure it happened. From Module 07 on, every module ends with an AI Bonus lesson, and Module 12 ends with a capstone where an agent builds a feature and the gates catch every shortcut.',
           },
         },
         {
@@ -460,6 +521,7 @@ const CodeRules = () => {
           </a>
           <div className="cr-nav-links">
             <a href="#cr-problem">The Problem</a>
+            <a href="#cr-ai">AI Guardrails</a>
             <a href="#cr-learn">What You Learn</a>
             <a href="#cr-pricing">Pricing</a>
             <a href="#cr-curriculum">Curriculum</a>
@@ -479,8 +541,9 @@ const CodeRules = () => {
         <div className="cr-wrap cr-hero-grid">
           <div className="cr-reveal">
             <span className="cr-chip">{MS} By Stefan Đokić · Microsoft MVP</span>
-            <h1>Make your .NET codebase <span className="cr-amber crk-shimmer">enforce itself.</span></h1>
-            <p className="cr-lead">Get the exact <code>.editorconfig</code>, Roslyn analyzers, CI quality gates, and automation I use in production. Stop arguing about code style - let the build do it. Copy, apply, ship.</p>
+            <p className="cr-hero-kicker">Pragmatic .NET Code Rules <span className="cr-kicker-sep">·</span> <span className="cr-amber">Guardrails for AI-Written Code</span></p>
+            <h1 className="cr-h1-ai">AI writes the code. <span className="cr-amber crk-shimmer">Your build decides what ships.</span></h1>
+            <p className="cr-lead">The exact <code>.editorconfig</code>, analyzers, architecture tests and CI quality gates I use in production. Deterministic checks that review every line - whether a teammate, Claude Code or Copilot wrote it. Copy, apply, ship.</p>
             <div className="cr-status">
               <div className="cr-status-row">
                 <span><span className="cr-live-dot"></span><b>{MODULES_DONE} of {MODULES_TOTAL} modules live</b> · {LESSONS_LIVE_LABEL} lessons ready to watch</span>
@@ -546,22 +609,62 @@ const CodeRules = () => {
       <section id="cr-problem">
         <div className="cr-wrap cr-pain-grid">
           <div className="cr-reveal">
-            <span className="cr-eyebrow">The hidden tax</span>
-            <h2 className="cr-sec-title">Messy code doesn&apos;t just look bad. It silently kills your team&apos;s velocity.</h2>
+            <span className="cr-eyebrow">The new bottleneck</span>
+            <h2 className="cr-sec-title">AI made writing code cheap. Reviewing it didn&apos;t get any cheaper.</h2>
             <ul className="cr-pain-list">
-              <li><span className="cr-x">✕</span> &quot;Please format this.&quot; - on every single PR</li>
-              <li><span className="cr-x">✕</span> Endless nitpicking instead of real code review</li>
-              <li><span className="cr-x">✕</span> Styling conflicts instead of merge conflicts</li>
-              <li><span className="cr-x">✕</span> Warnings in one project, silence in another</li>
-              <li><span className="cr-x">✕</span> No one knows which style rules are &quot;correct&quot; anymore</li>
+              <li><span className="cr-x">✕</span> <span>PRs are bigger than ever - and nobody reads every line anymore</span></li>
+              <li><span className="cr-x">✕</span> <span>The agent &quot;fixes&quot; the build with <code>#pragma warning disable</code> or <code>null!</code></span></li>
+              <li><span className="cr-x">✕</span> <span>An endpoint quietly skips the Application layer - it compiles, so it ships</span></li>
+              <li><span className="cr-x">✕</span> <span>Logs full of string interpolation and customer emails</span></li>
+              <li><span className="cr-x">✕</span> <span>CLAUDE.md says one thing, the code does another</span></li>
+              <li><span className="cr-x">✕</span> <span>And still: &quot;please format this&quot; on every single PR</span></li>
             </ul>
-            <p className="cr-kicker">You don&apos;t need more discipline.<br /><span className="cr-amber">You need a system that enforces itself.</span></p>
+            <p className="cr-kicker">You don&apos;t need more review time.<br /><span className="cr-amber">You need a build that reviews every line - for humans and agents.</span></p>
           </div>
           <div className="cr-reveal">
             <div className="cr-media-frame">
               <Image src="/images/course2.webp" alt="Code inconsistency across a .NET team" width={1152} height={928} sizes="(max-width:860px) 100vw, 40vw" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
           </div>
+        </div>
+      </section>
+
+      <div className="cr-divider"></div>
+
+      {/* 5.5 AI ERA - SOFT RULES VS HARD RULES */}
+      <section id="cr-ai">
+        <div className="cr-wrap">
+          <div className="cr-sec-head cr-center cr-reveal">
+            <span className="cr-eyebrow cr-center">Why this matters more with AI</span>
+            <h2 className="cr-sec-title">CLAUDE.md is a suggestion. <span className="cr-amber">The build is a rule.</span></h2>
+            <p className="cr-sec-sub">Instruction files tell an AI agent what you want. Only deterministic checks make sure it actually happened. This course builds both - and wires them together.</p>
+          </div>
+          <div className="cr-ai-grid cr-reveal">
+            <div className="cr-ai-steps">
+              <div className="cr-ai-step">
+                <span className="cr-ai-ico">📝</span>
+                <div><h3>Tell it</h3><p>A CLAUDE.md (or AGENTS.md / copilot-instructions) with your real rules, built up module by module and ready to copy.</p></div>
+              </div>
+              <div className="cr-ai-step">
+                <span className="cr-ai-ico">🧱</span>
+                <div><h3>Check it</h3><p>Analyzers, warnings as errors, architecture tests and logging rules fail the build - with messages an agent can actually act on.</p></div>
+              </div>
+              <div className="cr-ai-step">
+                <span className="cr-ai-ico">🚦</span>
+                <div><h3>Gate it</h3><p>CI and branch rules run the same checks on every pull request. An agent can&apos;t skip them, silence them or merge around them.</p></div>
+              </div>
+            </div>
+            <div className="cr-term" role="img" aria-label="Example: CI blocks a pull request opened by an AI agent">
+              <div className="cr-term-bar"><i></i><i></i><i></i><span>pull request #42 · opened by an AI agent</span></div>
+              <div className="cr-term-body">{TERM_LINES.map(termLine)}</div>
+            </div>
+          </div>
+          <div className="cr-stats cr-reveal">
+            <div className="cr-stat"><div className="cr-stat-v">1.7×</div><div className="cr-stat-l">more issues per pull request when AI co-authors the code</div></div>
+            <div className="cr-stat"><div className="cr-stat-v">3×</div><div className="cr-stat-l">more readability issues - naming, clarity and structure</div></div>
+            <div className="cr-stat"><div className="cr-stat-v">2.66×</div><div className="cr-stat-l">more formatting problems - spacing, indentation, style drift</div></div>
+          </div>
+          <p className="cr-stats-src cr-reveal">Source: <a href="https://www.coderabbit.ai/blog/state-of-AI-vs-human-code-generation-report" target="_blank" rel="noopener noreferrer">CodeRabbit, State of AI vs Human Code Generation</a> (Dec 2025, 470 open-source PRs). Exactly the kind of issues this course turns into build errors.</p>
         </div>
       </section>
 
@@ -579,10 +682,10 @@ const CodeRules = () => {
               <h3>Before</h3>
               <ul>
                 <li><span className="cr-ic">✕</span> PRs full of &quot;fix formatting&quot; comments</li>
-                <li><span className="cr-ic">✕</span> Every developer uses different style rules</li>
+                <li><span className="cr-ic">✕</span> Every developer - and every AI agent - follows different rules</li>
                 <li><span className="cr-ic">✕</span> CI passes dirty code all the time</li>
-                <li><span className="cr-ic">✕</span> New team members take weeks to ramp up</li>
-                <li><span className="cr-ic">✕</span> Time wasted on manual cleanup after every merge</li>
+                <li><span className="cr-ic">✕</span> Agents silence warnings to get a green build</li>
+                <li><span className="cr-ic">✕</span> Architecture erodes one &quot;harmless&quot; shortcut at a time</li>
                 <li><span className="cr-ic">✕</span> &quot;Tabs vs spaces&quot; debates in Slack</li>
               </ul>
             </div>
@@ -590,10 +693,10 @@ const CodeRules = () => {
               <h3>After</h3>
               <ul>
                 <li><span className="cr-ic">✔</span> PRs focus on logic, architecture, and real issues</li>
-                <li><span className="cr-ic">✔</span> Every file follows the same rules - automatically</li>
-                <li><span className="cr-ic">✔</span> CI rejects unformatted code before a human sees it</li>
-                <li><span className="cr-ic">✔</span> New devs are productive on day one</li>
-                <li><span className="cr-ic">✔</span> Cleanup happens on save - zero manual effort</li>
+                <li><span className="cr-ic">✔</span> Every file follows the same rules - no matter who (or what) wrote it</li>
+                <li><span className="cr-ic">✔</span> CI rejects non-compliant code before a human sees it</li>
+                <li><span className="cr-ic">✔</span> A new suppression needs a human&apos;s explicit approval</li>
+                <li><span className="cr-ic">✔</span> Architecture tests catch the shortcut on the first run</li>
                 <li><span className="cr-ic">✔</span> The codebase looks like one person wrote it</li>
               </ul>
             </div>
@@ -620,6 +723,7 @@ const CodeRules = () => {
               <ul className="cr-pts">
                 <li><span className="cr-ic">→</span> See how inconsistent code silently kills delivery speed</li>
                 <li><span className="cr-ic">→</span> The mindset top engineering teams use to stay aligned</li>
+                <li className="cr-pt-ai"><span className="cr-ic">🤖</span> <span><b>With AI:</b> rules that live in the repo, not in a wiki, are the only ones every agent runs into</span></li>
               </ul>
             </div>
             <div className="cr-media"><div className="cr-media-frame"><Image src="/images/mindset.webp" alt="The code consistency mindset" width={3800} height={2148} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
@@ -633,6 +737,7 @@ const CodeRules = () => {
               <ul className="cr-pts">
                 <li><span className="cr-ic">→</span> Build rock-solid formatting, naming &amp; analyzer rules</li>
                 <li><span className="cr-ic">→</span> Structure it for small projects and massive solutions</li>
+                <li className="cr-pt-ai"><span className="cr-ic">🤖</span> <span><b>With AI:</b> agents never read <code>.editorconfig</code> - the build enforces it on their code anyway</span></li>
               </ul>
             </div>
             <div className="cr-media"><div className="cr-media-frame"><Image src="/images/editorconfig.webp" alt=".editorconfig deep dive" width={4972} height={3608} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
@@ -646,6 +751,7 @@ const CodeRules = () => {
               <ul className="cr-pts">
                 <li><span className="cr-ic">→</span> Create Cleanup Profiles that fix styling instantly</li>
                 <li><span className="cr-ic">→</span> Remove 90% of manual cleanup from your workflow</li>
+                <li className="cr-pt-ai"><span className="cr-ic">🤖</span> <span><b>With AI:</b> hand the boring cleanup to an agent - tools find, AI fixes, the build verifies</span></li>
               </ul>
             </div>
             <div className="cr-media"><div className="cr-media-frame"><Image src="/images/cleanup.webp" alt="Visual Studio cleanup automation" width={860} height={620} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
@@ -659,6 +765,7 @@ const CodeRules = () => {
               <ul className="cr-pts">
                 <li><span className="cr-ic">→</span> Configure analyzers that actually matter</li>
                 <li><span className="cr-ic">→</span> Enforce rules without drowning devs in noise</li>
+                <li className="cr-pt-ai"><span className="cr-ic">🤖</span> <span><b>With AI:</b> stop agents from &quot;fixing&quot; the build with <code>#pragma</code>, <code>null!</code> or <code>&lt;NoWarn&gt;</code></span></li>
               </ul>
             </div>
             <div className="cr-media"><div className="cr-media-frame"><Image src="/images/errors.webp" alt="Analyzers and warnings as errors" width={600} height={383} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
@@ -672,6 +779,7 @@ const CodeRules = () => {
               <ul className="cr-pts">
                 <li><span className="cr-ic">→</span> Add dotnet format to local and CI workflows</li>
                 <li><span className="cr-ic">→</span> Fail PRs automatically when rules are violated</li>
+                <li className="cr-pt-ai"><span className="cr-ic">🤖</span> <span><b>With AI:</b> the same required checks for AI pull requests - no skipping, silencing or merging around them</span></li>
               </ul>
             </div>
             <div className="cr-media"><div className="cr-media-frame"><Image src="/images/ci.png" alt="dotnet format and CI enforcement" width={908} height={289} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
@@ -685,9 +793,28 @@ const CodeRules = () => {
               <ul className="cr-pts">
                 <li><span className="cr-ic">→</span> Introduce new rules gradually and strategically</li>
                 <li><span className="cr-ic">→</span> Build a culture where clean code is the default</li>
+                <li className="cr-pt-ai"><span className="cr-ic">🤖</span> <span><b>With AI:</b> a CLAUDE.md in the repo, so every teammate&apos;s agent follows the same rules</span></li>
               </ul>
             </div>
             <div className="cr-media"><div className="cr-media-frame"><Image src="/images/slack.webp" alt="Team-wide adoption strategies" width={1024} height={1467} sizes="(max-width:860px) 100vw, 50vw" style={{ width: '100%', height: 'auto', display: 'block' }} /></div></div>
+          </div>
+
+          <div className="cr-learn-row cr-reveal">
+            <div>
+              <div className="cr-learn-num">07</div>
+              <h3>AI Guardrails</h3>
+              <p>Make Claude Code and Copilot work inside your rules, not around them.</p>
+              <ul className="cr-pts">
+                <li><span className="cr-ic">→</span> A CLAUDE.md that grows module by module - cleanup, architecture, PRs, logging</li>
+                <li><span className="cr-ic">→</span> Hooks, analyzers and CI gates that catch what agents try to sneak in</li>
+              </ul>
+            </div>
+            <div className="cr-media">
+              <div className="cr-md-file" role="img" aria-label="The CLAUDE.md you build during the course">
+                <div className="cr-term-bar"><i></i><i></i><i></i><span>CLAUDE.md</span></div>
+                <div className="cr-md-body">{CLAUDE_MD_LINES.map(termLine)}</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -750,7 +877,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">✔</span> Production-ready .editorconfig</li>
                 <li><span className="cr-ic">✔</span> Directory.Build.props best practices</li>
                 <li><span className="cr-ic">✔</span> GitHub Actions CI configs</li>
-                <li><span className="cr-ic">✔</span> Copy-paste into any .NET project</li>
+                <li><span className="cr-ic">✔</span> CLAUDE.md with every rule from the course</li>
               </ul>
             </div>
             <div className="cr-eg-card">
@@ -874,6 +1001,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">✕</span> Prefer manual cleanup</li>
                 <li><span className="cr-ic">✕</span> Believe &quot;style doesn&apos;t matter&quot;</li>
                 <li><span className="cr-ic">✕</span> Don&apos;t want automation in their workflow</li>
+                <li><span className="cr-ic">✕</span> Want AI to ship code with no checks at all</li>
               </ul>
             </div>
             <div className="cr-fit-card cr-yes">
@@ -884,6 +1012,7 @@ const CodeRules = () => {
                 <li><span className="cr-ic">✔</span> Are tired of PRs full of style corrections</li>
                 <li><span className="cr-ic">✔</span> Want CI/CD to enforce consistency</li>
                 <li><span className="cr-ic">✔</span> Care about maintainability and professionalism</li>
+                <li><span className="cr-ic">✔</span> Use Claude Code, Copilot or Cursor and want to trust what lands in main</li>
               </ul>
             </div>
           </div>
@@ -940,6 +1069,7 @@ const CodeRules = () => {
             <details><summary>What knowledge level do I need?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>You should be comfortable with C# and basic .NET projects. The content is practical for beginner+ and intermediate developers, and still very useful for seniors and team leads who want a system to roll out.</p></div></details>
             <details><summary>Can I use this with .NET 6/7/8/9/10?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. EditorConfig, analyzers, and dotnet format are part of the .NET SDK - not tied to a specific version. The course itself is recorded on .NET 10, and everything is forward-compatible.</p></div></details>
             <details><summary>Do I get lifetime access?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. Lifetime access to all lessons and every future update. No subscription, no renewal.</p></div></details>
+            <details><summary>Does this help with AI-generated code (Claude Code, Copilot, Cursor)?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes - that&apos;s where it matters most. CLAUDE.md tells an agent what you want, but only the build, analyzers, architecture tests and CI gates make sure it happened. From Module 07 on, every module ends with an AI Bonus lesson, and Module 12 ends with a capstone where an agent builds a feature and the gates catch every shortcut.</p></div></details>
             <details><summary>Is the course finished?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>{MODULES_DONE} of {MODULES_TOTAL} modules are live ({LESSONS_LIVE_LABEL} lessons), and you get instant access to all of them. The remaining modules are released as they&apos;re finished, and they unlock for you automatically.</p></div></details>
             <details><summary>Will the price increase later?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. Right now the course is {PRICE} instead of {FULL_PRICE}, because the last modules are still being released. When all {MODULES_TOTAL} modules are live, the price goes to {FULL_PRICE}. Buy now and you keep every future module and update at no extra cost.</p></div></details>
             <details><summary>Is there a refund policy?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. There&apos;s a 14-day money-back guarantee. If you feel it&apos;s not for you, reach out within 14 days of purchase and you get a full refund.</p></div></details>
@@ -952,7 +1082,7 @@ const CodeRules = () => {
       <section className="cr-final">
         <div className="cr-wrap cr-reveal">
           <span className="cr-eyebrow cr-center">Stop arguing. Start enforcing.</span>
-          <h2>Your codebase, clean - without relying on humans.</h2>
+          <h2>Your codebase, clean - no matter who (or what) writes the code.</h2>
           <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Instant Access - {PRICE} <span className="cr-old">{FULL_PRICE}</span> →</a>
           <p className="cr-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>{MODULES_DONE}/{MODULES_TOTAL} modules live · 50% off until the course is complete · 14-day money-back · Lifetime access</p>
         </div>

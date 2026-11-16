@@ -137,7 +137,7 @@ export default function Home() {
               <div className="tcm-card__body">
                 <span className="tcm-eyebrow">Course · 9/12 modules live · -50%</span>
                 <h3 className="tcm-h3">Pragmatic .NET Code Rules</h3>
-                <p className="tcm-text">Make your codebase enforce itself: .editorconfig, analyzers, CI quality gates.</p>
+                <p className="tcm-text">Guardrails for AI-written .NET code: analyzers, architecture tests and CI quality gates.</p>
                 <span className="tcm-price">$74.89 <s>$150</s></span>
               </div>
               <Image src="/images/course-hero.webp" alt="Pragmatic .NET Code Rules course" width={1152} height={928} sizes="140px" />

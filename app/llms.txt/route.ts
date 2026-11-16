@@ -67,7 +67,7 @@ export async function GET() {
     `- [Pass Your .NET Interview](${BASE_URL}/pass-your-interview): Free kit with .NET interview questions and answers.`,
     `- [Design Patterns that Deliver](${BASE_URL}/design-patterns-that-deliver-ebook): Ebook on design patterns in C# with real-world projects.`,
     `- [Vertical Slice Architecture](${BASE_URL}/vertical-slices-architecture): Guide to vertical slice architecture in .NET.`,
-    `- [Pragmatic .NET Code Rules](${BASE_URL}/pragmatic-dotnet-code-rules): Code rules and .editorconfig setup for .NET teams.`,
+    `- [Pragmatic .NET Code Rules](${BASE_URL}/pragmatic-dotnet-code-rules): Guardrails for AI-written .NET code - EditorConfig, Roslyn analyzers, architecture tests, CI quality gates and CLAUDE.md for teams using Claude Code and Copilot.`,
     "",
   ];
 
