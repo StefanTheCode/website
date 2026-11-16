@@ -1,36 +1,309 @@
 ---
-title: "Build a C# MCP Server for .NET API Performance Testing"
-seo_title: "C# MCP Server: Let GitHub Copilot Load-Test Your .NET API"
-subtitle: "What if your AI coding assistant could run load tests, detect ThreadPool starvation, and suggest fixes - all from a single chat message?"
+title: "How to Build an MCP Server in C# and .NET"
+seo_title: "How to Build an MCP Server in C# and .NET (Step by Step)"
+subtitle: "Build an MCP server in C# with the official SDK and the dotnet new mcpserver template, connect it to Claude and GitHub Copilot, then see a real example: a performance lab an AI assistant can drive."
 date: "May 14 2026"
+updated: "2026-11-16"
 category: "AI"
-readTime: "Read Time: 10 minutes"
-meta_description: "Build a .NET MCP server that lets GitHub Copilot run API load tests, investigate ThreadPool starvation and compare performance fixes in C#."
-updated: "2026-09-19"
+readTime: "Read Time: 14 minutes"
+meta_description: "Build an MCP server in C# with the official SDK and dotnet new mcpserver: tools, DI, stdio and HTTP, Claude and Copilot setup, plus a load-testing example."
 faq:
-  - q: "What does this .NET MCP server do?"
-    a: "It exposes tools for testing a .NET API so an AI assistant can request measurements and use the results during a performance investigation. The server performs the tool work; the assistant interprets the returned results."
+  - q: "What is an MCP server in C#?"
+    a: >-
+      An MCP server is a program that exposes C# methods as tools an AI client can call. You mark a method with
+      [McpServerTool] and describe it with [Description]. Claude Desktop, GitHub Copilot in VS Code or your own
+      agent reads the tool list and calls the tools when the model needs them.
+  - q: "What is the difference between an MCP server and calling the Claude or OpenAI API?"
+    a: >-
+      With the API, your code drives the conversation and decides what to send to the model. With an MCP server,
+      you expose tools and the model decides when to call them during a conversation you didn't script. The API is
+      your code calling the model; MCP gives the model controlled access to your code.
+  - q: "Which .NET version do I need for the MCP C# SDK?"
+    a: >-
+      The ModelContextProtocol packages target .NET 8, 9 and 10 and .NET Standard 2.0. The dotnet new mcpserver
+      template ships with the .NET 11 SDK and recent .NET 10 SDKs. The code in this post uses
+      ModelContextProtocol 2.4.0 on .NET 10.
+  - q: "Why do my logs break a stdio MCP server?"
+    a: >-
+      With the stdio transport, stdout is the protocol channel. Anything printed to stdout is parsed as a JSON-RPC
+      message and corrupts the stream. Send logs to stderr with LogToStandardErrorThreshold and never call
+      Console.WriteLine from a stdio server.
+  - q: "Should I use stdio or HTTP for an MCP server?"
+    a: >-
+      Use stdio for a local tool that runs on your machine next to the client. Use HTTP when you want to deploy the
+      server and let a team or an application connect over the network. The tool classes are the same for both.
   - q: "Does an MCP server replace API performance tests?"
-    a: "No. MCP makes the test tools available to an assistant. Reproducible workloads, representative environments and human review are still needed to decide whether a change improves performance."
+    a: >-
+      No. MCP makes test tools available to an assistant. You still need reproducible workloads, a representative
+      environment and human review to decide whether a change improves performance.
 ---
-
-A C# MCP server can expose performance-testing tools to an AI assistant. This tutorial connects GitHub Copilot to a .NET API test workflow so you can investigate blocking calls, ThreadPool starvation and slow endpoints. It focuses on a concrete MCP use case: measuring a problem before proposing a fix.
 
 <!--START-->
 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">A quick word from me</p>
 
-<p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored - I write these deep dives in my free time and keep them free for everyone. If your company sells AI tools, dev tools, courses, or services that .NET developers would actually use, sponsoring an issue is the most direct way to reach them.</p>
+<p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored. Instead, let me point you to something I run every day: my <strong>AI for Developers</strong> community, for developers who want to use AI on real code. 50+ ready-to-run skills and agents, with a deep .NET Pack, and the room to figure it out together.</p>
 
-<a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
+<a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
+
+<p style="margin: 16px 0 8px 0; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.6);">Want to reach thousands of .NET developers like this?</p>
+
+<a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 7px 14px; font-size: 13px; font-weight: 600; color: #ffffff; background: transparent; border: 1px solid #6366f1; border-radius: 8px; text-decoration: none;">Sponsor TheCodeMan →</a>
 </div>
 
-I want to show you the most practical AI tool I've built for my own .NET workflow.
+**Keywords:** MCP server C#, MCP server .NET, Model Context Protocol C#, MCP C# SDK, ModelContextProtocol NuGet, dotnet new mcpserver, MCP server template, ASP.NET Core MCP server, MCP stdio, MCP HTTP transport, Claude MCP server C#, GitHub Copilot MCP server, MCP tools DI
 
-Not a chatbot. Not a code generator. A **performance lab** where I describe what I want to test in plain English, and an AI agent runs the load tests, analyzes the results, detects problems, and suggests fixes - all from a chat conversation.
+## What Is an MCP Server in C#?
 
-Here's what a real session looks like:
+An MCP server is a program that exposes your C# methods as tools an AI assistant can call. Claude Desktop, GitHub Copilot in VS Code or your own agent connects to the server, reads the list of tools, and calls one when the model decides it needs it. You build one in .NET with the official MCP C# SDK: mark a method with `[McpServerTool]`, describe it, and register the server in `Program.cs`.
+
+This post covers the whole path. First the fastest start with the `dotnet new mcpserver` template, then a server built by hand with tools that use your own services through dependency injection, then the switch from stdio to HTTP. The second half is a real example: a performance lab where GitHub Copilot runs load tests against a .NET API through MCP tools.
+
+The code uses ModelContextProtocol 2.4.0 on .NET 10.
+
+## Why You Need It: The Model Can't Reach Your Code or Data
+
+When you work through a problem with Claude, it often needs data that only your systems have. It asks what an order looks like in the database, so you run the query yourself and paste the result back. Then it needs a config value, so you copy that. Then a log line. Each time, you move something out of your environment by hand and paste it into the chat.
+
+The model is doing the reasoning, but all the fetching is manual.
+
+The Model Context Protocol (MCP) removes that step. It's a standard way to give a model a set of tools it can call on its own - query a database, hit an internal API, read a file - instead of you moving data back and forth. The C# SDK is maintained by Microsoft together with the MCP project.
+
+## How an MCP Server Works
+
+An MCP server advertises a list of **tools**. Each tool is a function with a name, a description and typed parameters. A client connects to the server, reads that list, and when the model decides it needs one, the client calls it and feeds the result back into the conversation.
+
+The description matters more than it looks. The model doesn't see your code. It sees the tool's name and description and uses them to decide when to call it. A vague description means the model won't know when the tool applies.
+
+![How an MCP tool call works in C#: the MCP client lists tools, calls get_order on your MCP server, which queries your database and returns the result](/images/blog/posts/building-mcp-server-in-dotnet/mcp-request-flow.webp)
+
+There are two transports you'll use in practice. **stdio** runs the server as a local child process and talks over standard input and output, which suits a tool that runs on your own machine. **HTTP** runs it as a web service you can host and share with a team. The tool classes are the same for both.
+
+## The Fastest Start: dotnet new mcpserver
+
+Current .NET SDKs include an MCP server project template: it ships with the .NET 11 SDK and with recent .NET 10 SDKs (it's in 10.0.404). It creates a working server with one sample tool:
+
+```bash
+dotnet new mcpserver -n TheCodeMan.Mcp
+```
+
+The template has two options worth knowing. `--transport` picks `local` (a console app with stdio, the default) or `remote` (an ASP.NET Core app with HTTP). On the .NET 11 SDK, `--framework` picks `net11.0` (the default) or `net10.0`, so you can stay on the LTS release:
+
+```bash
+dotnet new mcpserver -n TheCodeMan.Mcp.Http --transport remote --framework net10.0
+```
+
+The local version generates a `Program.cs`, a `Tools/RandomNumberTools.cs` file with one sample tool, a README, and a `.mcp/server.json` file. The project is set up to be packed as a .NET tool with `PackageType` set to `McpServer`, so you can publish it to NuGet and let others run it. The generated `Program.cs` looks like this:
+
+```csharp
+var builder = Host.CreateApplicationBuilder(args);
+
+// Configure all logs to go to stderr (stdout is used for the MCP protocol messages).
+builder.Logging.AddConsole(o => o.LogToStandardErrorThreshold = LogLevel.Trace);
+
+// Add the MCP services: the transport to use (stdio) and the tools to register.
+builder.Services
+    .AddMcpServer()
+    .WithStdioServerTransport()
+    .WithTools<RandomNumberTools>();
+
+await builder.Build().RunAsync();
+```
+
+If `dotnet new mcpserver` isn't found on an older SDK, install the template from NuGet with `dotnet new install Microsoft.McpServer.ProjectTemplates`. The rest of this post builds the server by hand, so you can see what each line does.
+
+## Build the Server by Hand
+
+Start with a plain console app and add two packages:
+
+```bash
+dotnet new console -n TheCodeMan.Mcp
+cd TheCodeMan.Mcp
+dotnet add package ModelContextProtocol
+dotnet add package Microsoft.Extensions.Hosting
+```
+
+The SDK ships in three packages. `ModelContextProtocol` is the one for a stdio server: it brings hosting, dependency injection and attribute-based tool discovery. `ModelContextProtocol.Core` is the leaner package if you only need the client or the low-level server APIs, and `ModelContextProtocol.AspNetCore` is for HTTP, which we'll get to.
+
+Here's the full `Program.cs`:
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+var builder = Host.CreateApplicationBuilder(args);
+
+// stdio is the transport, so stdout is reserved for protocol messages.
+// Send every log to stderr or you'll corrupt the JSON-RPC stream.
+builder.Logging.AddConsole(options =>
+{
+    options.LogToStandardErrorThreshold = LogLevel.Trace;
+});
+
+builder.Services
+    .AddMcpServer()
+    .WithStdioServerTransport()
+    .WithToolsFromAssembly();
+
+await builder.Build().RunAsync();
+```
+
+The comment about stderr is the thing that trips people up the first time. With stdio, the client and server exchange JSON-RPC over stdout. If any part of your app writes to stdout - a stray `Console.WriteLine` - it corrupts the protocol and the client just waits. Route logs to stderr and don't print to stdout yourself.
+
+`WithToolsFromAssembly()` scans the assembly for classes marked with `[McpServerToolType]`, so you don't register each one by hand. The template uses `WithTools<T>()` instead, which registers one class explicitly. Both work. Next, give the server a tool to find.
+
+## Your First MCP Tool
+
+A tool is a method. Mark the class with `[McpServerToolType]`, mark the method with `[McpServerTool]`, and describe both the tool and its parameters:
+
+```csharp
+using System.ComponentModel;
+using ModelContextProtocol.Server;
+
+[McpServerToolType]
+public static class EchoTool
+{
+    [McpServerTool, Description("Echoes the message back to the client.")]
+    public static string Echo(string message) => $"Hello from C#: {message}";
+}
+```
+
+The `Description` attributes are the interface the model reasons over, not documentation for humans. "Echoes the message back" is what tells the model when the tool is useful. Write each description as the text the model reads before it decides whether to call the tool.
+
+The SDK turns method names into snake_case tool names, so `Echo` is advertised as `echo` and a method called `GetOrder` becomes `get_order`. Set `[McpServerTool(Name = "...")]` if you want a different name.
+
+## Connect the Tools to Your Real Code
+
+Echo is a hello-world. The point is to expose *your* system - a database, an internal service, a cache. That's where dependency injection comes in, and the C# SDK uses the DI container you already know.
+
+Say you have a service that reads orders. Register it like any other dependency:
+
+```csharp
+builder.Services.AddSingleton<OrderService>();
+
+builder.Services
+    .AddMcpServer()
+    .WithStdioServerTransport()
+    .WithToolsFromAssembly();
+```
+
+A tool method can take that service as a parameter, and the SDK injects it from the container the same way a Minimal API endpoint receives its dependencies. The other parameters are values the model fills in:
+
+```csharp
+using System.ComponentModel;
+using System.Text.Json;
+using ModelContextProtocol.Server;
+
+[McpServerToolType]
+public static class OrderTools
+{
+    [McpServerTool, Description("Gets a single order by its numeric id.")]
+    public static async Task<string> GetOrder(
+        OrderService orders,
+        [Description("The numeric id of the order to fetch")] int id)
+    {
+        var order = await orders.GetByIdAsync(id);
+        return order is null
+            ? $"No order found with id {id}."
+            : JsonSerializer.Serialize(order);
+    }
+
+    [McpServerTool, Description("Lists recent orders for a customer by email.")]
+    public static async Task<string> GetOrdersForCustomer(
+        OrderService orders,
+        [Description("The customer's email address")] string email)
+    {
+        var results = await orders.GetRecentByEmailAsync(email);
+        return JsonSerializer.Serialize(results);
+    }
+}
+```
+
+Note the split: `OrderService` comes from DI, while `id` and `email` come from the model. Only the model-supplied parameters appear in the tool's input schema. Returning JSON is a reasonable default - it's structured enough for the model to parse and turn into a table or a summary. Behind `OrderService` there's nothing special: EF Core, Dapper or an HTTP call to another service.
+
+A few habits that help once real callers use these tools:
+
+- **Return a clear message on the empty case**, like the "No order found" string above. The model handles an explicit "nothing matched" better than an empty payload it has to guess about.
+- **Keep parameter lists small and name them for what they are.** `email` is better than `param1`, because the model maps the user's intent onto the parameter names.
+- **Don't expose more than the task needs.** A tool that reads any order is convenient. One that reads any order *and* refunds it is risky. Scope tools to what you'd let an assistant do without supervision.
+
+## Connect Claude Desktop and GitHub Copilot
+
+For Claude Desktop, register the server in `claude_desktop_config.json` (Settings → Developer → Edit Config):
+
+```json
+{
+  "mcpServers": {
+    "thecodeman-orders": {
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "C:\\code\\TheCodeMan.Mcp\\TheCodeMan.Mcp.csproj"
+      ]
+    }
+  }
+}
+```
+
+For GitHub Copilot in VS Code, add a `.vscode/mcp.json` file to the workspace:
+
+```json
+{
+  "servers": {
+    "thecodeman-orders": {
+      "type": "stdio",
+      "command": "dotnet",
+      "args": ["run", "--project", "TheCodeMan.Mcp/TheCodeMan.Mcp.csproj"]
+    }
+  }
+}
+```
+
+You don't run the project yourself. The client starts it as a child process over stdio, reads the tool list and shows the tools as available. Ask something that needs one, such as "what's on order 42?", and the client asks for permission to call `get_order`, runs it and answers from the result. In Copilot, use Agent mode so it can call tools.
+
+## Switch the MCP Server to HTTP
+
+stdio works for a tool that runs on your machine. When you want a server a team - or a deployed app - can reach, switch to HTTP. That's a different package and a slightly different `Program.cs`, but the tool classes don't change:
+
+```bash
+dotnet new web -n TheCodeMan.Mcp.Http
+dotnet add package ModelContextProtocol.AspNetCore
+```
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<OrderService>();
+
+builder.Services
+    .AddMcpServer()
+    .WithHttpTransport(options =>
+    {
+        // Stateless is fine when you don't need server-to-client
+        // callbacks like sampling or elicitation.
+        options.Stateless = true;
+    })
+    .WithToolsFromAssembly();
+
+var app = builder.Build();
+app.MapMcp("/mcp");
+app.Run("http://localhost:3001");
+```
+
+Same `[McpServerTool]` methods, same DI. Version 2.0 of the SDK implemented the 2026-07-28 revision of the MCP specification, which reworked how MCP runs over HTTP. The `remote` template sets `Stateless = true` explicitly, and so does the code above.
+
+Clients connect to the URL instead of starting a process. In `.vscode/mcp.json` that's `"type": "http"` with `"url": "http://localhost:3001/mcp"`.
+
+One security note: for local HTTP servers, keep `AllowedHosts` limited to loopback values rather than `"*"`, and only enable CORS if you need browser access. An MCP endpoint that reaches into your data shouldn't be reachable by a stray web page through DNS rebinding. For a server other people use, add authentication; the SDK documentation covers the OAuth setup.
+
+## A Real Example: A Performance Lab GitHub Copilot Can Drive
+
+The orders example is small so the mechanics are clear. Here is a larger one I built for my own .NET work: an MCP server that lets GitHub Copilot run load tests against an API, compare endpoints and point out common performance problems. I describe the test in a chat message, Copilot calls the tools, and the server returns real measurements.
+
+A session looks like this:
 
 > **Me:** Compare `http://localhost:5100/slow-thread-sleep` with `http://localhost:5100/slow-task-delay` - 15 seconds, 20 concurrent users.
 
@@ -46,35 +319,21 @@ Here's what a real session looks like:
 > VERDICT: ✅ Candidate is faster
 > ```
 
-One message. Two real load tests against a live server. A side-by-side comparison with percentage deltas.
+That is two load tests against a running server and a comparison with percentage deltas, from one message.
 
 ![GitHub Copilot chat showing the compare_endpoints output with throughput and latency numbers](/images/blog/posts/building-mcp-server-in-dotnet/compare-endpoints.webp)
 
-The p95/p99 improvement tells the whole story. `Thread.Sleep` holds a ThreadPool thread for 500ms. Under 20 concurrent users, threads run out and requests queue up. Tail latency explodes. `Task.Delay` releases the thread while waiting - same delay, completely different behavior under load.
+The p95 and p99 numbers show the difference. `Thread.Sleep` holds a ThreadPool thread for 500ms. Under 20 concurrent users, threads run out and requests queue up, so tail latency grows. `Task.Delay` releases the thread while it waits: the same delay, but different behavior under load.
 
-Also, I built the fronted Blazor dashboard to visualize all the results and comparisons. It's a plain REST client that talks to the same data store as the MCP server. The AI is the operator, the dashboard is the viewer.
+I also built a Blazor dashboard to visualize the results and comparisons. It's a plain REST client that reads from the same data store as the MCP server.
 
 ![Blazor dashboard showing performance results](/images/blog/posts/building-mcp-server-in-dotnet/blazor.webp)
 
-Let me show you how this is built.
+### Project Structure
 
----
+Four projects, each with one job:
 
-## What Is MCP?
-
-**MCP (Model Context Protocol)** is an open standard for giving AI tools explicit, callable functions.
-
-Instead of the AI guessing, you expose tools like "run a load test" or "analyze these results." The AI becomes the **orchestrator**: it decides which tool to call, passes the right parameters, and reasons about the output.
-
-This is different from one-off integrations. Build one MCP server, and any MCP-compatible client - GitHub Copilot, Claude Desktop, Cursor - connects to it without changes. One server, every AI tool.
-
----
-
-## Project Structure
-
-Four projects, each with a clear job:
-
-```
+```text
 PerformanceLab.Api        → port 5100  - sample API with intentional anti-patterns
 PerformanceLab.McpServer  → port 5200  - MCP server + load test engine
 PerformanceLab.Dashboard  → port 5300  - Blazor dashboard for visualizing results
@@ -83,15 +342,11 @@ PerformanceLab.Shared                  - shared models
 
 ![VS Code showing the four-project solution structure](/images/blog/posts/building-mcp-server-in-dotnet/project-structure.png)
 
-The key design decision: the dashboard and the MCP server share the same `IResultStore`, but are otherwise fully decoupled. The AI talks to `/mcp`. The dashboard reads from `/api/results`. Same data, different consumers.
+The dashboard and the MCP server share the same `IResultStore`, but are otherwise decoupled. The AI talks to `/mcp`. The dashboard reads from `/api/results`.
 
----
+### The API: Endpoints With Known Problems
 
-## Part 1: The API - Intentionally Broken
-
-The `PerformanceLab.Api` project is a minimal ASP.NET Core API where every endpoint demonstrates a real performance anti-pattern. The goal is to have measurable targets.
-
-### Thread.Sleep vs Task.Delay
+`PerformanceLab.Api` is a minimal ASP.NET Core API where each endpoint demonstrates a performance anti-pattern, so the tools have something measurable to find.
 
 ```csharp
 // ❌ Blocks a ThreadPool thread for the entire wait duration
@@ -109,9 +364,7 @@ app.MapGet("/slow-task-delay", async (int ms = 500) =>
 });
 ```
 
-From the caller's perspective these look identical. Under load with 20 concurrent users they're worlds apart. `Thread.Sleep` holds a thread for 500ms. Once the ThreadPool runs out of threads, new requests queue up. Throughput collapses from thousands of RPS to dozens.
-
-### Sequential vs Parallel
+From the caller's side these look identical. Under load with 20 concurrent users they behave very differently: once the ThreadPool runs out of threads, new requests queue up behind the blocked ones.
 
 ```csharp
 // ❌ Five queries one after another - ~250ms total
@@ -139,35 +392,22 @@ app.MapGet("/optimized-version", async () =>
 });
 ```
 
-The queries don't depend on each other's results. There's no reason to wait. `Task.WhenAll` gives a 5× latency reduction with one change.
+The queries don't depend on each other's results, so there's no reason to wait for each one. There are also `/memory-heavy` (allocates large arrays to trigger GC pressure) and `/cpu-heavy` (SHA256 in a tight loop) endpoints, each with a different signature the analyzer can detect.
 
-There are also `/memory-heavy` (allocates large arrays to trigger GC pressure) and `/cpu-heavy` (SHA256 in a tight loop) endpoints. Each has a distinct signature the analyzer can detect.
+### The MCP Server and Its Tools
 
----
-
-## Part 2: The MCP Server
-
-The MCP server is a regular ASP.NET Core app. One NuGet package is all you need:
-
-```bash
-dotnet add package ModelContextProtocol.AspNetCore --version 0.3.0-preview.2
-```
-
-### Program.cs
+The MCP server is an ASP.NET Core app with the same setup as the HTTP example above, plus the services the tools need and a CORS policy for the dashboard:
 
 ```csharp
-// Services
 builder.Services.AddSingleton<IResultStore, InMemoryResultStore>();
 builder.Services.AddScoped<LoadTestRunner>();
 builder.Services.AddScoped<ResultAnalyzer>();
 
-// MCP - discovers all [McpServerTool] methods automatically
 builder.Services
     .AddMcpServer()
     .WithHttpTransport()
     .WithToolsFromAssembly();
 
-// CORS for the Blazor dashboard
 builder.Services.AddCors(opts =>
     opts.AddPolicy("dashboard", policy =>
         policy.WithOrigins("http://localhost:5300")
@@ -181,13 +421,7 @@ app.MapGet("/api/results", (IResultStore store) =>
     Results.Ok(store.GetAll()));           // ← Dashboard reads here
 ```
 
-That's the entire setup. `WithToolsFromAssembly()` scans for all `[McpServerToolType]` classes. You never register tools manually.
-
----
-
-## Part 3: Defining the Tools
-
-Tools are C# methods with `[McpServerTool]` and `[Description]` attributes. The description is what the AI reads when deciding whether and how to call the tool.
+The tools live in a non-static class this time, so the services come in through the primary constructor instead of method parameters:
 
 ```csharp
 [McpServerToolType]
@@ -228,19 +462,13 @@ public sealed class PerformanceTools(
     }
 ```
 
-Two things matter here:
+The description says what the tool returns and what to do with the result ID, so the model knows it can chain `run_load_test` into `analyze_results`. Default values show up in the tool schema, so the model can leave them out. The `CancellationToken` isn't part of the schema; the SDK passes it in.
 
-**Descriptions are everything.** The AI picks which tool to call entirely based on the description. Be explicit about what it does, what it returns, and what to do with the result.
+The server exposes 10 tools: `run_load_test`, `compare_endpoints`, `analyze_results`, `detect_slow_responses`, `detect_threadpool_starvation`, `detect_memory_pressure`, `list_results`, `compare_before_after`, `suggest_optimizations` and `generate_report`.
 
-**Tools return strings.** The AI reads plain text and reasons about it. No typed schema needed - just clear, consistent output.
+### The Load Test Runner
 
-The server exposes 10 tools in total: `run_load_test`, `compare_endpoints`, `analyze_results`, `detect_slow_responses`, `detect_threadpool_starvation`, `detect_memory_pressure`, `list_results`, `compare_before_after`, `suggest_optimizations`, and `generate_report`.
-
----
-
-## Part 4: The Load Test Runner
-
-No k6, no JMeter, no external tools. Pure .NET:
+No k6 and no JMeter, only .NET:
 
 ```csharp
 public async Task<LoadTestResult> RunAsync(LoadTestRequest request, CancellationToken ct)
@@ -262,9 +490,7 @@ public async Task<LoadTestResult> RunAsync(LoadTestRequest request, Cancellation
 }
 ```
 
-`Task.WhenAll` spins up N concurrent workers - one per virtual user. Each worker fires requests in a tight loop until the time window closes. `ConcurrentBag<RequestRecord>` collects every result without locking.
-
-One important `HttpClient` configuration detail:
+`Task.WhenAll` starts one worker per virtual user. Each worker sends requests in a loop until the time window closes, and `ConcurrentBag<RequestRecord>` collects every result without locking. The `HttpClient` used by the workers needs a higher connection limit, or the test measures the client instead of the server:
 
 ```csharp
 builder.Services.AddHttpClient("loadtest", client =>
@@ -277,13 +503,9 @@ builder.Services.AddHttpClient("loadtest", client =>
 });
 ```
 
-`MaxConnectionsPerServer = 1000` is critical. The default in older .NET versions is 2. Without this, the load test is bottlenecked by connection limits before it even reaches the server.
+### The Rule-Based Analyzer
 
----
-
-## Part 5: The Rule-Based Analyzer
-
-The analyzer is pure C# - no AI, no ML. It applies rules derived from real performance engineering and returns a severity rating with concrete recommendations.
+The analyzer is plain C# - no model involved. It applies a few rules and returns a severity with recommendations:
 
 ```csharp
 public AnalysisResult Analyze(LoadTestResult result)
@@ -292,8 +514,6 @@ public AnalysisResult Analyze(LoadTestResult result)
     var recommendations = new List<string>();
 
     // ThreadPool starvation: p99 is 10× higher than p50
-    // Healthy APIs:  p99/p50 ratio of 2–5
-    // Starved APIs:  p99/p50 ratio of 20–100
     if (result.P50Ms > 0 && result.P99Ms / result.P50Ms > 10)
     {
         var ratio = result.P99Ms / result.P50Ms;
@@ -330,59 +550,43 @@ public AnalysisResult Analyze(LoadTestResult result)
 }
 ```
 
-The AI wraps this with conversational context. It knows the URL, any code you've shown it, and results from previous runs in the same conversation. Rule-based detection plus AI reasoning is more useful than either alone.
+The model adds the context the rules don't have: the URL, any code you've shown it, and results from earlier runs in the same conversation.
 
----
-
-## Understanding the Numbers: p50, p95, p99
-
-If percentile latency is new to you, here's the short version.
+### Reading the Numbers: p50, p95, p99
 
 Sort 1,000 requests by response time:
-- **p50 (median):** The 500th. Half your users are faster, half are slower.
-- **p95:** The 950th. 1 in 20 users is slower than this.
-- **p99:** The 990th. 1% of users experience this or worse.
 
-A healthy API has p99 roughly 2–5× its p50. When p99 is 20–100× the p50, some requests are catastrophically slow - that's the ThreadPool starvation signature.
+- **p50 (median):** the 500th. Half your users are faster, half are slower.
+- **p95:** the 950th. 1 in 20 users is slower than this.
+- **p99:** the 990th. 1% of users get this or worse.
 
-A concrete comparison from our endpoints:
+Here is a comparison from two endpoints in the lab:
 
-```
+```text
 /fast  (healthy) - 10 users, 5 seconds
   RPS:     2,395.6
   Average:     4ms
-  P95:         8ms   (~2× p50)
-  P99:        12ms   (~3× p50)  ← healthy
+  P95:         8ms
+  P99:        12ms
 
 /slow-thread-sleep (starved) - 20 users, 15 seconds
-  RPS:        35.1              ← collapsed
+  RPS:        35.1
   Average:   554ms
   P95:      1000ms
   P99:      1002ms
 ```
 
-The starvation is most visible in the throughput collapse (2,395 RPS → 35 RPS), not the p99/p50 ratio - because every request is equally stuck waiting for a thread.
+For `/slow-thread-sleep`, the starvation shows up mostly as the throughput drop (2,395 RPS → 35 RPS), not as a high p99/p50 ratio, because every request waits for a thread for about the same time.
 
 ![Load test output showing RPS and latency for the fast vs slow-thread-sleep endpoints](/images/blog/posts/building-mcp-server-in-dotnet/p-results.png)
 
----
+### The Dashboard and the Copilot Setup
 
-## Part 6: The Blazor Dashboard
-
-The dashboard gives a visual overview of all stored test runs. It's a plain REST client - it polls `/api/results` and renders the data with Chart.js.
-
-The Compare page puts two results side by side with percentage deltas.
-
+The dashboard polls `/api/results` and renders the data with Chart.js. The Compare page puts two results side by side with percentage deltas. Nothing in the dashboard knows about MCP.
 
 ![Dashboard compare page showing Thread.Sleep vs Task.Delay with throughput and latency delta columns](/images/blog/posts/building-mcp-server-in-dotnet/compare-dashboard.webp)
 
-Nothing in the dashboard knows about MCP. That's intentional. The dashboard is a viewer. The AI is the operator.
-
----
-
-## Connecting to GitHub Copilot
-
-Add `.vscode/mcp.json` to your workspace:
+To connect Copilot, add the HTTP server to `.vscode/mcp.json`:
 
 ```json
 {
@@ -395,58 +599,47 @@ Add `.vscode/mcp.json` to your workspace:
 }
 ```
 
-Start all three services, open Copilot in **Agent mode**, and start asking:
+Start the three services, open Copilot in Agent mode and ask things like:
 
-```
+```text
 Run a load test against http://localhost:5100/fast for 5 seconds with 10 users
 ```
 
-```
+```text
 Compare http://localhost:5100/slow-thread-sleep with http://localhost:5100/slow-task-delay
 using 15 seconds and 20 concurrent users
 ```
 
-```
-Detect threadpool starvation for result <ID>
-```
-
-```
+```text
 Generate a full performance report for the last two runs
 ```
 
-The AI understands context across multiple messages. After a comparison it can explain why one endpoint is faster, point at the specific line of code causing the problem, and suggest the fix - all in the same conversation.
+The full project - all four services, the 10 MCP tools, the Blazor dashboard and the tests - is part of the [AI in .NET Starter Kit](https://thecodeman.net/ai-in-dotnet-starter-kit). It was first written against a preview of the SDK; the tool code shown here also builds on ModelContextProtocol 2.4.0.
 
----
+## What Else You Can Expose as MCP Tools
 
-## The Broader Pattern
+A tool is a C# method, so it can be anything you already have code for:
 
-This project is a teaching tool. Every endpoint represents a real mistake I've seen in production .NET codebases. The analyzer's rules come from real performance investigations.
+- A read-only query against a replica that answers "how many signups yesterday" without you writing the SQL by hand.
+- A call to an internal service the model would otherwise have no way to reach.
+- A tool that runs `EXPLAIN` on a slow query, reads a feature-flag state or queries your CI pipeline.
 
-But the more important thing is the **pattern**:
+The general pattern is the same as in the performance lab: build tools around services you already have. Your tools return real data, and the model reasons over it.
 
-> Build domain-specific MCP tools around your existing services. The AI provides the reasoning layer; your tools provide grounded, real-world data.
+## Wrapping Up
 
-Performance diagnosis is a perfect use case because the AI genuinely can't tell you what's slow in your specific API without real numbers. MCP gives it real numbers. The AI gives you context, explanation, and next steps.
+An MCP server in C# is small: a console or web app, one SDK package, and methods marked with `[McpServerTool]` and a description. `dotnet new mcpserver` gives you a working project in one command. The descriptions are the part to spend time on, because they're what the model reads to decide when to call each tool. Once the server is running, Claude or Copilot can pull the data it needs instead of asking you to copy and paste it.
 
-You can apply the same pattern to:
-- A deployment tool that queries your CI/CD pipeline
-- A database tool that runs EXPLAIN on slow queries
-- A metrics tool that reads from your Prometheus/Grafana stack
+Start with one question you keep answering by hand, wrap the query you already have in a tool, and connect it over stdio. Moving to HTTP later only changes `Program.cs`.
 
-The MCP protocol is just HTTP + a schema. The value is entirely in what you expose.
+This post is part of the free [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) guide. Related posts:
 
-The full project - all four services, 10 MCP tools, the Blazor dashboard, and 15 tests - is part of the [AI in .NET Starter Kit](https://thecodeman.net/ai-in-dotnet-starter-kit).
+- [Build an AI agent in C# with Microsoft Agent Framework](https://thecodeman.net/posts/ai-agent-in-csharp-microsoft-agent-framework) - an agent that calls tools from your own code.
+- [Generate .NET architecture diagrams on Miro with MCP](https://thecodeman.net/posts/ai-architecture-diagrams-miro-mcp) - an MCP server from the client side.
+- [4 Claude Code features for .NET](https://thecodeman.net/posts/claude-code-hooks-headless-mcp-rewind) - including MCP servers in Claude Code.
 
----
-
-Check out the previous articles in this series:
-- [Semantic Search in .NET](https://thecodeman.net/posts/semantic-search-ai-in-dotnet)
-- [RAG System in .NET](https://thecodeman.net/posts/how-to-implement-rag-in-dotnet)
+For the official reference and samples, see the [MCP C# SDK repository](https://github.com/modelcontextprotocol/csharp-sdk).
 
 That's all from me today.
 
-P.S. Follow me on [YouTube](https://www.youtube.com/@thecodeman_).
-
 <!--END-->
-
-## dream BIG!

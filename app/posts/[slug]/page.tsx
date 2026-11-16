@@ -27,7 +27,7 @@ import Link from "next/link";
 import { formatPostDate, formatReadTime } from "@/components/PostCard";
 import Image from "next/image";
 import AiCommunityPromo from "@/components/AiCommunityPromo";
-import { aiLearningPaths, isAiPost, AI_COMMUNITY_URL, AI_COMMUNITY_PATH, AI_COMMUNITY_IMAGE } from "@/components/aiCommunity";
+import { dotnetAiGuide, isAiPost, AI_COMMUNITY_PATH, AI_COMMUNITY_IMAGE, DOTNET_AI_GUIDE_PATH, DOTNET_AI_GUIDE_URL, DOTNET_AI_GUIDE_NAME } from "@/components/aiCommunity";
 
 const postsDir = path.join(process.cwd(), "posts");
 const blogImagesDir = path.join(process.cwd(), "public", "images", "blog");
@@ -173,7 +173,7 @@ export default async function PostPage(
 
   const modified = post.data.updated ? new Date(post.data.updated).toISOString() : published;
   const aiPost = isAiPost(post.data.category);
-  const learningPath = aiLearningPaths.find(p => p.articles.some(a => a.slug === slug));
+  const learningPath = dotnetAiGuide.find(p => p.articles.some(a => a.slug === slug));
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -204,7 +204,7 @@ export default async function PostPage(
     datePublished: published,
     dateModified: modified,
     articleSection: post.data.category,
-    ...(aiPost ? { isPartOf: { "@type": "CollectionPage", "@id": `${AI_COMMUNITY_URL}#page`, url: AI_COMMUNITY_URL, name: "AI for Developers" } } : {})
+    ...(aiPost ? { isPartOf: { "@type": "CollectionPage", "@id": `${DOTNET_AI_GUIDE_URL}#page`, url: DOTNET_AI_GUIDE_URL, name: DOTNET_AI_GUIDE_NAME } } : {})
   };
 
   // Frontmatter FAQs are rendered from the same data as their schema. Questions
@@ -231,7 +231,7 @@ export default async function PostPage(
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://thecodeman.net" },
       { "@type": "ListItem", position: 2, name: "Blog", item: "https://thecodeman.net/blog" },
-      ...(aiPost ? [{ "@type": "ListItem", position: 3, name: "AI for Developers", item: AI_COMMUNITY_URL }] : []),
+      ...(aiPost ? [{ "@type": "ListItem", position: 3, name: DOTNET_AI_GUIDE_NAME, item: DOTNET_AI_GUIDE_URL }] : []),
       { "@type": "ListItem", position: aiPost ? 4 : 3, name: meta.title, item: meta.url },
     ],
   };
@@ -262,7 +262,7 @@ export default async function PostPage(
                 <Link href="/">Home</Link>
                 <span className="breadcrumb-sep">/</span>
                 <Link href="/blog">Blog</Link>
-                {aiPost ? (<><span className="breadcrumb-sep">/</span><Link href={AI_COMMUNITY_PATH}>AI for Developers</Link></>) : post.data.category && (
+                {aiPost ? (<><span className="breadcrumb-sep">/</span><Link href={DOTNET_AI_GUIDE_PATH}>{DOTNET_AI_GUIDE_NAME}</Link></>) : post.data.category && (
                   <>
                     <span className="breadcrumb-sep">/</span>
                     <Link href={`/blog?category=${encodeURIComponent(post.data.category)}`}>{post.data.category}</Link>
@@ -293,7 +293,7 @@ export default async function PostPage(
                 <PremiumChapterBanner slug={slug} />
               )}
 
-              {aiPost && <p className="tcm-post-lede">Part of the <Link href={AI_COMMUNITY_PATH} className="text-yellow">AI for Developers</Link> learning library: practical C# workflows, MCP and AI applications.</p>}
+              {aiPost && <p className="tcm-post-lede">Part of the free <Link href={DOTNET_AI_GUIDE_PATH} className="text-yellow">{DOTNET_AI_GUIDE_NAME}</Link> guide: AI features, agents, MCP and AI coding tools in C#.</p>}
 
               {/* Table of Contents */}
               <TableOfContents initialHeadings={getTocHeadings(normalizeHeadings(post.content), faq)} />
@@ -336,6 +336,7 @@ export default async function PostPage(
                   <h2 className="tcm-h3">{learningPath.title}</h2>
                   <ul className="tcm-linklist">{learningPath.articles.filter(a => a.slug !== slug).map(a => <li key={a.slug}><Link href={`/posts/${a.slug}`}>{a.title} <span>→</span></Link></li>)}
                     <li><Link href="/ai-roadmap-2026">Follow the free AI roadmap for .NET developers <span>→</span></Link></li>
+                    <li><Link href={DOTNET_AI_GUIDE_PATH}>See every AI tutorial for .NET developers <span>→</span></Link></li>
                   </ul>
                 </nav>}
                 <AiCommunityPromo compact />

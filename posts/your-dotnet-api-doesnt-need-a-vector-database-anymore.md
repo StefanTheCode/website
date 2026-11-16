@@ -1,5 +1,6 @@
 ---
-title: "Your .NET API Doesn't Need a Vector Database Anymore: Vector Search with EF Core 10 and SQL Server 2025"
+title: "Vector Search in EF Core 10 and SQL Server 2025: Your .NET API Doesn't Need a Vector Database"
+seo_title: "EF Core Vector Search with SQL Server 2025 (No Vector Database)"
 subtitle: "Store embeddings in the same table as your data and run nearest-neighbor search in LINQ, using the native VECTOR type in SQL Server 2025 and EF Core 10."
 date: "Sep 21 2026"
 category: "AI Tools"
@@ -32,6 +33,7 @@ faq:
       Approximate search uses a DiskANN vector index and the VECTOR_SEARCH function to skip most of the
       comparisons - much faster at scale, at the cost of occasionally missing a true match. The
       vector index is in preview in SQL Server 2025.
+updated: "2026-11-16"
 ---
 
 <!--START-->
@@ -213,6 +215,8 @@ The decision of which to use isn't complicated:
 
 Start exact. It's simpler, it's not in preview, and it gives correct results. Add the vector index when the row count and the query latency actually justify it.
 
+**Update (November 2026):** EF Core in .NET 11 adds experimental support for creating vector indexes and running approximate vector search on SQL Server. It's marked experimental, so check the EF Core 11 release notes before you depend on it.
+
 ## What Changes in Your Architecture
 
 The concrete change is that a moving part goes away. Before, a search feature meant your app, SQL Server, and a separate vector store you had to write to, read from, and keep synchronized:
@@ -259,5 +263,8 @@ Exact search compares the query against every candidate row and always returns t
 Semantic search in a .NET app used to come with a tax: a second database, a sync pipeline, and a filtering story that fought your relational data instead of using it. SQL Server 2025 and EF Core 10 remove that tax for the common case. The embedding is a `VECTOR` column on the same row as your data, the search is a LINQ `OrderBy` over `EF.Functions.VectorDistance`, and any `WHERE` you already use still applies.
 
 If you're building search or RAG over data that already lives in SQL Server, try the single-database version first - and if you're feeding that data to an AI assistant, it pairs naturally with an [MCP server in .NET](https://thecodeman.net/posts/building-mcp-server-in-dotnet). Start with exact search, add the DiskANN index only when scale demands it, and reach for a dedicated vector database when you actually hit the cases where it wins - not by default.
+
+
+This post is part of the free [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) guide, where every AI tutorial on the site is grouped by topic.
 
 <!--END-->

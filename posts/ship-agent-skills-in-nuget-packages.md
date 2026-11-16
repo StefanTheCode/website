@@ -567,7 +567,7 @@ A README is written for people and agents read it only if they decide to look fo
 
 Agent skills in NuGet packages use the NuGet tooling .NET developers already have. The author adds a `skills/` folder and one `None` item to the `.csproj`, `dotnet restore` delivers the skills with the binaries, and `project.assets.json` lists them. The missing piece is the copy into the repository, which `dotnet-package-skills install` does today, as long as you reference the package directly and pick a destination your agent reads.
 
-If you maintain a library, write one short skill for the rules people get wrong most often and check it with `dotnet-inspect` before you publish. If you consume libraries, run `dotnet-package-skills list` on your solution to see whether any package already ships one. For building the other half of the agent setup in .NET, see my post on [building an MCP server in .NET](https://thecodeman.net/posts/build-an-mcp-server-in-dotnet-for-claude).
+If you maintain a library, write one short skill for the rules people get wrong most often and check it with `dotnet-inspect` before you publish. If you consume libraries, run `dotnet-package-skills list` on your solution to see whether any package already ships one. For building the other half of the agent setup in .NET, see my post on [building an MCP server in .NET](https://thecodeman.net/posts/building-mcp-server-in-dotnet).
 
 That's all from me today.
 

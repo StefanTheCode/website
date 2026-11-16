@@ -1,14 +1,22 @@
 ---
-title: "ChatGPT in C#: A Legacy OpenAI Integration Example"
+title: "ChatGPT in C#: Calling the OpenAI API from .NET (2023 Example)"
+seo_title: "ChatGPT and the OpenAI API in C#: The Original 2023 Example"
 subtitle: "ChatGPT (Generative Pre-trained Transforer) is a large language model developed by OpenAI. It is designed to understand natural language ... "
 date: "February 20 2023"
 category: "AI"
 readTime: "Read Time: 3 minutes"
-meta_description: "A historical C# OpenAI integration example from 2023, with context for readers exploring model APIs and links to the AI for .NET learning path."
-updated: "2026-09-19"
+meta_description: "How the OpenAI API was called from C# in 2023 with the completions endpoint, and where to start today with Microsoft.Extensions.AI and IChatClient."
+updated: "2026-11-16"
+faq:
+  - q: "How do I call the OpenAI API from C# today?"
+    a: >-
+      Use the official OpenAI .NET library (the OpenAI NuGet package), or use IChatClient from Microsoft.Extensions.AI with the Microsoft.Extensions.AI.OpenAI package so you can switch providers later. The text-davinci-003 model and the completions call shown in this 2023 example have been retired.
+  - q: "Is the code in this post still current?"
+    a: >-
+      No. It shows the package and API from February 2023 and is kept for reference. The steps are the same today (install a package, add an API key, send a prompt, read the response), but the package, model names and methods have changed.
 ---
 
-**Historical example (February 2023):** The package, model names and completion API in this article reflect the original publication. This is not a current setup guide. For a broader starting point, follow the [AI roadmap for .NET developers](/ai-roadmap-2026) and explore the [AI for Developers learning paths](/ai-for-developers#learn).
+**Historical example (February 2023):** The package, model names and completion API in this article reflect the original publication. This is not a current setup guide. For the current way to call OpenAI and other models from C#, read [Getting started with AI in C#: Microsoft.Extensions.AI and IChatClient](/posts/getting-started-with-ai-in-csharp). For agents, MCP and RAG, see the free [AI for .NET Developers](/ai-for-dotnet-developers) guide.
 
 <!--START-->
 
@@ -72,10 +80,9 @@ Once the process of generating the completions has concluded, it is possible to 
 Congratulations! By following these straightforward steps, you now have the ability to seamlessly integrate ChatGPT into your C# code and generate text completions using the model. This was a light and short newsletter issue considering that I haven't commented on ChatGPT so far, so I wanted to do something practical.
 Make a coffee and check out source code directly on my ** [GitHub repository](https://github.com/StefanTheCode/Newsletter)**.
 
-## dream BIG!
-
 ## Wrapping Up
 
+This 2023 post shows the first way I called ChatGPT from C#. The steps are the same today - install a package, add an API key, send a prompt, read the response - but the package and the API have changed. For a current version, start with [Getting started with AI in C#](/posts/getting-started-with-ai-in-csharp). The free [AI for .NET Developers](/ai-for-dotnet-developers) guide covers agents, MCP and RAG.
 
 ---
 
@@ -83,3 +90,4 @@ Want to build AI features in .NET? Download the [AI in .NET Starter Kit](/ai-in-
 
 <!--END-->
 
+## dream BIG!

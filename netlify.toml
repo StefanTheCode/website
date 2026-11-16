@@ -46,22 +46,14 @@
   status = 301
   force = true
 
-# Community renamed "AI for .NET Developers" -> "AI for Developers" (Oct 2026).
-[[redirects]]
-  from = "/ai-for-dotnet-developers"
-  to = "/ai-for-developers"
-  status = 301
-  force = true
+# /ai-for-dotnet-developers is its own page again (Nov 16 2026): a free
+# "AI for .NET Developers" guide that links to the /ai-for-developers community.
+# No redirect rules for it on purpose (a slash/.html rule could loop on Netlify).
 
+# Two MCP tutorials merged into one URL (Nov 16 2026).
 [[redirects]]
-  from = "/ai-for-dotnet-developers/"
-  to = "/ai-for-developers"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/ai-for-dotnet-developers.html"
-  to = "/ai-for-developers"
+  from = "/posts/build-an-mcp-server-in-dotnet-for-claude"
+  to = "/posts/building-mcp-server-in-dotnet"
   status = 301
   force = true
 

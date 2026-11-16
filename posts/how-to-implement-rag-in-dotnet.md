@@ -1,12 +1,12 @@
 ---
-title: "RAG in .NET with C#, Ollama and PostgreSQL pgvector"
-seo_title: "RAG in C# and .NET: Step-by-Step with Ollama and pgvector"
+title: "RAG in C# and .NET with Ollama and PostgreSQL pgvector"
+seo_title: "RAG in C#: Build a RAG Pipeline in .NET with Ollama and pgvector"
 subtitle: "RAG (Retrieval-Augmented Generation) is an AI framework that enhances generative large language models (LLMs) by integrating traditional information retrieval methods, such as search engines and databases."
 date: "Mar 10 2025"
 category: "AI"
 readTime: "Read Time: 5 minutes"
 meta_description: "Build a RAG pipeline in C#: generate embeddings with Ollama, store them in PostgreSQL pgvector, retrieve relevant context and ground the LLM answer in .NET."
-updated: "2026-09-19"
+updated: "2026-11-16"
 faq:
   - q: "What are the main steps in a .NET RAG pipeline?"
     a: "Prepare and store the source text, generate embeddings, retrieve relevant chunks for a question, and provide those chunks to a model as context. Evaluate retrieval and answer quality separately."
@@ -14,11 +14,17 @@ faq:
     a: "No. Retrieval can supply useful evidence, but irrelevant context or incorrect model output can still produce a wrong answer. Test with representative questions, verify source references and handle cases where the data does not contain an answer."
   - q: "Is Neon required for this example?"
     a: "No. Neon is one PostgreSQL hosting option. The approach requires PostgreSQL with pgvector and can be adapted to a compatible local or hosted database."
+  - q: "How do I implement RAG in C#?"
+    a: >-
+      Generate embeddings for your documents, store them in a database that supports vector search (PostgreSQL with pgvector, or SQL Server 2025 with EF Core 10), embed the user's question, retrieve the closest chunks and pass them to the model with an instruction to answer only from that context.
+  - q: "Do I need a separate vector database for RAG in .NET?"
+    a: >-
+      No. This example uses PostgreSQL with pgvector, and SQL Server 2025 with EF Core 10 also supports vector search. A dedicated vector database makes sense when your data size or search requirements outgrow those options.
 ---
 
-A RAG application in .NET retrieves relevant data before asking a language model to answer. This walkthrough separates the C# implementation into embedding generation, PostgreSQL retrieval and answer generation, using Ollama and pgvector.
+RAG in C# means retrieving relevant data from your own store before you ask a language model to answer, so the answer comes from your data instead of the model's training. This walkthrough separates the C# implementation into embedding generation, PostgreSQL retrieval and answer generation, using Ollama and pgvector.
 
-**Version note:** This is the original March 2025 walkthrough, with illustrative code snippets rather than a complete runnable project. Check current Ollama, Npgsql and pgvector APIs before adapting it. The custom `IEmbeddingGenerator` interface below is not the generic interface from Microsoft.Extensions.AI.
+**Version note:** This is the original March 2025 walkthrough, with illustrative code snippets rather than a complete runnable project. Check current Ollama, Npgsql and pgvector APIs before adapting it. The custom `IEmbeddingGenerator` interface below is not the generic interface from Microsoft.Extensions.AI. For the current Microsoft.Extensions.AI interfaces, see [Getting started with AI in C#](https://thecodeman.net/posts/getting-started-with-ai-in-csharp) for chat and [semantic search in C#](https://thecodeman.net/posts/semantic-search-ai-in-dotnet) for embeddings.
 
 <!--START-->
 
@@ -395,6 +401,8 @@ You can extend this system by automatically syncing Confluence documentation, No
 Whether you're building a developer assistant, a smart knowledge base, or an AI-powered search engine, this foundation sets you up for scalable and efficient AI-driven retrieval!
 
 Check out the [AI in .NET Starter Kit](https://thecodeman.net/ai-in-dotnet-starter-kit) for the complete source code.
+
+This post is part of the free [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) guide, where every AI tutorial on the site is grouped by topic.
 
 That's all from me today.
  

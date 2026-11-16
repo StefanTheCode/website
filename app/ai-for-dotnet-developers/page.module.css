@@ -54,3 +54,16 @@
 .faq details p { padding-top:15px; margin-bottom:0; }
 @media(max-width:1000px) { .hero { grid-template-columns:1fr; gap:28px; }.heroVisual { max-width:720px; }.grid { gap:14px; }.card { padding:20px; }.membership { gap:28px; padding:30px; } }
 @media(max-width:700px) { .page { padding-top:105px; }.wrap { width:calc(100% - 32px); }.grid,.proof,.membership { grid-template-columns:1fr; }.facts { grid-template-columns:1fr 1fr; }.facts strong { font-size:1.25rem; }.section { padding-top:48px; }.roadmap { display:block; }.price { padding:24px 0 0; border-left:0; border-top:1px solid var(--tk-line); }.membership { padding:24px; }.hero { padding-bottom:32px; }.visualCaption { font-size:.6rem; } }
+/* AI for .NET Developers guide (Nov 2026) */
+.toc { padding:28px; background:var(--tk-card-bg); border:1px solid var(--tk-line); border-radius:16px; }
+.toc ol { list-style:none; padding:0; margin:0; counter-reset:toc; }
+.toc li { padding:13px 0; border-bottom:1px solid var(--tk-line); font-size:.92rem; }
+.toc li:last-child { border-bottom:0; }
+.toc li span { display:block; font-family:monospace; color:var(--pg-link,var(--tcm-amber)); font-size:.7rem; margin-bottom:5px; }
+.toc a { color:var(--pg-text-white,#fff); text-decoration:none; }
+.toc a:hover { text-decoration:underline; text-underline-offset:4px; }
+.chip { display:inline-block; margin-top:14px; padding:4px 10px; border:1px solid var(--tk-line); border-radius:6px; font-family:monospace; font-size:.74rem; color:var(--pg-link,var(--tcm-amber)); }
+.path { display:grid; grid-template-columns:1fr 1.15fr; gap:48px; padding:44px 0; border-top:1px solid var(--tk-line); scroll-margin-top:110px; }
+.path h2 { font-size:clamp(1.5rem,2.4vw,2rem); margin-bottom:16px; }
+.path .guides { margin-top:0; }
+@media(max-width:1000px) { .path { grid-template-columns:1fr; gap:20px; } }

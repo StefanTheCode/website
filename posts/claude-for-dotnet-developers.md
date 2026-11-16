@@ -1,15 +1,20 @@
 ---
 title: "Claude Code for .NET: Setup, CLAUDE.md, Skills and Agents"
+seo_title: "Claude Code for .NET Developers: Setup, CLAUDE.md and Skills"
 subtitle: "A practical getting-started guide to using Claude on real C# projects - how to install it, why CLAUDE.md is the file that changes everything, and how skills and agents turn it into a workflow instead of a chat window."
 date: "Jul 27 2026"
 author: "Stefan Đokić"
 category: "AI"
 readTime: "5 minutes"
-meta_description: "Set up Claude Code for C# and .NET. Add project context with CLAUDE.md, create skills and agents, and review changes on your real codebase."
-updated: "2026-09-19"
+meta_description: "Claude Code for .NET developers: install it, write a CLAUDE.md for a C# project, add skills and agents, and review the changes on a real codebase."
+updated: "2026-11-16"
+faq:
+  - q: "Does Claude Code understand C#?"
+    a: >-
+      Claude Code reads and edits C# files without extra setup. For code intelligence, such as go-to-definition and compiler diagnostics after an edit, add a C# language server: the csharp-lsp plugin, which runs csharp-ls, or the dotnet plugin from Microsoft's dotnet/skills repository.
 ---
 
-Claude Code for .NET works best when it has clear project context and a task you can verify. This guide walks through setup, a `CLAUDE.md` file, reusable skills and agents for real C# projects. Start with a small change, inspect the diff and run your tests before expanding the task.
+Claude Code for .NET developers works best when it has clear project context and a task you can verify. This guide walks through setup, a `CLAUDE.md` file, reusable skills and agents for real C# projects. Start with a small change, inspect the diff and run your tests before expanding the task.
 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">A quick word from me</p>
@@ -228,6 +233,10 @@ Memory is `CLAUDE.md` - the file that stops you from re-explaining your stack ev
 Start today with the smallest possible step: create a `CLAUDE.md` in one repo, put five real rules in it, and open a session. That one file will change how the whole thing feels. Add your first skill the third time you retype the same prompt.
 
 If you want to skip ahead and see 50+ of these built for real .NET work, they're inside **[AI for Developers community](https://www.skool.com/ai-for-dotnet-developers)**. And if you just want a room full of .NET developers figuring this out together, that's what the **[community](https://www.skool.com/thecodeman-community-2911)** is for.
+
+Next, see [.NET Skills for coding agents](https://thecodeman.net/posts/dotnet-skills-for-coding-agents) for Microsoft's official .NET skills and how to write your own, and [4 Claude Code features for .NET](https://thecodeman.net/posts/claude-code-hooks-headless-mcp-rewind) for hooks, headless mode and MCP.
+
+This post is part of the free [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) guide, where every AI tutorial on the site is grouped by topic.
 
 That's all from me today.
 

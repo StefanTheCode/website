@@ -137,6 +137,7 @@ const faqs = [
 const freeResources = [
   ['/claude-code-cheat-sheet', 'Claude Code Cheat Sheet', 'Commands, CLAUDE.md, hooks and MCP on one page.'],
   ['/claude-code-from-zero', 'Claude Code from Zero', 'Free mini-course: 8 lessons in your inbox, from install to plan mode.'],
+  ['/ai-for-dotnet-developers', 'AI for .NET Developers guide', 'Every free AI tutorial for C# developers, grouped by topic.'],
   ['/ai-roadmap-2026', 'AI Roadmap 2026', 'A structured path from using AI to building with it.'],
   ['/ai-roadmap-course', 'AI Roadmap course preview', 'Try the first lessons for free.'],
   ['/newsletter-archive', 'The TheCodeMan newsletter', '21K+ developers read it every week.'],

@@ -1,12 +1,12 @@
 ---
-title: "Semantic Search in .NET with Microsoft.Extensions.AI"
-seo_title: "Semantic Search in C# with Embeddings and Microsoft.Extensions.AI"
+title: "Semantic Search in C# with Embeddings and Microsoft.Extensions.AI"
+seo_title: "Semantic Search in C#: Embeddings with Microsoft.Extensions.AI"
 subtitle: "Semantic search goes beyond traditional keyword matching. Instead of merely looking for literal text, it uses deep learning models to understand the meaning behind a user's query and the content of documents. Here's how to implement it in .NET with Microsoft.Extensions.AI:"
 date: "Feb 24 2025"
 category: "AI"
 readTime: "Read Time: 4 minutes"
-meta_description: "Learn semantic search in C# with Microsoft.Extensions.AI, text embeddings and cosine similarity. Rank related documents before building a RAG workflow."
-updated: "2026-09-19"
+meta_description: "Semantic search in C#: generate embeddings with Microsoft.Extensions.AI, compare them with cosine similarity and rank matching documents before adding RAG."
+updated: "2026-11-16"
 faq:
   - q: "How is semantic search different from keyword search?"
     a: "Keyword search matches words or terms. Semantic search compares vector embeddings to rank content by similarity in meaning. Depending on the application, combining the two can be useful."
@@ -14,11 +14,14 @@ faq:
     a: "No. Semantic search retrieves relevant items. RAG adds a generation step that gives retrieved context to a language model and asks it to produce an answer."
   - q: "Do I need a vector database for this C# example?"
     a: "No. This introductory example compares vectors in application memory. A persistent vector store becomes useful when your data size, query volume or operational requirements outgrow that approach."
+  - q: "How do I generate embeddings in C#?"
+    a: >-
+      Use IEmbeddingGenerator<string, Embedding<float>> from Microsoft.Extensions.AI with a provider, such as OllamaSharp for local models or the Microsoft.Extensions.AI.OpenAI package for OpenAI. Call GenerateAsync with a list of strings, or GenerateVectorAsync for a single string, and store the float vectors.
 ---
 
-Semantic search in .NET compares embeddings to find text with a similar meaning. This C# example introduces an embedding generator, vector comparison and ranking matching documents. It is the retrieval foundation you can later use in a RAG application.
+Semantic search in C# compares embeddings to find text with a similar meaning, even when the words don't match. This C# example introduces an embedding generator, vector comparison and ranking matching documents. It is the retrieval foundation you can later use in a RAG application.
 
-**Version note:** The original example was published in February 2025. Package APIs may differ from current releases; use the [Microsoft.Extensions.AI documentation](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) to check your installed version.
+**Version note:** The original example was published in February 2025. Package APIs may differ from current releases; use the [Microsoft.Extensions.AI documentation](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) to check your installed version. The `Microsoft.Extensions.AI.Ollama` package used here was a preview package and is no longer updated; [OllamaSharp](https://github.com/awaescher/OllamaSharp) now provides the `IEmbeddingGenerator` implementation for Ollama.
 
 <!--START-->
 
@@ -146,7 +149,7 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator =
 
 Note: You need to download [Ollama](https://ollama.com/) as well as ["all-minilm" language model](https://ollama.com/library/all-minilm). 
 
-## 4. Generating Embeddings for Blog Posts
+## Generating Embeddings for Blog Posts
 
 ```csharp
 Console.WriteLine("Generating embeddings for blog post titles...");
@@ -206,18 +209,18 @@ while (true)
 TensorPrimitives is part of System.Numerics.Tensors. It provides types and methods for tensor operations. Tensors are essential for representing embeddings as high-dimensional vectors.
 
 
-To go further with AI, see [RAG in .NET](https://thecodeman.net/posts/how-to-implement-rag-in-dotnet) and [ChatGPT API in C#](https://thecodeman.net/posts/how-to-use-chatgpt-in-csharp-application).
+To go further with AI, see [RAG in .NET](https://thecodeman.net/posts/how-to-implement-rag-in-dotnet) and [Getting started with AI in C#](https://thecodeman.net/posts/getting-started-with-ai-in-csharp).
 
 ## Wrapping Up
 
 This code snippet is a practical example of how semantic search can be implemented in a .NET application using Microsoft.Extensions.AI. 
 By converting both the candidate texts and user queries into embeddings and comparing them via cosine similarity, the system can deliver search results that truly match the user's intent.
 
-Feel free to use and adapt this explanation and code breakdown for your blog post to help readers understand the power of semantic search and how to leverage AI within the .NET ecosystem.
-
 In part 2 we will talk about [implementing RAG in .NET](https://thecodeman.net/posts/how-to-implement-rag-in-dotnet?utm_source=Website).
 
 [GitHub repository](https://github.com/StefanTheCode/SemanticSearch-AI-Example).
+
+This post is part of the free [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) guide, where every AI tutorial on the site is grouped by topic.
 
 That's all from me today. 
 

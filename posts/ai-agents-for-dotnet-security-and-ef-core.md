@@ -1,21 +1,24 @@
 ---
 title: "AI Code Review for .NET: Security and EF Core Agents"
-seo_title: "AI Agents for .NET Code Review: Security Audit and EF Core N+1"
+seo_title: "AI Code Review for C# and .NET: Security Audit and EF Core Agents"
 subtitle: "I built a library of AI skills and agents for .NET that run on your real code - a file, a folder, a whole project, or a GitHub link. In this issue I show two of them in action on a real production .NET 10 app, then walk you through adding one to Claude from start to finish so you can run it on your own code today."
 date: "Jun 22 2026"
 author: "Stefan Đokić"
 category: "AI Tools"
 readTime: "6 minutes"
-meta_description: "Use Claude skills and AI agents to review C# code, find ASP.NET Core authorization gaps and investigate EF Core N+1 queries in a real .NET app."
-updated: "2026-09-19"
+meta_description: "AI code review for C# and .NET: run a security audit agent and an EF Core review skill with Claude on a real ASP.NET Core app, and verify what they find."
+updated: "2026-11-16"
 faq:
   - q: "Can AI review an entire .NET codebase?"
     a: "A repository-aware assistant can inspect multiple files and report findings, but context limits and missing runtime information affect coverage. Scope the review, ask for file references and verify findings with tests and measurements."
   - q: "What is the difference between a Claude skill and an agent?"
     a: "In this workflow, a skill provides reusable instructions for a focused job such as reviewing EF Core queries. An agent handles a broader investigation, such as exploring an API and reporting potential security issues."
+  - q: "Can an AI agent do a security audit of an ASP.NET Core app?"
+    a: >-
+      It can find candidates: endpoints without authorization, sensitive data in logs, missing validation. It can't prove that an application is secure. Treat the report as a list of things to verify, and keep your normal security review and tests.
 ---
 
-AI code review for .NET can help you investigate security and database issues across a repository. This walkthrough shows a Claude agent reviewing ASP.NET Core authorization and logging, then a focused skill inspecting EF Core queries. Treat each finding as something to verify in your application.
+AI code review for C# and .NET means pointing an AI agent at your repository and asking for specific checks, such as a security audit or an EF Core query review, instead of a general opinion. This walkthrough shows a Claude agent reviewing ASP.NET Core authorization and logging, then a focused skill inspecting EF Core queries. Treat each finding as something to verify in your application.
 
 <div style="padding: 20px 24px; margin: 24px 0; border: 1px solid #334155; border-radius: 12px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
 <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7);">A quick word from me</p>
@@ -196,6 +199,8 @@ You can try all of them inside **TheCodeMan AI Toolkit** on a **7-day free trial
 If you just want to grab a few tools and go, the trial is enough. And if you want to stick around and keep getting new tools and learn how to use AI properly as a .NET developer, even better - that is what the community is for.
 
 **[Start your 7-day free trial →](https://www.skool.com/ai-for-dotnet-developers)**
+
+This post is part of the free [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) guide, where every AI tutorial on the site is grouped by topic.
 
 That's all from me today.
 
