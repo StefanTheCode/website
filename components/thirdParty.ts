@@ -23,6 +23,9 @@
 export const GA_ID = 'G-2MN7C3CEX2';
 export const GTM_ID = 'GTM-NBBCS5FT';
 export const META_PIXEL_ID = '1321122855270380';
+/** Business-owned pixel "TheCodeMan.net" (portfolio 276926579851399), used by the Meta ad campaigns.
+ *  The old pixel above belongs to a personal ad account the business ad account can't use. Both get every event. */
+export const META_ADS_PIXEL_ID = '1176475301997530';
 export const EO_POPUP_FORM_ID = '68cdd53c-a55f-11ed-a80d-c50d697f08bd';
 
 /** Build the inert placeholder markup for an EmailOctopus inline form. */
@@ -40,7 +43,7 @@ window.__tcmConsent=(function(){var tz='';try{tz=Intl.DateTimeFormat().resolvedO
   var c=null;try{c=localStorage.getItem('tcm_consent');}catch(e){}return c==='yes'||c==='no'?c:'ask';})();
 window.__tcmPixelOk=function(){return window.__tcmConsent==='na'||window.__tcmConsent==='yes';};
 !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
-fbq('init','${META_PIXEL_ID}');fbq('track','PageView');
+fbq('init','${META_PIXEL_ID}');fbq('init','${META_ADS_PIXEL_ID}');fbq('track','PageView');
 /* Meta conversion events for paid traffic (Nov 2026):
    - InitiateCheckout: click on a "start free trial / join" link to the AI for Developers Skool group.
      Same-tab clicks wait until the pixel has loaded (max ~0.9 s) so the event isn't lost on navigation.
