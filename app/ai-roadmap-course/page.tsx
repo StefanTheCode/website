@@ -633,7 +633,7 @@ export default function AiRoadmapCoursePage() {
                 {parts.map((p, i) => {
                   const base = { fontSize: '13px', fontWeight: 700, borderRadius: '999px', padding: '7px 14px', border: '1px solid rgba(255,255,255,0.12)', display: 'inline-block' }
                   if (p.state === 'on') return <a key={i} href={p.href} style={{ ...base, color: 'var(--tcm-amber-ink)', background: 'var(--tcm-amber)', borderColor: 'var(--tcm-amber)', textDecoration: 'none' }}>{p.label}</a>
-                  if (p.state === 'lock') return <a key={i} href="https://www.skool.com/ai-for-dotnet-developers" target="_blank" rel="noopener noreferrer" title="Unlock in the community" style={{ ...base, color: 'var(--tcm-muted)', background: 'rgba(255,255,255,0.03)', opacity: 0.6, textDecoration: 'none' }}>{p.label}</a>
+                  if (p.state === 'lock') return <a key={i} href="https://www.skool.com/ai-for-developers/about" target="_blank" rel="noopener noreferrer" title="Unlock in the community" style={{ ...base, color: 'var(--tcm-muted)', background: 'rgba(255,255,255,0.03)', opacity: 0.6, textDecoration: 'none' }}>{p.label}</a>
                   return <a key={i} href={p.href} style={{ ...base, color: 'var(--tcm-body)', background: 'rgba(255,255,255,0.03)', textDecoration: 'none' }}>{p.label}</a>
                 })}
               </div>
@@ -1297,7 +1297,7 @@ claude`}</Code>
                   The full course - Claude Code, skills, MCP in C#, then building real AI features (LLMs, RAG, agents) into your
                   apps - is inside the AI for Developers community, with new video clips as I record them.
                 </p>
-                <a className="btn btn-primary py-3 px-4" href="https://www.skool.com/ai-for-dotnet-developers" target="_blank" rel="noopener noreferrer">
+                <a className="btn btn-primary py-3 px-4" href="https://www.skool.com/ai-for-developers/about" target="_blank" rel="noopener noreferrer">
                   Join the community →
                 </a>{' '}
                 <a className="btn btn-outline-white py-3 px-4" href="https://thecodeman.net" target="_blank" rel="noopener noreferrer">

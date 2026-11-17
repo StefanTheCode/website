@@ -17,7 +17,7 @@ Most people use Claude Code as a chat window next to their code: ask, read the d
 
 <p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored. Everything in this post - hooks, headless reviews, MCP servers, agent workflows - is what we go through in detail in my <strong>AI for .NET Developers</strong> community: step-by-step lessons, the full source code, and 50+ ready-to-run Claude skills and agents for .NET, with new ones added based on what members ask for.</p>
 
-<a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
+<a href="https://www.skool.com/ai-for-developers/about" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
 
 <p style="margin: 16px 0 8px 0; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.6);">Want to reach thousands of .NET developers like this?</p>
 
@@ -318,7 +318,7 @@ No. It only restores changes made through Claude's file editing tools within the
 
 Hooks, headless mode, external MCP servers and `/rewind` are the four Claude Code features I use most on real .NET projects. Hooks turn your test suite into the definition of done, `claude -p` puts the agent into git hooks and CI, MCP servers connect it to your own tools, and `/rewind` lets you back out of a bad direction without starting over.
 
-If you want to go through these step by step - with the full FlightDemo source, the hook scripts and the Performance Lab MCP server - that's what we do in my [AI for .NET Developers community](https://www.skool.com/ai-for-dotnet-developers/about).
+If you want to go through these step by step - with the full FlightDemo source, the hook scripts and the Performance Lab MCP server - that's what we do in my [AI for .NET Developers community](https://www.skool.com/ai-for-developers/about).
 
 That's all from me today.
 

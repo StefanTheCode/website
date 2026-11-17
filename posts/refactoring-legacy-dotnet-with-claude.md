@@ -18,7 +18,7 @@ Use Claude to refactor legacy .NET in small steps: assess the repository, captur
 
 <p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #ffffff;">This issue isn't sponsored. Instead, let me point you to something I run every single day: my <strong>AI for Developers</strong> community - for developers who want to actually use AI on real code. 50+ ready-to-run skills and agents, with a deep .NET Pack (the legacy and upgrade agents in this post included), a new one added every week, and the room to figure it all out together.</p>
 
-<a href="https://www.skool.com/ai-for-dotnet-developers/about" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
+<a href="https://www.skool.com/ai-for-developers/about" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Join the community - 7 days free →</a>
 
 <p style="margin: 16px 0 8px 0; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.6);">Want to reach thousands of .NET developers like this?</p>
 
@@ -228,7 +228,7 @@ On the mechanical, repetitive work: finding untested paths, generating tests, pa
 
 Refactoring legacy .NET with Claude works when you treat it as a workflow, not a rewrite button. Assess the codebase honestly with a read-only pass and get a sequenced roadmap. Put tests around the code you're about to change. Fix the security and correctness bugs first - the SQL injection, the missing transaction, the leak - with the tests watching your back. Then carve seams and upgrade the platform one verified major version at a time.
 
-None of these steps are new; they're the same discipline good engineers have always used on legacy systems. What's changed is that the tedious parts - the assessment, the test scaffolding, the mechanical rewrites - can be handed to agents that follow the discipline instead of shortcutting it. The `LegacyErp` sample and the agents in this post are ones I run on real .NET code; they live in my [AI for Developers community](https://www.skool.com/ai-for-dotnet-developers/about), with a new one added every week.
+None of these steps are new; they're the same discipline good engineers have always used on legacy systems. What's changed is that the tedious parts - the assessment, the test scaffolding, the mechanical rewrites - can be handed to agents that follow the discipline instead of shortcutting it. The `LegacyErp` sample and the agents in this post are ones I run on real .NET code; they live in my [AI for Developers community](https://www.skool.com/ai-for-developers/about), with a new one added every week.
 
 That's all from me today.
 

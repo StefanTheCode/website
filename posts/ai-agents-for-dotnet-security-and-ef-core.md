@@ -186,7 +186,7 @@ Even simpler. Each tool also ships as a `.skill` bundle (a zipped folder). Open 
 
 I packaged the two tools from this issue so you can run them today. Download them, drop them into Claude using the steps above, and point them at your own code:
 
-**[Download the two tools from this issue →](https://www.skool.com/ai-for-dotnet-developers)**
+**[Download the two tools from this issue →](https://www.skool.com/ai-for-developers/about)**
 
 And these two are just the start. There are **50+ AI tools for .NET** in the same style - architecture, EF Core, performance, observability, testing, security and DevOps - with new ones added every week.
 
@@ -198,7 +198,7 @@ You can try all of them inside **TheCodeMan AI Toolkit** on a **7-day free trial
 
 If you just want to grab a few tools and go, the trial is enough. And if you want to stick around and keep getting new tools and learn how to use AI properly as a .NET developer, even better - that is what the community is for.
 
-**[Start your 7-day free trial →](https://www.skool.com/ai-for-dotnet-developers)**
+**[Start your 7-day free trial →](https://www.skool.com/ai-for-developers/about)**
 
 This post is part of the free [AI for .NET Developers](https://thecodeman.net/ai-for-dotnet-developers) guide, where every AI tutorial on the site is grouped by topic.
 

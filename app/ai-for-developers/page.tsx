@@ -24,7 +24,7 @@ const YEARLY = 149;
 const yearlyPerMonth = (YEARLY / 12).toFixed(2);
 const yearlySavings = MONTHLY * 12 - YEARLY;
 const yearlySavingsPct = Math.round((yearlySavings / (MONTHLY * 12)) * 100);
-const MEMBER_LOGIN_URL = 'https://www.skool.com/ai-for-dotnet-developers';
+const MEMBER_LOGIN_URL = 'https://www.skool.com/ai-for-developers';
 
 const title = 'AI for Developers Community | Claude Code, AI Agents & AI Features';
 const description = 'Skills, agents and lessons that make AI coding consistent, plus how to build AI into your apps. 49 skills, 7 agents, 8 courses. 7-day free trial.';
