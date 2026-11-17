@@ -4,8 +4,7 @@ import { eoFormScript } from '../../components/thirdParty'
 
 // EmailOctopus form "claude-code-from-zero" (tag: claude-code-from-zero).
 // The automation "Claude Code from Zero" sends the playbook PDF + lesson 1 right away (public/downloads/claude-code-from-zero-playbook.pdf), then a short email every 2 days (which lesson to do next + one new tip).
-// TODO: paste the form ID from EmailOctopus (Forms > claude-code-from-zero > Embed) before deploying.
-const CCFZ_FORM_ID = 'PASTE-EMAILOCTOPUS-FORM-ID'
+const CCFZ_FORM_ID = 'd548b3d6-e2db-11f1-a85a-67d107d23a2d'
 
 const PAGE_URL = 'https://thecodeman.net/claude-code-from-zero'
 const IMAGE = '/images/claude-code-from-zero.jpg'
