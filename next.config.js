@@ -14,6 +14,7 @@ const nextConfig = {
 if (process.env.NODE_ENV === 'development') {
   nextConfig.rewrites = async () => [
     { source: '/ai-video-editing', destination: '/ai-video-editing/index.html' },
+    { source: '/ai-for-developers-course', destination: '/ai-for-developers-course/index.html' },
   ];
 }
 

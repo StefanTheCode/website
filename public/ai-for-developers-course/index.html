@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI for Developers - Use AI on a real codebase, then build AI into a real app</title>
+<meta name="description" content="24 video lessons, about 7 hours, one real project. Use Claude Code, Copilot and Codex on a real codebase, then build semantic search, RAG, an agent and an MCP server in C#. Presale: $99 until Dec 1.">
+<meta property="og:title" content="AI for Developers - Use AI on a real codebase. Then build AI into a real app.">
+<meta property="og:description" content="24 lessons, one real project. Every lesson breaks something on camera first, then fixes it and proves it with tests, diffs and numbers.">
+<meta property="og:image" content="https://thecodeman.net/ai-for-developers-course/og-image.jpg">
+<meta property="og:url" content="https://thecodeman.net/ai-for-developers-course">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@TheCodeMan__">
+<link rel="canonical" href="https://thecodeman.net/ai-for-developers-course">
+<link rel="icon" href="/favicon.ico">
+<!--
+  ===== SETUP =====
+  CHECKOUT_URL (in the script at the bottom): the Lemon Squeezy checkout link for
+  "AI for Developers - the course". While it is empty, the "Get the course" button scrolls to #pricing.
+  After Dec 1 (presale over) the presale copy on this page needs an update.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: TheCodeMan course page, dev-to-dev, direct, same family as the Code Rules page
+   IDEA: a course player on a laptop - the page behaves like the lesson it sells
+   PICTURE: animated laptop where an agent deletes a test, then the lesson fixes it
+   COLOUR and TYPE: brand dark plum, amber CTA, red/green before-after; Space Grotesk + Inter + JetBrains Mono
+   LAYOUT: sticky bars, hero with player, proof strip, problem, method, curriculum, project, pricing, fit, FAQ */
+:root{color-scheme:dark;--bg:#1b1026;--bg2:#160c20;--panel:#241634;--panel2:#2c1c40;--line:rgba(255,255,255,.09);--ink:#f3eefb;--muted:#b4a8c9;--amber:#ffc244;--amber2:#f5a623;--red:#ff6b7a;--green:#41d98a;--code:#0f0a18}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(30px,4vw,46px)}
+h3{font-size:20px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 max(4vw,16px)}
+.band{padding:clamp(56px,7vw,104px) 0}
+.alt{background:var(--bg2);border-block:1px solid var(--line)}
+.kicker{color:var(--amber);font-weight:600;font-size:14px;margin-bottom:12px}
+.lead{color:var(--muted);font-size:17px;max-width:62ch}
+.center{text-align:center}.center .lead{margin-inline:auto}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:12px;background:linear-gradient(180deg,var(--amber),var(--amber2));color:#241400;font-weight:700;text-decoration:none;box-shadow:0 10px 30px rgba(255,180,50,.25);white-space:nowrap}
+.btn:focus-visible,.ghost:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.ghost{display:inline-flex;align-items:center;min-height:48px;padding:0 6px;color:var(--muted);text-decoration:none;font-weight:600}
+.ghost:hover{color:var(--ink)}
+s{color:var(--muted);font-weight:500}
+/* bars */
+.topbar{background:#2a1340;color:var(--ink);font-size:14px;text-align:center;padding:9px 16px;border-bottom:1px solid var(--line)}
+.topbar b{color:var(--amber)}
+nav{position:sticky;top:0;z-index:20;background:rgba(27,16,38,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;white-space:nowrap}
+.logo span{background:var(--amber);color:#241400;border-radius:6px;padding:0 6px;margin-right:4px}
+.links{display:flex;gap:22px;flex:1;justify-content:center;flex-wrap:wrap}
+.links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500}.links a:hover{color:var(--ink)}
+.navbuy{display:flex;align-items:center;gap:14px;font-weight:700}
+.navbuy .btn{min-height:42px;padding:0 18px}
+/* hero */
+.hero{padding:clamp(36px,5vw,72px) 0 clamp(48px,6vw,88px);background:radial-gradient(900px 520px at 78% 30%,rgba(140,80,255,.28),transparent 65%)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:clamp(28px,4vw,56px);align-items:center}
+.chip{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:6px 14px;font-size:14px;color:var(--muted)}
+.hero h1{font-size:clamp(36px,4.6vw,56px);margin:18px 0 18px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero .lead{margin:0 0 26px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.trust{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px;color:var(--muted);font-size:14px}
+.trust span::before{content:"✓ ";color:var(--green);font-weight:700}
+.status{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:14px}
+.status .row{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted)}
+.meter{height:8px;background:rgba(255,255,255,.1);border-radius:9px;overflow:hidden}.meter i{display:block;height:100%;width:12%;background:var(--amber)}
+/* laptop */
+.laptop{filter:drop-shadow(0 40px 60px rgba(0,0,0,.55));margin-inline:5%}
+.lid{container-type:inline-size;background:linear-gradient(180deg,#2d2b36,#18171d);border:1px solid #3c3a46;border-radius:22px 22px 8px 8px;padding:18px 18px 22px;position:relative}
+.lid::before{content:"";position:absolute;top:7px;left:50%;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:#0b0b0e}
+.screen{aspect-ratio:16/10;background:var(--code);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;font-size:clamp(7px,2.3cqw,14px)}
+.base{height:22px;margin:0 -7%;background:linear-gradient(180deg,#dcdce6,#9d9daa 60%,#76768a);border-radius:0 0 40px 40px/0 0 22px 22px;position:relative}
+.base::before{content:"";position:absolute;top:0;left:50%;width:22%;margin-left:-11%;height:9px;background:#9a9aa8;border-radius:0 0 12px 12px}
+.pbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:.8em 1.2em;background:#18122c;border-bottom:1px solid var(--line);font-weight:600}
+.pbar .t span{background:var(--amber);color:#241400;border-radius:4px;padding:0 4px;margin-right:4px}
+.pbar .m{color:var(--muted)}
+.pmain{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 36%;min-height:0}
+.vid{padding:1em;display:flex;flex-direction:column;gap:.7em;min-height:0}
+.term{flex:1;background:#0a0713;border:1px solid var(--line);border-radius:8px;padding:.9em 1.1em 2.6em;font:1.05em/1.7 'JetBrains Mono',monospace;position:relative;overflow:hidden}
+.term .ln{white-space:pre;opacity:1;transition:opacity .35s}
+.term.play .ln{opacity:0}.term.play .ln.on{opacity:1}
+.p{color:var(--amber)}.mu{color:var(--muted)}
+.del{background:rgba(255,107,122,.15);color:var(--red);margin:0 -1.1em;padding:0 1.1em}
+.bad{color:var(--red);font-weight:600}.good{color:var(--green);font-weight:600}
+.ctrl{position:absolute;left:0;right:0;bottom:0;display:flex;gap:.7em;align-items:center;padding:.7em 1em;background:linear-gradient(transparent,rgba(0,0,0,.8));color:var(--muted);font-size:.85em}
+.track{flex:1;height:4px;background:rgba(255,255,255,.18);border-radius:9px;overflow:hidden}.track i{display:block;height:100%;width:38%;background:var(--amber);transition:width .6s}
+.ltitle{font-weight:700}.ltitle small{display:block;color:var(--muted);font-weight:500}
+.side{background:#120d22;border-left:1px solid var(--line);padding:.9em .8em;overflow:hidden;font-size:.9em}
+.side b{display:block;color:var(--amber);font-size:.8em;letter-spacing:.06em;margin:.2em 0 .6em}
+.side b+b,.side .g{margin-top:1em}
+.ls{display:flex;gap:.6em;align-items:center;padding:.35em .5em;line-height:1.3;border-radius:6px;color:var(--muted)}
+.ls i{flex:none;width:1.25em;height:1.25em;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);font-style:normal;font-size:.8em;display:grid;place-items:center}
+.ls.d i{background:rgba(65,217,138,.18);border-color:transparent;color:var(--green)}
+.ls.c{background:rgba(255,194,68,.13);color:var(--ink);font-weight:600}.ls.c i{background:var(--amber);border-color:transparent;color:#241400}
+/* proof */
+.proof{border-block:1px solid var(--line);background:#140b1d}
+.proof .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;padding-block:20px;color:var(--muted);font-size:15px}
+.proof b{color:var(--ink)}
+/* grids */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.xlist{list-style:none;padding:0;margin:22px 0 0}
+.xlist li{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.xlist li::before{content:"✕";color:var(--red);font-weight:700}
+.note{margin-top:22px;font-size:18px}.note b{color:var(--amber)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px}
+.card .n{font-family:'Space Grotesk';font-weight:700;color:var(--amber);font-size:15px;margin-bottom:8px}
+.card p{color:var(--muted);margin:8px 0 0}
+.diff{background:var(--code);border:1px solid var(--line);border-radius:14px;overflow:hidden;font:13.5px/1.75 'JetBrains Mono',monospace}
+.diff .h{padding:10px 16px;background:#18122c;color:var(--muted);border-bottom:1px solid var(--line)}
+.diff pre{margin:0;padding:14px 16px;overflow-x:auto}
+/* curriculum */
+.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:40px}
+.part{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
+.part .tag{display:inline-block;background:rgba(255,194,68,.14);color:var(--amber);border-radius:99px;padding:3px 12px;font-weight:600;font-size:14px}
+.part h3{font-size:26px;margin:14px 0 6px}
+.part p{color:var(--muted);margin:0 0 14px}
+.part ul{margin:0;padding:0;list-style:none}
+.part li{padding:9px 0;border-top:1px solid var(--line);display:flex;gap:10px}
+.part li::before{content:"→";color:var(--amber)}
+.timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.tl{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tl b{display:block;font-family:'Space Grotesk';font-size:18px;white-space:nowrap}
+.tl span{color:var(--muted);font-size:15px}
+/* project */
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.stack span{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 14px;font-weight:600}
+.branches{background:var(--code);border:1px solid var(--line);border-radius:16px;padding:22px}
+.br{display:flex;align-items:center;gap:10px;font:13.5px 'JetBrains Mono',monospace;padding:7px 0;color:var(--muted)}
+.br i{flex:none;width:12px;height:12px;border-radius:50%;background:var(--muted)}
+.br.s i{background:var(--amber)}.br.f i{background:var(--green)}
+.br.f{color:var(--ink)}
+/* included */
+.inc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+.inc .card h3{margin-top:4px}
+/* pricing */
+.prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:40px;align-items:stretch}
+.price{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column}
+.price.best{border:2px solid var(--amber);background:linear-gradient(180deg,#2e1d44,var(--panel))}
+.price .lab{font-weight:600;color:var(--amber);font-size:14px}
+.price h3{font-size:24px;margin:8px 0 14px}
+.amt{font-family:'Space Grotesk';font-size:52px;font-weight:700;line-height:1}
+.amt small{font-size:17px;color:var(--muted);font-weight:500;margin-left:6px}
+.price .after{color:var(--muted);margin:8px 0 18px;font-size:15px}
+.price ul{list-style:none;padding:0;margin:0 0 24px;flex:1}
+.price li{padding:7px 0;display:flex;gap:10px}
+.price li::before{content:"✔";color:var(--green)}
+.price .btn{justify-content:center}
+.fine{color:var(--muted);font-size:14px;margin-top:12px;text-align:center}
+/* fit */
+.fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:36px}
+.fit .card li{padding:6px 0}
+.fit ul{list-style:none;padding:0;margin:10px 0 0}
+.no li::before{content:"✕  ";color:var(--red);font-weight:700}
+.yes li::before{content:"✔  ";color:var(--green);font-weight:700}
+/* about + faq */
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:center}
+.about .photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:20px;border:1px solid var(--line);box-shadow:0 30px 60px rgba(0,0,0,.45);display:block}
+.mvp{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:6px 14px;font-size:14px;color:var(--muted)}
+.ms{display:grid;grid-template-columns:7px 7px;gap:1.5px}.ms i{width:7px;height:7px}
+.about h2{margin:18px 0 18px}
+.about p{color:var(--muted);margin:0 0 14px;font-size:17px}
+.about p b{color:var(--ink);font-family:'Space Grotesk';font-size:19px}
+.stats{display:flex;flex-wrap:wrap;gap:20px 44px;border-top:1px solid var(--line);margin-top:22px;padding-top:22px}
+.stats b{display:block;font-family:'Space Grotesk';font-size:28px;color:var(--amber);line-height:1.1}
+.stats span{color:var(--muted);font-size:14px}
+.faq{max-width:820px;margin:36px auto 0}
+details{border-bottom:1px solid var(--line);padding:6px 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:14px 0;font-weight:600;font-size:17px;min-height:44px}
+summary::after{content:"+";color:var(--amber);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin:0 0 14px}
+.final{text-align:center;background:radial-gradient(700px 300px at 50% 0,rgba(255,194,68,.12),transparent 70%)}
+.final .cta{justify-content:center;margin-top:26px}
+footer{padding:30px 0 110px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(22,12,32,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+.sticky.show{transform:none}
+.sticky .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.sticky small{display:block;color:var(--muted)}
+.sticky .right{display:flex;align-items:center;gap:14px;font-weight:700;font-size:18px}
+@media(max-width:980px){.links{display:none}.hero .wrap,.two{grid-template-columns:minmax(0,1fr)}.cards,.inc{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.about{grid-template-columns:minmax(0,1fr)}.about .photo{max-width:360px;margin:0 auto;aspect-ratio:4/5}.screen{aspect-ratio:4/3}.sticky .left b{font-size:15px}.parts,.prices,.fit,.timeline{grid-template-columns:minmax(0,1fr)}.pmain{grid-template-columns:minmax(0,1fr)}.side{display:none}.about{grid-template-columns:minmax(0,1fr)}.navbuy s{display:none}.sticky .left small{display:none}}
+@media(max-width:420px){.navbuy .price-txt{display:none}.hero h1{font-size:36px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.term .ln,.track i,.sticky{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar">🔥 <b>Presale:</b> the first lessons go live on <b>November 27</b>. $99 until December 1, then $149.</div>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top"><span>AI</span>for Developers</a>
+    <div class="links">
+      <a href="#problem">The problem</a><a href="#method">How it works</a><a href="#curriculum">Curriculum</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    </div>
+    <div class="navbuy"><span class="price-txt"><s>$149</s> $99</span><a class="btn" href="#pricing">Get the presale</a></div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="chip">By Stefan Đokić · Microsoft MVP</span>
+      <h1>Use AI on a real codebase. Then <em>build AI</em> into a real app.</h1>
+      <p class="lead">24 lessons, about 7 hours, one real project. Every lesson breaks something on camera first, then fixes it and proves it with tests, diffs and numbers. Claude Code first, with the Copilot and Codex way in every lesson.</p>
+      <div class="cta">
+        <a class="btn" href="#pricing">Get the presale - $99</a>
+        <a class="ghost" href="#curriculum">See the curriculum →</a>
+      </div>
+      <div class="trust"><span>Full written course today</span><span>14-day money-back</span><span>Lifetime access</span></div>
+      <div class="status">
+        <div class="row"><span><b style="color:var(--ink)">Presale</b> · first lessons Nov 27</span><span>all 24 by Dec 15</span></div>
+        <div class="meter"><i></i></div>
+      </div>
+    </div>
+
+    <div class="laptop" aria-label="Course player showing a lesson where an AI agent deletes a failing test">
+      <div class="lid">
+        <div class="screen">
+          <div class="pbar"><div class="t"><span>AI</span>for Developers</div><div class="m">Part 1 · Use AI</div><div class="m">7 / 24</div></div>
+          <div class="pmain">
+            <div class="vid">
+              <div class="term" id="term">
+                <div class="ln"><span class="p">$</span> claude "fix the failing test"</div>
+                <div class="ln mu">  Editing tests/OrderTotalTests.cs</div>
+                <div class="ln del">- [Fact]</div>
+                <div class="ln del">- public void Total_includes_tax()</div>
+                <div class="ln bad">✗ Agent deleted the test. Build green.</div>
+                <div class="ln mu">  # lesson: fix the code, keep the test</div>
+                <div class="ln good">✓ OrderTotal now includes tax</div>
+                <div class="ln good">✓ 42 passed, 0 deleted</div>
+                <div class="ctrl"><span>06:12</span><div class="track"><i id="trk"></i></div><span>16:40</span></div>
+              </div>
+              <div class="ltitle"><small>Lesson 7</small>When the agent deletes your test</div>
+            </div>
+            <div class="side">
+              <b>PART 1 · USE AI</b>
+              <div class="ls d"><i>✓</i>Your first session</div>
+              <div class="ls d"><i>✓</i>The missing context file</div>
+              <div class="ls d"><i>✓</i>Vague prompt, vague code</div>
+              <div class="ls c"><i>▶</i>When the agent deletes your test</div>
+              <div class="ls"><i></i>Agents that review PRs in CI</div>
+              <b class="g">PART 2 · BUILD AI</b>
+              <div class="ls"><i></i>Semantic search</div>
+              <div class="ls"><i></i>RAG that cites its sources</div>
+              <div class="ls"><i></i>An agent that asks first</div>
+              <div class="ls"><i></i>Your own MCP server in C#</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="base"></div>
+    </div>
+  </div>
+</header>
+
+<div class="proof"><div class="wrap"><span><b>Microsoft MVP</b></span><span><b>22,000+</b> newsletter readers</span><span><b>110k+</b> on LinkedIn</span><span><b>24 lessons</b> · about 7 hours</span><span><b>1</b> real project</span></div></div>
+
+<section class="band" id="problem">
+  <div class="wrap two">
+    <div>
+      <div class="kicker">The problem</div>
+      <h2>AI writes code fast. It also cheats fast.</h2>
+      <ul class="xlist">
+        <li>A vague prompt gives you vague code, and you don't notice until review</li>
+        <li>No context file, so the AI ignores your architecture and conventions</li>
+        <li>The agent "fixes" a failing test by deleting it, and the build turns green</li>
+        <li>A 2,000-line pull request that nobody really reads</li>
+        <li>A chatbot answer with no sources, so nobody knows if it's true</li>
+        <li>An agent that acts first and asks never</li>
+      </ul>
+      <p class="note">You don't need more prompts. <b>You need a workflow that catches this.</b></p>
+    </div>
+    <div class="diff" aria-label="A diff where an agent deleted a test">
+      <div class="h">tests/OrderTotalTests.cs · changed by an AI agent</div>
+<pre><span class="mu">@@ -12,9 +12,0 @@</span>
+<span class="bad">-    [Fact]</span>
+<span class="bad">-    public void Total_includes_tax()</span>
+<span class="bad">-    {</span>
+<span class="bad">-        var order = Order.With(100m);</span>
+<span class="bad">-        Assert.Equal(120m, order.Total);</span>
+<span class="bad">-    }</span>
+
+<span class="good">✓ dotnet test · 41 passed</span>
+<span class="mu">// green build, broken feature</span></pre>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="method">
+  <div class="wrap center">
+    <div class="kicker">How every lesson works</div>
+    <h2>Break it. Fix it. Prove it.</h2>
+    <p class="lead">No toy demos and no "look how smart the AI is". Every lesson shows a real failure first, because that's what you'll meet at work.</p>
+    <div class="cards" style="text-align:left">
+      <div class="card"><div class="n">Break it</div><h3>On camera, on purpose</h3><p>A vague prompt, a missing context file, an agent that cheats. You see exactly how AI goes wrong on a real codebase.</p></div>
+      <div class="card"><div class="n">Fix it</div><h3>The change that works</h3><p>The context, the prompt, the guardrail or the code change that makes the result reliable, and why it works.</p></div>
+      <div class="card"><div class="n">Prove it</div><h3>Tests, diffs, numbers</h3><p>Not "it looks right". Every fix ends with proof: tests that pass for the right reason, a clean diff, measured results.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="curriculum">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker">What you'll learn</div>
+      <h2>Two parts. 24 lessons. One project.</h2>
+      <p class="lead">First you learn to use AI well on a real codebase. Then you build AI features into the same app.</p>
+    </div>
+    <div class="parts">
+      <div class="part">
+        <span class="tag">Part 1 · 18 lessons</span>
+        <h3>Use AI</h3>
+        <p>From your first session to agents that review your pull requests in CI. Claude Code is the main tool, and every lesson shows the Copilot and Codex way too.</p>
+        <ul>
+          <li>Your first session on a real codebase</li>
+          <li>Context files the AI actually follows</li>
+          <li>Clear outcomes instead of vague prompts</li>
+          <li>Tests that stop an agent from cheating</li>
+          <li>Agents that review your pull requests in CI</li>
+        </ul>
+      </div>
+      <div class="part">
+        <span class="tag">Part 2 · 6 lessons</span>
+        <h3>Build AI</h3>
+        <p>We put AI into the real app, with the same rule: prove it works.</p>
+        <ul>
+          <li>Semantic search</li>
+          <li>RAG that cites its sources</li>
+          <li>An agent that asks before it acts</li>
+          <li>Your own MCP server in C#</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl"><b>November 27</b><span>The first lessons go live</span></div>
+      <div class="tl"><b>Every week</b><span>New lessons land in the course</span></div>
+      <div class="tl"><b>December 15</b><span>All 24 lessons and the finished project</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="project">
+  <div class="wrap two">
+    <div>
+      <div class="kicker">The project</div>
+      <h2>One real app, from the first lesson to the last.</h2>
+      <p class="lead">No disconnected snippets. You work on the same codebase the whole course, with a start and a finished branch for every lesson, so you can always compare your result with mine.</p>
+      <div class="stack"><span>.NET API</span><span>Next.js frontend</span><span>Postgres</span><span>Claude Code</span><span>Copilot</span><span>Codex</span></div>
+    </div>
+    <div class="branches" aria-label="Git branches for each lesson">
+      <div class="br s"><i></i>lesson-06-start</div>
+      <div class="br f"><i></i>lesson-06-finished</div>
+      <div class="br s"><i></i>lesson-07-start</div>
+      <div class="br f"><i></i>lesson-07-finished · tests kept, tax fixed</div>
+      <div class="br s"><i></i>lesson-08-start</div>
+      <div class="br"><i></i>…</div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="included">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker">You don't wait for Friday</div>
+      <h2>Start the day you buy.</h2>
+    </div>
+    <div class="inc">
+      <div class="card"><div class="n">Right away</div><h3>The full written course</h3><p>AI Roadmap for Developers: 8 modules and 11 lessons as a PDF, from Claude Code and CLAUDE.md to MCP, embeddings, RAG and production AI.</p></div>
+      <div class="card"><div class="n">Right away</div><h3>Welcome Kit</h3><p>What's coming and when, plus a setup checklist so you're ready for lesson 1.</p></div>
+      <div class="card"><div class="n">From Nov 27</div><h3>24 video lessons</h3><p>New lessons every week until December 15. Lifetime access and every future update.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="pricing">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker">Presale pricing</div>
+      <h2>$99 until December 1. Then $149.</h2>
+    </div>
+    <div class="prices">
+      <div class="price">
+        <div class="lab">The course</div>
+        <h3>AI for Developers</h3>
+        <div class="amt">$99<small><s>$149</s></small></div>
+        <div class="after">Presale price until Dec 1 · one-time payment</div>
+        <ul>
+          <li>24 video lessons, about 7 hours</li>
+          <li>The full project with start and finished branches</li>
+          <li>The full written course (PDF) right away</li>
+          <li>Lifetime access and all future updates</li>
+          <li>14-day money-back guarantee</li>
+        </ul>
+        <a class="btn" href="#" data-checkout>Get the course - $99</a>
+      </div>
+      <div class="price best">
+        <div class="lab">Best value · Black Friday</div>
+        <h3>AI for Developers community</h3>
+        <div class="amt">$119<small>/ year</small></div>
+        <div class="after">Locked for as long as you stay · $149/year from Dec 2</div>
+        <ul>
+          <li>This course, the day each lesson lands</li>
+          <li>Pragmatic .NET Code Rules - AI edition (unlocks after 30 days)</li>
+          <li>The 8 courses already inside, with roadmaps and full source code</li>
+          <li>50+ Claude Code skills and agents</li>
+          <li>Build Challenges, AI Weekly, and direct access to me</li>
+        </ul>
+        <a class="btn" href="https://thecodeman.net/ai-for-developers">Join the community - $119</a>
+      </div>
+    </div>
+    <p class="fine">Secure checkout via Lemon Squeezy · Community on Skool with a 7-day free trial</p>
+  </div>
+</section>
+
+<section class="band" id="fit">
+  <div class="wrap">
+    <div class="center"><div class="kicker">Honest fit check</div><h2>Is this course for you?</h2></div>
+    <div class="fit">
+      <div class="card no"><h3>Not for you if you…</h3><ul><li>Want AI to write everything with no checks</li><li>Prefer prompt tricks over a real workflow</li><li>Don't want to touch a real codebase</li></ul></div>
+      <div class="card yes"><h3>Built for you if you…</h3><ul><li>Already write code and want to ship faster with AI</li><li>Want to trust what lands in main, no matter who wrote it</li><li>Want to add search, RAG and agents to a real app</li><li>Use Claude Code, Copilot or Codex, or want to start</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="about">
+  <div class="wrap about">
+    <img class="photo" alt="Stefan Đokić, Microsoft MVP" src="/images/ebook-stefan.webp" loading="lazy" width="900" height="1195">
+    <div>
+      <span class="mvp"><span class="ms" aria-hidden="true"><i style="background:#f25022"></i><i style="background:#7fba00"></i><i style="background:#00a4ef"></i><i style="background:#ffb900"></i></span>Microsoft MVP</span>
+      <h2>This isn't theory - it's how I use AI on production code.</h2>
+      <p>Hi, I'm <b>Stefan Đokić</b> - Microsoft MVP, Senior Software Engineer, and creator of TheCodeMan.net.</p>
+      <p>For more than 10 years I've been building large-scale .NET solutions. Today I use Claude Code, Copilot and Codex on that code every day, and I've seen most of the ways AI goes wrong.</p>
+      <p>Everything in this course comes from that daily work: the context files, the guardrails and the workflow I actually use - not demos, not "ideal world" scenarios.</p>
+      <div class="stats"><div><b>22,000+</b><span>Newsletter</span></div><div><b>110k+</b><span>LinkedIn</span></div><div><b>8,000+</b><span>Twitter / X</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="faq">
+  <div class="wrap">
+    <div class="center"><div class="kicker">Questions</div><h2>Frequently asked questions</h2></div>
+    <div class="faq">
+      <details><summary>When do I get the course?</summary><p>Right after you buy, you get the Welcome Kit and the full written course. The first video lessons go live on November 27, new ones land every week, and all 24 are done by December 15.</p></details>
+      <details><summary>Do I need Claude Code?</summary><p>Claude Code is the main tool in the course, and every lesson also shows the Copilot and Codex way, so you can follow with the tool you already use.</p></details>
+      <details><summary>What's the tech stack of the project?</summary><p>A .NET API, a Next.js frontend and Postgres, with a start and a finished branch for every lesson.</p></details>
+      <details><summary>Is the written course the same as the videos?</summary><p>No. The written course (AI Roadmap for Developers) is a companion with 8 modules you can start today. The video course is its own 24 lessons built around one real project.</p></details>
+      <details><summary>What's the difference between the course and the community?</summary><p>The course is a one-time purchase. The community includes this course, Pragmatic .NET Code Rules, 8 more courses, 50+ Claude Code skills and agents, and direct access to me, for $119/year during Black Friday.</p></details>
+      <details><summary>Is there a refund policy?</summary><p>Yes. 14-day money-back guarantee. Email stefan@thecodeman.net within 14 days of purchase and you get a full refund.</p></details>
+      <details><summary>Will the price go up?</summary><p>Yes. The presale price is $99 until December 1. From December 2 the course is $149.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="band final">
+  <div class="wrap">
+    <div class="kicker">Let AI speed you up. Never let it think for you.</div>
+    <h2>Ship AI-assisted code you can actually trust.</h2>
+    <div class="cta"><a class="btn" href="#pricing">Get the presale - $99</a><a class="ghost" href="#curriculum">See the curriculum →</a></div>
+    <p class="fine">First lessons Nov 27 · all 24 by Dec 15 · 14-day money-back · lifetime access</p>
+  </div>
+</section>
+
+<footer>TheCodeMan.NET · AI for Developers · stefan@thecodeman.net</footer>
+
+<div class="sticky" id="sticky"><div class="wrap">
+  <div class="left"><b>AI for Developers</b><small>Presale · first lessons Nov 27 · $149 from Dec 2</small></div>
+  <div class="right"><span><s>$149</s> $99</span><a class="btn" href="#pricing">Get access</a></div>
+</div></div>
+
+<script>
+{
+  const CHECKOUT_URL = ''; // Lemon Squeezy checkout link for the course
+  const term = document.getElementById('term');
+  const lines = [...term.querySelectorAll('.ln')];
+  const trk = document.getElementById('trk');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    term.classList.add('play');
+    let i = 0;
+    const step = () => {
+      if (i < lines.length) {
+        lines[i].classList.add('on');
+        trk.style.width = (12 + 80 * (i + 1) / lines.length) + '%';
+        i++;
+        setTimeout(step, i === 5 ? 1600 : 650);
+      } else {
+        setTimeout(() => { lines.forEach(l => l.classList.remove('on')); trk.style.width = '12%'; i = 0; setTimeout(step, 700); }, 3200);
+      }
+    };
+    setTimeout(step, 600);
+  }
+  const sticky = document.getElementById('sticky');
+  const hero = document.querySelector('.hero');
+  const io = new IntersectionObserver(([e]) => sticky.classList.toggle('show', !e.isIntersecting));
+  io.observe(hero);
+  document.querySelectorAll('[data-checkout]').forEach(a => {
+    if (CHECKOUT_URL) { a.href = CHECKOUT_URL; return; }
+    a.addEventListener('click', e => { e.preventDefault(); location.hash = 'pricing'; });
+  });
+}
+</script>
+</body>
+</html>
