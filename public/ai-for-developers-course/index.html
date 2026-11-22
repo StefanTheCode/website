@@ -16,8 +16,8 @@
 <link rel="icon" href="/favicon.ico">
 <!--
   ===== SETUP =====
-  CHECKOUT_URL (in the script at the bottom): the Lemon Squeezy checkout link for
-  "AI for Developers - the course". While it is empty, the "Get the course" button scrolls to #pricing.
+  Checkout: every course buy button is a Lemon Squeezy overlay link (class "lemonsqueezy-button",
+  ?embed=1, lemon.js at the bottom). Search for the checkout URL to change it.
   After Dec 1 (presale over) the presale copy on this page needs an update.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,7 +163,7 @@ nav .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
 .yes li::before{content:"✔  ";color:var(--green);font-weight:700}
 /* about + faq */
 .about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:center}
-.about .photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:20px;border:1px solid var(--line);box-shadow:0 30px 60px rgba(0,0,0,.45);display:block}
+.about .photo{width:100%;height:auto;max-height:620px;aspect-ratio:3/4;object-fit:cover;border-radius:20px;border:1px solid var(--line);box-shadow:0 30px 60px rgba(0,0,0,.45);display:block}
 .mvp{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:6px 14px;font-size:14px;color:var(--muted)}
 .ms{display:grid;grid-template-columns:7px 7px;gap:1.5px}.ms i{width:7px;height:7px}
 .about h2{margin:18px 0 18px}
@@ -202,7 +202,7 @@ footer{padding:30px 0 110px;color:var(--muted);font-size:14px;text-align:center;
     <div class="links">
       <a href="#problem">The problem</a><a href="#method">How it works</a><a href="#curriculum">Curriculum</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
     </div>
-    <div class="navbuy"><span class="price-txt"><s>$149</s> $99</span><a class="btn" href="#pricing">Get the presale</a></div>
+    <div class="navbuy"><span class="price-txt"><s>$149</s> $99</span><a class="btn lemonsqueezy-button" href="https://stefandjokic.lemonsqueezy.com/checkout/buy/2cf8a43b-9521-42a1-965c-07f711281a8b?embed=1">Get the presale</a></div>
   </div>
 </nav>
 
@@ -213,7 +213,7 @@ footer{padding:30px 0 110px;color:var(--muted);font-size:14px;text-align:center;
       <h1>Use AI on a real codebase. Then <em>build AI</em> into a real app.</h1>
       <p class="lead">24 lessons, about 7 hours, one real project. Every lesson breaks something on camera first, then fixes it and proves it with tests, diffs and numbers. Claude Code first, with the Copilot and Codex way in every lesson.</p>
       <div class="cta">
-        <a class="btn" href="#pricing">Get the presale - $99</a>
+        <a class="btn lemonsqueezy-button" href="https://stefandjokic.lemonsqueezy.com/checkout/buy/2cf8a43b-9521-42a1-965c-07f711281a8b?embed=1">Get the presale - $99</a>
         <a class="ghost" href="#curriculum">See the curriculum →</a>
       </div>
       <div class="trust"><span>Full written course today</span><span>14-day money-back</span><span>Lifetime access</span></div>
@@ -401,7 +401,7 @@ footer{padding:30px 0 110px;color:var(--muted);font-size:14px;text-align:center;
           <li>Lifetime access and all future updates</li>
           <li>14-day money-back guarantee</li>
         </ul>
-        <a class="btn" href="#" data-checkout>Get the course - $99</a>
+        <a class="btn lemonsqueezy-button" href="https://stefandjokic.lemonsqueezy.com/checkout/buy/2cf8a43b-9521-42a1-965c-07f711281a8b?embed=1">Get the course - $99</a>
       </div>
       <div class="price best">
         <div class="lab">Best value · Black Friday</div>
@@ -465,7 +465,7 @@ footer{padding:30px 0 110px;color:var(--muted);font-size:14px;text-align:center;
   <div class="wrap">
     <div class="kicker">Let AI speed you up. Never let it think for you.</div>
     <h2>Ship AI-assisted code you can actually trust.</h2>
-    <div class="cta"><a class="btn" href="#pricing">Get the presale - $99</a><a class="ghost" href="#curriculum">See the curriculum →</a></div>
+    <div class="cta"><a class="btn lemonsqueezy-button" href="https://stefandjokic.lemonsqueezy.com/checkout/buy/2cf8a43b-9521-42a1-965c-07f711281a8b?embed=1">Get the presale - $99</a><a class="ghost" href="#curriculum">See the curriculum →</a></div>
     <p class="fine">First lessons Nov 27 · all 24 by Dec 15 · 14-day money-back · lifetime access</p>
   </div>
 </section>
@@ -474,12 +474,11 @@ footer{padding:30px 0 110px;color:var(--muted);font-size:14px;text-align:center;
 
 <div class="sticky" id="sticky"><div class="wrap">
   <div class="left"><b>AI for Developers</b><small>Presale · first lessons Nov 27 · $149 from Dec 2</small></div>
-  <div class="right"><span><s>$149</s> $99</span><a class="btn" href="#pricing">Get access</a></div>
+  <div class="right"><span><s>$149</s> $99</span><a class="btn lemonsqueezy-button" href="https://stefandjokic.lemonsqueezy.com/checkout/buy/2cf8a43b-9521-42a1-965c-07f711281a8b?embed=1">Get access</a></div>
 </div></div>
 
 <script>
 {
-  const CHECKOUT_URL = ''; // Lemon Squeezy checkout link for the course
   const term = document.getElementById('term');
   const lines = [...term.querySelectorAll('.ln')];
   const trk = document.getElementById('trk');
@@ -503,11 +502,8 @@ footer{padding:30px 0 110px;color:var(--muted);font-size:14px;text-align:center;
   const hero = document.querySelector('.hero');
   const io = new IntersectionObserver(([e]) => sticky.classList.toggle('show', !e.isIntersecting));
   io.observe(hero);
-  document.querySelectorAll('[data-checkout]').forEach(a => {
-    if (CHECKOUT_URL) { a.href = CHECKOUT_URL; return; }
-    a.addEventListener('click', e => { e.preventDefault(); location.hash = 'pricing'; });
-  });
 }
 </script>
+<script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
 </body>
 </html>
