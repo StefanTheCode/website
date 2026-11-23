@@ -1,11 +1,38 @@
 ---
 title: "Memory Caching in .NET"
-seo_title: "IMemoryCache in C#: Memory Caching in .NET with Examples"
+seo_title: "IMemoryCache in C#: GetOrCreate, Expiration and Size Limits"
 subtitle: ".NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources."
 date: "August 10 2024"
 category: ".NET"
-readTime: "Read Time: 7 minutes"
-meta_description: "How to use IMemoryCache in C# and ASP.NET Core: register the memory cache, get and set entries, absolute and sliding expiration, and MemoryCacheEntryOptions, with code examples."
+readTime: "Read Time: 10 minutes"
+meta_description: "Use IMemoryCache in C# and ASP.NET Core: GetOrCreateAsync, absolute vs sliding expiration, MemoryCacheEntryOptions and SizeLimit, with working code."
+updated: "2026-11-23"
+faq:
+  - q: "What is IMemoryCache in C#?"
+    a: >-
+      IMemoryCache is the in-memory cache abstraction in .NET, from the Microsoft.Extensions.Caching.Memory package.
+      It stores objects in the memory of the running process, so reads are very fast, but the data is lost on restart
+      and is not shared between servers. You register it with AddMemoryCache() and inject IMemoryCache where you need it.
+  - q: "What is the difference between absolute and sliding expiration in IMemoryCache?"
+    a: >-
+      Absolute expiration removes an entry after a fixed time, no matter how often it is read. Sliding expiration
+      removes an entry only if nobody reads it for the given time, and every read resets the timer. Combine both so a
+      frequently read entry still gets refreshed at a known maximum age.
+  - q: "Is IMemoryCache thread-safe?"
+    a: >-
+      Yes, IMemoryCache is safe to read and write from multiple threads. GetOrCreate and GetOrCreateAsync are not
+      atomic, though: if several requests miss the same key at the same time, the factory can run more than once.
+      If that matters, use HybridCache, which has built-in stampede protection.
+  - q: "Does IMemoryCache remove entries when memory is low?"
+    a: >-
+      No. ASP.NET Core does not trim IMemoryCache based on memory pressure. Set an expiration on every entry, and use
+      SizeLimit on a dedicated MemoryCache instance when the number of keys can grow, for example when keys come from
+      user input.
+  - q: "Should I use IMemoryCache or IDistributedCache?"
+    a: >-
+      Use IMemoryCache when the app runs as a single instance, or when cached data may differ slightly between
+      instances. Use IDistributedCache, for example with Redis, when several servers must see the same cached data or
+      the cache must survive restarts. HybridCache combines both behind one API.
 ---
 
 <!--START-->
@@ -27,6 +54,8 @@ Many thanks to the sponsors who make it possible for this newsletter to be free 
 </a>
 </p>
 <p style="margin: 0 0 28px 0; text-align: center;"><a href="https://www.youtube.com/watch?v=PpKEcbTrR4w" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Caching in .NET on YouTube</a></p>
+
+**Short answer:** IMemoryCache is the built-in in-memory cache in .NET (`Microsoft.Extensions.Caching.Memory`). Register it with `builder.Services.AddMemoryCache()`, inject `IMemoryCache`, and call `GetOrCreateAsync` to return a cached value or compute and store it in one step. Always set an expiration (absolute, sliding, or both), and use `SizeLimit` when the number of keys can grow, because ASP.NET Core does not shrink the cache on memory pressure. The cache lives inside one process, so for multiple servers use `IDistributedCache` or `HybridCache`.
 
 ## What is .NET Caching?
 .NET memory caching is a feature used to store objects in memory for faster access. This can significantly improve the performance of applications, especially those that frequently access data from databases, web services, or other time-consuming data retrieval sources.
@@ -54,11 +83,11 @@ Caching Key components
 
 In this issue I'll talk about IMemoryCache.
 
-## IMemoryCache in .NET
+## IMemoryCache Features
 
 What are the key features of this library?
 
-**1. Strongly Typed**: Unlike the earlier MemoryCache, IMemoryCache is strongly typed, reducing errors and improving code readability.
+**1. Generic API**: Extension methods like `Get<T>`, `Set<T>`, `TryGetValue<T>` and `GetOrCreate<T>` give you typed access to cached values, which reduces casting errors and keeps the code readable.
 
 **2. Dependency Injection Friendly**: IMemoryCache is designed to be used with dependency injection, making it easy to manage and test.
 
@@ -76,11 +105,11 @@ What are the key features of this library?
 
 Nice. Now when we know the basics about IMemoryCache, let me show how to implement it.
 
-## IMemoryCache in .NET
+## How to Use IMemoryCache in ASP.NET Core
 
-The first thing we need to do is to add nuget package, of course:
+In an ASP.NET Core app, `Microsoft.Extensions.Caching.Memory` is already part of the shared framework, so you can skip the package. In other project types (console app, class library), add it from NuGet:
 
-```csharp
+```bash
 dotnet add package Microsoft.Extensions.Caching.Memory
 ```
 
@@ -128,7 +157,7 @@ public List<WeatherForecast> Get()
 
 Explanation:
 
-**- Cache Check _casheService.TryGetValue...**:
+**- Cache Check _cacheService.TryGetValue...**:
 
 - It attempts to retrieve a cached value associated with the key "MyCacheKey" (Don't hardcode this).
 - If the value is found in the cache, it is output into weathersFromCache.
@@ -146,7 +175,7 @@ If the data was retrieved from the cache, it is returned directly.If the data wa
 
 ## IMemoryCache Expiration Time
 
-In the provided code snippet, there is no explicit cache expiration time set. This means the cache entry for "MyCacheKey" **will remain in the cache indefinitely**, or until it is explicitly removed or replaced, or if the cache evicts it due to memory pressure.
+In the provided code snippet, there is no explicit cache expiration time set. This means the cache entry for "MyCacheKey" **will remain in the cache indefinitely**, until it is explicitly removed or replaced. ASP.NET Core does not trim IMemoryCache when memory is low, so an entry without expiration can live for the whole lifetime of the app.
 
 To set an explicit cache expiration time, you would need to modify the code where the cache entry is set.
 
@@ -221,7 +250,7 @@ Here's a more detailed look at what you can set using MemoryCacheEntryOptions be
 
 1. Priority
 
-CacheItemPriority: Determines the priority of a cache entry. During memory pressure, entries with lower priority may be removed first to free up space. Values range from Low to NeverRemove.
+CacheItemPriority: Determines the priority of a cache entry. When the cache is compacted (for example after it reaches its SizeLimit), entries with lower priority are removed first. Values range from Low to NeverRemove.
 
 2. Size
 
@@ -260,15 +289,100 @@ cacheEntryOptions.RegisterPostEvictionCallback(
 _memoryCache.Set("MyCacheKey", myObject, cacheEntryOptions);
 ```
 
+One catch with `Size`: it is ignored unless the cache has a `SizeLimit`. And once you set a `SizeLimit`, **every** entry must set a size, otherwise `Set` throws an `InvalidOperationException`. More on that below.
+
+## GetOrCreateAsync: The Cleaner Way to Use IMemoryCache
+
+The `TryGetValue` + `Set` combo from above works, but most of the time you want one call that says "give me the cached value, or create it". That's `GetOrCreateAsync`:
+
+```csharp
+app.MapGet("/products/{id:int}", async (int id, IMemoryCache cache, ProductRepository repository) =>
+{
+    var product = await cache.GetOrCreateAsync($"product:{id}", async entry =>
+    {
+        entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+        entry.SlidingExpiration = TimeSpan.FromMinutes(2);
+
+        return await repository.GetByIdAsync(id);
+    });
+
+    return product is null ? Results.NotFound() : Results.Ok(product);
+});
+```
+
+The factory runs only on a cache miss, and you configure expiration on the `entry` right where the value is created.
+
+When the data changes, remove the entry so the next read loads fresh data:
+
+```csharp
+await repository.UpdateAsync(product);
+cache.Remove($"product:{product.Id}");
+```
+
+Two things to know:
+
+- **GetOrCreateAsync is not atomic.** If 50 requests miss the same key at the same moment, the factory can run 50 times. For cheap queries that's fine. For expensive ones, look at [HybridCache in ASP.NET Core](https://thecodeman.net/posts/hybrid-cache-in-aspnet-core), which has stampede protection built in.
+- **The cache stores object references.** If you change an object you got from the cache, you change the cached copy for every other request too. Cache immutable objects (records work great) or DTOs you never modify.
+
+## Limit the Cache Size with SizeLimit
+
+Here's the thing a lot of people miss: **ASP.NET Core does not limit IMemoryCache based on memory pressure.** If your keys come from user input (search terms, IDs, filters) and you have no limit, the cache can grow until the process runs out of memory.
+
+`SizeLimit` has no unit. You decide what "1" means - one entry, one KB, the length of a string. The simplest option is "1 unit = 1 entry":
+
+```csharp
+public sealed class ProductCache
+{
+    public MemoryCache Cache { get; } = new(new MemoryCacheOptions
+    {
+        SizeLimit = 1_000 // max 1,000 entries, because every entry has Size = 1
+    });
+}
+
+builder.Services.AddSingleton<ProductCache>();
+```
+
+```csharp
+productCache.Cache.Set($"product:{id}", product, new MemoryCacheEntryOptions
+{
+    Size = 1,
+    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10)
+});
+```
+
+When the total size would go over the limit, the new entry is not cached and the cache starts compacting in the background, removing expired, low-priority and least recently used entries first.
+
+Notice that this is a **dedicated** `MemoryCache` instance, not the shared one from `AddMemoryCache()`. Microsoft recommends this because other libraries can use the shared cache too, and if you put a `SizeLimit` on it, their entries without a `Size` will throw. See the [official IMemoryCache docs](https://learn.microsoft.com/aspnet/core/performance/caching/memory) for details.
+
+## IMemoryCache vs IDistributedCache vs HybridCache
+
+| | IMemoryCache | IDistributedCache | HybridCache |
+|---|---|---|---|
+| Where data lives | Memory of the current process | External store (Redis, SQL Server...) | In-memory (L1) + optional distributed store (L2) |
+| Shared across servers | No | Yes | Yes, through L2 |
+| Survives app restart | No | Yes | Yes, through L2 |
+| Serialization | None, stores object references | You serialize to `byte[]` | Handled for you |
+| Stampede protection | No | No | Yes |
+| Good fit | Single instance, small hot data | Multi-server apps | One API for both levels |
+
+If you run several instances behind a load balancer, every instance has its own IMemoryCache, so two requests can see different data for the same key. That's when you move to Redis or HybridCache. I covered both in [HybridCache in ASP.NET Core](https://thecodeman.net/posts/hybrid-cache-in-aspnet-core) and [Dual-Key Redis Caching](https://thecodeman.net/posts/dual-key-redis-caching-in-dotnet).
+
+## When NOT to Use IMemoryCache
+
+- Your app runs on multiple instances and users must always see the same data.
+- The cached data must survive a restart or a deployment.
+- Keys come from user input and you don't want to manage a `SizeLimit`.
+- You would cache mutable objects (for example tracked EF Core entities) and change them later.
+
 ## What next?
 
 This was a junior and practical "tutorial" on how to use MemoryCache in a .NET application, which options exist, and what they are for.
 
-It is certainly an excellent start for those who have not had experience with cashing.
+It is certainly an excellent start for those who have not had experience with caching.
 
-IMemoryCache often does not find a real and practical role in real projects, especially if distributed caching is necessary.In those cases, I would recommend **caching with Redis**, which I will also talk about.
+IMemoryCache often does not find a real and practical role in real projects, especially if distributed caching is necessary. In those cases, I would recommend **caching with Redis** or **HybridCache**.
 
-Write to me about what you would like me to write about when it comes to cashing.
+Write to me about what you would like me to write about when it comes to caching.
 
 You can see the full code for today's issue at the following [GitHub repository](https://github.com/StefanTheCode/IMemoryCacheDemo).
 

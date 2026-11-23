@@ -4,14 +4,14 @@ import CodePlayground from "@/components/CodePlayground";
 import styles from "../tools/tools.module.css";
 
 export const metadata: Metadata = {
-  title: "C# Playground — Run Design Pattern Code in Your Browser (.NET WASM)",
+  title: "C# Playground Online - Write and Run C# Code in Your Browser",
   description:
-    "An in-browser C# playground powered by .NET WebAssembly. Edit and run real design-pattern examples — Builder, Result, State, Strategy, Specification — entirely client-side. By Microsoft MVP Stefan Đokić.",
+    "Free online C# playground on .NET WebAssembly. Write and run C# code in your browser with no install, or start from examples like Builder and Strategy.",
   alternates: { canonical: "https://thecodeman.net/playground" },
   openGraph: {
-    title: "C# Playground — Run Design Pattern Code in Your Browser",
+    title: "C# Playground Online - Write and Run C# Code in Your Browser",
     description:
-      "Edit and run real C#/.NET design-pattern examples in your browser, powered by .NET WebAssembly.",
+      "Write and run C# code in your browser, powered by .NET WebAssembly. No install needed.",
     url: "https://thecodeman.net/playground",
     type: "website",
   },

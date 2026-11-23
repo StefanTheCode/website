@@ -1,10 +1,29 @@
 ---
 title: "Building API with Carter Library in .NET"
+seo_title: "Carter in .NET: Organize Minimal APIs into Modules"
 subtitle: "Let’s be honest: writing APIs with controllers in .NET can feel... heavy. Sure, Minimal APIs were a breath of fresh air when they landed. But once your app grows? "
 date: "May 26 2025"
 category: "APIs"
-readTime: "Read Time: 4 minutes"
-meta_description: "Carter is basically Minimal APIs on steroids. It lets you organize routes by feature using small modular classes. "
+readTime: "Read Time: 5 minutes"
+meta_description: "Carter splits ASP.NET Core Minimal APIs into ICarterModule classes. Set it up, add FluentValidation, group routes and configure OpenAPI, with full C# code."
+updated: "2026-11-23"
+faq:
+  - q: "What is Carter in .NET?"
+    a: >-
+      Carter is an open-source library that adds structure to ASP.NET Core Minimal APIs. Endpoints live in module
+      classes that implement ICarterModule, and Carter registers all of them at startup when you call app.MapCarter().
+  - q: "Is Carter slower than plain Minimal APIs?"
+    a: >-
+      No. Carter maps routes with the regular Minimal API methods like MapGet and MapPost, so request handling is the
+      same as plain Minimal APIs. The extra work is finding the modules once, at startup.
+  - q: "Should I use Carter or controllers?"
+    a: >-
+      Use controllers if your team relies on MVC features and conventions across the whole API. Use Carter when you
+      want Minimal APIs but need them split by feature instead of one large Program.cs.
+  - q: "How do I validate requests in a Carter module?"
+    a: >-
+      Register your FluentValidation validators in dependency injection, inject IValidator<T> into the endpoint and
+      call ValidateAsync before you run the business logic, as shown in this article.
 ---
 
 <!--START-->
@@ -16,18 +35,7 @@ meta_description: "Carter is basically Minimal APIs on steroids. It lets you org
 
 <a href="https://thecodeman.net/sponsorship" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: 700; color: #1a0224; background: #ffbd39; border-radius: 8px; text-decoration: none;">Want to reach thousands of .NET developers? Sponsor TheCodeMan →</a>
 </div>
-🚀 Coming Soon: Enforcing Code Style
- 
-A brand-new course is launching soon inside [The CodeMan Community](https://www.skool.com/thecodeman)!
- 
-Join now to lock in early access when it drops - plus get everything else already inside the group.
- 
-Founding Member Offer:
-- First 100 members get in for just $4/month - 80 spots already taken!
-- Or subscribe for 3 months ($12) or annually ($40) to unlock full access when the course goes live.
- 
-Get ahead of the game - and make clean, consistent code your superpower.
-[Join here](https://www.skool.com/thecodeman)
+**Want consistent, clean .NET code - even when AI writes half of it?** [Pragmatic .NET Code Rules](https://thecodeman.net/pragmatic-dotnet-code-rules) is my course on the conventions, analyzers and guardrails I use on real projects.
 
 <p style="margin: 28px 0 14px 0; text-align: center;">
 <a href="https://youtu.be/eHmWvtHWNZ8?si=qpOfoWe7n0uXpyts" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
@@ -35,6 +43,8 @@ Get ahead of the game - and make clean, consistent code your superpower.
 </a>
 </p>
 <p style="margin: 0 0 28px 0; text-align: center;"><a href="https://youtu.be/eHmWvtHWNZ8?si=qpOfoWe7n0uXpyts" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #111827; background: #facc15; border-radius: 999px; text-decoration: none;">Watch Carter on YouTube</a></p>
+
+**Short answer:** Carter is an open-source library for ASP.NET Core that organizes Minimal API endpoints into modules. You implement `ICarterModule` (or inherit `CarterModule`), map routes in `AddRoutes`, call `builder.Services.AddCarter()` and `app.MapCarter()`, and Carter finds every module for you. Underneath it's still plain Minimal APIs, so you keep the same performance and features - you just get a clean structure per feature.
 
 ## Background
 Let’s be honest: writing APIs with controllers in .NET can feel... heavy.
@@ -68,7 +78,7 @@ Each feature gets its own module, model, validator, and service. It’s simple a
 
 1. Install the NuGet packages:
 
-```csharp
+```bash
 dotnet add package Carter
 dotnet add package FluentValidation
 dotnet add package FluentValidation.DependencyInjectionExtensions
@@ -143,7 +153,7 @@ public class UserService : IUserService
         new User { Id = 2, Name = "Bob", Email = "bob@example.com" }
     ];
 
-    public List<User> GetAllUsers()
+    public IEnumerable<User> GetAllUsers()
     {
         return _users;
     }
@@ -271,7 +281,7 @@ So the next time you’re setting up a new Carter module, remember:
 
 It's minimal effort for maximum structure. 
 
-[Download code here](https://github.com/StefanTheCode/CarterApiDemo) (give it a start :) ).
+[Download code here](https://github.com/StefanTheCode/CarterApiDemo) (give it a star :) ).
 
 That's all from me today. 
 
