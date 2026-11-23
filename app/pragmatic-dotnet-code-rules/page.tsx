@@ -64,11 +64,14 @@ export const metadata: Metadata = {
   }
 }
 
-const CHECKOUT_URL = 'https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e';
+// Black Friday: code BF26 is prefilled in the checkout link (40% off $149.99 = $89.99 until Dec 1).
+const PROMO_CODE = 'BF26';
+const PROMO_ENDS = 'Dec 1';
+const CHECKOUT_URL = `https://stefandjokic.lemonsqueezy.com/checkout/buy/105be4cc-816d-4ccb-b588-858cf96e958e?checkout%5Bdiscount_code%5D=${PROMO_CODE}`;
 
-// Pricing. PRICE_NUM must match the Lemon Squeezy checkout price.
-const PRICE_NUM = '74.89';
-const FULL_PRICE_NUM = 150;
+// Pricing. FULL_PRICE_NUM is the Lemon Squeezy price, PRICE_NUM the price with PROMO_CODE.
+const PRICE_NUM = '89.99';
+const FULL_PRICE_NUM = 149.99;
 const PRICE = `$${PRICE_NUM}`;
 const FULL_PRICE = `$${FULL_PRICE_NUM}`;
 const SAVE = `$${Math.round(FULL_PRICE_NUM - Number(PRICE_NUM))}`;
@@ -425,7 +428,7 @@ const jsonLd = {
           name: 'Will the course price increase?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: `Yes. Right now the course is ${PRICE} instead of ${FULL_PRICE}, because the last modules are still being released. When all ${MODULES_TOTAL} modules are live, the price goes to ${FULL_PRICE}. If you buy now, you get every future module and update at no extra cost.`,
+            text: `Yes. Until ${PROMO_ENDS} the course is ${PRICE} instead of ${FULL_PRICE} with code ${PROMO_CODE}, applied at checkout. After that it is ${FULL_PRICE}. If you buy now, you get every future module and update at no extra cost.`,
           },
         },
         {
@@ -498,7 +501,7 @@ const CodeRules = () => {
 
       {/* 1. ANNOUNCEMENT / PROGRESS BAR */}
       <div className="cr-topbar">
-        <span>🔥 <b>{MODULES_DONE}/{MODULES_TOTAL} modules live.</b> Get instant access at {PRICE} - the price goes to {FULL_PRICE} when all {MODULES_TOTAL} are out.</span>
+        <span>🔥 <b>Black Friday:</b> {PRICE} with code <b>{PROMO_CODE}</b> until {PROMO_ENDS}, then {FULL_PRICE}. {MODULES_DONE}/{MODULES_TOTAL} modules live.</span>
         <span className="cr-topbar-prog">
           <span className="cr-progress" role="progressbar" aria-label="Modules live" aria-valuemin={0} aria-valuemax={MODULES_TOTAL} aria-valuenow={MODULES_DONE}>
             <span className="cr-progress-fill" style={{ width: `${PROGRESS_PCT}%` }}></span>
@@ -552,7 +555,7 @@ const CodeRules = () => {
               <span className="cr-progress" role="progressbar" aria-label="Modules live" aria-valuemin={0} aria-valuemax={MODULES_TOTAL} aria-valuenow={MODULES_DONE}>
                 <span className="cr-progress-fill" style={{ width: `${PROGRESS_PCT}%` }}></span>
               </span>
-              <p className="cr-status-note">Discounted to {PRICE} (was {FULL_PRICE}) until the course is complete. New modules unlock for you the day they&apos;re released.</p>
+              <p className="cr-status-note">Black Friday: {PRICE} (was {FULL_PRICE}) with code {PROMO_CODE}, applied at checkout, until {PROMO_ENDS}. New modules unlock for you the day they&apos;re released.</p>
             </div>
             <div className="cr-cta">
               <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Instant Access - {PRICE} <span className="cr-old">{FULL_PRICE}</span> →</a>
@@ -950,16 +953,16 @@ const CodeRules = () => {
       <section id="cr-pricing">
         <div className="cr-wrap">
           <div className="cr-sec-head cr-center cr-reveal">
-            <span className="cr-eyebrow cr-center">Discounted until the course is complete</span>
+            <span className="cr-eyebrow cr-center">Black Friday · code {PROMO_CODE} · until {PROMO_ENDS}</span>
             <h2 className="cr-sec-title">Get it now, before the price goes to {FULL_PRICE}.</h2>
           </div>
           <div className="cr-pricing cr-reveal">
             <div className="cr-price-card">
-              <div className="cr-ribbon">50% OFF</div>
+              <div className="cr-ribbon">40% OFF</div>
               <h3>Pragmatic .NET Code Rules</h3>
               <p className="cr-psub">Instant access to {MODULES_DONE}/{MODULES_TOTAL} modules + every new module as it&apos;s released</p>
               <div className="cr-amt"><span className="cr-now">{PRICE}</span><span className="cr-was">{FULL_PRICE}</span></div>
-              <p className="cr-save">Save {SAVE} · Price goes to {FULL_PRICE} when all {MODULES_TOTAL} modules are live</p>
+              <p className="cr-save">Save {SAVE} with code {PROMO_CODE} (applied at checkout) · {FULL_PRICE} after {PROMO_ENDS}</p>
               <ul>
                 <li><span className="cr-ic">✔</span> Instant access: {MODULES_DONE}/{MODULES_TOTAL} modules, {LESSONS_LIVE_LABEL} lessons today</li>
                 <li><span className="cr-ic">✔</span> Remaining modules added free as they&apos;re released</li>
@@ -977,7 +980,7 @@ const CodeRules = () => {
             <div className="cr-why">
               <h3>Why buy now?</h3>
               <div className="cr-why-item"><span className="cr-ic">🔓</span><div><div className="cr-t">Instant access</div><div className="cr-d">Start today with {MODULES_DONE} modules and {LESSONS_LIVE_LABEL} lessons. No waiting for a launch date.</div></div></div>
-              <div className="cr-why-item"><span className="cr-ic">⏰</span><div><div className="cr-t">Lowest price it will ever be</div><div className="cr-d">{PRICE} instead of {FULL_PRICE}. The price goes up when all {MODULES_TOTAL} modules are live.</div></div></div>
+              <div className="cr-why-item"><span className="cr-ic">⏰</span><div><div className="cr-t">Lowest price it will ever be</div><div className="cr-d">{PRICE} instead of {FULL_PRICE} with code {PROMO_CODE}. The price goes back to {FULL_PRICE} after {PROMO_ENDS}.</div></div></div>
               <div className="cr-why-item"><span className="cr-ic">🤖</span><div><div className="cr-t">AI Bonus lessons</div><div className="cr-d">Claude Code and Copilot working inside your rules, not around them.</div></div></div>
               <div className="cr-why-item"><span className="cr-ic">🔄</span><div><div className="cr-t">Zero risk</div><div className="cr-d">14-day money-back guarantee. Not for you? Get a full refund.</div></div></div>
             </div>
@@ -1071,7 +1074,7 @@ const CodeRules = () => {
             <details><summary>Do I get lifetime access?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. Lifetime access to all lessons and every future update. No subscription, no renewal.</p></div></details>
             <details><summary>Does this help with AI-generated code (Claude Code, Copilot, Cursor)?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes - that&apos;s where it matters most. CLAUDE.md tells an agent what you want, but only the build, analyzers, architecture tests and CI gates make sure it happened. From Module 07 on, every module ends with an AI Bonus lesson, and Module 12 ends with a capstone where an agent builds a feature and the gates catch every shortcut.</p></div></details>
             <details><summary>Is the course finished?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>{MODULES_DONE} of {MODULES_TOTAL} modules are live ({LESSONS_LIVE_LABEL} lessons), and you get instant access to all of them. The remaining modules are released as they&apos;re finished, and they unlock for you automatically.</p></div></details>
-            <details><summary>Will the price increase later?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. Right now the course is {PRICE} instead of {FULL_PRICE}, because the last modules are still being released. When all {MODULES_TOTAL} modules are live, the price goes to {FULL_PRICE}. Buy now and you keep every future module and update at no extra cost.</p></div></details>
+            <details><summary>Will the price increase later?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. Until {PROMO_ENDS} the course is {PRICE} instead of {FULL_PRICE} with code {PROMO_CODE}, applied at checkout. After that it is {FULL_PRICE}. Buy now and you keep every future module and update at no extra cost.</p></div></details>
             <details><summary>Is there a refund policy?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Yes. There&apos;s a 14-day money-back guarantee. If you feel it&apos;s not for you, reach out within 14 days of purchase and you get a full refund.</p></div></details>
             <details><summary>What if I already have an .editorconfig?<span className="cr-tog">+</span></summary><div className="cr-acc-body"><p>Even better. The course shows you how to audit, improve, and enforce your existing setup - turning a basic config into a complete automated system.</p></div></details>
           </div>
@@ -1084,7 +1087,7 @@ const CodeRules = () => {
           <span className="cr-eyebrow cr-center">Stop arguing. Start enforcing.</span>
           <h2>Your codebase, clean - no matter who (or what) writes the code.</h2>
           <a href={CHECKOUT_URL} className="cr-btn cr-btn-primary lemonsqueezy-button">Get Instant Access - {PRICE} <span className="cr-old">{FULL_PRICE}</span> →</a>
-          <p className="cr-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>{MODULES_DONE}/{MODULES_TOTAL} modules live · 50% off until the course is complete · 14-day money-back · Lifetime access</p>
+          <p className="cr-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>{MODULES_DONE}/{MODULES_TOTAL} modules live · 40% off with code {PROMO_CODE} until {PROMO_ENDS} · 14-day money-back · Lifetime access</p>
         </div>
       </section>
 
@@ -1093,7 +1096,7 @@ const CodeRules = () => {
         <div className="cr-wrap cr-sb-row">
           <div className="cr-sb-info">
             <span className="cr-sb-nm">Pragmatic .NET Code Rules</span>
-            <span className="cr-sb-cd">{MODULES_DONE}/{MODULES_TOTAL} modules live · {FULL_PRICE} when complete</span>
+            <span className="cr-sb-cd">{MODULES_DONE}/{MODULES_TOTAL} modules live · code {PROMO_CODE} until {PROMO_ENDS}</span>
           </div>
           <div className="cr-sb-right">
             <span className="cr-sb-pr">{PRICE}<span className="cr-s">{FULL_PRICE}</span></span>
