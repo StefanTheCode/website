@@ -108,10 +108,10 @@ export default function Header() {
       {/* Announcement (class promo-bar kept: product pages hide it by that name) */}
       <div ref={promoRef} className="promo-bar tcm-announce">
         <div className="tcm-announce__inner">
-          <span className="tcm-announce__tag">NEW</span>
-          <span className="tcm-announce__text"><strong>AI for Developers</strong><span className="tcm-announce__more"> - skills, agents and practical lessons</span></span>
-          <a href="/ai-for-developers" data-cta="ai-community-header">
-            Explore
+          <span className="tcm-announce__tag">BLACK FRIDAY</span>
+          <span className="tcm-announce__text"><strong>Everything 40% off</strong><span className="tcm-announce__more"> - use code BF26 at checkout, until Dec 1</span></span>
+          <a href="/ai-for-developers-course" data-cta="bf26-header">
+            Shop now
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
           </a>
         </div>

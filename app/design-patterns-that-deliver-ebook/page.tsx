@@ -62,7 +62,8 @@ export const metadata: Metadata = {
   }
 }
 
-const CHECKOUT_URL = 'https://stefandjokic.lemonsqueezy.com/checkout/buy/5e943b0e-a3fd-4c3d-950e-3671762ebf85';
+// Black Friday: code BF26 (40% off) is prefilled in the checkout link until Dec 1.
+const CHECKOUT_URL = 'https://stefandjokic.lemonsqueezy.com/checkout/buy/5e943b0e-a3fd-4c3d-950e-3671762ebf85?checkout%5Bdiscount_code%5D=BF26';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -280,9 +281,9 @@ const Ebook = () => {
 
       {/* 1. ANNOUNCEMENT BAR */}
       <div className="dp-topbar">
-        <span>📘 <b>Design Patterns that Deliver</b> · written course + ebook · 10 patterns + AI tutor</span>
+        <span>🔥 <b>Black Friday:</b> everything 40% off with code <b>BF26</b></span>
         <span className="dp-tdot"></span>
-        <span><b>{config.EbookCopiesNumber}+</b> developers enrolled · instant access</span>
+        <span>Design Patterns that Deliver for <b>$19.79</b> <span className="dp-old">$32.99</span> · until Dec 1</span>
       </div>
 
       {/* 2. STICKY NAV */}
@@ -297,7 +298,7 @@ const Ebook = () => {
             <a href="#dp-faq">FAQ</a>
           </div>
           <div className="dp-nav-right">
-            <span className="dp-nav-price"><b>$32.99</b></span>
+            <span className="dp-nav-price"><span className="dp-s">$32.99</span><b>$19.79</b></span>
             <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course</a>
           </div>
         </div>
@@ -313,7 +314,7 @@ const Ebook = () => {
             <h1>Stop guessing design patterns. <span className="dp-amber crk-shimmer">Start shipping the right one.</span></h1>
             <p className="dp-lead">A <b>written course</b> with the full ebook included. <b>Ten</b> production-grade C# patterns — the five everyone needs (<b>Builder</b>, <b>Decorator</b>, <b>Strategy</b>, <b>Adapter</b>, <b>Mediator</b>) plus five that ship real systems (<b>Result</b>, <b>Pipeline</b>, <b>Specification</b>, <b>Factory</b>, <b>State</b>). Each from a real problem to working code — with unit tests, trade-offs, a GitHub repo, 100 interview Q&amp;As, and a built-in <b>AI tutor</b>.</p>
             <div className="dp-cta">
-              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $19.79 <span className="dp-old">$32.99</span> →</a>
               <a href="/read/design-patterns-that-deliver/builder" className="dp-btn dp-btn-ghost">Read a free lesson →</a>
               <a href="/tools/pattern-picker" className="dp-btn dp-btn-ghost">Try the free AI tool →</a>
             </div>
@@ -569,7 +570,7 @@ const Ebook = () => {
           </div>
 
           <div className="dp-center" style={{ marginTop: 40 }}>
-            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
+            <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $19.79 <span className="dp-old">$32.99</span> →</a>
           </div>
         </div>
       </section>
@@ -704,7 +705,7 @@ const Ebook = () => {
               <p>With a working code example behind every single answer.</p>
             </div>
           </div>
-          <p className="dp-bonus-foot dp-reveal">Written course + ebook + repo + AI tutor + interview prep + cheat sheets · <b>all for $32.99</b></p>
+          <p className="dp-bonus-foot dp-reveal">Written course + ebook + repo + AI tutor + interview prep + cheat sheets · <b>all for $19.79</b> <span className="dp-old">$32.99</span></p>
         </div>
       </section>
 
@@ -756,15 +757,15 @@ const Ebook = () => {
       <section id="dp-pricing">
         <div className="dp-wrap">
           <div className="dp-sec-head dp-center dp-reveal">
-            <span className="dp-eyebrow dp-center">One simple price</span>
+            <span className="dp-eyebrow dp-center">Black Friday · 40% off · code BF26</span>
             <h2 className="dp-sec-title">Everything, for less than a lunch out.</h2>
           </div>
           <div className="dp-pricing dp-reveal">
             <div className="dp-price-card">
               <h3>Design Patterns that Deliver</h3>
               <p className="dp-psub">Written course + ebook + GitHub repo + AI tutor + interview prep + cheat sheets</p>
-              <div className="dp-amt"><span className="dp-now">$32.99</span></div>
-              <p className="dp-save">One-time payment · lifetime access · no subscription</p>
+              <div className="dp-amt"><span className="dp-now">$19.79</span><span className="dp-was">$32.99</span></div>
+              <p className="dp-save">Code BF26 is applied at checkout · until Dec 1 · lifetime access</p>
               <ul>
                 <li><span className="dp-ic">✔</span> The written course: online lessons for every pattern</li>
                 <li><span className="dp-ic">✔</span> The full ebook in PDF + EPUB</li>
@@ -775,7 +776,7 @@ const Ebook = () => {
                 <li><span className="dp-ic">✔</span> Quick-reference pattern decision guide</li>
                 <li><span className="dp-ic">✔</span> Lifetime access + all future updates</li>
               </ul>
-              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $19.79 <span className="dp-old">$32.99</span> →</a>
               <p className="dp-grt">Instant access · Secure checkout via Lemon Squeezy</p>
             </div>
             <div className="dp-why">
@@ -1018,7 +1019,7 @@ const Ebook = () => {
         <div className="dp-wrap dp-reveal">
           <span className="dp-eyebrow dp-center">Stop reading about patterns. Start shipping them.</span>
           <h2>Real C# code you can apply in your next PR.</h2>
-          <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $32.99 →</a>
+          <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Course - $19.79 <span className="dp-old">$32.99</span> →</a>
           <p className="dp-reassure" style={{ justifyContent: 'center', marginTop: 18 }}>Instant download · PDF + EPUB · GitHub repo · AI tutor · {config.EbookCopiesNumber}+ copies sold</p>
         </div>
       </section>
@@ -1031,7 +1032,7 @@ const Ebook = () => {
             <span className="dp-sb-cd">10 patterns + AI tutor · instant download</span>
           </div>
           <div className="dp-sb-right">
-            <span className="dp-sb-pr">$32.99</span>
+            <span className="dp-sb-pr">$19.79<span className="dp-s">$32.99</span></span>
             <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get it</a>
           </div>
         </div>

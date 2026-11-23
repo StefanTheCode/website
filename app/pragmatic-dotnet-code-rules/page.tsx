@@ -501,7 +501,7 @@ const CodeRules = () => {
 
       {/* 1. ANNOUNCEMENT / PROGRESS BAR */}
       <div className="cr-topbar">
-        <span>🔥 <b>Black Friday:</b> {PRICE} with code <b>{PROMO_CODE}</b> until {PROMO_ENDS}, then {FULL_PRICE}. {MODULES_DONE}/{MODULES_TOTAL} modules live.</span>
+        <span>🔥 <b>Black Friday:</b> everything 40% off with code <b>{PROMO_CODE}</b> · {PRICE} instead of {FULL_PRICE} until {PROMO_ENDS} · {MODULES_DONE}/{MODULES_TOTAL} modules live</span>
         <span className="cr-topbar-prog">
           <span className="cr-progress" role="progressbar" aria-label="Modules live" aria-valuemin={0} aria-valuemax={MODULES_TOTAL} aria-valuenow={MODULES_DONE}>
             <span className="cr-progress-fill" style={{ width: `${PROGRESS_PCT}%` }}></span>

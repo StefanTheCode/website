@@ -58,7 +58,8 @@ export const metadata: Metadata = {
   }
 }
 
-const CHECKOUT_URL = 'https://stefandjokic.lemonsqueezy.com/checkout/buy/d71f1003-7b56-4b96-8136-1d769f53eb79';
+// Black Friday: code BF26 (40% off) is prefilled in the checkout link until Dec 1.
+const CHECKOUT_URL = 'https://stefandjokic.lemonsqueezy.com/checkout/buy/d71f1003-7b56-4b96-8136-1d769f53eb79?checkout%5Bdiscount_code%5D=BF26';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -193,7 +194,7 @@ const jsonLd = {
           name: 'How much does it cost and how is it delivered?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Design Patterns Simplified costs $9.95. After checkout you get instant access to download the ebook and the free GitHub repository.',
+            text: 'Design Patterns Simplified costs $9.95, or $5.97 with code BF26 until Dec 1 (Black Friday). After checkout you get instant access to download the ebook and the free GitHub repository.',
           },
         },
         {
@@ -249,9 +250,9 @@ const Ebook = () => {
 
       {/* 1. ANNOUNCEMENT BAR */}
       <div className="dp-topbar">
-        <span>📗 <b>Design Patterns Simplified</b> · 10 patterns, beginner-friendly</span>
+        <span>🔥 <b>Black Friday:</b> everything 40% off with code <b>BF26</b></span>
         <span className="dp-tdot"></span>
-        <span><b>{config.EbookCopiesNumber}+</b> developers learning the simple way · just $9.95</span>
+        <span>Design Patterns Simplified for <b>$5.97</b> <span className="dp-old">$9.95</span> · until Dec 1</span>
       </div>
 
       {/* 2. STICKY NAV */}
@@ -266,7 +267,7 @@ const Ebook = () => {
             <a href="#dp-faq">FAQ</a>
           </div>
           <div className="dp-nav-right">
-            <span className="dp-nav-price"><b>$9.95</b></span>
+            <span className="dp-nav-price"><span className="dp-s">$9.95</span><b>$5.97</b></span>
             <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook</a>
           </div>
         </div>
@@ -282,7 +283,7 @@ const Ebook = () => {
             <h1>Design patterns, finally <span className="dp-amber">simple enough to actually use.</span></h1>
             <p className="dp-lead">Who still wants to read a 500+ page book that costs over $100? Instead, get <b>10 essential design patterns</b> distilled into a short, beginner-friendly C# guide — each explained with a real-world example you can apply today.</p>
             <div className="dp-cta">
-              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Download for $9.95 →</a>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Download for $5.97 <span className="dp-old">$9.95</span> →</a>
               <a href="#dp-patterns" className="dp-btn dp-btn-ghost">See what&apos;s inside</a>
             </div>
             <p className="dp-reassure">Instant download <span className="dp-dot"></span> 30-page guide <span className="dp-dot"></span> free GitHub repo <span className="dp-dot"></span> beginner level</p>
@@ -533,7 +534,7 @@ const Ebook = () => {
               <p>Every pattern is tied to a real-world example so you can use it immediately.</p>
             </div>
           </div>
-          <p className="dp-bonus-foot dp-reveal" style={{ marginTop: 24 }}>Ebook + real-world examples + GitHub repo · <b>all for $9.95</b></p>
+          <p className="dp-bonus-foot dp-reveal" style={{ marginTop: 24 }}>Ebook + real-world examples + GitHub repo · <b>all for $5.97</b> <span className="dp-old">$9.95</span></p>
         </div>
       </section>
 
@@ -582,13 +583,13 @@ const Ebook = () => {
           </div>
           <div className="dp-pricing dp-reveal">
             <div className="dp-price-card">
-              <div className="dp-ribbon">BEST VALUE</div>
+              <div className="dp-ribbon">BLACK FRIDAY -40%</div>
               <h3>Design Patterns Simplified</h3>
               <p className="dp-psub">Everything you need to learn patterns the simple way.</p>
               <div className="dp-amt">
-                <span className="dp-now">$9.95</span>
+                <span className="dp-now">$5.97</span><span className="dp-was">$9.95</span>
               </div>
-              <p className="dp-save">Less than a coffee &amp; a snack — for skills you keep forever.</p>
+              <p className="dp-save">Code BF26 is applied at checkout · until Dec 1 · skills you keep forever.</p>
               <ul>
                 <li><span className="dp-ic">✓</span> Short 30-page ebook</li>
                 <li><span className="dp-ic">✓</span> 10 essential design patterns</li>
@@ -596,7 +597,7 @@ const Ebook = () => {
                 <li><span className="dp-ic">✓</span> Free GitHub repository</li>
                 <li><span className="dp-ic">✓</span> Instant download · lifetime access</li>
               </ul>
-              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Download for $9.95 →</a>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Download for $5.97 <span className="dp-old">$9.95</span> →</a>
               <p className="dp-grt">Secure checkout via Lemon Squeezy · instant delivery</p>
             </div>
             <div className="dp-why">
@@ -678,7 +679,7 @@ const Ebook = () => {
             </details>
             <details>
               <summary>How much is it and how is it delivered? <span className="dp-tog">+</span></summary>
-              <div className="dp-acc-body"><p>It&apos;s $9.95. After checkout you get instant access to download the ebook and the free GitHub repository. Payment is handled securely via Lemon Squeezy.</p></div>
+              <div className="dp-acc-body"><p>It&apos;s $9.95, or $5.97 with code BF26 until Dec 1. After checkout you get instant access to download the ebook and the free GitHub repository. Payment is handled securely via Lemon Squeezy.</p></div>
             </details>
             <details>
               <summary>How is this different from &ldquo;Design Patterns that Deliver&rdquo;? <span className="dp-tog">+</span></summary>
@@ -693,9 +694,9 @@ const Ebook = () => {
         <div className="dp-wrap">
           <div className="dp-reveal">
             <span className="dp-eyebrow dp-center">Keep it simple</span>
-            <h2>Master design patterns the <span className="dp-amber">simple way</span> — for $9.95.</h2>
+            <h2>Master design patterns the <span className="dp-amber">simple way</span> — for $5.97.</h2>
             <div className="dp-cta" style={{ justifyContent: 'center' }}>
-              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Download for $9.95 →</a>
+              <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Download for $5.97 <span className="dp-old">$9.95</span> →</a>
             </div>
             <p className="dp-reassure" style={{ justifyContent: 'center', marginTop: 16 }}>Instant download <span className="dp-dot"></span> 30-page guide <span className="dp-dot"></span> free GitHub repo <span className="dp-dot"></span> lifetime access</p>
           </div>
@@ -710,7 +711,7 @@ const Ebook = () => {
             <span className="dp-sb-cd">10 patterns · beginner-friendly · instant download</span>
           </div>
           <div className="dp-sb-right">
-            <span className="dp-sb-pr">$9.95</span>
+            <span className="dp-sb-pr">$5.97<span className="dp-s">$9.95</span></span>
             <a href={CHECKOUT_URL} className="dp-btn dp-btn-primary lemonsqueezy-button">Get the Ebook →</a>
           </div>
         </div>
