@@ -260,3 +260,150 @@
   .stickyCta { position:fixed; left:0; right:0; bottom:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); background:rgba(20,10,29,.96); border-top:1px solid rgba(255,255,255,.1); color:#f3eef6; font-size:.8rem; font-weight:600; }
   .stickyCta a { flex-shrink:0; padding:10px 16px; border-radius:9px; background:#f3b73f; color:#241033; font-weight:800; text-decoration:none; }
 }
+
+/* ---------- Black Friday deal card (hero) ---------- */
+.deal { margin:36px auto 6px; max-width:1000px; display:grid; grid-template-columns:1fr 1.05fr; border-radius:24px; overflow:hidden; border:1px solid rgba(243,183,63,.6); background:var(--tk-card-bg); box-shadow:0 40px 110px -45px rgba(243,183,63,.6); text-align:left; }
+.dealPrice { position:relative; padding:34px 36px; display:flex; flex-direction:column; justify-content:center; background:radial-gradient(110% 120% at 0% 0%,rgba(243,183,63,.25),transparent 60%),linear-gradient(160deg,#21102f,#160b20); color:#f3eef6; }
+.bfPill { align-self:flex-start; display:inline-block; background:#F3B73F; color:#241033; font-weight:800; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px; }
+.page .dealLabel { margin:20px 0 4px; font-size:.75rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#d0acec; line-height:1.4; }
+.page .dealNums { display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 14px; margin:0; line-height:1; }
+.dealNums s { font-family:'Space Grotesk',sans-serif; font-size:2.1rem; font-weight:700; color:#9d8fac; text-decoration-thickness:3px; text-decoration-color:#e27486; }
+.dealNums strong { font-family:'Space Grotesk',sans-serif; font-size:clamp(4.2rem,8vw,6rem); line-height:.95; color:#F3B73F; letter-spacing:-.05em; text-shadow:0 0 40px rgba(243,183,63,.35); }
+.dealNums span { font-size:1.15rem; font-weight:700; color:#f3eef6; }
+.page .dealVs { font-size:.85rem; line-height:1.55; color:#cdbfd9; margin:14px 0 0; }
+.dealInside { padding:30px 32px; display:flex; flex-direction:column; gap:12px; }
+.page .dealInside .dealLabel { margin:0 0 2px; color:var(--pg-link,var(--tcm-amber)); }
+.page .dealCourse { display:flex; align-items:center; gap:12px; padding:13px 15px; border-radius:12px; border:1px solid var(--tk-line); text-decoration:none; color:var(--pg-page-text); transition:border-color .15s ease; }
+.page .dealCourse:hover { border-color:var(--pg-link,var(--tcm-amber)); }
+.dealCourse span { flex-shrink:0; font-size:.62rem; font-weight:800; letter-spacing:.1em; background:#66cca2; color:#0d2a1d; padding:3px 7px; border-radius:6px; }
+.dealCourse strong { flex:1; color:var(--pg-text-white); font-size:.98rem; line-height:1.3; }
+.dealCourse em { font-style:normal; font-size:.78rem; opacity:.8; white-space:nowrap; }
+.dealInside .primary { justify-content:center; margin-top:6px; }
+.page .dealFine { font-size:.76rem; line-height:1.5; opacity:.8; margin:0; text-align:center; }
+
+/* ---------- compact cards ---------- */
+.grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:34px; }
+.grid4 .card { padding:22px; }
+.grid4 h3 { font-size:1.02rem; }
+.wayIcon { display:inline-grid; place-items:center; min-width:52px; height:52px; padding:0 10px; border-radius:14px; background:rgba(243,183,63,.12); border:1px solid rgba(243,183,63,.3); color:var(--pg-link,var(--tcm-amber)); font-family:'JetBrains Mono',monospace; font-weight:800; font-size:1.05rem; margin-bottom:18px; }
+.statTiles { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:34px; }
+.statTile { border:1px solid var(--tk-line); border-radius:16px; padding:24px 18px; background:var(--tk-card-bg); text-align:center; }
+.statTile strong { display:block; font-family:'JetBrains Mono',monospace; font-size:1.3rem; line-height:1.2; color:var(--pg-link,var(--tcm-amber)); margin-bottom:10px; }
+.statTile span { display:block; font-size:.88rem; line-height:1.45; font-weight:600; color:var(--pg-text-white); }
+
+/* ---------- new courses ---------- */
+.newCourse { display:grid; grid-template-columns:1.05fr 1fr; gap:46px; align-items:center; margin-top:34px; padding:34px; border-radius:24px; border:1px solid rgba(243,183,63,.35); background:radial-gradient(90% 120% at 100% 0%,rgba(150,89,197,.18),transparent 60%),var(--tk-card-bg); scroll-margin-top:110px; }
+.newCourse + .newCourse { margin-top:22px; }
+.newCourseRev > :first-child { order:2; }
+.newTop { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:14px; }
+.newBadge { font-size:.66rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; background:#66cca2; color:#0d2a1d; padding:3px 9px; border-radius:999px; }
+.metaChip { font-size:.7rem; font-weight:700; font-family:'JetBrains Mono',monospace; border:1px solid var(--tk-line); border-radius:999px; padding:2px 9px; }
+.page .newTitle { font-size:clamp(1.6rem,2.6vw,2.1rem); letter-spacing:-.03em; margin:0 0 6px; }
+.page .kicker { font-family:'Space Grotesk',sans-serif; font-size:1.15rem; font-weight:700; line-height:1.4; color:var(--pg-link,var(--tcm-amber)); margin:0 0 4px; }
+.points { list-style:none; display:grid; gap:10px; margin:18px 0; padding:0; }
+.points li { display:flex; gap:14px; align-items:center; padding:12px 14px; border-radius:12px; border:1px solid var(--tk-line); }
+.points li i { flex-shrink:0; font-style:normal; font-family:'JetBrains Mono',monospace; font-size:.75rem; font-weight:800; color:var(--pg-link,var(--tcm-amber)); }
+.points li b { display:block; color:var(--pg-text-white); font-size:.95rem; line-height:1.35; }
+.points li span { display:block; font-size:.83rem; line-height:1.45; }
+.valueRow { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; font-size:.9rem; font-weight:700; }
+.valueRow s { opacity:.6; }
+.valueRow .inc { color:#66cca2; }
+.page .fine { font-size:.76rem; line-height:1.5; opacity:.8; margin:8px 0 0; }
+
+/* PR mock (Code Rules) */
+.pr { border-radius:16px; overflow:hidden; background:#140a1d; border:1px solid rgba(255,255,255,.1); box-shadow:0 30px 80px -35px rgba(18,4,27,.9); color:#d5ccdb; font-size:.84rem; }
+.prHead { display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; padding:14px 18px; background:#1d1029; border-bottom:1px solid rgba(255,255,255,.07); }
+.prState { font-size:.66rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; background:#2f7d58; color:#e6fff2; padding:3px 9px; border-radius:999px; }
+.prHead strong { color:#f3eef6; font-weight:700; }
+.prHead em { font-style:normal; font-size:.74rem; color:#93849f; width:100%; }
+.prBody { padding:16px 18px 6px; font-family:'JetBrains Mono',ui-monospace,monospace; }
+.page .prBody p { margin:0 0 10px; line-height:1.45; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; }
+.prCmd span { color:#f3b73f; }
+.prErr span { color:#e27486; font-weight:800; }
+.prErr b { color:#f39ab0; font-weight:700; }
+.prErr em { font-style:normal; color:#e9dff0; }
+.prErr code { margin-left:auto; font-size:.72rem; color:#8f80a0; background:none; padding:0; }
+.prFoot { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px 12px; padding:14px 18px; background:rgba(226,116,134,.12); border-top:1px solid rgba(226,116,134,.35); font-weight:700; }
+.prFoot span { color:#f39ab0; }
+.prFoot span::before { content:'⛔ '; }
+.prFoot b { color:#f3b73f; font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; }
+
+/* course outline (AI for Developers) */
+.outline { border-radius:16px; overflow:hidden; background:#140a1d; border:1px solid rgba(255,255,255,.1); box-shadow:0 30px 80px -35px rgba(18,4,27,.9); color:#d5ccdb; padding:0 0 18px; }
+.olHead { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:14px 18px; background:#1d1029; border-bottom:1px solid rgba(255,255,255,.07); }
+.olHead em { font-style:normal; font-family:'JetBrains Mono',monospace; font-size:.76rem; color:#ac9fb7; }
+.olHead b { font-size:.72rem; color:#f3b73f; }
+.olPart { padding:16px 18px 0; }
+.olRow { display:flex; align-items:center; gap:10px; }
+.olTag { font-size:.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#d0acec; border:1px solid rgba(208,172,236,.35); border-radius:999px; padding:2px 8px; }
+.olRow strong { font-family:'Space Grotesk',sans-serif; font-size:1.25rem; color:#f3eef6; }
+.olRow em { margin-left:auto; font-style:normal; font-family:'JetBrains Mono',monospace; font-size:.76rem; color:#f3b73f; }
+.olBar { height:8px; border-radius:99px; background:rgba(255,255,255,.07); margin:10px 0 8px; overflow:hidden; }
+.olBar i { display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,#f3b73f,#ffd477); }
+.olBar i.olBuild { background:linear-gradient(90deg,#9659c5,#d0acec); }
+.page .olPart p { margin:0; font-size:.8rem; line-height:1.5; color:#b9adc5; }
+.olProject { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:18px 18px 0; padding:12px 14px; border-radius:12px; border:1px dashed rgba(243,183,63,.4); }
+.olProject span { font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#f3b73f; margin-right:4px; }
+.olProject b { font-family:'JetBrains Mono',monospace; font-size:.74rem; font-weight:600; color:#f3eef6; background:rgba(255,255,255,.06); border-radius:6px; padding:3px 8px; }
+
+/* already inside + type colors */
+.alreadyHead { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 20px; margin:54px 0 0; }
+.page .alreadyHead h3 { margin:0; font-size:1.35rem; }
+.legend { display:flex; flex-wrap:wrap; gap:8px; }
+.legend .type { font-size:.68rem; padding:4px 10px; }
+.legend b { font-family:'JetBrains Mono',monospace; }
+.tVideo { color:#241033 !important; background:#F3B73F; border-color:#F3B73F !important; }
+.tWritten { color:#d0acec !important; }
+.tGuide { color:#66cca2 !important; }
+.tToolkit { color:#f39ab0 !important; }
+.tProjects { color:#8fc7ff !important; }
+.tChallenge { color:#ffd477 !important; }
+:global(:root[data-theme="light"]) .tWritten { color:#7a3fb0 !important; }
+:global(:root[data-theme="light"]) .tGuide { color:#1f7a52 !important; }
+:global(:root[data-theme="light"]) .tToolkit { color:#b23a5a !important; }
+:global(:root[data-theme="light"]) .tProjects { color:#245f9e !important; }
+:global(:root[data-theme="light"]) .tChallenge { color:#9a5f00 !important; }
+
+/* Resources kit visual */
+.bonus { grid-template-columns:400px 1fr; }
+.kit { display:grid; gap:12px; }
+.kitWin { border-radius:16px; overflow:hidden; background:#140a1d; border:1px solid rgba(243,183,63,.35); box-shadow:0 30px 80px -30px rgba(243,183,63,.35); }
+.kitCode { margin:0; padding:16px 20px 18px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.8rem; line-height:1.75; color:#d5ccdb; background:none; white-space:pre; overflow:hidden; }
+.kitCode b { color:#f3eef6; }
+.kitCode i { font-style:normal; color:#d0acec; }
+.kitCode u { text-decoration:none; color:#f39ab0; }
+.kitTools { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.kitTools div { border:1px solid var(--tk-line); border-radius:12px; padding:12px 8px; text-align:center; background:var(--tk-card-bg); }
+.kitTools span { display:block; font-family:'JetBrains Mono',monospace; font-weight:800; color:var(--pg-link,var(--tcm-amber)); font-size:1.05rem; }
+.kitTools strong { display:block; font-size:.74rem; color:var(--pg-text-white); margin-top:4px; }
+
+/* pricing tweaks */
+.featHl { color:var(--pg-text-white); font-weight:800; }
+.featSmall { display:block; font-size:.76rem; opacity:.75; }
+.planWas { font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:700; opacity:.55; margin-right:6px; text-decoration-color:#e27486; }
+
+@media(max-width:1000px) {
+  .deal,.newCourse { grid-template-columns:1fr; }
+  .newCourseRev > :first-child { order:0; }
+  .grid4 { grid-template-columns:repeat(2,1fr); }
+  .statTiles { grid-template-columns:repeat(3,1fr); }
+  .bonus { grid-template-columns:1fr; }
+  .kit { max-width:460px; }
+}
+@media(max-width:700px) {
+  .dealPrice,.dealInside { padding:24px 22px; }
+  .dealCourse em { display:none; }
+  .newCourse { padding:20px; gap:24px; }
+  .grid4 { grid-template-columns:1fr; }
+  .statTiles { grid-template-columns:repeat(2,1fr); }
+  .kitTools { grid-template-columns:repeat(2,1fr); }
+}
+.page .newTitle { text-align:left; }
+.page .prErr code { flex-basis:100%; margin:0 0 0 1.75em; background:none !important; border:0 !important; padding:0 !important; font-size:.72rem; color:#8f80a0 !important; }
+.page .prBody p { font-size:.86rem; }
+@media(max-width:700px) { .page .prBody p { font-size:.74rem; } .prBody { padding:14px 14px 4px; } }
+/* dark panels keep their own text colors in the light theme */
+:global(:root[data-theme="light"]) .page .dealPrice .dealLabel { color:#d0acec !important; }
+:global(:root[data-theme="light"]) .page .dealVs { color:#cdbfd9 !important; }
+:global(:root[data-theme="light"]) .page .prBody p { color:#d5ccdb !important; }
+:global(:root[data-theme="light"]) .page .olPart p { color:#b9adc5 !important; }

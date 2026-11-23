@@ -18,16 +18,24 @@ const RESOURCES_KIT_VALUE: number | null = null;
 type Testimonial = { name: string; role: string; quote: string; result: string; image?: string };
 const testimonials: Testimonial[] = [];
 
+/* Black Friday. After Dec 1: set BF_ACTIVE = false (and set Skool's yearly price back to YEARLY_REGULAR). */
+const BF_ACTIVE = true;
+const BF_ENDS = 'Dec 1';
+
 /* Pricing (keep in sync with Skool) */
 const MONTHLY = 19;
-const YEARLY = 149;
+const YEARLY_REGULAR = 149;
+const YEARLY_BF = 119;
+const YEARLY = BF_ACTIVE ? YEARLY_BF : YEARLY_REGULAR;
 const yearlyPerMonth = (YEARLY / 12).toFixed(2);
 const yearlySavings = MONTHLY * 12 - YEARLY;
 const yearlySavingsPct = Math.round((yearlySavings / (MONTHLY * 12)) * 100);
+const yearlyPaidMonths = Math.ceil(YEARLY / MONTHLY);
+const COURSE_PRICE = 149.99; // standalone price of each video course
 const MEMBER_LOGIN_URL = 'https://www.skool.com/ai-for-developers';
 
 const title = 'AI for Developers Community | Claude Code, AI Agents & AI Features';
-const description = 'Skills, agents and lessons that make AI coding consistent, plus how to build AI into your apps. 49 skills, 7 agents, 8 courses. 7-day free trial.';
+const description = 'Skills, agents and courses that make AI coding consistent, plus how to build AI into your apps. 49 skills, 7 agents, 2 video courses and 2 written courses. 7-day free trial.';
 
 export const metadata: Metadata = {
   title: { absolute: title }, description,
@@ -49,30 +57,30 @@ const marqueeTop = ['CLAUDE.md', 'Skills', 'Subagents', 'Hooks', 'MCP servers', 
 const marqueeBottom = ['Architecture reviews', 'Observability', 'CI/CD', 'Legacy modernization', 'Headless Claude', 'Semantic search', 'RAG', 'Structured output', 'Prompt Playbook'];
 
 const traps = [
-  ['You re-explain your project every session', 'Same context, same rules, same "don\'t touch that folder". The agent forgets it all by tomorrow.'],
-  ['The code looks right, then fails review', 'It compiles. It passes the happy path. Then someone finds the N+1 query, the missing auth check and the swallowed exception.'],
-  ['Tutorials in, nothing out', 'You watched the videos and saved the threads. Your repo still has no CLAUDE.md, no skills and no hooks.'],
-  ["You're falling behind, quietly", 'The developers around you ship faster with AI. You are still deciding which tool to trust. Alone. Without context.'],
+  ['You re-explain your project every session', 'The agent forgets your rules by tomorrow.'],
+  ['The code looks right, then fails review', 'N+1 queries, missing auth checks, swallowed exceptions.'],
+  ['Tutorials in, nothing out', 'Your repo still has no CLAUDE.md, no skills, no hooks.'],
+  ["You're falling behind, quietly", 'Others ship faster with AI. You are still picking a tool.'],
 ];
 
 const ways = [
-  ['Make your AI agent consistent', 'CLAUDE.md, rules, skills, hooks and subagents done right. Your agent follows your patterns instead of inventing new ones every session.'],
-  ['Get a senior review on demand', 'Point an agent at your repo and get a ranked report: security gaps, architecture drift, slow queries, missing tests. With the fix next to each finding.'],
-  ['Build AI into your own product', 'Embeddings, semantic search, RAG and MCP servers with runnable source code, not slides. Examples in C#, concepts for any stack.'],
+  ['</>', 'Make your AI agent consistent', 'CLAUDE.md, skills, hooks and subagents that follow your patterns.'],
+  ['✓✗', 'Get a senior review on demand', 'A ranked report: security, architecture, slow queries, missing tests.'],
+  ['AI', 'Build AI into your own product', 'Embeddings, semantic search, RAG and MCP, with runnable code.'],
 ];
 
 const outcomes = [
-  ['2 commands', 'Your whole toolkit, in every project', '49 skills and 7 agents install once and work in .NET, Node/TypeScript, Python, Java/Kotlin and Go.'],
-  ['plain English', 'Nothing to memorize', 'Describe what you want: "This query is slow, optimize it." Claude picks the right skill by itself.'],
-  ['ranked report', 'Know what to fix first', 'Agents give you a scored, ranked report. Not a wall of warnings.'],
-  ['same evening', 'Apply it tonight, not someday', 'Every lesson is problem, solution, step by step, then your exercise. No 15-minute intros.'],
-  ['career', 'Skills that pay off', "AI won't replace good developers. Developers who know how to work with AI will replace those who don't."],
+  ['2 commands', 'Your whole toolkit in every project'],
+  ['5 stacks', '.NET, Node, Python, Java and Go'],
+  ['plain English', 'Nothing to memorize'],
+  ['ranked report', 'Know what to fix first'],
+  ['same evening', 'Apply it tonight, not someday'],
 ];
 
 const steps = [
-  ['Join and install', 'Start your free trial and open Start Here. Two commands in Claude Code, and every skill and agent is in every project.'],
-  ['Run one agent on your real code', 'Ask in plain English. Get a ranked report in minutes. Fix one thing today.'],
-  ['Ask, share, request', 'Stuck? Post in Questions & Help, I answer everything. Missing a tool? Post it in Tool Requests. That is how new packs get built.'],
+  ['Join and install', 'Open Start Here. Two commands in Claude Code.'],
+  ['Run one agent on your real code', 'Ask in plain English. Fix one thing today.'],
+  ['Ask, share, request', 'Stuck? Ask, I answer everything. Missing a tool? I build it.'],
 ];
 
 const founderStats = [
@@ -82,26 +90,37 @@ const founderStats = [
   ['49 + 7', 'skills and agents built'],
 ];
 
-const quickGrid = [
-  ['A lesson for every skill', 'when to use it, prompts for your stack'],
-  ['Agents that audit your app', 'security, database, architecture, observability'],
-  ['Runnable AI projects', 'MCP server, semantic search, RAG'],
-  ['Community support', 'ask anytime, I answer everything'],
-];
+type CourseType = 'Video course' | 'Written course' | 'Guide' | 'Toolkit' | 'Projects' | 'Challenge';
+const typeClass: Record<CourseType, string> = {
+  'Video course': styles.tVideo,
+  'Written course': styles.tWritten,
+  Guide: styles.tGuide,
+  Toolkit: styles.tToolkit,
+  Projects: styles.tProjects,
+  Challenge: styles.tChallenge,
+};
 
-type Course = { cover: [string, string]; name: string; type: string; text: string; value?: number };
+type Course = { cover: [string, string]; name: string; type: CourseType; text: string; value?: number };
 const courses: Course[] = [
-  { cover: ['Start', 'Here'], name: 'Start Here', type: 'Course', text: 'Your first hour: install, CLAUDE.md, one agent on your real code. Plus the AI Coding Agent Starter Kit to set up any repo in 15 minutes.' },
-  { cover: ['AI', 'Roadmap'], name: 'AI Roadmap for Developers', type: 'Course', text: '8 modules from "use AI" to "build AI". Written lessons today, video lessons landing over the next weeks.' },
-  { cover: ['Claude Code', 'Workflow'], name: 'Claude Code & Agent Workflow', type: 'Course', text: 'CLAUDE.md, rules, hooks (6 recipes), /rewind, headless mode and MCP.' },
-  { cover: ['49', 'Skills'], name: 'Skills', type: 'Toolkit', text: '49 skills across architecture, database, testing, performance, security, observability and DevOps, plus a .NET Pack. A lesson for each one.' },
-  { cover: ['7', 'Agents'], name: 'Agents', type: 'Toolkit', text: '7 agents that review your code, audit your app, and help you upgrade and modernize.' },
-  { cover: ['Packs', 'on request'], name: 'Packs', type: 'Pack', text: 'Legacy Pack (3 skills, an agent and a sample project with 19 planted bugs) and CRUD vs Event Sourcing.' },
-  { cover: ['Build', 'AI Features'], name: 'Build AI Features', type: 'Projects', text: 'Semantic search, RAG and an MCP server, with runnable C# source code.' },
-  { cover: ['Monthly', 'Challenges'], name: 'Build Challenges', type: 'Challenge', text: 'A new challenge every month (12 projects in the first one) and a gallery of finished builds.' },
+  { cover: ['Start', 'Here'], name: 'Start Here', type: 'Guide', text: 'Your first hour: install, CLAUDE.md and one agent on your real code.' },
+  { cover: ['AI', 'Roadmap'], name: 'AI Roadmap for Developers', type: 'Written course', text: '8 modules, from "use AI" to "build AI".' },
+  { cover: ['Claude Code', 'Workflow'], name: 'Claude Code & Agent Workflow', type: 'Written course', text: 'CLAUDE.md, rules, hooks, headless mode and MCP.' },
+  { cover: ['49', 'Skills'], name: 'Skills', type: 'Toolkit', text: 'Architecture, database, testing, security and more. A lesson for each.' },
+  { cover: ['7', 'Agents'], name: 'Agents', type: 'Toolkit', text: 'Review your code, audit your app, modernize old code.' },
+  { cover: ['Packs', 'on request'], name: 'Packs', type: 'Toolkit', text: 'Legacy Pack and CRUD vs Event Sourcing, built from member requests.' },
+  { cover: ['Build', 'AI Features'], name: 'Build AI Features', type: 'Projects', text: 'Semantic search, RAG and an MCP server, with runnable C# code.' },
+  { cover: ['Monthly', 'Challenges'], name: 'Build Challenges', type: 'Challenge', text: 'A new build challenge every month, plus a gallery of finished builds.' },
 ];
 const courseValues = courses.map(c => c.value);
 const totalValue = courseValues.every((v): v is number => typeof v === 'number') ? (courseValues as number[]).reduce((a, b) => a + b, 0) : null;
+const countType = (t: CourseType) => courses.filter(c => c.type === t).length;
+const legend: [string, string, CourseType][] = [
+  [String(countType('Written course')), 'written courses', 'Written course'],
+  [String(countType('Guide')), 'guide', 'Guide'],
+  [String(countType('Toolkit')), 'toolkits', 'Toolkit'],
+  ['+', 'AI projects', 'Projects'],
+  ['+', 'monthly challenges', 'Challenge'],
+];
 
 const resourcesKit = [
   ['CLAUDE.md Generator', 'answer a few questions, get a context file for your project'],
@@ -109,9 +128,16 @@ const resourcesKit = [
   ['AI Prompt Playbook', 'the exact phrasings that get the best results from the toolkit'],
   ['Toolkit dashboard', 'every skill and agent, and the results of your runs, in one page'],
 ];
+const kitTools = [['{ }', 'Generator'], ['#', 'Template'], ['>_', 'Playbook'], ['▦', 'Dashboard']];
 
-const monthlyFeatures = ['The full community', 'All 8 courses', '49 skills + 7 agents, with a lesson for each', 'Bonus: Resources kit', 'New skill every week, new agent every month', '7-day free trial'];
-const yearlyFeatures = ['Everything in Monthly', `$${yearlyPerMonth} a month instead of $${MONTHLY}`, 'Your price is locked, even when it goes up', 'Every course that ships this year', 'No monthly decision, just build'];
+const monthlyFeatures: React.ReactNode[] = ['The full community', '2 video courses + 2 written courses', '49 skills + 7 agents, with a lesson for each', 'Bonus: Resources kit', 'New skill every week, new agent every month', '7-day free trial'];
+const yearlyFeatures: React.ReactNode[] = [
+  <><strong className={styles.featHl}>Pragmatic .NET Code Rules course included free</strong> <small className={styles.featSmall}>(${COURSE_PRICE} on its own, unlocks after 30 days)</small></>,
+  'Everything in Monthly',
+  `$${yearlyPerMonth} a month instead of $${MONTHLY}`,
+  'Your price is locked, even when it goes up',
+  'No monthly decision, just build',
+];
 
 const ladder = [
   { price: '$12', label: 'Founding price', sub: 'first 100 members', state: 'closed' },
@@ -121,10 +147,11 @@ const ladder = [
 ];
 
 const faqs = [
-  ['What is AI for Developers?', 'A paid community led by Stefan Djokic, Microsoft MVP, for developers who want consistent results from AI coding agents and want to build AI features (RAG, MCP, agents) the right way. Membership includes 49 skills and 7 agents for Claude Code, 8 courses, monthly build challenges and the AI Weekly briefing. It runs on Skool with a 7-day free trial.'],
+  ['What is AI for Developers?', 'A paid community led by Stefan Djokic, Microsoft MVP, for developers who want consistent results from AI coding agents and want to build AI features (RAG, MCP, agents) the right way. Membership includes 49 skills and 7 agents for Claude Code, 2 video courses (AI for Developers and Pragmatic .NET Code Rules), 2 written courses, monthly build challenges and the AI Weekly briefing. It runs on Skool with a 7-day free trial.'],
+  ['Is Pragmatic .NET Code Rules included?', `Yes, on both plans. It unlocks after your first 30 days as a member. On its own the course costs $${COURSE_PRICE}.`],
   ["I'm not a .NET developer. Is this for me?", "Yes. Every skill detects your stack first (.NET, Node/TypeScript, Python, Java/Kotlin, Go) and uses the right tools for it. Code in the courses is mostly C#, because that is where I come from, but the concepts work anywhere. A few .NET-only skills live in a separate .NET Pack."],
   ['I already use Claude Code (or Cursor, or Copilot). What is new here?', 'The tool is the engine. This is the setup around it: context files, skills, agents, hooks and review habits that make results consistent. The toolkit is built for Claude Code, and most of the workflow lessons carry over to other AI coding tools.'],
-  ['The skills are on GitHub. Why pay?', 'They are open because I want you to see how they work. The membership is what turns them into results: a lesson for every skill with prompts for your stack, 8 courses, monthly build challenges and direct answers from me. And when you need a tool that does not exist yet, you ask in Tool Requests and I build it.'],
+  ['The skills are on GitHub. Why pay?', 'They are open because I want you to see how they work. The membership is what turns them into results: a lesson for every skill with prompts for your stack, video and written courses, monthly build challenges and direct answers from me. And when you need a tool that does not exist yet, you ask in Tool Requests and I build it.'],
   ['How fast will I see a result?', 'The same day. Install takes about two minutes. Run one agent on your own code and you will have a ranked report to act on the same evening.'],
   ["I don't have time for another community.", 'You do not need to be active every day. Take a lesson, apply it, come back when you are stuck. AI Weekly lands every Monday, so you stay current in five minutes.'],
   ['Is it worth $19 a month?', 'If one agent run catches one security gap or one slow query before production, it has already paid for itself.'],
@@ -191,6 +218,76 @@ function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolea
   );
 }
 
+/* Black Friday price tag at the top of the page */
+function DealCard() {
+  return (
+    <div className={styles.deal}>
+      <div className={styles.dealPrice}>
+        <span className={styles.bfPill}>Black Friday · until {BF_ENDS}</span>
+        <p className={styles.dealLabel}>Yearly membership</p>
+        <p className={styles.dealNums}><s>${YEARLY_REGULAR}</s><strong>${YEARLY_BF}</strong><span>/year</span></p>
+        <p className={styles.dealVs}>vs ${MONTHLY * 12}/year paying monthly · your price stays locked while you&apos;re a member</p>
+      </div>
+      <div className={styles.dealInside}>
+        <p className={styles.dealLabel}>Includes 2 new video courses</p>
+        <a href="#new-ai-course" className={styles.dealCourse}><span>NEW</span><strong>AI for Developers</strong><em>${COURSE_PRICE} value</em></a>
+        <a href="#new-code-rules" className={styles.dealCourse}><span>NEW</span><strong>Pragmatic .NET Code Rules</strong><em>${COURSE_PRICE} value</em></a>
+        <JoinLink cta="ai-community-bf-hero">Get yearly for ${YEARLY_BF}</JoinLink>
+        <p className={styles.dealFine}>Code Rules unlocks after your first 30 days. Prefer monthly? ${MONTHLY}/month with a 7-day free trial.</p>
+      </div>
+    </div>
+  );
+}
+
+/* Visual for Code Rules: an AI-written PR that the build refuses */
+function SlopPr() {
+  return (
+    <div className={styles.pr} aria-label="Example: a pull request written by an AI agent fails the build on 3 code rules">
+      <div className={styles.prHead}><span className={styles.prState}>Open</span><strong>feat: add discounts to orders</strong><em>#142 · opened by claude-code</em></div>
+      <div className={styles.prBody}>
+        <p className={styles.prCmd}><span>$</span> dotnet build</p>
+        <p className={styles.prErr}><span>✗</span><b>RS0030</b><em>Banned API: DateTime.Now</em><code>OrderService.cs:41</code></p>
+        <p className={styles.prErr}><span>✗</span><b>CA2016</b><em>Forward the CancellationToken</em><code>DiscountRepo.cs:18</code></p>
+        <p className={styles.prErr}><span>✗</span><b>CA1848</b><em>Use LoggerMessage delegates</em><code>Discounts.cs:27</code></p>
+      </div>
+      <div className={styles.prFoot}><span>Merge blocked · 3 rule violations</span><b>AI slop stopped by the build</b></div>
+    </div>
+  );
+}
+
+/* Visual for the AI for Developers course: the two parts and the project */
+function CourseOutline() {
+  return (
+    <div className={styles.outline} aria-label="AI for Developers course: Part 1 Use AI, 18 lessons. Part 2 Build AI, 6 lessons. One real project.">
+      <div className={styles.olHead}><em>ai-for-developers</em><b>24 lessons · ~7 hours</b></div>
+      <div className={styles.olPart}>
+        <div className={styles.olRow}><span className={styles.olTag}>Part 1</span><strong>Use AI</strong><em>18 lessons</em></div>
+        <div className={styles.olBar}><i style={{ width: '75%' }} /></div>
+        <p>Context files, clear prompts, tests the agent can&apos;t cheat, PR reviews in CI</p>
+      </div>
+      <div className={styles.olPart}>
+        <div className={styles.olRow}><span className={styles.olTag}>Part 2</span><strong>Build AI</strong><em>6 lessons</em></div>
+        <div className={styles.olBar}><i className={styles.olBuild} style={{ width: '25%' }} /></div>
+        <p>Semantic search, RAG that cites its sources, an agent that asks first, your own MCP server</p>
+      </div>
+      <div className={styles.olProject}><span>1 real project</span><b>.NET API</b><b>Next.js</b><b>Postgres</b></div>
+    </div>
+  );
+}
+
+/* Visual for the Resources kit */
+function KitVisual() {
+  return (
+    <div className={styles.kit} aria-hidden="true">
+      <div className={styles.kitWin}>
+        <div className={styles.termBar}><span /><span /><span /><em>CLAUDE.md</em><b>template</b></div>
+        <pre className={styles.kitCode}><b># Project context</b>{'\n'}<i>## Stack</i>{'\n'}.NET 10 · EF Core · PostgreSQL{'\n'}<i>## Conventions</i>{'\n'}One handler per file{'\n'}<i>## Never do this</i>{'\n'}<u>✗ async void</u>{'\n'}<u>✗ .Result or .Wait()</u>{'\n'}<u>✗ edit /Migrations by hand</u></pre>
+      </div>
+      <div className={styles.kitTools}>{kitTools.map(([g, n]) => <div key={n}><span>{g}</span><strong>{n}</strong></div>)}</div>
+    </div>
+  );
+}
+
 export default function AiForDevelopersPage() {
   return (
     <div className={styles.page}>
@@ -204,8 +301,8 @@ export default function AiForDevelopersPage() {
           <p className={styles.pill}><span className={styles.dot} aria-hidden="true" />Live community · Claude Code, agents &amp; AI features</p>
           <h1>You code with AI every day. <span>So why is it great on Monday and nonsense on Tuesday?</span></h1>
           <p className={styles.lead}><strong>AI for Developers</strong> shows you how to stop prompting and start building a setup: skills, agents and workflows that know your codebase and give you senior-level results every time. Then how to build AI into your own apps.</p>
-          <div className={styles.actions}><JoinLink /><a href="#inside" className={styles.secondary}>See what&apos;s inside ↓</a></div>
-          <p className={styles.note}>${MONTHLY}/month after the trial · cancel anytime · Already a member? <a href={MEMBER_LOGIN_URL} className={styles.textLink}>Log in</a></p>
+          {BF_ACTIVE ? <DealCard /> : <div className={styles.actions}><JoinLink /><a href="#inside" className={styles.secondary}>See what&apos;s inside ↓</a></div>}
+          <p className={styles.note}>{BF_ACTIVE ? <>Cancel anytime · <a href="#courses" className={styles.textLink}>See everything inside</a></> : <>${MONTHLY}/month after the trial · cancel anytime</>} · Already a member? <a href={MEMBER_LOGIN_URL} className={styles.textLink}>Log in</a></p>
         </section>
 
         <div className={`${styles.stage} ${VSL_EMBED_URL ? styles.stageWithVideo : ''}`}>
@@ -232,12 +329,12 @@ export default function AiForDevelopersPage() {
         <section className={styles.section} id="problem">
           <Eyebrow n="01">The AI trap</Eyebrow>
           <h2>Sound familiar?</h2>
-          <div className={styles.grid2}>
+          <div className={styles.grid4}>
             {traps.map(([h, p]) => <article key={h} className={`${styles.card} ${styles.trapCard}`}><span className={styles.trapIcon} aria-hidden="true">✗</span><h3>{h}</h3><p>{p}</p></article>)}
           </div>
           <div className={styles.pullQuote}>
             <p className={styles.pullBig}>The problem isn&apos;t the model.</p>
-            <p>It&apos;s that nobody showed you the setup around it. Every week there&apos;s a new tool, a new model and a new &quot;this changes everything&quot;. Without a system, you just collect tabs.</p>
+            <p>It&apos;s the setup around it. Without one, you just collect tabs.</p>
           </div>
         </section>
 
@@ -246,13 +343,12 @@ export default function AiForDevelopersPage() {
           <div>
             <Eyebrow n="02">The solution</Eyebrow>
             <h2>My job is to test it on real code. <span className={styles.hl}>Yours is to use it.</span></h2>
-            <p>I&apos;m a backend developer and Microsoft MVP, and I run AI agents on real production code every day. Everything that survives that ends up here: as a skill you install in two commands, or a lesson you can follow in one evening.</p>
+            <p>I run AI agents on production code every day. What survives ends up here: a skill you install in two commands, or a lesson you finish in one evening.</p>
             <div className={styles.chips}><span>No hype</span><span>No 3-hour videos</span><span>No toy examples</span></div>
           </div>
           <article className={`${styles.card} ${styles.whatCard}`}>
             <h3>What is this?</h3>
-            <p>A community for developers who use AI coding agents on real code and want consistent, senior-level results. And for backend developers who want to build AI features (RAG, MCP, agents) the right way.</p>
-            <p>Only what I&apos;ve tested, use, and keep using. Things you can apply the same day.</p>
+            <p>A community for developers who use AI coding agents on real code and want senior-level results, and for backend developers who want to build AI features (RAG, MCP, agents) the right way.</p>
             <div className={styles.statBadge}><strong>49 skills + 7 agents</strong><span>install once, work in every project</span></div>
           </article>
         </section>
@@ -262,7 +358,7 @@ export default function AiForDevelopersPage() {
           <Eyebrow n="03">3 ways</Eyebrow>
           <h2>How <span className={styles.hl}>AI for Developers</span> actually helps you.</h2>
           <div className={styles.grid3}>
-            {ways.map(([h, p], i) => <article key={h} className={styles.card}><span className={styles.number}>{String(i + 1).padStart(2, '0')}</span><h3>{h}</h3><p>{p}</p></article>)}
+            {ways.map(([icon, h, p]) => <article key={h} className={styles.card}><span className={styles.wayIcon} aria-hidden="true">{icon}</span><h3>{h}</h3><p>{p}</p></article>)}
           </div>
         </section>
 
@@ -270,9 +366,8 @@ export default function AiForDevelopersPage() {
         <section className={styles.section} id="inside">
           <Eyebrow n="04">What you get</Eyebrow>
           <h2>Zero time filtering. <span className={styles.hl}>Only what works on real code.</span></h2>
-          <p className={styles.intro}>You stop following 50 sources. You get what already passed the test on a real codebase.</p>
-          <div className={styles.grid3}>
-            {outcomes.map(([tag, h, p]) => <article key={h} className={styles.card}><span className={styles.tag}>{tag}</span><h3>{h}</h3><p>{p}</p></article>)}
+          <div className={styles.statTiles}>
+            {outcomes.map(([v, l]) => <div key={v} className={styles.statTile}><strong>{v}</strong><span>{l}</span></div>)}
           </div>
         </section>
 
@@ -301,29 +396,61 @@ export default function AiForDevelopersPage() {
           <div>
             <Eyebrow n="06">Your guide</Eyebrow>
             <h2>Most AI demos look great on video. <span className={styles.hl}>On a real codebase, they fall apart.</span></h2>
-            <p>I&apos;ve spent years building backend systems, and today I run AI agents on that code every day. I&apos;ve seen what breaks: agents that ignore your architecture, &quot;fixes&quot; that pass the tests and fail in production, setups that work for exactly one week.</p>
-            <p>So I built AI for Developers. It&apos;s where I share only what I actually use, test and keep using. When something stops working, I say so. When a member needs a tool, I build it.</p>
+            <p>I&apos;ve spent years building backend systems, and today I run AI agents on that code every day. AI for Developers is where I share only what I use, test and keep using. When a member needs a tool, I build it.</p>
             <p className={styles.note}>The Legacy Pack started as one member&apos;s post about migrating an ERP on .NET Framework.</p>
             <div className={styles.stats}>{founderStats.map(([v, l]) => <div key={l}><strong>{v}</strong><span>{l}</span></div>)}</div>
           </div>
         </section>
 
-        <div className={styles.quickGrid}>
-          {quickGrid.map(([h, p]) => <div key={h}><strong>{h}</strong><span>{p}</span></div>)}
-        </div>
-
-        {/* 9. COURSES / VALUE STACK */}
+        {/* 9. COURSES */}
         <section className={styles.section} id="courses">
           <div className={styles.sectionHead}>
-            <div><Eyebrow n="07">Courses</Eyebrow><h2>8 courses. <span className={styles.hl}>All included in one membership.</span></h2></div>
-            <p>Everything is inside from day one, plus every new skill, agent and course that ships while you&apos;re a member.</p>
+            <div><Eyebrow n="07">Courses</Eyebrow><h2>2 new video courses. <span className={styles.hl}>Plus everything already inside.</span></h2></div>
+            <p>One membership. Every course, guide and toolkit, plus everything that ships while you&apos;re a member.</p>
+          </div>
+
+          <article className={styles.newCourse} id="new-code-rules">
+            <SlopPr />
+            <div>
+              <div className={styles.newTop}><span className={styles.newBadge}>New</span><span className={`${styles.type} ${styles.tVideo}`}>Video course</span><span className={styles.metaChip}>13 modules</span><span className={styles.metaChip}>AI edition</span></div>
+              <h3 className={styles.newTitle}>Pragmatic .NET Code Rules</h3>
+              <p className={styles.kicker}>AI writes code fast. Your build decides if it ships.</p>
+              <ul className={styles.points}>
+                <li><i aria-hidden="true">01</i><div><b>Rules the build enforces</b><span>EditorConfig, analyzers, warnings as errors, banned APIs</span></div></li>
+                <li><i aria-hidden="true">02</i><div><b>AI guardrails</b><span>for Claude Code and Copilot, plus quality gates in CI</span></div></li>
+                <li><i aria-hidden="true">03</i><div><b>No more AI slop PRs</b><span>bad code fails the build, not your code review</span></div></li>
+              </ul>
+              <div className={styles.valueRow}><s>${COURSE_PRICE}</s><span className={styles.inc}>✓ included in the membership</span></div>
+              <p className={styles.fine}>10 of 13 modules are live, the last 3 land by Dec 10. Unlocks after your first 30 days.</p>
+            </div>
+          </article>
+
+          <article className={`${styles.newCourse} ${styles.newCourseRev}`} id="new-ai-course">
+            <CourseOutline />
+            <div>
+              <div className={styles.newTop}><span className={styles.newBadge}>New</span><span className={`${styles.type} ${styles.tVideo}`}>Video course</span><span className={styles.metaChip}>24 lessons</span><span className={styles.metaChip}>1 real project</span></div>
+              <h3 className={styles.newTitle}>AI for Developers</h3>
+              <p className={styles.kicker}>Use AI on a real codebase. Then build AI into a real app.</p>
+              <ul className={styles.points}>
+                <li><i aria-hidden="true">01</i><div><b>Use AI</b><span>a workflow that catches the agent when it cheats</span></div></li>
+                <li><i aria-hidden="true">02</i><div><b>Build AI</b><span>search, RAG, an agent and an MCP server in the app</span></div></li>
+                <li><i aria-hidden="true">03</i><div><b>Start and finished branch</b><span>for every lesson, so you can compare with mine</span></div></li>
+              </ul>
+              <div className={styles.valueRow}><s>${COURSE_PRICE}</s><span className={styles.inc}>✓ included in the membership</span></div>
+              <p className={styles.fine}>The first lessons go live on Nov 27, the full course by Dec 15.</p>
+            </div>
+          </article>
+
+          <div className={styles.alreadyHead}>
+            <h3>Already inside</h3>
+            <div className={styles.legend}>{legend.map(([n, l, t]) => <span key={l} className={`${styles.type} ${typeClass[t]}`}><b>{n}</b> {l}</span>)}</div>
           </div>
           <div className={styles.courseGrid}>
             {courses.map((c, i) => (
               <article key={c.name} className={styles.course}>
                 <div className={styles.cover} aria-hidden="true"><span className={styles.coverNum}>{String(i + 1).padStart(2, '0')}</span><strong>{c.cover[0]}</strong><em>{c.cover[1]}</em></div>
                 <div className={styles.courseBody}>
-                  <span className={styles.type}>{c.type}</span>
+                  <span className={`${styles.type} ${typeClass[c.type]}`}>{c.type}</span>
                   <h3>{c.name}</h3>
                   <p>{c.text}</p>
                   <div className={styles.included}>{c.value ? <s>${c.value}</s> : null}<span>included</span></div>
@@ -331,7 +458,6 @@ export default function AiForDevelopersPage() {
               </article>
             ))}
           </div>
-          <p className={styles.resourcesLine}><strong>+ Resources:</strong> CLAUDE.md generator, CLAUDE.md template, AI Prompt Playbook and the Toolkit dashboard.</p>
           {totalValue !== null && (
             <div className={styles.totalBar}>
               <p>Total value <s>${totalValue}</s></p>
@@ -343,13 +469,13 @@ export default function AiForDevelopersPage() {
 
         {/* 10. BONUS */}
         <section className={`${styles.section} ${styles.bonus}`} id="bonus">
-          <div className={styles.giftBox} aria-hidden="true"><span>Bonus</span><strong>Resources kit</strong><em>4 tools · included</em></div>
+          <KitVisual />
           <div>
             <Eyebrow>Bonus</Eyebrow>
             <h2>Included free: <span className={styles.hl}>the Resources kit.</span></h2>
-            <p>The tools I use to set up every new project, ready the moment you join. No extra cost.</p>
+            <p>The tools I use to set up every new project, ready the moment you join.</p>
             <ul className={styles.checkList}>{resourcesKit.map(([h, p]) => <li key={h}><strong>{h}:</strong> {p}</li>)}</ul>
-            <p className={styles.bonusPrice}>{RESOURCES_KIT_VALUE ? <><s>${RESOURCES_KIT_VALUE}</s> <strong>$0 today</strong> · </> : null}Included in your ${MONTHLY}/month</p>
+            <p className={styles.bonusPrice}>{RESOURCES_KIT_VALUE ? <><s>${RESOURCES_KIT_VALUE}</s> <strong>$0 today</strong> · </> : null}Included in every plan</p>
             <JoinLink cta="ai-community-bonus">Start trial + get the kit</JoinLink>
           </div>
         </section>
@@ -383,26 +509,26 @@ export default function AiForDevelopersPage() {
           <span id="join" className={styles.anchor} aria-hidden="true" />
           <Eyebrow n="08">Pricing</Eyebrow>
           <h2>Pick how you pay. <span className={styles.hl}>You get everything either way.</span></h2>
-          <p className={styles.intro}>Same access on both plans: the community, all 8 courses, every skill and agent, and everything new that ships.</p>
+          <p className={styles.intro}>Same access on both plans: the community, every course, every skill and agent, and everything new that ships.</p>
           <div className={styles.plans}>
             <article className={styles.plan}>
               <h3>Monthly</h3>
               <p className={styles.planSub}>no commitment, cancel anytime</p>
               <p className={styles.planPrice}><strong>${MONTHLY}</strong><span>/month</span></p>
               <p className={styles.planBill}>billed monthly</p>
-              <ul className={styles.checkList}>{monthlyFeatures.map(f => <li key={f}>{f}</li>)}</ul>
+              <ul className={styles.checkList}>{monthlyFeatures.map((f, i) => <li key={i}>{f}</li>)}</ul>
               <JoinLink variant="ghost" cta="ai-community-monthly">Start monthly</JoinLink>
               <p className={styles.planFoot}>cancel anytime, no questions</p>
             </article>
             <article className={`${styles.plan} ${styles.planBest}`}>
-              <span className={styles.bestBadge}>Best value</span>
+              <span className={styles.bestBadge}>{BF_ACTIVE ? `Black Friday · until ${BF_ENDS}` : 'Best value'}</span>
               <h3>Yearly</h3>
-              <p className={styles.planSub}>pay for 8 months, get 12</p>
-              <p className={styles.planPrice}><strong>${yearlyPerMonth}</strong><span>/month</span></p>
-              <p className={styles.planBill}>${YEARLY} billed once a year · <b>Save ${yearlySavings} · {yearlySavingsPct}%</b></p>
-              <ul className={styles.checkList}>{yearlyFeatures.map(f => <li key={f}>{f}</li>)}</ul>
-              <JoinLink cta="ai-community-yearly">Go yearly and save ${yearlySavings}</JoinLink>
-              <p className={styles.planFoot}>best value for the year ahead</p>
+              <p className={styles.planSub}>pay for {yearlyPaidMonths} months, get 12</p>
+              <p className={styles.planPrice}>{BF_ACTIVE && <s className={styles.planWas}>${YEARLY_REGULAR}</s>}<strong>${YEARLY}</strong><span>/year</span></p>
+              <p className={styles.planBill}>${yearlyPerMonth} a month · <b>Save ${yearlySavings} · {yearlySavingsPct}%</b></p>
+              <ul className={styles.checkList}>{yearlyFeatures.map((f, i) => <li key={i}>{f}</li>)}</ul>
+              <JoinLink cta="ai-community-yearly">{BF_ACTIVE ? `Get yearly for $${YEARLY}` : `Go yearly and save $${yearlySavings}`}</JoinLink>
+              <p className={styles.planFoot}>{BF_ACTIVE ? `$${YEARLY_REGULAR}/year from Dec 2` : 'best value for the year ahead'}</p>
             </article>
           </div>
           <div className={styles.ladder}>
@@ -441,12 +567,12 @@ export default function AiForDevelopersPage() {
         <section className={`${styles.section} ${styles.final}`}>
           <h2>Stop collecting AI tabs. <span className={styles.hl}>Start shipping with AI.</span></h2>
           <p>Everything I&apos;ve tested on real code, in one place. Install in two minutes and run your first agent tonight.</p>
-          <JoinLink cta="ai-community-final" />
-          <p className={styles.note}>${MONTHLY}/month after the trial · cancel anytime</p>
+          {BF_ACTIVE ? <JoinLink cta="ai-community-final">Get yearly for ${YEARLY}</JoinLink> : <JoinLink cta="ai-community-final" />}
+          <p className={styles.note}>{BF_ACTIVE ? <>Black Friday: ${YEARLY}/year until {BF_ENDS}, then ${YEARLY_REGULAR} · or ${MONTHLY}/month with a 7-day free trial</> : <>${MONTHLY}/month after the trial · cancel anytime</>}</p>
         </section>
       </div>
 
-      <div className={styles.stickyCta}><span>7-day free trial · ${MONTHLY}/mo</span><a href={AI_COMMUNITY_JOIN_URL} data-cta="ai-community-sticky">Start free trial</a></div>
+      <div className={styles.stickyCta}><span>{BF_ACTIVE ? `Black Friday · $${YEARLY}/year` : `7-day free trial · $${MONTHLY}/mo`}</span><a href={AI_COMMUNITY_JOIN_URL} data-cta="ai-community-sticky">{BF_ACTIVE ? 'Get yearly' : 'Start free trial'}</a></div>
     </div>
   );
 }
