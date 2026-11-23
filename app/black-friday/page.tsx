@@ -1,208 +1,104 @@
-import SponsorsNewsletter from '@/components/sponsorsTestimonials';
-import { Metadata } from "next";
-import config from '@/config.json'
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import BfGate, { BfCountdown } from '@/components/BfGate';
+import { BF_CODE, BF_COMMUNITY, BF_DEALS, BF_ENDS_LABEL } from '@/components/blackFriday';
+import styles from './page.module.css';
+
+const PAGE_URL = 'https://thecodeman.net/black-friday';
+const OG = 'https://thecodeman.net/images/bf/black-friday-2026-og.jpg';
+const title = 'Black Friday 2026: 40% off .NET and AI courses | TheCodeMan';
+const description = 'Everything 40% off until December 1: AI for Developers, Pragmatic .NET Code Rules, Design Patterns, and the AI for Developers community for $119/year.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
-  title: "Black Friday Sponsorship Opportunities - TheCodeMan.NET",
-  alternates: {
-    canonical: 'https://thecodeman.net/black-friday',
-  },
-  description: "Promote your brand with exclusive Black Friday sponsorship deals, including LinkedIn posts, newsletter ads, and more. Reach an engaged audience with high visibility opportunities.",
-  openGraph: {
-    title: "Black Friday Sponsorship Opportunities",
-    type: "website",
-    url: "https://thecodeman.net/black-friday",
-    description: "Take advantage of Black Friday with high-impact sponsorship options across LinkedIn, newsletters, and social media to reach TheCodeMan.NET's dedicated followers.",
-    images: [
-      {
-        url: 'https://thecodeman.net/black-friday-og-image.webp',
-        width: "1000px",
-        height: "700px"
-      }
-    ],
-  },
-  twitter: {
-    title: "Black Friday Sponsorship Opportunities",
-    card: "summary_large_image",
-    site: "@TheCodeMan__",
-    creator: "@TheCodeMan__",
-    description: "Promote your brand this Black Friday with sponsorships reaching thousands through LinkedIn, newsletter ads, and social media posts.",
-    images: [
-      {
-        url: 'https://thecodeman.net/black-friday-og-image.webp',
-        width: "1000px",
-        height: "700px"
-      }
-    ]
-  }
+  title: { absolute: title },
+  description,
+  alternates: { canonical: PAGE_URL },
+  openGraph: { title, description, url: PAGE_URL, type: 'website', images: [{ url: OG, width: 1200, height: 675, alt: 'Black Friday 2026: everything 40% off' }] },
+  twitter: { card: 'summary_large_image', site: '@TheCodeMan__', creator: '@TheCodeMan__', title, description, images: [OG] },
 };
 
-const BlackFriday = () => {
+const howItWorks = [
+  ['Code already applied', `Click Buy and ${BF_CODE} is in the checkout. Nothing to copy.`],
+  ['14-day money-back', 'On AI for Developers and Pragmatic .NET Code Rules.'],
+  ['Access right away', 'Code Rules and the ebooks instantly. AI for Developers: the written course as a PDF now, videos from Nov 27.'],
+];
+
+function Ended() {
   return (
-    <>
-      <section className="ftco-about img ftco-section ftco-no-pb sponsorship-header">
-        <div className="container">
-          <div className='row pb-5 pt-5'>
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h1 className='sponsorship-name text-center mt-5'><b className='text-yellow'>BLACK FRIDAY</b></h1>
-              <h2 className='sponsorship-name text-center'>Sponsorship opportunities</h2>
-              <h4 className='mt-5'>Take advantage of this exclusive offer available until <b>December 1, 2024!</b></h4>
-              <div className="row">
-                <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
-                <img src="/images/discount_40.webp" alt="40% off Black Friday sponsorship discount tag" width={500} height={500} loading="lazy" decoding="async" className="discount-image"/>
-                  <ul className="price">
-                    <li className="header"><b>LinkedIn Post</b></li>
-                    <li className="grey padding-5 text-success"><span className='old-price'>$750.00</span>$450.00</li>
-                    <li className='padding-5'><h5><b className='text-yellow'>What you'll get?</b></h5></li>
-                    <li className='padding-5'>Complete post about your company, product or a service</li>
-                    <li className='padding-5'>1+ URLs to your website</li>
-                    <li className='padding-5'>Your image, carousel or video</li>
-                    <li className="grey padding-5">
-                      <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-                    </li>
-                    <li className='padding-5'><h5><b className='text-yellow'>Stats</b></h5></li>
-
-                    <li className='padding-5'>Average post reach: ~50k people</li>
-                    <li className='padding-5'>Number of followers: ~88k</li>
-                    <li className='padding-5'>Growth: ~1000 - 1500 followers weekly</li>
-                    <li className='padding-5'>Profile reach last month: ~ 2.5m views</li>
-                    <li className='padding-5'>Average weekly profile reach: ~ 450k - 650k</li>
-                    <li className="grey padding-5">
-                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-                    </li>
-                   </ul>
-                </div>
-                <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
-                <img src="/images/discount_25.webp" alt="25% off Black Friday sponsorship discount tag" width={500} height={500} loading="lazy" decoding="async" className="discount-image"/>
-                  <ul className="price">
-                    <li className="header"><b>Newsletter Ad</b></li>
-                    <li className="grey padding-5 text-success"><span className='old-price'>$400.00</span>$300.00</li>
-                    <li className='padding-5'><h5><b className='text-yellow'>What you'll get?</b></h5></li>
-                    <li className='padding-5'>1 of maximum 2 sponsors per issue</li>
-                    <li className='padding-5'>Sponsorship remains live forever on website</li>
-                    <li className='padding-5'>2 links per sponsorship</li>
-                    <li className="grey padding-5">
-                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-
-                    </li>
-                    <li className='padding-5'><h5><b className='text-yellow'>Stats</b></h5></li>
-                    <li className='padding-5'>Reach: 14,000+ subscribers</li>
-                    <li className='padding-5'>Growth: ~800+ subscribers monthly</li>
-                    <li className='padding-5'>Average Open Rate: 53%</li>
-                    <li className='padding-5'>Ad Clicks Average: 100 - 300</li>
-                    <li className="grey padding-5">
-                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-
-                    </li>
-                    </ul>
-                </div>
-                <div className="col-md-4 mt-5 mb-5 padding-right-45px position-relative">
-                <img src="/images/discount_60.webp" alt="60% off Black Friday sponsorship discount tag" width={500} height={500} loading="lazy" decoding="async" className="discount-image"/>
-                  <ul className="price">
-                    <li className="header"><b>X Post</b></li>
-                    <li className="grey padding-5 text-success"><span className='old-price'>$250.00</span>$100.00</li>
-                    <li className='padding-5'><h5><b className='text-yellow'>What you'll get?</b></h5></li>
-                    <li className='padding-5'>Complete post about your company, product or a service</li>
-                    <li className='padding-5'>1+ URLs to your website</li>
-                    <li className='padding-5'>Your image, document or video</li>
-                    <li className="grey padding-5">
-                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-
-                    </li>
-                    <li className='padding-5'><h5><b className='text-yellow'>Stats</b></h5></li>
-                    <li className='padding-5'>Average post reach: ~5k people</li>
-                    <li className='padding-5'>Number of followers: ~5.2k</li>
-                    <li className='padding-5'>Growth: 200 - 400 followers weekly</li>
-                    <li className='padding-5'>Profile reach last month: ~ 320k views</li>
-                    <li className="grey padding-5">
-                    <a className="btn btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-
-                    </li>
-                    </ul>
-                </div>
-              </div>
-            <h4 className='text-center'> Secure your spot for posts anytime, including bookings for next year. Don’t miss out—reserve now to lock in your future posts.</h4>
-            </div>
-          </div>
-          <div className="d-flex">
-            <div className="col-sm-12 col-md-12 col-lg-12 pb-5">
-            <h2 className='text-center mt-5'>Examples</h2>
-             <div className='row'>
-              <div className='col-sm-4 col-md-4 col-lg-4'>
-              <h3 className='pt-5'><b className='text-yellow'>LinkedIn</b></h3>
-              <div className='row'>
-                <div className='col-sm-12 col-md-12 col-lg-12 text-center'>
-                  <a target='_blank' href='https://www.linkedin.com/posts/djokic-stefan_postman-visualstudiocode-activity-7224410047810854913-hNJ1/?utm_source=share&utm_medium=member_desktop'>Postman - 100k reach</a> <br/>
-                  <a target='_blank' href='https://www.linkedin.com/posts/djokic-stefan_how-to-build-api-without-coding-visually-activity-7226532036063240192-vu7i/?utm_source=share&utm_medium=member_desktop'>Postman - 75k reach</a><br/>
-                  <a target='_blank' href='https://www.linkedin.com/posts/djokic-stefan_you-need-skills-and-tools-to-build-a-house-activity-7232738958940528640-OrGZ/?utm_source=share&utm_medium=member_desktop'>Packt - 42k reach</a>
-                </div>
-              </div>
-              </div>
-              <div className='col-sm-4 col-md-4 col-lg-4'>
-              <h3 className='pt-5'><b className='text-yellow'>Newsletter</b></h3>
-              <div className='row'>
-                <div className='col-sm-12 col-md-12 col-lg-12 text-center'>
-                  <a target='_blank' href='https://eomail4.com/web-version?p=a57fbf8c-8545-11ef-ae7d-85df232e2a82&pt=campaign&t=1728379993&s=784b945bc08f7b01ba1243c91db3cc19b19e59426863f51d69a39e55bbd61185'>In newsletter</a> <br/>
-                  <a target='_blank' href='https://thecodeman.net/posts/how-to-use-singleton-in-multithreading'>On website</a><br/>
-                </div>
-              </div>
-              </div>
-               <div className='col-sm-4 col-md-4 col-lg-4'>
-              <h3 className='pt-5'><b className='text-yellow'>X (Twitter)</b></h3>
-              <div className='row'>
-                <div className='col-sm-12 col-md-12 col-lg-12 text-center'>
-                  <a target='_blank' href='https://x.com/TheCodeMan__/status/1841461611803901957'>Packt - 4.8k</a> <br/>
-                  <a target='_blank' href='https://x.com/TheCodeMan__/status/1839580695850611135'>Postman - 4.5k</a><br/>
-                </div>
-              </div>
-              </div>
-             </div>
-              <br />
-              <div className='row'>
-              <div className='col-sm-12 col-md-12 col-lg-12 text-center pb-5 mt-5'>
-              <a className="btn btn-lg btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-            </div>
-              </div>
-            </div>
-          </div>
-          <div className="d-flex">
-            <div className="col-sm-12 col-md-12 col-lg-12 pb-5">
-              <div className="row pb-3">
-                <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-                  <h2 className='text-center'>Previous Sponsors</h2>
-                  <h2 className='pt-5'><b className='text-yellow'>{config.PreviousSponsors}</b></h2>
-                  <br />
-                  <div className='row'>
-              <div className='col-sm-12 col-md-12 col-lg-12 text-center pb-5 mt-5'>
-              <a className="btn btn-lg btn-primary border-radius-5px coming-soon" href='#reserveSpotForm'> Reserve here</a>
-            </div>
-              </div>
-                </div>
-                <SponsorsNewsletter />
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-sm-12 col-md-12 col-lg-12'>
-            <div className="row text-center">
-            <div className="col-md-3"></div>
-            <div className="col-md-8" id='reserveSpotForm'
-              dangerouslySetInnerHTML={{
-                __html: `
-                         <script type="text/lazy" data-src="https://eomail4.com/form/9ade17e6-9c87-11ef-86b3-890d9e639bbe.js" data-form="9ade17e6-9c87-11ef-86b3-890d9e639bbe"></script>
-
-            `
-              }}
-            />
-            <div className="col-md-2"></div>
-          </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  )
+    <section className={styles.ended}>
+      <h1>Black Friday 2026 <span>is over.</span></h1>
+      <p>Thanks to everyone who joined. Everything is still available at the regular price:</p>
+      <div className={styles.endedLinks}>
+        <Link href={BF_COMMUNITY.detailsUrl}>{BF_COMMUNITY.name} →</Link>
+        {BF_DEALS.map((d) => <Link key={d.id} href={d.detailsUrl}>{d.name} →</Link>)}
+      </div>
+    </section>
+  );
 }
 
-export default BlackFriday;
+export default function BlackFridayPage() {
+  return (
+    <div className={styles.page}>
+      <div className={styles.wrap}>
+        <BfGate fallback={<Ended />}>
+          {/* HERO */}
+          <section className={styles.hero}>
+            <p className={styles.pill}><span>Black Friday 2026</span>until {BF_ENDS_LABEL}, 23:59 CET</p>
+            <h1>Everything <span>40% off.</span></h1>
+            <p className={styles.lead}>My courses, ebooks and the AI for Developers community. Code <b>{BF_CODE}</b> is already applied when you click Buy.</p>
+            <BfCountdown className={styles.countdown} />
+          </section>
+
+          {/* BEST VALUE: COMMUNITY */}
+          <section className={styles.best} aria-labelledby="bf-community">
+            <div className={styles.bestCopy}>
+              <span className={styles.bestBadge}>Best value</span>
+              <h2 id="bf-community">{BF_COMMUNITY.name}</h2>
+              <p className={styles.bestSub}>Both video courses and everything else, in one membership.</p>
+              <ul className={styles.checks}>{BF_COMMUNITY.points.map((p) => <li key={p}>{p}</li>)}</ul>
+            </div>
+            <div className={styles.bestBuy}>
+              <p className={styles.bestPlan}>{BF_COMMUNITY.plan}</p>
+              <p className={styles.bestPrice}><s>{BF_COMMUNITY.was}</s><strong>{BF_COMMUNITY.now}</strong><span>{BF_COMMUNITY.per}</span></p>
+              <p className={styles.bestVs}>vs $228/year paying monthly</p>
+              <a href={BF_COMMUNITY.buyUrl} className={styles.buy} data-cta="bf-page-community">Join yearly for {BF_COMMUNITY.now} <span aria-hidden="true">→</span></a>
+              <Link href={BF_COMMUNITY.detailsUrl} className={styles.details}>See what&apos;s inside</Link>
+              <p className={styles.fine}>{BF_COMMUNITY.note}</p>
+            </div>
+          </section>
+
+          {/* PRODUCTS */}
+          <h2 className={styles.gridTitle}>Or pick just one</h2>
+          <div className={styles.grid}>
+            {BF_DEALS.map((d) => (
+              <article key={d.id} className={styles.deal}>
+                <Link href={d.detailsUrl} className={styles.media} aria-label={`${d.name} details`}>
+                  <Image src={d.image} alt="" width={640} height={360} sizes="(max-width: 760px) 100vw, 540px" />
+                  <span className={styles.off}>-40%</span>
+                </Link>
+                <div className={styles.body}>
+                  <p className={styles.kind}>{d.tag && <span className={styles.tag}>{d.tag}</span>}{d.kind}</p>
+                  <h3>{d.name}</h3>
+                  <p className={styles.blurb}>{d.blurb}</p>
+                  <p className={styles.prices}><s>{d.was}</s><strong>{d.now}</strong></p>
+                  <div className={styles.actions}>
+                    <a href={d.buyUrl} className={`${styles.buy} lemonsqueezy-button`} data-cta={`bf-page-${d.id}`}>Buy now · {d.now}</a>
+                    <Link href={d.detailsUrl} className={styles.details}>Details</Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* HOW IT WORKS */}
+          <div className={styles.how}>
+            {howItWorks.map(([h, p]) => <div key={h}><strong>{h}</strong><span>{p}</span></div>)}
+          </div>
+          <p className={styles.endNote}>Prices go back up on December 2. Questions? <a href="mailto:stefan@thecodeman.net">stefan@thecodeman.net</a></p>
+        </BfGate>
+      </div>
+    </div>
+  );
+}

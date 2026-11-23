@@ -1,4 +1,5 @@
 import AiCommunityPromo from '@/components/AiCommunityPromo';
+import BfAiStrip from '@/components/BfAiStrip';
 import { Metadata } from 'next'
 import Script from 'next/script'
 import { codeToHtml } from 'shiki'
@@ -641,6 +642,8 @@ export default function AiRoadmapCoursePage() {
           </div>
 
           <hr className="background-yellow" />
+
+          <BfAiStrip />
 
           {/* ---------------- PART 1 ---------------- */}
           <div className="row justify-content-center">

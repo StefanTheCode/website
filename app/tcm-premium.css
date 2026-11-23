@@ -188,6 +188,15 @@ body .promo-bar.tcm-announce {
 .tcm-announce__text { color: #D5CCDB; }
 .tcm-announce__text strong { color: #F3EEF6; font-weight: 600; font-size: inherit !important; }
 .tcm-announce a { color: #F0C97A !important; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+/* Black Friday bar (header.tsx, until Dec 1): taller, amber, the whole bar links to /black-friday */
+body .promo-bar.tcm-announce.tcm-bf { background: linear-gradient(90deg, #F3B73F 0%, #FFD477 50%, #F3B73F 100%) !important; border-bottom: 1px solid rgba(36,16,51,.25) !important; color: #241033 !important; }
+.tcm-bf__link { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 11px 24px; color: #241033 !important; text-decoration: none !important; font-size: 15px; line-height: 1.35; flex-wrap: wrap; }
+.tcm-bf__tag { font-family: var(--font-mono); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #F3B73F; background: #241033; padding: 4px 10px; border-radius: 999px; }
+.tcm-bf__big { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.tcm-bf__text { font-weight: 600; }
+.tcm-bf__text b { font-family: var(--font-mono); font-weight: 800; background: rgba(36,16,51,.12); padding: 1px 6px; border-radius: 5px; }
+.tcm-bf__btn { display: inline-flex; align-items: center; gap: 6px; background: #241033; color: #FFD477; font-weight: 800; font-size: 14px; padding: 7px 14px; border-radius: 999px; transition: transform .15s ease; }
+.tcm-bf__link:hover .tcm-bf__btn { transform: translateX(2px); }
 
 body nav#ftco-navbar.tcm-nav {
   position: static !important; top: auto !important; padding: 0 !important; margin: 0 !important;
@@ -447,6 +456,11 @@ footer.tcm-footer { margin-top: 0; padding: 0 !important; background: var(--s-fo
   .tcm-announce__text { font-size: 13px; }
   .tcm-announce__more { display: none; }
   .tcm-announce__inner { flex-wrap: nowrap; gap: 10px; padding: 8px 16px; }
+  .tcm-bf__link { flex-wrap: nowrap; gap: 8px; padding: 9px 12px; font-size: 13px; }
+  .tcm-bf__more { display: none; }
+  .tcm-bf__big { font-size: 18px; }
+  .tcm-bf__tag { font-size: 9px; padding: 3px 7px; }
+  .tcm-bf__btn { font-size: 12px; padding: 6px 10px; white-space: nowrap; }
   .tcm-badge { font-size: 11px; letter-spacing: 0.08em; padding: 6px 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -673,4 +687,7 @@ h1, h2 { font-weight: 700; letter-spacing: -0.02em; }
   .tcm-tw__cols { grid-template-columns: minmax(0, 1fr); }
   .tcm-tw__card--featured { padding: 26px; }
   .tcm-tw__card--featured .tcm-tw__text { font-size: 17px; }
+}
+@media (max-width: 400px) {
+  .tcm-bf__tag { display: none; }
 }

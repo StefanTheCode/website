@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import FreeMotion from '../../components/free/FreeMotion'
 import { eoFormScript } from '../../components/thirdParty'
+import BfAiStrip from '@/components/BfAiStrip';
 
 // EmailOctopus form "claude-code-from-zero" (tag: claude-code-from-zero).
 // The automation "Claude Code from Zero" sends the playbook PDF + lesson 1 right away (public/downloads/claude-code-from-zero-playbook.pdf), then a short email every 2 days (which lesson to do next + one new tip).
@@ -125,6 +126,8 @@ const ClaudeCodeFromZero = () => {
             </div>
           </div>
         </div>
+
+        <div className="container"><BfAiStrip /></div>
 
         <hr className="crk-divider" />
 

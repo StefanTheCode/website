@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./tools.module.css";
+import BfAiStrip from '@/components/BfAiStrip';
 
 export const metadata: Metadata = {
   title: "Free AI Tools for C#/.NET Design Patterns — TheCodeMan",
@@ -96,6 +97,8 @@ export default function ToolsHub() {
           Pick a pattern, compare two, prep for an interview — or ask the book.
         </p>
       </div>
+
+      <BfAiStrip />
 
       <div
         style={{

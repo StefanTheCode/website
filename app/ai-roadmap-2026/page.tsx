@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import Script from 'next/script'
 import Image from 'next/image'
 import FreeMotion from '../../components/free/FreeMotion'
+import BfAiStrip from '@/components/BfAiStrip';
 
 const PAGE_URL = 'https://thecodeman.net/ai-roadmap-2026'
 
@@ -159,6 +160,8 @@ const AiRoadmap2026 = () => {
             </div>
           </div>
         </div>
+
+        <div className="container"><BfAiStrip /></div>
 
         {/* ── Marquee ── */}
         <div className="container-fluid px-0 mt-5" data-reveal>

@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { AI_COMMUNITY_PATH } from './aiCommunity';
+import BfAiStrip from './BfAiStrip';
+import BfGate from './BfGate';
 import styles from './AiCommunityPromo.module.css';
 
 export default function AiCommunityPromo({ compact = false }: { compact?: boolean }) {
-  return (
+  const regular = (
     <aside className={`${styles.promo} ${compact ? styles.compact : ''}`} aria-label="AI for Developers community">
       <div>
         <p className={styles.eyebrow}>Practical AI for developers who ship real systems</p>
@@ -13,4 +15,6 @@ export default function AiCommunityPromo({ compact = false }: { compact?: boolea
       <Link href={AI_COMMUNITY_PATH} className={styles.link} data-cta="ai-community">Explore the community <span aria-hidden="true">→</span></Link>
     </aside>
   );
+  /* During Black Friday the card becomes the Black Friday offer; after Dec 1 it is back to normal. */
+  return <BfGate fallback={regular}><BfAiStrip compact={compact} /></BfGate>;
 }

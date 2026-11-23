@@ -4,6 +4,7 @@ import './globals.css'
 import './tcm-premium.css'
 import Head from './head'
 import Header from './header'
+import BfPopup from '@/components/BfPopup'
 import ogImage from './og-image.webp'
 import Script from "next/script";
 import { THIRD_PARTY_STUBS, THIRD_PARTY_LOADER } from "@/components/thirdParty";
@@ -162,6 +163,7 @@ export default function RootLayout({
         <Header></Header>
         <main id="main-content">{children}</main>
         <Footer></Footer>
+        <BfPopup />
         <script dangerouslySetInnerHTML={{ __html: THIRD_PARTY_LOADER }} />
       </body>
     </html>

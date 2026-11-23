@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import FreeMotion from '../../components/free/FreeMotion'
 import TerminalDemo, { DemoTab } from '../../components/free/TerminalDemo'
+import BfAiStrip from '@/components/BfAiStrip';
 
 const PAGE_URL = 'https://thecodeman.net/ai-in-dotnet-starter-kit'
 
@@ -143,6 +144,8 @@ const AiStarterKit = () => {
             </div>
           </div>
         </div>
+
+        <div className="container"><BfAiStrip /></div>
 
         {/* ── Marquee ── */}
         <div className="container-fluid px-0 mt-5" data-reveal>

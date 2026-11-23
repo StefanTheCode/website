@@ -5,6 +5,7 @@ import {
   DOTNET_AI_GUIDE_NAME, DOTNET_AI_GUIDE_URL,
 } from '@/components/aiCommunity';
 import styles from './page.module.css';
+import BfAiStrip from '@/components/BfAiStrip';
 
 // Free, evergreen guide for C# developers. The paid community lives at
 // /ai-for-developers; this page targets ".NET / C#" AI searches and links to it.
@@ -78,6 +79,8 @@ export default function AiForDotnetDevelopersPage() {
             </ol>
           </nav>
         </section>
+
+        <BfAiStrip />
 
         <section className={styles.section} id="stack">
           <p className={styles.eyebrow}>The .NET AI stack</p>

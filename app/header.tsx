@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./globals.css";
 import Image from "next/image";
+import { useBfActive } from "@/components/BfGate";
+import { BF_CODE, BF_COMMUNITY, BF_ENDS_LABEL, BF_PATH } from "@/components/blackFriday";
 
 type NavLink = { href: string; label: string; note?: string };
 type NavGroup = { id: string; label: string; links: NavLink[] };
@@ -62,6 +64,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [path, setPath] = useState("");
+  const bfActive = useBfActive();
 
   // Keep --promo-h in sync so the fixed header never covers page content.
   useEffect(() => {
@@ -72,7 +75,7 @@ export default function Header() {
     setPromoHeight();
     window.addEventListener("resize", setPromoHeight);
     return () => window.removeEventListener("resize", setPromoHeight);
-  }, []);
+  }, [bfActive]);
 
   useEffect(() => { setPath(window.location.pathname); }, []);
 
@@ -106,16 +109,30 @@ export default function Header() {
   return (
     <div className="tcm-header" ref={headerRef}>
       {/* Announcement (class promo-bar kept: product pages hide it by that name) */}
-      <div ref={promoRef} className="promo-bar tcm-announce">
-        <div className="tcm-announce__inner">
-          <span className="tcm-announce__tag">BLACK FRIDAY</span>
-          <span className="tcm-announce__text"><strong>Everything 40% off</strong><span className="tcm-announce__more"> - use code BF26 at checkout, until Dec 1</span></span>
-          <a href="/ai-for-developers-course" data-cta="bf26-header">
-            Shop now
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+      {bfActive ? (
+        <div ref={promoRef} className="promo-bar tcm-announce tcm-bf">
+          <a href={BF_PATH} className="tcm-bf__link" data-cta="bf26-header">
+            <span className="tcm-bf__tag">Black Friday</span>
+            <span className="tcm-bf__big">40% OFF</span>
+            <span className="tcm-bf__text">everything<span className="tcm-bf__more"> + AI community {BF_COMMUNITY.now}/year · code <b>{BF_CODE}</b> · until {BF_ENDS_LABEL}</span></span>
+            <span className="tcm-bf__btn">
+              See all deals
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+            </span>
           </a>
         </div>
-      </div>
+      ) : (
+        <div ref={promoRef} className="promo-bar tcm-announce">
+          <div className="tcm-announce__inner">
+            <span className="tcm-announce__tag">NEW</span>
+            <span className="tcm-announce__text"><strong>AI for Developers</strong><span className="tcm-announce__more"> - skills, agents and practical lessons</span></span>
+            <a href="/ai-for-developers" data-cta="ai-community-header">
+              Explore
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* id/class kept: product pages hide the global nav with nav#ftco-navbar.header-nav */}
       <nav className="header-nav tcm-nav" id="ftco-navbar" aria-label="Main">
