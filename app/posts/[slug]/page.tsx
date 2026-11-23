@@ -27,6 +27,7 @@ import Link from "next/link";
 import { formatPostDate, formatReadTime } from "@/components/PostCard";
 import Image from "next/image";
 import AiCommunityPromo from "@/components/AiCommunityPromo";
+import FreeCommunityPromo from "@/components/FreeCommunityPromo";
 import { dotnetAiGuide, isAiPost, AI_COMMUNITY_PATH, AI_COMMUNITY_IMAGE, DOTNET_AI_GUIDE_PATH, DOTNET_AI_GUIDE_URL, DOTNET_AI_GUIDE_NAME } from "@/components/aiCommunity";
 
 const postsDir = path.join(process.cwd(), "posts");
@@ -349,6 +350,8 @@ export default async function PostPage(
               <ShareButtons url={meta.url} title={meta.title} image={meta.image} />
 
               {post.data.category === "Design Patterns" && <PatternTools />}
+
+              <FreeCommunityPromo />
 
               <Author />
 

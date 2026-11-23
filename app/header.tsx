@@ -7,49 +7,52 @@ import { useBfActive } from "@/components/BfGate";
 import { BF_CODE, BF_COMMUNITY, BF_ENDS_LABEL, BF_PATH } from "@/components/blackFriday";
 
 type NavLink = { href: string; label: string; note?: string };
-type NavGroup = { id: string; label: string; links: NavLink[] };
+type NavSection = { title?: string; links: NavLink[] };
+type NavGroup = { id: string; label: string; sections: NavSection[] };
 
 const GROUPS: NavGroup[] = [
   {
     id: "free",
     label: "Free resources",
-    links: [
-      { href: "/dotnet-roadmap-2026", label: ".NET Roadmap 2026" },
-      { href: "/ai-roadmap-2026", label: "AI Roadmap for .NET 2026" },
-      { href: "/ai-roadmap-course", label: "AI Roadmap Course", note: "Free lessons" },
-      { href: "/dotnet-code-rules-starter-kit", label: ".NET Code Rules Starter Kit" },
-      { href: "/vertical-slices-architecture", label: "Vertical Slice Architecture" },
-      { href: "/pass-your-interview", label: "Pass Your .NET Interview", note: "250 interview Q&As" },
-      { href: "/builder-pattern-free-stuff", label: "Builder Pattern Chapter" },
-      { href: "/ai-in-dotnet-starter-kit", label: "AI in .NET Starter Kit" },
+    sections: [
+      {
+        title: "Guides & kits",
+        links: [
+          { href: "/dotnet-roadmap-2026", label: ".NET Roadmap 2026" },
+          { href: "/ai-roadmap-2026", label: "AI Roadmap for .NET 2026" },
+          { href: "/ai-roadmap-course", label: "AI Roadmap Course", note: "Free lessons" },
+          { href: "/dotnet-code-rules-starter-kit", label: ".NET Code Rules Starter Kit" },
+          { href: "/vertical-slices-architecture", label: "Vertical Slice Architecture" },
+          { href: "/pass-your-interview", label: "Pass Your .NET Interview", note: "250 interview Q&As" },
+          { href: "/builder-pattern-free-stuff", label: "Builder Pattern Chapter" },
+          { href: "/ai-in-dotnet-starter-kit", label: "AI in .NET Starter Kit" },
+        ],
+      },
+      {
+        title: "AI tools",
+        links: [
+          { href: "/tools/pattern-picker", label: "Pattern Picker" },
+          { href: "/tools/pattern-comparison", label: "Pattern Comparison" },
+          { href: "/tools/interview-quiz", label: "Interview Quiz" },
+          { href: "/playground", label: "C# Playground" },
+          { href: "/tools/ask-the-book", label: "Ask the Book", note: "For ebook owners" },
+          { href: "/tools", label: "All AI tools →" },
+        ],
+      },
     ],
   },
   {
     id: "courses",
     label: "Courses",
-    links: [
-      { href: "/ai-for-developers", label: "AI for Developers", note: "Community + lessons" },
-      { href: "/pragmatic-dotnet-code-rules", label: "Pragmatic .NET Code Rules", note: "Video course" },
-      { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver", note: "Written course + ebook + AI tutor" },
-    ],
-  },
-  {
-    id: "ebooks",
-    label: "Ebooks",
-    links: [
-      { href: "/design-patterns-simplified", label: "Design Patterns Simplified" },
-    ],
-  },
-  {
-    id: "ai",
-    label: "AI tools",
-    links: [
-      { href: "/tools/pattern-picker", label: "Pattern Picker" },
-      { href: "/tools/pattern-comparison", label: "Pattern Comparison" },
-      { href: "/tools/interview-quiz", label: "Interview Quiz" },
-      { href: "/playground", label: "C# Playground" },
-      { href: "/tools/ask-the-book", label: "Ask the Book", note: "For ebook owners" },
-      { href: "/tools", label: "All AI tools →" },
+    sections: [
+      {
+        links: [
+          { href: "/ai-for-developers", label: "AI for Developers Community", note: "Skills, agents + AI lessons" },
+          { href: "/pragmatic-dotnet-code-rules", label: "Pragmatic .NET Code Rules", note: "Video course" },
+          { href: "/design-patterns-that-deliver-ebook", label: "Design Patterns That Deliver", note: "Written course + ebook + AI tutor" },
+          { href: "/design-patterns-simplified", label: "Design Patterns Ebook", note: "Design Patterns Simplified" },
+        ],
+      },
     ],
   },
 ];
@@ -104,7 +107,7 @@ export default function Header() {
   };
 
   const isActive = (href: string) => path === href || (href !== "/" && path.startsWith(href + "/"));
-  const groupActive = (g: NavGroup) => g.links.some((l) => isActive(l.href));
+  const groupActive = (g: NavGroup) => g.sections.some((s) => s.links.some((l) => isActive(l.href)));
 
   return (
     <div className="tcm-header" ref={headerRef}>
@@ -125,7 +128,7 @@ export default function Header() {
         <div ref={promoRef} className="promo-bar tcm-announce">
           <div className="tcm-announce__inner">
             <span className="tcm-announce__tag">NEW</span>
-            <span className="tcm-announce__text"><strong>AI for Developers</strong><span className="tcm-announce__more"> - skills, agents and practical lessons</span></span>
+            <span className="tcm-announce__text"><strong>AI for Developers Community</strong><span className="tcm-announce__more"> - skills, agents and practical lessons</span></span>
             <a href="/ai-for-developers" data-cta="ai-community-header">
               Explore
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
@@ -158,16 +161,20 @@ export default function Header() {
                 >
                   {g.label}<Chevron />
                 </button>
-                <div id={`dd-${g.id}`} className={`tcm-dd ${openDropdown === g.id ? "is-open" : ""}`}>
-                  {g.links.map((l) => (
-                    <a key={l.href} href={l.href} onClick={() => setOpenDropdown(null)}>
-                      {l.label}{l.note ? <small>{l.note}</small> : null}
-                    </a>
+                <div id={`dd-${g.id}`} className={`tcm-dd ${g.sections.length > 1 ? "tcm-dd--cols" : ""} ${openDropdown === g.id ? "is-open" : ""}`}>
+                  {g.sections.map((s, i) => (
+                    <div key={s.title ?? i} className="tcm-dd__col">
+                      {s.title ? <span className="tcm-dd__title">{s.title}</span> : null}
+                      {s.links.map((l) => (
+                        <a key={l.href} href={l.href} onClick={() => setOpenDropdown(null)}>
+                          {l.label}{l.note ? <small>{l.note}</small> : null}
+                        </a>
+                      ))}
+                    </div>
                   ))}
                 </div>
               </li>
             ))}
-            <li><a href="/sponsorship" className={`tcm-nav__link ${isActive("/sponsorship") ? "is-active" : ""}`}>Sponsor</a></li>
           </ul>
 
           <div className="tcm-nav__actions">
@@ -180,8 +187,7 @@ export default function Header() {
                 <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
               </svg>
             </button>
-            <a href="https://www.skool.com/thecodeman-community-2911" className="tcm-nav__text-link">Free community</a>
-            <a href="/ai-for-developers" className="tcm-btn tcm-btn--primary tcm-btn--sm" data-cta="ai-community-nav">AI for Developers</a>
+            <a href="/ai-for-developers" className="tcm-btn tcm-btn--primary tcm-btn--sm" data-cta="ai-community-nav">AI for Developers Community</a>
             <button
               type="button"
               className="tcm-burger"
@@ -205,15 +211,18 @@ export default function Header() {
             {GROUPS.map((g) => (
               <details key={g.id}>
                 <summary>{g.label}<Chevron /></summary>
-                {g.links.map((l) => (
-                  <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
+                {g.sections.map((s, i) => (
+                  <div key={s.title ?? i}>
+                    {s.title ? <span className="tcm-mobile__title">{s.title}</span> : null}
+                    {s.links.map((l) => (
+                      <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
+                    ))}
+                  </div>
                 ))}
               </details>
             ))}
-            <a href="/sponsorship" onClick={() => setMenuOpen(false)}>Sponsor</a>
             <div className="tcm-mobile__ctas">
-              <a href="/ai-for-developers" className="tcm-btn tcm-btn--primary">AI for Developers</a>
-              <a href="https://www.skool.com/thecodeman-community-2911" className="tcm-btn tcm-btn--secondary">Join the free community</a>
+              <a href="/ai-for-developers" className="tcm-btn tcm-btn--primary">AI for Developers Community</a>
             </div>
           </div>
         </div>

@@ -232,6 +232,13 @@ body nav#ftco-navbar.tcm-nav {
 :root[data-theme="light"] .tcm-dd a:hover { background: rgba(26, 4, 36, 0.05); }
 .tcm-dd a small { display: block; font-size: 12px; color: var(--s-faint); }
 .tcm-dd hr { margin: 6px 4px; border: 0; border-top: 1px solid var(--s-line); }
+/* Multi-section dropdown (Free resources: Guides & kits | AI tools) */
+.tcm-dd__col { display: flex; flex-direction: column; min-width: 0; }
+.tcm-dd--cols.is-open { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 0 12px; min-width: 540px; }
+.tcm-dd--cols .tcm-dd__col + .tcm-dd__col { border-left: 1px solid var(--s-line); padding-left: 12px; }
+.tcm-dd__title, .tcm-mobile__title { display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--s-accent-text); }
+.tcm-dd__title { padding: 8px 12px 4px; }
+.tcm-mobile__title { padding: 10px 0 4px 12px; }
 .tcm-nav__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .tcm-nav__actions .theme-toggle { margin: 0 !important; width: 40px; height: 40px; border-radius: 10px; }
 .tcm-nav__text-link { padding: 8px 12px; font-size: 14px; font-weight: 600; color: var(--s-h) !important; text-decoration: none !important; }
