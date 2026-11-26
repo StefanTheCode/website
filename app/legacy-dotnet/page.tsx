@@ -3,16 +3,15 @@ import FreeMotion from '../../components/free/FreeMotion'
 import BfAiStrip from '@/components/BfAiStrip';
 import { AI_COMMUNITY_JOIN_URL } from '@/components/aiCommunity';
 
-// Free resource page for the .NET Pack in the AI for Developers repo:
-// Legacy Pack (maintenance) + Migration Pack (beta, .NET Framework -> .NET 10).
+// Landing page for the .NET Pack (Legacy Pack + Migration Pack beta), which is
+// available to AI for Developers community members only. No public repo links here:
+// every "get it" CTA goes to the community. The sample report is public on purpose.
 const PAGE_URL = 'https://thecodeman.net/legacy-dotnet'
 const IMAGE = '/images/legacy-dotnet/og.webp'
-const REPO_URL = 'https://github.com/StefanTheCode/AI-for-Developers/tree/main/packs/dotnet'
-const COPILOT_GUIDE_URL = 'https://github.com/StefanTheCode/AI-for-Developers/blob/main/packs/dotnet/COPILOT.md'
 const SAMPLE_REPORT_URL = '/downloads/legacy-shop-migration-assessment.html'
-const TITLE = 'Migrate .NET Framework to .NET 10 with AI - Free Migration Pack'
+const TITLE = 'Migrate .NET Framework to .NET 10 with AI - the Migration Pack'
 const DESCRIPTION =
-  'Free Claude Code and GitHub Copilot skills that move a .NET Framework app to .NET 10 piece by piece: an HTML assessment report, parity tests, a YARP strangler host and slice-by-slice migration of WebForms, MVC 5, Web API 2, WCF and EF6.'
+  'Claude Code and GitHub Copilot skills that move a .NET Framework app to .NET 10 piece by piece: an HTML assessment report, parity tests, a YARP strangler host and slice-by-slice migration of WebForms, MVC 5, Web API 2, WCF and EF6.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thecodeman.net'),
@@ -87,7 +86,7 @@ const faq = [
   { q: 'Does it work with GitHub Copilot?', a: 'Yes. The skills are plain SKILL.md files that Copilot reads as they are, and every agent has a Copilot edition. It works in VS Code, Visual Studio and Copilot CLI.' },
   { q: 'How much can AI really do?', a: 'Most of the mechanical work, the first draft of the translated code and most of the tests. On the sample app the report puts it at about 62% of the hands-on work. Decisions about auth, session, hosting and data stay with you.' },
   { q: 'What isn\'t covered yet?', a: 'It scans C# projects only (no VB.NET yet). WinForms and WPF UI migration, and reporting tools like Crystal Reports or ActiveReports, are out of scope. It\'s a beta - tell me what it missed on your app.' },
-  { q: 'Is it free?', a: 'Yes. Everything is in a public GitHub repo, free to use and adapt.' },
+  { q: 'How do I get it?', a: 'The pack is part of the AI for Developers community, together with the AI for Developers course, 50+ skills and agents with a lesson for each, weekly AI news and live calls. Members get the install steps for Claude Code and GitHub Copilot inside. The sample report on this page is free to open.' },
 ]
 
 const card = { border: '1px solid var(--tk-line)', borderRadius: '16px', background: 'var(--tk-card-bg)' } as const
@@ -108,7 +107,7 @@ const LegacyDotnet = () => {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-xs-12 col-sm-12 col-md-11 col-lg-9 heading-section text-center mt-5">
-                <span className="tk-eyebrow" data-reveal>Free · open source · beta</span>
+                <span className="tk-eyebrow" data-reveal>Beta · in the AI for Developers community</span>
 
                 <div className="d-flex justify-content-center mb-4" data-reveal data-delay="1">
                   <div className="d-inline-flex align-items-center" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '999px', padding: '8px 16px' }}>
@@ -122,7 +121,7 @@ const LegacyDotnet = () => {
                 </h1>
 
                 <h4 className="text-white mb-4" style={{ fontWeight: 400, lineHeight: 1.6 }} data-reveal data-delay="2">
-                  Free skills and agents that move WebForms, MVC 5, Web API 2, WCF and EF6 to .NET 10 one slice at a time - with tests that prove nothing changed.
+                  Skills and agents that move WebForms, MVC 5, Web API 2, WCF and EF6 to .NET 10 one slice at a time - with tests that prove nothing changed.
                 </h4>
 
                 <p className="text-white mb-4" style={{ opacity: 0.85, lineHeight: 1.7 }} data-reveal data-delay="2">
@@ -131,7 +130,7 @@ const LegacyDotnet = () => {
                 </p>
 
                 <div className="d-flex flex-wrap justify-content-center gap-3" data-reveal data-delay="3">
-                  <a href={REPO_URL} className="tk-btn" style={yellowBtn} target="_blank" rel="noopener noreferrer" data-cta="legacy-dotnet-github">Get it on GitHub</a>
+                  <a href={AI_COMMUNITY_JOIN_URL} className="tk-btn" style={yellowBtn} target="_blank" rel="noopener noreferrer" data-cta="legacy-dotnet-community-hero">Get it in the community</a>
                   <a href={SAMPLE_REPORT_URL} className="tk-btn" style={outlineBtn} target="_blank" rel="noopener" data-cta="legacy-dotnet-sample-report">Open a sample report</a>
                 </div>
 
@@ -269,22 +268,18 @@ const LegacyDotnet = () => {
         <div className="container pt-4">
           <div className="row justify-content-center text-center">
             <div className="col-md-12 mb-4">
-              <span className="tk-eyebrow" data-reveal>Install</span>
-              <h2 className="text-white" data-reveal data-delay="1">Two commands in Claude Code</h2>
+              <span className="tk-eyebrow" data-reveal>How to get it</span>
+              <h2 className="text-white" data-reveal data-delay="1">Join the community, then one prompt</h2>
             </div>
             <div className="col-xs-12 col-md-10 col-lg-8 mb-3" data-reveal>
-              <pre style={codeBlock}>{`/plugin marketplace add StefanTheCode/AI-for-Developers
-/plugin install dotnet-pack@thecodeman-ai-toolkit`}</pre>
-            </div>
-            <div className="col-xs-12 col-md-10 col-lg-8 mb-3" data-reveal>
+              <p className="text-white" style={{ opacity: 0.85, lineHeight: 1.7 }}>
+                The Legacy Pack and the Migration Pack are part of the AI for Developers community. Inside you get the install steps for Claude Code and GitHub Copilot (VS Code and Copilot CLI), a lesson for every skill and agent, and the LegacyShop sample app to practice on.
+              </p>
               <p className="text-white" style={{ opacity: 0.85 }}>Then, in your solution folder:</p>
               <pre style={codeBlock}>{`Assess MySolution.sln for migration to .NET 10.`}</pre>
             </div>
             <div className="col-xs-12 col-md-10 col-lg-8" data-reveal>
-              <p className="text-white" style={{ opacity: 0.85, lineHeight: 1.7 }}>
-                Using GitHub Copilot? Copy the skills to <code style={mono}>.github/skills</code> and the agents to <code style={mono}>.github/agents</code> -
-                the <a href={COPILOT_GUIDE_URL} className="text-yellow" target="_blank" rel="noopener noreferrer">Copilot guide</a> has the commands for VS Code, Visual Studio and Copilot CLI.
-              </p>
+              <a href={AI_COMMUNITY_JOIN_URL} className="tk-btn" style={yellowBtn} target="_blank" rel="noopener noreferrer" data-cta="legacy-dotnet-community-install">Join the community</a>
             </div>
           </div>
         </div>
@@ -312,11 +307,11 @@ const LegacyDotnet = () => {
           <div className="row justify-content-center" data-reveal>
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-9">
               <div className="tk-card p-5 text-center" style={{ ...card, background: 'rgba(var(--tcm-amber-rgb), 0.06)', borderColor: 'rgba(var(--tcm-amber-rgb), 0.3)' }}>
-                <h2 className="text-white mb-3">Start with the report. It&apos;s free.</h2>
-                <p className="text-white mb-4" style={{ opacity: 0.85 }}>Run it on your solution, read the numbers, then decide. Questions, or a case the pack missed? Bring it to the community.</p>
+                <h2 className="text-white mb-3">Start with the report.</h2>
+                <p className="text-white mb-4" style={{ opacity: 0.85 }}>Join the community, run it on your solution, read the numbers, then decide. Questions, or a case the pack missed? Bring it to the group.</p>
                 <div className="d-flex flex-wrap justify-content-center gap-3">
-                  <a href={REPO_URL} className="tk-btn" style={yellowBtn} target="_blank" rel="noopener noreferrer" data-cta="legacy-dotnet-github-final">Get it on GitHub</a>
-                  <a href={AI_COMMUNITY_JOIN_URL} className="tk-btn" style={outlineBtn} target="_blank" rel="noopener noreferrer" data-cta="legacy-dotnet-community">Ask in the community</a>
+                  <a href={AI_COMMUNITY_JOIN_URL} className="tk-btn" style={yellowBtn} target="_blank" rel="noopener noreferrer" data-cta="legacy-dotnet-community-final">Join the community</a>
+                  <a href={SAMPLE_REPORT_URL} className="tk-btn" style={outlineBtn} target="_blank" rel="noopener" data-cta="legacy-dotnet-sample-report-3">Open the sample report</a>
                 </div>
               </div>
             </div>
