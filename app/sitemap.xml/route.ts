@@ -74,6 +74,7 @@ export async function GET() {
     "ai-roadmap-2026",
     "ai-roadmap-course",
     "claude-code-from-zero",
+    "legacy-dotnet",
   ];
 
   const buildTime = new Date();
